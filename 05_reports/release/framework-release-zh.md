@@ -29,7 +29,7 @@
 ## 归档和未完成事项
 
 - 框架资料已归档到 `H:\我的云端硬盘\muIon_archive\project-management\framework-20260907-r0-framework`。
-- 归档包含 97 个项目文件，逐文件 SHA256 校验通过；归档清单当前哈希为 `C73BA93AC1045D2B2AE7C597D67543B07633AB5E9E451BEADD15D4CD464278DE`。
+- 归档包含项目资料，逐文件 SHA256 校验通过；归档清单保存在同一 Drive 目录和本地追溯目录。
 - 本地同步保留 `00_project/traceability/archive-manifest-20260907-framework.json`。
 - `nature-figure` 尚未下载或固定上游 commit，当前只保存来源记录。
 - 旧工作区 `D:\muIon` 暂不迁移，待未来单独建立迁移任务。

@@ -2,13 +2,13 @@
   "archive_id": "ARCHIVE-20260907-framework",
   "archive_type": "project-framework",
   "source_root": "D:\\muIon-beam",
-  "source_commit": "95406878b2c10ba66053d257f8ef56c2d8b66dd8",
-  "gitee_tag": "r0-framework",
+  "source_commit": "82d2892c57473df316a9d118646ced88f709b7bc",
+  "gitee_tag": "r0-framework-final",
   "drive_path": "H:\\我的云端硬盘\\muIon_archive\\project-management\\framework-20260907-r0-framework",
-  "generated_at": "2026-09-07T03:08:40.3177115+08:00",
-  "legacy_workspace": "D:\\muIon",
+  "generated_at": "2026-09-07T03:15:14.1092893+08:00",
+  "legacy_workspace": "D:\\\\muIon",
   "legacy_migration_status": "not-started-by-design",
-  "file_count": 96,
+  "file_count": 97,
   "files": [
     {
       "path": ".gitignore",
@@ -260,6 +260,12 @@
       "path": "00_project\\templates\\variable-catalog.yaml",
       "size": 666,
       "sha256": "677516d06519557b02e84abc3d765be252526303bd4fbfb64cb648159a9ab158",
+      "verified": true
+    },
+    {
+      "path": "00_project\\traceability\\archive-manifest-20260907-framework.json",
+      "size": 20324,
+      "sha256": "957bfdf222750527b8fc95cb5646847a7206f037030e5f4e6e8bb0e8e0add05b",
       "verified": true
     },
     {
@@ -528,8 +534,8 @@
     },
     {
       "path": "05_reports\\release\\framework-release-zh.md",
-      "size": 1735,
-      "sha256": "7270822637b0ecbacad7bf2eebb2bd22212a21b626ef263c7e464554ccdbad9c",
+      "size": 1990,
+      "sha256": "674970b73e46c8eac97056f7d36a33de451b8e1d07d590bed34024244cf985e0",
       "verified": true
     },
     {
@@ -587,7 +593,7 @@
       "verified": true
     }
   ],
-  "verification_commit": "7229bf7d8a0d8cf7a8743b13ca9cc4bd7fd3126a",
-  "verification_tag": "r0-framework-archive-verified",
+  "verification_commit": "82d2892c57473df316a9d118646ced88f709b7bc",
+  "verification_tag": "r0-framework-final",
   "gitee_push_status": "pending-network-or-credentials"
 }

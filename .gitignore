@@ -1,0 +1,43 @@
+# 本地工作区、缓存和临时文件
+_work/*
+!_work/current/
+!_work/current/README.md
+!_work/scratch/
+!_work/scratch/README.md
+!_work/cache/
+!_work/cache/README.md
+!_work/temporary-output/
+!_work/temporary-output/README.md
+!_work/cleanup-candidates/
+!_work/cleanup-candidates/README.md
+
+# 软件锁定、恢复和自动生成文件
+*.lock
+*.recover
+*.mph~
+*.autosave
+*.tmp
+*.bak
+__pycache__/
+.pytest_cache/
+node_modules/
+
+# 大型二进制模型和原始输出默认不提交 Gitee
+*.mph
+*.SLDASM
+*.SLDPRT
+*.SLDDRW
+*.step
+*.STEP
+*.x_t
+*.vtk
+*.h5
+*.root
+*.bin
+
+# 本地 SQLite 查询索引由 Manifest 重建
+00_project/traceability/*.sqlite
+_work/cache/*.sqlite
+
+# 运行产生的未登记大批量图
+03_runs/formal/**/figures/all/

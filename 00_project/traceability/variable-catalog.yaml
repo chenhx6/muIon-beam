@@ -1,0 +1,22 @@
+schema_version: 1.0.0
+catalog_version: 0.1.0
+variables:
+  - canonical_name: neon_number_density
+    display_name_zh: 氖气数密度
+    definition_zh: 单位体积内的氖原子数
+    allowed_alias: [Ne_density]
+    unit: "1/m^3"
+    dimension: number_density
+    data_type: floating_point
+    value_type: input
+    default_value: null
+    allowed_range: null
+    physical_region: [R02-slowing-capture, R03-charge-state-conversion, R04-fast-extraction]
+    model_layer: Geant4|COMSOL
+    input_or_output: input
+    derived_from: []
+    used_by_tasks: []
+    introduced_in: 0.1.0
+    deprecated_in: null
+    change_reason: 初始变量目录
+    reference_ids: []

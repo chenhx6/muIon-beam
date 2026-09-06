@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/behavior-analysis.schema.json",
+  "type": "object",
+  "required": ["schema_version", "analyses"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "analyses": {"type": "array", "items": {"type": "object", "required": ["analysis_id", "run_id", "question_zh", "factor_variables", "response_metrics", "control_variables"]}}
+  }
+}

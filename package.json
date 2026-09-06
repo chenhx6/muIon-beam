@@ -1,0 +1,14 @@
+{
+  "name": "muion-beam-project",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preflight": "node .codex/skills/muion-project/scripts/preflight.mjs .",
+    "validate:manifest": "node .codex/skills/muion-project/scripts/validate-manifest.mjs",
+    "validate:variables": "node .codex/skills/muion-project/scripts/validate-variable-catalog.mjs",
+    "build:variables": "node .codex/skills/muion-project/scripts/build-variable-catalog-view.mjs",
+    "build:index": "node .codex/skills/muion-project/scripts/build-index.mjs .",
+    "cleanup:report": "node .codex/skills/muion-project/scripts/generate-cleanup-report.mjs .",
+    "test:architecture": "node tests/architecture-smoke.mjs"
+  }
+}

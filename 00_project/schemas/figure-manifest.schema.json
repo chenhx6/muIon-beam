@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/figure-manifest.schema.json",
+  "type": "object",
+  "required": ["schema_version", "figures"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "figures": {"type": "array", "items": {"type": "object", "required": ["figure_id", "run_id", "checkpoint_id", "figure_type", "retention_level"]}}
+  }
+}

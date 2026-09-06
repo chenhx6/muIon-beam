@@ -1,0 +1,4 @@
+interface:
+  display_name: "Muon-ion Beam Project"
+  short_description: "Plan, run, report, archive, and safely clean muon-ion beam work"
+  default_prompt: "Use the muon-ion beam project workflow for this task."

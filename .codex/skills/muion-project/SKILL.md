@@ -1,0 +1,42 @@
+---
+name: muion-project
+description: Manage the muon-ion beam project workflow from task planning and model checks through simulation, dual reports, traceability, archiving, and safe cleanup inside D:\\muIon-beam.
+metadata:
+  short-description: muon-ion beam project workflow
+---
+
+# muion-project
+
+Use this project skill for tasks inside `D:\muIon-beam` involving physics planning, SolidWorks geometry, COMSOL simulation, Geant4 transport, result reporting, Gitee publication, Google Drive archiving, or local file lifecycle management.
+
+## Hard boundaries
+
+- Read the repository `AGENTS.md` before acting.
+- Do not migrate, modify, clean, or delete the active legacy workspace `D:\muIon`.
+- Treat Manifest files as the source of truth. SQLite and Markdown/CSV are generated views.
+- Preserve user changes. Never reset or overwrite an unregistered model or code change.
+- Before the first formal run, pause when a task-related model differs from its registered version.
+- After the user confirms the task card, continue within that task scope without asking for approval at every parameter sweep.
+
+## Choose a mode
+
+- `plan`: create and report a task card with initial conditions, targets, variables, outputs, and acceptance criteria.
+- `preflight`: check path, Git state, user changes, model fingerprints, large files, and archive availability.
+- `fast-run`: record an urgent or externally assigned task with the minimum traceability fields before delivery.
+- `simulate`: create a run snapshot, execute the requested model workflow, and register outputs.
+- `cad-check`: validate SolidWorks exports and COMSOL import geometry.
+- `report`: maintain the concise and detailed Chinese reports and registered figures.
+- `formalize`: convert a fast-track task into a formal run without rewriting source outputs.
+- `archive-and-tag`: verify Drive archive, generate indexes, publish selected Gitee content, and create a tag with Chinese notes.
+- `review`: check traceability and report consistency.
+- `cleanup-report`: produce safe cleanup candidates; only explicitly temporary files may be auto-deleted.
+
+Read only the relevant reference file for the selected mode. Do not load every reference by default.
+
+## Required project artifacts
+
+Every formal run needs a `run-manifest.yaml`, a model snapshot, source/input references, a concise report, a detailed report, and figure metadata when figures are produced. Use the templates under `00_project/templates`.
+
+## External figure skill
+
+Use the pinned `nature-figure` source recorded under `.codex/external-skills` for selected analysis and final figures. Ordinary diagnostic plots may use the lightweight project adapter. Never let an external plotting skill change physical inputs, result criteria, or retention levels.

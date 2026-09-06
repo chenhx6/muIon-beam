@@ -1,0 +1,8 @@
+source_url: https://github.com/Yuan1z0825/nature-skills
+skill_name: nature-figure
+pinned_commit: pending-first-install
+retrieved_at: null
+license: pending-verification
+local_dependencies: []
+project_adapter: .codex/skills/muion-project/references/figure-style-adapter.md
+status: source-recorded-not-vendored

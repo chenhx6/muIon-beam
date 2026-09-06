@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/variable-catalog.schema.json",
+  "type": "object",
+  "required": ["schema_version", "catalog_version", "variables"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "catalog_version": {"type": "string"},
+    "variables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["canonical_name", "display_name_zh", "definition_zh", "unit", "dimension", "data_type", "value_type", "physical_region", "model_layer", "input_or_output"],
+        "properties": {
+          "canonical_name": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$"},
+          "allowed_alias": {"type": "array", "items": {"type": "string"}},
+          "physical_region": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

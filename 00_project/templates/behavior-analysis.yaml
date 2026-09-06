@@ -1,0 +1,19 @@
+schema_version: 1.0.0
+analyses:
+  - analysis_id: ANALYSIS-RUN-YYYYMMDD-NNN-001
+    run_id: RUN-YYYYMMDD-NNN-short-name
+    checkpoint_id: checkpoint-01-parameter-screen
+    question_zh: ""
+    factor_variables: []
+    intermediate_behaviors: []
+    response_metrics: []
+    control_variables: []
+    baseline_run_id: null
+    comparison_run_ids: []
+    source_data_refs: []
+    evidence_figure_ids: []
+    analysis_type: trend
+    interpretation_zh: ""
+    design_implication_zh: ""
+    confidence: preliminary
+    limitations_zh: ""

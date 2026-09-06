@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/run-manifest.schema.json",
+  "type": "object",
+  "required": ["manifest_id", "manifest_type", "schema_version", "task_id", "run_id", "status", "maturity_level", "retention_level", "physical_regions", "model_references", "files"],
+  "properties": {
+    "manifest_id": {"type": "string", "minLength": 1},
+    "manifest_type": {"const": "run"},
+    "schema_version": {"type": "string"},
+    "task_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["planned", "running", "complete", "failed", "archived", "discarded"]},
+    "maturity_level": {"enum": ["F0", "F1", "F2", "F3"]},
+    "retention_level": {"enum": ["P0", "P1", "P2", "P3"]},
+    "physical_regions": {"type": "array", "items": {"type": "string"}},
+    "model_references": {"type": "array", "items": {"type": "string"}},
+    "files": {"type": "array", "items": {"$ref": "#/$defs/file"}}
+  },
+  "$defs": {
+    "file": {
+      "type": "object",
+      "required": ["path", "role", "retention_level"],
+      "properties": {
+        "path": {"type": "string"},
+        "role": {"type": "string"},
+        "retention_level": {"enum": ["P0", "P1", "P2", "P3"]},
+        "sha256": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

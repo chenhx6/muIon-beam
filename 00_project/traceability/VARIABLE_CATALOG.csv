@@ -1,0 +1,2 @@
+canonical_name,display_name_zh,definition_zh,unit,dimension,data_type,value_type,physical_region,model_layer,input_or_output,allowed_alias,introduced_in,deprecated_in,change_reason
+"neon_number_density","氖气数密度","单位体积内的氖原子数","1/m^3","number_density","floating_point","input","R02-slowing-capture; R03-charge-state-conversion; R04-fast-extraction","Geant4|COMSOL","input","Ne_density","0.1.0","","初始变量目录"

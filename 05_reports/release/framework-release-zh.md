@@ -26,9 +26,11 @@
 - 路径预检确认当前项目根目录为 `D:\muIon-beam`。
 - 清理报告只生成候选清单，没有删除文件。
 
-## 未完成事项
+## 归档和未完成事项
 
-- Google Drive 路径 `H:\我的云端硬盘\muIon_archive` 在当前执行环境中被权限限制，尚未完成云端归档。
+- 框架资料已归档到 `H:\我的云端硬盘\muIon_archive\project-management\framework-20260907-r0-framework`。
+- 归档包含 96 个项目文件，逐文件 SHA256 校验通过；归档清单哈希为 `CAB54AB930673A4D9ADBF4768E582533A43FF8D625DE8AF95BA8A07527B68DFA`。
+- 本地同步保留 `00_project/traceability/archive-manifest-20260907-framework.json`。
 - `nature-figure` 尚未下载或固定上游 commit，当前只保存来源记录。
 - 旧工作区 `D:\muIon` 暂不迁移，待未来单独建立迁移任务。
 

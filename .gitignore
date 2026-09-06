@@ -10,6 +10,8 @@ _work/*
 !_work/temporary-output/README.md
 !_work/cleanup-candidates/
 !_work/cleanup-candidates/README.md
+_work/cleanup-candidates/*
+!_work/cleanup-candidates/README.md
 
 # 软件锁定、恢复和自动生成文件
 *.lock

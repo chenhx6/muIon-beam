@@ -586,5 +586,8 @@
       "sha256": "3ee86096bcbe2d52e272c543c50085f5fc2a49fe85d4ee8c59100a45f7a79298",
       "verified": true
     }
-  ]
+  ],
+  "verification_commit": "7229bf7d8a0d8cf7a8743b13ca9cc4bd7fd3126a",
+  "verification_tag": "r0-framework-archive-verified",
+  "gitee_push_status": "pending-network-or-credentials"
 }

@@ -2,10 +2,11 @@
   "publication_id": "PUBLICATION-r1-project-snapshot-verified",
   "tag": "r1-project-snapshot-verified",
   "base_tag": "r1-index-and-sync-hardening",
-  "commit": null,
+  "commit": "7f96f0ef98ac96caaec5ce2a6e789e66b799f8f5",
   "remote": "https://gitee.com/chx6/muIon-beam.git",
-  "status": "prepared",
+  "remote_main_commit": "7f96f0ef98ac96caaec5ce2a6e789e66b799f8f5",
+  "status": "published",
   "message_file": "D:\\muIon-beam\\05_reports\\release\\r1-project-snapshot-verified-result-note-zh.md",
-  "prepared_at": "2026-09-07T11:15:08.660Z",
-  "pushed_at": null
+  "prepared_at": "2026-09-07T11:15:14.279Z",
+  "pushed_at": "2026-09-07T11:15:14.279Z"
 }

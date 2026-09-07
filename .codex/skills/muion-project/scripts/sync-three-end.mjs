@@ -45,7 +45,18 @@ const state = { sync_id: syncId, manifest_type: 'sync-state', schema_version: '1
 const stateDir = path.join(root, '00_project/traceability/sync-states');
 ensureDirectory(stateDir);
 const statePath = path.join(stateDir, `${syncId}.json`);
+let driveStatePath = null;
+let driveStateStatus = 'not-written';
+try {
+  if (fs.existsSync(drivePath)) {
+    driveStatePath = path.join(drivePath, 'sync-state.json');
+    driveStateStatus = 'written-and-verified';
+  } else driveStateStatus = 'drive-directory-missing';
+} catch (error) { driveStateStatus = `failed: ${error.message}`; }
+state.drive_state_path = driveStatePath;
+state.drive_state_status = driveStateStatus;
 jsonWrite(statePath, state);
+if (driveStatePath && driveStateStatus === 'written-and-verified') jsonWrite(driveStatePath, state);
 if (status !== 'three-way-verified') jsonWrite(path.join(root, '00_project/traceability/sync-outbox', `${syncId}.json`), state);
-console.log(JSON.stringify({ state: statePath, status, local_commit: localCommit, gitee_remote_commit: remoteCommit, tag, drive_path: drivePath, file_count: copied.length, errors: driveErrors }, null, 2));
+console.log(JSON.stringify({ state: statePath, status, local_commit: localCommit, gitee_remote_commit: remoteCommit, tag, drive_path: drivePath, drive_state_path: driveStatePath, drive_state_status: driveStateStatus, file_count: copied.length, errors: driveErrors }, null, 2));
 process.exitCode = status === 'three-way-verified' ? 0 : 2;

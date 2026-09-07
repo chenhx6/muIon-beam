@@ -28,5 +28,5 @@ if (validation.status !== 0) throw new Error(`variable catalog validation failed
 const preflight = spawnSync(process.execPath, ['.codex/skills/muion-project/scripts/preflight.mjs', '.'], { cwd: root, encoding: 'utf8' });
 if (preflight.status !== 0) throw new Error(`preflight failed: ${preflight.stdout}${preflight.stderr}`);
 const migrationNote = fs.readFileSync(path.join(root, '90_migration/from-D-muIon/README.md'), 'utf8');
-if (!migrationNote.includes('不迁移') || !migrationNote.includes('不删除')) throw new Error('legacy migration boundary is missing');
+if (!migrationNote.includes('复制') || !migrationNote.includes('不删除')) throw new Error('legacy migration boundary is missing');
 console.log(JSON.stringify({ valid: true, requiredFiles: required.length, variables: catalog.variables.length, legacyWorkspaceUntouched: true }, null, 2));

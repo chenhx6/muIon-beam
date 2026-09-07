@@ -7,3 +7,5 @@
 - `final` 图：用于最终电场、粒子轨迹、束斑、传输效率和设计汇报，必须经过统一样式检查。
 
 不要求每一张临时图达到投稿级质量。图的科学问题和来源关系优先于装饰样式。
+
+当前项目默认使用 Python backend（已由 `nature_figure_backend.py` 保存）。重要图按上游 `nature-figure` 的 contract、alignment、PDF text 和 collision QA 执行；迁移冒烟测试的单面板图只验证运行时和导出链，不代表新的科学结论。

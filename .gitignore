@@ -51,3 +51,7 @@ _work/cache/*.sqlite
 
 # 运行产生的未登记大批量图
 03_runs/formal/**/figures/all/
+
+# 高分辨率 QA 预览保留本地/Drive，不直接进入 Gitee
+04_results/figures/**/*.tiff
+04_results/figures/**/*.tif

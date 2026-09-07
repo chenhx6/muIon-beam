@@ -25,6 +25,15 @@ if (args.tag) {
   const ancestor = tagCommit ? runGit(root, ['merge-base', '--is-ancestor', tagCommit, localCommit], { allowFailure: true }).status === 0 : false;
   tagVerified = tagCommit === localCommit || ancestor;
 }
-const result = { read_only: true, run_dir: runDir, drive_path: drivePath, local_commit: localCommit, gitee_remote_commit: remoteCommit, gitee_tag: args.tag || null, gitee_tag_commit: tagCommit, drive_files_checked: files.length, drive_mismatches: mismatches, tag_verified: tagVerified, status: remoteCommit === localCommit && mismatches.length === 0 && tagVerified ? 'three-way-verified' : 'drift-detected', action_required: remoteCommit !== localCommit || mismatches.length > 0 || !tagVerified };
+const driveStatePath = path.join(drivePath, 'sync-state.json');
+let driveStateValid = false;
+if (fs.existsSync(driveStatePath)) {
+  try {
+    const driveState = JSON.parse(fs.readFileSync(driveStatePath, 'utf8'));
+    const stateCommitIsAncestor = driveState.local_commit ? runGit(root, ['merge-base', '--is-ancestor', driveState.local_commit, localCommit], { allowFailure: true }).status === 0 : false;
+    driveStateValid = stateCommitIsAncestor && (!args.tag || driveState.gitee_tag === args.tag);
+  } catch { driveStateValid = false; }
+}
+const result = { read_only: true, run_dir: runDir, drive_path: drivePath, drive_state_path: driveStatePath, drive_state_verified: driveStateValid, local_commit: localCommit, gitee_remote_commit: remoteCommit, gitee_tag: args.tag || null, gitee_tag_commit: tagCommit, drive_files_checked: files.length, drive_mismatches: mismatches, tag_verified: tagVerified, status: remoteCommit === localCommit && mismatches.length === 0 && tagVerified && driveStateValid ? 'three-way-verified' : 'drift-detected', action_required: remoteCommit !== localCommit || mismatches.length > 0 || !tagVerified || !driveStateValid };
 console.log(JSON.stringify(result, null, 2));
 process.exitCode = result.action_required ? 2 : 0;

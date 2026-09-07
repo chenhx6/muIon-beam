@@ -60,6 +60,8 @@ create-run-snapshot
 publish-gitee
 sync-three-end
 audit-three-end
+publish-and-sync
+retry-sync
 install-nature-figure
 cache-audit
 ```

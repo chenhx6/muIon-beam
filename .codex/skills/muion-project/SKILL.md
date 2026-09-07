@@ -38,8 +38,11 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `create-run-snapshot`: freeze the actual inputs used by a run.
 - `publish-gitee`: dry-run or publish an annotated tag with a Chinese result note.
 - `sync-three-end`: archive and verify the local, Gitee, and Drive state.
+- `publish-and-sync`: publish a tagged result, archive its run, write sync state, and push the verified state record.
 - `audit-three-end`: perform a read-only drift audit.
 - `cache-audit`: index cache files and generate safe cleanup candidates.
+- `retry-sync`: retry pending three-end sync records idempotently and clear only successfully verified outbox entries.
+- `install-nature-figure`: install or inspect the pinned external figure skill.
 
 Read only the relevant reference file for the selected mode. Do not load every reference by default.
 

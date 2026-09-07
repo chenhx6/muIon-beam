@@ -9,7 +9,7 @@ if (!drivePath) throw new Error('provide --drive-path');
 const localCommit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
 const remoteLine = runGit(root, ['ls-remote', 'origin', 'refs/heads/main'], { allowFailure: true });
 const remoteCommit = remoteLine.status === 0 ? remoteLine.stdout.trim().split(/\s+/)[0] || null : null;
-const tracked = runGit(root, ['ls-files']).stdout.split(/\r?\n/).map((item) => item.trim()).filter((item) => item && !item.startsWith('_work/temporary-output/'));
+const tracked = runGit(root, ['ls-files']).stdout.split(/\r?\n/).map((item) => item.trim()).filter((item) => item && !item.startsWith('_work/temporary-output/') && !item.startsWith('00_project/traceability/sync-states/'));
 const errors = [];
 for (const relative of tracked) {
   const local = path.join(root, relative);

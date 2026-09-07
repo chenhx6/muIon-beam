@@ -10,7 +10,7 @@ const snapshotId = args.snapshot_id || `SNAPSHOT-${localCommit.slice(0, 12)}`;
 const drivePath = args.drive_path || `H:\\我的云端硬盘\\muIon_archive\\project-management\\project-snapshots\\${snapshotId}`;
 const tracked = runGit(root, ['ls-files']).stdout.split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
 const extras = ['00_project/traceability/index.sqlite', '_work/cache/cache-index.sqlite'].filter((item) => fs.existsSync(path.join(root, item)));
-const sourcePaths = [...new Set([...tracked, ...extras])].filter((item) => !item.startsWith('.git/') && !item.startsWith('_work/temporary-output/'));
+const sourcePaths = [...new Set([...tracked, ...extras])].filter((item) => !item.startsWith('.git/') && !item.startsWith('_work/temporary-output/') && !item.startsWith('00_project/traceability/sync-states/'));
 const copied = [];
 const errors = [];
 for (const relative of sourcePaths) {

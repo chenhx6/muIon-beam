@@ -2,19 +2,19 @@
   "sync_id": "SYNC-SNAPSHOT-d0ec88768e57",
   "manifest_type": "sync-state",
   "schema_version": "1.0.0",
-  "created_at": "2026-09-07T11:16:17.216Z",
+  "created_at": "2026-09-07T11:19:25.960Z",
   "task_id": null,
   "run_id": null,
   "snapshot_id": "SNAPSHOT-d0ec88768e57",
-  "local_commit": "d0ec88768e57d6bd98ba2b37576d976726d12cc3",
-  "gitee_remote_commit": "d0ec88768e57d6bd98ba2b37576d976726d12cc3",
+  "local_commit": "90f7e71131ab913c83152808917ac0c20f2fb16c",
+  "gitee_remote_commit": "90f7e71131ab913c83152808917ac0c20f2fb16c",
   "gitee_tag": "r1-project-snapshot-verified",
   "gitee_tag_commit": "7f96f0ef98ac96caaec5ce2a6e789e66b799f8f5",
   "drive_path": "H:\\我的云端硬盘\\muIon_archive\\project-management\\project-snapshots\\SNAPSHOT-d0ec88768e57",
-  "manifest_sha256": "79bdc045c92f94275185aed5c246f3cb3409c5ec8b284222b0ca8985dcf8f328",
+  "manifest_sha256": "435c266db27678ea1cd121095f5c98644d678eb67023b8bb4316d02311d7f688",
   "status": "three-way-verified",
   "pending_actions": [],
-  "file_count": 580,
+  "file_count": 581,
   "files": [
     {
       "path": ".codex/external-skills/nature-figure/README.md",
@@ -1310,6 +1310,12 @@
       "path": "00_project/traceability/sync-states/SYNC-SNAPSHOT-421b45318451.json",
       "size": 148598,
       "sha256": "73c67195831fdd7b208cac627d0efdf2a11d34401bf66dd5c843c35c0bcb118f",
+      "verified": true
+    },
+    {
+      "path": "00_project/traceability/sync-states/SYNC-SNAPSHOT-d0ec88768e57.json",
+      "size": 149721,
+      "sha256": "82ece149c9eb16e615660668c4be6a13386a63f8bc9296d27d3a5e525f549328",
       "verified": true
     },
     {

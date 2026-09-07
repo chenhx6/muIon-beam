@@ -3,7 +3,7 @@
   "manifest_type": "run",
   "schema_version": "1.0.0",
   "created_at": "2026-09-07T14:32:27.469Z",
-  "updated_at": "2026-09-07T14:32:27.469Z",
+  "updated_at": "2026-09-07T14:47:33.761Z",
   "task_id": "TASK-LEGACY-SMOKE-001",
   "task_name": "旧工作区 Stage-1 居中源迁移冒烟测试",
   "run_id": "RUN-LEGACY-SMOKE-001-stage1-centered",
@@ -33,13 +33,14 @@
     "historical_geant4": "see historical metadata"
   },
   "git": {
-    "commit": null,
-    "tag": null,
+    "commit": "fe727c59843013c4f738b6a487403db3930aa11c",
+    "tag": "r1-framework-acceptance",
     "dirty_files": []
   },
   "drive": {
     "archive_path": "H:\\我的云端硬盘\\muIon_archive\\legacy-from-D-muIon\\selected-migration-20260907-stage1\\smoke-run\\RUN-LEGACY-SMOKE-001-stage1-centered",
-    "archive_status": "pending-verification"
+    "archive_status": "three-way-verified",
+    "sync_state_ref": "H:\\我的云端硬盘\\muIon_archive\\legacy-from-D-muIon\\selected-migration-20260907-stage1\\smoke-run\\RUN-LEGACY-SMOKE-001-stage1-centered/sync-state.json"
   },
   "reports": {
     "summary_report": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/summary-report-zh.md",
@@ -54,7 +55,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/field_export.log",
@@ -64,7 +65,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/reload_validation.log",
@@ -74,7 +75,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/transport_tuning.log",
@@ -84,7 +85,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/comsol_muNe_nu_ref.txt",
@@ -94,7 +95,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/comsol_muNe_SN.txt",
@@ -104,7 +105,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/comsol_muNe_SN_SI.txt",
@@ -114,7 +115,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/density_scaling_validation.csv",
@@ -124,7 +125,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/metadata.json",
@@ -134,7 +135,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/metadata_opt4.json",
@@ -144,7 +145,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/CMakeLists.txt",
@@ -154,7 +155,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/comsol_muNe_nu_ref.txt",
@@ -164,7 +165,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/comsol_muNe_SN.txt",
@@ -174,7 +175,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/comsol_muNe_SN_SI.txt",
@@ -184,7 +185,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/density_scaling_validation.csv",
@@ -194,7 +195,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/metadata.json",
@@ -204,7 +205,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/metadata_opt4.json",
@@ -214,7 +215,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/mu_minus_Ne_stopping_master.csv",
@@ -224,7 +225,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/mu_minus_Ne_stopping_opt4.csv",
@@ -234,7 +235,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/opt3_vs_opt4.csv",
@@ -244,7 +245,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/run_option3.log",
@@ -254,7 +255,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/muon_ne_g4/output/run_option4.log",
@@ -264,7 +265,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "05_reports/interim/legacy/muon/ne/muon_ne_g4/README.md",
@@ -274,7 +275,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/mu_minus_Ne_stopping_master.csv",
@@ -284,7 +285,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/mu_minus_Ne_stopping_opt4.csv",
@@ -294,7 +295,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/geant4/legacy/muon/ne/opt3_vs_opt4.csv",
@@ -304,7 +305,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "05_reports/interim/legacy/muon/ne/README.md",
@@ -314,7 +315,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "05_reports/interim/legacy/reports/stage1_centered_source_100ns_cooling_extraction_report.md",
@@ -324,7 +325,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/solidworks/legacy/stage1_3d_feasibility/cad/Stage1_Master_3D.SLDPRT",
@@ -334,7 +335,7 @@
       "retention_level": "P1",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/solidworks/legacy/stage1_3d_feasibility/cad/Stage1_Master_3D.step",
@@ -344,7 +345,7 @@
       "retention_level": "P1",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/centered_cooling_calibration.mph",
@@ -354,7 +355,7 @@
       "retention_level": "P1",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/centered_stage1_highfield_10_v2.mph",
@@ -364,7 +365,7 @@
       "retention_level": "P1",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/stage1_3d_feasibility.mph",
@@ -374,7 +375,7 @@
       "retention_level": "P1",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/solidworks/legacy/stage1_3d_feasibility/comsol/stage1_3d_physics_geometry.step",
@@ -384,7 +385,7 @@
       "retention_level": "P1",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/stage1_solidworks_step_import_check.mph",
@@ -394,7 +395,7 @@
       "retention_level": "P1",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.csv",
@@ -404,7 +405,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.json",
@@ -414,7 +415,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.txt",
@@ -424,7 +425,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.csv",
@@ -434,7 +435,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.json",
@@ -444,7 +445,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.txt",
@@ -454,7 +455,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.csv",
@@ -464,7 +465,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.json",
@@ -474,7 +475,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.txt",
@@ -484,7 +485,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.csv",
@@ -494,7 +495,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.json",
@@ -504,7 +505,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.txt",
@@ -514,7 +515,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.csv",
@@ -524,7 +525,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.json",
@@ -534,7 +535,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.txt",
@@ -544,7 +545,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.csv",
@@ -554,7 +555,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.json",
@@ -564,7 +565,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.txt",
@@ -574,7 +575,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.csv",
@@ -584,7 +585,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.json",
@@ -594,7 +595,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.txt",
@@ -604,7 +605,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.csv",
@@ -614,7 +615,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.json",
@@ -624,7 +625,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.txt",
@@ -634,7 +635,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.csv",
@@ -644,7 +645,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.json",
@@ -654,7 +655,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.txt",
@@ -664,7 +665,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/field/apertures/linear/V2_aperture_E_linear.png",
@@ -674,7 +675,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/field/overall/linear/overall_E_linear.png",
@@ -684,7 +685,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/particle/centered_trajectories_rz.png",
@@ -694,7 +695,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/particle/centered_trajectories_xy.png",
@@ -704,7 +705,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/aperture_peak_field_reference.png",
@@ -714,7 +715,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/baseline_candidate_final_comparison.png",
@@ -724,7 +725,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/density_x_field_EN.png",
@@ -734,7 +735,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/density_x_field_P90_exit_time.png",
@@ -744,7 +745,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/density_x_field_transport_rate.png",
@@ -754,7 +755,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/electric_field_strength_acceleration_time.png",
@@ -764,7 +765,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/electric_field_strength_axial_velocity.png",
@@ -774,7 +775,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/neon_number_density_Kperp.png",
@@ -784,7 +785,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/neon_number_density_radial_cooling_time.png",
@@ -794,7 +795,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/neon_number_density_threshold_fraction.png",
@@ -804,7 +805,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/source_K_theta_distribution.png",
@@ -814,7 +815,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/prefs_step_import_final/logs/batch1.log",
@@ -824,7 +825,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/prefs_step_import_final/logs/batch1_render.log",
@@ -834,7 +835,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_api_prefs/logs/batch1.log",
@@ -844,7 +845,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_api_prefs/logs/batch1_render.log",
@@ -854,7 +855,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch1.log",
@@ -864,7 +865,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch1_render.log",
@@ -874,7 +875,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch2.log",
@@ -884,7 +885,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch2_render.log",
@@ -894,7 +895,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile1_prefs/logs/batch1.log",
@@ -904,7 +905,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile1_prefs/logs/batch1_render.log",
@@ -914,7 +915,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_From_file0_prefs/logs/batch1.log",
@@ -924,7 +925,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_From_file0_prefs/logs/batch1_render.log",
@@ -934,7 +935,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_interp_prefs/logs/batch1.log",
@@ -944,7 +945,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_interp_prefs/logs/batch1_render.log",
@@ -954,7 +955,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs/logs/batch1.log",
@@ -964,7 +965,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs/logs/batch1_render.log",
@@ -974,7 +975,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs2/logs/batch1.log",
@@ -984,7 +985,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs2/logs/batch1_render.log",
@@ -994,7 +995,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newcpt_prefs/logs/batch1.log",
@@ -1004,7 +1005,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newcpt_prefs/logs/batch1_render.log",
@@ -1014,7 +1015,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_args_prefs/logs/batch1.log",
@@ -1024,7 +1025,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_args_prefs/logs/batch1_render.log",
@@ -1034,7 +1035,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs/logs/batch1.log",
@@ -1044,7 +1045,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs/logs/batch1_render.log",
@@ -1054,7 +1055,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs2/logs/batch1.log",
@@ -1064,7 +1065,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs2/logs/batch1_render.log",
@@ -1074,7 +1075,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs3/logs/batch1.log",
@@ -1084,7 +1085,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs3/logs/batch1_render.log",
@@ -1094,7 +1095,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs4/logs/batch1.log",
@@ -1104,7 +1105,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs4/logs/batch1_render.log",
@@ -1114,7 +1115,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs5/logs/batch1.log",
@@ -1124,7 +1125,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs5/logs/batch1_render.log",
@@ -1134,7 +1135,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs/logs/batch1.log",
@@ -1144,7 +1145,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs/logs/batch1_render.log",
@@ -1154,7 +1155,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs2/logs/batch1.log",
@@ -1164,7 +1165,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs2/logs/batch1_render.log",
@@ -1174,7 +1175,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs3/logs/batch1.log",
@@ -1184,7 +1185,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs3/logs/batch1_render.log",
@@ -1194,7 +1195,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs4/logs/batch1.log",
@@ -1204,7 +1205,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs4/logs/batch1_render.log",
@@ -1214,7 +1215,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs5/logs/batch1.log",
@@ -1224,7 +1225,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs5/logs/batch1_render.log",
@@ -1234,7 +1235,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs6/logs/batch1.log",
@@ -1244,7 +1245,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs6/logs/batch1_render.log",
@@ -1254,7 +1255,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval2_prefs/logs/batch1.log",
@@ -1264,7 +1265,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval2_prefs/logs/batch1_render.log",
@@ -1274,7 +1275,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval3_prefs/logs/batch1.log",
@@ -1284,7 +1285,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval3_prefs/logs/batch1_render.log",
@@ -1294,7 +1295,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval4_prefs/logs/batch1.log",
@@ -1304,7 +1305,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval4_prefs/logs/batch1_render.log",
@@ -1314,7 +1315,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval5_prefs/logs/batch1.log",
@@ -1324,7 +1325,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval5_prefs/logs/batch1_render.log",
@@ -1334,7 +1335,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_evalall_prefs/logs/batch1.log",
@@ -1344,7 +1345,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_evalall_prefs/logs/batch1_render.log",
@@ -1354,7 +1355,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval_prefs/logs/batch1.log",
@@ -1364,7 +1365,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval_prefs/logs/batch1_render.log",
@@ -1374,7 +1375,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_import_prefs/logs/batch1.log",
@@ -1384,7 +1385,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_import_prefs/logs/batch1_render.log",
@@ -1394,7 +1395,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_prefs/logs/batch1.log",
@@ -1404,7 +1405,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_prefs/logs/batch1_render.log",
@@ -1414,7 +1415,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/aperture_phase_fine_20260904_2050_stderr.log",
@@ -1424,7 +1425,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/aperture_phase_fine_20260904_2050_stdout.log",
@@ -1434,7 +1435,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/axial_source_20260905_0430_stderr.log",
@@ -1444,7 +1445,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/axial_source_20260905_0430_stdout.log",
@@ -1454,7 +1455,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0006_stderr.log",
@@ -1464,7 +1465,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0006_stdout.log",
@@ -1474,7 +1475,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0012_stderr.log",
@@ -1484,7 +1485,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0012_stdout.log",
@@ -1494,7 +1495,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0020_stderr.log",
@@ -1504,7 +1505,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0020_stdout.log",
@@ -1514,7 +1515,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0028_stderr.log",
@@ -1524,7 +1525,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0028_stdout.log",
@@ -1534,7 +1535,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0040_stderr.log",
@@ -1544,7 +1545,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0040_stdout.log",
@@ -1554,7 +1555,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0050_stderr.log",
@@ -1564,7 +1565,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0050_stdout.log",
@@ -1574,7 +1575,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0100_stderr.log",
@@ -1584,7 +1585,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0100_stdout.log",
@@ -1594,7 +1595,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0112_stderr.log",
@@ -1604,7 +1605,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0112_stdout.log",
@@ -1614,7 +1615,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0125_stderr.log",
@@ -1624,7 +1625,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0125_stdout.log",
@@ -1634,7 +1635,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0155_stderr.log",
@@ -1644,7 +1645,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0155_stdout.log",
@@ -1654,7 +1655,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_stderr.log",
@@ -1664,7 +1665,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_stdout.log",
@@ -1674,7 +1675,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_0720_stderr.log",
@@ -1684,7 +1685,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_0720_stdout.log",
@@ -1694,7 +1695,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_1820_stderr.log",
@@ -1704,7 +1705,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_1820_stdout.log",
@@ -1714,7 +1715,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble_20260905_0615_stderr.log",
@@ -1724,7 +1725,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble_20260905_0615_stdout.log",
@@ -1734,7 +1735,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/final_builder_20260905_1930_stderr.log",
@@ -1744,7 +1745,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/final_builder_20260905_1930_stdout.log",
@@ -1754,7 +1755,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/fine_acceptance_20260904_1350_stderr.log",
@@ -1764,7 +1765,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/fine_acceptance_20260904_1705_stderr.log",
@@ -1774,7 +1775,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/phase_refine_20260904_1030_stderr.log",
@@ -1784,7 +1785,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/phase_refine_20260904_1230_stderr.log",
@@ -1794,7 +1795,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0902_stderr.log",
@@ -1804,7 +1805,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0902_stdout.log",
@@ -1814,7 +1815,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0958_stderr.log",
@@ -1824,7 +1825,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0958_stdout.log",
@@ -1834,7 +1835,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/short_gap_bridge_20260905_0030_stderr.log",
@@ -1844,7 +1845,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/short_gap_bridge_20260905_0030_stdout.log",
@@ -1854,7 +1855,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0825_stderr.log",
@@ -1864,7 +1865,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0825_stdout.log",
@@ -1874,7 +1875,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0834_stderr.log",
@@ -1884,7 +1885,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0834_stdout.log",
@@ -1894,7 +1895,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0845_stderr.log",
@@ -1904,7 +1905,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder.err.log",
@@ -1914,7 +1915,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder.log",
@@ -1924,7 +1925,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet.err.log",
@@ -1934,7 +1935,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet.log",
@@ -1944,7 +1945,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_diag.err.log",
@@ -1954,7 +1955,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_diag.log",
@@ -1964,7 +1965,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v2.err.log",
@@ -1974,7 +1975,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v2.log",
@@ -1984,7 +1985,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v3.err.log",
@@ -1994,7 +1995,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v3.log",
@@ -2004,7 +2005,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v4.err.log",
@@ -2014,7 +2015,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v4.log",
@@ -2024,7 +2025,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final.err.log",
@@ -2034,7 +2035,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final.log",
@@ -2044,7 +2045,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final_zfillet.err.log",
@@ -2054,7 +2055,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final_zfillet.log",
@@ -2064,7 +2065,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_native_rounding_final.log",
@@ -2074,7 +2075,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_v2.err.log",
@@ -2084,7 +2085,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_v2.log",
@@ -2094,7 +2095,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_diag2.err.log",
@@ -2104,7 +2105,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_diag2.log",
@@ -2114,7 +2115,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_fillet_facewalk.err.log",
@@ -2124,7 +2125,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_fillet_facewalk.log",
@@ -2134,7 +2135,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_final.err.log",
@@ -2144,7 +2145,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_final.log",
@@ -2154,7 +2155,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zfillet.err.log",
@@ -2164,7 +2165,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zfillet.log",
@@ -2174,7 +2175,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation.err.log",
@@ -2184,7 +2185,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation.log",
@@ -2194,7 +2195,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_box.err.log",
@@ -2204,7 +2205,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_box.log",
@@ -2214,7 +2215,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_final.err.log",
@@ -2224,7 +2225,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_final.log",
@@ -2234,7 +2235,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export.err.log",
@@ -2244,7 +2245,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export.log",
@@ -2254,7 +2255,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_final.err.log",
@@ -2264,7 +2265,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_final.log",
@@ -2274,7 +2275,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_v2.err.log",
@@ -2284,7 +2285,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_v2.log",
@@ -2294,7 +2295,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export.err.log",
@@ -2304,7 +2305,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export.log",
@@ -2314,7 +2315,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export_final.err.log",
@@ -2324,7 +2325,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export_final.log",
@@ -2334,7 +2335,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_20260904_1645.err.log",
@@ -2344,7 +2345,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_20260904_1645.log",
@@ -2354,7 +2355,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_final.log",
@@ -2364,7 +2365,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_test_ring_err.log",
@@ -2374,7 +2375,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_test_ring_run.log",
@@ -2384,7 +2385,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/transport_bridge_20260904_2320_stderr.log",
@@ -2394,7 +2395,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/transport_bridge_20260904_2320_stdout.log",
@@ -2404,7 +2405,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/validate_stage1_comsol_20260905_1945.err.log",
@@ -2414,7 +2415,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/validate_stage1_comsol_20260905_1945.log",
@@ -2424,7 +2425,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/velocity_phase_20260904_1900_stderr.log",
@@ -2434,7 +2435,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "05_reports/interim/legacy/stage1_3d_feasibility/reports/FIGURE_QA.md",
@@ -2444,7 +2445,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "05_reports/interim/legacy/stage1_3d_feasibility/reports/PARAMETER_REFERENCE.md",
@@ -2454,7 +2455,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "05_reports/interim/legacy/stage1_3d_feasibility/reports/solidworks_automation_limitations.md",
@@ -2464,7 +2465,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "05_reports/interim/legacy/stage1_3d_feasibility/reports/stage1_feasibility_report.md",
@@ -2474,7 +2475,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "05_reports/interim/legacy/stage1_3d_feasibility/reports/VALIDATION_CHECKLIST.md",
@@ -2484,7 +2485,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/analyze_centered_results.py",
@@ -2494,7 +2495,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/analyze_stage1_sweeps.py",
@@ -2504,7 +2505,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/BuildCenteredCoolingModel.java",
@@ -2514,7 +2515,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/BuildCenteredStage1Model.java",
@@ -2524,7 +2525,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/BuildStage1SolidWorks.cs",
@@ -2534,7 +2535,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/BuildStage1_3D.java",
@@ -2544,7 +2545,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/build_parameter_reference.py",
@@ -2554,7 +2555,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/build_stage1_report.py",
@@ -2564,7 +2565,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/convert_cad_previews.py",
@@ -2574,7 +2575,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/estimate_stage1_scales.py",
@@ -2584,7 +2585,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/ExportStage1SolidWorksPreview.cs",
@@ -2594,7 +2595,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/ExportStage1SolidWorksStep.cs",
@@ -2604,7 +2605,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/generate_centered_release.py",
@@ -2614,7 +2615,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/ImportStage1SolidWorksStep.java",
@@ -2624,7 +2625,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/make_centered_cooling_threshold_plot.ps1",
@@ -2634,7 +2635,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/make_centered_figures.py",
@@ -2644,7 +2645,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/make_formal_figures.py",
@@ -2654,7 +2655,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/prepare_centered_exports.py",
@@ -2664,7 +2665,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/probe_cooling_diag_prefs/logs/batch1.log",
@@ -2674,7 +2675,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/probe_cooling_diag_prefs/logs/batch1_render.log",
@@ -2684,7 +2685,7 @@
       "retention_level": "P2",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/README.md",
@@ -2694,7 +2695,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunCenteredCoolingCase.java",
@@ -2704,7 +2705,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunCenteredCoolingScan.java",
@@ -2714,7 +2715,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1AperturePhaseFine.java",
@@ -2724,7 +2725,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1AxialSourcePositionScan.java",
@@ -2734,7 +2735,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1Ensemble.java",
@@ -2744,7 +2745,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1FineAcceptance.java",
@@ -2754,7 +2755,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1PhaseRefine.java",
@@ -2764,7 +2765,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1Refine.java",
@@ -2774,7 +2775,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1ShortGapBridge.java",
@@ -2784,7 +2785,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1SingleSweep.java",
@@ -2794,7 +2795,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1TransportBridgeScan.java",
@@ -2804,7 +2805,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunStage1VelocityPhaseScan.java",
@@ -2814,7 +2815,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/run_centered_transport_scan.py",
@@ -2824,7 +2825,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/ValidateStage1Comsol.java",
@@ -2834,7 +2835,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/ValidateStage1SolidWorks.cs",
@@ -2844,7 +2845,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/validate_stage1_outputs.py",
@@ -2854,7 +2855,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/candidate_parameter_sets.csv",
@@ -2864,7 +2865,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/candidate_parameter_sets.csv",
@@ -2874,7 +2875,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_loss_diagnostics.csv",
@@ -2884,7 +2885,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_scan_plan.csv",
@@ -2894,7 +2895,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_transport_scan_master.csv",
@@ -2904,7 +2905,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_scan.csv",
@@ -2914,7 +2915,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_summary.csv",
@@ -2924,7 +2925,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/field_aperture_zoom.csv",
@@ -2934,7 +2935,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/field_summary.csv",
@@ -2944,7 +2945,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/loss_diagnostics.csv",
@@ -2954,7 +2955,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/transport_scan_master.csv",
@@ -2964,7 +2965,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     },
     {
       "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/variable_sensitivity.csv",
@@ -2974,7 +2975,7 @@
       "retention_level": "P0",
       "local_status": "verified",
       "drive_status": "verified",
-      "gitee_status": "pending"
+      "gitee_status": "not-uploaded-by-policy"
     }
   ],
   "human_summary_zh": "旧工作区精选资料已按新框架建立可追溯关系，科学结果尚未重新验证。",
@@ -2985,5 +2986,6 @@
     "未重新运行 COMSOL",
     "未重新运行 Geant4",
     "不代表新的物理验证"
-  ]
+  ],
+  "acceptance_status": "structural-accepted"
 }

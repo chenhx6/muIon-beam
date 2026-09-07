@@ -26,6 +26,7 @@
     "cache:index": "node .codex/skills/muion-project/scripts/index-cache.mjs",
     "cache:audit": "node .codex/skills/muion-project/scripts/audit-cache.mjs",
     "gitee:note": "node .codex/skills/muion-project/scripts/create-result-note.mjs",
-    "nature:install": "node .codex/skills/muion-project/scripts/install-nature-figure.mjs"
+    "nature:install": "node .codex/skills/muion-project/scripts/install-nature-figure.mjs",
+    "acceptance:finalize": "node .codex/skills/muion-project/scripts/finalize-legacy-acceptance.mjs"
   }
 }

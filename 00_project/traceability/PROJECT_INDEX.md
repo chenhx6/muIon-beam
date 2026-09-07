@@ -23,9 +23,11 @@
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907105457 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907105457.json | three-way-verified |
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907110812 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907110812.json | three-way-verified |
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907143442 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907143442.json | three-way-verified |
+| SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907144738 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907144738.json | three-way-verified |
 | SYNC-SNAPSHOT-0fa423b448b6 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-0fa423b448b6.json | superseded |
 | SYNC-SNAPSHOT-2349033871b5 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-2349033871b5.json | three-way-verified |
 | SYNC-SNAPSHOT-421b45318451 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-421b45318451.json | three-way-verified |
+| SYNC-SNAPSHOT-a732427 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-a732427.json | three-way-verified |
 | SYNC-SNAPSHOT-c062164a9d09 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-c062164a9d09.json | three-way-verified |
 | SYNC-SNAPSHOT-d0ec88768e57 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-d0ec88768e57.json | three-way-verified |
 | 00_project/traceability/variable-catalog.yaml |  | 00_project/traceability/variable-catalog.yaml |  |

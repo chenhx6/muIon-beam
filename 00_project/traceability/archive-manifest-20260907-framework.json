@@ -3,7 +3,7 @@
   "archive_type": "project-framework",
   "source_root": "D:\\muIon-beam",
   "source_commit": "0cfa6ddf40b44317ebb61f084a2dfa54693ceeb6",
-  "gitee_tag": "r0-framework-complete",
+  "gitee_tag": "r0-framework-archive-consistent",
   "drive_path": "H:\\我的云端硬盘\\muIon_archive\\project-management\\framework-20260907-r0-framework",
   "generated_at": "2026-09-07T03:20:08.6282950+08:00",
   "legacy_workspace": "D:\\\\muIon",
@@ -589,6 +589,15 @@
     }
   ],
   "verification_commit": "0cfa6ddf40b44317ebb61f084a2dfa54693ceeb6",
-  "verification_tag": "r0-framework-complete",
-  "gitee_push_status": "pending-network-or-credentials"
+  "verification_tag": "r0-framework-archive-consistent",
+  "gitee_push_status": "complete",
+  "gitee_remote_main_commit": "3dc871c4bc150045ac2379409dfa0530e7b2c35e",
+  "gitee_pushed_tags": [
+    "r0-framework",
+    "r0-framework-archive-consistent",
+    "r0-framework-archive-synced",
+    "r0-framework-archive-verified",
+    "r0-framework-complete",
+    "r0-framework-final"
+  ]
 }

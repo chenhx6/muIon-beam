@@ -30,7 +30,7 @@ def add_manifest(conn, item):
     manifest_id = doc.get("manifest_id") or doc.get("migration_id") or doc.get("publication_id") or doc.get("sync_id")
     if not manifest_id:
         return None
-    manifest_type = doc.get("manifest_type") or ("migration" if doc.get("migration_id") else "unknown")
+    manifest_type = doc.get("manifest_type") or ("migration" if doc.get("migration_id") else "archive" if doc.get("archive_id") else "unknown")
     conn.execute(
         """INSERT INTO manifests(manifest_id, manifest_type, schema_version, source_path, content_sha256, status, created_at, updated_at)
            VALUES(?,?,?,?,?,?,?,?)

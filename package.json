@@ -21,6 +21,7 @@
     "audit:three-end": "node .codex/skills/muion-project/scripts/audit-three-end.mjs",
     "cache:index": "node .codex/skills/muion-project/scripts/index-cache.mjs",
     "cache:audit": "node .codex/skills/muion-project/scripts/audit-cache.mjs",
-    "gitee:note": "node .codex/skills/muion-project/scripts/create-result-note.mjs"
+    "gitee:note": "node .codex/skills/muion-project/scripts/create-result-note.mjs",
+    "nature:install": "node .codex/skills/muion-project/scripts/install-nature-figure.mjs"
   }
 }

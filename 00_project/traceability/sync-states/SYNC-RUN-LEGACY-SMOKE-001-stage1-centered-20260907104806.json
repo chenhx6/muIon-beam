@@ -1,0 +1,1400 @@
+{
+  "sync_id": "SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907104806",
+  "manifest_type": "sync-state",
+  "schema_version": "1.0.0",
+  "created_at": "2026-09-07T10:48:06.720Z",
+  "task_id": "TASK-LEGACY-SMOKE-001",
+  "run_id": "RUN-LEGACY-SMOKE-001-stage1-centered",
+  "local_commit": "142b5092d8948e916c434c788fc97944b8f8662a",
+  "gitee_remote_commit": "142b5092d8948e916c434c788fc97944b8f8662a",
+  "gitee_tag": "r1-legacy-migration-smoke-verified",
+  "gitee_tag_commit": "9c1a76c83e3605765dec04cfc2792786d428cd67",
+  "drive_path": "H:\\我的云端硬盘\\muIon_archive\\legacy-from-D-muIon\\selected-migration-20260907-stage1\\smoke-run\\RUN-LEGACY-SMOKE-001-stage1-centered",
+  "manifest_sha256": "e21e7588d48ac464dad396a0925e3afff18e5ac19b4189d86a81be49d6976b2b",
+  "status": "three-way-verified",
+  "pending_actions": [],
+  "file_count": 230,
+  "files": [
+    {
+      "relative_path": "diagnostics/legacy/comsol_muon_stage1_feasibility/logs/case_sweep.log",
+      "size": 88777,
+      "sha256": "21b67924bf84c18fcf301cbea02b60489844d2ec265d560ef8f73105f34145ed",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/comsol_muon_stage1_feasibility/logs/field_export.log",
+      "size": 662,
+      "sha256": "8bc85ae0e29d37aa8faf30481c217030d57040e2ce4d15c2af05fa0079a894fa",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/comsol_muon_stage1_feasibility/logs/reload_validation.log",
+      "size": 456,
+      "sha256": "2224e334d67b0561200f5cf3afe47405aac58a8d8b2dd7f47dab78ce3b502863",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/comsol_muon_stage1_feasibility/logs/transport_tuning.log",
+      "size": 803584,
+      "sha256": "6df47e1351d93a26e41f067a784aed90bcb53800b6bffac7c8eea7ae508fee86",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/prefs_step_import_final/logs/batch1.log",
+      "size": 14558,
+      "sha256": "1bba97954402dc1c8e884143f98ff62b4a0568cc82de448735943cf0da24473f",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/prefs_step_import_final/logs/batch1_render.log",
+      "size": 425,
+      "sha256": "aae6c3b75287b1573795cd5d31a1e361c42d12453b2edaea64e6f0b61230a919",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_api_prefs/logs/batch1.log",
+      "size": 11611,
+      "sha256": "c7d30d231c5d295b0e5d5a0279416d6b397c670f5090fd4c2c981dfda1a60465",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_api_prefs/logs/batch1_render.log",
+      "size": 421,
+      "sha256": "5c8ce217bca55bfb0b6a4c179ee3f92f1df45647ed82ba00e7448a4971c86b82",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch1.log",
+      "size": 19959,
+      "sha256": "959aaaccd23fb90c66850a97e88c7bc7ba1a75a66aefe9a3dd91d93aa002233f",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch1_render.log",
+      "size": 427,
+      "sha256": "57216f914b09e2e052c95b159ab96a459db327497885b0519a776d3fc2ebd8f0",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch2.log",
+      "size": 20170,
+      "sha256": "5811c3e3b08c498008dcad49323581ee56e3bbe75656017ec12b6406e6550e9a",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch2_render.log",
+      "size": 427,
+      "sha256": "481f3909a2670120b38925afd06c4c15ba63146ab59f5aeeb822d0b5e3eca12a",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile1_prefs/logs/batch1.log",
+      "size": 19959,
+      "sha256": "b4f14e140ac9e3c929ab250f05186f94ede77e29a81839b13144bf1af23cbec8",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile1_prefs/logs/batch1_render.log",
+      "size": 427,
+      "sha256": "d685b7da7d7562b9d209e63825e86bd27a9892a4d24b4bcbd888f45b752d6814",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_From_file0_prefs/logs/batch1.log",
+      "size": 20168,
+      "sha256": "5b73e733b5563665cdaa7b367295df8464f026c370f03bb75c82dc141d43e550",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_From_file0_prefs/logs/batch1_render.log",
+      "size": 428,
+      "sha256": "d095593fef32ffce0aa34de0e276fc2c12306be3a37cfb4e8d6d3bc75a7f6403",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_interp_prefs/logs/batch1.log",
+      "size": 14609,
+      "sha256": "aab5c0c60e2d6ef14ba251f0818f57363b3bb002aa595b1a8633b00f23302fde",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_interp_prefs/logs/batch1_render.log",
+      "size": 424,
+      "sha256": "3f25d849f226eb614d2103fce2fb54dd3bd441257e540daa9b41d2cb4fd41ef9",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs/logs/batch1.log",
+      "size": 25574,
+      "sha256": "2d8b4360eab3a52a4b3bf507e76fef3648ad95ce31a32d3f81ad46d65e2663ce",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs/logs/batch1_render.log",
+      "size": 424,
+      "sha256": "7fdaf6fb5b3965dac9d3168a2e0d2bb69dec06a7f524770665eb06dda0b423f7",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs2/logs/batch1.log",
+      "size": 14609,
+      "sha256": "af615af91eda49ed6cbbd496e4f00d79a79f7961acfd8abc4ab0daf826f87385",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs2/logs/batch1_render.log",
+      "size": 425,
+      "sha256": "59c5f823097cafa3d67f147e0fb9a6c5f0a52851c1e17a12da40ada07ee327a1",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newcpt_prefs/logs/batch1.log",
+      "size": 13689,
+      "sha256": "8fe248d81821137bf1b418035df63fa9035aebd880f3f6a4360e9f244ce6799e",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newcpt_prefs/logs/batch1_render.log",
+      "size": 424,
+      "sha256": "0a55c70b5248a8bdfe1326913aed59a2c1948665401ed4e1e1933a5fd8617bd4",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_args_prefs/logs/batch1.log",
+      "size": 15746,
+      "sha256": "a7b068d9806b0b5bfcf13786e667bb3b600105d0b126853af8534d654af00c6a",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_args_prefs/logs/batch1_render.log",
+      "size": 432,
+      "sha256": "6b0570437faee6eb486b24485779b467a207d567f8766874768fbd4157e8a1a4",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs/logs/batch1.log",
+      "size": 19212,
+      "sha256": "b2c48c7ffed63a5832f27cd785d478fe592dd8e282b43f06f1dc899e6d463b45",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs/logs/batch1_render.log",
+      "size": 427,
+      "sha256": "9d5f970ae43ff756cdce2781dd3331c944c5269d21ba7078180973c8d62e65b7",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs2/logs/batch1.log",
+      "size": 13689,
+      "sha256": "303aa1126ab4992df68d76e92c5bd2485b2585d8f9b3cbd936d949e18f1a88f5",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs2/logs/batch1_render.log",
+      "size": 428,
+      "sha256": "1c1b4f0f5d32756f4e7c21c030f6e8f926bcbaaea7e4a3fba504439c97b861fd",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs3/logs/batch1.log",
+      "size": 13689,
+      "sha256": "f98e134d9d296896117a23d6122ee42ebbaf6b1993f90108c370740989dd4573",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs3/logs/batch1_render.log",
+      "size": 428,
+      "sha256": "03449031f3a384f2598c8d720d4b8a6b139ecee4ffecbca7785025da01dcfdb0",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs4/logs/batch1.log",
+      "size": 13689,
+      "sha256": "4caac1dc47340e42f70b1a69e0efad95d557faa93e2b254f098fd6d887273288",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs4/logs/batch1_render.log",
+      "size": 428,
+      "sha256": "9ea5d56ac69a50bae408446d35fd60d3a7d831f2b80caae8e720146650624780",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs5/logs/batch1.log",
+      "size": 13689,
+      "sha256": "cd4bb3fbab1063d3bc5f17a385ec97b0bb3039f05ba48791d2e003c0a9f23705",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs5/logs/batch1_render.log",
+      "size": 428,
+      "sha256": "845e4817c8fdae193a52a3bf3f0c13a1408201aec120a4028219b6fc11e39310",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs/logs/batch1.log",
+      "size": 13689,
+      "sha256": "b0c45b67bfdc211e6c6310c9d48a8b8bc7805379b59ae63ef1c6b302619df16a",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs/logs/batch1_render.log",
+      "size": 425,
+      "sha256": "3b928d290b166aa3c56e8c3f13fcd465a596c75efb2571c6889239cc13c10dcb",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs2/logs/batch1.log",
+      "size": 13689,
+      "sha256": "47aa487711b74cdd6d49fc385799e60a643b0c3f8a92c260d7d38a9d3137eab7",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs2/logs/batch1_render.log",
+      "size": 426,
+      "sha256": "3bb164507af05f9a0d835eed5e22de28609475a79047a56d2cc57e1d3b70b4a7",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs3/logs/batch1.log",
+      "size": 13689,
+      "sha256": "df0457baae17f570a19722cbed6224ddf2f2f96c852927dae342dd0b4a645c25",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs3/logs/batch1_render.log",
+      "size": 426,
+      "sha256": "b435eacd39bdf58ebe81d71b264f3a8b0a65b8d1c208c49e88da8bea3c38f410",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs4/logs/batch1.log",
+      "size": 13689,
+      "sha256": "4f855999b4eec33679d674195e535eb9799776d3a31999239a4a7464ee24c401",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs4/logs/batch1_render.log",
+      "size": 426,
+      "sha256": "89e7d867647be4f8e33cb1772fab220a5dda899db0adc9ee2fd1da93201d37a5",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs5/logs/batch1.log",
+      "size": 13689,
+      "sha256": "997df84953ef2d0ce415480a2e4379333caf7e5c08bbabc6dcb946a3c7758e53",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs5/logs/batch1_render.log",
+      "size": 426,
+      "sha256": "6a86e6675a2070f6f757cec6a5215af1c3427b92dcb45db4f0ccb9bb69244912",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs6/logs/batch1.log",
+      "size": 13689,
+      "sha256": "c27781acf77ce7399be83babf9fe154bcb738fe6d3063bab3ff31c43df58ba12",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs6/logs/batch1_render.log",
+      "size": 426,
+      "sha256": "dedacb2c1897caf54f3f355834d36e606c12bb615899e13f9c0986669a71ac12",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval2_prefs/logs/batch1.log",
+      "size": 13689,
+      "sha256": "0f23746db8b68571225ee1a1d544fe9dc50e00f4038c85c2e9271512ac7d2698",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval2_prefs/logs/batch1_render.log",
+      "size": 429,
+      "sha256": "9d67b3d2007960a5cf8ef2455c421c031b4debe018c9736e7f4a87b5c1168828",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval3_prefs/logs/batch1.log",
+      "size": 13689,
+      "sha256": "4d4892508dce0e897bf4f60e8ef35708c52e0a9a1a41d28687c67f019e1b6dec",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval3_prefs/logs/batch1_render.log",
+      "size": 429,
+      "sha256": "6b5d785f6bb1c05da30a5fd976e356e75ed7d172a7c428772761add7e386e616",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval4_prefs/logs/batch1.log",
+      "size": 13689,
+      "sha256": "8847f0ba9717e28b99e1e56715304468cd79960d92e8c623cfd5581898923810",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval4_prefs/logs/batch1_render.log",
+      "size": 429,
+      "sha256": "b3df8f67becff3f5c4c76f10ff4345e22a302d8a1aec831ec3a9a73f930f1ea3",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval5_prefs/logs/batch1.log",
+      "size": 13689,
+      "sha256": "3fb18e08c894d686c316239c589f4e24d26cac09d8b3ad1d5aabec65b095779a",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval5_prefs/logs/batch1_render.log",
+      "size": 429,
+      "sha256": "8f6e0a0cf7127fd0344cd827dc5cf9c0d5162065cf38a9e60b1d08fcadf9faf2",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_evalall_prefs/logs/batch1.log",
+      "size": 13689,
+      "sha256": "25002ebf17377e8aad8bd5d0882b3f45a387bdde2b313c3915f984ebf0986351",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_evalall_prefs/logs/batch1_render.log",
+      "size": 431,
+      "sha256": "6d4978ee6c8e89f33cb467fdde21c4937de96ff60b4d957839a288c834a9de53",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval_prefs/logs/batch1.log",
+      "size": 13687,
+      "sha256": "8a3e2b80baf21e1383e89b545727a2449b137eda33472b9d1e311a2fc306a010",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval_prefs/logs/batch1_render.log",
+      "size": 428,
+      "sha256": "6794a42bd4dd4e16cdef66c3e3fd073458abe85955fedfddd6c33336e3a7cd21",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_import_prefs/logs/batch1.log",
+      "size": 13689,
+      "sha256": "8b2d2dbdeef86dd221107f26d68611cc00b9635f5ee50ff1265ce2d7fb6749d5",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_import_prefs/logs/batch1_render.log",
+      "size": 430,
+      "sha256": "5028513a0126a2ce0d8f687df8f695ce3ee46bc03b39cd00cff06a9a159d6c42",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_prefs/logs/batch1.log",
+      "size": 19959,
+      "sha256": "0920445770cf3346341d04b7617e2ae75e2a154b7862c73394926b916e4c882a",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_prefs/logs/batch1_render.log",
+      "size": 423,
+      "sha256": "6abb08899014187fb8aa0292ebeabb363d6a79da6f2b0de10e7f35e46f4ed0c5",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/aperture_phase_fine_20260904_2050_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/aperture_phase_fine_20260904_2050_stdout.log",
+      "size": 1138848,
+      "sha256": "72bd8d2846080512cb316119cac2d370765bd3015f369779ea94e08d86ba0682",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/axial_source_20260905_0430_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/axial_source_20260905_0430_stdout.log",
+      "size": 575792,
+      "sha256": "c2210739eeeb2f4a4b208030cacece3b7e6ec0d06ef2b9719880ad80c9dd1b75",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0006_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0006_stdout.log",
+      "size": 2769,
+      "sha256": "1ba08f70e8f5e57a23e256ab5ae1a914a214112a29025a2de2046589e2adb587",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0012_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0012_stdout.log",
+      "size": 4333,
+      "sha256": "c13d22e121d902892e78571c44f0059255d7969d4362514d5ebbf7e6366e2060",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0020_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0020_stdout.log",
+      "size": 10672,
+      "sha256": "fd763f579857a8894cfafa218f2492edfadd3b8ccae19c0b68343c25d91fc71b",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0028_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0028_stdout.log",
+      "size": 11602,
+      "sha256": "eead8f9e8639bfe87887e38e660dcdc7da8c5e0d6f6a5f2ea794429abaf32887",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0040_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0040_stdout.log",
+      "size": 173865,
+      "sha256": "edf2656d5a589df745eaffdb235cd63587036d45f21417780af671193e0f0808",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0050_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0050_stdout.log",
+      "size": 177402,
+      "sha256": "7610ec303a524f022551e1cfc15aeb3b4668688bf73c08162ad6866fb980acd6",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0100_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0100_stdout.log",
+      "size": 190133,
+      "sha256": "26e9923db97813c65a359313b5c4e932cacded803f26c273aea8af725bacc779",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0112_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0112_stdout.log",
+      "size": 186206,
+      "sha256": "26ac4b5219ce618e0a33a9aea8fd303e4baf9785c77321b5d517bc2eeda55a19",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0125_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0125_stdout.log",
+      "size": 218623,
+      "sha256": "e1d760a975620765ae113f8a7fc3e15d8892e964e18706897061914f8836fdf2",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0155_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0155_stdout.log",
+      "size": 191932,
+      "sha256": "d930b028bf60441ea5adec419fec0c17b4e2a11d7efd77998ab70cbee1e56971",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_stdout.log",
+      "size": 1494,
+      "sha256": "e40990cc0b924cb7b186c75d9a22892e95c0580f5e47bac32c77cb6e8710a79f",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_0720_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_0720_stdout.log",
+      "size": 114005,
+      "sha256": "92631fad9f0fd390817eec93962017ed4f2bfb620b4fa37dc51b8d4db135452c",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_1820_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_1820_stdout.log",
+      "size": 129712,
+      "sha256": "bfd2f27e1826b26f38fdeecda98f1ea3194b224937b8e34e74cd119f38379222",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/ensemble_20260905_0615_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/ensemble_20260905_0615_stdout.log",
+      "size": 173816,
+      "sha256": "585cd82f7129ce0ac69c7f6367338bd4e1664bc7172a957f35ffbc067a13a1b3",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/final_builder_20260905_1930_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/final_builder_20260905_1930_stdout.log",
+      "size": 175107,
+      "sha256": "eb76ea4e0ab7750e583caccb33db4b4e444bcf0c36bd08eb0ba28d28685c80ca",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/fine_acceptance_20260904_1350_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/fine_acceptance_20260904_1705_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/phase_refine_20260904_1030_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/phase_refine_20260904_1230_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0902_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0902_stdout.log",
+      "size": 1344863,
+      "sha256": "52063b746d36457110c9e52e65091b542fd642a162aeefa6b2e38514a46e6d06",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0958_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0958_stdout.log",
+      "size": 1664311,
+      "sha256": "44994dd4c7c0c1ac169f4035ad1a25474f2db47f8f2f87a8f907d02ac9095c91",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/short_gap_bridge_20260905_0030_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/short_gap_bridge_20260905_0030_stdout.log",
+      "size": 668407,
+      "sha256": "295245c343e8b200e5bb8378a7d813af2e60ba388816d61452ca6b326fe9b059",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0825_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0825_stdout.log",
+      "size": 600,
+      "sha256": "4dad22ee79393dbe9e0a8f655e6a383b173c0f2c991dcf2f18154cc37007169d",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0834_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0834_stdout.log",
+      "size": 600,
+      "sha256": "bcf9397cf26758f56680b8c7ff893fcf6370ed209bdafd77165bf63013a209ee",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0845_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder.err.log",
+      "size": 512,
+      "sha256": "3be9ec9d7f61003a9afa0287a386e4cf9fd966804b0a871976de865121819811",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet.err.log",
+      "size": 804,
+      "sha256": "8ca7a08c0f8ca409cfcd0a1162f7827aee9bfbf73a7c399415e3788f20145639",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_diag.err.log",
+      "size": 1137,
+      "sha256": "2bcd197e7d64d7c84d9a11e0849c33e5f290fa1eb89a693eb33bcba394106ae8",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_diag.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v2.err.log",
+      "size": 824,
+      "sha256": "71ee6d049d8da63ff75e083f5b00dde805d892fa868bdc1450bed55156461385",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v2.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v3.err.log",
+      "size": 1166,
+      "sha256": "a7e5df4d22e1e24176ec546bc9561535aa9e19d6a40da53c0157283f7aac19c4",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v3.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v4.err.log",
+      "size": 1855,
+      "sha256": "c2bc874fbfa7696463fc1b699d316093f2baea75857435783fc368022f8e83e3",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v4.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final.err.log",
+      "size": 567,
+      "sha256": "8ebe06af45cc30d127cb6919dbe47ba055831721f54d481916e5989c90a3adbe",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final_zfillet.err.log",
+      "size": 1855,
+      "sha256": "c2bc874fbfa7696463fc1b699d316093f2baea75857435783fc368022f8e83e3",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final_zfillet.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_native_rounding_final.log",
+      "size": 687,
+      "sha256": "af860c44c883eea86f7362f9ea273aae83c3a87a98279f4bd54f790cf78a99bb",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_v2.err.log",
+      "size": 567,
+      "sha256": "8ebe06af45cc30d127cb6919dbe47ba055831721f54d481916e5989c90a3adbe",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_v2.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_diag2.err.log",
+      "size": 1083,
+      "sha256": "f35bd50ef7ed2a64ce6380c19bf0661e26a71ebbf4748419127ce4851a87f705",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_diag2.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_fillet_facewalk.err.log",
+      "size": 1084,
+      "sha256": "b30581019527962088e73c25f68acb611b575be6be5278cb6f2f7a2fee44a9ec",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_fillet_facewalk.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_final.err.log",
+      "size": 1001,
+      "sha256": "c0b9f15c24a536fdc4bf8d539a3af424f3b0eef71d83073de49cb82f653e71e8",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_final.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zfillet.err.log",
+      "size": 1134,
+      "sha256": "d517254834bf654f8df4daf73aa3be94831dc3b7ffa88dd75b7452704da974fd",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zfillet.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation.log",
+      "size": 538,
+      "sha256": "8af9bb7c1095a7110ce9934e82448e8c256caf2fb64fe31116e17de8214a22bc",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_box.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_box.log",
+      "size": 1951,
+      "sha256": "779fda5cdfc526f243886fa3f618d59f24ac869d3e2792b50f567059ae0fab26",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_final.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_final.log",
+      "size": 538,
+      "sha256": "8af9bb7c1095a7110ce9934e82448e8c256caf2fb64fe31116e17de8214a22bc",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export.log",
+      "size": 57,
+      "sha256": "c3473dff57a804f75e7fb290b20f1ebc2f100f6e82180845d86ca1135ac40ada",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_final.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_final.log",
+      "size": 57,
+      "sha256": "7a2f904b6b54b5f35670daf4cd3491636c9a9d6ad05f00ffd40603cc4c947571",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_v2.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_v2.log",
+      "size": 57,
+      "sha256": "7a2f904b6b54b5f35670daf4cd3491636c9a9d6ad05f00ffd40603cc4c947571",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export.log",
+      "size": 131,
+      "sha256": "26fc3cf566578655d98ca689923e51776ea1b16e2241cae4fb743d7355cfad73",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export_final.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export_final.log",
+      "size": 131,
+      "sha256": "26fc3cf566578655d98ca689923e51776ea1b16e2241cae4fb743d7355cfad73",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_20260904_1645.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_20260904_1645.log",
+      "size": 7411,
+      "sha256": "ebb8bd0857c4a78a6cf526f36f3d34a2dfc49fb47bd7090bee16b5401ab9a543",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_final.log",
+      "size": 418,
+      "sha256": "b8b6c62adbb45a06744a0570b3919e9632eb9285608305c0633ede00a7f2d8df",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_test_ring_err.log",
+      "size": 591,
+      "sha256": "2c425a9404c613d441415e43c4d85d269f2c1924fd4a74e7227234ef07cff200",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_test_ring_run.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/transport_bridge_20260904_2320_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/transport_bridge_20260904_2320_stdout.log",
+      "size": 673698,
+      "sha256": "a551442f0f5258239814565602a1c8dc18a5c9c372d3eca48e478cd61d81bd16",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/validate_stage1_comsol_20260905_1945.err.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/validate_stage1_comsol_20260905_1945.log",
+      "size": 1150,
+      "sha256": "afad614553dbfa8493987ba13287cf117043ae618d944acc3ae2c158bd563408",
+      "verified": true
+    },
+    {
+      "relative_path": "diagnostics/legacy/stage1_3d_feasibility/logs/velocity_phase_20260904_1900_stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/field/apertures/linear/V2_aperture_E_linear.png",
+      "size": 31687,
+      "sha256": "5411faf5c57d240e445bcd41e858dae39ff5040b8b105d5839027071a70d7cdf",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/field/overall/linear/overall_E_linear.png",
+      "size": 51628,
+      "sha256": "4e2cb616441586c21b21c2d6f93f82f37b2a334311092eabf697d77a7e5cddc8",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/particle/centered_trajectories_rz.png",
+      "size": 72630,
+      "sha256": "2a3e3747dca4402d6aad64fc95475a0f023fdb92c3fe916a6c4bbe6124ef1942",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/particle/centered_trajectories_xy.png",
+      "size": 243306,
+      "sha256": "2eef66ca82d282413426ea1a0178378e93412fe0cd9013db95d0904a8af17096",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/aperture_peak_field_reference.png",
+      "size": 28062,
+      "sha256": "ce60f0a4c46f7f44414192dc4a8d89aa8cc64c793b9e1104b6eda611d5d4e510",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/baseline_candidate_final_comparison.png",
+      "size": 24703,
+      "sha256": "b9eb4e63489ae7114a019958cea4c84615e86107fa1908234fbd175ec68e7240",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/density_x_field_EN.png",
+      "size": 31353,
+      "sha256": "c093f58a3cc5ae12af12cc1710c936b1bf9f6ef62fbc540152d2e792674b7fcc",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/density_x_field_P90_exit_time.png",
+      "size": 26147,
+      "sha256": "21b8ae2914bb5436b6c3510c7cb76b54b732a80b9e511ba9bb367061ec143e66",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/density_x_field_transport_rate.png",
+      "size": 46763,
+      "sha256": "53ee32134ccf96cd08b9dbd8ee89cb9bc32fc402e75d72b4b5eea5a1b4b1ac4e",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/electric_field_strength_acceleration_time.png",
+      "size": 43998,
+      "sha256": "ac11e8e79b1724b713c7f56928dc1792fee9baa167193ea5aa58e78902d3eb11",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/electric_field_strength_axial_velocity.png",
+      "size": 45870,
+      "sha256": "2d805ce2ef9799e357cc839e17ab3606420e76dc37accae003d8030dab2a84c1",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/neon_number_density_Kperp.png",
+      "size": 43147,
+      "sha256": "28c72624ceaee61f1ef3cd45e68d5333318bc599ed97eeb091ee23468601b7fc",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/neon_number_density_radial_cooling_time.png",
+      "size": 38575,
+      "sha256": "9d118f6f13e1f1312cba2e099d9546f63902be469b94716ac9a692e9feb79a9a",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/neon_number_density_threshold_fraction.png",
+      "size": 36147,
+      "sha256": "170bc75d025ba09b25d6524b6522b0e70bd1f97d2907ae1ec29e024b1db5f489",
+      "verified": true
+    },
+    {
+      "relative_path": "figures/legacy/stage1_3d_feasibility/figures/centered/scans/source_K_theta_distribution.png",
+      "size": 86838,
+      "sha256": "e53ae527de966469c90881e0ea01771e57d4ea30b131223f135e388cf7a49d68",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.csv",
+      "size": 3731,
+      "sha256": "8cc9945cacf06f82da029198785a3de9fa68c793d97b7df8396a427407a2c384",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.json",
+      "size": 862,
+      "sha256": "a6c9953f3a5f37e0a6f5b96ea336dea923dc0120366426b4042fa0d833de6f88",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.txt",
+      "size": 1619,
+      "sha256": "2f76648aa687173c4fd70909ca16f6b58b50c111d1adf95b35f64b1e669dd603",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.csv",
+      "size": 3731,
+      "sha256": "8b796e81e5402aa29d3a1a6abfb06e54931a92f2bb698557cded4bbdbcd92d72",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.json",
+      "size": 862,
+      "sha256": "dc8f5262492553f064e6358eb9fc9b80e1667006d3e51fa9f063b4f86d46d63f",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.txt",
+      "size": 1619,
+      "sha256": "16f944ace42ed622339e195c510cad3bf2c53641c5f8d9692b32842f2ce39f45",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.csv",
+      "size": 929,
+      "sha256": "6bc7c4d82a3339bc9be2626358843d937d376c4d619ca6a97598d1409a10397f",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.json",
+      "size": 858,
+      "sha256": "ff1c540c17f84544cf7b03d1e2687e8ec4850f453d9178bdd2f8171f5777c4b9",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.txt",
+      "size": 495,
+      "sha256": "1018390819f9a5df6ce14c715abf89746531a1e8b723d7db7c611d17c15acdb7",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.csv",
+      "size": 929,
+      "sha256": "6e1b39cdfe04e612a0747b975e958ce5acf14a8a5936ca29f6e5d11a3509e339",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.json",
+      "size": 858,
+      "sha256": "3a59b8aa41a23bf1e78e6e6c5038746362a811e820f43636b48279858ec5b8be",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.txt",
+      "size": 495,
+      "sha256": "518d7695586b945a837e39585a28417672b33da3cb12d589e0c7dc8d397a7e4c",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.csv",
+      "size": 174598,
+      "sha256": "8d5e8431ada26debdaca3e8002f88a0a01cdb27fbe7447d21a7d20ff56250fcb",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.json",
+      "size": 815,
+      "sha256": "b1059a362229ae754bb7eb3f8345d3257df942167e9c03c2c6c952685e77933d",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.txt",
+      "size": 70398,
+      "sha256": "2d30820506fe79a32a23d46016189029017b287ac179539e8d2a1c7a97a12d47",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.csv",
+      "size": 174598,
+      "sha256": "443738614c69577fd183a834501b166d573de0cd4a8527710df9fac9b35dbc83",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.json",
+      "size": 864,
+      "sha256": "8130cb0f2f7bd9bc985bc4c7edcc1f6cffb546dccf36f023baab48237f720824",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.txt",
+      "size": 70448,
+      "sha256": "a244d7f6470be0d41cbfb505e664f62dd8840e17b21c71d7321b611e81a87c7f",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.csv",
+      "size": 175598,
+      "sha256": "4dc7d848456f5ad0220179a3c64db5e7d7b96a9d6c8a0c7fb116d3d8184d1454",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.json",
+      "size": 862,
+      "sha256": "41f7db4e556e7af9cf1ada6cdc5594c4e75a9f7913bbcf7ed4c4af5d9cdfe681",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.txt",
+      "size": 70448,
+      "sha256": "d1bf70eb528c080ba565237f083f1b12c9cb40e49dd8e9ec415e672a1d473454",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.csv",
+      "size": 174598,
+      "sha256": "8d5e8431ada26debdaca3e8002f88a0a01cdb27fbe7447d21a7d20ff56250fcb",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.json",
+      "size": 862,
+      "sha256": "5486b586a134faa677f09d21e05e9ab831cd9a5c7d215c3bf7f0de73f2b177cb",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.txt",
+      "size": 70448,
+      "sha256": "0071b1b35baeae9dce87c26fcf20e76b2c53c62a747105ad28494f76345b96c4",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.csv",
+      "size": 175598,
+      "sha256": "f472e639790da75487fa4833cccf9ffa01801d3e81f3f48b8c305d47e3f11c49",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.json",
+      "size": 862,
+      "sha256": "8cc8c5afbc30caf491b5d2ba96fb716bb3c47cf315c9b56005a5e56639625cc3",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.txt",
+      "size": 70448,
+      "sha256": "638e16e2c3131cb56334095d86d5640bdd12412a8efc687499d313484a4f4af5",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/candidate_parameter_sets.csv",
+      "size": 786,
+      "sha256": "7b5e3f409465a5e4914ece7c710884e1afe5fbb7678bdc3846313f2239e2fa8d",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/candidate_parameter_sets.csv",
+      "size": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/centered_loss_diagnostics.csv",
+      "size": 151621,
+      "sha256": "643aa36375e30c158b145503ad44d50a6557d3a42197ac424cdfc39310f9df21",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/centered_scan_plan.csv",
+      "size": 968,
+      "sha256": "60f71ade3565920fe2bc2cc0cdcdfb5d6a5757f9034d5ec630c10d9915b9f1cf",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/centered_transport_scan_master.csv",
+      "size": 1929,
+      "sha256": "fc474fef76df165366f0253d78ed6754c82ad1eeca8dba0ef307cb23fa02a728",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_scan.csv",
+      "size": 2022,
+      "sha256": "f80369b7b39f59f32e72576c98845592b30e69fa9e1f0fe6b3d0035368324377",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_summary.csv",
+      "size": 2022,
+      "sha256": "f80369b7b39f59f32e72576c98845592b30e69fa9e1f0fe6b3d0035368324377",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/field_aperture_zoom.csv",
+      "size": 26329,
+      "sha256": "7ae413ccba51fcceb61ebc877bbae22a915888cb48172cb08d5c6a81687bd95e",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/field_summary.csv",
+      "size": 346,
+      "sha256": "6f2f31f0bf870f44035a04782b228bfa64c48b83d76d2ee925ae388d167aa5a6",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/loss_diagnostics.csv",
+      "size": 151621,
+      "sha256": "643aa36375e30c158b145503ad44d50a6557d3a42197ac424cdfc39310f9df21",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/transport_scan_master.csv",
+      "size": 1929,
+      "sha256": "fc474fef76df165366f0253d78ed6754c82ad1eeca8dba0ef307cb23fa02a728",
+      "verified": true
+    },
+    {
+      "relative_path": "input/legacy/stage1_3d_feasibility/tables/centered/variable_sensitivity.csv",
+      "size": 1199,
+      "sha256": "62d8d371e359946c2cceb389673d375ebfae89db651f36f0866b31d7eba401df",
+      "verified": true
+    },
+    {
+      "relative_path": "model-snapshot/centered_cooling_calibration.mph",
+      "size": 72210752,
+      "sha256": "1c60a201eb290e7f3b6b65cb38e9323f0fd3b38b877d7b67d0bd423ae2a5b0a4",
+      "verified": true
+    },
+    {
+      "relative_path": "model-snapshot/snapshot-manifest.json",
+      "size": 1597,
+      "sha256": "1d846ec91fd47012ec466b3b4b2ae14ff3e99ce0291027575ce27a8e5c9f0a04",
+      "verified": true
+    },
+    {
+      "relative_path": "model-snapshot/stage1_3d_feasibility.mph",
+      "size": 50727722,
+      "sha256": "7be63bd896e815e2ff21c6bf566a7564b6969d4148d3fd3bc8777ac178d2c50c",
+      "verified": true
+    },
+    {
+      "relative_path": "model-snapshot/Stage1_Master_3D.SLDPRT",
+      "size": 196356,
+      "sha256": "aec67f613293c0c422c240040f0cc52c6c322427617bc015ec454dec4f2d1a8a",
+      "verified": true
+    },
+    {
+      "relative_path": "report/behavior-analysis.json",
+      "size": 6498,
+      "sha256": "fa35d8f0e99c16e792f30e1e7b45de00de259549db5eb51130ab61d8670f5765",
+      "verified": true
+    },
+    {
+      "relative_path": "report/detailed-report-zh.md",
+      "size": 2114,
+      "sha256": "9def982292a23a3fdfc48b5c1e2d9dd4e4173e906794f20b024c702d43423c8e",
+      "verified": true
+    },
+    {
+      "relative_path": "report/figure-manifest.json",
+      "size": 11243,
+      "sha256": "d70442753f6f219cff7342a43ff4599b25585cf1d4854bbde7c522c52b093796",
+      "verified": true
+    },
+    {
+      "relative_path": "report/summary-report-zh.md",
+      "size": 992,
+      "sha256": "7064316304f878e3dfbb379bfb7f11c72d18133bc04c1e830c8950542283fb42",
+      "verified": true
+    },
+    {
+      "relative_path": "run-manifest.json",
+      "size": 126245,
+      "sha256": "e21e7588d48ac464dad396a0925e3afff18e5ac19b4189d86a81be49d6976b2b",
+      "verified": true
+    },
+    {
+      "relative_path": "smoke-test-result.json",
+      "size": 650,
+      "sha256": "d570af7257a1d50c0b572fac45a53e35877913cc11c95fa60180846466f9d297",
+      "verified": true
+    }
+  ],
+  "errors": []
+}

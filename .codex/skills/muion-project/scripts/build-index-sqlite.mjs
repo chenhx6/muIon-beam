@@ -16,7 +16,7 @@ for (const file of files) {
   if (/^(00_project\/traceability\/(VARIABLE_CATALOG|PROJECT_INDEX|TASK_INDEX|MODEL_INDEX|RESULTS_INDEX|REFERENCE_INDEX)\.(md|csv)|package-lock\.json)$/i.test(relative)) continue;
   try {
     const doc = file.toLowerCase().endsWith('.json') ? JSON.parse(fs.readFileSync(file, 'utf8')) : parseYamlFile(file);
-    const isManifest = doc && typeof doc === 'object' && (doc.manifest_id || doc.migration_id || doc.publication_id || doc.sync_id || doc.figures || doc.analyses || doc.variables);
+    const isManifest = doc && typeof doc === 'object' && (doc.manifest_id || doc.migration_id || doc.publication_id || doc.sync_id || doc.archive_id || doc.figures || doc.analyses || doc.variables);
     if (isManifest) items.push({ source_path: relative, content_sha256: sha256File(file), doc });
   } catch (error) { parseErrors.push({ file: relative, error: error.message }); }
 }

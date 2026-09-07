@@ -2,10 +2,11 @@
   "publication_id": "PUBLICATION-r1-index-and-sync-hardening",
   "tag": "r1-index-and-sync-hardening",
   "base_tag": "r1-legacy-migration-smoke-verified",
-  "commit": null,
+  "commit": "9d52e5ace39ae28393f56456e9ffde9631308020",
   "remote": "https://gitee.com/chx6/muIon-beam.git",
-  "status": "prepared",
+  "remote_main_commit": "9d52e5ace39ae28393f56456e9ffde9631308020",
+  "status": "published",
   "message_file": "D:\\muIon-beam\\05_reports\\release\\r1-index-and-sync-hardening-result-note-zh.md",
-  "prepared_at": "2026-09-07T10:51:39.765Z",
-  "pushed_at": null
+  "prepared_at": "2026-09-07T10:51:44.908Z",
+  "pushed_at": "2026-09-07T10:51:44.908Z"
 }

@@ -44,7 +44,7 @@ runGit(root, ['add', '-A']);
 const commitResult = runGit(root, ['-c', 'user.name=Codex', '-c', 'user.email=codex@local', 'commit', '-m', plan.commit_message], { allowFailure: true });
 if (commitResult.status !== 0) throw new Error(commitResult.stderr || commitResult.stdout || 'commit failed');
 const commit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
-runGit(root, ['tag', '-a', tag, '-F', messageFile]);
+runGit(root, ['-c', 'user.name=Codex', '-c', 'user.email=codex@local', 'tag', '-a', tag, '-F', messageFile]);
 runGit(root, ['push', 'origin', 'HEAD:main'], { timeout: 120000 });
 runGit(root, ['push', 'origin', `refs/tags/${tag}`], { timeout: 120000 });
 const remoteMain = runGit(root, ['ls-remote', 'origin', 'refs/heads/main']).stdout.trim().split(/\s+/)[0];

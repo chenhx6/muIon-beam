@@ -11,6 +11,7 @@
 | MANIFEST-YYYYMMDD-NNN-run | run | 00_project/templates/run-manifest.yaml | planned |
 | 00_project/templates/task-card.yaml |  | 00_project/templates/task-card.yaml |  |
 | 00_project/templates/variable-catalog.yaml |  | 00_project/templates/variable-catalog.yaml |  |
+| PUBLICATION-r1-legacy-migration-smoke |  | 00_project/traceability/publication-records/r1-legacy-migration-smoke.json | prepared |
 | 00_project/traceability/variable-catalog.yaml |  | 00_project/traceability/variable-catalog.yaml |  |
 | MODEL-LEGACY-SMOKE-001 | model | 02_models/model-manifests/MODEL-LEGACY-SMOKE-001.model-manifest.json |  |
 | SNAPSHOT-RUN-LEGACY-SMOKE-001-stage1-centered | run-snapshot | 03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/model-snapshot/snapshot-manifest.json |  |

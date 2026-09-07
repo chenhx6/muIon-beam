@@ -2,10 +2,11 @@
   "publication_id": "PUBLICATION-r1-legacy-migration-smoke",
   "tag": "r1-legacy-migration-smoke",
   "base_tag": "r0-framework",
-  "commit": null,
+  "commit": "4fef26f949e45f9d82f739c6c969214d4b836c73",
   "remote": "https://gitee.com/chx6/muIon-beam.git",
-  "status": "prepared",
+  "remote_main_commit": "4fef26f949e45f9d82f739c6c969214d4b836c73",
+  "status": "published",
   "message_file": "D:\\muIon-beam\\05_reports\\release\\r1-legacy-migration-smoke-result-note-zh.md",
-  "prepared_at": "2026-09-07T10:40:39.320Z",
-  "pushed_at": null
+  "prepared_at": "2026-09-07T10:41:00.821Z",
+  "pushed_at": "2026-09-07T10:41:00.821Z"
 }

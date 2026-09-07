@@ -21,25 +21,25 @@
 
 - Gitee 历史发布标签已经存在，当前最终状态整理提交尚未推送。
 - 最近一次 Git 推送返回 `Incorrect username or password`。网页登录状态没有被当前命令行 Git 凭据管理器接受。
-- 本地当前提交：`fe448c6`。
-- 当前远端 `main` 仍停留在上一提交，尚未包含 `fe448c6`。
+- 本地当前提交：`b406812`。
+- 当前远端 `main` 仍停留在 `a732427`，尚未包含本地最终验收报告提交。
 - `r1-framework-acceptance` 标签已经存在并可验证，但它指向内容提交，后续状态整理提交需要在凭据恢复后推送。
 - 历史科学结果仍标记为 `scientific_revalidation: not-performed`；本报告不把旧 COMSOL/Geant4 结果当作新的物理验证。
 
 ## 验收结论
 
-项目框架、精选迁移、Manifest/SQLite、报告、图表和 Drive 运行快照已经具备结构验收条件。最终三端验收还差一个外部步骤：使用可用的 Gitee 命令行凭据推送本地 `fe448c6`，创建对应的最新 Drive 项目快照，然后重新执行 `audit-project-snapshot` 和 `audit-three-end`。
+项目框架、精选迁移、Manifest/SQLite、报告、图表和 Drive 运行快照已经具备结构验收条件。最终三端验收还差一个外部步骤：使用可用的 Gitee 命令行凭据推送本地 `b406812`，创建对应的最新 Drive 项目快照，然后重新执行 `audit-project-snapshot` 和 `audit-three-end`。
 
 恢复命令：
 
 ```powershell
 git -C D:\muIon-beam push origin HEAD:main
 node D:\muIon-beam\.codex\skills\muion-project\scripts\sync-project-snapshot.mjs `
-  --snapshot-id SNAPSHOT-fe448c6 `
+  --snapshot-id SNAPSHOT-b406812 `
   --tag r1-framework-acceptance `
-  --drive-path H:\我的云端硬盘\muIon_archive\project-management\project-snapshots\SNAPSHOT-fe448c6
+  --drive-path H:\我的云端硬盘\muIon_archive\project-management\project-snapshots\SNAPSHOT-b406812
 node D:\muIon-beam\.codex\skills\muion-project\scripts\audit-project-snapshot.mjs `
-  --drive-path H:\我的云端硬盘\muIon_archive\project-management\project-snapshots\SNAPSHOT-fe448c6
+  --drive-path H:\我的云端硬盘\muIon_archive\project-management\project-snapshots\SNAPSHOT-b406812
 node D:\muIon-beam\.codex\skills\muion-project\scripts\audit-three-end.mjs `
   --run-dir D:\muIon-beam\03_runs\formal\RUN-LEGACY-SMOKE-001-stage1-centered `
   --run-id RUN-LEGACY-SMOKE-001-stage1-centered `

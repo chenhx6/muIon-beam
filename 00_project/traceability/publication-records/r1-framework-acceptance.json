@@ -2,10 +2,11 @@
   "publication_id": "PUBLICATION-r1-framework-acceptance",
   "tag": "r1-framework-acceptance",
   "base_tag": "r1-project-snapshot-verified",
-  "commit": null,
+  "commit": "fe727c59843013c4f738b6a487403db3930aa11c",
   "remote": "https://gitee.com/chx6/muIon-beam.git",
-  "status": "prepared",
+  "remote_main_commit": "fe727c59843013c4f738b6a487403db3930aa11c",
+  "status": "published",
   "message_file": "D:\\muIon-beam\\05_reports\\release\\r1-framework-acceptance-result-note-zh.md",
-  "prepared_at": "2026-09-07T14:34:30.979Z",
-  "pushed_at": null
+  "prepared_at": "2026-09-07T14:34:36.773Z",
+  "pushed_at": "2026-09-07T14:34:36.773Z"
 }

@@ -1,7 +1,7 @@
 # Legacy workspace inventory
 
 Source: `D:\muIon`
-Generated: 2026-09-07T10:28:09.133Z
+Generated: 2026-09-07T13:03:42.510Z
 Files: 3712
 Bytes: 5218043716
 

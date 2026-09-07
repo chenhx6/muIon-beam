@@ -40,21 +40,13 @@
 
 迁移文件、任务关系、模型关系、运行关系和报告图件索引均已建立。
 
-## 7. 三端同步和绘图工具验收
-
-- 三端同步状态：`three-way-verified`；
-- 本地运行文件与 Drive 快照检查：230 个文件，无哈希差异；
-- Gitee 发布标签：`r1-legacy-migration-smoke`、`r1-legacy-migration-smoke-verified` 和 `r1-index-and-sync-hardening`；
-- SQLite 索引已由 Manifest 重建；
-- Nature figure Python 样例的源代码预检、PDF 文字下限检查和碰撞审计通过。
-
-## 8. 限制
+## 7. 限制
 
 - `scientific_revalidation: not-performed`；
 - 历史结果不能直接当作新项目的实验验证；
 - 历史报告中的路径仍保留其旧上下文；
 - 模型二进制只记录指纹，不在本次测试中打开或重算。
 
-## 9. 后续实例验收
+## 8. 后续实例验收
 
 需要人工确认旧任务到新任务、历史模型、运行、报告和图件之间的映射是否符合项目实际含义。

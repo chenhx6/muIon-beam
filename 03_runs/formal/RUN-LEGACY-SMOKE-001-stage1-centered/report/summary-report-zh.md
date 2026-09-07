@@ -20,9 +20,6 @@
 - JSON/CSV 读取：通过
 - 新项目实例 Manifest：已生成
 - 科学重新验证：未进行
-- SQLite 索引：已通过
-- Gitee 发布和 Drive 三端同步：已通过，状态为 `three-way-verified`
-- Nature figure Python 绘图样例：已通过源代码、PDF 文字和碰撞审计
 
 ## 主要限制
 

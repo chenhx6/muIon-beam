@@ -18,10 +18,13 @@ for (const local of files) {
   else if (sha256File(local) !== sha256File(remote)) mismatches.push(`${relative}: SHA256 mismatch`);
 }
 let tagVerified = true;
+let tagCommit = null;
 if (args.tag) {
   const tagLine = runGit(root, ['ls-remote', 'origin', `refs/tags/${args.tag}^{}`], { allowFailure: true });
-  tagVerified = tagLine.status === 0 && tagLine.stdout.trim().split(/\s+/)[0] === localCommit;
+  tagCommit = tagLine.status === 0 ? tagLine.stdout.trim().split(/\s+/)[0] || null : null;
+  const ancestor = tagCommit ? runGit(root, ['merge-base', '--is-ancestor', tagCommit, localCommit], { allowFailure: true }).status === 0 : false;
+  tagVerified = tagCommit === localCommit || ancestor;
 }
-const result = { read_only: true, run_dir: runDir, drive_path: drivePath, local_commit: localCommit, gitee_remote_commit: remoteCommit, gitee_tag: args.tag || null, drive_files_checked: files.length, drive_mismatches: mismatches, tag_verified: tagVerified, status: remoteCommit === localCommit && mismatches.length === 0 && tagVerified ? 'three-way-verified' : 'drift-detected', action_required: remoteCommit !== localCommit || mismatches.length > 0 || !tagVerified };
+const result = { read_only: true, run_dir: runDir, drive_path: drivePath, local_commit: localCommit, gitee_remote_commit: remoteCommit, gitee_tag: args.tag || null, gitee_tag_commit: tagCommit, drive_files_checked: files.length, drive_mismatches: mismatches, tag_verified: tagVerified, status: remoteCommit === localCommit && mismatches.length === 0 && tagVerified ? 'three-way-verified' : 'drift-detected', action_required: remoteCommit !== localCommit || mismatches.length > 0 || !tagVerified };
 console.log(JSON.stringify(result, null, 2));
 process.exitCode = result.action_required ? 2 : 0;

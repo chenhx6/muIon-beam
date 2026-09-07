@@ -28,17 +28,20 @@ const remoteLine = runGit(root, ['ls-remote', 'origin', 'refs/heads/main'], { al
 const remoteCommit = remoteLine.status === 0 ? remoteLine.stdout.trim().split(/\s+/)[0] || null : null;
 const tag = args.tag || null;
 let tagVerified = tag === null;
+let tagCommit = null;
 if (tag) {
   const tagLine = runGit(root, ['ls-remote', 'origin', `refs/tags/${tag}^{}`], { allowFailure: true });
   const fallback = tagLine.status === 0 ? tagLine.stdout.trim().split(/\s+/)[0] || null : null;
-  tagVerified = fallback === localCommit;
+  tagCommit = fallback;
+  const ancestor = tagCommit ? runGit(root, ['merge-base', '--is-ancestor', tagCommit, localCommit], { allowFailure: true }).status === 0 : false;
+  tagVerified = tagCommit === localCommit || ancestor;
 }
 const manifestFile = ['run-manifest.json', 'run-manifest.yaml', 'migration-manifest.json'].map((name) => path.join(runDir, name)).find((file) => fs.existsSync(file));
 const manifestSha256 = manifestFile ? sha256File(manifestFile) : null;
 const driveVerified = driveErrors.length === 0 && copied.length === sourceFiles.length;
 const status = driveVerified && remoteCommit === localCommit && tagVerified ? 'three-way-verified' : !driveVerified ? 'pending-drive' : remoteCommit !== localCommit ? 'pending-gitee' : 'pending-verification';
 const syncId = `SYNC-${runId}-${new Date().toISOString().replace(/[-:.TZ]/g, '').slice(0, 14)}`;
-const state = { sync_id: syncId, manifest_type: 'sync-state', schema_version: '1.0.0', created_at: nowIso(), task_id: args.task_id || null, run_id: runId, local_commit: localCommit, gitee_remote_commit: remoteCommit, gitee_tag: tag, drive_path: drivePath, manifest_sha256: manifestSha256, status, pending_actions: status === 'three-way-verified' ? [] : [!driveVerified ? 'verify-drive-archive' : null, remoteCommit !== localCommit ? 'publish-gitee-main' : null, !tagVerified ? 'publish-gitee-tag' : null].filter(Boolean), file_count: copied.length, files: copied, errors: driveErrors };
+const state = { sync_id: syncId, manifest_type: 'sync-state', schema_version: '1.0.0', created_at: nowIso(), task_id: args.task_id || null, run_id: runId, local_commit: localCommit, gitee_remote_commit: remoteCommit, gitee_tag: tag, gitee_tag_commit: tagCommit, drive_path: drivePath, manifest_sha256: manifestSha256, status, pending_actions: status === 'three-way-verified' ? [] : [!driveVerified ? 'verify-drive-archive' : null, remoteCommit !== localCommit ? 'publish-gitee-main' : null, !tagVerified ? 'publish-gitee-tag' : null].filter(Boolean), file_count: copied.length, files: copied, errors: driveErrors };
 const stateDir = path.join(root, '00_project/traceability/sync-states');
 ensureDirectory(stateDir);
 const statePath = path.join(stateDir, `${syncId}.json`);

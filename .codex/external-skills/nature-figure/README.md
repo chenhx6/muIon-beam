@@ -1,6 +1,6 @@
 # nature-figure 外部 skill 记录
 
-项目将使用 `nature-figure` 作为重要科研图的样式和质量控制参考。当前只登记来源和适配位置，未在本次架构初始化中盲目复制或自动更新上游内容。
+项目将使用固定版本的 `nature-figure` 作为重要科研图的样式和质量控制参考。完整技能目录已经本地安装，来源、commit 和适配位置记录在 `upstream-source.yaml`。
 
 执行外部 skill 接入时必须：
 

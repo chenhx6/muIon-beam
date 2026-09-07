@@ -5,7 +5,7 @@
 ## 当前边界
 
 - 新项目工作区：`D:\muIon-beam`
-- 旧工作区：`D:\muIon`，当前任务继续在那里执行，暂不迁移
+- 旧工作区：`D:\muIon`，已完成任务，按精选规则 copy-only 迁移并保留原件
 - 已废弃工作区：`C:\AAA\muIon`
 - Gitee：`https://gitee.com/chx6/muIon-beam.git`
 - Google Drive：`H:\我的云端硬盘\muIon_archive`

@@ -26,3 +26,5 @@ Drive 归档验证成功后，再生成索引、提交 Gitee 中应保存的内�
 任务完成、报告定稿、迁移完成和发布完成后调用 `sync-three-end`。失败状态写入 `sync-outbox`，由 `retry-sync-outbox.mjs` 在下一次明确触发时重试；只读漂移检查使用 `audit-three-end.mjs`。
 
 若需要一键闭环，使用 `publish-and-sync.mjs`；它按“发布 → Drive 归档 → 三端状态 → Gitee 状态提交”的顺序执行。
+
+项目规则、skill、Manifest 和 SQLite 快照使用 `sync-project-snapshot.mjs` 写入 `project-management/project-snapshots/SNAPSHOT-<commit>`；运行资料使用 `sync-three-end.mjs` 写入 `simulation-runs/RUN-...`。两类快照都可由对应的只读 audit 脚本检查。

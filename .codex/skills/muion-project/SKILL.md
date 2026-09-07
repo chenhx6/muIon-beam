@@ -40,6 +40,8 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `sync-three-end`: archive and verify the local, Gitee, and Drive state.
 - `publish-and-sync`: publish a tagged result, archive its run, write sync state, and push the verified state record.
 - `audit-three-end`: perform a read-only drift audit.
+- `sync-project`: archive the tracked project and derived SQLite snapshots to a versioned Drive snapshot.
+- `audit-project`: read-only audit of the project snapshot against local Git and Gitee.
 - `cache-audit`: index cache files and generate safe cleanup candidates.
 - `retry-sync`: retry pending three-end sync records idempotently and clear only successfully verified outbox entries.
 - `install-nature-figure`: install or inspect the pinned external figure skill.

@@ -19,6 +19,8 @@
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907104806 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907104806.json | three-way-verified |
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907105215 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907105215.json | three-way-verified |
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907105457 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907105457.json | three-way-verified |
+| SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907110812 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907110812.json | three-way-verified |
+| SYNC-SNAPSHOT-421b45318451 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-421b45318451.json | three-way-verified |
 | 00_project/traceability/variable-catalog.yaml |  | 00_project/traceability/variable-catalog.yaml |  |
 | MODEL-LEGACY-SMOKE-001 | model | 02_models/model-manifests/MODEL-LEGACY-SMOKE-001.model-manifest.json |  |
 | SNAPSHOT-RUN-LEGACY-SMOKE-001-stage1-centered | run-snapshot | 03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/model-snapshot/snapshot-manifest.json |  |

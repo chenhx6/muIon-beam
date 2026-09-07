@@ -12,10 +12,8 @@
   "gitee_tag_commit": null,
   "drive_path": "H:\\我的云端硬盘\\muIon_archive\\project-management\\project-snapshots\\SNAPSHOT-0fa423b448b6",
   "manifest_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "status": "pending-drive",
-  "pending_actions": [
-    "verify-project-snapshot"
-  ],
+  "status": "superseded",
+  "pending_actions": [],
   "file_count": 0,
   "files": [],
   "errors": [
@@ -593,5 +591,7 @@
     "tests/architecture-smoke.mjs: EPERM: operation not permitted, mkdir 'H:\\我的云端硬盘\\muIon_archive\\project-management\\project-snapshots\\SNAPSHOT-0fa423b448b6\\tests'",
     "00_project/traceability/index.sqlite: EPERM: operation not permitted, mkdir 'H:\\我的云端硬盘\\muIon_archive\\project-management\\project-snapshots\\SNAPSHOT-0fa423b448b6\\00_project\\traceability'",
     "_work/cache/cache-index.sqlite: EPERM: operation not permitted, mkdir 'H:\\我的云端硬盘\\muIon_archive\\project-management\\project-snapshots\\SNAPSHOT-0fa423b448b6\\_work\\cache'"
-  ]
+  ],
+  "superseded_by": "SYNC-SNAPSHOT-c062164a9d09",
+  "superseded_at": "2026-09-07T14:37:39.104Z"
 }

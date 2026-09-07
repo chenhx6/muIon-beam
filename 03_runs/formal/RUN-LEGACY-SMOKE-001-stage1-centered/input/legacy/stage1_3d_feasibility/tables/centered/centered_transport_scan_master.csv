@@ -1,0 +1,12 @@
+case_id,case_directory,n_particles,n_exit,T_geom,P90_t_exit_ns,P50_t_exit_ns,mean_Ktotal_exit_eV,std_Ktotal_exit_eV,P90_Kperp_exit_eV,fraction_exit_Ktotal_gt_1keV,fraction_exit_0p95_1p05keV,fraction_exit_below_0p95keV,fraction_exit_above_1p05keV,joint_pass,loss_electrode,loss_wall,loss_backward,loss_timeout,loss_frozen,loss_stuck,loss_disappeared,beam_spot_rms_mm,beam_spot_P90_r_mm
+transport_highfield_10,tables\centered\transport_highfield_10,10,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,2,8,0,0,0,nan,nan
+transport_highfield_10_v2,tables\centered\transport_highfield_10_v2,10,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,2,8,0,0,0,nan,nan
+transport_highfield_smoke,tables\centered\transport_highfield_smoke,2,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,0,2,0,0,0,nan,nan
+transport_lowfield_1e24_a60,tables\centered\transport_lowfield_1e24_a60,500,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,63,437,0,0,0,nan,nan
+transport_lowfield_1e24_a60_v2,tables\centered\transport_lowfield_1e24_a60_v2,500,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,63,437,0,0,0,nan,nan
+transport_short2,tables\centered\transport_short2,2,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,0,2,0,0,0,nan,nan
+transport_short2_dv12_2,tables\centered\transport_short2_dv12_2,2,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,0,2,0,0,0,nan,nan
+transport_short2_dv12_2_fixsel,tables\centered\transport_short2_dv12_2_fixsel,2,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,0,2,0,0,0,nan,nan
+transport_short2_nostop,tables\centered\transport_short2_nostop,2,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,0,2,0,0,0,nan,nan
+transport_smoke3,tables\centered\transport_smoke3,2,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,0,2,0,0,0,nan,nan
+transport_zero_voltage_check,tables\centered\transport_zero_voltage_check,2,0,0.0,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,0,0,0,2,0,0,0,nan,nan

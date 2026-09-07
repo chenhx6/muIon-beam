@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/migration-manifest.schema.json",
+  "type": "object",
+  "required": ["migration_id", "source_workspace", "destination_workspace", "copy_only", "files"],
+  "properties": {
+    "migration_id": {"type": "string"},
+    "source_workspace": {"type": "string"},
+    "destination_workspace": {"type": "string"},
+    "copy_only": {"const": true},
+    "preserve_source": {"const": true},
+    "files": {"type": "array", "items": {"type": "object", "required": ["legacy_source_path", "legacy_source_sha256", "migration_decision", "retention_level"]}}
+  }
+}

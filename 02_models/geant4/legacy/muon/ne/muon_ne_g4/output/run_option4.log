@@ -1,0 +1,28 @@
+
+**************************************************************
+ Geant4 version Name: geant4-11-03-patch-02 [MT]   (25-April-2025)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+Geant4 version: 11.3.2
+physics mode: option4
+particle: mu- (PDG 13)
+material: NeonReference (pure Ne)
+target n [1/m^3]: 1.000000000000e+22, actual G4 n [1/m^3]: 1.000000000000e+22
+muIoni models:
+  [0] ICRU73QO [1.000000000000e+02, 2.000000000000e+05] eV
+  [1] MuBetheBloch [2.000000000000e+05, 1.000000000000e+14] eV
+runtime model selections:
+  E=1.000000000000e+02 eV -> ICRU73QO
+  E=1.999990000000e+05 eV -> ICRU73QO
+  E=2.000000000000e+05 eV -> ICRU73QO
+  E=2.000010000000e+05 eV -> MuBetheBloch
+  E=1.000000000000e+06 eV -> MuBetheBloch
+rows: 209, range [1.000000000000e+02, 1.000000000000e+06] eV
+E=1.000000000000e+05 eV: dEdx=6.159198335543e+03 eV/m, SN=6.159198335543e-19 eV*m^2, nu=4.019629689464e+05 s^-1, CSDA=1.675120299679e+01 m
+E=1.000000000000e+04 eV: dEdx=8.491389614494e+03 eV/m, SN=8.491389614494e-19 eV*m^2, nu=1.751311272542e+06 s^-1, CSDA=5.247653166406e+00 m
+E=1.000000000000e+03 eV: dEdx=8.431107762959e+02 eV/m, SN=8.431107762959e-20 eV*m^2, nu=5.498465087254e+05 s^-1, CSDA=3.304162856845e+00 m

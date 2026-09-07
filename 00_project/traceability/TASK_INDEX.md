@@ -1,4 +1,6 @@
 # TASK_INDEX
 
-| 任务 ID | 任务名称 | 当前运行 | 状态 | 物理区域 |
+| 任务 ID | 任务名称 | 来源 | 状态 | 当前运行 |
 |---|---|---|---|---|
+| TASK-LEGACY-SMOKE-001 | 旧工作区 Stage-1 居中源迁移冒烟测试 | legacy_import |  |  |
+| TASK-YYYYMMDD-NNN-short-name |  |  | planned | RUN-YYYYMMDD-NNN-short-name |

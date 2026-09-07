@@ -1,0 +1,16 @@
+SOLIDWORKS_MASTER_ROOT=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility
+SOLIDWORKS_MASTER_OUTPUT=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\cad\Stage1_Master_3D.SLDPRT
+SOLIDWORKS_APP=CREATED
+PART_DOCUMENT=CREATED
+REVOLVED_BODY=GroundedShell SUCCESS
+REVOLVED_BODY=DielectricLiner SUCCESS
+REVOLVED_BODY=V1 SUCCESS
+FILLET_BODY_CANDIDATE_COUNT=3 TARGET=V1 Z0=25 Z1=28
+FILLET_BODY_BOX=V1_Annular_Electrode_D30_t3 :: z=0.025-0.028 xMax=0.04
+FILLET_BODY_SELECTED=V1_Annular_Electrode_D30_t3
+
+未经处理的异常:  System.Exception: expected two aperture edges for V1, found 1
+   在 BuildStage1SolidWorks.ApplyApertureFillet(IModelDoc2 doc, IFeatureManager fm, Feature revolve, String id, Double z0, Double z1)
+   在 BuildStage1SolidWorks.CreateRevolvedBody(IModelDoc2 doc, IFeatureManager fm, String id, Double r0, Double z0, Double r1, Double z1, String featureName)
+   在 BuildStage1SolidWorks.CreateMasterGeometry(IModelDoc2 doc)
+   在 BuildStage1SolidWorks.Main(String[] args)

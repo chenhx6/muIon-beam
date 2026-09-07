@@ -1,0 +1,3 @@
+12480            init          errorlogger  errorlogger       Logging to "D:\muIon\muIon_archive\muon-ion_beam\stage1_3d_feasibility\intermediate\probe_fromfile0_prefs\logs\batch2_render.log" errorlog.cpp:314
+12480            init          errorlogger  errorlogger       Setting log level to "error" errorlog.cpp:320
+12480            init          errorlogger  errorlogger       Setting log flush to "true" errorlog.cpp:326

@@ -1,8 +1,10 @@
 source_url: https://github.com/Yuan1z0825/nature-skills
 skill_name: nature-figure
-pinned_commit: pending-first-install
-retrieved_at: null
-license: pending-verification
-local_dependencies: []
+pinned_commit: 287ee37542620711a56c7c58a73f44ef5c2bede0
+retrieved_at: 2026-09-07
+license: Apache-2.0
+local_dependencies:
+  - requirements.txt
+installed_path: .codex/external-skills/nature-figure/upstream-skill
 project_adapter: .codex/skills/muion-project/references/figure-style-adapter.md
-status: source-recorded-not-vendored
+status: locally-installed-and-pinned

@@ -1,0 +1,30 @@
+{
+  "manifest_id": "SNAPSHOT-RUN-LEGACY-SMOKE-001-stage1-centered",
+  "manifest_type": "run-snapshot",
+  "schema_version": "1.0.0",
+  "created_at": "2026-09-07T10:36:40.089Z",
+  "run_dir": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered",
+  "files": [
+    {
+      "source_path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/stage1_3d_feasibility.mph",
+      "snapshot_path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/model-snapshot/stage1_3d_feasibility.mph",
+      "source_sha256": "7be63bd896e815e2ff21c6bf566a7564b6969d4148d3fd3bc8777ac178d2c50c",
+      "snapshot_sha256": "7be63bd896e815e2ff21c6bf566a7564b6969d4148d3fd3bc8777ac178d2c50c",
+      "size": 50727722
+    },
+    {
+      "source_path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/centered_cooling_calibration.mph",
+      "snapshot_path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/model-snapshot/centered_cooling_calibration.mph",
+      "source_sha256": "1c60a201eb290e7f3b6b65cb38e9323f0fd3b38b877d7b67d0bd423ae2a5b0a4",
+      "snapshot_sha256": "1c60a201eb290e7f3b6b65cb38e9323f0fd3b38b877d7b67d0bd423ae2a5b0a4",
+      "size": 72210752
+    },
+    {
+      "source_path": "02_models/solidworks/legacy/stage1_3d_feasibility/cad/Stage1_Master_3D.SLDPRT",
+      "snapshot_path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/model-snapshot/Stage1_Master_3D.SLDPRT",
+      "source_sha256": "aec67f613293c0c422c240040f0cc52c6c322427617bc015ec454dec4f2d1a8a",
+      "snapshot_sha256": "aec67f613293c0c422c240040f0cc52c6c322427617bc015ec454dec4f2d1a8a",
+      "size": 196356
+    }
+  ]
+}

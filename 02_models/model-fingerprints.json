@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-09-07T10:36:28.557Z",
+  "models": [
+    {
+      "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/stage1_3d_feasibility.mph",
+      "absolute_path": "D:\\muIon-beam\\02_models\\comsol\\legacy\\stage1_3d_feasibility\\comsol\\stage1_3d_feasibility.mph",
+      "size": 50727722,
+      "modified_at": "2026-09-04T11:14:25.308Z",
+      "sha256": "7be63bd896e815e2ff21c6bf566a7564b6969d4148d3fd3bc8777ac178d2c50c",
+      "extension": ".mph",
+      "geometry_summary": {
+        "size_bytes": 50727722
+      }
+    },
+    {
+      "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/centered_cooling_calibration.mph",
+      "absolute_path": "D:\\muIon-beam\\02_models\\comsol\\legacy\\stage1_3d_feasibility\\comsol\\centered_cooling_calibration.mph",
+      "size": 72210752,
+      "modified_at": "2026-09-06T18:26:00.112Z",
+      "sha256": "1c60a201eb290e7f3b6b65cb38e9323f0fd3b38b877d7b67d0bd423ae2a5b0a4",
+      "extension": ".mph",
+      "geometry_summary": {
+        "size_bytes": 72210752
+      }
+    },
+    {
+      "path": "02_models/solidworks/legacy/stage1_3d_feasibility/cad/Stage1_Master_3D.SLDPRT",
+      "absolute_path": "D:\\muIon-beam\\02_models\\solidworks\\legacy\\stage1_3d_feasibility\\cad\\Stage1_Master_3D.SLDPRT",
+      "size": 196356,
+      "modified_at": "2026-09-04T22:15:59.432Z",
+      "sha256": "aec67f613293c0c422c240040f0cc52c6c322427617bc015ec454dec4f2d1a8a",
+      "extension": ".sldprt",
+      "geometry_summary": {
+        "size_bytes": 196356
+      }
+    }
+  ]
+}

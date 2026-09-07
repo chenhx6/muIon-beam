@@ -1,0 +1,3 @@
+56308            init          errorlogger  errorlogger       Logging to "E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\intermediate\prefs_step_import_final\logs\batch1_render.log" errorlog.cpp:314
+56308            init          errorlogger  errorlogger       Setting log level to "error" errorlog.cpp:320
+56308            init          errorlogger  errorlogger       Setting log flush to "true" errorlog.cpp:326

@@ -1,0 +1,10 @@
+SOLIDWORKS_MASTER_ROOT=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility
+SOLIDWORKS_MASTER_OUTPUT=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\cad\Stage1_Master_3D.SLDPRT
+SOLIDWORKS_APP=CREATED
+PART_DOCUMENT=CREATED
+SKETCH_STARTED=Stage1 radial-axial master profile
+SKETCH_FINISHED=Stage1_Master_Profile
+
+未经处理的异常:  System.Exception: master FeatureRevolve returned null
+   在 BuildStage1SolidWorks.CreateMasterGeometry(IModelDoc2 doc)
+   在 BuildStage1SolidWorks.Main(String[] args)

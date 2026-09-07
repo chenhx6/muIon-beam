@@ -1,0 +1,32 @@
+SOLIDWORKS_MASTER_ROOT=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility
+SOLIDWORKS_MASTER_OUTPUT=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\cad\Stage1_Master_3D.SLDPRT
+SOLIDWORKS_APP=CREATED
+PART_DOCUMENT=CREATED
+REVOLVED_BODY=V1 SUCCESS
+FILLET_BODY_CANDIDATE_COUNT=1 TARGET=V1 Z0=25 Z1=28
+FILLET_BODY_BOX=V1_Annular_Electrode_D30_t3 :: z=0.025-0.028 xMax=0.04
+FILLET_BODY_SELECTED=V1_Annular_Electrode_D30_t3
+APERTURE_FILLET=V1 R=1mm SUCCESS
+REVOLVED_BODY=V2 SUCCESS
+FILLET_BODY_CANDIDATE_COUNT=2 TARGET=V2 Z0=158 Z1=161
+FILLET_BODY_BOX=V2_Annular_Electrode_D30_t3 :: z=0.158-0.161 xMax=0.04
+FILLET_BODY_SELECTED=V2_Annular_Electrode_D30_t3
+APERTURE_FILLET=V2 R=1mm SUCCESS
+REVOLVED_BODY=V3 SUCCESS
+FILLET_BODY_CANDIDATE_COUNT=3 TARGET=V3 Z0=381 Z1=384
+FILLET_BODY_BOX=V2_Aperture_Fillet_R1mm :: z=0.158-0.161 xMax=0.04
+FILLET_BODY_BOX=V3_Annular_Electrode_D30_t3 :: z=0.381-0.384 xMax=0.04
+FILLET_BODY_SELECTED=V3_Annular_Electrode_D30_t3
+APERTURE_FILLET=V3 R=1mm SUCCESS
+REVOLVED_BODY=V4 SUCCESS
+FILLET_BODY_CANDIDATE_COUNT=4 TARGET=V4 Z0=544 Z1=547
+FILLET_BODY_BOX=V2_Aperture_Fillet_R1mm :: z=0.158-0.161 xMax=0.04
+FILLET_BODY_BOX=V4_Annular_Electrode_D30_t3 :: z=0.544-0.547 xMax=0.04
+FILLET_BODY_SELECTED=V4_Annular_Electrode_D30_t3
+APERTURE_FILLET_EDGE_COUNT_NOTE=V4 found=1; applying fillet to all returned aperture edges
+
+未经处理的异常:  System.Exception: FeatureFillet returned null for V4
+   在 BuildStage1SolidWorks.ApplyApertureFillet(IModelDoc2 doc, IFeatureManager fm, Feature revolve, String id, Double z0, Double z1)
+   在 BuildStage1SolidWorks.CreateRevolvedBody(IModelDoc2 doc, IFeatureManager fm, String id, Double r0, Double z0, Double r1, Double z1, String featureName)
+   在 BuildStage1SolidWorks.CreateMasterGeometry(IModelDoc2 doc)
+   在 BuildStage1SolidWorks.Main(String[] args)

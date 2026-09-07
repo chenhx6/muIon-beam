@@ -1,0 +1,247 @@
+*******************************************
+***COMSOL 6.4.0.293 progress output file***
+*******************************************
+Fri Sep 04 00:13:26 CST 2026
+COMSOL Multiphysics 6.4 (开发版本: 293) 在批处理模式下启动
+正在运行: E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\scripts\BuildStage1_3D.class
+BUILD_STAGE1_3D_ROOT=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility
+BUILD_STAGE1_3D_STOPPING_FILE=E:\imp\imp\project\muon-ion_beam\muon\ne\comsol_muNe_SN.txt
+BUILD_STAGE1_3D_PHASE=CREATE_MODEL
+---------- 当前进度: 100 % - 正在更新选择
+Memory: 424/424 505/602
+           当前进度:   0 % - Grounded outer shell / bore boundary
+Memory: 457/457 516/602
+           当前进度:   4 % - Uniform Ne gas volume before electrode subtraction
+Memory: 467/467 520/602
+           当前进度:   8 % - Gas cutter reserved for dielectric liner
+Memory: 468/468 520/602
+-          当前进度:  12 % - Representative alumina dielectric liner
+-          当前进度:  12 % - 执行布尔操作
+Memory: 472/472 523/602
+-----      当前进度:  52 % - V1 electrode outer blank
+-----      当前进度:  56 % - V1 aperture cutter
+------     当前进度:  60 % - V1 finite-thickness annular electrode
+Memory: 473/473 523/602
+------     当前进度:  60 % - 执行布尔操作
+           当前进度:   0 % - V1 electrode, 1 mm rounded edges
+Memory: 476/476 524/602
+GEOMETRY_ELECTRODE_ROUNDED=V1
+           当前进度:   0 % - V2 electrode outer blank
+Memory: 481/481 526/602
+           当前进度:   8 % - V2 aperture cutter
+-          当前进度:  17 % - V2 finite-thickness annular electrode
+-          当前进度:  17 % - 执行布尔操作
+           当前进度:   0 % - V2 electrode, 1 mm rounded edges
+Memory: 482/482 526/602
+GEOMETRY_ELECTRODE_ROUNDED=V2
+           当前进度:   0 % - V3 electrode outer blank
+Memory: 485/485 526/602
+           当前进度:   8 % - V3 aperture cutter
+-          当前进度:  17 % - V3 finite-thickness annular electrode
+Memory: 486/486 526/602
+-          当前进度:  17 % - 执行布尔操作
+           当前进度:   0 % - V3 electrode, 1 mm rounded edges
+Memory: 487/487 526/602
+GEOMETRY_ELECTRODE_ROUNDED=V3
+           当前进度:   0 % - V4 electrode outer blank
+Memory: 490/490 527/602
+           当前进度:   8 % - V4 aperture cutter
+-          当前进度:  17 % - V4 finite-thickness annular electrode
+-          当前进度:  17 % - 执行布尔操作
+           当前进度:   0 % - V4 electrode, 1 mm rounded edges
+Memory: 491/491 527/602
+GEOMETRY_ELECTRODE_ROUNDED=V4
+           当前进度:   0 % - Ne gas domain excluding four electrode solids
+Memory: 492/492 527/602
+           当前进度:   0 % - 执行布尔操作
+Memory: 493/493 527/602
+-----      当前进度:  50 % - 形成联合体
+-----      当前进度:  50 % - 执行布尔操作
+---------- 当前进度: 100 % - 正在更新选择
+Memory: 494/494 527/602
+GEOMETRY_SELECTION_TAGS=[geom1_outer0_pnt, geom1_outer0_edg, geom1_outer0_bnd, geom1_outer0_dom, geom1_gas0_pnt, geom1_gas0_edg, geom1_gas0_bnd, geom1_gas0_dom, geom1_diel0_pnt, geom1_diel0_edg, geom1_diel0_bnd, geom1_diel0_dom, geom1_v1_ring_pnt, geom1_v1_ring_edg, geom1_v1_ring_bnd, geom1_v1_ring_dom, geom1_v1_rounded_pnt, geom1_v1_rounded_edg, geom1_v1_rounded_bnd, geom1_v1_rounded_dom, geom1_v2_ring_pnt, geom1_v2_ring_edg, geom1_v2_ring_bnd, geom1_v2_ring_dom, geom1_v2_rounded_pnt, geom1_v2_rounded_edg, geom1_v2_rounded_bnd, geom1_v2_rounded_dom, geom1_v3_ring_pnt, geom1_v3_ring_edg, geom1_v3_ring_bnd, geom1_v3_ring_dom, geom1_v3_rounded_pnt, geom1_v3_rounded_edg, geom1_v3_rounded_bnd, geom1_v3_rounded_dom, geom1_v4_ring_pnt, geom1_v4_ring_edg, geom1_v4_ring_bnd, geom1_v4_ring_dom, geom1_v4_rounded_pnt, geom1_v4_rounded_edg, geom1_v4_rounded_bnd, geom1_v4_rounded_dom, geom1_gaswork_pnt, geom1_gaswork_edg, geom1_gaswork_bnd, geom1_gaswork_dom]
+GEOMETRY_DOMAINS_GAS=[2]
+GEOMETRY_DOMAINS_DIELECTRIC=[1]
+GEOMETRY_BND_V1=[9, 10, 11, 12, 25, 26, 35, 39, 43, 47]
+GEOMETRY_BND_OUTER=[1, 2, 3, 4, 33, 52]
+           当前进度:   0 % - 点 1
+Memory: 577/579 580/602
+---------- 当前进度: 100 % - 正在更新选择
+Memory: 577/579 581/602
+BUILD_STAGE1_3D_PHASE=MESH
+           当前进度:   0 % - 自由四面体网格
+Memory: 590/590 590/602
+顶点单元数：80
+-          当前进度:  10 % - 调整边界网格
+Memory: 602/602 598/602
+--         当前进度:  21 % - 正在创建边界网格
+Memory: 605/607 601/607
+--         当前进度:  25 % - 正在创建边界网格
+边单元数：1448
+边界单元数：20562
+----       当前进度:  43 % - 正在创建初始四面体网格
+Memory: 619/619 616/616
+----       当前进度:  45 % - 相关边界
+Memory: 623/623 618/618
+------     当前进度:  61 % - 正在创建初始四面体网格
+Memory: 621/624 617/628
+------     当前进度:  68 % - 相关边界
+Memory: 621/626 618/628
+--------   当前进度:  83 % - 正在提高单元质量
+Memory: 629/629 629/633
+单元数：82371
+最小单元质量：0.1802
+---------- 当前进度: 100 % - 正在定型网格
+Memory: 629/630 625/633
+CHECKPOINT_CADLIKE_GEOMETRY_AND_MODEL_SAVED=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\comsol\stage1_3d_feasibility.mph
+BUILD_STAGE1_3D_PHASE=SOLVE_ELECTROSTATICS
+           当前进度:   2 % - 生成方程
+Memory: 653/657 650/652
+           当前进度:   3 % - 生成方程
+Memory: 677/681 671/676
+<---- Study 1 - 3D Electrostatics stationary/解 1 (sol1) 中的“编译方程: 稳态” -----------
+开始于 2026年9月4日 00:13:39。
+几何形函数: 二次拉格朗日单元
+几何形函数: 二次拉格朗日单元
+在 Intel64 Family 6 Model 186 Stepping 2, GenuineIntel 上运行。
+在以下位置使用 1 个插槽： 陈红星 上（共 1 个内核）。
+可用内存：15.90 GB。
+           当前进度:   3 % - 编译方程: 稳态
+Memory: 715/721 705/711
+           当前进度:   6 % - 编译方程: 稳态
+Memory: 746/751 755/755
+           当前进度:   7 % - 编译方程: 稳态
+Memory: 803/826 806/831
+时间：3。
+物理内存: 847 MB
+虚拟内存: 973 MB
+Warning: 自由空间采用真空条件，这会导致某些材料属性被忽略。请考虑为忽略的材料添加合适的物理场特征。
+
+  - 节点: 自由空间 1
+
+  - 物理场: Electrostatics: four finite-thickness rounded ring electrodes (es)
+
+  - Materials: Natural Neon gas, representative relative permittivity (mat_gas), Representative alumina ceramic; epsilon_r=9.4 assumption (mat_diel)
+
+  - Quantities: 相对介电常数, 相对介电常数
+结束时间：2026年9月4日 00:13:42。
+----- Study 1 - 3D Electrostatics stationary/解 1 (sol1) 中的“编译方程: 稳态” ---------->
+<---- Study 1 - 3D Electrostatics stationary/解 1 (sol1) 中的“因变量 1” --------------
+开始于 2026年9月4日 00:13:42。
+           当前进度:   7 % - 因变量 1
+Memory: 839/853 963/978
+求解时间：0 s。
+物理内存: 853 MB
+虚拟内存: 978 MB
+结束时间：2026年9月4日 00:13:42。
+----- Study 1 - 3D Electrostatics stationary/解 1 (sol1) 中的“因变量 1” ------------->
+<---- Study 1 - 3D Electrostatics stationary/解 1 (sol1) 中的“稳态求解器 1” ------------
+开始于 2026年9月4日 00:13:42。
+线性求解器 
+求解的自由度数：122163。
+--         当前进度:  21 % - 稳态求解器 1
+Memory: 865/866 967/978
+--         当前进度:  23 % - 组装稀疏模式
+Memory: 862/866 970/978
+--         当前进度:  28 % - 组装矩阵
+Memory: 880/880 992/992
+---        当前进度:  36 % - 组装矩阵
+Memory: 881/881 992/992
+找到对称矩阵。
+缩放因变量：
+电势 (comp1.V): 1
+已使用正交零空间函数。
+---        当前进度:  38 % - 
+Memory: 917/917 1032/1032
+---        当前进度:  38 % - 组装延展
+Memory: 912/938 1021/1051
+-----      当前进度:  56 % - 组装矩阵
+Memory: 909/938 1017/1051
+Iter      SolEst     Damping    Stepsize #Res #Jac #Sol LinIt   LinErr   LinRes
+---------  当前进度:  98 % - 求解线性方程组
+Memory: 923/938 1050/1051
+   1        0.76   1.0000000        0.76    1    1    1     4  2.8e-05  5.4e-08
+---------- 当前进度: 100 % - 
+Memory: 902/938 1022/1051
+求解时间：4 s。
+物理内存: 938 MB
+虚拟内存: 1051 MB
+结束时间：2026年9月4日 00:13:46。
+----- Study 1 - 3D Electrostatics stationary/解 1 (sol1) 中的“稳态求解器 1” ----------->
+CHECKPOINT_3D_ELECTROSTATICS_SOLVED=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\comsol\stage1_3d_feasibility.mph
+BUILD_STAGE1_3D_PHASE=SOLVE_SINGLE_MUON
+           当前进度:   2 % - 生成方程
+Memory: 991/993 1002/1051
+           当前进度:   3 % - 生成方程
+Memory: 994/997 1006/1051
+<---- Study 2 - Single_Muon_Diagnostic/解 2 (sol2) 中的“编译方程: 瞬态” -----------------
+开始于 2026年9月4日 00:13:47。
+几何形函数: 二次拉格朗日单元
+几何形函数: 二次拉格朗日单元
+在 Intel64 Family 6 Model 186 Stepping 2, GenuineIntel 上运行。
+在以下位置使用 1 个插槽： 陈红星 上（共 1 个内核）。
+可用内存：15.90 GB。
+           当前进度:   4 % - 编译方程: 瞬态
+Memory: 1048/1049 1078/1078
+           当前进度:   5 % - 编译方程: 瞬态
+Memory: 1057/1068 1074/1089
+时间：1。
+物理内存: 1.07 GB
+虚拟内存: 1.09 GB
+Warning: 自由空间采用真空条件，这会导致某些材料属性被忽略。请考虑为忽略的材料添加合适的物理场特征。
+
+  - 节点: 自由空间 1
+
+  - 物理场: Electrostatics: four finite-thickness rounded ring electrodes (es)
+
+  - Materials: Natural Neon gas, representative relative permittivity (mat_gas), Representative alumina ceramic; epsilon_r=9.4 assumption (mat_diel)
+
+  - Quantities: 相对介电常数, 相对介电常数
+结束时间：2026年9月4日 00:13:48。
+----- Study 2 - Single_Muon_Diagnostic/解 2 (sol2) 中的“编译方程: 瞬态” ---------------->
+<---- Study 2 - Single_Muon_Diagnostic/解 2 (sol2) 中的“因变量 1” --------------------
+开始于 2026年9月4日 00:13:48。
+不求解变量的值: 解 1 (sol1).
+           当前进度:   5 % - 因变量 1
+Memory: 1061/1068 1072/1089
+求解时间：0 s。
+物理内存: 1.06 GB
+虚拟内存: 1.08 GB
+结束时间：2026年9月4日 00:13:49。
+----- Study 2 - Single_Muon_Diagnostic/解 2 (sol2) 中的“因变量 1” ------------------->
+<---- Study 2 - Single_Muon_Diagnostic/解 2 (sol2) 中的“瞬态求解器 1” ------------------
+开始于 2026年9月4日 00:13:49。
+瞬态求解器（广义 α）
+求解的自由度数：3（加上 4 个内部自由度）。
+           当前进度:   7 % - 组装稀疏模式
+Memory: 1066/1068 1075/1089
+求解时间：1 s。
+物理内存: 1.07 GB
+虚拟内存: 1.07 GB
+结束时间：2026年9月4日 00:13:49。
+----- Study 2 - Single_Muon_Diagnostic/解 2 (sol2) 中的“瞬态求解器 1” ----------------->
+
+/***************/
+/*****错误********/
+/***************/
+运行 Java 类时出错。
+以下特征遇到问题：
+ - 特征: 瞬态求解器 1 (sol2/t1)
+未定义变量。
+ - 变量: cpt.vmag
+ - 几何: geom1
+ - 域: 2
+无法计算表达式的雅可比矩阵。
+ - 表达式: cpt.vmag
+无法计算算子的雅可比矩阵。
+ - 算子: env_pgeom_cpt
+ - 几何: 粒子
+无法计算表达式的雅可比矩阵。
+ - 表达式: comp1.cpt.cool1.Fx
+无法计算表达式的雅可比矩阵。
+ - 表达式: (-comp1.qxtt)+((comp1.cpt.Ftx-(d(comp1.qx,t)*d(comp1.cpt.mp,t)))/comp1.cpt.mp)
+无法计算表达式的雅可比矩阵。
+ - 表达式: (test(comp1.qx)*(-comp1.qxtt+(comp1.cpt.Ftx-d(comp1.qx,t)*d(comp1.cpt.mp,t))/comp1.cpt.mp))*(1)
+以下特征遇到问题：
+ - 类: BuildStage1_3D
+总时间: 23 s.

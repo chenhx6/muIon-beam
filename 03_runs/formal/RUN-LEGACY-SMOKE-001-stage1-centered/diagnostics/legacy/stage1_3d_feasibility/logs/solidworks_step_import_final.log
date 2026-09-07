@@ -1,0 +1,7 @@
+STEP_IMPORT=SUCCESS
+STEP_PATH=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\cad\Stage1_Master_3D.step
+STEP_ORIGINATING_SYSTEM=SolidWorks 2025
+STEP_ENTITY_SUMMARY=advanced_face:51; toroidal_surface:16; closed_shell:6; manifold_solid_brep:6
+GEOMETRY_FEATURES=[imp1, fin]
+OUTPUT_MPH=E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\comsol\stage1_solidworks_step_import_check.mph
+STEP_IMPORT_CHECK_COMPLETE

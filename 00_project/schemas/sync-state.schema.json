@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/sync-state.schema.json",
+  "type": "object",
+  "required": ["sync_id", "local_commit", "status"],
+  "properties": {
+    "sync_id": {"type": "string"},
+    "task_id": {"type": ["string", "null"]},
+    "run_id": {"type": ["string", "null"]},
+    "local_commit": {"type": "string"},
+    "gitee_remote_commit": {"type": ["string", "null"]},
+    "gitee_tag": {"type": ["string", "null"]},
+    "drive_path": {"type": ["string", "null"]},
+    "manifest_sha256": {"type": ["string", "null"]},
+    "status": {"enum": ["planned", "local-frozen", "drive-verified", "gitee-published", "three-way-verified", "pending-drive", "pending-gitee", "pending-verification"]}
+  }
+}

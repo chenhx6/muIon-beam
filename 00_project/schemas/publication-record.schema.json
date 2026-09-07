@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/publication-record.schema.json",
+  "type": "object",
+  "required": ["publication_id", "tag", "commit", "status", "message_file"],
+  "properties": {
+    "publication_id": {"type": "string"},
+    "tag": {"type": "string"},
+    "base_tag": {"type": ["string", "null"]},
+    "commit": {"type": "string"},
+    "remote": {"type": "string"},
+    "status": {"enum": ["prepared", "published", "failed"]},
+    "message_file": {"type": "string"},
+    "pushed_at": {"type": ["string", "null"]}
+  }
+}

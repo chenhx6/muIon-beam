@@ -1,0 +1,2 @@
+source_case,max_E_total_V_per_m,max_E_in_Ne_V_per_m,max_E_at_aperture_V_per_m,average_E_V1_V2_V_per_m,average_E_V2_V3_V_per_m,average_E_V3_V4_V_per_m,Ne_density_m^-3,max_E_over_N_Td
+transport_highfield_10_v2,3633396.5927470885,3633396.5927470885,2070931.7358079215,2988.8578407000914,38765.91274955354,54880.46033699923,1e+24,3633.396592747089

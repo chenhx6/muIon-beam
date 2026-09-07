@@ -1,0 +1,19 @@
+{
+  "count": 2,
+  "seed": 20260907,
+  "source_z_m": 0.048,
+  "radius_mode": "nominal",
+  "nominal_energy_eV": 100000.0,
+  "energy_sigma_eV": 5000.0,
+  "direction_sigma_total_deg": 9.0,
+  "direction_cutoff_3sigma_deg": 27.0,
+  "mean_K0_eV": 101899.09772160024,
+  "std_K0_eV": 265.17646857711225,
+  "mean_r_larmor_mm": 15.478577744516798,
+  "rms_direction_angle_deg": 7.472221285541364,
+  "mean_guiding_center_radius_mm": 1.7783793044590976,
+  "max_guiding_center_radius_mm": 2.67262329152048,
+  "comsol_position_unit": "mm",
+  "comsol_file": "D:\\muIon\\muIon_archive\\muon-ion_beam\\stage1_3d_feasibility\\data\\centered_source\\centered_release_2_seed20260907_z48mm_nominal.txt",
+  "metadata_file": "D:\\muIon\\muIon_archive\\muon-ion_beam\\stage1_3d_feasibility\\data\\centered_source\\centered_release_2_seed20260907_z48mm_nominal.csv"
+}

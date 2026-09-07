@@ -1,0 +1,117 @@
+2026-09-07T01:13:41.427+0800 INFO     Loggers starting up... [com.comsol.logger]
+2026-09-07T01:13:41.428+0800 INFO     File logger initialized. [com.comsol.logger]
+2026-09-07T01:13:41.429+0800 INFO     Loggers registered with log service. [com.comsol.logger]
+2026-09-07T01:13:41.430+0800 INFO     Configured log levels with logger admin. [com.comsol.logger]
+2026-09-07T01:13:41.430+0800 INFO     Loggers completed starting. [com.comsol.logger]
+2026-09-07T01:13:41.431+0800 INFO     BundleEvent STARTED [com.comsol.logger]
+2026-09-07T01:13:41.435+0800 INFO     COMSOL 6.4.0.293 starting. [com.comsol.util]
+2026-09-07T01:13:49.661+0800 INFO     PATH=C:\Program Files\COMSOL\COMSOL64\Multiphysics\bin\win64;C:\Program Files\COMSOL\COMSOL64\Multiphysics\lib\win64;C:\Program Files\COMSOL\COMSOL64\Multiphysics\ext\cadimport\win64;C:\Program Files\COMSOL\COMSOL64\Multiphysics\ext\dcm\win64;C:\Program Files\COMSOL\COMSOL64\Multiphysics\ext\dnn\win64;C:/Program Files/COMSOL/COMSOL64/Multiphysics/bin/win64//../../java/win64/jre/bin/server;C:/Program Files/COMSOL/COMSOL64/Multiphysics/bin/win64//../../java/win64/jre/bin;C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell;C:\Users\Administrator\.codex\tmp\arg0\codex-arg0vm9w9n;C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\libheif\libheif\bin;C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\jxrlib\jxrlib\bin;C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\poppler\Library\bin;C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\override;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Wolfram Research\WolframScript\;C:\Program Files\dotnet\;C:\Program Files\LLVM\bin;C:\Program Files\Sunshine;C:\Program Files\Sunshine\tools;C:\TDM-GCC-64\bin;C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;D:\PyCharm 2024.3.6\bin;C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Administrator\AppData\Local\Python\bin;C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\fallback;C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin;C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd;C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\c60635126245daef;C:\Users\Administrator\AppData\Local\OpenAI\Codex\bin\8e5b6932251c2c1c;D:\muIon\muIon_archive\muon-ion_beam\stage1_3d_feasibility\intermediate; [com.comsol.util]
+2026-09-07T01:13:49.662+0800 INFO     BundleEvent STARTING [com.comsol.batch]
+2026-09-07T01:13:49.663+0800 INFO     BundleEvent STARTED [com.comsol.batch]
+2026-09-07T01:13:49.663+0800 INFO     BundleEvent STARTING [org.eclipse.core.resources]
+2026-09-07T01:13:49.664+0800 INFO     ServiceEvent REGISTERED [org.eclipse.core.resources] {org.eclipse.osgi.service.debug.DebugOptionsListener}
+2026-09-07T01:13:49.664+0800 INFO     BundleEvent STARTING [org.eclipse.core.jobs]
+2026-09-07T01:13:49.669+0800 INFO     ServiceEvent REGISTERED [org.eclipse.core.jobs] {org.eclipse.osgi.service.debug.DebugOptionsListener}
+2026-09-07T01:13:49.669+0800 INFO     ServiceEvent REGISTERED [org.eclipse.core.jobs] {org.eclipse.core.runtime.jobs.IJobManager}
+2026-09-07T01:13:49.669+0800 INFO     BundleEvent STARTED [org.eclipse.core.jobs]
+2026-09-07T01:13:49.727+0800 INFO     BundleEvent STARTING [org.eclipse.core.filesystem]
+2026-09-07T01:13:49.727+0800 INFO     BundleEvent STARTED [org.eclipse.core.filesystem]
+2026-09-07T01:13:49.728+0800 INFO     ServiceEvent REGISTERED [org.eclipse.core.resources] {org.eclipse.core.resources.IWorkspace}
+2026-09-07T01:13:49.728+0800 INFO     ServiceEvent REGISTERED [org.eclipse.core.resources] {org.eclipse.core.resources.IResourceChangeListener}
+2026-09-07T01:13:49.734+0800 INFO     BundleEvent STARTED [org.eclipse.core.resources]
+2026-09-07T01:13:49.736+0800 INFO     BundleEvent STARTING [com.comsol.nativeutil]
+2026-09-07T01:13:49.737+0800 INFO     BundleEvent STARTED [com.comsol.nativeutil]
+2026-09-07T01:13:49.738+0800 INFO     BundleEvent STARTING [com.comsol.nativejni]
+2026-09-07T01:13:49.756+0800 INFO     CUDA path C:\Program Files\COMSOL\COMSOL64\Multiphysics\ext\cuda\win64 added. [com.comsol.util]
+2026-09-07T01:13:49.756+0800 INFO     cuDSS path C:\Program Files\COMSOL\COMSOL64\Multiphysics\ext\cudss\win64 added. [com.comsol.util]
+2026-09-07T01:13:49.760+0800 INFO     BundleEvent STARTED [com.comsol.nativejni]
+2026-09-07T01:13:49.772+0800 INFO     BundleEvent STARTING [com.comsol.bridge]
+2026-09-07T01:13:49.773+0800 INFO     BundleEvent STARTED [com.comsol.bridge]
+2026-09-07T01:13:49.774+0800 INFO     BundleEvent STARTING [com.comsol.widgets]
+2026-09-07T01:13:49.774+0800 INFO     BundleEvent STARTED [com.comsol.widgets]
+2026-09-07T01:13:49.776+0800 INFO     BundleEvent STARTING [com.comsol.model]
+2026-09-07T01:13:49.779+0800 INFO     BundleEvent STARTING [com.comsol.nativemph]
+2026-09-07T01:13:49.779+0800 INFO     BundleEvent STARTED [com.comsol.nativemph]
+2026-09-07T01:13:49.785+0800 INFO     ServiceEvent REGISTERED [com.comsol.model] {org.osgi.service.url.URLStreamHandlerService}
+2026-09-07T01:13:49.786+0800 INFO     ServiceEvent REGISTERED [com.comsol.model] {org.osgi.service.url.URLStreamHandlerService}
+2026-09-07T01:13:49.786+0800 INFO     BundleEvent STARTED [com.comsol.model]
+2026-09-07T01:13:49.786+0800 INFO     BundleEvent STARTING [com.comsol.gui]
+2026-09-07T01:13:49.787+0800 INFO     BundleEvent STARTED [com.comsol.gui]
+2026-09-07T01:13:49.788+0800 INFO     BundleEvent STARTING [com.comsol.guimph]
+2026-09-07T01:13:49.788+0800 INFO     BundleEvent STARTED [com.comsol.guimph]
+2026-09-07T01:13:49.791+0800 INFO     BundleEvent STARTING [com.comsol.renderer]
+2026-09-07T01:13:49.795+0800 INFO     BundleEvent STARTED [com.comsol.renderer]
+2026-09-07T01:13:50.024+0800 INFO     Licensed vendor string = L,fffffffffff5ffff [com.comsol.util]
+2026-09-07T01:13:50.026+0800 INFO     BundleEvent STARTING [com.comsol.guigraphics]
+2026-09-07T01:13:50.027+0800 INFO     BundleEvent STARTED [com.comsol.guigraphics]
+2026-09-07T01:13:50.095+0800 INFO     Connection sequence finalized for session: [UserName=null, Connected=true, Local=true, ClientHost=ys, ClientPlatform=WINDOWS, ClientType=UNKNOWN, ClientRoot=C:\Program Files\COMSOL\COMSOL64\Multiphysics] [com.comsol.bridge]
+2026-09-07T01:13:50.102+0800 INFO     BundleEvent STARTING [com.comsol.loader]
+2026-09-07T01:13:50.103+0800 INFO     BundleEvent STARTED [com.comsol.loader]
+2026-09-07T01:13:50.144+0800 INFO     Starting methodexec process... [com.comsol.util]
+2026-09-07T01:13:50.341+0800 INFO     Methodexec process started with pid:11056 [com.comsol.util]
+2026-09-07T01:13:50.526+0800 INFO     BundleEvent STARTING [com.comsol.geommesh]
+2026-09-07T01:13:50.535+0800 INFO     BundleEvent STARTING [com.comsol.nativebasicutil]
+2026-09-07T01:13:50.536+0800 INFO     BundleEvent STARTED [com.comsol.nativebasicutil]
+2026-09-07T01:13:50.620+0800 INFO     BundleEvent STARTED [com.comsol.geommesh]
+2026-09-07T01:13:50.698+0800 INFO     BundleEvent STARTING [com.comsol.post]
+2026-09-07T01:13:50.698+0800 INFO     BundleEvent STARTED [com.comsol.post]
+2026-09-07T01:13:51.706+0800 INFO     BundleEvent STARTING [com.comsol.dbmodel]
+2026-09-07T01:13:51.707+0800 INFO     ServiceEvent REGISTERED [com.comsol.dbmodel] {com.comsol.dbutil.services.DbSystemUtil}
+2026-09-07T01:13:51.708+0800 INFO     ServiceEvent REGISTERED [com.comsol.dbmodel] {com.comsol.dbutil.services.DbLogger}
+2026-09-07T01:13:51.709+0800 INFO     ServiceEvent REGISTERED [com.comsol.dbmodel] {com.comsol.dbutil.locale.a}
+2026-09-07T01:13:51.709+0800 INFO     ServiceEvent REGISTERED [com.comsol.dbmodel] {com.comsol.dbutil.services.DbLicense}
+2026-09-07T01:13:51.710+0800 INFO     ServiceEvent REGISTERED [com.comsol.dbmodel] {com.comsol.dbutil.services.DbLocalEncryptionHandler}
+2026-09-07T01:13:51.710+0800 INFO     BundleEvent STARTED [com.comsol.dbmodel]
+2026-09-07T01:13:51.710+0800 INFO     BundleEvent STARTING [com.comsol.dbcommon]
+2026-09-07T01:13:51.711+0800 INFO     BundleEvent STARTED [com.comsol.dbcommon]
+2026-09-07T01:13:54.679+0800 INFO     Methodexec process with pid:11056 has been shut down. [com.comsol.util]
+2026-09-07T01:13:54.683+0800 INFO     BundleEvent STARTING [com.comsol.cluster]
+2026-09-07T01:13:54.683+0800 INFO     BundleEvent STARTED [com.comsol.cluster]
+2026-09-07T01:13:54.710+0800 INFO     ServiceEvent UNREGISTERING [org.eclipse.equinox.app] {org.osgi.service.application.ApplicationHandle, org.eclipse.equinox.app.IApplicationContext}
+2026-09-07T01:13:54.710+0800 INFO     ServiceEvent UNREGISTERING [org.eclipse.osgi] {org.eclipse.osgi.service.runnable.ApplicationLauncher}
+2026-09-07T01:13:54.710+0800 INFO     ServiceEvent UNREGISTERING [org.eclipse.osgi] {org.eclipse.osgi.service.runnable.StartupMonitor}
+2026-09-07T01:13:54.711+0800 INFO     BundleEvent STOPPING [org.eclipse.osgi]
+2026-09-07T01:13:54.713+0800 INFO     BundleEvent STOPPING [com.comsol.guidb]
+2026-09-07T01:13:54.713+0800 INFO     BundleEvent STOPPED [com.comsol.guidb]
+2026-09-07T01:13:54.713+0800 INFO     BundleEvent STOPPING [com.comsol.dbmodel]
+2026-09-07T01:13:54.714+0800 INFO     ServiceEvent UNREGISTERING [com.comsol.dbmodel] {com.comsol.dbutil.services.DbSystemUtil}
+2026-09-07T01:13:54.714+0800 INFO     ServiceEvent UNREGISTERING [com.comsol.dbmodel] {com.comsol.dbutil.services.DbLogger}
+2026-09-07T01:13:54.714+0800 INFO     ServiceEvent UNREGISTERING [com.comsol.dbmodel] {com.comsol.dbutil.locale.a}
+2026-09-07T01:13:54.715+0800 INFO     ServiceEvent UNREGISTERING [com.comsol.dbmodel] {com.comsol.dbutil.services.DbLicense}
+2026-09-07T01:13:54.715+0800 INFO     ServiceEvent UNREGISTERING [com.comsol.dbmodel] {com.comsol.dbutil.services.DbLocalEncryptionHandler}
+2026-09-07T01:13:54.715+0800 INFO     BundleEvent STOPPED [com.comsol.dbmodel]
+2026-09-07T01:13:54.716+0800 INFO     BundleEvent STOPPING [com.comsol.extbridge]
+2026-09-07T01:13:54.716+0800 INFO     BundleEvent STOPPED [com.comsol.extbridge]
+2026-09-07T01:13:54.716+0800 INFO     BundleEvent STOPPING [com.comsol.bridge]
+2026-09-07T01:13:54.716+0800 INFO     Loggers un-registered with log service. [com.comsol.logger]
+2026-09-07T01:13:54.716+0800 INFO     BundleEvent STOPPED [com.comsol.bridge]
+2026-09-07T01:13:54.717+0800 INFO     Logger admin removed. [com.comsol.logger]
+2026-09-07T01:13:54.717+0800 INFO     BundleEvent STOPPING [com.comsol.guigeommesh]
+2026-09-07T01:13:54.718+0800 INFO     BundleEvent STOPPED [com.comsol.guigeommesh]
+2026-09-07T01:13:54.718+0800 INFO     BundleEvent STOPPING [com.comsol.guipost]
+2026-09-07T01:13:54.718+0800 INFO     BundleEvent STOPPED [com.comsol.guipost]
+2026-09-07T01:13:54.719+0800 INFO     BundleEvent STOPPING [com.comsol.guitdp]
+2026-09-07T01:13:54.719+0800 INFO     BundleEvent STOPPED [com.comsol.guitdp]
+2026-09-07T01:13:54.719+0800 INFO     BundleEvent STOPPING [com.comsol.guimph]
+2026-09-07T01:13:54.720+0800 INFO     BundleEvent STOPPED [com.comsol.guimph]
+2026-09-07T01:13:54.720+0800 INFO     BundleEvent STOPPING [com.comsol.batch]
+2026-09-07T01:13:54.721+0800 INFO     BundleEvent STOPPED [com.comsol.batch]
+2026-09-07T01:13:54.721+0800 INFO     BundleEvent STOPPING [com.comsol.post]
+2026-09-07T01:13:54.721+0800 INFO     BundleEvent STOPPED [com.comsol.post]
+2026-09-07T01:13:54.722+0800 INFO     BundleEvent STOPPING [com.comsol.cluster]
+2026-09-07T01:13:54.722+0800 INFO     BundleEvent STOPPED [com.comsol.cluster]
+2026-09-07T01:13:54.723+0800 INFO     BundleEvent STOPPING [com.comsol.geommesh]
+2026-09-07T01:13:54.723+0800 INFO     BundleEvent STOPPED [com.comsol.geommesh]
+2026-09-07T01:13:54.723+0800 INFO     BundleEvent STOPPING [com.comsol.guigraphics]
+2026-09-07T01:13:54.723+0800 INFO     BundleEvent STOPPED [com.comsol.guigraphics]
+2026-09-07T01:13:54.723+0800 INFO     BundleEvent STOPPING [com.comsol.model]
+2026-09-07T01:13:54.723+0800 INFO     ServiceEvent UNREGISTERING [com.comsol.model] {org.osgi.service.url.URLStreamHandlerService}
+2026-09-07T01:13:54.724+0800 INFO     ServiceEvent UNREGISTERING [com.comsol.model] {org.osgi.service.url.URLStreamHandlerService}
+2026-09-07T01:13:54.724+0800 INFO     BundleEvent STOPPED [com.comsol.model]
+2026-09-07T01:13:54.725+0800 INFO     BundleEvent STOPPING [com.comsol.guiswt]
+2026-09-07T01:13:54.725+0800 INFO     BundleEvent STOPPED [com.comsol.guiswt]
+2026-09-07T01:13:54.725+0800 INFO     BundleEvent STOPPING [com.comsol.gui]
+2026-09-07T01:13:54.725+0800 INFO     BundleEvent STOPPED [com.comsol.gui]
+2026-09-07T01:13:54.726+0800 INFO     BundleEvent STOPPING [com.comsol.loader]
+2026-09-07T01:13:54.726+0800 INFO     BundleEvent STOPPED [com.comsol.loader]
+2026-09-07T01:13:54.727+0800 INFO     BundleEvent STOPPING [com.comsol.logger]

@@ -1,5 +1,20 @@
 # PROJECT_INDEX
 
 项目根目录：`D:\muIon-beam`
-旧工作区 `D:\muIon` 当前不迁移。
+旧工作区 `D:\muIon` 已完成任务，但迁移仍须 copy-only 并保留原件。
 
+| Manifest ID | 类型 | 来源路径 | 状态 |
+|---|---|---|---|
+| TASK-LEGACY-SMOKE-001 | task | 00_project/task-cards/TASK-LEGACY-SMOKE-001.task-manifest.json |  |
+| 00_project/templates/behavior-analysis.yaml |  | 00_project/templates/behavior-analysis.yaml |  |
+| 00_project/templates/figure-manifest.yaml |  | 00_project/templates/figure-manifest.yaml |  |
+| MANIFEST-YYYYMMDD-NNN-run | run | 00_project/templates/run-manifest.yaml | planned |
+| 00_project/templates/task-card.yaml |  | 00_project/templates/task-card.yaml |  |
+| 00_project/templates/variable-catalog.yaml |  | 00_project/templates/variable-catalog.yaml |  |
+| 00_project/traceability/variable-catalog.yaml |  | 00_project/traceability/variable-catalog.yaml |  |
+| MODEL-LEGACY-SMOKE-001 | model | 02_models/model-manifests/MODEL-LEGACY-SMOKE-001.model-manifest.json |  |
+| SNAPSHOT-RUN-LEGACY-SMOKE-001-stage1-centered | run-snapshot | 03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/model-snapshot/snapshot-manifest.json |  |
+| BEHAVIOR-RUN-LEGACY-SMOKE-001-stage1-centered | behavior-analysis | 03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/behavior-analysis.json |  |
+| FIGURES-RUN-LEGACY-SMOKE-001-stage1-centered | figure-manifest | 03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/figure-manifest.json |  |
+| MANIFEST-RUN-LEGACY-SMOKE-001-stage1-centered | run | 03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/run-manifest.json | complete |
+| MIGRATION-LEGACY-20260907-STAGE1 | migration | 90_migration/from-D-muIon/migration-manifest.json |  |

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/model-fingerprint.schema.json",
+  "type": "object",
+  "required": ["model_id", "path", "sha256", "size", "modified_at"],
+  "properties": {
+    "model_id": {"type": "string"},
+    "path": {"type": "string"},
+    "sha256": {"type": "string"},
+    "size": {"type": "integer"},
+    "modified_at": {"type": "string"},
+    "geometry_summary": {"type": ["object", "null"]}
+  }
+}

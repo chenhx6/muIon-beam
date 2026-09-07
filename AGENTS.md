@@ -5,9 +5,10 @@
 ## 工作区边界
 
 - `D:\muIon-beam` 是新项目唯一工作区。
-- `D:\muIon` 当前仍在执行旧任务；本项目不得迁移、复制、重命名、删除或整理其中的文件。
+- `D:\muIon` 的旧任务已经完成；允许对其进行只读盘点、精选复制和哈希校验。
+- 迁移默认采用 `copy-only`；迁移完成并通过实例验收前，不得删除、整理或重命名 `D:\muIon` 原件。
 - `C:\AAA\muIon` 已废弃，不得作为输入或输出位置。
-- 旧工作区迁移只能作为未来独立任务执行。
+- 旧工作区迁移必须有 source index、migration Manifest 和逐文件 SHA256。
 - Google Drive 归档根目录是 `H:\我的云端硬盘\muIon_archive`。
 - Gitee 远程仓库是 `https://gitee.com/chx6/muIon-beam.git`。
 
@@ -19,6 +20,7 @@
 - 运行开始前固定实际使用的输入、代码、参数和模型快照。
 - 不覆盖、回滚或假定用户未登记的修改不存在。
 - 正式运行完成后不得静默覆盖 Manifest；修正必须创建修订版本并连接父版本。
+- SQLite 只能由 Manifest 生成；SQLite 丢失时必须能够从 Manifest 重建。
 
 ## 任务和审批边界
 
@@ -26,6 +28,7 @@
 - 用户核实后，任务目标范围内的参数扫描、网格调整、3D 小修改、模拟和报告更新可以持续自主执行。
 - 首次正式运行发现相关代码或模型变化时，必须先报告并等待选择采用新版本还是登记版本。
 - 删除唯一原始数据、改变研究目标、改变外部发布范围或向未指定第三方分享数据时必须暂停。
+- 首次正式运行发现任务相关模型的登记指纹发生变化时，必须先暂停并报告变化。
 
 ## 文件和外部归档规则
 
@@ -42,3 +45,23 @@
 - 每个正式运行必须有简洁版报告和详细版报告。
 - 图表按任务实际研究问题生成，不强制绘制没有研究价值的关系图。
 - 重要图必须登记来源数据、生成脚本、模型版本和解释。
+
+## 第二阶段工具入口
+
+项目 skill 和 `package.json` 提供以下入口：
+
+```text
+sqlite-index
+legacy-inventory
+legacy-migrate
+smoke-test
+check-model-changes
+create-run-snapshot
+publish-gitee
+sync-three-end
+audit-three-end
+install-nature-figure
+cache-audit
+```
+
+默认采用事件触发的三端审计：正式运行完成、报告定稿、Drive 归档、Gitee 发布和任务关闭时执行。Windows 每日定时审计不是默认流程；若以后启用，只能运行只读审计，不得自动提交、上传或删除。

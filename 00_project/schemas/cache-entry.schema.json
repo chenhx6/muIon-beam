@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/cache-entry.schema.json",
+  "type": "object",
+  "required": ["cache_path", "size", "rebuildable", "locked", "retention_level"],
+  "properties": {
+    "cache_path": {"type": "string"},
+    "size": {"type": "integer"},
+    "rebuildable": {"type": "boolean"},
+    "locked": {"type": "boolean"},
+    "retention_level": {"enum": ["P0", "P1", "P2", "P3"]}
+  }
+}

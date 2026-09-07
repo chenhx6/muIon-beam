@@ -1,0 +1,98 @@
+{
+  "purpose": "COMSOL stage-1 muon cooling feasibility input",
+  "generated_at_utc": "2026-09-03T08:48:05Z",
+  "data_generation_git_commit": "unavailable (project not under git)",
+  "geant4_version": "11.3.2",
+  "geant4_version_tag": "$Name: geant4-11-03-patch-02 $",
+  "geant4_install_prefix": "/opt/geant4/11.3.2",
+  "geant4_data_environment": "configured by /opt/geant4/11.3.2/bin/geant4.sh",
+  "physics_constructor": "G4EmStandardPhysics_option4",
+  "physics_mode": "option4",
+  "particle": {
+    "name": "mu-",
+    "pdg_encoding": 13,
+    "charge_in_eplus": -1.0000000000000000e+00,
+    "mass_kg": 1.8835315557426432e-28
+  },
+  "material": {
+    "name": "NeonReference",
+    "composition": "100% natural Neon (Ne)",
+    "atomic_number": 1.0000000000000000e+01,
+    "atomic_mass_g_per_mole": 2.0180011280000002e+01,
+    "state": "gas",
+    "pressure_input": null,
+    "number_density_definition": "n_ref is the model input; mass density is computed internally as n_ref * A / N_A",
+    "number_density_input_1_per_m3": 1.0000000000000000e+22,
+    "mass_density_used_kg_per_m3": 3.3509697106448902e-04,
+    "mass_density_used_g_per_cm3": 3.3509697106448901e-07,
+    "actual_g4_atom_number_density_1_per_m3": 1.0000000000000000e+22,
+    "actual_number_density_relative_error": 0.0000000000000000e+00
+  },
+  "reference_number_density_1_per_m3": 1.0000000000000000e+22,
+  "em_calculator": {
+    "primary_method": "G4EmCalculator::ComputeTotalDEDX",
+    "electronic_cross_check": "G4EmCalculator::ComputeElectronicDEDX",
+    "table_cross_check": "G4EmCalculator::GetDEDX (restricted table)",
+    "range_method": "G4EmCalculator::GetCSDARange",
+    "csda_range_table_enabled": true
+  },
+  "muIoni": {
+    "process_name": "muIoni",
+    "requested_particle": "mu-",
+    "process_particle": "mu-",
+    "base_particle_for_internal_tables": "none",
+    "number_of_models": 2,
+    "models": [
+      {"index": 0, "name": "ICRU73QO", "low_energy_eV": 1.0000000000000000e+02, "high_energy_eV": 2.0000000000000003e+05},
+      {"index": 1, "name": "MuBetheBloch", "low_energy_eV": 2.0000000000000003e+05, "high_energy_eV": 1.0000000000000000e+14}
+    ],
+    "runtime_model_selection": [
+      {"energy_eV": 1.0000000000000000e+02, "model": "ICRU73QO"},
+      {"energy_eV": 1.9999900000000000e+05, "model": "ICRU73QO"},
+      {"energy_eV": 2.0000000000000000e+05, "model": "ICRU73QO"},
+      {"energy_eV": 2.0000100000000000e+05, "model": "MuBetheBloch"},
+      {"energy_eV": 1.0000000000000000e+06, "model": "MuBetheBloch"}
+    ]
+  },
+  "calculator_cross_checks": [
+    {"E_eV": 1.0000000000000000e+03, "ComputeTotalDEDX_eV_per_m": 8.4311077629587794e+02, "ComputeElectronicDEDX_eV_per_m": 8.4311077629587794e+02, "GetDEDX_eV_per_m": 8.4311077629587817e+02, "GetDEDX_relative_to_total": 2.2204460492503131e-16},
+    {"E_eV": 1.0000000000000000e+04, "ComputeTotalDEDX_eV_per_m": 8.4913896144944210e+03, "ComputeElectronicDEDX_eV_per_m": 8.4913896144944210e+03, "GetDEDX_eV_per_m": 8.4913896144944210e+03, "GetDEDX_relative_to_total": 0.0000000000000000e+00},
+    {"E_eV": 1.0000000000000000e+05, "ComputeTotalDEDX_eV_per_m": 6.1591983355430584e+03, "ComputeElectronicDEDX_eV_per_m": 6.1591983355430584e+03, "GetDEDX_eV_per_m": 5.2692249832272628e+03, "GetDEDX_relative_to_total": -1.4449499818507239e-01}
+  ],
+  "energy_grid": {
+    "log_grid_points_requested": 251,
+    "minimum_eV": 1.0000000000000000e+02,
+    "maximum_eV": 9.9999999999999953e+05,
+    "physics_constructor_minimum_eV": 1.0000000000000000e+02,
+    "physics_constructor_maximum_eV": 1.0000000000000000e+14,
+    "number_of_points": 209,
+    "explicit_anchor_points_eV": [1.0000000000000000e+01, 2.0000000000000000e+01, 5.0000000000000000e+01, 1.0000000000000000e+02, 2.0000000000000000e+02, 5.0000000000000000e+02, 1.0000000000000000e+03, 2.0000000000000000e+03, 5.0000000000000000e+03, 1.0000000000000000e+04, 2.0000000000000000e+04, 5.0000000000000000e+04, 1.0000000000000000e+05, 2.0000000000000000e+05, 5.0000000000000000e+05, 1.0000000000000000e+06]
+  },
+  "units": {
+    "energy": "eV",
+    "speed": "m/s",
+    "stopping_power": "eV/m",
+    "stopping_cross_section": "eV*m^2",
+    "damping_rate": "s^-1",
+    "csda_range": "m"
+  },
+  "low_energy_limitations": {
+    "flag": "LOW ENERGY — EXPLORATORY / MODEL UNCERTAINTY",
+    "caution_below_eV": 1000.0,
+    "not_included": [
+      "mu-minus-Ne elastic angular scattering",
+      "low-energy atomic capture",
+      "muonic atom formation",
+      "atomic capture probability",
+      "Auger and related atomic-cascade processes",
+      "injection-window and device geometry",
+      "complex detector simulation"
+    ]
+  },
+  "density_scaling_validation": null,
+  "comparison_note": "option4 is supplementary; option3 baseline and option4 are not averaged",
+  "output_files": {
+    "master_csv": "output/mu_minus_Ne_stopping_opt4.csv",
+    "metadata_json": "output/metadata_opt4.json"
+  }
+}

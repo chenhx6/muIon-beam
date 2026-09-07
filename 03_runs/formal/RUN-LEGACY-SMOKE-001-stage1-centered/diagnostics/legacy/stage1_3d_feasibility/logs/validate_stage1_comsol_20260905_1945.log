@@ -1,0 +1,25 @@
+*******************************************
+***COMSOL 6.4.0.293 progress output file***
+*******************************************
+Fri Sep 04 19:30:00 CST 2026
+COMSOL Multiphysics 6.4 (开发版本: 293) 在批处理模式下启动
+正在运行: E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\scripts\ValidateStage1Comsol.class
+RELOAD_OK=true
+COMPONENTS=[comp1]
+GEOMETRY_FEATURES=[outer0, gas0, gas_shell_cut, diel0, v1_outer, v1_inner, v1_ring, v1_rounded, v2_outer, v2_inner, v2_ring, v2_rounded, v3_outer, v3_inner, v3_ring, v3_rounded, v4_outer, v4_inner, v4_ring, v4_rounded, gaswork, fin]
+PHYSICS=[es, cpt]
+PHYSICS_FEATURES=es:[fsp1, zc1, init1, gnd1, pot_v1, pot_v2, pot_v3, pot_v4]
+PHYSICS_FEATURES=cpt:[wall1, dpcon1, pp1, ef1, mf1, cool1, rel1]
+FUNCTIONS=[intSN]
+STUDIES=[std_es, std_single, std_ensemble]
+SOLUTIONS=[sol1, sol2]
+DATASETS=[dset1, dset2, part1, cln_axis]
+RESULT_GROUPS=[pg_geometry, pg_field, pg_potential, pg_traj, pg_axis, pg_energy, pg_position]
+HAS_SN_FUNCTION=true
+HAS_ELECTROSTATICS=true
+HAS_CPT=true
+HAS_SINGLE_STUDY=true
+HAS_ENSEMBLE_STUDY=true
+RELOAD_VALIDATION_COMPLETE
+类运行时: 6 s.
+总时间: 6 s.

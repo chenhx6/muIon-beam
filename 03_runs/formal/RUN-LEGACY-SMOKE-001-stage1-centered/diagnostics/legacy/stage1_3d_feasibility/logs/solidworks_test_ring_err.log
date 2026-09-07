@@ -1,0 +1,8 @@
+New-Object : 检索 COM 类工厂中 CLSID 为 {6AF263BB-EB9F-4176-89E9-4F892EB0CA3D} 的组件失败，原因是出现以下错误: 80080005
+ 服务器运行失败 (异常来自 HRESULT:0x80080005 (CO_E_SERVER_EXEC_FAILURE))。
+所在位置 E:\imp\imp\project\muon-ion_beam\stage1_3d_feasibility\intermediate\test_sw_ring.ps1:3 字符: 7
++ $sw = New-Object -ComObject SldWorks.Application
++       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [New-Object], COMException
+    + FullyQualifiedErrorId : NoCOMClassIdentified,Microsoft.PowerShell.Commands.NewObjectCommand
+ 

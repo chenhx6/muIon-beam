@@ -1,0 +1,11 @@
+phase,parameter,values,primary_metric,secondary_metric,status
+Phase A,Ne number density,"1e23,2e23,3e23,5e23,8e23,1e24,1.2e24,1.5e24,2e24,5e24,1e25",P90_Kperp_100ns,t10_90,completed_through_1.5e24
+Phase B,Delta V12 (kV),"0.5,1,2,5",V2_loss_rate,acceleration_time,launcher_ready
+Phase B,Delta V23 (kV),"2,5,10",P90_t_exit,axial_velocity,launcher_ready
+Phase B,V4-minus-V1 (kV),"1.00,1.05,1.10,1.25,1.50,2.00",mean_Ktotal_exit,sigma_Ktotal_exit,launcher_ready
+Phase B,aperture diameter (mm),"30,40,50,60",T_geom,aperture_peak_E,launcher_ready
+Phase B,V1-V2 clear gap (mm),"20,40,80,130",V2_loss_rate,source_phase,launcher_ready
+Phase B,V2-V3 clear gap (mm),"100,160,220,300",P90_t_exit,mean_Ez_C23,launcher_ready
+Phase B,V3-V4 clear gap (mm),"80,120,160,240",mean_Ktotal_exit,sigma_Ktotal_exit,launcher_ready
+Phase B,source fraction V1-V2,"0.2,0.5,0.8",T_geom,loss_location,launcher_ready
+Phase B,aperture fillet radius (mm),"1,2,3",max_E_aperture,T_geom,launcher_ready

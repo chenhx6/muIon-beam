@@ -1,0 +1,133 @@
+{
+  "manifest_id": "BEHAVIOR-RUN-LEGACY-SMOKE-001-stage1-centered",
+  "manifest_type": "behavior-analysis",
+  "schema_version": "1.0.0",
+  "run_id": "RUN-LEGACY-SMOKE-001-stage1-centered",
+  "analyses": [
+    {
+      "analysis_id": "ANALYSIS-LEGACY-SMOKE-NE-DENSITY",
+      "question_zh": "历史报告中的 Ne 密度如何影响径向冷却时间？",
+      "factor_variables": [
+        "neon_number_density"
+      ],
+      "response_metrics": [
+        "radial_cooling_time"
+      ],
+      "priority": "useful",
+      "run_id": "RUN-LEGACY-SMOKE-001-stage1-centered",
+      "control_variables": [],
+      "baseline_run_id": null,
+      "comparison_run_ids": [],
+      "source_data_refs": [
+        "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_summary.csv",
+        "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_transport_scan_master.csv",
+        "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/variable_sensitivity.csv"
+      ],
+      "evidence_figure_ids": [
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-001",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-002",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-003",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-004",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-005",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-006",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-007",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-008",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-009",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-010",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-011",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-012",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-013",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-014",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-015"
+      ],
+      "analysis_type": "historical-evidence-mapping",
+      "confidence": "historical-not-revalidated",
+      "interpretation_zh": "仅验证旧结果的文件关系和证据引用，不重新判断物理结论。",
+      "limitations_zh": "未重新运行原模型。"
+    },
+    {
+      "analysis_id": "ANALYSIS-LEGACY-SMOKE-FIELD",
+      "question_zh": "电场强度如何影响轴向加速和输运？",
+      "factor_variables": [
+        "electric_field_strength"
+      ],
+      "response_metrics": [
+        "acceleration_time",
+        "axial_velocity"
+      ],
+      "priority": "useful",
+      "run_id": "RUN-LEGACY-SMOKE-001-stage1-centered",
+      "control_variables": [],
+      "baseline_run_id": null,
+      "comparison_run_ids": [],
+      "source_data_refs": [
+        "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_summary.csv",
+        "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_transport_scan_master.csv",
+        "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/variable_sensitivity.csv"
+      ],
+      "evidence_figure_ids": [
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-001",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-002",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-003",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-004",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-005",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-006",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-007",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-008",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-009",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-010",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-011",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-012",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-013",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-014",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-015"
+      ],
+      "analysis_type": "historical-evidence-mapping",
+      "confidence": "historical-not-revalidated",
+      "interpretation_zh": "仅验证旧结果的文件关系和证据引用，不重新判断物理结论。",
+      "limitations_zh": "未重新运行原模型。"
+    },
+    {
+      "analysis_id": "ANALYSIS-LEGACY-SMOKE-APERTURE",
+      "question_zh": "极板孔径如何影响孔口场分布和接受度？",
+      "factor_variables": [
+        "electrode_aperture_diameter"
+      ],
+      "response_metrics": [
+        "electric_field_peak",
+        "transport_survival"
+      ],
+      "priority": "useful",
+      "run_id": "RUN-LEGACY-SMOKE-001-stage1-centered",
+      "control_variables": [],
+      "baseline_run_id": null,
+      "comparison_run_ids": [],
+      "source_data_refs": [
+        "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_summary.csv",
+        "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_transport_scan_master.csv",
+        "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/variable_sensitivity.csv"
+      ],
+      "evidence_figure_ids": [
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-001",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-002",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-003",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-004",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-005",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-006",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-007",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-008",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-009",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-010",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-011",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-012",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-013",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-014",
+        "FIG-RUN-LEGACY-SMOKE-001-stage1-centered-015"
+      ],
+      "analysis_type": "historical-evidence-mapping",
+      "confidence": "historical-not-revalidated",
+      "interpretation_zh": "仅验证旧结果的文件关系和证据引用，不重新判断物理结论。",
+      "limitations_zh": "未重新运行原模型。"
+    }
+  ]
+}

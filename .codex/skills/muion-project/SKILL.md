@@ -12,7 +12,7 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 ## Hard boundaries
 
 - Read the repository `AGENTS.md` before acting.
-- Do not migrate, modify, clean, or delete the active legacy workspace `D:\muIon`.
+- The legacy workspace `D:\muIon` may be inventoried and selectively copied after its work is complete, but preserve the source and never delete or reorganize it during migration.
 - Treat Manifest files as the source of truth. SQLite and Markdown/CSV are generated views.
 - Preserve user changes. Never reset or overwrite an unregistered model or code change.
 - Before the first formal run, pause when a task-related model differs from its registered version.
@@ -30,6 +30,16 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `archive-and-tag`: verify Drive archive, generate indexes, publish selected Gitee content, and create a tag with Chinese notes.
 - `review`: check traceability and report consistency.
 - `cleanup-report`: produce safe cleanup candidates; only explicitly temporary files may be auto-deleted.
+- `sqlite-index`: build the rebuildable SQLite index from Manifest files.
+- `legacy-inventory`: classify the completed legacy workspace without changing it.
+- `legacy-migrate`: copy selected legacy P0/P1/P2 files and write migration hashes.
+- `smoke-test`: create and validate a legacy-import task, model, run, and dual reports.
+- `check-model-changes`: compare registered and current model fingerprints.
+- `create-run-snapshot`: freeze the actual inputs used by a run.
+- `publish-gitee`: dry-run or publish an annotated tag with a Chinese result note.
+- `sync-three-end`: archive and verify the local, Gitee, and Drive state.
+- `audit-three-end`: perform a read-only drift audit.
+- `cache-audit`: index cache files and generate safe cleanup candidates.
 
 Read only the relevant reference file for the selected mode. Do not load every reference by default.
 
@@ -39,4 +49,4 @@ Every formal run needs a `run-manifest.yaml`, a model snapshot, source/input ref
 
 ## External figure skill
 
-Use the pinned `nature-figure` source recorded under `.codex/external-skills` for selected analysis and final figures. Ordinary diagnostic plots may use the lightweight project adapter. Never let an external plotting skill change physical inputs, result criteria, or retention levels.
+Use the pinned `nature-figure` source recorded under `.codex/external-skills/nature-figure/upstream-skill` for selected analysis and final figures. Before plotting, follow that skill's manifest and backend gate; ordinary diagnostic plots may use the lightweight project adapter. Never let an external plotting skill change physical inputs, result criteria, or retention levels.

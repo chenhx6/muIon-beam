@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/comsol-task.schema.json",
+  "type": "object",
+  "required": ["task_id", "objective", "inputs", "assumptions", "fixed", "variable", "external", "success_criteria", "required_outputs", "exploration_level"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "task_id": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "inputs": {"type": "object"},
+    "assumptions": {"type": "array"},
+    "fixed": {"type": "array"},
+    "variable": {"type": "array"},
+    "external": {"type": "array"},
+    "success_criteria": {"type": "array"},
+    "required_outputs": {"type": "array"},
+    "exploration_level": {"enum": ["none", "diagnostic", "bounded"]},
+    "resources": {"type": "object"},
+    "diagnostic_cases": {"type": "array"},
+    "exploration_cases": {"type": "array"}
+  },
+  "additionalProperties": true
+}
+

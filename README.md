@@ -10,6 +10,14 @@
 - Gitee：`https://gitee.com/chx6/muIon-beam.git`
 - Google Drive：`H:\我的云端硬盘\muIon_archive`
 
+## 当前模块入口
+
+- 3D Block：由现有 `.codex/skills/3d-*` 负责几何创建、检查和导出。
+- COMSOL Block：[`comsol/SKILL.md`](comsol/SKILL.md)，可执行入口为
+  `node comsol/index.mjs --task path/to/task.json`；当前适配器边界见
+  [`comsol/adapters/README.md`](comsol/adapters/README.md)。
+- Geant4 Block 和完整 Research Workflow 尚未在本轮实现。
+
 ## 使用顺序
 
 1. 读取 `AGENTS.md`。

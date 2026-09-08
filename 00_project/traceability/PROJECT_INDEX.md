@@ -5,6 +5,7 @@
 
 | Manifest ID | 类型 | 来源路径 | 状态 |
 |---|---|---|---|
+| TASK-COMSOL-MVP-001 | task | 00_project/task-cards/TASK-COMSOL-MVP-001.task-manifest.json |  |
 | TASK-LEGACY-SMOKE-001 | task | 00_project/task-cards/TASK-LEGACY-SMOKE-001.task-manifest.json |  |
 | 00_project/templates/behavior-analysis.yaml |  | 00_project/templates/behavior-analysis.yaml |  |
 | 00_project/templates/figure-manifest.yaml |  | 00_project/templates/figure-manifest.yaml |  |
@@ -25,8 +26,12 @@
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907143442 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907143442.json | three-way-verified |
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907144738 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907144738.json | three-way-verified |
 | SYNC-SNAPSHOT-0fa423b448b6 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-0fa423b448b6.json | superseded |
+| SYNC-SNAPSHOT-1bc8573701cd | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-1bc8573701cd.json | three-way-verified |
 | SYNC-SNAPSHOT-2349033871b5 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-2349033871b5.json | three-way-verified |
 | SYNC-SNAPSHOT-421b45318451 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-421b45318451.json | three-way-verified |
+| SYNC-SNAPSHOT-4cde256aa902 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-4cde256aa902.json | three-way-verified |
+| SYNC-SNAPSHOT-539c9b8ee3db | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-539c9b8ee3db.json | three-way-verified |
+| SYNC-SNAPSHOT-698006f270a7 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-698006f270a7.json | three-way-verified |
 | SYNC-SNAPSHOT-a732427 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-a732427.json | three-way-verified |
 | SYNC-SNAPSHOT-c062164a9d09 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-c062164a9d09.json | three-way-verified |
 | SYNC-SNAPSHOT-d0ec88768e57 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-d0ec88768e57.json | three-way-verified |

@@ -1,0 +1,51 @@
+scenario_id: COMSOL-SMOKE-100KEV-MUON-APERTURE
+fixture_kind: documented-behavioural-scenario
+task_id: COMSOL-SMOKE-100KEV-MUON-APERTURE
+objective: "判断约 100 keV μ 在约 1 T 磁场和当前几何条件下是否能够通过中心圆环电极开孔并进入下游区域。"
+inputs:
+  geometry:
+    ref: historical-current-geometry-placeholder
+  materials:
+    - source: historical-model-materials
+  particle_source:
+    energy: "approximately 100 keV"
+    injection: radial
+    location: near_outer_wall
+  field_configuration:
+    magnetic_field: "approximately 1 T"
+  initial_conditions:
+    state: source-near-wall
+assumptions:
+  - id: injection-to-source
+    statement: "假设 μ 已经到达离子源区域；注入口到离子源区域仍是未解决的上游问题。"
+    status: unresolved
+fixed:
+  - name: magnetic_field
+    value: "approximately 1 T"
+variable:
+  - name: electrode_voltage
+    scope: comsol-local
+    current: "0 V"
+    diagnostic_probe: true
+    diagnostic_probe_values: ["-1 kV", "1 kV"]
+external:
+  - name: aperture_geometry
+    owner: 3d-block
+  - name: source_position
+    owner: research-workflow-or-upstream-source
+success_criteria:
+  - id: downstream-entry
+    statement: particle reaches target_region without electrode_or_wall_collision
+required_outputs:
+  - trajectory_envelope
+  - collision_coordinates
+  - wall_clearance
+  - aperture_clearance
+  - failure_mode
+  - validation
+exploration_level: diagnostic
+resources:
+  max_parallel_cases: 2
+  max_recovery_attempts: 0
+diagnostic_cases: []
+exploration_cases: []

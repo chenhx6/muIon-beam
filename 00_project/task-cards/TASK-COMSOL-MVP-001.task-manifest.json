@@ -1,0 +1,71 @@
+{
+  "manifest_id": "TASK-COMSOL-MVP-001",
+  "manifest_type": "task",
+  "schema_version": "1.0.0",
+  "created_at": "2026-09-08T20:41:37Z",
+  "updated_at": "2026-09-08T20:41:37Z",
+  "task_id": "TASK-COMSOL-MVP-001",
+  "task_name": "建立 COMSOL Block MVP v0.1",
+  "source_type": "user_request",
+  "is_upper_task": false,
+  "assignment_source": "当前会话的 COMSOL Block 建立请求",
+  "objective_zh": "建立独立、可执行、可追踪的 COMSOL Block MVP；明确模块自治与越权边界，提供 ComsolTask/ComsolResult、Build/Explore/Solve/Diagnose/Report 工作流和 100 keV μ 历史失败行为测试。",
+  "physical_object": "COMSOL 电磁场与 μ 粒子轨迹计算模块",
+  "initial_conditions": [
+    "已有 3D Block 保持现状，不重构",
+    "已有 COMSOL 历史模型和脚本仅作为显式输入资产",
+    "当前环境检测到 COMSOL Batch 6.4 与 Java API jar，但没有已验证的任务级 adapter",
+    "不执行真实 COMSOL 数值运行，不把行为 fixture 当作物理结果"
+  ],
+  "model_references": [
+    "MODEL-LEGACY-SMOKE-001"
+  ],
+  "variables": [
+    {
+      "name": "fixed",
+      "scope": "comsol-task",
+      "description_zh": "本任务 COMSOL 不得改变的条件"
+    },
+    {
+      "name": "variable",
+      "scope": "comsol-task",
+      "description_zh": "已授权的 COMSOL-local 探索变量"
+    },
+    {
+      "name": "external",
+      "scope": "cross-module",
+      "description_zh": "3D/CAD、上游 source 或 Research Workflow 所有的问题"
+    }
+  ],
+  "analysis_questions": [
+    {
+      "analysis_id": "ANALYSIS-COMSOL-MVP-BOUNDARY",
+      "question_zh": "COMSOL Block 是否能在任务范围内自治并将跨模块问题结构化返回？",
+      "response_metrics": [
+        "scope_violations",
+        "interface_requests"
+      ]
+    },
+    {
+      "analysis_id": "ANALYSIS-COMSOL-MVP-SMOKE",
+      "question_zh": "当 100 keV μ 持续撞击电极或管壁时，COMSOL Block 是否能诊断并停止盲目扫参？",
+      "response_metrics": [
+        "failure_mode",
+        "information_gain",
+        "stopping_reason"
+      ]
+    }
+  ],
+  "success_criteria": [
+    "comsol/SKILL.md 与 .codex/skills/comsol/SKILL.md 明确三条架构原则",
+    "ComsolTask/ComsolResult 契约和 JSON/YAML 模板可读取",
+    "Build/Explore/Solve/Diagnose/Report 入口可执行",
+    "Solve 支持未来多 case 与受限并发，并区分 execution/research parallelism",
+    "数值失败先诊断，物理持续失败停止盲扫并输出 Issue/EscalationRequest",
+    "100 keV μ 行为 fixture 测试通过，且不伪造 COMSOL 数值结果",
+    "既有 3D Block、历史模型和非本任务工作区文件未被改写"
+  ],
+  "expected_maturity": "F0",
+  "scientific_revalidation": "not-applicable-for-architecture-mvp",
+  "acceptance_status": "implemented-pending-user-review"
+}

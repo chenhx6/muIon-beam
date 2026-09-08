@@ -80,3 +80,13 @@ capabilities:
     primary_entrypoint: evolution
     aliases: []
     tests: ["tests/evolution.test.mjs"]
+  - capability_id: comsol-block
+    source_concept: COMSOL Block
+    existing_local_entrypoints: ["node comsol/index.mjs --task path/to/task.json", "comsol/SKILL.md"]
+    existing_scripts: ["comsol/index.mjs", "comsol/build/index.mjs", "comsol/explore/index.mjs", "comsol/solve/index.mjs", "comsol/diagnose/index.mjs", "comsol/report/index.mjs"]
+    existing_references: [".codex/skills/comsol/SKILL.md", "comsol/adapters/README.md"]
+    decision: new
+    decision_reason: "建立独立 COMSOL 计算模块；保留现有历史 COMSOL 资产并通过显式 adapter 接入"
+    primary_entrypoint: "node comsol/index.mjs --task path/to/task.json"
+    aliases: [comsol]
+    tests: ["tests/comsol-block.test.mjs"]

@@ -12,3 +12,4 @@
 | team | new | team | 补充子 agent 派发与动态模型路由规范 |
 | farmer | new | farmer | 项目专属 Codex Desktop session 监督 |
 | evolution | new | evolution | 手动触发的跨项目能力发现和增量接入 |
+| comsol-block | new | node comsol/index.mjs --task path/to/task.json | 建立独立 COMSOL 计算模块；保留现有历史 COMSOL 资产并通过显式 adapter 接入 |

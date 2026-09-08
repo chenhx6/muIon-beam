@@ -1,0 +1,31 @@
+schema_version: 0.1.0
+result_id: COMSOL-RESULT-YYYYMMDD-NNN
+task_id: COMSOL-TASK-YYYYMMDD-NNN
+status: partial
+adapter:
+  kind: unavailable
+  available: false
+  version: null
+build: {}
+baseline: {}
+cases: []
+validation:
+  calculation_finished: false
+  validation_status: not-evaluated
+  solver_convergence: not-evaluated
+  mesh_dependence: not-evaluated
+  time_step_dependence: not-evaluated
+  numerical_stability: not-evaluated
+  sanity_checks: []
+  success_criteria: []
+findings: []
+warnings: []
+issues: []
+escalations: []
+scope_expansion_requests: []
+assumptions: []
+exploration_history: []
+stopping_reason: ""
+next_interface_requests: []
+execution_record: {}
+

@@ -1,0 +1,31 @@
+schema_version: 0.1.0
+task_id: COMSOL-TASK-YYYYMMDD-NNN
+objective: "A concrete question this COMSOL task must answer."
+inputs:
+  geometry:
+    ref: "path-or-registered-model-reference"
+  materials: []
+  particle_source: {}
+  field_configuration: {}
+  previous_model: null
+  previous_result: null
+  initial_conditions: {}
+assumptions:
+  - id: assumption-01
+    statement: "Temporary assumption; unresolved upstream questions stay visible."
+    status: provisional
+fixed: []
+variable: []
+external: []
+success_criteria: []
+required_outputs:
+  - result_data
+  - validation
+exploration_level: diagnostic
+resources:
+  max_parallel_cases: 1
+  max_recovery_attempts: 1
+# Optional, explicit candidates. The explorer does not invent percentage ranges.
+diagnostic_cases: []
+exploration_cases: []
+

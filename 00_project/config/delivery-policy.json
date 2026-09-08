@@ -3,7 +3,7 @@
   "gitee": {
     "max_file_bytes": 10485760,
     "max_task_bytes": 52428800,
-    "allow_prefixes": [".codex/skills/", "00_project/", "01_physics/", "04_results/", "05_reports/", "90_migration/", "tests/", "AGENTS.md", "README.md", "package.json", ".gitignore"],
+    "allow_prefixes": [".codex/skills/", "00_project/", "01_physics/", "04_results/", "05_reports/", "90_migration/", "tests/", "AGENTS.md", "README.md", "package.json", ".gitignore", "comsol/"],
     "deny_prefixes": [".git/", "_work/", "00_project/state/3d-smoke/", "00_project/traceability/sync-outbox/", "02_models/", "03_runs/formal/"],
     "deny_extensions": [".mph", ".sldasm", ".sldprt", ".slddrw", ".step", ".vtk", ".h5", ".root", ".bin", ".pyd", ".dll", ".exe", ".pyc"]
   }

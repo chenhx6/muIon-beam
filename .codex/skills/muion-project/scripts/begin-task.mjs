@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { projectRootFromHere, runGit, nowIso } from './project-utils.mjs';
+const root = path.resolve(process.argv[2] || projectRootFromHere());
+const file = path.join(root, '00_project/state/task-baseline.json');
+fs.mkdirSync(path.dirname(file), { recursive: true });
+const paths = runGit(root, ['status', '--porcelain']).stdout.split(/\r?\n/).filter(Boolean).map((line) => line.slice(3)).filter(Boolean);
+const head = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
+fs.writeFileSync(file, JSON.stringify({ schema_version: 1, started_at: nowIso(), head, paths }, null, 2) + '\n');
+console.log(JSON.stringify({ baseline: file, head, paths }, null, 2));

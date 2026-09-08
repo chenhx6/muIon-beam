@@ -73,3 +73,7 @@ cache-audit
 进入 D:\\muIon-beam 的任务时，先检查必要工具；缺少已允许的工具时用 evolution 的 toolchain recovery 以当前用户范围安装并校验，然后幂等执行 npm run farmer:ensure，再读取轻量项目状态。farmer 只监督本项目 Codex Desktop session，不改变模型、任务目标或 Manifest。其他工作流 skill 由 autopilot 根据任务阶段自动选择；只有 evolution 的外部能力搜索需要用户明确触发。
 
 默认采用事件触发的三端审计：正式运行完成、报告定稿、Drive 归档、Gitee 发布和任务关闭时执行。Windows 每日定时审计不是默认流程；若以后启用，只能运行只读审计，不得自动提交、上传或删除。
+
+## 自动提交和发布契约
+
+任务开始时记录当前 Git 基线；任务范围内的 skill、脚本、配置、文档和测试修改通过架构检查后，自动 commit 并 push 到 origin/main，无需用户再次提醒。基线中已有的用户修改、模型文件、大型输出和同步 outbox 默认拒绝自动提交。正式结果只有在双报告定稿、Drive SHA256 校验和三端审计通过后才自动创建 annotated tag，并生成完整中文说明；普通代码或 skill 更新只自动提交，不伪造结果 tag。

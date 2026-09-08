@@ -7,9 +7,41 @@ const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
 const tag = args.tag;
 const baseTag = args.base_tag || null;
-const messageFile = args.message_file ? path.resolve(args.message_file) : null;
+let messageFile = args.message_file ? path.resolve(args.message_file) : null;
 if (!tag || !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(tag)) throw new Error('provide a safe --tag');
-if (!messageFile || !fs.existsSync(messageFile)) throw new Error('provide an existing --message-file');
+if (!messageFile && args.auto_note) {
+  messageFile = path.join(root, '_work/current/publish-notes', tag + '.md');
+  ensureDirectory(path.dirname(messageFile));
+  fs.writeFileSync(messageFile, [
+    '# ' + tag,
+    '',
+    '## 基于标签',
+    args.base_tag || '当前 main',
+    '',
+    '## 本次任务',
+    args.task || '项目工作流、skill 或研究任务更新',
+    '',
+    '## 本次调整',
+    args.adjustment || '自动生成的项目变更和可追溯性更新',
+    '',
+    '## 优化内容',
+    args.optimization || '自动提交、测试和状态记录已完成',
+    '',
+    '## 结果',
+    args.result || '已通过项目验证',
+    '',
+    '## 主要限制',
+    args.limitations || '以当前模型、输入和归档状态为准',
+    '',
+    '## 详细报告',
+    args.report || '见项目报告和追溯记录',
+    '',
+    '## Google Drive',
+    args.drive_path || '待写入实际归档路径',
+    ''
+  ].join('\n'));
+}
+if (!messageFile || !fs.existsSync(messageFile)) throw new Error('provide an existing --message-file or --auto-note');
 const message = fs.readFileSync(messageFile, 'utf8').trim();
 for (const section of ['基于标签', '本次任务', '本次调整', '优化内容', '结果', '主要限制', 'Google Drive']) if (!message.includes(section)) throw new Error(`message file must contain section: ${section}`);
 const existingTag = runGit(root, ['show-ref', '--verify', '--quiet', `refs/tags/${tag}`], { allowFailure: true });

@@ -58,12 +58,15 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `research-loop`: connect hypotheses, campaigns, runs, figures, reports and decisions.
 - `farmer`: ensure the project-local Codex Desktop session supervisor is running.
 - `evolution`: manual-only discovery and safe incremental adoption of external skills and scripts.
+- `auto-publish`: after validation, automatically commit and push only task-owned files; result tags require finalized reports and verified Drive/three-end state.
 
 Read only the relevant reference file for the selected mode. Do not load every reference by default.
 
 ## Automatic project lifecycle
 
 When a task is opened inside `D:\\muIon-beam`, ensure `farmer:ensure` has run and read lightweight project status. The workflow may select other modes automatically as the task moves through phases; users do not need to invoke each phase separately. `evolution` is manual-only and must never be started by ordinary project work.
+
+At task start, record the Git baseline with `begin-task.mjs`. After task-owned changes pass validation, run `auto-commit-push.mjs --baseline <baseline>`; it refuses pre-existing user changes, protected model/output paths and missing baselines. Create an annotated result tag only after the report, Drive receipt and three-end audit are verified, and generate its Chinese note automatically.
 
 ## Required project artifacts
 

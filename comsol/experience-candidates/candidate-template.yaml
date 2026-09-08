@@ -1,0 +1,17 @@
+candidate_id: COMSOL-CANDIDATE-YYYYMMDD-NNN
+observation: "What was observed"
+conditions:
+  comsol_version: null
+  adapter: null
+  task_id: null
+  geometry_reference: null
+  field_reference: null
+evidence: []
+current_explanation: "Working explanation, explicitly uncertain"
+uncertainty: "What remains unknown"
+suggested_verification:
+  reproduction_command: null
+  comparison: null
+status: candidate
+regression_reference: null
+promotion: pending

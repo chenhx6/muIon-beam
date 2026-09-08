@@ -71,6 +71,8 @@ test('Numerical failure is diagnosed before any exploration is planned', () => {
 });
 
 test('Historical 100 keV smoke stops blind voltage scanning and escalates', async () => {
+  assert.equal(fixture.regression_seed, true);
+  assert.equal(fixture.regression_id, 'COMSOL-REGRESSION-100KEV-MUON-APERTURE');
   const result = await runComsol(fixture, { adapter: createHistorical100keVFixtureAdapter() });
   assert.equal(result.status, 'partial');
   assert.equal(result.adapter.kind, 'documented-behavioural-fixture');
@@ -82,6 +84,7 @@ test('Historical 100 keV smoke stops blind voltage scanning and escalates', asyn
   assert.equal(result.exploration_history[1].stage, 'diagnostic-probe');
   assert.equal(result.exploration_history.length, 3);
   assert.equal(result.exploration_history.at(-1).stage, 'stop');
+  assert.equal(result.exploration_history.some((item) => item.stage === 'unbounded-scan'), false);
   assert.equal(result.validation.calculation_finished, true);
   assert.match(result.validation.note, /does not imply/);
 });

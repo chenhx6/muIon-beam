@@ -1,0 +1,4 @@
+interface:
+  display_name: "Geant4 Block"
+  short_description: "Run bounded Geant4 transport and validation tasks"
+  default_prompt: "Use $geant4 for repository Geant4 setup, transport, scoring and validation; smoke-test before production."

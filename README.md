@@ -16,7 +16,11 @@
 - COMSOL Block：[`comsol/SKILL.md`](comsol/SKILL.md)，可执行入口为
   `node comsol/index.mjs --task path/to/task.json`；当前适配器边界见
   [`comsol/adapters/README.md`](comsol/adapters/README.md)。
-- Geant4 Block 和完整 Research Workflow 尚未在本轮实现。
+- Geant4 Block：[`geant4/SKILL.md`](geant4/SKILL.md)，可执行入口为
+  `node geant4/index.mjs --task path/to/task.yaml`；四项轻量原生 smoke
+  位于 `geant4/tests/fixtures/mvp-smoke/`。当前 WSL smoke 使用 Geant4
+  11.2.2，不能直接替代历史 11.3.2 μ−–Ne 结果。
+- 完整 Research Workflow 仍由现有项目 skill 管理，本轮不重构。
 
 ## 使用顺序
 

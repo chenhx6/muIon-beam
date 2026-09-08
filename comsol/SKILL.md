@@ -98,6 +98,15 @@ pass the resulting run/input snapshot references in `task.traceability`.
 `comsol-result-manifest.json`. The MVP does not replace the project run
 Manifest or SQLite index.
 
+## Experience candidates
+
+An observation that may generalize is first recorded under
+`comsol/experience-candidates/` with its conditions, evidence, uncertainty and
+verification plan. It remains a candidate until it is reproduced and covered
+by a regression check; only then may it be promoted to a reference, script,
+test or stable rule. Candidates do not change external geometry, field
+ownership or the research objective.
+
 ## Historical smoke scenario
 
 `comsol/tests/fixtures/100kev-muon-aperture-failure.yaml` documents the former

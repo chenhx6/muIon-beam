@@ -1,5 +1,7 @@
 scenario_id: COMSOL-SMOKE-100KEV-MUON-APERTURE
 fixture_kind: documented-behavioural-scenario
+regression_seed: true
+regression_id: COMSOL-REGRESSION-100KEV-MUON-APERTURE
 task_id: COMSOL-SMOKE-100KEV-MUON-APERTURE
 objective: "判断约 100 keV μ 在约 1 T 磁场和当前几何条件下是否能够通过中心圆环电极开孔并进入下游区域。"
 inputs:

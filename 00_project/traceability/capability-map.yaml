@@ -90,3 +90,13 @@ capabilities:
     primary_entrypoint: "node comsol/index.mjs --task path/to/task.json"
     aliases: [comsol]
     tests: ["tests/comsol-block.test.mjs"]
+  - capability_id: geant4-block
+    source_concept: Geant4 Block
+    existing_local_entrypoints: ["node geant4/index.mjs --task path/to/task.yaml", "geant4/SKILL.md"]
+    existing_scripts: ["geant4/index.mjs", "geant4/scripts/preflight.mjs", "geant4/scripts/build.mjs", "geant4/scripts/smoke.mjs", "geant4/scripts/run.mjs", "geant4/scripts/validate.mjs", "geant4/scripts/summarize.mjs"]
+    existing_references: ["geant4/references/workflow.md", "geant4/references/smoke-model.md", "geant4/references/official-sources.md", "geant4/references/historical-muon-ne.md", "geant4/references/boundaries-and-issues.md"]
+    decision: new
+    decision_reason: "建立单一 Geant4 主 Skill，覆盖 setup/transport/scoring/statistics/validation，并以小规模 smoke 优先"
+    primary_entrypoint: "node geant4/index.mjs --task path/to/task.yaml"
+    aliases: [geant4, g4]
+    tests: ["tests/geant4-block.test.mjs", "geant4/tests/smoke.mjs"]

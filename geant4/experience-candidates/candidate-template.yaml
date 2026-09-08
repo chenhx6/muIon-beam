@@ -1,0 +1,18 @@
+candidate_id: G4-CANDIDATE-YYYYMMDD-NNN
+observation: "What was observed"
+conditions:
+  geant4_version: null
+  physics_list: null
+  geometry: null
+  source: null
+  field: null
+  material: null
+evidence: []
+current_explanation: "Working explanation, explicitly uncertain"
+uncertainty: "What remains unknown"
+suggested_verification:
+  reproduction_command: null
+  comparison: null
+status: candidate
+regression_reference: null
+promotion: pending

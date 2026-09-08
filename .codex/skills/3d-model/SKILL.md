@@ -11,6 +11,8 @@ description: Create, read, edit and rebuild native editable SolidWorks parts and
 
 ## 模型入口
 
+反复出现的几何问题先记录为 experience candidate，保留条件、证据、不确定性和复现方法；只有复现并进入 3D regression 后才可提升为稳定规则。
+
 - 新建：确认几何需求、层级（默认 G1）、单位、坐标和必要关键尺寸。沿用已明确的上下文，只询问会改变设计语义的歧义；不自行编造工程/物理决策。
 - 读取 SLDPRT/SLDASM：先打开实际当前文件，检查依赖零件是否解析、活动配置、单位、Feature Tree、草图/尺寸及组件变换。保护用户已打开且未保存的文档，不默默关闭或覆盖。
 - 继续修改：以当前 CAD 为基础做最小必要修改。改一个尺寸不重建整个 Feature Tree；手工保存后的模型优先于旧代码和旧参数。不可编辑的导入实体需说明限制，不能宣称原生特征可编辑。

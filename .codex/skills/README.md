@@ -12,3 +12,5 @@
 - **组合**：四个 Skill 按需独立调用，不强制流水线。文件少时无需索引；以后如需索引，沿用项目 YAML → Codex → MD 机制，只做分类和定位，不承载工作规范。
 
 - **运行方式**：优先后台、短时、低干扰地执行自动化，避免长时间占用用户电脑。SolidWorks 测试或批处理使用专用会话和临时文件，绝不接管或关闭用户已有会话；完成后保存必要结果、清理测试状态并退出专用会话。不可避免的前台交互应先说明原因。
+
+- **经验演化**：3D 几何观察先进入 `3d-model/experience-candidates/`，经复现和 regression 后才提升为 reference、script、test 或稳定规则。`3d-model/regression/registry.yaml` 为空时状态为 `not-yet-validated`，不虚构 CAD 回归结果。

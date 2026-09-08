@@ -13,6 +13,7 @@ const required = [
   '.codex/skills/farmer/SKILL.md',
   '.codex/skills/farmer/agents/openai.yaml',
   '.codex/skills/farmer/farmer.mjs',
+  '.codex/skills/muion-project/scripts/base-content-verification.mjs',
   '.codex/skills/team/SKILL.md',
   '.codex/skills/team/agents/openai.yaml',
   '.codex/skills/evolution/SKILL.md',

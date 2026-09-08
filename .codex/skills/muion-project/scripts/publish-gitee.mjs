@@ -2,11 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { parseArgs, projectRootFromHere, runGit, ensureDirectory, jsonWrite, nowIso } from './project-utils.mjs';
+import { resolveBaseContentVerification } from './base-content-verification.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
 const tag = args.tag;
 const baseTag = args.base_tag || null;
+const baseVerification = resolveBaseContentVerification(root, baseTag);
 let messageFile = args.message_file ? path.resolve(args.message_file) : null;
 if (!tag || !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(tag)) throw new Error('provide a safe --tag');
 if (!messageFile && args.auto_note) {
@@ -17,6 +19,9 @@ if (!messageFile && args.auto_note) {
     '',
     '## 基于标签',
     args.base_tag || '当前 main',
+    '',
+    '## 基础内容核验',
+    baseVerification.message,
     '',
     '## 本次任务',
     args.task || '项目工作流、skill 或研究任务更新',
@@ -43,7 +48,8 @@ if (!messageFile && args.auto_note) {
 }
 if (!messageFile || !fs.existsSync(messageFile)) throw new Error('provide an existing --message-file or --auto-note');
 const message = fs.readFileSync(messageFile, 'utf8').trim();
-for (const section of ['基于标签', '本次任务', '本次调整', '优化内容', '结果', '主要限制', 'Google Drive']) if (!message.includes(section)) throw new Error(`message file must contain section: ${section}`);
+for (const section of ['基于标签', '基础内容核验', '本次任务', '本次调整', '优化内容', '结果', '主要限制', 'Google Drive']) if (!message.includes(section)) throw new Error(`message file must contain section: ${section}`);
+if (!message.includes(baseVerification.message)) throw new Error(`message file must state exact base verification: ${baseVerification.message}`);
 const existingTag = runGit(root, ['show-ref', '--verify', '--quiet', `refs/tags/${tag}`], { allowFailure: true });
 if (existingTag.status === 0) throw new Error(`tag already exists: ${tag}; tags are immutable`);
 if (baseTag) {
@@ -55,7 +61,7 @@ const dirty = (status.stdout || '').trim();
 if (dirty && !args.allow_dirty) throw new Error('working tree has changes; use --allow-dirty only after reviewing them');
 const plannedFiles = dirty ? dirty.split(/\r?\n/).filter(Boolean) : [];
 const plan = { tag, base_tag: baseTag, message_file: messageFile, planned_files: plannedFiles, remote: runGit(root, ['remote', 'get-url', 'origin']).stdout.trim(), push: Boolean(args.push), commit_message: args.commit_message || `发布 ${tag}` };
-if (!args.push) { console.log(JSON.stringify({ mode: 'dry-run', ...plan }, null, 2)); process.exit(0); }
+if (!args.push) { console.log(JSON.stringify({ mode: 'dry-run', ...plan, base_verification: baseVerification }, null, 2)); process.exit(0); }
 
 // Regenerate derived views before publishing.
 const node = process.execPath;
@@ -71,7 +77,7 @@ for (const [script, argument] of derivedCommands) {
 const publicationDir = path.join(root, '00_project/traceability/publication-records');
 ensureDirectory(publicationDir);
 const publicationPath = path.join(publicationDir, `${tag}.json`);
-jsonWrite(publicationPath, { publication_id: `PUBLICATION-${tag}`, tag, base_tag: baseTag, commit: null, remote: plan.remote, status: 'prepared', message_file: messageFile, prepared_at: nowIso(), pushed_at: null });
+jsonWrite(publicationPath, { publication_id: `PUBLICATION-${tag}`, tag, base_tag: baseTag, base_verification: baseVerification, commit: null, remote: plan.remote, status: 'prepared', message_file: messageFile, prepared_at: nowIso(), pushed_at: null });
 runGit(root, ['add', '-A']);
 const commitResult = runGit(root, ['-c', 'user.name=Codex', '-c', 'user.email=codex@local', 'commit', '-m', plan.commit_message], { allowFailure: true });
 if (commitResult.status !== 0) throw new Error(commitResult.stderr || commitResult.stdout || 'commit failed');
@@ -83,7 +89,7 @@ const remoteMain = runGit(root, ['ls-remote', 'origin', 'refs/heads/main']).stdo
 const remoteTag = runGit(root, ['ls-remote', 'origin', `refs/tags/${tag}^{}`], { allowFailure: true }).stdout.trim();
 if (remoteMain !== commit) throw new Error(`remote main does not match ${commit}: ${remoteMain}`);
 if (!remoteTag && !runGit(root, ['ls-remote', 'origin', `refs/tags/${tag}`]).stdout.trim()) throw new Error(`remote tag verification failed: ${tag}`);
-jsonWrite(publicationPath, { publication_id: `PUBLICATION-${tag}`, tag, base_tag: baseTag, commit, remote: plan.remote, remote_main_commit: remoteMain, status: 'published', message_file: messageFile, prepared_at: nowIso(), pushed_at: nowIso() });
+jsonWrite(publicationPath, { publication_id: `PUBLICATION-${tag}`, tag, base_tag: baseTag, base_verification: baseVerification, commit, remote: plan.remote, remote_main_commit: remoteMain, status: 'published', message_file: messageFile, prepared_at: nowIso(), pushed_at: nowIso() });
 runGit(root, ['add', publicationPath]);
 runGit(root, ['-c', 'user.name=Codex', '-c', 'user.email=codex@local', 'commit', '-m', `记录 Gitee 发布 ${tag}`]);
 runGit(root, ['push', 'origin', 'HEAD:main'], { timeout: 120000 });

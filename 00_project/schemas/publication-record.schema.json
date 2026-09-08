@@ -7,6 +7,21 @@
     "publication_id": {"type": "string"},
     "tag": {"type": "string"},
     "base_tag": {"type": ["string", "null"]},
+    "base_verification": {
+      "type": "object",
+      "required": ["verified", "message"],
+      "properties": {
+        "verified": {"type": "boolean"},
+        "message": {"type": "string"},
+        "base_tag": {"type": ["string", "null"]},
+        "snapshot_id": {"type": ["string", "null"]},
+        "sync_id": {"type": ["string", "null"]},
+        "drive_path": {"type": ["string", "null"]},
+        "receipt_file": {"type": ["string", "null"]},
+        "second_layer": {"type": ["string", "null"]},
+        "reason": {"type": ["string", "null"]}
+      }
+    },
     "commit": {"type": "string"},
     "remote": {"type": "string"},
     "status": {"enum": ["prepared", "published", "failed"]},

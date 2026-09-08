@@ -13,7 +13,7 @@ r1-field-window
 r2-gap-scan
 ```
 
-每次结果上传都必须带 Gitee annotated tag 和中文说明，至少说明：基于标签、本次任务、本次调整、优化内容、结果、主要限制、详细报告位置和 Drive 路径。
+每次结果上传都必须带 Gitee annotated tag 和中文说明，至少说明：基于标签、基础内容核验、本次任务、本次调整、优化内容、结果、主要限制、详细报告位置和 Drive 路径。只有匹配基础 tag 的项目级快照通过第二层 `audit-project-snapshot.mjs` 时，说明才写“基础内容已核验”；其他情况固定写“基于历史 tag，基础快照未重新核验”。
 
 自动发布使用 `publish-gitee.mjs`：默认只做 dry-run；指定 `--push` 后才提交、创建不可变 annotated tag、推送并用 `git ls-remote` 验证。发布记录允许有一个内容提交和一个后续记录提交，标签固定在内容提交上。
 

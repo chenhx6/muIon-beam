@@ -7,6 +7,11 @@ assignment_reference: null
 requested_by: null
 due_date: null
 delivery_requirement: null
+delivery:
+  gitee: auto
+  drive: auto
+  audit: auto
+  resolved_by: delivery-policy
 priority: normal
 objective_zh: ""
 physical_object: ""

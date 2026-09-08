@@ -44,6 +44,9 @@
     ,"toolchain:ensure": "node .codex/skills/evolution/scripts/ensure-toolchain.mjs --install"
     ,"task:begin": "node .codex/skills/muion-project/scripts/begin-task.mjs ."
     ,"auto:commit-push": "node .codex/skills/muion-project/scripts/auto-commit-push.mjs"
+    ,"delivery:plan": "node .codex/skills/muion-project/scripts/delivery-plan.mjs ."
+    ,"task:close": "node .codex/skills/muion-project/scripts/task-close.mjs"
+    ,"task:status": "node .codex/skills/muion-project/scripts/task-close.mjs status"
     ,"up": "node .codex/skills/muion-project/scripts/up.mjs ."
     ,"build:capability-map": "node .codex/skills/muion-project/scripts/build-capability-map.mjs ."
   }

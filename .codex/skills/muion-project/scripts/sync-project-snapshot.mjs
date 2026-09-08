@@ -6,7 +6,8 @@ import { parseArgs, projectRootFromHere, runGit, ensureDirectory, sha256File, re
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
 const localCommit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
-if (!args.tag || typeof args.tag !== 'string') throw new Error('provide --tag for a project snapshot');
+if (args.tag === undefined && !args.branch_ref) throw new Error('provide --tag or --branch-ref for a project snapshot');
+if (args.tag !== undefined && typeof args.tag !== 'string') throw new Error('invalid project snapshot tag');
 if (args.expected_commit && args.expected_commit !== localCommit) throw new Error('snapshot commit differs from HEAD; preserve the old snapshot and create a new one');
 const snapshotId = args.snapshot_id || `SNAPSHOT-${localCommit.slice(0, 12)}`;
 if (!/^[A-Za-z0-9._-]+$/.test(snapshotId)) throw new Error('invalid snapshot id');
@@ -43,8 +44,9 @@ if (tag) {
   tagVerified = Boolean(tagCommit) && (tagCommit === localCommit || runGit(root, ['merge-base', '--is-ancestor', tagCommit, localCommit], { allowFailure: true }).status === 0);
 }
 const fileListHash = crypto.createHash('sha256').update(JSON.stringify(copied)).digest('hex');
-let status = errors.length ? 'pending-drive' : remoteCommit === localCommit && tagVerified ? 'three-way-verified' : 'pending-verification';
-const state = { sync_id: `SYNC-${snapshotId}`, manifest_type: 'sync-state', schema_version: '1.0.0', created_at: nowIso(), task_id: args.task_id || null, run_id: null, snapshot_id: snapshotId, local_commit: localCommit, gitee_remote_commit: remoteCommit, gitee_tag: tag, gitee_tag_commit: tagCommit, drive_path: drivePath, manifest_sha256: fileListHash, status, pending_actions: status === 'three-way-verified' ? [] : ['verify-project-snapshot'], file_count: copied.length, files: copied, errors };
+const referenceVerified = tag ? tagVerified : remoteCommit === localCommit;
+let status = errors.length ? 'pending-drive' : referenceVerified ? 'three-way-verified' : 'pending-verification';
+const state = { sync_id: `SYNC-${snapshotId}`, manifest_type: 'sync-state', schema_version: '1.0.0', created_at: nowIso(), task_id: args.task_id || null, run_id: null, snapshot_id: snapshotId, local_commit: localCommit, gitee_remote_commit: remoteCommit, gitee_ref: args.branch_ref || (tag ? `tag:${tag}` : null), gitee_tag: tag, gitee_tag_commit: tagCommit, drive_path: drivePath, manifest_sha256: fileListHash, status, pending_actions: status === 'three-way-verified' ? [] : ['verify-project-snapshot'], file_count: copied.length, files: copied, errors };
 const stateDir = path.join(root, '00_project/traceability/sync-states');
 ensureDirectory(stateDir);
 const statePath = path.join(stateDir, `${state.sync_id}.json`);

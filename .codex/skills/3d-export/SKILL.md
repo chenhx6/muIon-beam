@@ -5,6 +5,8 @@ description: Export the current CAD to native or requested neutral formats and g
 
 # 3d-export
 
+原生 CAD、STEP/Parasolid/STL 和完整视图属于 Drive 交付；导出脚本、参数、单位/坐标、组件清单和轻量元数据进入 Gitee 并同步 Drive。记录源 CAD、配置、选项、大小和 SHA256。
+
 先读 [3D Modeling Domain 公共规则](../README.md)。输入是当前 CAD、所需格式/视图和用途；直接读取当前已保存模型，不按旧代码重新生成。
 
 - 原生交付 SLDPRT / SLDASM。装配体交付包含所需引用零件并验证引用可解析；不能把孤立 SLDASM 当作完整装配。

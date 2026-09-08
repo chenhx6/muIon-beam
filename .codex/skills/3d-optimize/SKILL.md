@@ -5,6 +5,8 @@ description: Explore and reshape CAD geometry through section, topology, scale a
 
 # 3d-optimize
 
+优化方案、几何意图、硬约束、参数变化、前后摘要和重建脚本进入 Gitee 并同步 Drive；优化后的 CAD、完整导出和大图进入 Drive。不得把几何变化直接描述为物理性能改善。
+
 先读 [3D Modeling Domain 公共规则](../README.md)。职责是几何设计与探索：改形、简化、重构、尺度/截面/局部拓扑变化、布局调整和几何发散。
 
 读取当前 CAD，提取已有几何要求、明确硬约束和设计意图。G1 初始尺寸为软约束；保持原物理意图、合理整体尺度和现实存在/制造可能时允许较强自由度。可将圆环改为梯形截面、倒角或锥形过渡，也可在圆柱局部增加凹槽/平台；这些是几何示例，不是设备设计建议。

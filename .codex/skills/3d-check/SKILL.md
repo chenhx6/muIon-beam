@@ -5,6 +5,8 @@ description: Inspect SolidWorks CAD geometry quality, rebuild health, component 
 
 # 3d-check
 
+检查报告、几何摘要、问题清单和轻量证据进入 Gitee 并同步 Drive；原始 CAD、完整日志和高分辨率检查图进入 Drive。每项必须明确通过、问题或未验证。
+
 先读 [3D Modeling Domain 公共规则](../README.md)。输入是当前 CAD 和已知几何要求；独立检查，不要求先运行其它 Skill，不自动修复或重生成模型。
 
 G1 默认检查：文件可打开、模型可显示、rebuild 成功、无明显损坏 Feature；无非预期穿模、自相交、零厚度、坏实体、重复实体；主要组件存在、关键结构位置大致合理、整体尺度无荒谬漂移、单位及坐标可理解。区分设计允许的接触/重叠与非预期干涉，未知意图标为待确认。

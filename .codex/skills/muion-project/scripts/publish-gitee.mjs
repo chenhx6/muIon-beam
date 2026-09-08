@@ -3,6 +3,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { parseArgs, projectRootFromHere, runGit, ensureDirectory, jsonWrite, nowIso } from './project-utils.mjs';
 import { resolveBaseContentVerification } from './base-content-verification.mjs';
+import { classifyPaths } from './delivery-plan.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
@@ -59,9 +60,11 @@ if (baseTag) {
 const status = runGit(root, ['status', '--porcelain'], { allowFailure: true });
 const dirty = (status.stdout || '').trim();
 if (dirty && !args.allow_dirty) throw new Error('working tree has changes; use --allow-dirty only after reviewing them');
-const plannedFiles = dirty ? dirty.split(/\r?\n/).filter(Boolean) : [];
+const delivery = classifyPaths(root);
+const plannedFiles = delivery.candidates;
+if (args.push && delivery.excluded.length) throw new Error(`unpublishable files present: ${delivery.excluded.map((item) => item.path + ':' + item.reason).join(', ')}`);
 const plan = { tag, base_tag: baseTag, message_file: messageFile, planned_files: plannedFiles, remote: runGit(root, ['remote', 'get-url', 'origin']).stdout.trim(), push: Boolean(args.push), commit_message: args.commit_message || `发布 ${tag}` };
-if (!args.push) { console.log(JSON.stringify({ mode: 'dry-run', ...plan, base_verification: baseVerification }, null, 2)); process.exit(0); }
+if (!args.push) { console.log(JSON.stringify({ mode: 'dry-run', ...plan, base_verification: baseVerification, delivery }, null, 2)); process.exit(0); }
 
 // Regenerate derived views before publishing.
 const node = process.execPath;
@@ -78,7 +81,7 @@ const publicationDir = path.join(root, '00_project/traceability/publication-reco
 ensureDirectory(publicationDir);
 const publicationPath = path.join(publicationDir, `${tag}.json`);
 jsonWrite(publicationPath, { publication_id: `PUBLICATION-${tag}`, tag, base_tag: baseTag, base_verification: baseVerification, commit: null, remote: plan.remote, status: 'prepared', message_file: messageFile, prepared_at: nowIso(), pushed_at: null });
-runGit(root, ['add', '-A']);
+runGit(root, ['add', '--', ...delivery.candidates]);
 const commitResult = runGit(root, ['-c', 'user.name=Codex', '-c', 'user.email=codex@local', 'commit', '-m', plan.commit_message], { allowFailure: true });
 if (commitResult.status !== 0) throw new Error(commitResult.stderr || commitResult.stdout || 'commit failed');
 const commit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();

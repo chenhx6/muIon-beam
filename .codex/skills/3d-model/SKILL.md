@@ -5,6 +5,8 @@ description: Create, read, edit and rebuild native editable SolidWorks parts and
 
 # 3d-model
 
+交付分层由 `muion-project` 统一管理：SolidWorks 原生模型和完整装配进入 Drive；建模脚本、参数、模型 Manifest、关键尺寸、重建命令和轻量摘要进入 Gitee 并同步 Drive。每次模型交付记录源路径、配置、单位、坐标、依赖和 SHA256。
+
 先读 [3D Modeling Domain 公共规则](../README.md)。本 Skill 负责 CAD 创建、读取、修改和重建。
 
 ## 模型入口
@@ -28,6 +30,8 @@ description: Create, read, edit and rebuild native editable SolidWorks parts and
 只在独立测试零件中执行，不设计真实设备：连接/启动 SolidWorks → New Part → 原生 Sketch 和尺寸 → Extrude 或 Revolve → 中心通孔 Cut → Feature 重命名 → 保存 SLDPRT → 关闭测试文档 → 重开 → 修改一个驱动尺寸 → Rebuild → 再保存。记录每步状态、版本、路径和错误；检查实体、特征类型及尺寸变化。
 
 最后在 GUI 中检查草图、尺寸和 Feature 能继续人工编辑，不能仅以保存文件或 API 返回成功替代此证据。交付当前 CAD 路径、关键参数与修改摘要、验证及未验证项。检查/优化/导出可独立按需调用，不强制串行流程。
+
+自动 COM 闭环通过不等于完整验收；GUI 人工编辑检查未完成前，交付状态必须保留为 `automated-pass-gui-pending`。
 
 ## 低干扰自动化
 

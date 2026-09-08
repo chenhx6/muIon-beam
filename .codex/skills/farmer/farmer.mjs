@@ -29,6 +29,13 @@ function readSession(file, root) {
 function walk(dir) { if (!fs.existsSync(dir)) return []; return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith('.jsonl') ? [path.join(dir, e.name)] : []); }
 function write(file, data) { fs.mkdirSync(path.dirname(file), { recursive: true }); const tmp = `${file}.${process.pid}.tmp`; fs.writeFileSync(tmp, `${JSON.stringify(data, null, 2)}\n`); fs.renameSync(tmp, file); }
 function alive(pid) { try { process.kill(pid, 0); return true; } catch { return false; } }
+function closeRequested(root) { try { const request = JSON.parse(fs.readFileSync(path.join(root, '00_project/state/task-close-request.json'), 'utf8')); return request.close_requested === true && request.qa_passed === true; } catch { return false; } }
+function runCloseCandidate(root) {
+  if (!closeRequested(root)) return null;
+  const script = path.join(root, '.codex/skills/muion-project/scripts/task-close.mjs');
+  const plan = spawnSync(process.execPath, [script, '--project-root', root, 'plan'], { cwd: root, encoding: 'utf8', windowsHide: true, timeout: 30000 });
+  return { status: plan.status, stdout: plan.stdout, stderr: plan.stderr };
+}
 export function inspect(root, codexHome) {
   const result = new Map();
   for (const file of walk(path.join(codexHome, 'sessions'))) { try { const s = readSession(file, root); if (!s?.id || !s.latest) continue; const old = result.get(s.id); if (!old || s.latest.timestamp > old.latest.timestamp) result.set(s.id, s); } catch {} }
@@ -70,7 +77,8 @@ async function main() {
   const once = () => {
     const states = read(stateFile, {}); const sessions = inspect(root, home); const now = Date.now();
     for (const session of sessions) { const before = states[session.id]; const next = recoveryStep(session, before, config, now, (id, message) => args['dry-run'] ? { status: 0 } : spawnSync('codex', ['queue', '--thread', id, '--message', message], { encoding: 'utf8', windowsHide: true, timeout: 15000 })); states[session.id] = next; }
-    if (!args['dry-run']) write(stateFile, states); return { sessions: sessions.length, states, dry_run: !!args['dry-run'] };
+    const close = args['dry-run'] ? null : runCloseCandidate(root);
+    if (!args['dry-run']) write(stateFile, states); return { sessions: sessions.length, states, close_candidate: close, dry_run: !!args['dry-run'] };
   };
   if (args.command === 'once') { console.log(JSON.stringify(once(), null, 2)); return; }
   if (args.command !== 'start') throw new Error('unknown command');

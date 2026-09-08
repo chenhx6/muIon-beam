@@ -1,5 +1,7 @@
 # 文件保留和清理
 
+Gitee/Drive 交付分层：P0 durable project assets 进入 Gitee 并同步 Drive；P1/P2 大型模型、运行和有价值结果完整进入 Drive；P3 runtime state 只保留本地。`task-baseline.json`、farmer lock、session state、`00_project/state/3d-smoke/` 和未验证 outbox 不属于项目发布内容。
+
 ## 等级
 
 - `P0`：规则、skill、schema、Manifest、变量目录、任务卡、源码和索引脚本。Gitee、Drive、本地都保留，永不自动删除。

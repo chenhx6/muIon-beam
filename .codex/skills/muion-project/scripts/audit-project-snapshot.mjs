@@ -22,10 +22,11 @@ try {
   if (crypto.createHash('sha256').update(JSON.stringify(files)).digest('hex') !== state.manifest_sha256) throw new Error('snapshot manifest SHA256 mismatch');
   if (state.status !== 'three-way-verified' || !state.verified_at || state.errors?.length || state.pending_actions?.length) throw new Error('snapshot state is not verified');
   if (!state.local_commit || state.gitee_remote_commit !== state.local_commit || runGit(root, ['merge-base', '--is-ancestor', state.local_commit, localCommit], { allowFailure: true }).status !== 0) throw new Error('snapshot commit is not verified history');
-  if (!state.gitee_tag) throw new Error('snapshot tag is missing');
-  const tagResult = runGit(root, ['ls-remote', 'origin', `refs/tags/${state.gitee_tag}^{}`], { allowFailure: true });
-  const tagCommit = tagResult.status === 0 ? tagResult.stdout.trim().split(/\s+/)[0] : null;
-  if (!tagCommit || tagCommit !== state.gitee_tag_commit || runGit(root, ['merge-base', '--is-ancestor', tagCommit, state.local_commit], { allowFailure: true }).status !== 0) throw new Error('snapshot tag verification failed');
+  if (state.gitee_tag) {
+    const tagResult = runGit(root, ['ls-remote', 'origin', `refs/tags/${state.gitee_tag}^{}`], { allowFailure: true });
+    const tagCommit = tagResult.status === 0 ? tagResult.stdout.trim().split(/\s+/)[0] : null;
+    if (!tagCommit || tagCommit !== state.gitee_tag_commit || runGit(root, ['merge-base', '--is-ancestor', tagCommit, state.local_commit], { allowFailure: true }).status !== 0) throw new Error('snapshot tag verification failed');
+  }
   const seen = new Set();
   for (const file of files) {
     if (!file.path || path.isAbsolute(file.path) || file.path.split(/[\\/]/).includes('..') || !isPathInside(path.join(root, file.path), root) || !isPathInside(path.join(drivePath, file.path), drivePath) || seen.has(file.path)) throw new Error('invalid or duplicate snapshot path');
@@ -43,6 +44,7 @@ try {
 } catch (error) {
   errors.push(`sync-state: ${error.code || error.message}`);
 }
-const result = { read_only: true, drive_path: drivePath, local_commit: localCommit, gitee_remote_commit: remoteCommit, tracked_files_checked: tracked.length, snapshot_files_checked: fileCount, mismatches: errors, drive_state_verified: stateValid, status: remoteCommit === localCommit && errors.length === 0 && stateValid ? 'three-way-verified' : 'drift-detected' };
+const reference = (() => { try { return JSON.parse(fs.readFileSync(statePath, 'utf8')).gitee_tag ? 'tag' : 'branch'; } catch { return null; } })();
+const result = { read_only: true, drive_path: drivePath, local_commit: localCommit, gitee_remote_commit: remoteCommit, tracked_files_checked: tracked.length, snapshot_files_checked: fileCount, mismatches: errors, drive_state_verified: stateValid, reference, status: remoteCommit === localCommit && errors.length === 0 && stateValid ? 'three-way-verified' : 'drift-detected' };
 console.log(JSON.stringify(result, null, 2));
 process.exitCode = result.status === 'three-way-verified' ? 0 : 2;

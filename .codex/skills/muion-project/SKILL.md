@@ -7,6 +7,8 @@ metadata:
 
 # muion-project
 
+`muion-project` is the single authority for delivery policy, durable project assets, Gitee/Google Drive synchronization, task closure, three-end audits, and restartable milestones. Other skills produce artifacts and evidence; they do not publish independently.
+
 Use this project skill for tasks inside `D:\muIon-beam` involving physics planning, SolidWorks geometry, COMSOL simulation, Geant4 transport, result reporting, Gitee publication, Google Drive archiving, or local file lifecycle management.
 
 ## Hard boundaries
@@ -60,6 +62,7 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `farmer`: ensure the project-local Codex Desktop session supervisor is running.
 - `evolution`: manual-only discovery and safe incremental adoption of external skills and scripts.
 - `auto-publish`: after validation, automatically commit and push only task-owned files; result tags require finalized reports and verified Drive/three-end state.
+- `task:begin` / `task:status` / `task:close` / `task:retry`: manage the delivery gate and pending outbox.
 
 Read only the relevant reference file for the selected mode. Do not load every reference by default.
 
@@ -68,6 +71,8 @@ Read only the relevant reference file for the selected mode. Do not load every r
 When a task is opened inside `D:\\muIon-beam`, ensure `farmer:ensure` has run and read lightweight project status. The workflow may select other modes automatically as the task moves through phases; users do not need to invoke each phase separately. `evolution` is manual-only and must never be started by ordinary project work.
 
 At task start, record the Git baseline with `begin-task.mjs`. After task-owned changes pass validation, run `auto-commit-push.mjs --baseline <baseline>`; it refuses pre-existing user changes, protected model/output paths and missing baselines. Create an annotated result tag only after the report, Drive receipt and three-end audit are verified, and generate its Chinese note automatically.
+
+Project assets that make a clone restartable (rules, skills, scripts, schemas, templates, task/model/run manifests, reports, indexes, milestone records and lightweight result files) are Gitee durable assets and must also be present in the matching Drive project snapshot. Local baselines, locks, session state, caches, generated smoke environments and unverified outboxes remain local.
 
 ## Required project artifacts
 

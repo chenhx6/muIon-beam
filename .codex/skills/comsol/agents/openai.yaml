@@ -1,0 +1,5 @@
+interface:
+  display_name: "COMSOL Block"
+  short_description: "Build, solve, diagnose and report bounded COMSOL cases"
+  default_prompt: "Use the repository COMSOL Block contract and adapter workflow; diagnose before expanding scans."
+

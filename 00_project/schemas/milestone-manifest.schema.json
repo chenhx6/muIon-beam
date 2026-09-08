@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/milestone-manifest.schema.json",
+  "type": "object",
+  "required": ["milestone_id", "task_id", "source_commit", "status", "source_files", "result_files", "report_files"],
+  "properties": {
+    "milestone_id": {"type": "string"},
+    "task_id": {"type": "string"},
+    "source_commit": {"type": "string"},
+    "gitee_ref": {"type": ["string", "null"]},
+    "drive_snapshot": {"type": ["string", "null"]},
+    "source_files": {"type": "array", "items": {"type": "string"}},
+    "result_files": {"type": "array", "items": {"type": "string"}},
+    "report_files": {"type": "array", "items": {"type": "string"}},
+    "rebuild_commands": {"type": "array", "items": {"type": "string"}},
+    "sha256": {"type": "object", "additionalProperties": {"type": "string"}},
+    "status": {"enum": ["planned", "pending", "verified", "superseded"]},
+    "next_action": {"type": ["string", "null"]}
+  }
+}

@@ -6,6 +6,7 @@ import { parseYamlFile } from '../.codex/skills/muion-project/scripts/yaml-lite.
 const root = path.resolve(import.meta.dirname, '..');
 const required = [
   'AGENTS.md',
+  '00_project/config/delivery-policy.json',
   'README.md',
   '.gitignore',
   '.codex/skills/muion-project/SKILL.md',
@@ -20,6 +21,9 @@ const required = [
   '.codex/skills/evolution/agents/openai.yaml',
   '00_project/traceability/capability-map.yaml',
   '00_project/traceability/variable-catalog.yaml',
+  '00_project/schemas/milestone-manifest.schema.json',
+  '.codex/skills/muion-project/scripts/task-close.mjs',
+  '.codex/skills/muion-project/scripts/delivery-plan.mjs',
   '00_project/traceability/VARIABLE_CATALOG.md',
   '00_project/traceability/VARIABLE_CATALOG.csv',
   '00_project/templates/task-card.yaml',

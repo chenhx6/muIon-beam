@@ -24,6 +24,11 @@
         "path": {"type": "string"},
         "role": {"type": "string"},
         "retention_level": {"enum": ["P0", "P1", "P2", "P3"]},
+        "upload_policy": {"enum": ["gitee", "drive", "both", "local-only"]},
+        "gitee_status": {"type": ["string", "null"]},
+        "drive_status": {"type": ["string", "null"]},
+        "source_refs": {"type": "array", "items": {"type": "string"}},
+        "rebuild_commands": {"type": "array", "items": {"type": "string"}},
         "sha256": {"type": ["string", "null"]}
       }
     }

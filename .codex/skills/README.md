@@ -2,6 +2,8 @@
 
 本 README 只约束同级的四个 `3d-*` Skill，不改变其它 Skill。
 
+交付由 `muion-project` 统一管理：脚本、参数、Manifest、轻量报告和几何证据属于 Gitee durable asset，并同步到 Drive project snapshot；原生 CAD、完整导出、大型日志和高分辨率图属于 Drive 资产。四个 3D skill 不直接执行 Gitee/Drive 发布。
+
 - **边界**：只负责三维几何的创建、读取、修改、重建、检查、改形和输出。不负责 COMSOL、Geant4、电磁模拟、粒子输运、热分析、结构力学模拟、仿真结果分析、束流优化或物理可行性判断。其它模块只通过几何接口使用结果。
 - **层级**：G0 — Concept Geometry（概念和需求表达）；G1 — Feasibility Geometry（可行性几何，当前默认）；G2 — Engineering Geometry（真实工程结构）；G3 — Manufacturing Geometry（制造、公差和工艺）。
 - **G1**：探索性几何，不是冻结工程设计。初始参数是软约束；保持原物理概念和大致设备尺度时，可调整尺寸、截面、局部形状/拓扑、凹槽、过渡面、梯形/锥形、圆角/倒角、组件位置和布局。约 100 mm 可探索到 150 mm；无明确理由变为 10000 mm 应警告或停止。不得预设 ±10%/±20% 等死比例。尺度检查问的是“在当前设备概念下是否属于现实世界可能存在的结构”，不据此证明物理性能。

@@ -70,9 +70,11 @@ cache-audit
 
 ## 项目任务启动契约
 
-进入 D:\\muIon-beam 的任务时，先检查必要工具；缺少已允许的工具时用 evolution 的 toolchain recovery 以当前用户范围安装并校验，然后幂等执行 npm run farmer:ensure，再读取轻量项目状态。farmer 只监督本项目 Codex Desktop session，不改变模型、任务目标或 Manifest。其他工作流 skill 由 autopilot 根据任务阶段自动选择；只有 evolution 的外部能力搜索需要用户明确触发。
+进入 D:\\muIon-beam 的任务时，先检查必要工具；缺少已允许的工具时用 evolution 的 toolchain recovery 以当前用户范围安装并校验。由于 Codex Desktop shell 可能没有继承 npm PATH，启动 farmer 必须优先使用 `node .codex/skills/farmer/farmer.mjs ensure`，不得把 `npm run farmer:ensure` 作为唯一入口；工具链检查成功后才可使用 npm scripts。farmer 只监督本项目 Codex Desktop session，不改变模型、任务目标或 Manifest。其他工作流 skill 由 autopilot 根据任务阶段自动选择；只有 evolution 的外部能力搜索需要用户明确触发。
 
 默认采用事件触发的三端审计：正式运行完成、报告定稿、Drive 归档、Gitee 发布和任务关闭时执行。Windows 每日定时审计不是默认流程；若以后启用，只能运行只读审计，不得自动提交、上传或删除。
+
+架构、skill、脚本、schema、模板、任务/模型/运行 Manifest、报告、索引和轻量里程碑属于 durable project assets：进入 Gitee 后必须同步到对应 Drive 项目快照。`task-baseline.json`、farmer/session runtime state、`00_project/state/3d-smoke/`、缓存和未验证 outbox 只保留本地。`evolution` 只能由用户显式触发，先报告候选和建议，用户决定采用范围后才能进入项目交付。
 
 ## 自动提交和发布契约
 

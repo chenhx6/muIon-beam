@@ -10,7 +10,12 @@ const localRoot = path.join(process.env.LOCALAPPDATA || path.join(process.env.US
 const npmRoot = path.join(localRoot, 'npm');
 const binRoot = path.join(localRoot, 'bin');
 const nodePath = process.execPath;
+const npmExecutable = path.join(binRoot, process.platform === 'win32' ? 'npm.cmd' : 'npm');
 function commandExists(command) { const result = spawnSync(process.platform === 'win32' ? 'where.exe' : 'which', [command], { encoding: 'utf8', windowsHide: true }); return result.status === 0; }
+function prependCurrentPath(dir) {
+  const parts = String(process.env.PATH || '').split(path.delimiter).filter(Boolean);
+  if (!parts.some((part) => path.resolve(part).toLowerCase() === path.resolve(dir).toLowerCase())) process.env.PATH = [dir, ...parts].join(path.delimiter);
+}
 function userPathAdd(dir) {
   if (process.platform !== 'win32') return;
   const safe = dir.replaceAll("'", "''");
@@ -19,7 +24,11 @@ function userPathAdd(dir) {
   if (result.status !== 0) throw new Error(result.stderr || 'failed to update user PATH');
 }
 export async function ensureNpm({ install = false, fetchImpl = fetch } = {}) {
-  if (commandExists('npm') || fs.existsSync(path.join(binRoot, process.platform === 'win32' ? 'npm.cmd' : 'npm'))) return { status: 'available', command: 'npm' };
+  if (commandExists('npm')) return { status: 'available', command: 'npm', executable: 'npm' };
+  if (fs.existsSync(npmExecutable)) {
+    prependCurrentPath(binRoot);
+    return { status: 'available', command: npmExecutable, executable: npmExecutable, path_added_to_process: true };
+  }
   if (!install) return { status: 'missing', command: 'npm', action: 'run ensure-toolchain with --install' };
   const metadata = await (await fetchImpl(npmMetadataUrl)).json();
   const expected = metadata.dist.integrity;
@@ -36,10 +45,11 @@ export async function ensureNpm({ install = false, fetchImpl = fetch } = {}) {
   fs.rmSync(packageRoot, { recursive: true, force: true });
   fs.renameSync(path.join(temp, 'package'), packageRoot);
   fs.mkdirSync(binRoot, { recursive: true });
-  fs.writeFileSync(path.join(binRoot, 'npm.cmd'), '@echo off\r\n"' + nodePath + '" "' + path.join(packageRoot, 'bin/npm-cli.js') + '" %*\r\n', 'ascii');
+  fs.writeFileSync(npmExecutable, '@echo off\r\n"' + nodePath + '" "' + path.join(packageRoot, 'bin/npm-cli.js') + '" %*\r\n', 'ascii');
   fs.writeFileSync(path.join(binRoot, 'npx.cmd'), '@echo off\r\n"' + nodePath + '" "' + path.join(packageRoot, 'bin/npx-cli.js') + '" %*\r\n', 'ascii');
   userPathAdd(binRoot);
-  return { status: 'installed', command: 'npm', version: metadata.version, install_root: npmRoot, bin_root: binRoot, integrity: actual };
+  prependCurrentPath(binRoot);
+  return { status: 'installed', command: npmExecutable, executable: npmExecutable, version: metadata.version, install_root: npmRoot, bin_root: binRoot, integrity: actual, path_added_to_process: true };
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const install = process.argv.includes('--install');

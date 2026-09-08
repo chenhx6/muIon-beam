@@ -55,3 +55,8 @@ _work/cache/*.sqlite
 # 高分辨率 QA 预览保留本地/Drive，不直接进入 Gitee
 04_results/figures/**/*.tiff
 04_results/figures/**/*.tif
+
+# 本地任务基线和 3D 冒烟依赖环境
+00_project/state/task-baseline.json
+00_project/state/3d-smoke/
+00_project/state/task-close-*.json

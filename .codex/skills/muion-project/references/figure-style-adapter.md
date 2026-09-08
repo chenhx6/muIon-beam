@@ -9,3 +9,5 @@
 不要求每一张临时图达到投稿级质量。图的科学问题和来源关系优先于装饰样式。
 
 当前项目默认使用 Python backend（已由 `nature_figure_backend.py` 保存）。重要图按上游 `nature-figure` 的 contract、alignment、PDF text 和 collision QA 执行；迁移冒烟测试的单面板图只验证运行时和导出链，不代表新的科学结论。
+
+新项目图必须由可运行的绘图或导出脚本生成，并在 Manifest 中保存脚本和输入快照的路径及 SHA256。不得把只有图片、没有可复现来源的 AI 或手工图件登记为正式科学图。轻量来源、输出和 QA 字段的具体流程见 `figure-workflow.md`。

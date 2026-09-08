@@ -29,6 +29,7 @@
     "cache:audit": "node .codex/skills/muion-project/scripts/audit-cache.mjs",
     "gitee:note": "node .codex/skills/muion-project/scripts/create-result-note.mjs",
     "nature:install": "node .codex/skills/muion-project/scripts/install-nature-figure.mjs",
+    "figure:qa": "node .codex/skills/muion-project/scripts/figure-qa.mjs",
     "acceptance:finalize": "node .codex/skills/muion-project/scripts/finalize-legacy-acceptance.mjs"
     ,"farmer:ensure": "node .codex/skills/farmer/farmer.mjs ensure"
     ,"farmer:start": "node .codex/skills/farmer/farmer.mjs start"

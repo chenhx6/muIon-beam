@@ -10,7 +10,16 @@ node .codex/skills/muion-project/scripts/build-variable-catalog-view.mjs
 node .codex/skills/muion-project/scripts/build-index.mjs .
 node .codex/skills/muion-project/scripts/build-detailed-report.mjs <run-directory>
 node .codex/skills/muion-project/scripts/generate-cleanup-report.mjs .
+node .codex/skills/muion-project/scripts/figure-qa.mjs --manifest <run-directory>/report/figure-manifest.json
 ```
+
+`figure-qa.mjs` checks new code-bound figure entries, source/input/output SHA256
+values, SVG presence, the final-figure PDF requirement, and historical-import
+exceptions. Add `--for-report` when a figure is about to enter a report; that mode
+requires a separate compact QA record proving machine and visual review passed. It
+does not copy source data or image binaries. Selected pinned `nature-figure` audit
+implementations are absorbed under `scripts/figure_checks`; the vendored source is
+reference-only and is not a second user-facing workflow.
 
 所有清理相关脚本默认只生成报告。`formalize-fast-track.mjs` 拒绝覆盖已有目标目录。
 

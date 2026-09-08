@@ -2,19 +2,16 @@ schema_version: 1.0.0
 figures:
   - figure_id: FIG-RUN-YYYYMMDD-NNN-checkpoint-00-baseline
     run_id: RUN-YYYYMMDD-NNN-short-name
-    checkpoint_id: checkpoint-00-baseline
-    figure_type: diagnostic
-    title_zh: ""
-    factor_variables: []
-    response_metrics: []
-    control_variables: []
-    analysis_id: null
-    source_data: []
-    generation_script: null
-    model_references: []
-    parameter_references: []
-    sha256: null
-    retention_level: P2
-    drive_path: null
-    gitee_path: null
-    interpretation_zh: ""
+    figure_class: diagnostic
+    source_code:
+      path: ""
+      sha256: ""
+    input_snapshot:
+      run_manifest: ""
+      source_data: []
+    backend: python
+    outputs: []
+    qa:
+      status: fail
+      report: ""
+    semantic_note: null

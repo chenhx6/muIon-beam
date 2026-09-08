@@ -27,6 +27,17 @@ for (const file of files) {
     for (const field of ['manifest_id', 'model_id', 'model_name', 'revision', 'files']) if (!(field in doc)) errors.push(`${relative}: missing ${field}`);
   } else if (type === 'figure-manifest') {
     if (!Array.isArray(doc.figures)) errors.push(`${relative}: figures must be a list`);
+    for (const [index, figure] of (doc.figures || []).entries()) {
+      if (figure?.legacy_source_path && !figure.source_code) continue;
+      for (const field of ['figure_id', 'run_id', 'figure_class', 'source_code', 'input_snapshot', 'backend', 'outputs', 'qa']) {
+        if (!(field in (figure || {}))) errors.push(`${relative}: figures[${index}] missing ${field}`);
+      }
+      if (figure?.figure_class && !['diagnostic', 'analysis', 'final'].includes(figure.figure_class)) errors.push(`${relative}: figures[${index}] invalid figure_class`);
+      if (figure?.source_code && (!figure.source_code.path || !figure.source_code.sha256)) errors.push(`${relative}: figures[${index}] source_code requires path and sha256`);
+      if (figure?.input_snapshot && (!figure.input_snapshot.run_manifest || !Array.isArray(figure.input_snapshot.source_data))) errors.push(`${relative}: figures[${index}] input_snapshot requires run_manifest and source_data`);
+      if (figure?.outputs && (!Array.isArray(figure.outputs) || !figure.outputs.length)) errors.push(`${relative}: figures[${index}] outputs must be a non-empty list`);
+      if (figure?.qa && !['pass', 'warn', 'fail'].includes(figure.qa.status)) errors.push(`${relative}: figures[${index}] invalid qa.status`);
+    }
   } else if (type === 'behavior-analysis') {
     if (!Array.isArray(doc.analyses)) errors.push(`${relative}: analyses must be a list`);
   } else if (type === 'sync-state') {

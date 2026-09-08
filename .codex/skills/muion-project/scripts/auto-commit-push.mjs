@@ -13,9 +13,12 @@ const paths = status.map((line) => line.slice(3)).filter(Boolean);
 const baselinePaths = new Set(baseline.paths || []);
 const existing = paths.filter((file) => baselinePaths.has(file));
 if (existing.length) throw new Error('pre-existing user changes require review: ' + existing.join(', '));
-const rejected = paths.filter((file) => policy.never_stage_prefixes.some((prefix) => file.startsWith(prefix)) || policy.never_stage_extensions.some((ext) => file.toLowerCase().endsWith(ext)));
+const verifiedSyncStates = paths.filter((file) => file.startsWith('00_project/traceability/sync-states/')).filter((file) => {
+  try { return JSON.parse(fs.readFileSync(path.join(root, file), 'utf8')).status === 'three-way-verified'; } catch { return false; }
+});
+const rejected = paths.filter((file) => !verifiedSyncStates.includes(file) && (policy.never_stage_prefixes.some((prefix) => file.startsWith(prefix)) || policy.never_stage_extensions.some((ext) => file.toLowerCase().endsWith(ext))));
 if (rejected.length) throw new Error('protected paths require explicit project workflow: ' + rejected.join(', '));
-const candidates = paths.filter((file) => !rejected.includes(file) && !file.startsWith('00_project/traceability/sync-states/') && !file.startsWith('00_project/traceability/sync-outbox/'));
+const candidates = paths.filter((file) => !rejected.includes(file) && (!file.startsWith('00_project/traceability/sync-states/') || verifiedSyncStates.includes(file)) && !file.startsWith('00_project/traceability/sync-outbox/'));
 if (!candidates.length) { console.log(JSON.stringify({ status: 'no-task-owned-files', pushed: false, rejected }, null, 2)); process.exit(0); }
 const tests = spawnSync(process.execPath, ['tests/architecture-smoke.mjs'], { cwd: root, encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 });
 if (tests.status !== 0) throw new Error('architecture test failed: ' + (tests.stderr || tests.stdout));

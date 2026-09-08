@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "node --test tests/*.mjs",
     "preflight": "node .codex/skills/muion-project/scripts/preflight.mjs .",
     "validate:manifest": "node .codex/skills/muion-project/scripts/validate-manifests.mjs",
     "validate:variables": "node .codex/skills/muion-project/scripts/validate-variable-catalog.mjs",

@@ -13,3 +13,11 @@ node .codex/skills/muion-project/scripts/generate-cleanup-report.mjs .
 ```
 
 所有清理相关脚本默认只生成报告。`formalize-fast-track.mjs` 拒绝覆盖已有目标目录。
+
+## 保留原迁移版本期间
+
+- `verify-legacy-migration.mjs` 为只读校验：分别报告旧源变化、本地副本和 Drive 副本的原始哈希一致性。`valid=true` 只表示本次技术检查通过，不能替代 `migration_complete` 或人工签收。
+- 用户的 `legacy-source-change-decision.json` 生效时，`legacy-migrate` 和冒烟实例重建在写入前返回状态 `awaiting-legacy-phase-completion`（退出码 2）。
+- `acceptance:finalize` 只读返回待定状态，不修改 Manifest，不自动写入 `structural-accepted`、`verified` 等成功标志。
+- 调用统一参数解析器的入口在 `--help` 时提前退出，不执行迁移、发布、数据库构建或同步。
+- 验证命令：`node --test tests/legacy-version-policy.test.mjs`。测试只使用 `_work/scratch` 下隔离样例。

@@ -1,8 +1,8 @@
 # 旧工作区迁移占位
 
-`D:\muIon` 的旧任务已经完成。本阶段允许按精选规则复制和校验，但仍不删除、整理或重命名旧原件。
+`D:\muIon` 正在继续气体密度—冷却关系图任务。用户已决定保留原迁移版本，后续源文件修改暂不采用；当前允许只读核对，暂停增量复制。原件不得删除、整理或重命名。
 
-迁移已经通过 `MIGRATION-LEGACY-20260907-STAGE1` 完成一轮真实实例；后续迁移仍必须建立独立任务卡，并按以下顺序进行：
+`MIGRATION-LEGACY-20260907-STAGE1` 已产生一批迁移实例，但整体迁移状态为 `awaiting-legacy-phase-completion`，人工最终验收尚未完成。版本选择及观测哈希见 `00_project/decisions/legacy-source-change-decision.json`。待用户确认旧任务阶段完成后，再按以下顺序处理增量：
 
 ```text
 source-index

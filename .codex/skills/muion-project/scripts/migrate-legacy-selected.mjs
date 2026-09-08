@@ -1,9 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs, ensureDirectory, sha256File, jsonRead, jsonWrite, relativePath, nowIso } from './project-utils.mjs';
+import { requireLegacyPhaseComplete } from './legacy-version-policy.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const projectRoot = path.resolve(args.project_root || path.resolve(import.meta.dirname, '../../../..'));
+requireLegacyPhaseComplete(projectRoot, 'legacy-migrate');
 const source = path.resolve(args.source || 'D:/muIon');
 const destinationRoot = path.resolve(args.destination || path.join(projectRoot, '90_migration/from-D-muIon'));
 const indexPath = path.resolve(args.index || path.join(destinationRoot, 'source-index/legacy-source-index.json'));

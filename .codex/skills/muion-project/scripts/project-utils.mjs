@@ -4,6 +4,11 @@ import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 
 export function parseArgs(argv) {
+  // Return before a command can open databases, copy files or write state.
+  if (argv.includes('--help') || argv.includes('-h')) {
+    console.log(`Usage: node ${path.basename(process.argv[1] || 'project-tool.mjs')} [options]\n--help: show help without running the operation. See the project skill and scripts README for command arguments.`);
+    process.exit(0);
+  }
   const result = { _: [] };
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i];

@@ -12,7 +12,7 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 ## Hard boundaries
 
 - Read the repository `AGENTS.md` before acting.
-- The legacy workspace `D:\muIon` may be inventoried and selectively copied after its work is complete, but preserve the source and never delete or reorganize it during migration.
+- The legacy workspace `D:\muIon` is active again. Retain the already migrated baseline and read `00_project/decisions/legacy-source-change-decision.json` for the user's keep-original decision. Do not adopt subsequent source changes or start incremental migration until the user confirms phase completion. Preserve all source files.
 - Treat Manifest files as the source of truth. SQLite and Markdown/CSV are generated views.
 - Preserve user changes. Never reset or overwrite an unregistered model or code change.
 - Before the first formal run, pause when a task-related model differs from its registered version.

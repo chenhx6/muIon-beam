@@ -1,0 +1,38 @@
+{
+  "read_only": true,
+  "observed_at_local": "2026-09-08",
+  "manifest": "D:\\muIon-beam\\90_migration\\from-D-muIon\\migration-manifest.json",
+  "checked": 293,
+  "local_files_verified": 293,
+  "drive_files_verified": 293,
+  "drive_files_requested": 293,
+  "retained_baseline_valid": true,
+  "source_matches_migration_hash": false,
+  "source_changes": [
+    {
+      "file": "BuildCenteredCoolingModel.java",
+      "disposition": "not-adopted",
+      "decision_id": "DECISION-LEGACY-KEEP-MIGRATED-001"
+    },
+    {
+      "file": "RunCenteredCoolingScan.java",
+      "disposition": "not-adopted",
+      "decision_id": "DECISION-LEGACY-KEEP-MIGRATED-001"
+    },
+    {
+      "file": "make_centered_cooling_threshold_plot.ps1",
+      "disposition": "not-adopted",
+      "decision_id": "DECISION-LEGACY-KEEP-MIGRATED-001"
+    },
+    {
+      "file": "scripts/README.md",
+      "disposition": "not-adopted",
+      "decision_id": "DECISION-LEGACY-KEEP-MIGRATED-001"
+    }
+  ],
+  "source_write_performed": false,
+  "overall_migration_status": "awaiting-legacy-phase-completion",
+  "migration_complete": false,
+  "human_acceptance": "pending",
+  "errors": []
+}

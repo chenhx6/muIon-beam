@@ -10,6 +10,7 @@
     "build:index": "node .codex/skills/muion-project/scripts/build-index-views.mjs .",
     "cleanup:report": "node .codex/skills/muion-project/scripts/generate-cleanup-report.mjs .",
     "test:architecture": "node tests/architecture-smoke.mjs",
+    "test:legacy-policy": "node --test tests/legacy-version-policy.test.mjs",
     "index:sqlite": "node .codex/skills/muion-project/scripts/build-index-sqlite.mjs .",
     "legacy:inventory": "node .codex/skills/muion-project/scripts/index-legacy-workspace.mjs --source D:\\muIon",
     "legacy:migrate": "node .codex/skills/muion-project/scripts/migrate-legacy-selected.mjs --source D:\\muIon",

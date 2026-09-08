@@ -1,9 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs, projectRootFromHere, jsonRead, jsonWrite, sha256File, ensureDirectory, relativePath, nowIso } from './project-utils.mjs';
+import { requireLegacyPhaseComplete } from './legacy-version-policy.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
+requireLegacyPhaseComplete(root, 'legacy-smoke-regeneration');
 const migrationPath = path.resolve(args.migration || path.join(root, '90_migration/from-D-muIon/migration-manifest.json'));
 const migration = jsonRead(migrationPath);
 const taskId = args.task_id || 'TASK-LEGACY-SMOKE-001';

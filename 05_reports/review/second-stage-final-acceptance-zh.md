@@ -1,5 +1,13 @@
 # muon-ion beam 第二阶段最终验收报告
 
+## 最新验收边界（用户后续决定）
+
+本报告尚未最终签收。用户确认旧工作区仍在执行气体密度—冷却关系图任务，并选择保留原迁移版本。`BuildCenteredCoolingModel.java`、`RunCenteredCoolingScan.java` 和 `make_centered_cooling_threshold_plot.ps1` 的旧工作区后续变化已登记为未采用；新工作区的三份原迁移副本仍与迁移哈希一致。详见 `00_project/decisions/legacy-source-change-decision.json`。
+
+整体迁移状态为 `awaiting-legacy-phase-completion`，人工验收为 `pending`。下文“通过”仅表示此前执行时的技术检查，不表示当前旧源全部与迁移快照相同，也不表示整体迁移或人工验收完成。待用户确认阶段任务结束后，再盘点增量并修订迁移记录，不覆盖旧版本。
+
+命令行认证复查保留了 Git Credential Manager。非交互 `git push --dry-run` 返回需要交互读取用户名；这是 HTTPS 推送认证未就绪，不是本地文件或 Git 作者姓名的问题。此前禁用 credential helper 的测试只能证明该测试未获得凭据，不能单独证明浏览器登录错误。
+
 ## 验收范围
 
 本报告验收 `D:\muIon-beam` 的文件夹框架、任务分流、文件生命周期、精选迁移、Manifest、SQLite、模型指纹、Nature 绘图、Gitee 发布和三端同步。`D:\muIon` 只作为迁移来源读取，未被删除、整理或重命名。

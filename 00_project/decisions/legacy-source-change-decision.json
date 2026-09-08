@@ -1,0 +1,39 @@
+{
+  "decision_id": "DECISION-LEGACY-KEEP-MIGRATED-001",
+  "decision_type": "legacy-source-change-disposition",
+  "migration_manifest": "90_migration/from-D-muIon/migration-manifest.json",
+  "run_id": "RUN-LEGACY-SMOKE-001-stage1-centered",
+  "decision": "keep-original-migrated-version",
+  "authority": "explicit-user-instruction",
+  "source_workspace_state": "active-gas-density-cooling-plot-task",
+  "overall_migration_status": "awaiting-legacy-phase-completion",
+  "human_acceptance": "pending",
+  "scientific_revalidation": "not-performed",
+  "semantics": "Retain the copied/published baseline and its hashes. The observed source changes are not adopted. Further legacy changes remain separate until the user confirms phase completion. This decision neither deletes source files nor certifies final migration acceptance.",
+  "files": [
+    {
+      "destination_path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/BuildCenteredCoolingModel.java",
+      "retained_sha256": "2d55f72bda9a581c8ecb8b6c938292f4a6723c05f25fd868e3df9764c79afd52",
+      "observed_source_sha256": "8723bce2a7263efd2be9fefb86dc6fe4395a37d882fa723713b4020b3dc106cb",
+      "legacy_source_path": "D:\\muIon\\muIon_archive\\muon-ion_beam\\stage1_3d_feasibility\\scripts\\BuildCenteredCoolingModel.java",
+      "disposition": "not-adopted",
+      "retained_copy_matches_manifest": true
+    },
+    {
+      "destination_path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunCenteredCoolingScan.java",
+      "retained_sha256": "6f82cd384ac2d9e1992fbe48c76f42783bf8a2c04536c81f3ad7bffeeedc53d7",
+      "observed_source_sha256": "03d029a31b5f05db034c6940de148db12a862d637c6fb0be2d09841e6d79a009",
+      "legacy_source_path": "D:\\muIon\\muIon_archive\\muon-ion_beam\\stage1_3d_feasibility\\scripts\\RunCenteredCoolingScan.java",
+      "disposition": "not-adopted",
+      "retained_copy_matches_manifest": true
+    },
+    {
+      "destination_path": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/make_centered_cooling_threshold_plot.ps1",
+      "retained_sha256": "65b8c7b1ad8ecf012358b7ab9e90fcae7cb6d37979c1c30cbd9124923c5c3a70",
+      "observed_source_sha256": "f265376eda398ecd80af0d764d5e1640660e67d2c29f7e9987bebdc5c19785a7",
+      "legacy_source_path": "D:\\muIon\\muIon_archive\\muon-ion_beam\\stage1_3d_feasibility\\scripts\\make_centered_cooling_threshold_plot.ps1",
+      "disposition": "not-adopted",
+      "retained_copy_matches_manifest": true
+    }
+  ]
+}

@@ -3837,6 +3837,8 @@
   "errors": [],
   "verified_at": "2026-09-08T20:19:52.432Z",
   "snapshot_commit": "539c9b8ee3db4242804230a4bdf6fe0701b5cfa6",
-  "metadata_stage": "seed",
-  "metadata_recorded_at": "2026-09-08T21:43:06.589Z"
+  "metadata_stage": "finalized",
+  "metadata_recorded_at": "2026-09-08T21:43:06.589Z",
+  "metadata_commit": "3a96ca4312c6ea48140b64820201a865113bacff",
+  "metadata_finalized_at": "2026-09-08T21:43:06.765Z"
 }

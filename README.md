@@ -20,6 +20,15 @@
 6. 由 Manifest 生成 SQLite、Markdown/CSV 索引。
 7. 归档到 Google Drive 并完成 Gitee 标签和中文说明。
 
+## 自动工作流入口
+
+进入本项目任务时，项目会幂等确保 farmer 监督进程运行。可使用：
+
+    node .codex/skills/farmer/farmer.mjs ensure
+    node .codex/skills/muion-project/scripts/up.mjs .
+
+工作流阶段由项目 skill 自动衔接；只有需要主动发现和吸收外部能力时才调用 evolution。常用检查命令包括 farmer:status、farmer:once、test:agent-routing 和 test:evolution。
+
 ## 物理区域
 
 `R01` 至 `R06` 只用于物理定义和索引。一次运行涉及多个区域时，在运行 Manifest 的 `physical_regions` 中列出多个区域，不复制运行文件。

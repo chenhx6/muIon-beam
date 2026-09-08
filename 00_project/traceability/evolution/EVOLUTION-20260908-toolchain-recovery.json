@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "evolution_id": "EVOLUTION-20260908-toolchain-recovery",
+  "trigger": "missing npm blocked normal project workflow",
+  "category": "toolchain-recovery",
+  "source": {
+    "url": "https://registry.npmjs.org/npm",
+    "version": "12.0.2",
+    "integrity": "sha512-uIXokLlBj6FpNUTQX1PmT5pz7BlIN9QlixX+zdaSNHsd0qUXsbDLr50xzY6Sw7cJVr0uzHKDOle0swmPW/p5Qw=="
+  },
+  "install": {
+    "scope": "current-user",
+    "root": "C:/Users/Administrator/AppData/Local/muion-tools",
+    "path_updated": true
+  },
+  "validation": [
+    "npm --version",
+    "npx --version",
+    "npm run test:architecture",
+    "npm run test:agent-routing",
+    "npm run test:evolution",
+    "npm run farmer:once -- --dry-run"
+  ],
+  "decision": "adopt",
+  "follow_up": "toolchain recovery is now an allowlisted evolution capability"
+}\n

@@ -1,0 +1,4 @@
+interface:
+  display_name: "evolution"
+  short_description: "Discover and safely absorb external project capabilities"
+  default_prompt: "Run evolution only when the user explicitly invokes it."

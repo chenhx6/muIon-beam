@@ -68,4 +68,8 @@ install-nature-figure
 cache-audit
 ```
 
+## 项目任务启动契约
+
+进入 D:\\muIon-beam 的任务时，先检查必要工具；缺少已允许的工具时用 evolution 的 toolchain recovery 以当前用户范围安装并校验，然后幂等执行 npm run farmer:ensure，再读取轻量项目状态。farmer 只监督本项目 Codex Desktop session，不改变模型、任务目标或 Manifest。其他工作流 skill 由 autopilot 根据任务阶段自动选择；只有 evolution 的外部能力搜索需要用户明确触发。
+
 默认采用事件触发的三端审计：正式运行完成、报告定稿、Drive 归档、Gitee 发布和任务关闭时执行。Windows 每日定时审计不是默认流程；若以后启用，只能运行只读审计，不得自动提交、上传或删除。

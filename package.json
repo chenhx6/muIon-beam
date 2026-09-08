@@ -29,5 +29,18 @@
     "gitee:note": "node .codex/skills/muion-project/scripts/create-result-note.mjs",
     "nature:install": "node .codex/skills/muion-project/scripts/install-nature-figure.mjs",
     "acceptance:finalize": "node .codex/skills/muion-project/scripts/finalize-legacy-acceptance.mjs"
+    ,"farmer:ensure": "node .codex/skills/farmer/farmer.mjs ensure"
+    ,"farmer:start": "node .codex/skills/farmer/farmer.mjs start"
+    ,"farmer:once": "node .codex/skills/farmer/farmer.mjs once"
+    ,"farmer:status": "node .codex/skills/farmer/farmer.mjs status"
+    ,"farmer:stop": "node .codex/skills/farmer/farmer.mjs stop"
+    ,"farmer:test": "node --test tests/farmer.test.mjs"
+    ,"farmer:install": "node .codex/skills/farmer/farmer.mjs install"
+    ,"test:agent-routing": "node --test tests/agent-routing.test.mjs"
+    ,"test:evolution": "node --test tests/evolution.test.mjs"
+    ,"evolution:discover": "node .codex/skills/evolution/evolution.mjs ."
+    ,"toolchain:ensure": "node .codex/skills/evolution/scripts/ensure-toolchain.mjs --install"
+    ,"up": "node .codex/skills/muion-project/scripts/up.mjs ."
+    ,"build:capability-map": "node .codex/skills/muion-project/scripts/build-capability-map.mjs ."
   }
 }

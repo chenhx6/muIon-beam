@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { evaluateCandidate, hashContent } from '../.codex/skills/evolution/evolution.mjs';
+
+test('evolution accepts pinned tested permissive candidates', () => {
+  const result = evaluateCandidate({ capability_id: 'x', source_url: 'https://github.com/a/b', commit: 'abc', license: 'MIT', relevance: 1, stars: 100, tests: true, active: true }, []);
+  assert.equal(result.accepted, true);
+});
+test('evolution rejects unsafe or duplicate candidates', () => {
+  const result = evaluateCandidate({ capability_id: 'x', source_url: 'https://github.com/a/b', commit: 'abc', license: 'Unknown', install_hooks: true }, ['x']);
+  assert.equal(result.accepted, false);
+  assert.equal(result.reasons.length, 3);
+});
+test('evolution records stable content hashes', () => {
+  assert.equal(hashContent('abc'), 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+});

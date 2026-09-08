@@ -1,0 +1,18 @@
+schema_version: 1
+selection:
+  strategy: runtime-capability-first
+  quality_over_token_cost: true
+  preferred_reasoning: xhigh
+  max_reasoning_default: xhigh
+  allow_max_or_ultra: false
+  stale_catalog_seconds: 300
+  fallback_to_parent_model: true
+roles:
+  architect: { reasoning: xhigh }
+  critic: { reasoning: xhigh }
+  physics-reviewer: { reasoning: xhigh }
+  executor: { reasoning: xhigh }
+  researcher: { reasoning: xhigh }
+  qa: { reasoning: high }
+  reporter: { reasoning: high }
+  archivist: { reasoning: high }

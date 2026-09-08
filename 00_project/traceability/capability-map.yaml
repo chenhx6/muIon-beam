@@ -1,0 +1,82 @@
+schema_version: 1
+capabilities:
+  - capability_id: plan
+    source_concept: plan
+    existing_local_entrypoints: ["muion-project:plan", "00_project/templates/task-card.yaml"]
+    existing_scripts: []
+    existing_references: [".codex/skills/muion-project/references/workflow.md"]
+    decision: extend
+    decision_reason: "保留任务卡入口，增加澄清与共识门"
+    primary_entrypoint: "muion-project:plan"
+    aliases: [plan, deep-interview, consensus-plan]
+    tests: ["tests/architecture-smoke.mjs"]
+  - capability_id: preflight
+    source_concept: preflight-doctor
+    existing_local_entrypoints: ["npm run preflight", "npm run models:check"]
+    existing_scripts: [".codex/skills/muion-project/scripts/preflight.mjs", ".codex/skills/muion-project/scripts/check-model-changes.mjs"]
+    existing_references: []
+    decision: merge
+    decision_reason: "doctor 复用既有 preflight 和模型检查"
+    primary_entrypoint: "npm run preflight"
+    aliases: [doctor]
+    tests: ["tests/architecture-smoke.mjs"]
+  - capability_id: report-and-sync
+    source_concept: report-tag-sync
+    existing_local_entrypoints: ["npm run publish:and-sync", "npm run audit:three-end"]
+    existing_scripts: [".codex/skills/muion-project/scripts/publish-and-sync.mjs"]
+    existing_references: [".codex/skills/muion-project/references/archive-and-tagging.md"]
+    decision: reuse
+    decision_reason: "已有发布、归档和三端审计闭环"
+    primary_entrypoint: "npm run publish:and-sync"
+    aliases: [tag, archive-and-tag, audit]
+    tests: ["tests/project-snapshot.test.mjs"]
+  - capability_id: deep-interview
+    source_concept: deep-interview
+    existing_local_entrypoints: ["muion-project:plan"]
+    existing_scripts: []
+    existing_references: []
+    decision: new
+    decision_reason: "补充可恢复的需求澄清阶段"
+    primary_entrypoint: deep-interview
+    aliases: []
+    tests: ["tests/workflow-state.test.mjs"]
+  - capability_id: ultragoal
+    source_concept: ultragoal
+    existing_local_entrypoints: []
+    existing_scripts: []
+    existing_references: []
+    decision: new
+    decision_reason: "补充持久目标和检查点 ledger"
+    primary_entrypoint: ultragoal
+    aliases: [autopilot]
+    tests: ["tests/workflow-state.test.mjs"]
+  - capability_id: team
+    source_concept: team
+    existing_local_entrypoints: []
+    existing_scripts: []
+    existing_references: []
+    decision: new
+    decision_reason: "补充子 agent 派发与动态模型路由规范"
+    primary_entrypoint: team
+    aliases: [delegation]
+    tests: ["tests/agent-routing.test.mjs"]
+  - capability_id: farmer
+    source_concept: session-supervision
+    existing_local_entrypoints: []
+    existing_scripts: []
+    existing_references: []
+    decision: new
+    decision_reason: "项目专属 Codex Desktop session 监督"
+    primary_entrypoint: farmer
+    aliases: []
+    tests: ["tests/farmer.test.mjs"]
+  - capability_id: evolution
+    source_concept: external-skill-discovery
+    existing_local_entrypoints: []
+    existing_scripts: []
+    existing_references: []
+    decision: new
+    decision_reason: "手动触发的跨项目能力发现和增量接入"
+    primary_entrypoint: evolution
+    aliases: []
+    tests: ["tests/evolution.test.mjs"]

@@ -1,0 +1,4 @@
+interface:
+  display_name: "team"
+  short_description: "Dispatch isolated, model-routed sub-agent lanes"
+  default_prompt: "Use team only when parallel lanes materially improve the active goal."

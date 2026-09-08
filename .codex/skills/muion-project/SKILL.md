@@ -45,8 +45,25 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `cache-audit`: index cache files and generate safe cleanup candidates.
 - `retry-sync`: retry pending three-end sync records idempotently and clear only successfully verified outbox entries.
 - `install-nature-figure`: install or inspect the pinned external figure skill.
+- `up`: read current workflow, farmer, model and synchronization state.
+- `deep-interview`: turn a fuzzy research request into a durable requirements handoff.
+- `consensus-plan`: require Architect and Critic evidence before execution.
+- `autopilot`: route the approved task through execution, review, QA, report, tag and synchronization.
+- `ultragoal`: maintain durable goals, checkpoints and handoffs under `00_project/state`.
+- `team`: dispatch isolated sub-agent lanes using runtime model discovery.
+- `physics-review`: check dimensions, boundaries, conservation, ranges and interpretation.
+- `ultraqa`: run project, traceability, physics and report gates.
+- `best-practice-research`: gather cited upstream evidence before architecture decisions.
+- `autoresearch`: run bounded validator-gated research experiments.
+- `research-loop`: connect hypotheses, campaigns, runs, figures, reports and decisions.
+- `farmer`: ensure the project-local Codex Desktop session supervisor is running.
+- `evolution`: manual-only discovery and safe incremental adoption of external skills and scripts.
 
 Read only the relevant reference file for the selected mode. Do not load every reference by default.
+
+## Automatic project lifecycle
+
+When a task is opened inside `D:\\muIon-beam`, ensure `farmer:ensure` has run and read lightweight project status. The workflow may select other modes automatically as the task moves through phases; users do not need to invoke each phase separately. `evolution` is manual-only and must never be started by ordinary project work.
 
 ## Required project artifacts
 

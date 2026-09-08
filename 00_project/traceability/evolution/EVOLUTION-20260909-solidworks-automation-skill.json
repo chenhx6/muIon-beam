@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "recorded_at": "2026-09-09",
+  "trigger": "user-explicit-evolution",
+  "status": "candidate-reviewed-deferred-adoption",
+  "sources": [
+    {
+      "kind": "github-repository",
+      "url": "https://github.com/wzyn20051216/solidworks-automation-skill",
+      "ref": "main",
+      "commit": "5287d2e3d100dedb10e94910523f294a46176c54",
+      "license": "MIT",
+      "cache": "_work/cache/evolution/solidworks-automation-skill-5287d2e3d100dedb10e94910523f294a46176c54",
+      "archive_sha256": "C4D3D0FFC651741B5FDD3148428CFF752A61298E02A64B199275D7AE6CF0486D",
+      "inspected_files": ["SKILL.md", "capabilities.yaml", "golden-workflows.yaml", "scripts/sw_connect.py", "scripts/sw_part.py", "references/troubleshooting.md"]
+    },
+    {
+      "kind": "github-release",
+      "url": "https://github.com/wzyn20051216/solidworks-automation-skill/releases/tag/v0.3.4",
+      "ref": "v0.3.4",
+      "commit": "0eb24dc1b93adc9371ed605e35d82f9b93821420",
+      "license": "MIT"
+    },
+    {
+      "kind": "local-portable-release",
+      "path": "06_external_lib/CAD-Studio-0.3.4-Windows-x64-Portable",
+      "version": "0.3.4",
+      "license": "MIT",
+      "file_count": 173,
+      "total_bytes": 19954434,
+      "executable_sha256": "53E798B730BD6BA755EDB1AA484CCB167E8A4A9BEB8597D9B13923FCCDA3EE9F",
+      "license_sha256": "697F5FBC7DB69B6D8908A359695512E7DF39271B4EB603C3643D224C7519813D",
+      "skill_sha256": "5C0EA114FE06EA747C69BEF1165694E9C230A7320EADE552C87D69E307315563",
+      "capabilities_sha256": "5336F0BBD8E30ABE79C1ECD20DA848B8FA9D20186245F79DFAC3C81521FA1181"
+    }
+  ],
+  "findings": {
+    "reusable": [
+      "入口 preflight 与环境诊断",
+      "SolidWorksSession/连接封装和只关闭自有实例",
+      "COM 属性/方法兼容读取",
+      "显式空 Dispatch VARIANT 与 BYREF 参数",
+      "对象级 Feature/Sketch 选择，减少屏幕坐标和本地化名称依赖",
+      "真实保存/重开/回读/预览证据，而非只看 API 返回值",
+      "能力等级 verified/pilot/reference_only/not_implemented",
+      "Python COM → comtypes → C# PIA 的问题分流原则"
+    ],
+    "conflicts": [
+      "外部仓库把 CAD Studio、MCP、工程图、DFM、FEA、Routing、AutoCAD 和综合编排放在同一大系统，超出本项目当前 3D Domain",
+      "capabilities.yaml 作为全产品唯一能力真源会引入本项目暂不需要的复杂基础设施",
+      "外部制造图纸、FEA 和仿真能力不能进入当前四个 Skill"
+    ],
+    "safety": [
+      "不执行未知安装钩子或外部脚本",
+      "不复制外部完整 Skill 到 .codex/skills",
+      "不改变 COMSOL/Geant4 配置",
+      "不使用外部 FEA/仿真路由作为 3D 建模能力",
+      "保留 MIT LICENSE 和源版本信息"
+    ]
+  },
+  "tests": [
+    {"name": "source-inspection", "result": "pass", "detail": "GitHub 页面/raw 文件与本地便携版 Skill、能力清单、工作流和连接/零件脚本已读取"},
+    {"name": "local-release-integrity", "result": "pass", "detail": "版本、文件数、总大小、可执行文件和关键文档 SHA256 已记录"},
+    {"name": "project-architecture", "result": "pass", "detail": "tests/architecture-smoke.mjs"},
+    {"name": "project-solidworks-smoke", "result": "pass", "detail": "Python 3.14.7 + pywin32 + DispatchEx；原生 Sketch/Extrude/Cut/重命名/保存/重开/尺寸修改/Rebuild/再保存"}
+  ],
+  "decision": {
+    "adopt_now": false,
+    "rationale": "用户要求读取和学习，未明确授权将外部实现整体或局部并入；依据 evolution 规则先记录候选与建议，等待明确采用范围",
+    "recommended_scope": "只吸收 reusable findings 到 3d-model/3d-check/3d-export 的短参考规则；不复制 product infrastructure",
+    "next_action": "如需吸收，请指定一个或多个候选：COM session safety、API compatibility、geometry evidence、export hash ledger"
+  }
+}

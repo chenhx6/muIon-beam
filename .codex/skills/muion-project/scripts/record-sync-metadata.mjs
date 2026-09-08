@@ -1,0 +1,36 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { parseArgs, projectRootFromHere, runGit, jsonWrite, nowIso } from './project-utils.mjs';
+
+const args = parseArgs(process.argv.slice(2));
+const root = path.resolve(args.project_root || projectRootFromHere());
+if (!args.sync_state) throw new Error('provide --sync-state');
+const file = path.resolve(args.sync_state);
+const stateDir = path.join(root, '00_project/traceability/sync-states') + path.sep;
+if (!file.startsWith(stateDir)) throw new Error('sync-state must be under traceability/sync-states');
+const relative = path.relative(root, file).replaceAll('\\', '/');
+const staged = runGit(root, ['diff', '--cached', '--name-only']).stdout.split(/\r?\n/).filter(Boolean);
+if (staged.some((item) => item !== relative)) throw new Error('staged changes outside selected sync-state; refusing metadata commit');
+const state = JSON.parse(fs.readFileSync(file, 'utf8'));
+if (state.status !== 'three-way-verified') throw new Error('sync-state must be three-way-verified');
+if (state.metadata_commit) { console.log(JSON.stringify({ status: 'already-recorded', metadata_commit: state.metadata_commit }, null, 2)); process.exit(0); }
+const snapshotCommit = state.snapshot_commit || state.local_commit;
+if (!snapshotCommit) throw new Error('sync-state has no snapshot commit');
+state.snapshot_commit = snapshotCommit;
+state.metadata_stage = 'seed';
+state.metadata_recorded_at = nowIso();
+jsonWrite(file, state);
+runGit(root, ['add', '--', relative]);
+const seed = runGit(root, ['-c', 'user.name=Codex', '-c', 'user.email=codex@local', 'commit', '--only', '-m', `记录快照元数据 ${state.snapshot_id || state.sync_id}`, '--', relative], { allowFailure: true });
+if (seed.status !== 0) throw new Error(seed.stderr || seed.stdout || 'metadata seed commit failed');
+const metadataCommit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
+state.metadata_commit = metadataCommit;
+state.metadata_stage = 'finalized';
+state.metadata_finalized_at = nowIso();
+jsonWrite(file, state);
+runGit(root, ['add', '--', relative]);
+const final = runGit(root, ['-c', 'user.name=Codex', '-c', 'user.email=codex@local', 'commit', '--only', '-m', `固定快照元数据提交 ${state.snapshot_id || state.sync_id}`, '--', relative], { allowFailure: true });
+if (final.status !== 0) throw new Error(final.stderr || final.stdout || 'metadata finalization commit failed');
+const finalCommit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
+runGit(root, ['push', 'origin', 'HEAD:main'], { timeout: 120000 });
+console.log(JSON.stringify({ status: 'metadata-recorded', snapshot_commit: snapshotCommit, metadata_commit: metadataCommit, metadata_finalization_commit: finalCommit }, null, 2));

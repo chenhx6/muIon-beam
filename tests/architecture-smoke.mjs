@@ -24,6 +24,7 @@ const required = [
   '00_project/schemas/milestone-manifest.schema.json',
   '.codex/skills/muion-project/scripts/task-close.mjs',
   '.codex/skills/muion-project/scripts/delivery-plan.mjs',
+  '.codex/skills/muion-project/scripts/record-sync-metadata.mjs',
   '00_project/traceability/VARIABLE_CATALOG.md',
   '00_project/traceability/VARIABLE_CATALOG.csv',
   '00_project/templates/task-card.yaml',

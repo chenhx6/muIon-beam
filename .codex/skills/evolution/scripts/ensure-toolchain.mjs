@@ -14,7 +14,7 @@ function commandExists(command) { const result = spawnSync(process.platform === 
 function userPathAdd(dir) {
   if (process.platform !== 'win32') return;
   const safe = dir.replaceAll("'", "''");
-  const command = "[Environment]::SetEnvironmentVariable('Path', (([Environment]::GetEnvironmentVariable('Path','User') -split ';' | Where-Object { $_ -and $_ -ne '" + safe + "'} ) + '" + safe + "') -join ';'), 'User')";
+  const command = "$p=[Environment]::GetEnvironmentVariable('Path','User');$a=@($p -split ';' | Where-Object { $_ -and $_ -ne '" + safe + "' });[Environment]::SetEnvironmentVariable('Path', (($a + '" + safe + "') -join ';'), 'User')";
   const result = spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', command], { encoding: 'utf8', windowsHide: true });
   if (result.status !== 0) throw new Error(result.stderr || 'failed to update user PATH');
 }

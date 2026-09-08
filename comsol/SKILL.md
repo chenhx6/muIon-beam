@@ -89,6 +89,15 @@ exploration history and the stopping reason. Missing checks are explicitly
 topology, loss location and time evolution are evidence fields, not automatic
 permission to alter another module.
 
+## Project traceability
+
+For a formal numerical run, freeze the selected MPH/CAD/source/code inputs with
+the project `create-run-snapshot` entry point before calling `runComsol`, and
+pass the resulting run/input snapshot references in `task.traceability`.
+`writeResultBundle` records those references and output SHA256 values in
+`comsol-result-manifest.json`. The MVP does not replace the project run
+Manifest or SQLite index.
+
 ## Historical smoke scenario
 
 `comsol/tests/fixtures/100kev-muon-aperture-failure.yaml` documents the former
@@ -99,4 +108,3 @@ is diagnosed, a finite voltage probe is attempted, unchanged failure produces
 no blind scan, and an escalation identifies geometry/source/initial-state/
 field-configuration candidates. A real adapter can replace the fixture while
 retaining the same assertions.
-

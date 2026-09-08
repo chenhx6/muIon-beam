@@ -15,8 +15,10 @@ const errors = [];
 const statePath = path.join(drivePath, 'sync-state.json');
 let stateValid = false;
 let fileCount = 0;
+let driveStateRecord = null;
 try {
   const state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+  driveStateRecord = state;
   const files = state.files;
   if (!Array.isArray(files) || !files.length || files.length !== state.file_count) throw new Error('invalid snapshot file list/count');
   if (crypto.createHash('sha256').update(JSON.stringify(files)).digest('hex') !== state.manifest_sha256) throw new Error('snapshot manifest SHA256 mismatch');
@@ -48,7 +50,15 @@ try {
   errors.push(`sync-state: ${error.code || error.message}`);
 }
 const reference = (() => { try { return JSON.parse(fs.readFileSync(statePath, 'utf8')).gitee_tag ? 'tag' : 'branch'; } catch { return null; } })();
-const stateData = stateValid ? JSON.parse(fs.readFileSync(statePath, 'utf8')) : null;
-const result = { read_only: true, drive_path: drivePath, local_commit: localCommit, gitee_remote_commit: remoteCommit, snapshot_commit: stateData?.snapshot_commit || stateData?.local_commit || null, metadata_commit: stateData?.metadata_commit || null, tracked_files_checked: tracked.length, snapshot_files_checked: fileCount, mismatches: errors, drive_state_verified: stateValid, reference, status: remoteCommit === localCommit && errors.length === 0 && stateValid ? 'three-way-verified' : 'drift-detected' };
+const localSyncFiles = fs.existsSync(path.join(root, '00_project/traceability/sync-states')) ? fs.readdirSync(path.join(root, '00_project/traceability/sync-states')).filter((name) => name.endsWith('.json')) : [];
+let metadataRecord = null;
+for (const name of localSyncFiles) {
+  try {
+    const candidate = JSON.parse(fs.readFileSync(path.join(root, '00_project/traceability/sync-states', name), 'utf8'));
+    if (candidate.snapshot_id && candidate.snapshot_id === driveStateRecord?.snapshot_id && candidate.metadata_commit) metadataRecord = candidate;
+  } catch {}
+}
+if (metadataRecord?.metadata_commit && runGit(root, ['merge-base', '--is-ancestor', metadataRecord.metadata_commit, localCommit], { allowFailure: true }).status !== 0) errors.push('metadata commit is not verified history');
+const result = { read_only: true, drive_path: drivePath, local_commit: localCommit, gitee_remote_commit: remoteCommit, snapshot_commit: driveStateRecord?.snapshot_commit || driveStateRecord?.local_commit || null, metadata_commit: metadataRecord?.metadata_commit || driveStateRecord?.metadata_commit || null, tracked_files_checked: tracked.length, snapshot_files_checked: fileCount, mismatches: errors, drive_state_verified: stateValid, reference, status: remoteCommit === localCommit && errors.length === 0 && stateValid ? 'three-way-verified' : 'drift-detected' };
 console.log(JSON.stringify(result, null, 2));
 process.exitCode = result.status === 'three-way-verified' ? 0 : 2;

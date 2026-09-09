@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { parseArgs, projectRootFromHere, jsonWrite, nowIso } from './project-utils.mjs';
+import { parseArgs, projectRootFromHere, jsonWrite, nowIso, sha256File } from './project-utils.mjs';
 import { makeId } from '../../../../07_research_system/control/research-state/index.mjs';
 import { createWorkflowOwnership } from './workflow-ownership.mjs';
 import { readWorkflow, writeWorkflow, appendStageEvent, workflowDir, rel } from './workflow-store.mjs';
@@ -33,7 +33,7 @@ function executeNode(root, script, args, outputFile) {
 function createRun(root, args) {
   if (!args.task_id) throw new Error('plan requires --task-id');
   const id = args.workflow_run_id || makeId('WF');
-  const run = { schema_version: '1.0.0', workflow_run_id: id, task_id: String(args.task_id), stage: 'INTAKE', status: 'PLANNED', created_at: nowIso(), updated_at: nowIso(), attempts: 0, next_action: 'run', contract: args.contract ? rel(root, args.contract) : null, snapshot_ref: args.snapshot_ref ? rel(root, args.snapshot_ref) : null, run_dir: args.run_dir ? rel(root, args.run_dir) : null, summary_report: args.summary_report ? rel(root, args.summary_report) : null, detailed_report: args.detailed_report ? rel(root, args.detailed_report) : null, sync_state: args.sync_state ? rel(root, args.sync_state) : null, owned_paths: Array.isArray(args.owned_path) ? args.owned_path : args.owned_path ? [args.owned_path] : [], events: [] };
+  const run = { schema_version: '1.0.0', workflow_run_id: id, task_id: String(args.task_id), stage: 'INTAKE', status: 'PLANNED', created_at: nowIso(), updated_at: nowIso(), attempts: 0, next_action: 'run', contract: args.contract ? rel(root, args.contract) : null, snapshot_ref: args.snapshot_ref ? rel(root, args.snapshot_ref) : null, snapshot_sources: Array.isArray(args.snapshot_source) ? args.snapshot_source.map((file) => rel(root, file)) : args.snapshot_source ? [rel(root, args.snapshot_source)] : [], run_dir: args.run_dir ? rel(root, args.run_dir) : null, summary_report: args.summary_report ? rel(root, args.summary_report) : null, detailed_report: args.detailed_report ? rel(root, args.detailed_report) : null, sync_state: args.sync_state ? rel(root, args.sync_state) : null, drive_path: args.drive_path || null, gitee_tag: args.gitee_tag || null, owned_paths: Array.isArray(args.owned_path) ? args.owned_path : args.owned_path ? [args.owned_path] : [], events: [] };
   const ownership = createWorkflowOwnership(root, id, run.task_id, run.owned_paths);
   run.owned_paths_file = path.relative(root, path.join(runtimeDir(root, id), 'owned_paths.json')).replaceAll('\\\\', '/');
   run.ownership_head = ownership.head;
@@ -54,12 +54,17 @@ function advance(root, run) {
     return event(root, run, 'stage-completed', 'MODEL_CONFIRMED', 'READY', 'snapshot');
   }
   if (run.stage === 'MODEL_CONFIRMED') {
+    if (!run.snapshot_ref && run.snapshot_sources?.length) {
+      const snapshot = executeNode(root, '.codex/skills/muion-project/scripts/create-run-snapshot.mjs', ['--project-root', root, '--run-dir', run.run_dir || `03_runs/formal/${run.workflow_run_id}`, ...run.snapshot_sources.flatMap((file) => ['--source', file])]);
+      if (snapshot.status === 0) { const parsed = readJsonFromOutput(snapshot.stdout); run.snapshot_ref = parsed?.snapshotDir ? rel(root, path.join(parsed.snapshotDir, 'snapshot-manifest.json')) : null; }
+    }
     return run.snapshot_ref && fs.existsSync(resolve(root, run.snapshot_ref)) ? event(root, run, 'stage-completed', 'SNAPSHOT_READY', 'READY', 'contract') : event(root, run, 'stage-blocked', 'MODEL_CONFIRMED', 'BLOCKED', 'create-run-snapshot', { reason: 'snapshot_ref is missing or unavailable' });
   }
   if (run.stage === 'SNAPSHOT_READY') {
     if (!run.contract || !fs.existsSync(resolve(root, run.contract))) return event(root, run, 'stage-blocked', 'SNAPSHOT_READY', 'BLOCKED', 'provide-contract', { reason: 'contract is missing' });
     const validation = executeNode(root, '07_research_system/control/research-workflow/index.mjs', ['validate', '--contract', resolve(root, run.contract)]);
-    if (validation.status !== 0) return event(root, run, 'stage-blocked', 'SNAPSHOT_READY', 'BLOCKED', 'repair-contract', { reason: 'contract validation failed' });
+    const validationDoc = readJsonFromOutput(validation.stdout);
+    if (validation.status !== 0 || validationDoc?.valid === false) return event(root, run, 'stage-blocked', 'SNAPSHOT_READY', 'BLOCKED', 'repair-contract', { reason: 'contract validation failed' });
     return event(root, run, 'stage-completed', 'CONTRACT_READY', 'READY', 'execute');
   }
   if (run.stage === 'CONTRACT_READY') {
@@ -84,6 +89,9 @@ function advance(root, run) {
   }
   if (run.stage === 'REPORTING') {
     if (!run.summary_report || !run.detailed_report || !fs.existsSync(resolve(root, run.summary_report)) || !fs.existsSync(resolve(root, run.detailed_report))) return event(root, run, 'stage-blocked', 'REPORTING', 'BLOCKED', 'write-dual-reports', { reason: 'summary and detailed reports are required' });
+    const hashes = { summary: sha256File(resolve(root, run.summary_report)), detailed: sha256File(resolve(root, run.detailed_report)) };
+    if (run.report_hashes && JSON.stringify(run.report_hashes) !== JSON.stringify(hashes)) return event(root, run, 'stage-blocked', 'REPORTING', 'BLOCKED', 'regenerate-reports', { reason: 'report hashes changed after registration' });
+    run.report_hashes = hashes;
     return event(root, run, 'stage-completed', 'QA', 'READY', 'run-ultraqa');
   }
   if (run.stage === 'QA') {
@@ -92,6 +100,11 @@ function advance(root, run) {
     const refreshed = readWorkflow(root, run.workflow_run_id); return event(root, refreshed, 'stage-completed', 'ARCHIVING', 'READY', 'verify-archive', { artifact_refs: [refreshed.qa_artifact] });
   }
   if (run.stage === 'ARCHIVING') {
+    if (!run.sync_state && run.run_dir) {
+      const sync = executeNode(root, '.codex/skills/muion-project/scripts/sync-three-end.mjs', ['--project-root', root, '--run-dir', resolve(root, run.run_dir), '--run-id', run.workflow_run_id, '--task-id', run.task_id, ...(run.drive_path ? ['--drive-path', run.drive_path] : []), ...(run.gitee_tag ? ['--tag', run.gitee_tag] : [])]);
+      const syncDoc = readJsonFromOutput(sync.stdout); if (syncDoc?.state) run.sync_state = rel(root, syncDoc.state);
+      if (sync.status !== 0) return event(root, run, 'stage-blocked', 'ARCHIVING', 'BLOCKED', 'retry-sync', { reason: 'three-end sync did not verify', sync_status: syncDoc?.status || null });
+    }
     if (!run.sync_state || !fs.existsSync(resolve(root, run.sync_state))) return event(root, run, 'stage-blocked', 'ARCHIVING', 'BLOCKED', 'sync-and-verify', { reason: 'verified sync state is required' });
     const state = readJson(resolve(root, run.sync_state));
     if (state?.status !== 'three-way-verified') return event(root, run, 'stage-blocked', 'ARCHIVING', 'BLOCKED', 'verify-archive', { reason: 'sync state is not three-way-verified' });
@@ -99,6 +112,10 @@ function advance(root, run) {
   }
   if (run.stage === 'PUBLISHED') return event(root, run, 'stage-blocked', 'PUBLISHED', 'BLOCKED', 'autopilot close', { reason: 'close requires explicit close command' });
   return run;
+}
+function readJsonFromOutput(output) {
+  const text = String(output || '').trim(); if (!text) return null;
+  try { return JSON.parse(text); } catch { const lines = text.split(/\r?\n/).filter(Boolean); for (let i = lines.length - 1; i >= 0; i -= 1) { try { return JSON.parse(lines[i]); } catch {} } return null; }
 }
 function advanceUntilPause(root, run) {
   for (let i = 0; i < 32; i += 1) {

@@ -17,6 +17,6 @@ function main() {
   const toolRoot = path.resolve(import.meta.dirname, '../../../..');
   const checks = commands.map(([name, script, scriptArgs]) => { const target = path.resolve(toolRoot, script); const result = spawnSync(process.execPath, [target, ...scriptArgs], { cwd: root, encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 }); return { name, command: `${process.execPath} ${script}`, exit_code: result.status ?? 1, passed: result.status === 0, stdout: result.stdout || '', stderr: result.stderr || '' }; });
   const passed = checks.every((item) => item.passed); const value = { schema_version: '1.0.0', artifact_type: 'ultraqa', workflow_run_id: id, task_id: run.task_id, status: passed ? 'pass' : 'fail', created_at: nowIso(), checks };
-  jsonWrite(file, value); run.qa_artifact = rel(root, file); appendStageEvent(root, run, 'ultraqa-completed', 'QA', passed ? 'READY' : 'BLOCKED', passed ? 'archive' : 'repair-qa', { artifact_refs: [run.qa_artifact], qa_passed: passed }); console.log(JSON.stringify(value, null, 2));
+  jsonWrite(file, value); run.qa_artifact = rel(root, file); appendStageEvent(root, run, 'ultraqa-completed', 'QA', passed ? 'READY' : 'BLOCKED', passed ? 'archive' : 'repair-qa', { artifact_refs: [run.qa_artifact], qa_passed: passed }); console.log(JSON.stringify(value, null, 2)); process.exitCode = passed ? 0 : 2;
 }
 main();

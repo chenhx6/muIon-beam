@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs, jsonWrite, nowIso, sha256File } from './project-utils.mjs';
-import { readWorkflow, writeWorkflow, workflowDir, appendStageEvent, makeId, rel } from './workflow-store.mjs';
+import { readWorkflow, writeWorkflow, workflowDir, appendStageEvent, makeId, rel, immutableJson } from './workflow-store.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || path.resolve(import.meta.dirname, '../../../..'));
@@ -15,7 +15,8 @@ function artifact(run, input, skipped = false) {
   const handoff = path.join(dir, 'requirements-handoff.json');
   const card = input.task_card ? path.resolve(root, input.task_card) : null;
   const payload = { schema_version: '1.0.0', workflow_run_id: run.workflow_run_id, task_id: run.task_id, created_at: nowIso(), skipped, skip_reason: input.skip_reason || null, task_card: card ? { path: rel(root, card), sha256: sha256File(card) } : null, intake: input.intake || input.answers || input, constraints: input.constraints || [], success_criteria: input.success_criteria || [], non_goals: input.non_goals || [], decision_boundaries: input.decision_boundaries || [] };
-  jsonWrite(snapshot, payload); jsonWrite(handoff, { ...payload, artifact_type: 'requirements-handoff', context_snapshot: rel(root, snapshot), handoff_path: rel(root, handoff) });
+  if (!fs.existsSync(snapshot)) immutableJson(snapshot, payload);
+  if (!fs.existsSync(handoff)) immutableJson(handoff, { ...payload, artifact_type: 'requirements-handoff', context_snapshot: rel(root, snapshot), handoff_path: rel(root, handoff) });
   return { context_snapshot: rel(root, snapshot), requirements_handoff: rel(root, handoff) };
 }
 function main() {

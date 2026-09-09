@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { ensureInitialized, recordWorkflowEvent, readState } from '../07_research_system/control/research-state/index.mjs';
 
@@ -23,10 +24,14 @@ test('consensus plan enforces Architect before Critic and writes a handoff', () 
   const root = temp(); const workflow = plan(root); const input = path.join(root, 'intake.json'); fs.writeFileSync(input, JSON.stringify({ intake: { objective: 'test' } }));
   assert.equal(run('deep-interview.mjs', root, ['start', '--workflow-run-id', workflow.workflow_run_id, '--task-id', workflow.task_id, '--input', 'intake.json']).status, 0);
   assert.equal(run('consensus-plan.mjs', root, ['start', '--workflow-run-id', workflow.workflow_run_id, '--requirements', `07_research_system/control/research-state/workflows/${workflow.workflow_run_id}/requirements-handoff.json`]).status, 0);
-  const critic = path.join(root, 'critic.json'); fs.writeFileSync(critic, JSON.stringify({ verdict: 'APPROVE' }));
+  const planPath = path.join(root, '07_research_system/control/research-state/workflows', workflow.workflow_run_id, 'consensus-plan.json');
+  const planHash = crypto.createHash('sha256').update(fs.readFileSync(planPath)).digest('hex');
+  const critic = path.join(root, 'critic.json'); fs.writeFileSync(critic, JSON.stringify({ verdict: 'APPROVE', workflow_run_id: workflow.workflow_run_id, review_cycle: 1, plan_sha256: planHash, reviewed_at: new Date().toISOString(), architect_sha256: 'wrong' }));
   assert.notEqual(run('consensus-plan.mjs', root, ['record-review', '--workflow-run-id', workflow.workflow_run_id, '--role', 'critic', '--review-file', 'critic.json']).status, 0);
-  const architect = path.join(root, 'architect.json'); fs.writeFileSync(architect, JSON.stringify({ verdict: 'APPROVE' }));
+  const architect = path.join(root, 'architect.json'); fs.writeFileSync(architect, JSON.stringify({ verdict: 'APPROVE', workflow_run_id: workflow.workflow_run_id, review_cycle: 1, plan_sha256: planHash, reviewed_at: new Date().toISOString(), role: 'architect' }));
   assert.equal(run('consensus-plan.mjs', root, ['record-review', '--workflow-run-id', workflow.workflow_run_id, '--role', 'architect', '--review-file', 'architect.json']).status, 0);
+  const architectHash = crypto.createHash('sha256').update(fs.readFileSync(architect)).digest('hex');
+  fs.writeFileSync(critic, JSON.stringify({ verdict: 'APPROVE', workflow_run_id: workflow.workflow_run_id, review_cycle: 1, plan_sha256: planHash, reviewed_at: new Date().toISOString(), architect_sha256: architectHash, role: 'critic' }));
   assert.equal(run('consensus-plan.mjs', root, ['record-review', '--workflow-run-id', workflow.workflow_run_id, '--role', 'critic', '--review-file', 'critic.json']).status, 0);
   const final = JSON.parse(run('consensus-plan.mjs', root, ['status', '--workflow-run-id', workflow.workflow_run_id]).stdout); assert.equal(final.stage, 'PRECHECK'); assert.ok(final.consensus_handoff);
 });
@@ -34,7 +39,7 @@ test('consensus plan enforces Architect before Critic and writes a handoff', () 
 test('ultraqa records a machine-readable pass/fail artifact', () => {
   const root = temp(); const workflow = plan(root, `TASK-ORCHESTRATION-QA-${Date.now()}`);
   const result = run('ultraqa.mjs', root, ['run', '--workflow-run-id', workflow.workflow_run_id]);
-  assert.ok([0, 1].includes(result.status));
+  assert.ok([0, 2].includes(result.status));
   const file = path.join(root, '07_research_system/control/research-state/workflows', workflow.workflow_run_id, 'ultraqa.json');
   assert.equal(fs.existsSync(file), true); const qa = JSON.parse(fs.readFileSync(file, 'utf8')); assert.ok(['pass', 'fail'].includes(qa.status));
 });

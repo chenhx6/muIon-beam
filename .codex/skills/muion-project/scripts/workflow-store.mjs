@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { jsonWrite, relativePath, nowIso } from './project-utils.mjs';
+import { relativePath, nowIso, sha256File } from './project-utils.mjs';
 import { makeId, recordWorkflowEvent } from '../../../../07_research_system/control/research-state/index.mjs';
 
 const ID = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
@@ -15,7 +15,11 @@ export function runtimeWorkflowPath(root, id) { return path.join(runtimeWorkflow
 export function readWorkflow(root, id) {
   validId(id);
   for (const file of [workflowPath(root, id), runtimeWorkflowPath(root, id)]) {
-    try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+    if (fs.existsSync(file)) {
+      const run = JSON.parse(fs.readFileSync(file, 'utf8'));
+      if (run.workflow_run_id !== id || !stages.includes(run.stage) || !statuses.includes(run.status)) throw new Error('corrupt workflow checkpoint');
+      return run;
+    }
   }
   throw new Error(`workflow run not found: ${id}`);
 }
@@ -27,9 +31,9 @@ export function writeWorkflow(root, run) {
   if (!Number.isInteger(run.attempts) || run.attempts < 0) throw new Error('workflow attempts must be a non-negative integer');
   if (!Array.isArray(run.events) || !Array.isArray(run.owned_paths)) throw new Error('workflow events and owned_paths must be arrays');
   run.updated_at = nowIso();
-  jsonWrite(workflowPath(root, run.workflow_run_id), run);
+  atomicJson(workflowPath(root, run.workflow_run_id), run);
   // Compatibility mirror for existing local ownership/runtime tools.
-  jsonWrite(runtimeWorkflowPath(root, run.workflow_run_id), run);
+  atomicJson(runtimeWorkflowPath(root, run.workflow_run_id), run);
   return run;
 }
 export function rel(root, file) {
@@ -37,7 +41,29 @@ export function rel(root, file) {
   const absolute = path.resolve(root, file);
   const relative = relativePath(root, absolute);
   if (relative.startsWith('../') || relative === '..') throw new Error(`workflow path escapes project: ${file}`);
+  if (fs.existsSync(absolute)) {
+    const actual = path.relative(fs.realpathSync(root), fs.realpathSync(absolute));
+    if (path.isAbsolute(actual) || actual === '..' || actual.startsWith(`..${path.sep}`)) throw new Error(`workflow symlink escapes project: ${file}`);
+  }
   return relative;
+}
+export function atomicJson(file, value) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const temporary = `${file}.${process.pid}.tmp`;
+  const fd = fs.openSync(temporary, 'w');
+  try { fs.writeFileSync(fd, JSON.stringify(value, null, 2) + '\n'); fs.fsyncSync(fd); } finally { fs.closeSync(fd); }
+  fs.renameSync(temporary, file);
+}
+export function immutableJson(file, value) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n', { flag: 'wx' });
+}
+export function artifactRef(root, file) { return { path: rel(root, file), sha256: sha256File(path.resolve(root, file)) }; }
+export function verifyRef(root, ref) {
+  if (!ref?.path || !/^[a-f0-9]{64}$/i.test(ref.sha256 || '')) throw new Error('missing artifact path/hash');
+  rel(root, ref.path);
+  if (sha256File(path.resolve(root, ref.path)) !== ref.sha256) throw new Error(`artifact hash mismatch: ${ref.path}`);
+  return JSON.parse(fs.readFileSync(path.resolve(root, ref.path), 'utf8'));
 }
 export function appendStageEvent(root, run, eventType, stage, status, nextAction, extra = {}) {
   const operationId = `${run.workflow_run_id}:${stage}:${run.attempts || 0}:${eventType}`;

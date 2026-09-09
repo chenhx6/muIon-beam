@@ -1,0 +1,15 @@
+{
+  "record_type": "sync-receipt-delivery",
+  "schema_version": "1.0.0",
+  "delivery_id": "DELIVERY-SNAPSHOT-fd21d6cfc678",
+  "receipt_path": "00_project/traceability/sync-states/SYNC-SNAPSHOT-fd21d6cfc678.json",
+  "receipt_sha256": "e680eafa7f7ca6cf84537ffbcedb052c9228ec5ba79e75953e6c0a9c5a3f318e",
+  "audit_path": "00_project/traceability/sync-receipts/AUDIT-SNAPSHOT-fd21d6cfc678.json",
+  "audit_sha256": "aa497466a5fa9262a02a34c7c3feec2e777d9f61cb5a6e794e4060713f1b0182",
+  "snapshot_id": "SNAPSHOT-fd21d6cfc678",
+  "status": "prepared",
+  "receipt_commit": null,
+  "receipt_remote_commit": null,
+  "created_at": "2026-09-09T10:09:40.014Z",
+  "finalized_at": null
+}

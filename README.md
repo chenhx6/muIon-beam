@@ -12,7 +12,7 @@
 
 ## 当前模块入口
 
-- 3D Block：由现有 `.codex/skills/3d-*` 负责几何创建、检查和导出。
+- 3D Block：由项目根目录 `3d/` Block 负责几何创建、修改、检查和导出，Codex 入口为 `.codex/skills/3d/`。
 - COMSOL Block：[`comsol/SKILL.md`](comsol/SKILL.md)，可执行入口为
   `node comsol/index.mjs --task path/to/task.json`；当前适配器边界见
   [`comsol/adapters/README.md`](comsol/adapters/README.md)。

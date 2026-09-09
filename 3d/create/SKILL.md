@@ -1,13 +1,13 @@
 ---
-name: 3d-model
+name: 3d-create
 description: Create, read, edit and rebuild native editable SolidWorks parts and assemblies; use for CAD modeling rather than geometry review or physics simulation.
 ---
 
-# 3d-model
+# 3d-create
 
 交付分层由 `muion-project` 统一管理：SolidWorks 原生模型和完整装配进入 Drive；建模脚本、参数、模型 Manifest、关键尺寸、重建命令和轻量摘要进入 Gitee 并同步 Drive。每次模型交付记录源路径、配置、单位、坐标、依赖和 SHA256。
 
-先读 [3D Modeling Domain 公共规则](../README.md)。本 Skill 负责 CAD 创建、读取、修改和重建。
+先读 [3D Modeling Domain 公共规则](../SKILL.md)。本 Skill 负责 CAD 创建、读取、修改和重建。
 
 ## 模型入口
 
@@ -25,7 +25,7 @@ description: Create, read, edit and rebuild native editable SolidWorks parts and
 
 按模型可编辑性、原生兼容性、自动化稳定性、代码可读性、维护成本、性能依次选择。Python COM 的特定操作若经实测明显复杂、不稳定或难维护，测试 C# + SolidWorks API；C++ 只用于特殊数学几何、已有算法或必要高性能处理，不为语言统一强制选择。
 
-**锁定门槛**：先查看 [技术验证记录](references/smoke-test.md)。未完成实测时只保留候选路线，不能把缺运行库、权限或许可证当作 Python 路线不稳定。不得宣称未经测试的 fallback 通过。
+**锁定门槛**：先查看 [技术验证记录](../references/smoke-test.md)。未完成实测时只保留候选路线，不能把缺运行库、权限或许可证当作 Python 路线不稳定。不得宣称未经测试的 fallback 通过。
 
 ## 最小技术验证
 
@@ -38,3 +38,6 @@ description: Create, read, edit and rebuild native editable SolidWorks parts and
 ## 低干扰自动化
 
 自动化优先使用后台、短时、隔离的进程；SolidWorks smoke test 使用 DispatchEx 专用会话和临时路径，只关闭脚本创建的文档/会话，不触碰用户已有实例或未保存文档。测试完成立即写出结果并清理临时运行状态。只有需要验证 GUI 人工编辑时才请求前台交互，并把预计占用时间降到最低。
+
+
+实现 helper 位于 ../scripts/，包括 sw_connect.py、sw_session.py、sw_preflight.py 和 sw_part.py；使用 SolidWorks 2024 主适配路径。

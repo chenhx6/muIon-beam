@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "recorded_at": "2026-09-09",
   "trigger": "user-explicit-evolution",
-  "status": "candidate-reviewed-deferred-adoption",
+  "status": "partially-adopted-into-3d-block",
   "sources": [
     {
       "kind": "github-repository",
@@ -62,12 +62,12 @@
     {"name": "source-inspection", "result": "pass", "detail": "GitHub 页面/raw 文件与本地便携版 Skill、能力清单、工作流和连接/零件脚本已读取"},
     {"name": "local-release-integrity", "result": "pass", "detail": "版本、文件数、总大小、可执行文件和关键文档 SHA256 已记录"},
     {"name": "project-architecture", "result": "pass", "detail": "tests/architecture-smoke.mjs"},
-    {"name": "project-solidworks-smoke", "result": "pass", "detail": "Python 3.14.7 + pywin32 + DispatchEx；原生 Sketch/Extrude/Cut/重命名/保存/重开/尺寸修改/Rebuild/再保存"}
+    {"name": "project-solidworks-smoke", "result": "pass", "detail": "SolidWorks 2024 SP05 Revision 32.5.0；Python 3.14.7 + pywin32 + DispatchEx；原生 Sketch/Extrude/Cut/重命名/保存/重开/尺寸修改/Rebuild/再保存"}
   ],
   "decision": {
-    "adopt_now": false,
-    "rationale": "用户要求读取和学习，未明确授权将外部实现整体或局部并入；依据 evolution 规则先记录候选与建议，等待明确采用范围",
-    "recommended_scope": "只吸收 reusable findings 到 3d-model/3d-check/3d-export 的短参考规则；不复制 product infrastructure",
-    "next_action": "如需吸收，请指定一个或多个候选：COM session safety、API compatibility、geometry evidence、export hash ledger"
+    "adopt_now": true,
+    "rationale": "用户已明确要求将外部 SolidWorks Skill 的相关能力吸收到 3D Block，同时保留图书馆级别边界",
+    "recommended_scope": "已将筛选后的 SolidWorks session、preflight、part、parameter/reference、review 和 export helper 纳入 3d/scripts；不复制 product infrastructure",
+    "next_action": "继续以本机 SolidWorks 2024 回归结果提升能力，未验证能力保持 pilot 或 not-tested；CAD Studio 仍作为图书馆级工具"
   }
 }

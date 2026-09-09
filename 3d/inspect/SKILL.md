@@ -1,13 +1,13 @@
 ---
-name: 3d-check
+name: 3d-inspect
 description: Inspect SolidWorks CAD geometry quality, rebuild health, component placement and scale; use for geometry checks without physics simulation.
 ---
 
-# 3d-check
+# 3d-inspect
 
 检查报告、几何摘要、问题清单和轻量证据进入 Gitee 并同步 Drive；原始 CAD、完整日志和高分辨率检查图进入 Drive。每项必须明确通过、问题或未验证。
 
-先读 [3D Modeling Domain 公共规则](../README.md)。输入是当前 CAD 和已知几何要求；独立检查，不要求先运行其它 Skill，不自动修复或重生成模型。
+先读 [3D Modeling Domain 公共规则](../SKILL.md)。输入是当前 CAD 和已知几何要求；独立检查，不要求先运行其它 Skill，不自动修复或重生成模型。
 
 G1 默认检查：文件可打开、模型可显示、rebuild 成功、无明显损坏 Feature；无非预期穿模、自相交、零厚度、坏实体、重复实体；主要组件存在、关键结构位置大致合理、整体尺度无荒谬漂移、单位及坐标可理解。区分设计允许的接触/重叠与非预期干涉，未知意图标为待确认。
 
@@ -16,3 +16,6 @@ G1 默认检查：文件可打开、模型可显示、rebuild 成功、无明显
 初始尺寸是软约束，尺寸不同本身不是错误，不用死百分比判定。只检查几何合法性及大致现实可存在性，不判断电场、束流通行、温度、COMSOL 收敛或 Geant4 结果。
 
 交付逐项通过/问题/未验证、相关文件与 Feature/组件位置、证据和必要的几何建议；由用户或独立建模/改形请求决定修改。
+
+
+实现 helper 位于 ../scripts/cad_doctor.py 和 ../scripts/sw_review.py，只输出几何检查证据。

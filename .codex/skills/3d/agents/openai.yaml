@@ -1,0 +1,4 @@
+interface:
+  display_name: "3D Modeling Block"
+  short_description: "Create, modify, inspect and export native SolidWorks geometry"
+  default_prompt: "Use $3d for G1 SolidWorks geometry creation, modification, inspection and export; keep CAD work autonomous and evidence-based."

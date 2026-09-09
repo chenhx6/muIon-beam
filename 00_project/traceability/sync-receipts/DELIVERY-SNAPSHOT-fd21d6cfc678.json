@@ -7,9 +7,9 @@
   "audit_path": "00_project/traceability/sync-receipts/AUDIT-SNAPSHOT-fd21d6cfc678.json",
   "audit_sha256": "aa497466a5fa9262a02a34c7c3feec2e777d9f61cb5a6e794e4060713f1b0182",
   "snapshot_id": "SNAPSHOT-fd21d6cfc678",
-  "status": "prepared",
-  "receipt_commit": null,
-  "receipt_remote_commit": null,
+  "status": "committed",
+  "receipt_commit": "82a63f484814624beec06b256bd2a3a864fbae2f",
+  "receipt_remote_commit": "82a63f484814624beec06b256bd2a3a864fbae2f",
   "created_at": "2026-09-09T10:09:40.014Z",
-  "finalized_at": null
+  "finalized_at": "2026-09-09T10:09:42.666Z"
 }

@@ -16,3 +16,5 @@
 | geant4-block | new | node geant4/index.mjs --task path/to/task.yaml | 建立单一 Geant4 主 Skill，覆盖 setup/transport/scoring/statistics/validation，并以小规模 smoke 优先 |
 | research-state | new | node research-state/index.mjs status | Shared current research state for workflow, direct modules, validation and diagnosis |
 | research-workflow | new | node research-workflow/index.mjs execute | Single research decision layer over existing 3D, COMSOL and Geant4 Blocks |
+| toolchain-recovery | new | npm run toolchain:ensure | Routine allowlisted user-scoped dependency recovery is separate from manual evolution |
+| sync-receipt-audit | new | npm run sync:receipt:audit | Precisely verify and adopt historical sync receipts without bypassing baseline protection |

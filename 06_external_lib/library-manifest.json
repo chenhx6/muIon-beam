@@ -1,0 +1,1107 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_type": "external-reference-library",
+  "audience": "codex-internal-reference",
+  "execution_policy": "reference-only",
+  "generated_at": "2026-09-09T01:12:48.795Z",
+  "last_changed_at": "2026-09-09T01:12:48.795Z",
+  "changes": [
+    {
+      "type": "archive-path-changed",
+      "library_id": "cad-studio-0.3.4-windows-x64-portable",
+      "before": "reviewed",
+      "after": "reviewed"
+    }
+  ],
+  "libraries": [
+    {
+      "id": "cad-studio-0.3.4-windows-x64-portable",
+      "path": "06_external_lib/CAD-Studio-0.3.4-Windows-x64-Portable",
+      "display_name": "CAD Studio 0.3.4 Windows x64 Portable",
+      "status": "active",
+      "metadata_status": "reviewed",
+      "role": "Codex 查询型外部图书馆；不进入常规执行技能层",
+      "source": {
+        "kind": "github-release",
+        "repository": "https://github.com/wzyn20051216/solidworks-automation-skill",
+        "release": "v0.3.4",
+        "commit": "0eb24dc1b93adc9371ed605e35d82f9b93821420",
+        "upstream_main_commit": "5287d2e3d100dedb10e94910523f294a46176c54"
+      },
+      "version": "0.3.4",
+      "license": "MIT",
+      "strengths": [
+        "覆盖 SolidWorks/AutoCAD 自动化、Skill、CLI、MCP 和 CAD Studio 多入口",
+        "以 capabilities.yaml 和 verified/pilot/reference_only/not_implemented 分级表达能力边界",
+        "提供 preflight、诊断、会话所有权、真实保存/重开/回读和输出证据思路",
+        "包含开放格式导出、装配、工程图、孔槽、网格参考、FEA/Routing 试点和 MCP Server 参考实现",
+        "附带可复用的子技能、脚本、Schema、示例和工程化排障文档"
+      ],
+      "limitations": [
+        "SolidWorks/AutoCAD 原生能力依赖本机软件、许可证和 Windows 环境",
+        "pilot、reference_only 和 not_implemented 能力不能当作无人值守正式交付",
+        "外部资料只用于 Codex 查询、比较和设计参考，不作为本项目运行时依赖",
+        "执行前必须重新核对当前项目的版本、模型、许可证和能力门禁"
+      ],
+      "query_topics": [
+        "SolidWorks COM 会话与连接封装",
+        "零件、孔槽、螺纹、圆角、倒角、装配与工程图",
+        "AutoCAD/DXF、开放格式导出和网格参考导入",
+        "MCP/CLI/桌面端编排、诊断、审查和证据账本",
+        "FEA、Routing、复杂曲面和制造复核的 pilot 边界"
+      ],
+      "adoption": {
+        "execution_layer": false,
+        "auto_import_to_codex_skills": false,
+        "consultation_only": true,
+        "existing_adoption_record": "00_project/traceability/evolution/EVOLUTION-20260909-solidworks-automation-skill.json"
+      },
+      "file_count": 173,
+      "total_bytes": 19954434,
+      "gitee_file_count": 170,
+      "drive_only_file_count": 3,
+      "content_sha256": "ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719",
+      "files": [
+        {
+          "path": "CAD Studio.exe",
+          "size": 18186752,
+          "sha256": "53e798b730bd6ba755edb1aa484ccb167e8a4a9beb8597d9b13923fccda3ee9f",
+          "archive": "drive-only"
+        },
+        {
+          "path": "LICENSE",
+          "size": 1118,
+          "sha256": "697f5fbc7db69b6d8908a359695512e7df39271b4eb603c3643d224c7519813d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/agents/openai.yaml",
+          "size": 300,
+          "sha256": "44a69788a692619c66526681e5aa86d818f2024e9be48b106c59848b2f191c66",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/__init__.py",
+          "size": 44,
+          "sha256": "2d47b089008850cc4b516b888f7069239cbc631ff665ff56db175b1950db70e7",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/__init__.py",
+          "size": 64,
+          "sha256": "030ced6a365d76fc3eff983af268457b1b8e5f8ebc1f9476ba3c95910bc68823",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/agent_contracts.py",
+          "size": 19949,
+          "sha256": "f8c71089b7f0e75eb86e62cb22757d43838d0b7bc668585288ec3239ace135d0",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/agent_providers.py",
+          "size": 11356,
+          "sha256": "0190f61b74b97d24f8ed64c17d13b26c9578f2d0112c2fd8d0b7ff445d9c3649",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/app.py",
+          "size": 36918,
+          "sha256": "26440dca0de2b6f98e020473cb5ad4084035cedbcfb08480efcaf2f3682e4294",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/artifact_ledger.py",
+          "size": 6492,
+          "sha256": "2ba4eab89d2627a516040d36d804f93f19af388f5bc884bff1abff0846deca5d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/cad_core_contracts.py",
+          "size": 6391,
+          "sha256": "e51f0c5f28db8da1471ba937ac0696d2d4d7f2331903e30c36948b5e6942336f",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/core.py",
+          "size": 5875,
+          "sha256": "c722e04e475686c5b76173e0a578dada4a61c4c39df98adb8c1dbf80fcb9014a",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/engineering_orchestrator.py",
+          "size": 28630,
+          "sha256": "00b28741b18c712a512e1814657eba98042eb254c556dd1bbe37da0e47d20bfd",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/knowledge_retrieval.py",
+          "size": 11082,
+          "sha256": "786961d177dfdd3d94661cbc5482b5f263ccb1e581632a2a89302112a8ac54ae",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/mock_runner.py",
+          "size": 11273,
+          "sha256": "7de998936dc4cde88c09e1c2165202af4eb2b55fe73df469c80bc4ecbb673483",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/queue_worker.py",
+          "size": 59235,
+          "sha256": "d6126fd47fb874cb754ae56d563348e99603a6b99d380b7114ee405d0a4ef239",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/reviewer_gate.py",
+          "size": 20846,
+          "sha256": "5184ddef75c09226acedbdd1e80a7087afc227a34a3a59160272538ed923704e",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/schemas/advanced_geometry.schema.json",
+          "size": 1583,
+          "sha256": "c4bfc61d50cf4e9276030651c9203bcd37c8d76a648da1c73bf121d4efe48d06",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/schemas/advanced_surface.schema.json",
+          "size": 2815,
+          "sha256": "c36f3eb67d0143fd833c0168fee2bf53c0ed16702e2fe810d0b60405556c7f24",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/schemas/automation_job.schema.json",
+          "size": 8261,
+          "sha256": "f08884ea6b2a3f321b2a9fa0cb307c458937ffa8912ac8ae76b0f7115590763d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/schemas/codex_final_response.schema.json",
+          "size": 1374,
+          "sha256": "e1477448cdac4e5e59789c681f938d476a07825be9ef178d4b2f11ef555aa4fa",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/schemas/evidence_graph.schema.json",
+          "size": 1135,
+          "sha256": "38ef1c44171129332a0c9f7fa49e3cd34fb54cb150676f1fcf908b43cb15e041",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/schemas/fea_analysis.schema.json",
+          "size": 7550,
+          "sha256": "5b56d8bf7a7eefecb46787bb316e1da6048622681c3df5f1c2dee79ed5f872d8",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/schemas/neutral_cad_document.schema.json",
+          "size": 1876,
+          "sha256": "abcf8ebe6e74ca4bf4fd268ae8a7242d0d3104b867346e16220da370b9fe7031",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/schemas/preview_manifest.schema.json",
+          "size": 1285,
+          "sha256": "3091854048298d23a799eace5ed06386b3745eb8b4b88d4a16690458f3cffe58",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/style.py",
+          "size": 3998,
+          "sha256": "e257e6ec972b754f998eab011cf4e96ac31a18ecc5bf3a67cfbf539131424b31",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/apps/desktop/cad_workbench/worker_health.py",
+          "size": 2812,
+          "sha256": "e672cf20cea44661047411d1f9536d4f3ada45abfbc10e1e7bd5e333b6a0d27f",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/capabilities.yaml",
+          "size": 14551,
+          "sha256": "5336f0bbd8e30abe79c1ecd20da848b8fa9d20186245f79dfac3c81521fa1181",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/01_basic_part.py",
+          "size": 997,
+          "sha256": "abb23cfcf312a1e3fd0ed34666e5b4618477c521c473eca62cf386c7e8e03aec",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/02_complex_part.py",
+          "size": 1611,
+          "sha256": "db6661674346ba0169d714fc974984db04ba386dfdfc5074d15ae0b86b252c0c",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/03_assembly.py",
+          "size": 1373,
+          "sha256": "f0ec5dcd1130e631c66e190c08c914fdb6f444ab3953f96b67ccf65a1b166c51",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/04_batch_export.py",
+          "size": 1065,
+          "sha256": "ec43d739576533ed73872f4e9ae59b612a206d7cfde3ccb409fd72e82a75c419",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/05_drawing.py",
+          "size": 1121,
+          "sha256": "17e14c4c4fad8e3e9b9eaac337cc82551da2ad3093c6f8abe357bfb4eca23104",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/06_friendly_api.py",
+          "size": 900,
+          "sha256": "c2288cc7dc2ae6f70e77bd4f8c6b2f8b6245a3f3d49db8bc94c83435330cdc75",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/07_motion_study_rotary_motor.py",
+          "size": 1595,
+          "sha256": "f960202ce6b0ecc5f6a42e2a8a546e8278f73269381b0c0eb1c0c8f382f08b5c",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/08_mini_fan_motion_assembly.py",
+          "size": 12655,
+          "sha256": "9a0508bec2f13cf5f155ed22b73d3af369e47fe5f06b75528e82a623091f6605",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/fea_tetra_static.json",
+          "size": 1001,
+          "sha256": "f7d8d5ed64bcc80ca81fbae49cba640c1a55704f3a1718c1aa82ac7fbbcb4073",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/generate_fea_convergence_example.py",
+          "size": 3875,
+          "sha256": "ab8b1641ab456284a143f747a353de4c4ee95c560eb00042a8c9852fefa863ff",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/ocp_loft_adapter.json",
+          "size": 509,
+          "sha256": "b148bbcedb2bb8ca1ade0a1d0fa70884e17f39e28363db35d1722335e0c1a76e",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/examples/README.md",
+          "size": 4024,
+          "sha256": "4c6d1172959e352527ce9a1d683f95092f610bbf214aa1709d0fc7e828274191",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/golden-workflows.yaml",
+          "size": 2902,
+          "sha256": "c97c620ad82f3badb5af09efc2609d30d688d4dcdfe4aa19a47f6d8962a04d0f",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/mcp-server/README.md",
+          "size": 11258,
+          "sha256": "aa69b3c2bf4dbcb5b1ae539bf39d555480dfc0621956220bdfce936affa700e9",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/mcp-server/register_all_ai_mcp.js",
+          "size": 10838,
+          "sha256": "6ebe59f6caa4c4d49ee87f7ab1c3a00b2a1127dff48323779352f2c22209cc8d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/mcp-server/register_all_ai_mcp.ps1",
+          "size": 1156,
+          "sha256": "b7cc7612d5f802d9a52ef961a28cd9dd302721dc9172666c12b84e4e18f6451d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/mcp-server/register_codex_mcp.ps1",
+          "size": 2763,
+          "sha256": "6f5c4a764cfbf00d0ee161769f0e6336f2c59941eb49c5579167ec1534e893f5",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/mcp-server/requirements.txt",
+          "size": 81,
+          "sha256": "91c5365d90cc74478c3f8304716a1bb8f01edc90fadd0339005e9bee9955c22e",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/mcp-server/server.py",
+          "size": 99480,
+          "sha256": "a9b8628edbfff5d1cb106cba3414fe7d3aabc10e39809c42aa1d8d95abcb2590",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/README.md",
+          "size": 33060,
+          "sha256": "e46c2528c499fb3dd319b43dfa54f18290443b13588e074e3439d1a4ea7f68b4",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/advanced.md",
+          "size": 5956,
+          "sha256": "decfeeb77e94afbd36557879e524247767106f00e487eac276db052771dad772",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/agent-provider-architecture.md",
+          "size": 4339,
+          "sha256": "69e380e9b798bd2cf2134b284424bed3a2104e0b91b0534f8162adc23cf70804",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/api-lookup.md",
+          "size": 4867,
+          "sha256": "9de166b710e5fc6875b7fd9a631ccafcc954ccca5b6f8e5d0477e2e2f14a056f",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/appearance.md",
+          "size": 3632,
+          "sha256": "367102586d376e4aaae2379804b788ebb3b12597320ca701c7f7b2311fcd257b",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/assembly.md",
+          "size": 10479,
+          "sha256": "452651c30c765371c5190ade4b2b41079568d5721cf0a9806e6bc180f6b6e0ad",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/complex-hole-features.md",
+          "size": 2878,
+          "sha256": "e434ea7bdf6ca4c277f02c7030070e08d87fdaca06258f30043e2fc821b9b37c",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/complex-mechanical-routing.md",
+          "size": 3856,
+          "sha256": "e7bf16d1cc3d2c2fefcbe38c76dd6b15cbd13198dea2d643ee3e52b1d8c998ff",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/drawing.md",
+          "size": 7396,
+          "sha256": "377efd7fd33e5eaf463301821c68f80da6cca44c8e68853c621c96eeecb89708",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/enterprise-agent-rag.md",
+          "size": 3342,
+          "sha256": "01f4d1ac678bad54590b3ea772892b60552c6d5ce0af749f554c7ec56545a9b4",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/export.md",
+          "size": 7107,
+          "sha256": "b10688bfbf6ade0296418b236b2b5a7a33d2a9e275b558fb8689e3ff3ceb077c",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/mcp-server.md",
+          "size": 4620,
+          "sha256": "73620237b75ae3fec0c41217f885d94d49acf791a9b5426648f5295224439acf",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/mesh-reference-import.md",
+          "size": 6238,
+          "sha256": "9ee0ed6b0d831d3881097ed5c4f39cae3e0865c32ca07abd5118b855bf9225be",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/motion-study.md",
+          "size": 7163,
+          "sha256": "48e3ce8666fcab2baec79dbef727d08b209d8ee4185295db076f59578ef491da",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/openclaw.md",
+          "size": 5071,
+          "sha256": "7e72ae8116c8993d7d173ba26ab0493631221b779a10cd52cc9556dc575f4854",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/part-modeling.md",
+          "size": 10008,
+          "sha256": "59ca101e3cd90484c30fade86975e0e8a0a662ec37575ea8a6890205f3c6b136",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/review.md",
+          "size": 4900,
+          "sha256": "88eb4c0666ac77fde2239389c8788bf5dbde03bef3e1848ea3924b963cd8ee38",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/references/troubleshooting.md",
+          "size": 27466,
+          "sha256": "0d7efb8a3c79ea2574016ea41a375ab29e7455c2508891fa6caee5ab539916e4",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/requirements-mesh.txt",
+          "size": 58,
+          "sha256": "279a6725d246ab156da16c271537eb00ed23845710e5c8a84ef9fcb071241e0f",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/requirements-occt.txt",
+          "size": 49,
+          "sha256": "9f3c206349ae7bf0621ee03fb25774aba1fd174ee478d39fd6e8683f3a995fe2",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/requirements-pdf.txt",
+          "size": 18,
+          "sha256": "815535bedc15d67fe2d42b12742a28400138294729dd40044583aaf41982c70b",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/requirements.txt",
+          "size": 134,
+          "sha256": "568bdee304137fecaf5d08549aa552a1d34757bbf47b164a26e9aa6706ce23a7",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/__init__.py",
+          "size": 618,
+          "sha256": "786e916c07250bd938ec84b46b26ed81802c894168ba140c5051594d2d439f34",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/__pycache__/cad_installation.cpython-314.pyc",
+          "size": 20965,
+          "sha256": "b0a0233652b3dd66858497c8161d94be381292f1cd91c06d1c6462c2f8ec1224",
+          "archive": "drive-only"
+        },
+        {
+          "path": "skill/scripts/__pycache__/fea_analysis.cpython-314.pyc",
+          "size": 67712,
+          "sha256": "310a6283b8a3a8cae36a83bdbda16ad13b99f04232502cd23aeba43fdd498f6d",
+          "archive": "drive-only"
+        },
+        {
+          "path": "skill/scripts/advanced_geometry_ocp.py",
+          "size": 26834,
+          "sha256": "92e00c54fd1b89059c0715474c7029db931a316c9d8f8c41f5bba1dc11a2414a",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/advanced_geometry.py",
+          "size": 13291,
+          "sha256": "28110c13dcee8e8e86e38320e3e39f64a3a8be55291c72f9ee1924064cf388f1",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/advanced_surface_ocp.py",
+          "size": 29264,
+          "sha256": "04aff9568788cdb8fbbaf7221a708c7cfd0e6d4025f114dea1f87a34e77baf1a",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/build_smithery_mcpb.py",
+          "size": 2373,
+          "sha256": "1bf00256a89c5fa1493c9b118c45e620ef115e8b2ccb99aa6d64b3459d8fdcdb",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/build_windows_release.ps1",
+          "size": 6372,
+          "sha256": "c658b03885d525ac04946c57b0ae6f272a18541b95e8c3b8bba085ab9d0f1b08",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/cad_diagnostics.py",
+          "size": 2625,
+          "sha256": "81eb303348bc3de3748e117484f7e9e0ad7fa155af8cae937259e297b6bff2b7",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/cad_doctor.py",
+          "size": 11715,
+          "sha256": "08f4a651655656104350aa1ee2a1b5934982a8a250843d643d2cbafb8e1d9b00",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/cad_installation.py",
+          "size": 13242,
+          "sha256": "fc0d113e9b5baf83febf6657c344423eab950a4be758e9e10b8ad02cecf391c1",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/cad_studio.py",
+          "size": 15849,
+          "sha256": "b0ec95889bdd0f2da415b1d271e1157a54860fa3eade1939039050ede949d25b",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/capabilities.py",
+          "size": 2480,
+          "sha256": "88834f5947445fd021835627bc7d4af0633f8208b36e5b5f69473db51c25921c",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/delivery_compare.py",
+          "size": 3465,
+          "sha256": "795b64ea3cd69aaab32c07c26edb8ffa851f2b22b1d378afcb9754056b9a5f31",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/dfm_profiles.py",
+          "size": 12982,
+          "sha256": "3a962112b71307bf5d0254302384dc985a950cda2dfb443427d0793b37b18541",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/dfm_review.py",
+          "size": 49555,
+          "sha256": "f8cede02b859e91c42494cba3875f684e9ec83e74ac4045d3e617d892c5a1f9a",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/drawing_spec.py",
+          "size": 752,
+          "sha256": "507633966cfee0a9b51afe54f1af5087163dc38c578bfbcf2777e85618574e98",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/dxf_preview_scene.py",
+          "size": 7955,
+          "sha256": "df13fdae1d6a4d065642e670fc879f6e97228acaeb1ed34b0feebf74e2ac5d66",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/fea_analysis.py",
+          "size": 45660,
+          "sha256": "55e8ec6a68d4c2d83e9ba0ec750769446c8d214e724d611f20d947d763aa4436",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/fea_convergence.py",
+          "size": 12113,
+          "sha256": "b74ad8a29f289b3b2d6bc8442b73f1b6317c24e111a2f569b637d745cd50cd9a",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/generate_star_history.py",
+          "size": 9657,
+          "sha256": "84e7db926b9982b9e0c404457f88616a478c52f0d8d61c947eac66bcb2204ce7",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/headless_cad_writer.py",
+          "size": 34986,
+          "sha256": "7524949b53f26dfdd014bb06e2e6e705df369c3f5eef1ab18145d2fa9fb2e91d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/headless_occt_service.py",
+          "size": 13972,
+          "sha256": "07b4a7252128be2aff54fc6f48bd1a11de7f6d53782f5d75602756c2623b1f1d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/release_check.py",
+          "size": 4260,
+          "sha256": "4de4f83656c8e4bc777015b8c2f15bb725de03394af36167f203ae4ca6fb4eb7",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/routing_review.py",
+          "size": 27529,
+          "sha256": "b4b2c92f24494d1a8fb2f39b793a01a3a4edebd1d71dc179eadef6ba6d66385c",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/stability_regression.py",
+          "size": 2492,
+          "sha256": "d4c456d31e41ece6f546bb53fcc70641af8c43399d9666c3fb0cacbb76576e89",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_appearance.py",
+          "size": 7369,
+          "sha256": "732f51242a5542844c6fe5f9c5e14d82d4e61281f7febbf90ccadfa992ec07be",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_assembly.py",
+          "size": 27057,
+          "sha256": "3b0b56779a34e5ee9f067231b2498f7853888d7b9a18af7402af180f6dc988b9",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_capability_probe.py",
+          "size": 7087,
+          "sha256": "5c1b2fea1e7308186cc152b741b5cb07eac4354c1e0e8a5d366b141b0f9aafc9",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_connect.py",
+          "size": 18415,
+          "sha256": "cafb96429a7b9e80213d14a7932aa73afc1e3db50a7bc708a8a3b7dd15579246",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_delivery.py",
+          "size": 52803,
+          "sha256": "951d507c2c74e98246b2283e35ebfc32df0b46c39af50000cbb81a5df431f0b7",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_document_data.py",
+          "size": 8224,
+          "sha256": "a332b625cf186a0219c1003c50cb35121ff2f84d0ef0ed9e6f18cb648f7ce724",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_drawing_review.py",
+          "size": 764,
+          "sha256": "c1c1aa02f5a8024fda6296683631933f696efafd76b8ee5429d8a941c885915f",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_drawing.py",
+          "size": 1029,
+          "sha256": "643ff699d0f55b36f3ddc684522f4f7c975d5948094b7a023ec037512f672b48",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_entity_reference.py",
+          "size": 3279,
+          "sha256": "ba80f5d04239e1eff81fdd8717d87b70e6c920739a13b5af26b2dccef48951a2",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_export.py",
+          "size": 12603,
+          "sha256": "8c3fe201a0e38d5077f5f0613a401a5b7daf74c3bee706d0b9d82d0f51239f84",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_hole_features.py",
+          "size": 11128,
+          "sha256": "fd13a799dbf06686abc21b2545696e06e91f291487fed4e54e76398b4d4cb794",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_import_mesh_reference.py",
+          "size": 8944,
+          "sha256": "6267ae95bab8eb4f802b9eeee936f0cb97942e4f5ed517124e2be4013257b041",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_macro_guard.py",
+          "size": 12747,
+          "sha256": "253c064e6d1bb8da2af697e718de0546eb2d0122b4fd2e0ece74dcd60802c1e6",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_motion.py",
+          "size": 19394,
+          "sha256": "d8ef5dff9c9b378eeded9fe75f437d7b932371b820442ff55cd21b5d990902e7",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_part.py",
+          "size": 26967,
+          "sha256": "7f38acf00bd47965337d1b58810b10f193d4dab02e3eedf748ae9ce9b86732e5",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_preflight.py",
+          "size": 8687,
+          "sha256": "ff8d549224b87add85b5a4ae92224bc0019c536057cac968e4b96a34bd155618",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_review.py",
+          "size": 51418,
+          "sha256": "aefba6363bb9cfe7393b63448265fce8324889d5572e31d6509f496668530389",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sw_session.py",
+          "size": 6602,
+          "sha256": "9be779c2479f8a0e3a06893710178b43481011eccb3fdce9640f774e03823e69",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/sync_bundled_skill.py",
+          "size": 4186,
+          "sha256": "688c5a9e982d4b039115599271d8c1aa3bd2b90d50f080c1e176f762766290ea",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/validate_mcp.py",
+          "size": 3479,
+          "sha256": "fd17297868df69113de1b30b40af608a785965ef215ee16f411fa3cef16ad56b",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/validate_skill.py",
+          "size": 5564,
+          "sha256": "fc1570db995d222f8c3f577b96c8f273729605dc99227f851299d2543fbfc382",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/scripts/verify_updater_release.ps1",
+          "size": 3484,
+          "sha256": "9b751633392e8be8d37553a36863e2f4c508027edcc6dce1a17144e0c08504bf",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/SKILL.md",
+          "size": 26597,
+          "sha256": "5c0ea114fe06ea747c69bef1165694e9c230a7320eade552c87d69e307315563",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/SUBSKILLS.md",
+          "size": 4435,
+          "sha256": "2b250c28ff883a5409153041d25cde60ec0046fd464c0cfe1aa1897af785f9d1",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/dotnet/CadStudio.AutoCAD2024/CadStudio.AutoCAD2024.csproj",
+          "size": 1622,
+          "sha256": "0b88598a243fa041bfa81e7268284f6417b3d21cbc8ab82909a79c3d2021f925",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/dotnet/CadStudio.AutoCAD2024/CadStudioCommands.cs",
+          "size": 15792,
+          "sha256": "433cf6f6f3ff3968ea1defdf70d335ec9515b18b1a4257cabb14aa5dd3862805",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/dotnet/CadStudio.AutoCAD2024/NuGet.Config",
+          "size": 224,
+          "sha256": "2a60d41e8c9c839a51092416c96e70e0dbff10afe3022a9c063ccb4eb9aacdee",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/evals/evals.json",
+          "size": 1373,
+          "sha256": "20058be4dda7fc8e4f76125e9d6026c3beb3f05bb37f32dfc7a91b84f01a5c86",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/examples/draw_mounting_plate.py",
+          "size": 1265,
+          "sha256": "925561243c2aa3f3044becf96db0328a53987a793a7b6c3bd6a469e38af7fd0a",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/manifest.yaml",
+          "size": 866,
+          "sha256": "c846ca774dff7f7ff6a12c40d90d8e47f44a6385dc95e0755625d8ba0a472079",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/README.md",
+          "size": 3764,
+          "sha256": "16b212bebb7074d082fc05faebd4082a2a8db058d259aed910dab089bacffef2",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/references/api-lookup.md",
+          "size": 4215,
+          "sha256": "142c6b65e421b27a3c5e40b4816f2c144af4f93c9ee3b3b2f0564dfc0f661e41",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/references/engineering-patterns.md",
+          "size": 5104,
+          "sha256": "3376dcd732f157204cad79bb63250f1994eac88c2591d39f3db0d260ad1921b4",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/references/troubleshooting.md",
+          "size": 10410,
+          "sha256": "17f8d5c9a4e303bdbe0ff3cdb97c9a1d6346b79f1b6078783ae27dc656b2c238",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/scripts/acad_dotnet_preflight.py",
+          "size": 11648,
+          "sha256": "6fd8e7b4801c091049b4ff57e9f81bc451b1e7e3204316b10d8b84b195cb08bd",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/scripts/acad_dotnet_regression.py",
+          "size": 14779,
+          "sha256": "07a8cb6184bb3630fbfc8e53796e58ab67f78b4a3283275a12c919090d1de6b1",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/scripts/acad_draw.py",
+          "size": 5019,
+          "sha256": "942b282274e0e9fbb859e5995846e4649d33ea22c3d40acc317d32bd48f530cb",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/scripts/acad_headless.py",
+          "size": 11637,
+          "sha256": "babf5f26143713aa817652d59630da1848402e4243bfb01276fe7c58f6fd3b6d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/scripts/acad_preflight.py",
+          "size": 4432,
+          "sha256": "dd7c1470c4e82e14e74958e7919df3fb731180e399a025e58f46b9fc7b6be58b",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/scripts/acad_preview.py",
+          "size": 3814,
+          "sha256": "4c65ba5be8ee956c3d7bc1e509baf157c34bfcd2f82ebf3bbd8314aab68b63b9",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/scripts/acad_review.py",
+          "size": 3812,
+          "sha256": "655414909135d4bb7f162245178c593aa764fadd2120e77401f653a33449918e",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/scripts/acad_session.py",
+          "size": 30781,
+          "sha256": "517f7e80d352d0cbee76456545495a239ed0aedbec9b3b5789bc35897245db0c",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/autocad-automation/SKILL.md",
+          "size": 14245,
+          "sha256": "5be522213280b6b52b75b457c0c3f4b2951d6e0ad0a456cfcba8d3e31d0c5c44",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/manifest.yaml",
+          "size": 639,
+          "sha256": "2416cc2e8871eae818930cc29ab865018f746e6f7e1637eed39ee9b947b437e1",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/README.md",
+          "size": 1536,
+          "sha256": "89f5d1c918f4aed79126cf2e86e132f72ac06c85fc2ad19ea203079f5b28897d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/references/api-lookup.md",
+          "size": 484,
+          "sha256": "e306f33d32c3bc3e8df1e0f3da0df12b8d11c81dbe3524f7fc8acd821df4c5d3",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/references/drawing.md",
+          "size": 867,
+          "sha256": "f681af515eb90a6c81f21581e637960e6015a6ca335a4064cd26a910aaefc930",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/references/review.md",
+          "size": 1770,
+          "sha256": "89982e83bd87f125693bf6ece473db315aa1ca3e87509500f0aed4e5d7140eee",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/schemas/drawing_spec.schema.json",
+          "size": 5736,
+          "sha256": "a5a3577af0665ac03215f0fa10a79df060b3e02e7665ec863ef641f6d0a208d3",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/scripts/__init__.py",
+          "size": 49,
+          "sha256": "39c3b237df100d0c59232d68f8dd5d497d00dcf598a96bc6e4d73f4047836fb0",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/scripts/drawing_review.py",
+          "size": 43942,
+          "sha256": "7de5773bbe8986f1eb8cc584d9005dacdbdb3fa016653bcd0fac967f36cd5194",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/scripts/drawing_spec.py",
+          "size": 8652,
+          "sha256": "48361df2be27272da72cd729af986c21e8aecc55228b54afc94b5d3e89f0b47e",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/scripts/drawing_workflow.py",
+          "size": 90629,
+          "sha256": "1d7e9f77b190f1a05555827538ebe58afa3fda2b7c5eb8b82c8a2f5b2f670298",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-engineering-drawing/SKILL.md",
+          "size": 4054,
+          "sha256": "486f84e0935d7e471c9935fa28dde57483a7c84262da40ae451b9d7a3e06a051",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-fillet-chamfer-cnc/agents/openai.yaml",
+          "size": 305,
+          "sha256": "b8988c498c9f4d89ef8fef005be34eaf8fef0704ca7233a2f729dcc21fe729ce",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-fillet-chamfer-cnc/manifest.yaml",
+          "size": 450,
+          "sha256": "1d7c2a518c7a1dca59feadf54fc932657df8c83f82d546ea19454d80b84915b7",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-fillet-chamfer-cnc/README.md",
+          "size": 1636,
+          "sha256": "1ac05fb33cadbd751421946523014fe55fe0c48aa0918abbaf39fd41c31fa8ba",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-fillet-chamfer-cnc/references/cnc-fillet-chamfer-lessons.md",
+          "size": 5032,
+          "sha256": "10d53567beadfe17336ef12d390fc7456d5231f1fd37459acc75cec6d4a20c96",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-fillet-chamfer-cnc/scripts/create_cnc_mount_template.py",
+          "size": 13785,
+          "sha256": "f82a4c4d248cdf04bf83f05082ffb1ad4ae18262ae91b74151ee6b8840594a2e",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-fillet-chamfer-cnc/SKILL.md",
+          "size": 3595,
+          "sha256": "295c1af5a95ade12b1530f6665d393191550612c849496fbf8120af844ed27da",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-threaded-holes/agents/openai.yaml",
+          "size": 237,
+          "sha256": "768c9ef61ec678a27f9f49aa7b9713ea136a965c08f341d1424f77983342a82d",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-threaded-holes/manifest.yaml",
+          "size": 431,
+          "sha256": "aa2e3c44d0074f20b4933cf13a934e6c0080523c9bd842ced1e48db3ced2798a",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-threaded-holes/README.md",
+          "size": 1666,
+          "sha256": "e5ef54f18faebd1207100f807a39e4ffc367d13895ae6ecd73103a614a268eb0",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-threaded-holes/references/threaded-hole-lessons.md",
+          "size": 5501,
+          "sha256": "71babc8d070fa6258b1a3b7a541edf99abdce7a98c2ea5d0776f9b43a7f0772b",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-threaded-holes/scripts/create_threaded_hole_template.py",
+          "size": 22686,
+          "sha256": "e7da09eb39b3d9bf27c315bf8c7bc331db73a55a747f98b2a23d5ee686fb3022",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-threaded-holes/SKILL.md",
+          "size": 4884,
+          "sha256": "f84f8d06ca6fbda189c61d537a82efe6477fff742695e5c129074028d008326f",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/examples/motor_mount_brief.txt",
+          "size": 286,
+          "sha256": "03b921ceeae63bcad14e7d3fd438500e2de44f3397d748200ecff5a13586f4cf",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/examples/motor_mount_execution.md",
+          "size": 1705,
+          "sha256": "33db78702e59ac8921d9bb78f9762c4a8a9026b91900451a350df425ad06bd8a",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/examples/motor_mount_plan.json",
+          "size": 5373,
+          "sha256": "b7aee008294e8847acd47d5c6872eaeee17d13e4cf3a3c86f36fd6bc79b3ea05",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/knowledge/manufacturing_rules.yaml",
+          "size": 1800,
+          "sha256": "b1e388e16b48625a073ccf1ebe787ea5bf3b70f496fcf9161c155a507cc9f227",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/manifest.yaml",
+          "size": 690,
+          "sha256": "f7360e591e6f35dd9db045c26bce693e47e73b6275ee26b985b1aed8ed4da5a4",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/prompts/solidworks_parametric_planner.md",
+          "size": 1785,
+          "sha256": "97a3615a5f0f6db5bd594941c4999a2a038a674531e992a8312377c6d628a236",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/README.md",
+          "size": 2882,
+          "sha256": "33acb1e858c9cdea6c522608dadc0ca32a9d274f29cf5b6952192963a56bc9b5",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/references/vibecad-roadmap.md",
+          "size": 2433,
+          "sha256": "b9d5568cb13c94aacd2bcca54927d77b20b38eb14f665f3c9cf63619e61c67ce",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/schemas/design_plan.schema.json",
+          "size": 2443,
+          "sha256": "30cebe45e6bcc74271f2002cd0acb0d3aa8fcae78f30902214762bf233951d02",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/scripts/plan_from_brief.py",
+          "size": 10239,
+          "sha256": "851adc91749c2c261afd97e559511dd83559af4b7c5f0d1fb7dd60da6fcc526e",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/scripts/sw_execution_outline.py",
+          "size": 4398,
+          "sha256": "9f84e97d6e42f9b16577d9c546c0cb373ebdd340732efff888395112a9514929",
+          "archive": "gitee"
+        },
+        {
+          "path": "skill/subskills/solidworks-vibecad/SKILL.md",
+          "size": 3751,
+          "sha256": "6408dff5337f0fee4fd73143bf5fae768d623e705466a7f8609247587f074172",
+          "archive": "gitee"
+        },
+        {
+          "path": "USER_MANUAL.zh-CN.md",
+          "size": 16895,
+          "sha256": "c6d64e0b26441c5fac6b3883b922ba8f0d84f26d54e1bd7f75816980a9a2c8a0",
+          "archive": "gitee"
+        }
+      ],
+      "drive_archive_path": "H:\\我的云端硬盘\\muIon_archive\\external-libraries\\cad-studio-0.3.4-windows-x64-portable\\ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719"
+    }
+  ]
+}

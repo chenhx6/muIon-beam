@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "registry_type": "codex-reference-library",
+  "audience": "codex-internal-reference",
+  "execution_policy": "reference-only",
+  "libraries": [
+    {
+      "id": "cad-studio-0.3.4-windows-x64-portable",
+      "path": "06_external_lib/CAD-Studio-0.3.4-Windows-x64-Portable",
+      "display_name": "CAD Studio 0.3.4 Windows x64 Portable",
+      "status": "active",
+      "metadata_status": "reviewed",
+      "role": "Codex 查询型外部图书馆；不进入常规执行技能层",
+      "source": {
+        "kind": "github-release",
+        "repository": "https://github.com/wzyn20051216/solidworks-automation-skill",
+        "release": "v0.3.4",
+        "commit": "0eb24dc1b93adc9371ed605e35d82f9b93821420",
+        "upstream_main_commit": "5287d2e3d100dedb10e94910523f294a46176c54"
+      },
+      "version": "0.3.4",
+      "license": "MIT",
+      "strengths": [
+        "覆盖 SolidWorks/AutoCAD 自动化、Skill、CLI、MCP 和 CAD Studio 多入口",
+        "以 capabilities.yaml 和 verified/pilot/reference_only/not_implemented 分级表达能力边界",
+        "提供 preflight、诊断、会话所有权、真实保存/重开/回读和输出证据思路",
+        "包含开放格式导出、装配、工程图、孔槽、网格参考、FEA/Routing 试点和 MCP Server 参考实现",
+        "附带可复用的子技能、脚本、Schema、示例和工程化排障文档"
+      ],
+      "limitations": [
+        "SolidWorks/AutoCAD 原生能力依赖本机软件、许可证和 Windows 环境",
+        "pilot、reference_only 和 not_implemented 能力不能当作无人值守正式交付",
+        "外部资料只用于 Codex 查询、比较和设计参考，不作为本项目运行时依赖",
+        "执行前必须重新核对当前项目的版本、模型、许可证和能力门禁"
+      ],
+      "query_topics": [
+        "SolidWorks COM 会话与连接封装",
+        "零件、孔槽、螺纹、圆角、倒角、装配与工程图",
+        "AutoCAD/DXF、开放格式导出和网格参考导入",
+        "MCP/CLI/桌面端编排、诊断、审查和证据账本",
+        "FEA、Routing、复杂曲面和制造复核的 pilot 边界"
+      ],
+      "adoption": {
+        "execution_layer": false,
+        "auto_import_to_codex_skills": false,
+        "consultation_only": true,
+        "existing_adoption_record": "00_project/traceability/evolution/EVOLUTION-20260909-solidworks-automation-skill.json"
+      }
+    }
+  ]
+}

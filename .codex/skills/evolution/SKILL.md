@@ -7,6 +7,13 @@ description: Manually discover and safely absorb useful external skills, workflo
 
 Evolution never starts from ordinary project work. It only reports candidates, risks, licenses, compatibility, tests, and an adoption recommendation. The user decides whether to adopt and which files or scope to adopt.
 
+Eligibility and adoption are separate decisions. A pinned, licensed candidate is
+first checked for source safety and unknown install hooks. It is then compared
+with the local capability map and classified as `new`, `extend`, `merge`,
+`reference-only`, or `reject`. An existing `capability_id` is not itself unsafe
+or a duplicate rejection; reject only when no incremental value is evidenced or
+the candidate is otherwise ineligible.
+
 This skill is manual-only. `$evolution` may be invoked without a target; in that case inspect project history, failures, reports, tests, capability-map, and logs to generate exploration directions. Search across GitHub and other relevant public ecosystems for useful workflows, skills, scripts, templates, and research tooling. Rank candidates by relevance, activity, stars/forks, license, tests, compatibility, and safety.
 
 Download candidates into `_work/cache/evolution/`, pin source commits/tags, compare against `00_project/traceability/capability-map.yaml`, add only incremental compatible changes, run project checks, and record sources, licenses, hashes, decisions, and tests under `00_project/traceability/evolution/`. Do not execute unknown install hooks, overwrite user changes, change research goals, delete unique source data, or publish externally.

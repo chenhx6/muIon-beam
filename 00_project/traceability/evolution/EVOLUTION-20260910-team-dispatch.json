@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "evolution_id": "EVOLUTION-20260910-team-dispatch",
+  "recorded_at": "2026-09-10",
+  "trigger": "user-explicit-evolution",
+  "scope": "team/sub-agent dispatch, routing, schema, trace and tests only",
+  "candidate_eligibility": {
+    "status": "eligible-for-reference-and-thin-extension",
+    "source_policy": "public GitHub pages inspected read-only; no unknown install hook or external runtime executed",
+    "licenses": ["MIT", "Apache-2.0"],
+    "mastra_enterprise_area": "rejected-from-adoption; ee/ has a separate enterprise license"
+  },
+  "sources": [
+    {"url": "https://github.com/jellologic/claude-fleet", "commit": "453d58376ec5b5dd5901092042ee31f60b401d0b", "license": "MIT", "adoption": "extend", "cache": "_work/cache/evolution/team-dispatch-study/README.md", "used_for": ["provably disjoint ownership", "resource/lock conflict", "crash/retry", "evidence gate", "reviewer decorrelation"]},
+    {"url": "https://github.com/BerriAI/litellm", "commit": "0112e53046018d726492c814b3644b7d376029d0", "license": "MIT", "adoption": "reference-only", "cache": "_work/cache/evolution/team-dispatch-study/README.md", "used_for": ["runtime model/provider metadata", "availability", "fallback/load/observability vocabulary"]},
+    {"url": "https://github.com/shinpr/sub-agents-skills", "commit": "84e1d4b311dd1f87b71687b62cb1d97744393b80", "license": "MIT", "adoption": "extend", "cache": "_work/cache/evolution/team-dispatch-study/README.md", "used_for": ["role/backend separation", "explicit model/effort/permission fields"]},
+    {"url": "https://github.com/langfuse/codex-observability-plugin", "commit": "1db5c0f5ddce569afc112c6476e21d00cf9a482e", "license": "MIT", "adoption": "extend", "cache": "_work/cache/evolution/team-dispatch-study/README.md", "used_for": ["turn/generation/tool/subagent trace vocabulary", "error/interruption/usage evidence"]},
+    {"url": "https://github.com/open-telemetry/semantic-conventions-genai", "commit": "b5d8440f6f126738fd50f927752cd669772c517b", "license": "Apache-2.0", "adoption": "reference-only", "cache": "_work/cache/evolution/team-dispatch-study/README.md", "used_for": ["plan/invoke_agent/invoke_workflow/execute_tool names", "provider/model/error attributes"]},
+    {"url": "https://github.com/mastra-ai/mastra", "commit": "bb09e860dd6c510365f0d7ab068b194707e99fa4", "license": "Apache-2.0 core; ee separate", "adoption": "reference-only", "cache": "_work/cache/evolution/team-dispatch-study/README.md", "used_for": ["DAG lifecycle", "parallel", "suspend/resume persistence"]}
+  ],
+  "cache": {"path": "_work/cache/evolution/team-dispatch-study/README.md", "sha256": "1DA2F571FCDE924C54AFA0F21B3B46BF54B14AAD22E15A45EF4061F3520DC215"},
+  "capability_comparison": {
+    "existing_capability": "team",
+    "decision": "extend",
+    "reason": "team already owned bounded dispatch/model discovery; external designs add machine validation, stale/fallback policy, lifecycle and durable evidence without a second orchestrator"
+  },
+  "not_adopted": [
+    "LiteLLM gateway/proxy: adds an external service and dependency surface; only metadata/routing ideas were used.",
+    "Mastra runtime/LangGraph/AutoGen/CrewAI/Temporal: would replace or duplicate research-system boundaries.",
+    "claude-fleet git worktree/OS sandbox/remote locks: current Codex sub-agent API cannot enforce them; represented as protocol risk and named resources only.",
+    "Langfuse cloud service and OpenTelemetry exporter: local durable JSON trace is sufficient for this phase.",
+    "External repository files/install scripts: not copied or executed."
+  ],
+  "adopted": [
+    "dispatch-manifest.schema.json and dispatch-manifest.mjs",
+    "hard compatibility model-router with role fit, stale refresh/fallback and explicit selection_reason",
+    "ready-wave dependency/ownership/mutable-read/exclusive-resource validation",
+    "agent-run-ledger durable lifecycle/evidence records",
+    "evolution existing-capability adoption modes: extend/merge/reference-only/reject"
+  ],
+  "tests": ["tests/evolution.test.mjs", "tests/agent-routing.test.mjs", "tests/team-dispatch.test.mjs"],
+  "remaining_risk": ["subprocess permissions, provider slots, filesystem/worktree isolation and actual spawn/cancel remain runtime or leader-discipline boundaries"],
+  "decision": "adopt-in-scope"
+}

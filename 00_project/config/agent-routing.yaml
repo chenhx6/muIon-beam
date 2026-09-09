@@ -1,18 +1,24 @@
-schema_version: 1
+schema_version: 2
 selection:
-  strategy: runtime-capability-first
+  strategy: hard-compatibility-then-role-fit
   quality_over_token_cost: true
   preferred_reasoning: xhigh
   max_reasoning_default: xhigh
   allow_max_or_ultra: false
   stale_catalog_seconds: 300
   fallback_to_parent_model: true
+  stale_read_only_last_known_good: true
+  stale_write_requires_refresh: true
+  default_concurrency: 2
+  max_concurrency: 4
+  resource_policy: exclusive-by-default
 roles:
-  architect: { reasoning: xhigh }
-  critic: { reasoning: xhigh }
-  physics-reviewer: { reasoning: xhigh }
-  executor: { reasoning: xhigh }
-  researcher: { reasoning: xhigh }
-  qa: { reasoning: high }
-  reporter: { reasoning: high }
-  archivist: { reasoning: high }
+  architect: { reasoning: xhigh, capabilities: [planning, decomposition], reviewer: false }
+  critic: { reasoning: xhigh, capabilities: [review, adversarial-analysis], reviewer: true }
+  physics-reviewer: { reasoning: xhigh, capabilities: [physics, review], reviewer: true }
+  executor: { reasoning: xhigh, capabilities: [execution, coding], reviewer: false }
+  researcher: { reasoning: xhigh, capabilities: [research, synthesis], reviewer: false }
+  qa: { reasoning: high, capabilities: [verification, testing], reviewer: true }
+  reporter: { reasoning: high, capabilities: [reporting], reviewer: false }
+  archivist: { reasoning: high, capabilities: [archive, traceability], reviewer: false }
+  leader: { reasoning: xhigh, capabilities: [integration, governance], reviewer: false, publish: true, spawn_child: true }

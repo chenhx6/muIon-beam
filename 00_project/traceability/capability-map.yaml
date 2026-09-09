@@ -54,14 +54,14 @@ capabilities:
     tests: ["tests/workflow-state.test.mjs"]
   - capability_id: team
     source_concept: team
-    existing_local_entrypoints: ["team", ".codex/skills/team/SKILL.md", "node .codex/skills/team/scripts/discover-models.mjs", "node .codex/skills/team/scripts/select-model.mjs"]
-    existing_scripts: [".codex/skills/team/scripts/discover-models.mjs", ".codex/skills/team/scripts/select-model.mjs"]
-    existing_references: [".codex/skills/team/agents/openai.yaml", "00_project/config/agent-routing.yaml"]
+    existing_local_entrypoints: ["team", ".codex/skills/team/SKILL.md", "node .codex/skills/team/scripts/dispatch.mjs path/to/dispatch.json"]
+    existing_scripts: [".codex/skills/team/scripts/discover-models.mjs", ".codex/skills/team/scripts/model-router.mjs", ".codex/skills/team/scripts/dispatch-manifest.mjs", ".codex/skills/team/scripts/agent-run-ledger.mjs", ".codex/skills/team/scripts/dispatch.mjs"]
+    existing_references: [".codex/skills/team/agents/openai.yaml", "00_project/config/agent-routing.yaml", "07_research_system/control/research-workflow/references/sub-agent-dispatch.md"]
     decision: extend
-    decision_reason: "team Skill 和动态模型路由脚本已存在，本次对齐能力登记并保留后续扩展空间"
-    primary_entrypoint: team
+    decision_reason: "在既有 team capability 上增加可验证 dispatch manifest、ready-wave 冲突检查、角色/能力路由、stale fallback 和 durable agent-run ledger；不新建 orchestration system"
+    primary_entrypoint: "node .codex/skills/team/scripts/dispatch.mjs"
     aliases: [delegation]
-    tests: ["tests/agent-routing.test.mjs"]
+    tests: ["tests/agent-routing.test.mjs", "tests/team-dispatch.test.mjs"]
     trigger_mode: automatic
     execution_kind: skill
   - capability_id: farmer

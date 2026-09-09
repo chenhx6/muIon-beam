@@ -25,6 +25,18 @@ test('safe duplicate capability remains eligible and requires an adoption decisi
   assert.equal(result.safety.status, 'eligible');
   assert.equal(result.capability.status, 'existing');
   assert.equal(result.adoption.status, 'review-required');
+  assert.equal(result.adoption.recommended, null);
+});
+
+test('existing capability can be explicitly merged, reference-only, or rejected', () => {
+  for (const mode of ['merge', 'reference-only']) {
+    const result = evaluateCandidate({ capability_id: 'team', adoption_mode: mode, source_url: 'https://github.com/a/b', commit: 'abc', license: 'MIT' }, ['team']);
+    assert.equal(result.accepted, true);
+    assert.equal(result.adoption.recommended, mode);
+  }
+  const rejected = evaluateCandidate({ capability_id: 'team', adoption_mode: 'reject', source_url: 'https://github.com/a/b', commit: 'abc', license: 'MIT' }, ['team']);
+  assert.equal(rejected.accepted, true);
+  assert.equal(rejected.adoption.recommended, 'reject');
 });
 
 test('evolution rejects an adoption mode outside the candidate options', () => {

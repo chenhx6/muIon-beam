@@ -13,8 +13,9 @@ export function evaluateCandidate(candidate, existing = []) {
   const requestedMode = candidate.adoption_mode || null;
   if (requestedMode && !adoptionOptions.includes(requestedMode)) safetyReasons.push(`invalid adoption_mode: ${requestedMode}`);
   const eligible = safetyReasons.length === 0;
+  const accepted = eligible;
   return {
-    accepted: eligible,
+    accepted,
     safety: { status: eligible ? 'eligible' : 'blocked', reasons: safetyReasons },
     capability: { capability_id: capabilityId, status: existingCapability ? 'existing' : 'new' },
     adoption: {

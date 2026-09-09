@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muion-beam/team/dispatch-manifest",
+  "type": "object",
+  "required": ["schema_version", "dispatch_id", "tasks"],
+  "properties": {
+    "schema_version": { "type": ["integer", "string"] },
+    "dispatch_id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$" },
+    "parent_id": { "type": ["string", "null"] },
+    "goal": { "type": "string" },
+    "policy": {
+      "type": "object",
+      "properties": { "max_concurrency": { "type": "integer", "minimum": 1 }, "default_concurrency": { "type": "integer", "minimum": 1 } }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["task_id", "role", "summary"],
+        "properties": {
+          "task_id": { "type": "string" },
+          "parent_id": { "type": ["string", "null"] },
+          "role": { "type": "string" },
+          "summary": { "type": "string" },
+          "depends_on": { "type": "array", "items": { "type": "string" } },
+          "reads": { "type": "array", "items": { "type": "string" } },
+          "owns": { "type": "array", "items": { "type": "string" } },
+          "writes": { "type": "array", "items": { "type": "string" } },
+          "resources": { "type": "array", "items": { "type": "string" } },
+          "required_context": { "type": "integer", "minimum": 0 },
+          "required_modalities": { "type": "array", "items": { "type": "string" } },
+          "required_tools": { "type": "array", "items": { "type": "string" } },
+          "reasoning": { "type": "string" },
+          "permissions": { "type": "object" },
+          "verification": { "type": "object" },
+          "output_contract": { "type": "object" }
+        }
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@
 | report-and-sync | reuse | unspecified | unspecified | npm run publish:and-sync | 已有发布、归档和三端审计闭环 |
 | deep-interview | new | unspecified | unspecified | deep-interview | 补充可恢复的需求澄清阶段 |
 | ultragoal | new | unspecified | unspecified | ultragoal | 补充持久目标和检查点 ledger |
-| team | extend | automatic | skill | team | team Skill 和动态模型路由脚本已存在，本次对齐能力登记并保留后续扩展空间 |
+| team | extend | automatic | skill | node .codex/skills/team/scripts/dispatch.mjs | 在既有 team capability 上增加可验证 dispatch manifest、ready-wave 冲突检查、角色/能力路由、stale fallback 和 durable agent-run ledger；不新建 orchestration system |
 | farmer | new | automatic | supervisor | farmer | 项目专属 Codex Desktop session 监督 |
 | evolution | new | manual | skill | evolution | 手动触发的跨项目能力发现和增量接入 |
 | comsol-block | new | automatic | execution-block | node 07_research_system/blocks/comsol/index.mjs --task path/to/task.json | 建立独立 COMSOL 计算模块；保留现有历史 COMSOL 资产并通过显式 adapter 接入 |

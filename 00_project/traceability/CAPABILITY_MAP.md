@@ -7,9 +7,12 @@
 | plan | extend | automatic | skill | muion-project:plan | 保留任务卡入口，增加澄清与共识门 |
 | preflight | merge | unspecified | unspecified | npm run preflight | doctor 复用既有 preflight 和模型检查 |
 | report-and-sync | reuse | unspecified | unspecified | npm run publish:and-sync | 已有发布、归档和三端审计闭环 |
-| deep-interview | new | unspecified | unspecified | deep-interview | 补充可恢复的需求澄清阶段 |
-| ultragoal | new | unspecified | unspecified | ultragoal | 补充持久目标和检查点 ledger |
-| team | extend | automatic | skill | node .codex/skills/team/scripts/dispatch.mjs | 在既有 team capability 上增加可验证 dispatch manifest、ready-wave 冲突检查、角色/能力路由、stale fallback 和 durable agent-run ledger；不新建 orchestration system |
+| deep-interview | extend | automatic | control-script | npm run deep-interview | 一次性启动 intake、可恢复 handoff 和任务卡 skip |
+| consensus-plan | new | automatic | control-script | npm run consensus-plan | 持久化 Planner/Architect/Critic 顺序审查与执行交接 |
+| ultragoal | new | automatic | control-script | npm run ultragoal | 补充持久目标和检查点 ledger |
+| ultraqa | new | automatic | gate-wrapper | npm run ultraqa | 将架构、Manifest 和变量校验形成可追溯 QA 门 |
+| autopilot | extend | automatic | orchestrator | npm run autopilot | 固定阶段顺序、恢复 RUNNING 尝试并串联项目门禁 |
+| team | extend | automatic | skill | node .codex/skills/team/scripts/dispatch.mjs | 在既有 team capability 上增加 dispatch manifest、ready-wave 冲突检查、角色/能力路由、stale fallback、durable ledger、evidence gate、科研证据 bundle、本地 telemetry 和 cooperative resource lock；不新建 orchestration system |
 | farmer | new | automatic | supervisor | farmer | 项目专属 Codex Desktop session 监督 |
 | evolution | new | manual | skill | evolution | 手动触发的跨项目能力发现和增量接入 |
 | comsol-block | new | automatic | execution-block | node 07_research_system/blocks/comsol/index.mjs --task path/to/task.json | 建立独立 COMSOL 计算模块；保留现有历史 COMSOL 资产并通过显式 adapter 接入 |

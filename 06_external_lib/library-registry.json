@@ -5,6 +5,20 @@
   "execution_policy": "reference-only",
   "libraries": [
     {
+      "id": "oh-my-codex-v0.21.4",
+      "path": "reference://github/Yeachan-Heo/oh-my-codex",
+      "display_name": "oh-my-codex v0.21.4",
+      "status": "reference-only",
+      "metadata_status": "reviewed",
+      "role": "可恢复编排、状态机和阶段交接设计参考；不进入运行时",
+      "source": {"kind": "github-repository", "repository": "https://github.com/Yeachan-Heo/oh-my-codex", "release": "v0.21.4", "commit": "304fb3b"},
+      "version": "0.21.4",
+      "license": "MIT",
+      "strengths": ["Autopilot 父级状态机", "deep-interview/ralplan/ultragoal 交接", "顺序审查与完成门"],
+      "limitations": ["原生 Windows 和 Codex App 支持较弱", "不作为本项目 npm/CLI 依赖"],
+      "adoption": {"execution_layer": false, "auto_import_to_codex_skills": false, "consultation_only": true, "existing_adoption_record": "00_project/traceability/evolution/EVOLUTION-20260910-oh-my-codex.json"}
+    },
+    {
       "id": "cad-studio-0.3.4-windows-x64-portable",
       "path": "06_external_lib/CAD-Studio-0.3.4-Windows-x64-Portable",
       "display_name": "CAD Studio 0.3.4 Windows x64 Portable",

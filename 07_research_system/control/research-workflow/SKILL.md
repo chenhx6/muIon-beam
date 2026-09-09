@@ -22,6 +22,12 @@ question -> physics reasoning -> routing -> frozen contract -> execution
 -> result-issue-report -> validation/diagnosis -> decision -> state update
 ```
 
+Project-level execution is supervised by `npm run autopilot`. Its durable chain is
+`deep-interview -> consensus-plan/ralplan -> preflight -> snapshot -> contract ->
+execute -> validate -> report -> ultraqa -> archive -> close`. Direct module entry
+points remain appropriate for smoke and diagnosis and cannot publish or close a
+project workflow.
+
 Read only the relevant reference for the current stage. Keep one foreground
 task, use finite retries, never alter a dispatched contract, and return a
 proposal when a fixed or forbidden condition must change.

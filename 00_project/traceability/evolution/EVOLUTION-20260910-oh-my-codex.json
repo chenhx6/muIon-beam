@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-10",
+  "trigger": "user-explicit-github-reference",
+  "status": "reference-only",
+  "sources": [{
+    "kind": "github-repository",
+    "url": "https://github.com/Yeachan-Heo/oh-my-codex",
+    "ref": "v0.21.4",
+    "commit": "304fb3b",
+    "license": "MIT"
+  }],
+  "findings": ["父级 Autopilot FSM", "阶段交接物", "顺序 Architect/Critic 审查", "恢复状态与完成门"],
+  "decision": {
+    "adopt_now": false,
+    "recommended_scope": "仅借鉴设计并由项目 Node 入口实现",
+    "rationale": "上游原生 Windows/Codex App 支持较弱，项目已有 research-state、事件日志和交付门禁，不引入外部运行时依赖"
+  }
+}

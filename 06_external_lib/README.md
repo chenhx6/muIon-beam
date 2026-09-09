@@ -38,6 +38,7 @@
 - 来源版本：v0.3.4
 - 来源 commit：`0eb24dc1b93adc9371ed605e35d82f9b93821420`
 - 执行边界：仅供 Codex 参考；项目实际执行仍以本仓库已验证的技能、模型、环境和门禁为准。
+- `oh-my-codex` v0.21.4（MIT，提交 `304fb3b`）仅用于可恢复状态机、阶段交接和完成门设计参考；不作为项目运行时依赖。采用记录见 `00_project/traceability/evolution/EVOLUTION-20260910-oh-my-codex.json`。
 
 ## 三端保存策略
 
@@ -45,4 +46,3 @@
 - Google Drive：完整便携库和所有 Drive-only 二进制，按内容指纹建立不可变版本。
 - 变更触发：task:begin、auto:commit-push、task:close、sync-project。
 - 删除策略：记录 retired/tombstone，保留历史归档，不自动删除唯一原始内容。
-

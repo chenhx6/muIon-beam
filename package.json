@@ -72,5 +72,10 @@
     ,"research-workflow:validate": "node 07_research_system/control/research-workflow/index.mjs validate"
     ,"research-workflow:execute": "node 07_research_system/control/research-workflow/index.mjs execute"
     ,"autopilot": "node .codex/skills/muion-project/scripts/autopilot.mjs"
+    ,"deep-interview": "node .codex/skills/muion-project/scripts/deep-interview.mjs"
+    ,"consensus-plan": "node .codex/skills/muion-project/scripts/consensus-plan.mjs"
+    ,"ralplan": "node .codex/skills/muion-project/scripts/consensus-plan.mjs"
+    ,"ultragoal": "node .codex/skills/muion-project/scripts/ultragoal.mjs"
+    ,"ultraqa": "node .codex/skills/muion-project/scripts/ultraqa.mjs"
   }
 }

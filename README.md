@@ -43,6 +43,12 @@
 
 工作流阶段由项目 skill 自动衔接；只有需要主动发现和吸收外部能力时才调用 evolution。常用检查命令包括 farmer:status、farmer:once、test:agent-routing 和 test:evolution。
 
+项目级可恢复编排使用 `npm run autopilot`。它在启动阶段完成一次性 intake，随后按
+`deep-interview -> consensus-plan/ralplan -> preflight -> snapshot -> contract ->
+execute -> validate -> report -> ultraqa -> archive -> close` 自动推进。阶段账本位于
+`07_research_system/control/research-state/workflows/`，中断后可用
+`npm run autopilot -- resume --workflow-run-id <id>` 继续。
+
 ## 物理区域
 
 `R01` 至 `R06` 只用于物理定义和索引。一次运行涉及多个区域时，在运行 Manifest 的 `physical_regions` 中列出多个区域，不复制运行文件。

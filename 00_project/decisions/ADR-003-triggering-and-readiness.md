@@ -13,10 +13,10 @@
 
 `task:begin -> preflight -> task card/user confirmation -> run snapshot -> research contract -> module execution -> validation/diagnosis -> reports -> Drive/Gitee sync -> task close`。
 
-其中 Research Workflow 目前能执行合同和统一状态闭环，但尚未有一个仓库内的 `autopilot` 可执行编排器把项目任务卡、模型检查、run snapshot、双报告和归档自动串起来。正式研究必须继续经过项目层门禁；直接模块入口只适合受控兼容、诊断和 smoke 场景。
+Research Workflow 负责合同和统一状态闭环；项目级 `autopilot` 现在负责把一次性启动 intake、顺序共识审查、任务卡、模型检查、run snapshot、双报告、QA 和归档串成可恢复状态机。正式研究必须经过该项目层门禁；直接模块入口只适合受控兼容、诊断和 smoke 场景。
 
 ## 启动结论
 
 - F0/F1 的任务卡、合同校验、smoke、诊断和小规模验证可以启动。
-- 正式生产运行前必须补齐或明确执行项目层编排门：模型指纹检查、run snapshot、双报告、Drive/Gitee 三端校验和自动关闭请求。
+- 正式生产运行必须由 autopilot 通过模型指纹检查、run snapshot、双报告、ultraqa、Drive/Gitee 三端校验和关闭请求门。
 - 若 3D 任务需要安装 `pywin32`/`comtypes`，当前 `sw_preflight.py` 仍是交互式授权入口；它不应在无人值守自动链中直接运行，除非纳入项目 allowlist 的工具链恢复。

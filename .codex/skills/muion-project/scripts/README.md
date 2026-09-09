@@ -30,3 +30,18 @@ reference-only and is not a second user-facing workflow.
 - `acceptance:finalize` 只读返回待定状态，不修改 Manifest，不自动写入 `structural-accepted`、`verified` 等成功标志。
 - 调用统一参数解析器的入口在 `--help` 时提前退出，不执行迁移、发布、数据库构建或同步。
 - 验证命令：`node --test tests/legacy-version-policy.test.mjs`。测试只使用 `_work/scratch` 下隔离样例。
+
+## 可恢复项目编排
+
+```powershell
+node .codex/skills/muion-project/scripts/autopilot.mjs plan --task-id TASK-ID
+node .codex/skills/muion-project/scripts/deep-interview.mjs answer --workflow-run-id WF-ID --answers-file intake.json
+node .codex/skills/muion-project/scripts/consensus-plan.mjs record-review --workflow-run-id WF-ID --role architect --review-file architect.json
+node .codex/skills/muion-project/scripts/consensus-plan.mjs record-review --workflow-run-id WF-ID --role critic --review-file critic.json
+node .codex/skills/muion-project/scripts/ultragoal.mjs status --workflow-run-id WF-ID
+node .codex/skills/muion-project/scripts/ultraqa.mjs run --workflow-run-id WF-ID
+node .codex/skills/muion-project/scripts/autopilot.mjs resume --workflow-run-id WF-ID
+```
+
+工作流账本写入 `07_research_system/control/research-state/workflows/`，`state.yaml`
+仍是当前状态唯一事实源；`_work/current/` 只保留临时执行输出和兼容镜像。

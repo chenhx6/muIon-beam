@@ -54,13 +54,13 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `retry-sync`: retry pending three-end sync records idempotently and clear only successfully verified outbox entries.
 - `install-nature-figure`: install or inspect the pinned external figure skill.
 - `up`: read current workflow, farmer, model and synchronization state.
-- `deep-interview`: turn a fuzzy research request into a durable requirements handoff.
-- `consensus-plan`: require Architect and Critic evidence before execution.
-- `autopilot`: route the approved task through execution, review, QA, report, tag and synchronization.
-- `ultragoal`: maintain durable goals, checkpoints and handoffs under `00_project/state`.
+- `deep-interview`: run the one-time startup intake and write a durable requirements handoff.
+- `consensus-plan`: require ordered Architect and Critic evidence before execution (`ralplan` is the compatibility alias).
+- `autopilot`: supervise the complete restartable chain through execution, review, QA, report, tag and synchronization.
+- `ultragoal`: maintain durable goals and checkpoints in the workflow ledger.
 - `team`: dispatch isolated sub-agent lanes using runtime model discovery.
 - `physics-review`: check dimensions, boundaries, conservation, ranges and interpretation.
-- `ultraqa`: run project, traceability, physics and report gates.
+- `ultraqa`: run project, traceability, physics and report gates and write machine-readable QA evidence.
 - `best-practice-research`: gather cited upstream evidence before architecture decisions.
 - `autoresearch`: run bounded validator-gated research experiments.
 - `research-loop`: connect hypotheses, campaigns, runs, figures, reports and decisions.
@@ -73,7 +73,7 @@ Read only the relevant reference file for the selected mode. Do not load every r
 
 ## Automatic project lifecycle
 
-When a task is opened inside `D:\\muIon-beam`, ensure `farmer:ensure` has run, recover task-required tools through the project toolchain recovery when needed, and read lightweight project status. The workflow may select other modes automatically as the task moves through phases; users do not need to invoke each phase separately. `evolution` is manual-only and must never be started by ordinary project work.
+When a task is opened inside `D:\\muIon-beam`, ensure `farmer:ensure` has run, recover task-required tools through the project toolchain recovery when needed, and read lightweight project status. The workflow may select other modes automatically as the task moves through phases; users do not need to invoke each phase separately. Autopilot persists its phase and handoff artifacts under the canonical research-state control path and resumes from the last committed checkpoint. The startup intake is the only ordinary user-question phase; later gates either continue automatically or record a blocker. `evolution` is manual-only and must never be started by ordinary project work.
 
 At task start, record the Git baseline with `begin-task.mjs`. After task-owned changes pass validation, run `auto-commit-push.mjs --baseline <baseline>`; it refuses pre-existing user changes, protected model/output paths and missing baselines. Create an annotated result tag only after the report, Drive receipt and three-end audit are verified, and generate its Chinese note automatically.
 

@@ -3,7 +3,7 @@
   "manifest_type": "task",
   "schema_version": "1.0.0",
   "created_at": "2026-09-09T01:50:00Z",
-  "updated_at": "2026-09-09T01:50:00Z",
+  "updated_at": "2026-09-09T02:12:00Z",
   "task_id": "TASK-RESEARCH-CONTROL-001",
   "task_name": "建立 muon-ion research system 控制层 MVP",
   "source_type": "user_request",
@@ -64,5 +64,5 @@
   ],
   "expected_maturity": "F0",
   "scientific_revalidation": "not-applicable-for-control-layer-architecture",
-  "acceptance_status": "implemented-pending-project-delivery"
+  "acceptance_status": "implemented-pending-user-review"
 }

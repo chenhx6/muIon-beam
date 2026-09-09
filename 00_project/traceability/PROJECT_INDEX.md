@@ -8,6 +8,7 @@
 | TASK-COMSOL-MVP-001 | task | 00_project/task-cards/TASK-COMSOL-MVP-001.task-manifest.json |  |
 | TASK-LEGACY-SMOKE-001 | task | 00_project/task-cards/TASK-LEGACY-SMOKE-001.task-manifest.json |  |
 | TASK-RESEARCH-CONTROL-001 | task | 00_project/task-cards/TASK-RESEARCH-CONTROL-001.task-manifest.json |  |
+| TASK-SYNC-TOOLCHAIN-EXPERIENCE-001 | task | 00_project/task-cards/TASK-SYNC-TOOLCHAIN-EXPERIENCE-001.task-manifest.json |  |
 | 00_project/templates/behavior-analysis.yaml |  | 00_project/templates/behavior-analysis.yaml |  |
 | 00_project/templates/figure-manifest.yaml |  | 00_project/templates/figure-manifest.yaml |  |
 | MANIFEST-YYYYMMDD-NNN-run | run | 00_project/templates/run-manifest.yaml | planned |
@@ -37,10 +38,12 @@
 | SYNC-SNAPSHOT-4cde256aa902 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-4cde256aa902.json | three-way-verified |
 | SYNC-SNAPSHOT-539c9b8ee3db | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-539c9b8ee3db.json | three-way-verified |
 | SYNC-SNAPSHOT-698006f270a7 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-698006f270a7.json | three-way-verified |
+| SYNC-SNAPSHOT-881e80d581d8 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-881e80d581d8.json | three-way-verified |
 | SYNC-SNAPSHOT-a732427 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-a732427.json | three-way-verified |
 | SYNC-SNAPSHOT-ac766896de6e | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-ac766896de6e.json | three-way-verified |
 | SYNC-SNAPSHOT-c062164a9d09 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-c062164a9d09.json | three-way-verified |
 | SYNC-SNAPSHOT-d0ec88768e57 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-d0ec88768e57.json | three-way-verified |
+| SYNC-SNAPSHOT-f9d4f586252a | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-f9d4f586252a.json | three-way-verified |
 | SYNC-SNAPSHOT-fa3e43710531 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-fa3e43710531.json | three-way-verified |
 | SYNC-SNAPSHOT-fd21d6cfc678 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-fd21d6cfc678.json | three-way-verified |
 | 00_project/traceability/variable-catalog.yaml |  | 00_project/traceability/variable-catalog.yaml |  |

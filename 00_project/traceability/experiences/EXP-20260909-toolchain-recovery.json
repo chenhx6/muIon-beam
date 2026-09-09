@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260909-toolchain-recovery",
+  "recorded_at": "2026-09-09T10:00:19.290Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "toolchain-recovery",
+  "title": "Skill validator 依赖恢复入口只覆盖 npm",
+  "observation": "quick_validate.py 需要 PyYAML；现有 evolution ensure-toolchain 只实现 npm 恢复，未能定位用户 Python、安装记录和重试原始 validator。",
+  "evidence": [
+    ".codex/skills/evolution/scripts/ensure-toolchain.mjs",
+    "quick_validate.py: ModuleNotFoundError: No module named yaml",
+    "REC-20260909095028.json",
+    "REC-20260909095137.json"
+  ],
+  "impact": [
+    "Skill 校验没有完成",
+    "工具链状态与用户实际安装环境不一致"
+  ],
+  "reusable_value": "普通任务依赖恢复应由 muion-project 负责，并记录解释器、包版本、验证命令和重试结果。",
+  "actions": [
+    "新增项目级 allowlisted toolchain recovery",
+    "支持用户范围 Python/PyYAML 检测和验证记录"
+  ],
+  "tags": [
+    "toolchain",
+    "python",
+    "pyyaml",
+    "prevention"
+  ],
+  "related_paths": [
+    ".codex/skills/muion-project/scripts/ensure-toolchain.mjs",
+    ".codex/skills/evolution/scripts/ensure-toolchain.mjs"
+  ],
+  "related_commits": []
+}

@@ -120,3 +120,23 @@ capabilities:
     primary_entrypoint: "node research-workflow/index.mjs execute"
     aliases: [research-loop, routing]
     tests: ["tests/research-workflow.test.mjs"]
+  - capability_id: toolchain-recovery
+    source_concept: toolchain-recovery
+    existing_local_entrypoints: ["npm run toolchain:ensure", "npm run toolchain:recover"]
+    existing_scripts: [".codex/skills/muion-project/scripts/ensure-toolchain.mjs"]
+    existing_references: [".codex/skills/muion-project/SKILL.md"]
+    decision: new
+    decision_reason: "Routine allowlisted user-scoped dependency recovery is separate from manual evolution"
+    primary_entrypoint: "npm run toolchain:ensure"
+    aliases: [dependency-recovery]
+    tests: ["tests/toolchain-recovery.test.mjs"]
+  - capability_id: sync-receipt-audit
+    source_concept: sync-receipt-audit
+    existing_local_entrypoints: ["npm run sync:receipt:audit", "npm run sync:receipt:deliver"]
+    existing_scripts: [".codex/skills/muion-project/scripts/audit-sync-receipt.mjs", ".codex/skills/muion-project/scripts/record-sync-receipt-delivery.mjs"]
+    existing_references: []
+    decision: new
+    decision_reason: "Precisely verify and adopt historical sync receipts without bypassing baseline protection"
+    primary_entrypoint: "npm run sync:receipt:audit"
+    aliases: [receipt-delivery]
+    tests: ["tests/sync-receipt.test.mjs"]

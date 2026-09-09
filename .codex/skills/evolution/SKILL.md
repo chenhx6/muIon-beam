@@ -13,4 +13,4 @@ Download candidates into `_work/cache/evolution/`, pin source commits/tags, comp
 
 After explicit adoption, durable source files, tests, capability records and license metadata follow the project delivery policy: Gitee plus the matching Drive project snapshot. Caches, installers, generated environments and temporary outputs remain local.
 
-If a required tool is missing, use `scripts/ensure-toolchain.mjs` for an allowlisted user-level recovery. It verifies the downloaded artifact integrity, updates only the user PATH, records the recovery event, and retries the original project command. It must not install arbitrary packages or execute unknown installer hooks.
+Routine project dependency recovery belongs to `muion-project` and may use its allowlisted user-level toolchain recovery. This Skill remains manual-only for discovering and adopting external skills, workflows, scripts and templates; it does not authorize arbitrary package installation or unknown installer hooks.

@@ -41,3 +41,16 @@ test('experience records accept positive and negative events and summarize them'
   assert.match(text, /positive test experience/);
   assert.match(text, /negative test experience/);
 });
+
+test('experience records accept neutral observations and reject empty evidence or impact', () => {
+  const root = fixture();
+  recordExperience(root, record('EXP-20260909-neutral', 'neutral'));
+  assert.throws(() => recordExperience(root, { ...record('EXP-20260909-empty-evidence', 'negative'), evidence: [] }), /evidence must be a non-empty array/);
+  assert.throws(() => recordExperience(root, { ...record('EXP-20260909-empty-impact', 'negative'), impact: [] }), /impact must be a non-empty array/);
+});
+
+test('experience summary escapes Markdown table delimiters and newlines', () => {
+  const root = fixture(); recordExperience(root, { ...record('EXP-20260909-markdown', 'neutral'), title: 'title | with newline\ntext', evidence: ['a|b\nnext'] });
+  const summary = summarizeExperiences(root, 'test-category'); const text = fs.readFileSync(summary.file, 'utf8');
+  assert.match(text, /title \\| with newline text/); assert.match(text, /a\\|b next/);
+});

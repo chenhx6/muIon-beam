@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260909-sync-receipt-delivery",
+  "recorded_at": "2026-09-09T10:00:18.669Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "sync-receipt-delivery",
+  "title": "历史同步收据验证后未完成 Git 元数据交付",
+  "observation": "SYNC-SNAPSHOT-fd21d6cfc678.json 的内容与 Drive 快照一致且自报 three-way-verified，但任务开始前仍以 ?? 状态存在，缺少精确历史收据采用流程。",
+  "evidence": [
+    "00_project/traceability/sync-states/SYNC-SNAPSHOT-fd21d6cfc678.json",
+    "git status -sb: ?? sync-state",
+    "receipt_sha256=e680eafa7f7ca6cf84537ffbcedb052c9228ec5ba79e75953e6c0a9c5a3f318e",
+    "AUDIT-SNAPSHOT-fd21d6cfc678.json"
+  ],
+  "impact": [
+    "同步收据不能通过普通任务自动交付",
+    "Git 可见性、提交和推送状态容易被混合描述"
+  ],
+  "reusable_value": "历史基线文件需要独立核验和精确采用，不能让通用 baseline 保护把有效收据永久留在 ?? 状态。",
+  "actions": [
+    "增加历史收据审计入口",
+    "仅对 verified 收据执行精确路径补交付"
+  ],
+  "tags": [
+    "sync-state",
+    "git",
+    "traceability",
+    "prevention"
+  ],
+  "related_paths": [
+    "00_project/traceability/sync-states/SYNC-SNAPSHOT-fd21d6cfc678.json",
+    "00_project/traceability/sync-receipts/"
+  ],
+  "related_commits": [
+    "fd21d6cfc678a21aea7a89695a7f863e83390b05"
+  ]
+}

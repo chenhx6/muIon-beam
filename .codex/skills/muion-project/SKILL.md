@@ -48,6 +48,9 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `experience:record` / `experience:summarize`: record positive, negative, or neutral reusable experiences and generate category summaries for future research and workflow improvement.
 - `audit-project`: read-only audit of the project snapshot against local Git and Gitee.
 - `cache-audit`: index cache files and generate safe cleanup candidates.
+- `toolchain-recovery`: detect, install, verify and retry task-required user-scoped tools and packages; routine dependency recovery does not invoke evolution.
+- `audit-sync-receipt`: independently verify a historical sync-state against its recorded Git commit and Drive snapshot.
+- `record-sync-receipt-delivery`: precisely adopt a verified historical sync receipt without staging unrelated baseline files.
 - `retry-sync`: retry pending three-end sync records idempotently and clear only successfully verified outbox entries.
 - `install-nature-figure`: install or inspect the pinned external figure skill.
 - `up`: read current workflow, farmer, model and synchronization state.
@@ -70,7 +73,7 @@ Read only the relevant reference file for the selected mode. Do not load every r
 
 ## Automatic project lifecycle
 
-When a task is opened inside `D:\\muIon-beam`, ensure `farmer:ensure` has run and read lightweight project status. The workflow may select other modes automatically as the task moves through phases; users do not need to invoke each phase separately. `evolution` is manual-only and must never be started by ordinary project work.
+When a task is opened inside `D:\\muIon-beam`, ensure `farmer:ensure` has run, recover task-required tools through the project toolchain recovery when needed, and read lightweight project status. The workflow may select other modes automatically as the task moves through phases; users do not need to invoke each phase separately. `evolution` is manual-only and must never be started by ordinary project work.
 
 At task start, record the Git baseline with `begin-task.mjs`. After task-owned changes pass validation, run `auto-commit-push.mjs --baseline <baseline>`; it refuses pre-existing user changes, protected model/output paths and missing baselines. Create an annotated result tag only after the report, Drive receipt and three-end audit are verified, and generate its Chinese note automatically.
 

@@ -6,6 +6,7 @@ import { parseArgs, projectRootFromHere, ensureDirectory, nowIso } from './proje
 const EXPERIENCE_DIR = '00_project/traceability/experiences';
 
 function slug(value) { return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'all'; }
+function mdCell(value) { return String(value ?? '').replaceAll('\\', '\\\\').replaceAll('|', '\\|').replaceAll('\r', ' ').replaceAll('\n', ' '); }
 function readRecords(root) {
   const dir = path.join(root, EXPERIENCE_DIR);
   if (!fs.existsSync(dir)) return [];
@@ -35,7 +36,7 @@ export function summarizeExperiences(root, category = null, output = null) {
   if (!records.length) lines.push('当前类别没有已登记经验。');
   else for (const record of records) lines.push(`- **[${record.polarity}] ${record.title}**：${record.reusable_value}`);
   lines.push('', '## 记录明细', '', '| 时间 | 极性 | 状态 | 标题 | 证据/动作 |', '|---|---|---|---|---|');
-  for (const record of records) lines.push(`| ${record.recorded_at || ''} | ${record.polarity} | ${record.status || ''} | ${record.title} | ${(record.evidence || []).concat(record.actions || []).join('；')} |`);
+  for (const record of records) lines.push(`| ${mdCell(record.recorded_at)} | ${mdCell(record.polarity)} | ${mdCell(record.status)} | ${mdCell(record.title)} | ${mdCell((record.evidence || []).concat(record.actions || []).join('；'))} |`);
   lines.push('', '## 高频标签', '');
   if (!tags.size) lines.push('暂无标签。');
   else for (const [tag, count] of [...tags.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))) lines.push(`- ${tag}: ${count}`);

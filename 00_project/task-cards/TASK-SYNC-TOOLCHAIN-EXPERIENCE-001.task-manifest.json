@@ -1,0 +1,50 @@
+{
+  "manifest_id": "TASK-SYNC-TOOLCHAIN-EXPERIENCE-001",
+  "manifest_type": "task",
+  "schema_version": "1.0.0",
+  "created_at": "2026-09-09T10:00:00Z",
+  "updated_at": "2026-09-09T10:00:00Z",
+  "task_id": "TASK-SYNC-TOOLCHAIN-EXPERIENCE-001",
+  "task_name": "同步收据补交付、工具链恢复拆分与经验规范实例验收",
+  "source_type": "user_request",
+  "is_upper_task": false,
+  "assignment_source": "当前会话用户执行计划",
+  "assignment_reference": "同步收据补交付、工具链恢复拆分与经验规范实例验收",
+  "requested_by": "user",
+  "due_date": null,
+  "delivery_requirement": "历史收据核验、工具链恢复验证、经验记录和项目审计",
+  "delivery": { "gitee": "auto", "drive": "auto", "audit": "auto", "resolved_by": "delivery-policy" },
+  "priority": "normal",
+  "objective_zh": "核验并补交付历史同步收据，拆分普通工具链恢复与手动 evolution，并用正向、中性、负向经验记录完成规范验收。",
+  "physical_object": "muon-ion 项目交付与工具链控制层",
+  "initial_conditions": [
+    "旧同步收据在任务开始前以 ?? 状态存在",
+    "用户已在 Python 3.14 环境安装 PyYAML 6.0.3",
+    "现有 experience 入口已支持三种 polarity 但缺少严格证据校验"
+  ],
+  "model_references": [],
+  "variable_catalog_ref": "00_project/traceability/variable-catalog.yaml",
+  "variables": [],
+  "analysis_questions": [
+    { "analysis_id": "ANALYSIS-SYNC-RECEIPT", "question_zh": "历史收据是否与其 Git/Drive 快照一致并可安全补交付？", "response_metrics": ["receipt_sha256", "git_files_checked", "drive_files_checked", "mismatches"] },
+    { "analysis_id": "ANALYSIS-TOOLCHAIN", "question_zh": "用户已安装的 PyYAML 是否能被目标 Skill validator 环境发现并使用？", "response_metrics": ["interpreter", "package_version", "validator_result"] },
+    { "analysis_id": "ANALYSIS-EXPERIENCE", "question_zh": "正向、中性、负向经验是否按现有规范登记并可汇总？", "response_metrics": ["polarity_counts", "evidence_validation", "summary_output"] }
+  ],
+  "success_criteria": [
+    "历史同步收据独立核验通过并精确补交付",
+    "PyYAML 使用用户已安装环境完成真实 quick_validate",
+    "工具链恢复入口归入 muion-project，evolution 保持手动外部能力发现",
+    "experience 记录器拒绝空 evidence/impact，支持 neutral 和 Markdown 转义",
+    "所有变更通过完整测试、项目快照和只读审计"
+  ],
+  "failure_criteria": [
+    "修改旧收据原始字节",
+    "把用户安装误记为助手安装",
+    "收据证据冲突时仍提交 verified",
+    "经验记录没有证据或影响",
+    "无限重试或安装未允许的包"
+  ],
+  "expected_maturity": "F0",
+  "scientific_revalidation": "not-applicable",
+  "acceptance_status": "in-progress"
+}

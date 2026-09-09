@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260909-toolchain-environment-neutral",
+  "recorded_at": "2026-09-09T10:00:19.916Z",
+  "status": "recorded",
+  "polarity": "neutral",
+  "category": "toolchain-recovery",
+  "title": "用户 Python 环境与 Desktop shell 可见性不同",
+  "observation": "用户终端报告 PyYAML 6.0.3 安装成功；初始 Desktop shell 找不到 pip/python，但通过绝对路径发现 Python 3.14.7 和 PyYAML 6.0.3。",
+  "evidence": [
+    "user pip install PyYAML output",
+    "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "ensure-toolchain check output: version 6.0.3"
+  ],
+  "impact": [
+    "初始环境检查会产生误判风险",
+    "需要使用绝对解释器路径完成验证"
+  ],
+  "reusable_value": "工具链检测必须区分 PATH 可见性和实际用户安装，不能把 shell 找不到命令等同于依赖未安装。",
+  "actions": [
+    "记录用户环境与 Desktop 环境差异",
+    "优先复用已安装解释器，不重复安装"
+  ],
+  "tags": [
+    "toolchain",
+    "environment",
+    "desktop",
+    "neutral"
+  ],
+  "related_paths": [
+    "00_project/traceability/toolchain-recoveries/"
+  ],
+  "related_commits": []
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "toolchain-recovery",
+  "recovery_id": "REC-20260909095137",
+  "recorded_at": "2026-09-09T09:51:37.288Z",
+  "package": "PyYAML",
+  "action": "missing",
+  "selected": null,
+  "candidates": [
+    {
+      "available": false,
+      "executable": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe"
+    }
+  ]
+}

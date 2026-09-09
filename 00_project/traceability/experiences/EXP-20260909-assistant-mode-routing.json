@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260909-assistant-mode-routing",
+  "recorded_at": "2026-09-09T10:00:20.535Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "assistant-mode-routing",
+  "title": "助手错误沿用了已失效的 Plan Mode 判断",
+  "observation": "用户在常规执行上下文中多次要求执行计划，最新有效开发者模式已为 Default，但助手仍依据较早上下文拒绝执行；没有证据表明 research-state 触发了 Plan Mode。",
+  "evidence": [
+    "当前线程用户在 Default 常规模式下的执行请求",
+    "当前线程最新开发者 collaboration_mode=Default",
+    "research-state 无 Skill policy 或 Plan Mode 配置"
+  ],
+  "impact": [
+    "已获授权的项目执行被延迟",
+    "用户误以为 research-state 强制切换规划模式"
+  ],
+  "reusable_value": "模式判断必须以当前最新会话指令为准，不能把旧的 Plan Mode 状态延伸到后续 Default 回合，也不能把项目 plan 阶段误当成 Codex 对话模式。",
+  "actions": [
+    "执行前确认当前有效 collaboration mode",
+    "在最终说明中区分 Codex 模式、项目流程模式和 research-state"
+  ],
+  "tags": [
+    "codex",
+    "mode",
+    "conversation",
+    "prevention"
+  ],
+  "related_paths": [
+    "research-state/",
+    "research-workflow/"
+  ],
+  "related_commits": []
+}

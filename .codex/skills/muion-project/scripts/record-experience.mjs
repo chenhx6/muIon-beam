@@ -15,6 +15,12 @@ function asArray(value) {
   return Array.isArray(value) ? value.map(String) : [String(value)];
 }
 
+function requiredArray(value, field) {
+  const result = asArray(value).filter((item) => String(item).trim());
+  if (!result.length) throw new Error(`${field} must be a non-empty array`);
+  return result;
+}
+
 export function validateExperience(record) {
   if (!record || typeof record !== 'object') throw new Error('experience record must be an object');
   if (!safeId(record.experience_id)) throw new Error('experience_id must match EXP-<safe-id>');
@@ -30,8 +36,8 @@ export function validateExperience(record) {
     category: record.category,
     title: record.title,
     observation: record.observation,
-    evidence: asArray(record.evidence),
-    impact: asArray(record.impact),
+    evidence: requiredArray(record.evidence, 'evidence'),
+    impact: requiredArray(record.impact, 'impact'),
     reusable_value: record.reusable_value,
     actions: asArray(record.actions),
     tags: asArray(record.tags),

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "workflow-lesson",
+  "lesson_id": "LESSON-20260909-external-lib-test-outbox",
+  "recorded_at": "2026-09-09T09:30:00+08:00",
+  "status": "resolved",
+  "category": "external-library-sync",
+  "severity": "low",
+  "title": "本地 no-publish 测试把失败 outbox 写入生产追溯目录",
+  "trigger": "为验证外部图书馆 Drive 复制逻辑，在生产项目根目录运行了 --no-publish 测试，并把临时 Drive 根目录指向 _work/scratch/external-lib-drive。",
+  "impact": [
+    "在 00_project/traceability/external-libraries/ 产生了一条 pending-gitee 测试状态。",
+    "在 00_project/traceability/sync-outbox/ 产生了一个测试重试记录。",
+    "git status 出现与正式同步无关的未跟踪文件，容易误导后续维护。",
+    "没有影响正式 CAD Studio 图书馆的 Gitee 提交、Drive 归档或最终 three-way-verified 状态。"
+  ],
+  "root_cause": [
+    "测试命令直接复用了生产 project-root，而不是临时项目副本。",
+    "同步脚本在 --no-publish 测试模式下仍把状态写入生产 traceability 目录。",
+    "测试入口没有强制 test-only 标记和缓存状态路径。"
+  ],
+  "correction": [
+    "确认正式外部图书馆同步已通过 Drive SHA256、Gitee 推送和项目快照校验。",
+    "将两份测试状态转移到 _work/cache/external-lib-test-artifacts/，并标记为 test-only。",
+    "保留正式 SYNC-EXTERNAL-20260909011248-c7f1e83c.json 和最终项目快照状态。"
+  ],
+  "prevention": [
+    "外部图书馆测试必须使用临时 project-root 或明确的 test-only 状态目录。",
+    "禁止在生产 traceability/sync-outbox 下运行 --no-publish 测试。",
+    "后续同步脚本应让测试状态默认写入 _work/cache/，只有正式事件才写入 traceability。",
+    "同一 category 累计三次相似问题时，生成 SUMMARY-external-library-sync.md 并更新自动化门禁。"
+  ],
+  "cleared_artifacts": [
+    "00_project/traceability/external-libraries/SYNC-EXTERNAL-20260909010531-ca364c51.json",
+    "00_project/traceability/sync-outbox/SYNC-EXTERNAL-20260909010531-ca364c51.json"
+  ],
+  "test_only_archive": "_work/cache/external-lib-test-artifacts/SYNC-EXTERNAL-20260909010531-ca364c51.json",
+  "related_verified_state": "00_project/traceability/external-libraries/SYNC-EXTERNAL-20260909011248-c7f1e83c.json",
+  "verification": [
+    "npm test: 55/55 passed",
+    "external-lib-sync --check: changed=false",
+    "Drive archive: 173 files, 19954434 bytes, SHA256 ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719",
+    "正式同步状态: three-way-verified"
+  ]
+}

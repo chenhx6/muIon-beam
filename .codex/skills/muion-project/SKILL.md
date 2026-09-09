@@ -45,6 +45,7 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `audit-three-end`: perform a read-only drift audit.
 - `sync-project`: archive the tracked project and derived SQLite snapshots to a versioned Drive snapshot.
 - `external-lib:sync`: detect added, modified, or retired Codex reference-library content, verify a complete content-addressed Drive archive, and publish only the eligible source/document subset to Gitee.
+- `experience:record` / `experience:summarize`: record positive, negative, or neutral reusable experiences and generate category summaries for future research and workflow improvement.
 - `audit-project`: read-only audit of the project snapshot against local Git and Gitee.
 - `cache-audit`: index cache files and generate safe cleanup candidates.
 - `retry-sync`: retry pending three-end sync records idempotently and clear only successfully verified outbox entries.

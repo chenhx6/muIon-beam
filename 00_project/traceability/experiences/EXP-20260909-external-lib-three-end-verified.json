@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260909-external-lib-three-end-verified",
+  "recorded_at": "2026-09-09T01:36:15.270Z",
+  "status": "recorded",
+  "polarity": "positive",
+  "category": "external-library-sync",
+  "title": "外部参考图书馆完成完整三端同步",
+  "observation": "CAD Studio 0.3.4 便携库完成 Gitee 源资料提交和 Google Drive 完整归档，目录指纹与逐文件 SHA256 一致。",
+  "evidence": [
+    "Gitee content commit b52acb6f85580afba6586c6b835779633628db88",
+    "formal sync state SYNC-EXTERNAL-20260909011248-c7f1e83c.json",
+    "Drive archive SHA256 ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719"
+  ],
+  "impact": [
+    "170 个源资料文件可通过 Gitee 重建",
+    "173 个完整库文件可从 Drive 直接恢复",
+    "后续目录变更可以通过事件入口自动检测"
+  ],
+  "reusable_value": "源资料与完整二进制分层保存，并以内容指纹验证，可同时支持重建和直接恢复。",
+  "actions": [
+    "接入 task:begin、auto-commit-push、task-close 和 sync-project",
+    "保留 verified/pilot/reference_only/not_implemented 能力边界"
+  ],
+  "tags": [
+    "three-end",
+    "sha256",
+    "gitee",
+    "google-drive",
+    "reference-library"
+  ],
+  "related_paths": [
+    "06_external_lib/library-manifest.json",
+    "00_project/traceability/external-libraries/SYNC-EXTERNAL-20260909011248-c7f1e83c.json"
+  ],
+  "related_commits": [
+    "b52acb6f85580afba6586c6b835779633628db88",
+    "b0df772a53bceb31a7c0385e95f3e09851cbdace"
+  ]
+}

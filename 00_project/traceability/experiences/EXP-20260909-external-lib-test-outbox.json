@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260909-external-lib-test-outbox",
+  "recorded_at": "2026-09-09T01:36:15.218Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "external-library-sync",
+  "title": "本地 no-publish 测试把失败 outbox 写入生产追溯目录",
+  "observation": "开发测试复用了生产 project-root，并在 --no-publish 模式下写入了 traceability 状态。",
+  "evidence": [
+    "SYNC-EXTERNAL-20260909010531-ca364c51.json",
+    "_work/cache/external-lib-test-artifacts/TEST-ONLY.json"
+  ],
+  "impact": [
+    "git status 出现与正式同步无关的未跟踪记录",
+    "自动审查将其识别为待重试同步状态"
+  ],
+  "reusable_value": "测试状态必须与生产追溯状态隔离；失败记录要能明确区分 test-only 和正式同步。",
+  "actions": [
+    "将测试记录转移到 _work/cache/external-lib-test-artifacts/",
+    "增加经验统计功能和 test-only 记录约定"
+  ],
+  "tags": [
+    "testing",
+    "outbox",
+    "traceability",
+    "prevention"
+  ],
+  "related_paths": [
+    ".codex/skills/muion-project/scripts/external-lib-sync.mjs",
+    "_work/cache/external-lib-test-artifacts/"
+  ],
+  "related_commits": [
+    "3bc4b0bcd37d30570e7049edbd04d821f0b6ab84"
+  ]
+}

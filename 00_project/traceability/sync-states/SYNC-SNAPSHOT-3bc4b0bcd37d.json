@@ -5317,5 +5317,8 @@
     }
   ],
   "errors": [],
-  "verified_at": "2026-09-09T01:19:23.287Z"
+  "verified_at": "2026-09-09T01:19:23.287Z",
+  "snapshot_commit": "3bc4b0bcd37d30570e7049edbd04d821f0b6ab84",
+  "metadata_stage": "seed",
+  "metadata_recorded_at": "2026-09-09T01:20:30.371Z"
 }

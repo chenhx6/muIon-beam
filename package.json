@@ -69,5 +69,6 @@
     ,"research-workflow:status": "node 07_research_system/control/research-workflow/index.mjs status"
     ,"research-workflow:validate": "node 07_research_system/control/research-workflow/index.mjs validate"
     ,"research-workflow:execute": "node 07_research_system/control/research-workflow/index.mjs execute"
+    ,"autopilot": "node .codex/skills/muion-project/scripts/autopilot.mjs"
   }
 }

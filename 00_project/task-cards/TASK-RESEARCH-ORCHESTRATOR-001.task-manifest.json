@@ -1,0 +1,15 @@
+{
+  "manifest_id": "TASK-RESEARCH-ORCHESTRATOR-001",
+  "manifest_type": "task",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-RESEARCH-ORCHESTRATOR-001",
+  "task_name": "实现 Evolution 采用决策分离与可恢复研究编排层",
+  "source_type": "user_request",
+  "requested_by": "user",
+  "objective_zh": "将 Evolution 安全资格与采用决策分离，对齐 team capability map，并在现有 research-state、合同、Manifest 和交付边界上实现可恢复 autopilot 编排器。",
+  "physical_object": "研究工作流编排与能力演化控制层",
+  "initial_conditions": ["evolution 为唯一用户显式触发能力", "06_external_lib 为 reference-only 图书馆", "research-state 为唯一当前科研状态源", "外部工作流引擎不作为第一版运行时依赖"],
+  "success_criteria": ["重复 capability 不再作为安全 rejection", "team capability map 与实际 Skill/脚本一致", "autopilot 支持 plan/run/status/resume/retry/close", "阶段事件、幂等键和 workflow-owned paths 可恢复", "直接模块不绕过正式运行门禁", "现有测试和新增恢复测试全部通过"],
+  "scientific_revalidation": "not-applicable-for-control-layer",
+  "acceptance_status": "implemented-pending-validation"
+}

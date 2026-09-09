@@ -10,10 +10,27 @@ test('evolution accepts pinned tested permissive candidates', () => {
   const result = evaluateCandidate({ capability_id: 'x', source_url: 'https://github.com/a/b', commit: 'abc', license: 'MIT', relevance: 1, stars: 100, tests: true, active: true }, []);
   assert.equal(result.accepted, true);
 });
-test('evolution rejects unsafe or duplicate candidates', () => {
+test('evolution separates safety rejection from duplicate capability adoption', () => {
   const result = evaluateCandidate({ capability_id: 'x', source_url: 'https://github.com/a/b', commit: 'abc', license: 'Unknown', install_hooks: true }, ['x']);
   assert.equal(result.accepted, false);
-  assert.equal(result.reasons.length, 3);
+  assert.equal(result.safety.status, 'blocked');
+  assert.deepEqual(result.safety.reasons, ['license requires review', 'unknown install hooks']);
+  assert.equal(result.capability.status, 'existing');
+  assert.deepEqual(result.adoption.options, ['extend', 'merge', 'reference-only', 'reject']);
+});
+
+test('safe duplicate capability remains eligible and requires an adoption decision', () => {
+  const result = evaluateCandidate({ capability_id: 'team', source_url: 'https://github.com/a/b', commit: 'abc', license: 'MIT' }, ['team']);
+  assert.equal(result.accepted, true);
+  assert.equal(result.safety.status, 'eligible');
+  assert.equal(result.capability.status, 'existing');
+  assert.equal(result.adoption.status, 'review-required');
+});
+
+test('evolution rejects an adoption mode outside the candidate options', () => {
+  const result = evaluateCandidate({ capability_id: 'team', adoption_mode: 'new', source_url: 'https://github.com/a/b', commit: 'abc', license: 'MIT' }, ['team']);
+  assert.equal(result.accepted, false);
+  assert.match(result.safety.reasons[0], /invalid adoption_mode/);
 });
 test('evolution records stable content hashes', () => {
   assert.equal(hashContent('abc'), 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');

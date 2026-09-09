@@ -3,12 +3,28 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 export function evaluateCandidate(candidate, existing = []) {
-  const reasons = [];
-  if (!candidate.source_url || !candidate.commit) reasons.push('source must be pinned');
-  if (!['MIT', 'Apache-2.0', 'BSD-2-Clause', 'BSD-3-Clause', 'ISC', 'CC0-1.0'].includes(candidate.license)) reasons.push('license requires review');
-  if (candidate.install_hooks) reasons.push('unknown install hooks');
-  if (existing.includes(candidate.capability_id)) reasons.push('duplicate capability: extend or merge instead');
-  return { accepted: reasons.length === 0, reasons, score: (candidate.relevance || 0) * 10 + Math.log10(1 + (candidate.stars || 0)) + (candidate.tests ? 2 : 0) + (candidate.active ? 1 : 0) };
+  const safetyReasons = [];
+  if (!candidate.source_url || !candidate.commit) safetyReasons.push('source must be pinned');
+  if (!['MIT', 'Apache-2.0', 'BSD-2-Clause', 'BSD-3-Clause', 'ISC', 'CC0-1.0'].includes(candidate.license)) safetyReasons.push('license requires review');
+  if (candidate.install_hooks) safetyReasons.push('unknown install hooks');
+  const capabilityId = candidate.capability_id || null;
+  const existingCapability = capabilityId !== null && existing.includes(capabilityId);
+  const adoptionOptions = existingCapability ? ['extend', 'merge', 'reference-only', 'reject'] : ['new', 'reference-only', 'reject'];
+  const requestedMode = candidate.adoption_mode || null;
+  if (requestedMode && !adoptionOptions.includes(requestedMode)) safetyReasons.push(`invalid adoption_mode: ${requestedMode}`);
+  const eligible = safetyReasons.length === 0;
+  return {
+    accepted: eligible,
+    safety: { status: eligible ? 'eligible' : 'blocked', reasons: safetyReasons },
+    capability: { capability_id: capabilityId, status: existingCapability ? 'existing' : 'new' },
+    adoption: {
+      status: !eligible ? 'blocked' : existingCapability ? 'review-required' : 'not-needed',
+      options: adoptionOptions,
+      recommended: requestedMode || null
+    },
+    reasons: safetyReasons,
+    score: (candidate.relevance || 0) * 10 + Math.log10(1 + (candidate.stars || 0)) + (candidate.tests ? 2 : 0) + (candidate.active ? 1 : 0)
+  };
 }
 export const hashContent = (content) => crypto.createHash('sha256').update(content).digest('hex');
 export function discoverLocalSignals(root) {

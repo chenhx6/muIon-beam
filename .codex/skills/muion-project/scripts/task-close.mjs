@@ -12,6 +12,7 @@ const planPath = path.join(localState, 'task-close-plan.json');
 const resultPath = path.join(localState, 'task-close-result.json');
 const read = (file) => { try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return null; } };
 const baseline = read(path.join(localState, 'task-baseline.json')) || { paths: [] };
+const ownedPaths = args.owned_paths ? JSON.parse(fs.readFileSync(path.resolve(root, args.owned_paths), 'utf8')) : null;
 
 if (args._[0] === 'status') { console.log(JSON.stringify({ plan: read(planPath), result: read(resultPath) }, null, 2)); process.exit(0); }
 
@@ -19,7 +20,7 @@ const request = read(path.join(localState, 'task-close-request.json'));
 if (!request?.close_requested) throw new Error('task close requires close_requested=true');
 if (request.qa_passed !== true) throw new Error('task close requires qa_passed=true');
 const externalLibrarySync = syncExternalLibraries({ projectRoot: root, event: 'task-close' });
-const delivery = classifyPaths(root, undefined, baseline);
+const delivery = classifyPaths(root, undefined, baseline, ownedPaths);
 const architecture = spawnSync(process.execPath, ['tests/architecture-smoke.mjs'], { cwd: root, encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 });
 if (architecture.status !== 0) throw new Error(`architecture gate failed: ${architecture.stderr || architecture.stdout}`);
 if (args._[0] !== 'execute') {
@@ -29,7 +30,7 @@ if (args._[0] !== 'execute') {
 
 const plan = read(args.plan || planPath);
 if (!plan || plan.status !== 'planned' || !Array.isArray(plan.candidates) || !plan.candidates.length) throw new Error('execute requires a non-empty planned task-close plan');
-const current = classifyPaths(root, undefined, baseline);
+const current = classifyPaths(root, undefined, baseline, ownedPaths);
 if (JSON.stringify(current.candidates) !== JSON.stringify(plan.candidates)) throw new Error('delivery plan is stale; regenerate task-close plan');
 const currentFiles = digestFiles(root, plan.candidates);
 if (JSON.stringify(currentFiles) !== JSON.stringify(plan.files)) throw new Error('delivery file hashes changed; regenerate task-close plan');

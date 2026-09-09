@@ -8,6 +8,7 @@
 | TASK-COMSOL-MVP-001 | task | 00_project/task-cards/TASK-COMSOL-MVP-001.task-manifest.json |  |
 | TASK-LEGACY-SMOKE-001 | task | 00_project/task-cards/TASK-LEGACY-SMOKE-001.task-manifest.json |  |
 | TASK-RESEARCH-CONTROL-001 | task | 00_project/task-cards/TASK-RESEARCH-CONTROL-001.task-manifest.json |  |
+| TASK-RESEARCH-ORCHESTRATOR-001 | task | 00_project/task-cards/TASK-RESEARCH-ORCHESTRATOR-001.task-manifest.json |  |
 | TASK-RESEARCH-READINESS-AUDIT-001 | task | 00_project/task-cards/TASK-RESEARCH-READINESS-AUDIT-001.task-manifest.json |  |
 | TASK-RESEARCH-SYSTEM-LAYOUT-001 | task | 00_project/task-cards/TASK-RESEARCH-SYSTEM-LAYOUT-001.task-manifest.json |  |
 | TASK-SYNC-TOOLCHAIN-EXPERIENCE-001 | task | 00_project/task-cards/TASK-SYNC-TOOLCHAIN-EXPERIENCE-001.task-manifest.json |  |
@@ -30,6 +31,7 @@
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907110812 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907110812.json | three-way-verified |
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907143442 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907143442.json | three-way-verified |
 | SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907144738 | sync-state | 00_project/traceability/sync-states/SYNC-RUN-LEGACY-SMOKE-001-stage1-centered-20260907144738.json | three-way-verified |
+| SYNC-SNAPSHOT-0249ded | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-0249ded.json | three-way-verified |
 | SYNC-SNAPSHOT-0fa423b448b6 | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-0fa423b448b6.json | superseded |
 | SYNC-SNAPSHOT-1542f6c448fc | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-1542f6c448fc.json | three-way-verified |
 | SYNC-SNAPSHOT-1bc8573701cd | sync-state | 00_project/traceability/sync-states/SYNC-SNAPSHOT-1bc8573701cd.json | three-way-verified |

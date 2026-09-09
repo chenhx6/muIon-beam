@@ -10,6 +10,8 @@ capabilities:
     primary_entrypoint: "muion-project:plan"
     aliases: [plan, deep-interview, consensus-plan]
     tests: ["tests/architecture-smoke.mjs"]
+    trigger_mode: automatic
+    execution_kind: skill
   - capability_id: preflight
     source_concept: preflight-doctor
     existing_local_entrypoints: ["npm run preflight", "npm run models:check"]
@@ -52,14 +54,16 @@ capabilities:
     tests: ["tests/workflow-state.test.mjs"]
   - capability_id: team
     source_concept: team
-    existing_local_entrypoints: []
-    existing_scripts: []
-    existing_references: []
-    decision: new
-    decision_reason: "补充子 agent 派发与动态模型路由规范"
+    existing_local_entrypoints: ["team", ".codex/skills/team/SKILL.md", "node .codex/skills/team/scripts/discover-models.mjs", "node .codex/skills/team/scripts/select-model.mjs"]
+    existing_scripts: [".codex/skills/team/scripts/discover-models.mjs", ".codex/skills/team/scripts/select-model.mjs"]
+    existing_references: [".codex/skills/team/agents/openai.yaml", "00_project/config/agent-routing.yaml"]
+    decision: extend
+    decision_reason: "team Skill 和动态模型路由脚本已存在，本次对齐能力登记并保留后续扩展空间"
     primary_entrypoint: team
     aliases: [delegation]
     tests: ["tests/agent-routing.test.mjs"]
+    trigger_mode: automatic
+    execution_kind: skill
   - capability_id: farmer
     source_concept: session-supervision
     existing_local_entrypoints: []
@@ -70,6 +74,8 @@ capabilities:
     primary_entrypoint: farmer
     aliases: []
     tests: ["tests/farmer.test.mjs"]
+    trigger_mode: automatic
+    execution_kind: supervisor
   - capability_id: evolution
     source_concept: external-skill-discovery
     existing_local_entrypoints: []
@@ -80,6 +86,8 @@ capabilities:
     primary_entrypoint: evolution
     aliases: []
     tests: ["tests/evolution.test.mjs"]
+    trigger_mode: manual
+    execution_kind: skill
   - capability_id: comsol-block
     source_concept: COMSOL Block
     existing_local_entrypoints: ["node 07_research_system/blocks/comsol/index.mjs --task path/to/task.json", "07_research_system/blocks/comsol/SKILL.md"]
@@ -90,6 +98,8 @@ capabilities:
     primary_entrypoint: "node 07_research_system/blocks/comsol/index.mjs --task path/to/task.json"
     aliases: [comsol]
     tests: ["tests/comsol-block.test.mjs"]
+    trigger_mode: automatic
+    execution_kind: execution-block
   - capability_id: geant4-block
     source_concept: Geant4 Block
     existing_local_entrypoints: ["node 07_research_system/blocks/geant4/index.mjs --task path/to/task.yaml", "07_research_system/blocks/geant4/SKILL.md"]
@@ -100,6 +110,8 @@ capabilities:
     primary_entrypoint: "node 07_research_system/blocks/geant4/index.mjs --task path/to/task.yaml"
     aliases: [geant4, g4]
     tests: ["tests/geant4-block.test.mjs", "07_research_system/blocks/geant4/tests/smoke.mjs"]
+    trigger_mode: automatic
+    execution_kind: execution-block
   - capability_id: research-state
     source_concept: research-state
     existing_local_entrypoints: ["node 07_research_system/control/research-state/index.mjs status", "07_research_system/control/research-state/state.yaml"]
@@ -110,6 +122,8 @@ capabilities:
     primary_entrypoint: "node 07_research_system/control/research-state/index.mjs status"
     aliases: [state]
     tests: ["tests/research-workflow.test.mjs"]
+    trigger_mode: automatic
+    execution_kind: control-layer
   - capability_id: research-workflow
     source_concept: research-workflow
     existing_local_entrypoints: ["node 07_research_system/control/research-workflow/index.mjs execute", "07_research_system/control/research-workflow/SKILL.md"]
@@ -120,6 +134,8 @@ capabilities:
     primary_entrypoint: "node 07_research_system/control/research-workflow/index.mjs execute"
     aliases: [research-loop, routing]
     tests: ["tests/research-workflow.test.mjs"]
+    trigger_mode: automatic
+    execution_kind: control-layer
   - capability_id: toolchain-recovery
     source_concept: toolchain-recovery
     existing_local_entrypoints: ["npm run toolchain:ensure", "npm run toolchain:recover"]

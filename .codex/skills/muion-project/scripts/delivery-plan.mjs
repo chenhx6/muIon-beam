@@ -20,9 +20,10 @@ function expand(root, file) {
   } catch { return [file]; }
 }
 
-export function classifyPaths(root, policy = loadDeliveryPolicy(root), baseline = null) {
+export function classifyPaths(root, policy = loadDeliveryPolicy(root), baseline = null, ownedPaths = null) {
   const entries = gitStatusEntries(root);
-  const paths = entries.flatMap((entry) => expand(root, entry.path).map((file) => ({ file, deleted: entry.status.includes('D') }))).filter((item) => item.file);
+  const owned = ownedPaths ? new Set(ownedPaths) : null;
+  const paths = entries.flatMap((entry) => expand(root, entry.path).map((file) => ({ file, deleted: entry.status.includes('D') }))).filter((item) => item.file && (!owned || owned.has(item.file)));
   const baselinePaths = new Set(baseline?.paths || []);
   const candidates = []; const adopted = []; const excluded = []; let totalBytes = 0;
   for (const entry of paths) {

@@ -1,0 +1,36 @@
+{
+  "sync_id": "SYNC-EXTERNAL-20260909011248-c7f1e83c",
+  "manifest_type": "external-library-sync-state",
+  "schema_version": "1.0.0",
+  "created_at": "2026-09-09T01:12:48.795Z",
+  "event": "bootstrap",
+  "status": "three-way-verified",
+  "changes": [
+    {
+      "type": "archive-path-changed",
+      "library_id": "cad-studio-0.3.4-windows-x64-portable",
+      "before": "reviewed",
+      "after": "reviewed"
+    }
+  ],
+  "drive_root": "H:\\我的云端硬盘\\muIon_archive\\external-libraries",
+  "drive": [
+    {
+      "library_id": "cad-studio-0.3.4-windows-x64-portable",
+      "path": "H:\\我的云端硬盘\\muIon_archive\\external-libraries\\cad-studio-0.3.4-windows-x64-portable\\ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719",
+      "status": "verified",
+      "file_count": 173,
+      "total_bytes": 19954434,
+      "content_sha256": "ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719"
+    }
+  ],
+  "gitee": {
+    "status": "published",
+    "commit": "b52acb6f85580afba6586c6b835779633628db88",
+    "remote": "b52acb6f85580afba6586c6b835779633628db88"
+  },
+  "manifest_path": "06_external_lib/library-manifest.json",
+  "readme_path": "06_external_lib/README.md",
+  "errors": [],
+  "state_path": "00_project/traceability/external-libraries/SYNC-EXTERNAL-20260909011248-c7f1e83c.json"
+}

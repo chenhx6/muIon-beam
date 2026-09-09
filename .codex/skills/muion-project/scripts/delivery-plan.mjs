@@ -22,18 +22,20 @@ function expand(root, file) {
 
 export function classifyPaths(root, policy = loadDeliveryPolicy(root), baseline = null) {
   const lines = runGit(root, ['status', '--porcelain']).stdout.split(/\r?\n/).filter(Boolean);
-  const paths = lines.flatMap((line) => expand(root, line.slice(3))).filter(Boolean);
+  const paths = lines.flatMap((line) => expand(root, line.slice(3)).map((file) => ({ file, deleted: line.slice(0, 2).includes('D') }))).filter((item) => item.file);
   const baselinePaths = new Set(baseline?.paths || []);
   const candidates = []; const adopted = []; const excluded = []; let totalBytes = 0;
-  for (const file of paths) {
+  for (const entry of paths) {
+    const file = entry.file;
     const preexisting = [...baselinePaths].some((entry) => file === entry || (entry.endsWith('/') && file.startsWith(entry)));
     const denied = starts(file, policy.gitee.deny_prefixes) || policy.gitee.deny_extensions.some((ext) => file.toLowerCase().endsWith(ext));
     const managed = file.startsWith('00_project/traceability/external-libraries/');
+    const retainedExternalDeletion = entry.deleted && file.startsWith('06_external_lib/');
     const allowed = starts(file, policy.gitee.allow_prefixes);
     let size = 0; try { size = fs.statSync(path.join(root, file)).size; } catch {}
     const oversized = size > policy.gitee.max_file_bytes || totalBytes + size > policy.gitee.max_task_bytes;
-    if (!managed && !denied && allowed && !oversized) { candidates.push(file); totalBytes += size; if (preexisting) adopted.push(file); }
-    else excluded.push({ path: file, reason: managed ? 'managed-by-external-library-workflow' : denied ? 'protected-path-or-extension' : oversized ? 'gitee-size-limit' : 'outside-allowlist', size });
+    if (!managed && !retainedExternalDeletion && !denied && allowed && !oversized) { candidates.push(file); totalBytes += size; if (preexisting) adopted.push(file); }
+    else excluded.push({ path: file, reason: managed ? 'managed-by-external-library-workflow' : retainedExternalDeletion ? 'external-library-deletion-retained' : denied ? 'protected-path-or-extension' : oversized ? 'gitee-size-limit' : 'outside-allowlist', size });
   }
   return { gitee: candidates.length ? 'commit' : 'none', drive: candidates.length ? 'project' : 'none', candidates, adopted, excluded, total_bytes: totalBytes };
 }

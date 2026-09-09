@@ -12,6 +12,7 @@ const policy = JSON.parse(fs.readFileSync(path.join(root, '00_project/config/pub
 const baseline = JSON.parse(fs.readFileSync(path.resolve(args.baseline), 'utf8'));
 const status = runGit(root, ['status', '--porcelain']).stdout.split(/\r?\n/).filter(Boolean);
 const paths = status.map((line) => line.slice(3)).filter(Boolean);
+const deletedExternal = new Set(status.filter((line) => line.slice(0, 2).includes('D') && line.slice(3).startsWith('06_external_lib/')).map((line) => line.slice(3)));
 const baselinePaths = new Set(baseline.paths || []);
 const isBaselinePath = (file) => [...baselinePaths].some((entry) => file === entry || (entry.endsWith('/') && file.startsWith(entry)));
 const existing = paths.filter(isBaselinePath);
@@ -21,7 +22,7 @@ const verifiedSyncStates = paths.filter((file) => !isBaselinePath(file) && file.
 });
 const rejected = paths.filter((file) => !isBaselinePath(file) && !managedExternalTrace(file) && !verifiedSyncStates.includes(file) && (policy.never_stage_prefixes.some((prefix) => file.startsWith(prefix)) || policy.never_stage_extensions.some((ext) => file.toLowerCase().endsWith(ext))));
 if (rejected.length) throw new Error('protected paths require explicit project workflow: ' + rejected.join(', '));
-const candidates = paths.filter((file) => !isBaselinePath(file) && !managedExternalTrace(file) && !rejected.includes(file) && (!file.startsWith('00_project/traceability/sync-states/') || verifiedSyncStates.includes(file)) && !file.startsWith('00_project/traceability/sync-outbox/'));
+const candidates = paths.filter((file) => !isBaselinePath(file) && !deletedExternal.has(file) && !managedExternalTrace(file) && !rejected.includes(file) && (!file.startsWith('00_project/traceability/sync-states/') || verifiedSyncStates.includes(file)) && !file.startsWith('00_project/traceability/sync-outbox/'));
 if (!candidates.length) { console.log(JSON.stringify({ status: 'no-task-owned-files', pushed: false, protected_preexisting: existing, rejected }, null, 2)); process.exit(0); }
 const tests = spawnSync(process.execPath, ['tests/architecture-smoke.mjs'], { cwd: root, encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 });
 if (tests.status !== 0) throw new Error('architecture test failed: ' + (tests.stderr || tests.stdout));

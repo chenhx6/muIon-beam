@@ -3,7 +3,7 @@
   "manifest_type": "task",
   "schema_version": "1.0.0",
   "created_at": "2026-09-09T10:00:00Z",
-  "updated_at": "2026-09-09T10:00:00Z",
+  "updated_at": "2026-09-09T10:20:00Z",
   "task_id": "TASK-SYNC-TOOLCHAIN-EXPERIENCE-001",
   "task_name": "同步收据补交付、工具链恢复拆分与经验规范实例验收",
   "source_type": "user_request",
@@ -46,5 +46,13 @@
   ],
   "expected_maturity": "F0",
   "scientific_revalidation": "not-applicable",
-  "acceptance_status": "in-progress"
+  "acceptance_status": "implemented-pending-user-review",
+  "completed_at": "2026-09-09T10:20:00Z",
+  "evidence": [
+    "00_project/traceability/sync-receipts/AUDIT-SNAPSHOT-fd21d6cfc678.json",
+    "00_project/traceability/sync-receipts/DELIVERY-SNAPSHOT-fd21d6cfc678.json",
+    "00_project/traceability/toolchain-recoveries/REC-20260909-pyyaml-validator.json",
+    "00_project/traceability/experiences/SUMMARY-sync-receipt-delivery.md",
+    "00_project/traceability/experiences/SUMMARY-toolchain-recovery.md"
+  ]
 }

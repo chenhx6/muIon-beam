@@ -56,6 +56,14 @@ _work/cache/*.sqlite
 04_results/figures/**/*.tiff
 04_results/figures/**/*.tif
 
+# 外部参考图书馆的完整便携二进制只归档到 Google Drive
+06_external_lib/**/*.exe
+06_external_lib/**/*.dll
+06_external_lib/**/*.pyd
+06_external_lib/**/*.pyc
+06_external_lib/**/*.msi
+06_external_lib/**/*.zip
+
 # 本地任务基线和 3D 冒烟依赖环境
 00_project/state/task-baseline.json
 00_project/state/3d-smoke/

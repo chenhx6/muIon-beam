@@ -3,6 +3,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { parseArgs, projectRootFromHere, runGit, jsonWrite, nowIso } from './project-utils.mjs';
 import { classifyPaths, digestFiles } from './delivery-plan.mjs';
+import { syncExternalLibraries } from './external-lib-sync.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
@@ -17,11 +18,12 @@ if (args._[0] === 'status') { console.log(JSON.stringify({ plan: read(planPath),
 const request = read(path.join(localState, 'task-close-request.json'));
 if (!request?.close_requested) throw new Error('task close requires close_requested=true');
 if (request.qa_passed !== true) throw new Error('task close requires qa_passed=true');
+const externalLibrarySync = syncExternalLibraries({ projectRoot: root, event: 'task-close' });
 const delivery = classifyPaths(root, undefined, baseline);
 const architecture = spawnSync(process.execPath, ['tests/architecture-smoke.mjs'], { cwd: root, encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 });
 if (architecture.status !== 0) throw new Error(`architecture gate failed: ${architecture.stderr || architecture.stdout}`);
 if (args._[0] !== 'execute') {
-  const plan = { schema_version: 1, task_id: request.task_id || null, created_at: nowIso(), close_requested: true, qa_passed: true, candidates: delivery.candidates, files: digestFiles(root, delivery.candidates), delivery: { gitee: delivery.gitee, drive: delivery.drive }, excluded: delivery.excluded, status: 'planned' };
+  const plan = { schema_version: 1, task_id: request.task_id || null, created_at: nowIso(), close_requested: true, qa_passed: true, candidates: delivery.candidates, files: digestFiles(root, delivery.candidates), delivery: { gitee: delivery.gitee, drive: delivery.drive }, excluded: delivery.excluded, external_library_sync: externalLibrarySync, status: 'planned' };
   jsonWrite(planPath, plan); console.log(JSON.stringify(plan, null, 2)); process.exit(0);
 }
 

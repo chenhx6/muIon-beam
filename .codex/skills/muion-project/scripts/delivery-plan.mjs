@@ -28,11 +28,12 @@ export function classifyPaths(root, policy = loadDeliveryPolicy(root), baseline 
   for (const file of paths) {
     const preexisting = [...baselinePaths].some((entry) => file === entry || (entry.endsWith('/') && file.startsWith(entry)));
     const denied = starts(file, policy.gitee.deny_prefixes) || policy.gitee.deny_extensions.some((ext) => file.toLowerCase().endsWith(ext));
+    const managed = file.startsWith('00_project/traceability/external-libraries/');
     const allowed = starts(file, policy.gitee.allow_prefixes);
     let size = 0; try { size = fs.statSync(path.join(root, file)).size; } catch {}
     const oversized = size > policy.gitee.max_file_bytes || totalBytes + size > policy.gitee.max_task_bytes;
-    if (!denied && allowed && !oversized) { candidates.push(file); totalBytes += size; if (preexisting) adopted.push(file); }
-    else excluded.push({ path: file, reason: denied ? 'protected-path-or-extension' : oversized ? 'gitee-size-limit' : 'outside-allowlist', size });
+    if (!managed && !denied && allowed && !oversized) { candidates.push(file); totalBytes += size; if (preexisting) adopted.push(file); }
+    else excluded.push({ path: file, reason: managed ? 'managed-by-external-library-workflow' : denied ? 'protected-path-or-extension' : oversized ? 'gitee-size-limit' : 'outside-allowlist', size });
   }
   return { gitee: candidates.length ? 'commit' : 'none', drive: candidates.length ? 'project' : 'none', candidates, adopted, excluded, total_bytes: totalBytes };
 }

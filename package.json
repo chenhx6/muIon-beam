@@ -43,6 +43,7 @@
     ,"evolution:discover": "node .codex/skills/evolution/evolution.mjs ."
     ,"toolchain:ensure": "node .codex/skills/evolution/scripts/ensure-toolchain.mjs --install"
     ,"task:begin": "node .codex/skills/muion-project/scripts/begin-task.mjs ."
+    ,"external-lib:sync": "node .codex/skills/muion-project/scripts/external-lib-sync.mjs"
     ,"auto:commit-push": "node .codex/skills/muion-project/scripts/auto-commit-push.mjs"
     ,"delivery:plan": "node .codex/skills/muion-project/scripts/delivery-plan.mjs ."
     ,"sync:record-metadata": "node .codex/skills/muion-project/scripts/record-sync-metadata.mjs"

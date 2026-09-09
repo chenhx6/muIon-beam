@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { parseArgs, projectRootFromHere, runGit, ensureDirectory, sha256File, relativePath, jsonWrite, nowIso } from './project-utils.mjs';
+import { syncExternalLibraries } from './external-lib-sync.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
@@ -9,7 +10,15 @@ const localCommit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
 if (args.tag === undefined && !args.branch_ref) throw new Error('provide --tag or --branch-ref for a project snapshot');
 if (args.tag !== undefined && typeof args.tag !== 'string') throw new Error('invalid project snapshot tag');
 if (args.expected_commit && args.expected_commit !== localCommit) throw new Error('snapshot commit differs from HEAD; preserve the old snapshot and create a new one');
-const snapshotId = args.snapshot_id || `SNAPSHOT-${localCommit.slice(0, 12)}`;
+syncExternalLibraries({ projectRoot: root, event: 'project-sync' });
+const syncedLocalCommit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
+if (syncedLocalCommit !== localCommit) {
+  // External-library synchronization is path-scoped and may create a content
+  // commit. The snapshot must always describe the post-sync commit.
+  if (args.expected_commit && args.expected_commit !== syncedLocalCommit) throw new Error('snapshot commit differs from synchronized HEAD; preserve the old snapshot and create a new one');
+}
+const effectiveLocalCommit = syncedLocalCommit;
+const snapshotId = args.snapshot_id || `SNAPSHOT-${effectiveLocalCommit.slice(0, 12)}`;
 if (!/^[A-Za-z0-9._-]+$/.test(snapshotId)) throw new Error('invalid snapshot id');
 const drivePath = args.drive_path || `H:\\我的云端硬盘\\muIon_archive\\project-management\\project-snapshots\\${snapshotId}`;
 const tracked = runGit(root, ['ls-files', '-z']).stdout.split('\0').filter(Boolean);
@@ -41,12 +50,12 @@ let tagVerified = tag === null;
 if (tag) {
   const tagLine = runGit(root, ['ls-remote', 'origin', `refs/tags/${tag}^{}`], { allowFailure: true });
   tagCommit = tagLine.status === 0 ? tagLine.stdout.trim().split(/\s+/)[0] || null : null;
-  tagVerified = Boolean(tagCommit) && (tagCommit === localCommit || runGit(root, ['merge-base', '--is-ancestor', tagCommit, localCommit], { allowFailure: true }).status === 0);
+  tagVerified = Boolean(tagCommit) && (tagCommit === effectiveLocalCommit || runGit(root, ['merge-base', '--is-ancestor', tagCommit, effectiveLocalCommit], { allowFailure: true }).status === 0);
 }
 const fileListHash = crypto.createHash('sha256').update(JSON.stringify(copied)).digest('hex');
-const referenceVerified = tag ? tagVerified : remoteCommit === localCommit;
+const referenceVerified = tag ? tagVerified : remoteCommit === effectiveLocalCommit;
 let status = errors.length ? 'pending-drive' : referenceVerified ? 'three-way-verified' : 'pending-verification';
-const state = { sync_id: `SYNC-${snapshotId}`, manifest_type: 'sync-state', schema_version: '1.0.0', created_at: nowIso(), task_id: args.task_id || null, run_id: null, snapshot_id: snapshotId, local_commit: localCommit, gitee_remote_commit: remoteCommit, gitee_ref: args.branch_ref || (tag ? `tag:${tag}` : null), gitee_tag: tag, gitee_tag_commit: tagCommit, drive_path: drivePath, manifest_sha256: fileListHash, status, pending_actions: status === 'three-way-verified' ? [] : ['verify-project-snapshot'], file_count: copied.length, files: copied, errors };
+const state = { sync_id: `SYNC-${snapshotId}`, manifest_type: 'sync-state', schema_version: '1.0.0', created_at: nowIso(), task_id: args.task_id || null, run_id: null, snapshot_id: snapshotId, local_commit: effectiveLocalCommit, gitee_remote_commit: remoteCommit, gitee_ref: args.branch_ref || (tag ? `tag:${tag}` : null), gitee_tag: tag, gitee_tag_commit: tagCommit, drive_path: drivePath, manifest_sha256: fileListHash, status, pending_actions: status === 'three-way-verified' ? [] : ['verify-project-snapshot'], file_count: copied.length, files: copied, errors };
 const stateDir = path.join(root, '00_project/traceability/sync-states');
 ensureDirectory(stateDir);
 const statePath = path.join(stateDir, `${state.sync_id}.json`);
@@ -63,5 +72,5 @@ jsonWrite(statePath, state);
 const outboxPath = path.join(root, '00_project/traceability/sync-outbox', `${state.sync_id}.json`);
 if (status !== 'three-way-verified') jsonWrite(outboxPath, state);
 else if (fs.existsSync(outboxPath)) fs.unlinkSync(outboxPath);
-console.log(JSON.stringify({ state: statePath, status, snapshot_id: snapshotId, local_commit: localCommit, gitee_remote_commit: remoteCommit, tag, drive_path: drivePath, file_count: copied.length, errors: state.errors }, null, 2));
+console.log(JSON.stringify({ state: statePath, status, snapshot_id: snapshotId, local_commit: effectiveLocalCommit, gitee_remote_commit: remoteCommit, tag, drive_path: drivePath, file_count: copied.length, errors: state.errors }, null, 2));
 process.exitCode = status === 'three-way-verified' ? 0 : 2;

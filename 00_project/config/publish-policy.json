@@ -7,5 +7,5 @@
   "author": { "name": "Codex", "email": "codex@local" },
   "tag_requires": ["report_finalized", "drive_verified", "three_end_verified"],
   "never_stage_prefixes": [".git/", "_work/", "03_runs/formal/", "02_models/"],
-  "never_stage_extensions": [".mph", ".sldasm", ".sldprt", ".slddrw", ".step", ".vtk", ".h5", ".root", ".bin"]
+  "never_stage_extensions": [".mph", ".sldasm", ".sldprt", ".slddrw", ".step", ".vtk", ".h5", ".root", ".bin", ".exe", ".dll", ".pyd", ".pyc", ".msi", ".zip"]
 }

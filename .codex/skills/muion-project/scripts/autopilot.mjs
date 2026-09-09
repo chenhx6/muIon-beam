@@ -4,6 +4,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { parseArgs, projectRootFromHere, jsonWrite, nowIso } from './project-utils.mjs';
 import { makeId, recordWorkflowEvent } from '../../../../07_research_system/control/research-state/index.mjs';
+import { createWorkflowOwnership } from './workflow-ownership.mjs';
 
 const STAGES = ['INTAKE', 'TASK_CARD_READY', 'PRECHECK', 'MODEL_CONFIRMED', 'SNAPSHOT_READY', 'CONTRACT_READY', 'RUNNING', 'VALIDATING', 'REPORTING', 'ARCHIVING', 'PUBLISHED', 'CLOSED'];
 const TERMINAL = new Set(['CLOSED', 'FAILED_TERMINAL']);
@@ -37,10 +38,9 @@ function createRun(root, args) {
   if (!args.task_id) throw new Error('plan requires --task-id');
   const id = args.workflow_run_id || makeId('WF');
   const run = { schema_version: '1.0.0', workflow_run_id: id, task_id: String(args.task_id), stage: 'INTAKE', status: 'PLANNED', created_at: nowIso(), updated_at: nowIso(), attempts: 0, next_action: 'run', contract: args.contract ? path.relative(root, resolve(root, args.contract)).replaceAll('\\\\', '/') : null, snapshot_ref: args.snapshot_ref ? path.relative(root, resolve(root, args.snapshot_ref)).replaceAll('\\\\', '/') : null, run_dir: args.run_dir ? path.relative(root, resolve(root, args.run_dir)).replaceAll('\\\\', '/') : null, summary_report: args.summary_report ? path.relative(root, resolve(root, args.summary_report)).replaceAll('\\\\', '/') : null, detailed_report: args.detailed_report ? path.relative(root, resolve(root, args.detailed_report)).replaceAll('\\\\', '/') : null, sync_state: args.sync_state ? path.relative(root, resolve(root, args.sync_state)).replaceAll('\\\\', '/') : null, owned_paths: Array.isArray(args.owned_path) ? args.owned_path : args.owned_path ? [args.owned_path] : [], events: [] };
-  const ownedPathFile = path.join(runtimeDir(root, id), 'owned-paths.json');
-  fs.mkdirSync(path.dirname(ownedPathFile), { recursive: true });
-  fs.writeFileSync(ownedPathFile, `${JSON.stringify(run.owned_paths, null, 2)}\n`, 'utf8');
-  run.owned_paths_file = path.relative(root, ownedPathFile).replaceAll('\\\\', '/');
+  const ownership = createWorkflowOwnership(root, id, run.task_id, run.owned_paths);
+  run.owned_paths_file = path.relative(root, path.join(runtimeDir(root, id), 'owned_paths.json')).replaceAll('\\\\', '/');
+  run.ownership_head = ownership.head;
   writeRun(root, run); return event(root, run, 'workflow-created', 'INTAKE', 'PLANNED', 'run');
 }
 function advance(root, run) {
@@ -68,11 +68,15 @@ function advance(root, run) {
     run.attempts += 1; writeRun(root, run);
     const resultFile = path.join(runtimeDir(root, run.workflow_run_id), `execution-${run.attempts}.json`);
     event(root, run, 'stage-entered', 'RUNNING', 'RUNNING', 'collect-result', { output_refs: [path.relative(root, resultFile).replaceAll('\\\\', '/')] });
-    const result = executeNode(root, '07_research_system/control/research-workflow/index.mjs', ['execute', '--contract', resolve(root, run.contract), '--root', root], resultFile);
+    const result = executeNode(root, '07_research_system/control/research-workflow/index.mjs', ['execute', '--contract', resolve(root, run.contract), '--root', root, '--attempt-id', `${run.workflow_run_id}-${run.attempts}`], resultFile);
     if (result.status !== 0) return event(root, run, 'stage-failed', 'RUNNING', 'FAILED_RETRYABLE', 'retry', { reason: 'research-workflow execution failed' });
     run.execution_result = path.relative(root, resultFile).replaceAll('\\\\', '/');
     writeRun(root, run);
     return event(root, run, 'stage-completed', 'VALIDATING', 'READY', 'validate-result', { output_refs: [run.execution_result] });
+  }
+  if (run.stage === 'RUNNING') {
+    if (run.execution_result && fs.existsSync(resolve(root, run.execution_result))) return event(root, run, 'stage-completed', 'VALIDATING', 'READY', 'validate-result', { output_refs: [run.execution_result] });
+    return event(root, run, 'stage-failed', 'CONTRACT_READY', 'FAILED_RETRYABLE', 'retry', { reason: 'execution interrupted before a committed result file was written' });
   }
   if (run.stage === 'VALIDATING') {
     const resultText = fs.readFileSync(resolve(root, run.execution_result), 'utf8');

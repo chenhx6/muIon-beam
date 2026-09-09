@@ -19,6 +19,7 @@ const required = [
   '.codex/skills/muion-project/scripts/audit-sync-receipt.mjs',
   '.codex/skills/muion-project/scripts/record-sync-receipt-delivery.mjs',
   '.codex/skills/muion-project/scripts/autopilot.mjs',
+  '.codex/skills/muion-project/scripts/workflow-ownership.mjs',
   '.codex/skills/team/SKILL.md',
   '.codex/skills/team/agents/openai.yaml',
   '.codex/skills/evolution/SKILL.md',

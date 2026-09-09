@@ -72,13 +72,17 @@ export function validateContract(input, { existingIds = new Set() } = {}) {
 
 export function loadContract(file) { return normalizeContract(readDocument(path.resolve(file))); }
 
-export function freezeContract(input, { root = process.cwd(), sourcePath = null } = {}) {
+export function freezeContract(input, { root = process.cwd(), sourcePath = null, reuseExisting = false } = {}) {
   const checked = validateContract(input); if (!checked.valid) throw new Error(`Invalid contract: ${checked.errors.join('; ')}`);
   const contract = checked.contract; const directory = contractsPath(root, path.join('instances', contract.contract_id)); const file = path.join(directory, 'contract.yaml');
   fs.mkdirSync(directory, { recursive: true });
   // JSON is a strict YAML 1.2 subset and avoids lossy parsing of nested arrays
   // in the project's dependency-free YAML reader.
   const text = `${JSON.stringify(contract, null, 2)}\n`;
+  if (reuseExisting && fs.existsSync(file)) {
+    const digest = sha256(file);
+    return { contract, path: path.relative(root, file).replaceAll('\\', '/'), sha256: digest, source_path: sourcePath ? path.relative(root, sourcePath).replaceAll('\\', '/') : null, reused: true };
+  }
   const fd = fs.openSync(file, 'wx');
   try { fs.writeSync(fd, text); } finally { fs.closeSync(fd); }
   const digest = sha256(file); const verify = sha256(file); if (digest !== verify) throw new Error('contract hash verification failed');

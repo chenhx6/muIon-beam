@@ -9,19 +9,19 @@ function inputDocument(file) { const target = path.resolve(file); return target.
 
 export function validateResearchContract(input) { return validateContract(input); }
 
-export function dispatchContract(contractInput, { root = process.cwd(), sourcePath = null, context = {} } = {}) {
+export function dispatchContract(contractInput, { root = process.cwd(), sourcePath = null, context = {}, attempt_id = null } = {}) {
   ensureInitialized(root);
   const current = readState(root);
   if (current.context_id && current.context_id !== context.context_id) throw new Error(`foreground context already running: ${current.context_id}`);
-  const frozen = freezeContract(contractInput, { root, sourcePath });
+  const frozen = freezeContract(contractInput, { root, sourcePath, reuseExisting: Boolean(attempt_id) });
   const state = beginContext({ root, ...context, task_id: frozen.contract.task_id, module: frozen.contract.module, objective: frozen.contract.objective, context_id: context.context_id });
-  const attemptId = makeId('ATT');
+  const attemptId = attempt_id || makeId('ATT');
   recordDispatch(state.context_id, { attempt_id: attemptId, contract: { contract_id: frozen.contract.contract_id, path: frozen.path, sha256: frozen.sha256 } }, root);
   return { frozen, context_id: state.context_id, task_id: frozen.contract.task_id, attempt_id: attemptId };
 }
 
-export async function executeContract(contractInput, { root = process.cwd(), sourcePath = null, context = {}, module_options = {}, dryRun = false } = {}) {
-  const dispatched = dispatchContract(contractInput, { root, sourcePath, context });
+export async function executeContract(contractInput, { root = process.cwd(), sourcePath = null, context = {}, module_options = {}, dryRun = false, attempt_id = null } = {}) {
+  const dispatched = dispatchContract(contractInput, { root, sourcePath, context, attempt_id });
   let raw;
   try { raw = await executeNative(dispatched.frozen.contract, { module_options, dryRun }); }
   catch (error) { raw = { status: 'failed', issues: [{ category: 'infrastructure', code: 'module-exception', observation: error.message, evidence: [error.stack || String(error)] }] }; }
@@ -43,7 +43,7 @@ if (process.argv[1] && path.basename(process.argv[1]) === 'index.mjs' && process
     if (command === 'validate') { const value = inputDocument(argValue(args, '--contract')); console.log(JSON.stringify(validateResearchContract(value), null, 2)); return; }
     if (command === 'status') { console.log(JSON.stringify(status(root), null, 2)); return; }
     if (command === 'dispatch') { const value = inputDocument(argValue(args, '--contract')); console.log(JSON.stringify(dispatchContract(value, { root, sourcePath: argValue(args, '--contract') }), null, 2)); return; }
-    if (command === 'execute') { const file = argValue(args, '--contract'); const value = inputDocument(file); console.log(JSON.stringify(await executeContract(value, { root, sourcePath: file, dryRun: args.includes('--dry-run') }), null, 2)); return; }
+    if (command === 'execute') { const file = argValue(args, '--contract'); const value = inputDocument(file); console.log(JSON.stringify(await executeContract(value, { root, sourcePath: file, dryRun: args.includes('--dry-run'), attempt_id: argValue(args, '--attempt-id') || null }), null, 2)); return; }
     throw new Error('Usage: node 07_research_system/control/research-workflow/index.mjs validate|dispatch|execute|status --contract file [--root path]');
   })().catch((error) => { console.error(error.stack || error.message); process.exitCode = 1; });
 }

@@ -5907,6 +5907,8 @@
   "errors": [],
   "verified_at": "2026-09-09T21:04:15.770Z",
   "snapshot_commit": "ec8fa2e75a9531496e2e14374be68e11420a86fe",
-  "metadata_stage": "seed",
-  "metadata_recorded_at": "2026-09-09T21:08:17.869Z"
+  "metadata_stage": "finalized",
+  "metadata_recorded_at": "2026-09-09T21:08:17.869Z",
+  "metadata_commit": "86be9c8c71facccc4eee71ca02df63c8dce1dd77",
+  "metadata_finalized_at": "2026-09-09T21:08:18.065Z"
 }

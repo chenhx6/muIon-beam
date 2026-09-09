@@ -11,6 +11,21 @@ Before dispatch, discover the currently available models and reasoning levels, t
 
 Record every dispatch in `00_project/traceability/agent-runs/` using `scripts/agent-run-ledger.mjs`. The ledger records the manifest hash, requirements, candidates, selection reason, freshness, permissions, lifecycle, evidence and unresolved items. `scripts/dispatch.mjs` prepares and records a plan; it does not pretend to enforce a subprocess sandbox that the Codex runtime does not expose.
 
+For executable code tasks, use `scripts/evidence-gate.mjs`: tests, builds,
+schema checks and repro commands produce evidence, while the command result is
+the gate. Reviewer findings remain advisory. For research tasks, use
+`scripts/research-evidence.mjs` to collect contract hashes, source references,
+numeric comparisons, module reports and read-only physics-review evidence. It
+returns `final_verdict: null`; `research-workflow` remains responsible for
+scientific interpretation and state updates.
+
+`scripts/telemetry.mjs` summarizes only durable local agent-run observations:
+roles, models, families, stale use, fallback, retry, failure and correlation
+risk. Provider capacity is reported as `unknown` unless runtime metadata records
+it. `scripts/resource-lock.mjs` supplies cooperative named-resource locks for
+COMSOL/GUI/solver/shared-build resources; it is not filesystem or worktree
+enforcement.
+
 One writer owns each file. Reviewers are read-only by default. A child agent cannot spawn another child by default; the manifest validator rejects that permission unless the root leader explicitly grants it.
 
 Workers never publish directly. The leader owns the delivery plan, Gitee commit/push, Drive archive, result tags and three-end audit. Each worker returns changed paths, tests, SHA256 evidence where relevant, source/result/report references and unresolved items; durable summaries enter the project Manifest or milestone record.

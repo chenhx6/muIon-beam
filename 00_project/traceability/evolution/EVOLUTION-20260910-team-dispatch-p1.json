@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "evolution_id": "EVOLUTION-20260910-team-dispatch-p1",
+  "recorded_at": "2026-09-10",
+  "trigger": "user-authorized-follow-up",
+  "parent_evolution": "EVOLUTION-20260910-team-dispatch",
+  "scope": "P1 evidence, local telemetry and cooperative resources",
+  "adopted_now": [
+    "code evidence gate using structured executable checks",
+    "research evidence bundle with contract/source/numeric/module/physics-review evidence",
+    "local ledger telemetry with explicit unknown provider capacity",
+    "cooperative named-resource lock with owner, TTL and owner-checked release"
+  ],
+  "deferred": [
+    "runtime adapter requiring host spawn/cancel/permission callbacks",
+    "git worktree and filesystem enforcement",
+    "provider slot/load hard filtering and external usage telemetry"
+  ],
+  "boundaries": [
+    "evidence gate uses test/build/repro command results as the code oracle",
+    "research evidence keeps final_verdict null and does not write research-state or mutate frozen contracts",
+    "telemetry aggregates only local durable ledger observations",
+    "resource locks are cooperative protocol locks, not runtime sandbox enforcement"
+  ],
+  "tests": ["tests/team-dispatch.test.mjs", "tests/architecture-smoke.mjs", "npm test"],
+  "decision": "adopt-in-scope"
+}

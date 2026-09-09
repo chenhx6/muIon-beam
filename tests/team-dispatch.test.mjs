@@ -6,6 +6,10 @@ import path from 'node:path';
 import { validateDispatchManifest, lifecycleTransition, overlaps } from '../.codex/skills/team/scripts/dispatch-manifest.mjs';
 import { createAgentRun, readAgentRun, updateAgentRun } from '../.codex/skills/team/scripts/agent-run-ledger.mjs';
 import { prepareDispatch } from '../.codex/skills/team/scripts/dispatch.mjs';
+import { runEvidenceGate, recordEvidenceGate } from '../.codex/skills/team/scripts/evidence-gate.mjs';
+import { collectResearchEvidence, writeResearchEvidence } from '../.codex/skills/team/scripts/research-evidence.mjs';
+import { summarizeAgentRuns, writeTelemetry } from '../.codex/skills/team/scripts/telemetry.mjs';
+import { acquireResourceLocks, inspectResourceLock, releaseResourceLock } from '../.codex/skills/team/scripts/resource-lock.mjs';
 
 const root = () => fs.mkdtempSync(path.join(os.tmpdir(), 'muion-team-'));
 const task = (overrides = {}) => ({ task_id: 'task-' + Math.random().toString(16).slice(2), role: 'executor', summary: 'bounded task', permissions: { read: true, write: true }, ...overrides });
@@ -58,4 +62,40 @@ test('dispatch preparation records routes and ledger entries without claiming ru
   const result = prepareDispatch(manifest, { root: projectRoot, catalog });
   assert.equal(result.validation.valid, true); assert.equal(result.routes[0].selection.model_id, 'm'); assert.match(result.execution_boundary, /protocol-only/);
   assert.equal(fs.readdirSync(path.join(projectRoot, '00_project/traceability/agent-runs')).length, 1);
+});
+
+test('code evidence gate uses executable checks as the oracle and finalizes a running ledger run', () => {
+  const projectRoot = root(); const t = task({ task_id: 'gate', verification: { gate_type: 'code', checks: [{ check_id: 'pass', executable: process.execPath, args: ['-e', 'process.exit(0)'] }] } });
+  const run = createAgentRun({ root: projectRoot, task: t, selection: { model_id: 'm', reasoning_effort: 'high' } });
+  updateAgentRun(projectRoot, run.run_id, 'validated'); updateAgentRun(projectRoot, run.run_id, 'ready'); updateAgentRun(projectRoot, run.run_id, 'running');
+  const evidence = runEvidenceGate({ root: projectRoot, verification: t.verification });
+  assert.equal(evidence.verdict, 'passed');
+  const saved = recordEvidenceGate(projectRoot, run.run_id, evidence);
+  assert.equal(saved.lifecycle_state, 'succeeded'); assert.equal(saved.verification.gate, 'passed');
+  const failed = runEvidenceGate({ root: projectRoot, verification: { checks: [{ check_id: 'fail', executable: process.execPath, args: ['-e', 'process.exit(2)'] }] } });
+  assert.equal(failed.verdict, 'failed');
+});
+
+test('research evidence bundle preserves contract evidence and leaves scientific verdict to research-workflow', () => {
+  const projectRoot = root(); const contractPath = path.join(projectRoot, 'contract.json'); const sourcePath = path.join(projectRoot, 'source.txt');
+  fs.writeFileSync(contractPath, JSON.stringify({ schema_version: '1.0.0', contract_id: 'C-EVIDENCE', task_id: 'T-EVIDENCE', module: 'comsol', objective: 'bounded evidence', inputs: {}, fixed: [], explorable: [], forbidden: [], required_outputs: ['result'], validation_requirements: [] }, null, 2) + '\n'); fs.writeFileSync(sourcePath, 'source evidence\n');
+  const evidence = collectResearchEvidence({ root: projectRoot, contract_path: 'contract.json', source_evidence: [{ path: 'source.txt', kind: 'source' }], numerical_comparisons: [{ comparison_id: 'numeric-1', status: 'passed', delta: 0.01 }], physics_reviewers: [{ run_id: 'review-1', evidence: 'independent reasoning', model_family: 'family-a' }], producer_model_family: 'family-a' });
+  assert.equal(evidence.status, 'evidence-collected'); assert.equal(evidence.final_verdict, null); assert.equal(evidence.contract.validation.valid, true); assert.equal(evidence.correlated_review_risk, true);
+  const file = writeResearchEvidence(projectRoot, evidence); assert.equal(fs.existsSync(file), true);
+});
+
+test('local telemetry aggregates ledger observations without inventing provider capacity', () => {
+  const projectRoot = root(); const first = createAgentRun({ root: projectRoot, task: task({ task_id: 'telemetry-1', role: 'executor' }), selection: { model_id: 'm1', family: 'family-a', reasoning_effort: 'high', catalog_freshness: 'stale', stale_model_catalog: true } });
+  updateAgentRun(projectRoot, first.run_id, 'validated'); updateAgentRun(projectRoot, first.run_id, 'ready'); updateAgentRun(projectRoot, first.run_id, 'running'); updateAgentRun(projectRoot, first.run_id, 'failed', { failure_reason: 'test failure' });
+  const second = createAgentRun({ root: projectRoot, task: task({ task_id: 'telemetry-2', role: 'physics-reviewer', permissions: { read: true } }), selection: { model_id: 'm2', family: 'family-b', reasoning_effort: 'xhigh' } });
+  const summary = summarizeAgentRuns(projectRoot); assert.equal(summary.window.run_count, 2); assert.equal(summary.failures_by_model.m1, 1); assert.equal(summary.stale_catalog_uses, 1); assert.equal(summary.provider_capacity, 'unknown'); assert.equal(summary.by_model_family['family-a'], 1);
+  assert.equal(fs.existsSync(writeTelemetry(projectRoot, summary)), true); assert.ok(second.run_id);
+});
+
+test('cooperative resource lock serializes exclusive resources and releases only by owner', () => {
+  const projectRoot = root(); const first = acquireResourceLocks(projectRoot, ['comsol-session'], 'run-1'); assert.equal(first.status, 'acquired');
+  const blocked = acquireResourceLocks(projectRoot, ['comsol-session'], 'run-2'); assert.equal(blocked.status, 'blocked'); assert.equal(blocked.owner.run_id, 'run-1');
+  assert.equal(releaseResourceLock(projectRoot, 'comsol-session', 'run-2').status, 'owner-mismatch'); assert.equal(releaseResourceLock(projectRoot, 'comsol-session', 'run-1').status, 'released');
+  const expired = acquireResourceLocks(projectRoot, ['gui'], 'run-old', { now: new Date('2020-01-01T00:00:00Z'), ttlMs: 1 }); assert.equal(expired.status, 'acquired');
+  const reclaimed = acquireResourceLocks(projectRoot, ['gui'], 'run-new', { now: new Date('2020-01-02T00:00:00Z') }); assert.equal(reclaimed.status, 'acquired'); assert.equal(inspectResourceLock(projectRoot, 'gui').owner.run_id, 'run-new');
 });

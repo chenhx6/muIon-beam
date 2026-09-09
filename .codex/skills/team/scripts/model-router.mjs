@@ -23,7 +23,7 @@ function staleRisk(task, routing) {
 }
 function makeFallback(task, catalog, reason) {
   if (!task.parent_model) return null;
-  return { model_id: task.parent_model, reasoning_effort: task.parent_effort || 'high', catalog_timestamp: catalog.fetched_at || null, stale_model_catalog: Boolean(catalog.stale), catalog_freshness: catalog.freshness || (catalog.stale ? 'stale' : 'fresh'), candidates_considered: [], selection_reason: reason, fallback: 'parent-model' };
+  return { model_id: task.parent_model, reasoning_effort: task.parent_effort || 'high', family: task.parent_model_family || null, catalog_timestamp: catalog.fetched_at || null, stale_model_catalog: Boolean(catalog.stale), catalog_freshness: catalog.freshness || (catalog.stale ? 'stale' : 'fresh'), candidates_considered: [], selection_reason: reason, fallback: 'parent-model' };
 }
 export function selectModel(inputCatalog, task = {}, options = {}) {
   const routing = options.routing || task.routing || readRouting(options.routingFile || task.routing_file || path.resolve(process.cwd(), '00_project/config/agent-routing.yaml'));
@@ -61,7 +61,7 @@ export function selectModel(inputCatalog, task = {}, options = {}) {
   const selectedEffort = asArray(model.efforts).includes(preferred) && (!requestedExtreme || allowedExtreme) ? preferred : REASONING_LEVELS.find((level) => asArray(model.efforts).includes(level)) || null;
   const downgraded = selectedEffort !== preferred;
   return {
-    model_id: model.id, reasoning_effort: selectedEffort, provider: model.provider || null, backend: model.backend || null, role: task.role || null, role_fit: fit,
+    model_id: model.id, reasoning_effort: selectedEffort, family: model.family || null, provider: model.provider || null, backend: model.backend || null, role: task.role || null, role_fit: fit,
     catalog_timestamp: catalog.fetched_at || null, stale_model_catalog: Boolean(catalog.stale), catalog_freshness: catalog.freshness || (catalog.stale ? 'stale' : 'fresh'),
     candidates_considered: considered, fallback_candidates: candidates.slice(1).map((item) => item.id),
     selection_reason: ['hard compatibility filter passed', task.role ? 'role ' + task.role + ' fit ' + fit.score + '/' + asArray(roleConfig.capabilities).length : 'no role constraint', 'quality ' + (model.quality ?? 0), downgraded ? 'reasoning downgraded from ' + preferred + ' to ' + selectedEffort : 'reasoning ' + selectedEffort, catalog.stale ? 'last-known-good catalog (stale, low-risk read-only)' : 'fresh runtime catalog'].join('; ')

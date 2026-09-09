@@ -44,6 +44,10 @@ test('contract instance is frozen and cannot be overwritten', () => {
   assert.throws(() => freezeContract(value, { root }), /EEXIST|exists/);
 });
 
+test('contract identifiers cannot escape the canonical instance directory', () => {
+  assert.throws(() => freezeContract(contract({ contract_id: '../escape' }), { root: tempRoot('unsafe-contract') }), /unsafe path characters/);
+});
+
 test('workflow executes a bounded COMSOL fixture and writes a control report', async () => {
   const root = tempRoot('workflow');
   const fixture = parseYamlFile('07_research_system/blocks/comsol/tests/fixtures/100kev-muon-aperture-failure.yaml');
@@ -97,4 +101,13 @@ test('active state lock blocks a competing foreground context', () => {
   const lockPath = path.join(root, '_work/current/research-state/state.lock'); fs.mkdirSync(path.dirname(lockPath), { recursive: true });
   fs.writeFileSync(lockPath, JSON.stringify({ lock_token: 'held', pid: process.pid, acquired_at: new Date().toISOString() }));
   assert.throws(() => beginContext({ root, objective: 'competing task' }), /lock contention/);
+});
+
+test('workflow rejects a conflicting context before freezing a contract', () => {
+  const root = tempRoot('dispatch-conflict');
+  const active = beginContext({ root, entrypoint: 'existing', context_kind: 'workflow', objective: 'existing task' });
+  assert.throws(() => dispatchContract(contract(), { root }), /foreground context already running/);
+  const instances = path.join(root, '07_research_system/control/contracts/instances');
+  assert.equal(fs.existsSync(instances) && fs.readdirSync(instances).length > 0, false);
+  closeContext(active.context_id, 'PARTIAL', root);
 });

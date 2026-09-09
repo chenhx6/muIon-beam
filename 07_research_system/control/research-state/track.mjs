@@ -4,9 +4,10 @@ import { freezeContract, makeCompatibilityContract, normalizeModuleResult, write
 export async function trackExecution({ root = process.cwd(), module, task = {}, contextId = null, execute, phase = 'module-execution' } = {}) {
   if (typeof execute !== 'function') throw new Error('trackExecution requires execute');
   ensureInitialized(root);
+  const current = readState(root);
+  if (current.context_id && current.context_id !== contextId) throw new Error(`foreground context already running: ${current.context_id}`);
   const contract = makeCompatibilityContract(module, task);
   const frozen = freezeContract(contract, { root });
-  const current = readState(root);
   const context = contextId && current.context_id === contextId ? { context_id: contextId } : beginContext({ root, context_id: contextId, entrypoint: module, context_kind: 'direct-module', module, task_id: frozen.contract.task_id, external_task_id: task.task_id || null, objective: task.objective || `${module} direct task`, current_question: task.objective || null });
   const attemptId = makeId('ATT');
   recordDispatch(context.context_id, { attempt_id: attemptId, contract: { contract_id: frozen.contract.contract_id, path: frozen.path, sha256: frozen.sha256 }, phase }, root);

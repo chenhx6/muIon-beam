@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { parseArgs, projectRootFromHere, jsonWrite, runGit, nowIso } from './project-utils.mjs';
+import { parseArgs, projectRootFromHere, jsonWrite, runGit, gitStatusEntries, nowIso } from './project-utils.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
@@ -14,7 +14,7 @@ const deliveryPath = path.join(root, '00_project/traceability/sync-receipts', `D
 if (fs.existsSync(deliveryPath)) throw new Error(`delivery record already exists: ${relativeDelivery}`);
 const delivery = { record_type: 'sync-receipt-delivery', schema_version: '1.0.0', delivery_id: `DELIVERY-${auditDoc.snapshot_id}`, receipt_path: relativeReceipt, receipt_sha256: receiptSha256, audit_path: relativeAudit, audit_sha256: crypto.createHash('sha256').update(fs.readFileSync(audit)).digest('hex'), snapshot_id: auditDoc.snapshot_id, status: 'prepared', receipt_commit: null, receipt_remote_commit: null, created_at: nowIso(), finalized_at: null };
 jsonWrite(deliveryPath, delivery);
-const status = runGit(root, ['status', '--porcelain']).stdout.split(/\r?\n/).filter(Boolean).map((line) => line.slice(3)).filter(Boolean);
+const status = gitStatusEntries(root).map((entry) => entry.path).filter(Boolean);
 const allowed = new Set([relativeReceipt, relativeAudit, relativeDelivery]); const unexpected = status.filter((item) => !allowed.has(item) && !item.startsWith('00_project/state/'));
 if (unexpected.length) throw new Error(`unrelated working-tree changes prevent receipt adoption: ${unexpected.join(', ')}`);
 runGit(root, ['add', '--', relativeReceipt, relativeAudit, relativeDelivery]);

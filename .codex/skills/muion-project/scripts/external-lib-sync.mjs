@@ -216,7 +216,7 @@ function manifestFor(records, previous, changes, timestamp) {
   };
 }
 
-function archiveDirectory(sourceDir, targetDir, files) {
+function archiveDirectory(sourceDir, targetDir, files, projectRoot = process.cwd()) {
   ensureDirectory(targetDir);
   for (const record of files) {
     const source = path.join(sourceDir, record.path);
@@ -227,7 +227,7 @@ function archiveDirectory(sourceDir, targetDir, files) {
     } else fs.copyFileSync(source, target);
     if (fs.statSync(target).size !== record.size || sha256File(target) !== record.sha256) throw new Error(`Drive SHA256 mismatch: ${record.path}`);
   }
-  const archiveManifest = { schema_version: '1.0.0', manifest_type: 'external-library-archive', source_path: relativePath(process.cwd(), sourceDir), content_sha256: digestText(stableJson(files.map(({ path: file, size, sha256 }) => ({ path: file, size, sha256 })))), file_count: files.length, total_bytes: files.reduce((sum, item) => sum + item.size, 0), files };
+  const archiveManifest = { schema_version: '1.0.0', manifest_type: 'external-library-archive', source_path: relativePath(projectRoot, sourceDir), content_sha256: digestText(stableJson(files.map(({ path: file, size, sha256 }) => ({ path: file, size, sha256 })))), file_count: files.length, total_bytes: files.reduce((sum, item) => sum + item.size, 0), files };
   jsonWrite(path.join(targetDir, 'archive-manifest.json'), archiveManifest);
   return archiveManifest;
 }
@@ -294,7 +294,7 @@ export function syncExternalLibraries(options = {}) {
     for (const item of discovery.records) {
       const target = path.join(driveRoot, item.id, item.content_sha256);
       item.drive_archive_path = target;
-      const archive = archiveDirectory(path.join(root, item.path), target, item.files);
+      const archive = archiveDirectory(path.join(root, item.path), target, item.files, root);
       driveResults.push({ library_id: item.id, path: target, status: 'verified', file_count: archive.file_count, total_bytes: archive.total_bytes, content_sha256: archive.content_sha256 });
     }
   } catch (error) {

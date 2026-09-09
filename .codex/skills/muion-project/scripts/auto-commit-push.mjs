@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { parseArgs, projectRootFromHere, runGit, nowIso } from './project-utils.mjs';
+import { parseArgs, projectRootFromHere, runGit, gitStatusEntries, nowIso } from './project-utils.mjs';
 import { syncExternalLibraries } from './external-lib-sync.mjs';
 
 const args = parseArgs(process.argv.slice(2));
@@ -10,9 +10,9 @@ if (!args.baseline) throw new Error('automatic commit/push requires --baseline f
 syncExternalLibraries({ projectRoot: root, event: 'auto-publish' });
 const policy = JSON.parse(fs.readFileSync(path.join(root, '00_project/config/publish-policy.json'), 'utf8'));
 const baseline = JSON.parse(fs.readFileSync(path.resolve(args.baseline), 'utf8'));
-const status = runGit(root, ['status', '--porcelain']).stdout.split(/\r?\n/).filter(Boolean);
-const paths = status.map((line) => line.slice(3)).filter(Boolean);
-const deletedExternal = new Set(status.filter((line) => line.slice(0, 2).includes('D') && line.slice(3).startsWith('06_external_lib/')).map((line) => line.slice(3)));
+const status = gitStatusEntries(root);
+const paths = status.map((entry) => entry.path).filter(Boolean);
+const deletedExternal = new Set(status.filter((entry) => entry.status.includes('D') && entry.path.startsWith('06_external_lib/')).map((entry) => entry.path));
 const baselinePaths = new Set(baseline.paths || []);
 const isBaselinePath = (file) => [...baselinePaths].some((entry) => file === entry || (entry.endsWith('/') && file.startsWith(entry)));
 const existing = paths.filter(isBaselinePath);

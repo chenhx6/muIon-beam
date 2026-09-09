@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { projectRootFromHere, runGit, sha256File } from './project-utils.mjs';
+import { projectRootFromHere, runGit, gitStatusEntries, sha256File } from './project-utils.mjs';
 
 export function loadDeliveryPolicy(root) { return JSON.parse(fs.readFileSync(path.join(root, '00_project/config/delivery-policy.json'), 'utf8')); }
 const starts = (file, list) => list.some((prefix) => file === prefix || file.startsWith(prefix));
@@ -21,8 +21,8 @@ function expand(root, file) {
 }
 
 export function classifyPaths(root, policy = loadDeliveryPolicy(root), baseline = null) {
-  const lines = runGit(root, ['status', '--porcelain']).stdout.split(/\r?\n/).filter(Boolean);
-  const paths = lines.flatMap((line) => expand(root, line.slice(3)).map((file) => ({ file, deleted: line.slice(0, 2).includes('D') }))).filter((item) => item.file);
+  const entries = gitStatusEntries(root);
+  const paths = entries.flatMap((entry) => expand(root, entry.path).map((file) => ({ file, deleted: entry.status.includes('D') }))).filter((item) => item.file);
   const baselinePaths = new Set(baseline?.paths || []);
   const candidates = []; const adopted = []; const excluded = []; let totalBytes = 0;
   for (const entry of paths) {

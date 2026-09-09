@@ -11,6 +11,8 @@ export function validateResearchContract(input) { return validateContract(input)
 
 export function dispatchContract(contractInput, { root = process.cwd(), sourcePath = null, context = {} } = {}) {
   ensureInitialized(root);
+  const current = readState(root);
+  if (current.context_id && current.context_id !== context.context_id) throw new Error(`foreground context already running: ${current.context_id}`);
   const frozen = freezeContract(contractInput, { root, sourcePath });
   const state = beginContext({ root, ...context, task_id: frozen.contract.task_id, module: frozen.contract.module, objective: frozen.contract.objective, context_id: context.context_id });
   const attemptId = makeId('ATT');

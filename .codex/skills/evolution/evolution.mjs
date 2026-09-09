@@ -26,8 +26,9 @@ export function writeEvolutionRecord(root, record) {
   const dir = path.join(root, '00_project/traceability/evolution');
   fs.mkdirSync(dir, { recursive: true });
   const id = record.evolution_id || `EVOLUTION-${new Date().toISOString().replace(/[-:.TZ]/g, '').slice(0, 14)}`;
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(String(id))) throw new Error('evolution_id contains unsafe path characters');
   const file = path.join(dir, `${id}.json`);
-  fs.writeFileSync(file, JSON.stringify({ schema_version: 1, evolution_id: id, ...record }, null, 2) + '\\n');
+  fs.writeFileSync(file, JSON.stringify({ schema_version: 1, evolution_id: id, ...record }, null, 2) + '\n');
   return file;
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

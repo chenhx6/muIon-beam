@@ -78,6 +78,21 @@ export function runGit(root, args, options = {}) {
   return result;
 }
 
+export function gitStatusEntries(root) {
+  const raw = runGit(root, ['status', '--porcelain=v1', '-z']).stdout || '';
+  const tokens = raw.split('\0').filter(Boolean);
+  const entries = [];
+  for (let index = 0; index < tokens.length; index += 1) {
+    const token = tokens[index];
+    const status = token.slice(0, 2);
+    let file = token.slice(3);
+    let oldPath = null;
+    if (/[RC]/.test(status) && index + 1 < tokens.length) { oldPath = tokens[++index]; }
+    entries.push({ status, path: file.replaceAll('\\', '/'), old_path: oldPath ? oldPath.replaceAll('\\', '/') : null });
+  }
+  return entries;
+}
+
 export function csvEscape(value) {
   const text = value === null || value === undefined ? '' : Array.isArray(value) ? value.join('; ') : String(value);
   return `"${text.replaceAll('"', '""')}"`;

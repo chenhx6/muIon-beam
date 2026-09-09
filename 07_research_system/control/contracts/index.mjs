@@ -44,6 +44,8 @@ export function normalizeContract(input) {
   const contract = { schema_version: input.schema_version || '1.0.0', ...input };
   contract.contract_id = contract.contract_id || makeId(`CONTRACT-${String(contract.module || 'UNKNOWN').toUpperCase()}`);
   contract.task_id = contract.task_id || makeId('TASK');
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(String(contract.contract_id))) throw new Error('contract_id contains unsafe path characters');
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(String(contract.task_id))) throw new Error('task_id contains unsafe path characters');
   if (!MODULES.has(contract.module)) throw new Error('module must be one of 3d, comsol, geant4');
   if (!String(contract.objective || '').trim()) throw new Error('objective is required');
   for (const scope of SCOPES) contract[scope] = (Array.isArray(contract[scope]) ? contract[scope] : []).map((value, index) => normalizeEntry(value, scope, index));

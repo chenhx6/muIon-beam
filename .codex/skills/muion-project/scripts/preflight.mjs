@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { gitStatusEntries } from './project-utils.mjs';
 
 const projectRoot = path.resolve(process.argv[2] || '.');
 const expected = path.resolve('D:/muIon-beam');
@@ -13,9 +14,12 @@ function check(name, ok, detail) {
 check('project-root', projectRoot.toLowerCase() === expected.toLowerCase(), `expected ${expected}`);
 check('agents', fs.existsSync(path.join(projectRoot, 'AGENTS.md')), 'AGENTS.md must exist');
 check('variable-catalog', fs.existsSync(path.join(projectRoot, '00_project', 'traceability', 'variable-catalog.yaml')), 'variable catalog must exist');
+check('research-system-layout', ['07_research_system/control/contracts/index.mjs', '07_research_system/control/research-state/state.yaml', '07_research_system/control/research-workflow/index.mjs', '07_research_system/blocks/3d/index.mjs', '07_research_system/blocks/comsol/index.mjs', '07_research_system/blocks/geant4/index.mjs'].every((file) => fs.existsSync(path.join(projectRoot, file))), '07_research_system canonical control and block entrypoints must exist');
+const researchState = spawnSync(process.execPath, [path.join(projectRoot, '07_research_system/control/research-state/index.mjs'), 'status', '--root', projectRoot], { cwd: projectRoot, encoding: 'utf8' });
+check('research-state', researchState.status === 0, researchState.status === 0 ? 'research-state status is readable' : (researchState.stderr?.trim() || 'research-state status failed'));
 const git = spawnSync('git', ['-c', 'safe.directory=D:/muIon-beam', '-C', projectRoot, 'status', '--short', '--branch'], { encoding: 'utf8' });
 check('git', git.status === 0, git.stderr?.trim() || git.stdout?.trim() || 'git status failed');
-if (git.stdout?.split(/\r?\n/).some((line) => line.startsWith(' M ') || line.startsWith('MM '))) result.warnings.push('working tree contains modified files; do not overwrite them');
+if (gitStatusEntries(projectRoot).length) result.warnings.push('working tree contains staged, modified, renamed or untracked files; do not overwrite them');
 const drivePath = 'H:\\我的云端硬盘\\muIon_archive';
 let driveStatus = 'missing';
 try { fs.statSync(drivePath); driveStatus = 'accessible'; } catch (error) { driveStatus = error.code === 'EACCES' ? 'access-denied-to-current-process' : error.code || 'missing'; }

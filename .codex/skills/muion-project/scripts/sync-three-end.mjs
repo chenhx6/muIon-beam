@@ -16,8 +16,10 @@ for (const source of sourceFiles) {
   const target = path.join(drivePath, relative);
   try {
     ensureDirectory(path.dirname(target));
-    fs.copyFileSync(source, target);
     const sourceHash = sha256File(source);
+    if (fs.existsSync(target)) {
+      if (sha256File(target) !== sourceHash) throw new Error('existing Drive file differs');
+    } else fs.copyFileSync(source, target);
     const targetHash = sha256File(target);
     copied.push({ relative_path: relative, size: fs.statSync(source).size, sha256: sourceHash, verified: sourceHash === targetHash });
     if (sourceHash !== targetHash) driveErrors.push(`${relative}: SHA256 mismatch`);

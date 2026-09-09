@@ -6,7 +6,7 @@ import { projectRootFromHere, walkFiles, relativePath, parseArgs } from './proje
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args._[0] || args.root || projectRootFromHere());
 const traceability = path.join(root, '00_project', 'traceability');
-const files = walkFiles(root, { ignoredDirectories: ['.git', 'node_modules', '_work'] }).filter((file) => /\.(ya?ml|json)$/i.test(file));
+const files = walkFiles(root, { ignoredDirectories: ['.git', 'node_modules', '_work', '3d-smoke'] }).filter((file) => /\.(ya?ml|json)$/i.test(file));
 const docs = [];
 const errors = [];
 for (const file of files) {
@@ -51,3 +51,4 @@ for (const { file, doc } of docs) {
 }
 for (const [name, lines] of Object.entries(generated)) fs.writeFileSync(path.join(traceability, `${name}.md`), `${lines.join('\n')}\n`, 'utf8');
 console.log(JSON.stringify({ root, manifests: docs.length, parseErrors: errors, outputs: Object.keys(generated).map((name) => path.join(traceability, `${name}.md`)) }, null, 2));
+if (errors.length) process.exitCode = 2;

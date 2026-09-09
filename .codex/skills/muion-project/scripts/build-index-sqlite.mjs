@@ -8,7 +8,7 @@ const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args._[0] || args.root || projectRootFromHere());
 const database = path.resolve(args.database || path.join(root, '00_project/traceability/index.sqlite'));
 const schema = path.resolve(args.schema || path.join(root, '00_project/schemas/index.schema.sql'));
-const files = walkFiles(root, { ignoredDirectories: ['.git', 'node_modules', '_work'] }).filter((file) => /\.(ya?ml|json)$/i.test(file));
+const files = walkFiles(root, { ignoredDirectories: ['.git', 'node_modules', '_work', '3d-smoke'] }).filter((file) => /\.(ya?ml|json)$/i.test(file));
 const items = [];
 const parseErrors = [];
 for (const file of files) {
@@ -28,4 +28,4 @@ fs.writeFileSync(inputFile, JSON.stringify(items), 'utf8');
 const result = spawnSync(python, [script, '--database', database, '--schema', schema, '--input-file', inputFile], { encoding: 'utf8', maxBuffer: 50 * 1024 * 1024 });
 try { fs.rmSync(inputFile, { force: true }); } catch { /* best-effort cleanup */ }
 if (result.status !== 0) { console.error(result.stderr || result.stdout); process.exitCode = result.status || 1; }
-else console.log(JSON.stringify({ root, database, manifests: items.length, parseErrors, sqlite: JSON.parse(result.stdout) }, null, 2));
+else { console.log(JSON.stringify({ root, database, manifests: items.length, parseErrors, sqlite: JSON.parse(result.stdout) }, null, 2)); if (parseErrors.length) process.exitCode = 2; }

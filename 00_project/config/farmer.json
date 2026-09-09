@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project_root": "D:\\muIon-beam",
   "poll_interval_ms": 1000,
-  "max_attempts": 99,
+  "max_attempts": null,
   "recovery_message": "[farmer resume]\nContinue the existing task from the last completed checkpoint.\nPreserve the original objective, context, files, model, and current working state.\nDo not reinterpret the task or start a new one.",
   "recoverable_codes": ["server_overloaded", "rate_limit_exceeded", "temporarily_unavailable"],
   "recoverable_patterns": ["Selected model is at capacity", "temporarily unavailable", "service unavailable", "rate limit", "timed out", "connection reset"]

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { batchDelay, classifyError, inside, recoveryStep } from '../.codex/skills/farmer/farmer.mjs';
+import { batchDelay, classifyError, inside, parseSessionEvents, recoveryStep, validateConfig } from '../.codex/skills/farmer/farmer.mjs';
 
 const config = { max_attempts: 99, recoverable_codes: ['server_overloaded', 'rate_limit_exceeded', 'temporarily_unavailable'], recoverable_patterns: ['Selected model is at capacity', 'temporarily unavailable', 'service unavailable', 'rate limit', 'timed out', 'connection reset'], recovery_message: 'resume' };
 test('farmer classifies transient and terminal errors', () => {
@@ -8,12 +8,23 @@ test('farmer classifies transient and terminal errors', () => {
   assert.equal(classifyError({ codex_error_info: 'server_overloaded', message: 'busy' }, config), 'server_overloaded');
   assert.equal(classifyError({ message: 'authentication failed' }, config), null);
 });
-test('farmer uses five-at-a-time escalating delays', () => {
-  assert.equal(batchDelay(1), 3000);
-  assert.equal(batchDelay(5), 3000);
-  assert.equal(batchDelay(6), 5000);
-  assert.equal(batchDelay(11), 7000);
-  assert.equal(batchDelay(99), 41000);
+test('farmer uses ten-at-a-time delays capped at ten seconds', () => {
+  assert.equal(batchDelay(1), 2000);
+  assert.equal(batchDelay(10), 2000);
+  assert.equal(batchDelay(11), 4000);
+  assert.equal(batchDelay(20), 4000);
+  assert.equal(batchDelay(21), 6000);
+  assert.equal(batchDelay(30), 6000);
+  assert.equal(batchDelay(31), 8000);
+  assert.equal(batchDelay(40), 8000);
+  assert.equal(batchDelay(41), 10000);
+  assert.equal(batchDelay(99), 10000);
+});
+test('farmer validates finite and unlimited attempt configuration', () => {
+  assert.equal(validateConfig({ max_attempts: null }).max_attempts, null);
+  assert.equal(validateConfig({ max_attempts: 99 }).max_attempts, 99);
+  assert.throws(() => validateConfig({ max_attempts: 0 }), /positive integer/);
+  assert.throws(() => validateConfig({ max_attempts: 1.5 }), /positive integer/);
 });
 test('farmer scopes sessions to the project', () => {
   assert.equal(inside('D:/muIon-beam/03_runs', 'D:/muIon-beam'), true);
@@ -27,4 +38,22 @@ test('farmer queues one recovery and does not duplicate pending requests', () =>
   assert.equal(calls, 1);
   assert.equal(first.pending, true);
   assert.equal(second.pending, true);
+});
+test('task start resets the recovery streak', () => {
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } } };
+  const state = recoveryStep(session, { attempts: 39, pending: true, next_at: Date.now() + 9999 }, config, Date.now(), () => ({ status: 0 }));
+  assert.equal(state.attempts, 0);
+  assert.equal(state.pending, false);
+  assert.equal(state.next_at, 0);
+});
+test('a fast start followed by failure is not missed', () => {
+  const lines = [
+    JSON.stringify({ type: 'session_meta', payload: { session_id: 's1', cwd: 'D:/muIon-beam' } }),
+    JSON.stringify({ type: 'event_msg', timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } }),
+    JSON.stringify({ type: 'event_msg', timestamp: '2026-01-01T00:00:02Z', payload: { type: 'task_complete', turn_id: 't2', error: { codex_error_info: 'server_overloaded', message: 'busy' } } })
+  ];
+  const parsed = parseSessionEvents(lines, 'D:/muIon-beam');
+  const state = recoveryStep({ ...parsed }, { attempts: 39, status: 'waiting-retry', last_started_event: 's1:old:old' }, config, Date.now(), () => ({ status: 1 }));
+  assert.equal(state.attempts, 1);
+  assert.equal(state.next_at - Date.now() <= 2100, true);
 });

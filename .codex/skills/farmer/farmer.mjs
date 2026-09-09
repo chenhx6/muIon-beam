@@ -4,7 +4,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 export const rootDefault = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-export const batchDelay = (attempt) => (3 + 2 * Math.floor((attempt - 1) / 5)) * 1000;
+export const batchDelay = (attempt) => Math.min(2 + 2 * Math.floor((attempt - 1) / 10), 10) * 1000;
 export const inside = (child, root) => { const r = path.relative(path.resolve(root).toLowerCase(), path.resolve(child).toLowerCase()); return r === '' || (!r.startsWith('..') && !path.isAbsolute(r)); };
 export function classifyError(error, config) {
   if (!error) return null;
@@ -14,11 +14,15 @@ export function classifyError(error, config) {
   if (config.recoverable_codes.includes(code)) return code;
   return config.recoverable_patterns.some((p) => message.toLowerCase().includes(p.toLowerCase())) ? 'transient-message' : null;
 }
+export function validateConfig(config) {
+  if (!config || (config.max_attempts !== null && (!Number.isInteger(config.max_attempts) || config.max_attempts < 1))) throw new Error('max_attempts must be null or a positive integer');
+  return config;
+}
 export function parseSessionEvents(lines, projectRoot) {
-  let meta = null; let latest = null;
-  for (const line of lines) { try { const item = JSON.parse(line); if (item.type === 'session_meta') meta = item.payload; if (item.type === 'event_msg' && ['task_started', 'task_complete', 'turn_aborted'].includes(item.payload?.type)) latest = item; } catch {} }
+  let meta = null; let latest = null; let latestStarted = null;
+  for (const line of lines) { try { const item = JSON.parse(line); if (item.type === 'session_meta') meta = item.payload; if (item.type === 'event_msg' && ['task_started', 'task_complete', 'turn_aborted'].includes(item.payload?.type)) { latest = item; if (item.payload.type === 'task_started') latestStarted = item; } } catch {} }
   if (!meta?.cwd || !inside(meta.cwd, projectRoot)) return null;
-  return { id: meta.session_id || meta.id, cwd: meta.cwd, latest };
+  return { id: meta.session_id || meta.id, cwd: meta.cwd, latest, latestStarted };
 }
 function segment(file, start, length) { const fd = fs.openSync(file, 'r'); try { const b = Buffer.alloc(length); const n = fs.readSync(fd, b, 0, length, start); return b.subarray(0, n).toString('utf8'); } finally { fs.closeSync(fd); } }
 function readSession(file, root) {
@@ -42,23 +46,28 @@ export function inspect(root, codexHome) {
   return [...result.values()];
 }
 export function recoveryStep(session, previous, config, now, queue) {
+  validateConfig(config);
   const event = session.latest; const payload = event?.payload;
   if (!event) return previous;
-  if (payload.type === 'task_started') return { ...previous, status: 'running', event_key: `${session.id}:${payload.turn_id}:${event.timestamp}`, pending: false };
+  const eventKey = payload ? `${session.id}:${payload.turn_id}:${event.timestamp}` : null;
+  const startedKey = session.latestStarted ? `${session.id}:${session.latestStarted.payload.turn_id}:${session.latestStarted.timestamp}` : previous?.last_started_event;
+  const sawNewStart = startedKey && startedKey !== previous?.last_started_event && previous?.event_key !== eventKey;
+  const reset = sawNewStart ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey } : previous;
+  if (payload.type === 'task_started') return { ...reset, status: 'running', event_key: eventKey, pending: false, attempts: 0, next_at: 0, last_started_event: eventKey };
   if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', pending: false };
-  if (!payload.error) return { ...previous, status: 'complete', pending: false };
+  if (!payload.error) return { ...reset, status: 'complete', pending: false };
   const errorClass = classifyError(payload.error, config);
-  if (!errorClass) return { ...previous, status: 'manual-attention-required', pending: false };
-  const key = `${session.id}:${payload.turn_id}:${event.timestamp}`;
-  let state = previous?.event_key === key ? { ...previous } : { event_key: key, attempts: previous?.status === 'running' ? previous.attempts || 0 : 0, pending: false, next_at: 0 };
+  if (!errorClass) return { ...reset, status: 'manual-attention-required', pending: false };
+  const key = eventKey;
+  let state = reset?.event_key === key ? { ...reset } : { event_key: key, attempts: reset?.status === 'running' ? reset.attempts || 0 : 0, pending: false, next_at: 0, last_started_event: reset?.last_started_event };
   state.error_class = errorClass;
   if (state.pending) return { ...state, status: 'recovery-pending' };
-  if (state.attempts >= config.max_attempts) return { ...state, status: 'manual-attention-required' };
+  if (config.max_attempts !== null && state.attempts >= config.max_attempts) return { ...state, status: 'manual-attention-required' };
   if (now < state.next_at) return { ...state, status: 'waiting-retry' };
   const result = queue(session.id, config.recovery_message);
   state.attempts += 1; state.last_exit_code = result.status; state.last_action_at = new Date(now).toISOString();
   state.pending = result.status === 0; state.status = state.pending ? 'recovery-pending' : 'waiting-retry';
-  state.next_at = now + batchDelay(state.attempts + 1);
+  state.next_at = now + batchDelay(state.attempts);
   return state;
 }
 function argumentsOf(argv) { const a = { command: argv[0] || 'status' }; for (let i = 1; i < argv.length; i++) if (argv[i].startsWith('--')) { const k = argv[i].slice(2); a[k] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true; } return a; }
@@ -66,7 +75,7 @@ async function main() {
   const args = argumentsOf(process.argv.slice(2));
   if (args.help || args.command === '--help') { console.log('farmer.mjs ensure|start|once|status|stop|install [--project-root PATH] [--codex-home PATH] [--dry-run]'); return; }
   const root = path.resolve(args['project-root'] || rootDefault); const home = args['codex-home'] || process.env.CODEX_HOME || path.join(process.env.USERPROFILE || '', '.codex');
-  const config = JSON.parse(fs.readFileSync(path.join(root, '00_project/config/farmer.json'), 'utf8'));
+  const config = validateConfig(JSON.parse(fs.readFileSync(path.join(root, '00_project/config/farmer.json'), 'utf8')));
   const runtime = path.join(root, '_work/current/farmer'); const lock = path.join(runtime, 'lock.json'); const stateFile = path.join(runtime, 'state.json');
   const read = (f, fallback) => { try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch { return fallback; } };
   const owner = read(lock, {});

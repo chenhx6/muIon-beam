@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "workflow_run_id", "task_id", "stage", "status", "events", "owned_paths"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "workflow_run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+    "task_id": {"type": "string"},
+    "stage": {"type": "string"},
+    "status": {"type": "string"},
+    "contract": {"type": ["string", "null"]},
+    "snapshot_ref": {"type": ["string", "null"]},
+    "run_dir": {"type": ["string", "null"]},
+    "summary_report": {"type": ["string", "null"]},
+    "detailed_report": {"type": ["string", "null"]},
+    "sync_state": {"type": ["string", "null"]},
+    "owned_paths": {"type": "array", "items": {"type": "string"}},
+    "events": {"type": "array", "items": {"type": "object"}}
+  }
+}

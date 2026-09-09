@@ -51,13 +51,15 @@ export function recoveryStep(session, previous, config, now, queue) {
   if (!event) return previous;
   const eventKey = payload ? `${session.id}:${payload.turn_id}:${event.timestamp}` : null;
   const startedKey = session.latestStarted ? `${session.id}:${session.latestStarted.payload.turn_id}:${session.latestStarted.timestamp}` : previous?.last_started_event;
+  const previousEventTimestamp = previous?.last_event_timestamp || (previous?.event_key ? previous.event_key.split(':').slice(2).join(':') : null);
   const sawNewStart = startedKey && startedKey !== previous?.last_started_event && previous?.event_key !== eventKey;
-  const reset = sawNewStart ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey } : previous;
-  if (payload.type === 'task_started') return { ...reset, status: 'running', event_key: eventKey, pending: false, attempts: 0, next_at: 0, last_started_event: eventKey };
-  if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', pending: false };
-  if (!payload.error) return { ...reset, status: 'complete', pending: false };
+  const startAfterPreviousEvent = session.latestStarted && previousEventTimestamp && session.latestStarted.timestamp > previousEventTimestamp && session.latestStarted.payload.turn_id !== payload.turn_id;
+  const reset = (sawNewStart || startAfterPreviousEvent) ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey } : previous;
+  if (payload.type === 'task_started') return { ...reset, status: 'running', event_key: eventKey, pending: false, attempts: 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp };
+  if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', pending: false, last_event_timestamp: event.timestamp };
+  if (!payload.error) return { ...reset, status: 'complete', pending: false, last_event_timestamp: event.timestamp };
   const errorClass = classifyError(payload.error, config);
-  if (!errorClass) return { ...reset, status: 'manual-attention-required', pending: false };
+  if (!errorClass) return { ...reset, status: 'manual-attention-required', pending: false, last_event_timestamp: event.timestamp };
   const key = eventKey;
   let state = reset?.event_key === key ? { ...reset } : { event_key: key, attempts: reset?.status === 'running' ? reset.attempts || 0 : 0, pending: false, next_at: 0, last_started_event: reset?.last_started_event };
   state.error_class = errorClass;
@@ -68,6 +70,7 @@ export function recoveryStep(session, previous, config, now, queue) {
   state.attempts += 1; state.last_exit_code = result.status; state.last_action_at = new Date(now).toISOString();
   state.pending = result.status === 0; state.status = state.pending ? 'recovery-pending' : 'waiting-retry';
   state.next_at = now + batchDelay(state.attempts);
+  state.last_event_timestamp = event.timestamp;
   return state;
 }
 function argumentsOf(argv) { const a = { command: argv[0] || 'status' }; for (let i = 1; i < argv.length; i++) if (argv[i].startsWith('--')) { const k = argv[i].slice(2); a[k] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true; } return a; }

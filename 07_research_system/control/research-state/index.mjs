@@ -24,6 +24,7 @@ function defaultState() {
   return {
     schema_version: '1.0.0', state_revision: 0, updated_at: null,
     context_id: null, entrypoint: null, context_kind: null, legacy_phase: 'idle',
+    workflow_run_id: null, workflow_stage: null, workflow_status: null,
     current_goal: null, current_question: null, current_task: null,
     current_phase: 'idle', task_status: 'IDLE', completed_stages: [],
     blocked_reason: null, next_action: 'deep-interview', active_contract: null,
@@ -205,6 +206,31 @@ export function recordDecision(contextId, decision, root = process.cwd()) {
   return mutate(root, 'decision', contextId, () => ({ current_phase: 'decision', next_action: decision.next_action || 'close-context', related_open_problems: decision.related_open_problems || [] }), (next) => {
     fs.appendFileSync(path.join(stateDir(root), 'decision-log.md'), `\n## ${next.updated_at} ${contextId}\n\n${decision.summary || decision.statement || 'decision recorded'}\n`);
   });
+}
+
+export function recordWorkflowEvent(event, root = process.cwd()) {
+  ensureInitialized(root);
+  const current = readState(root);
+  const next = mutate(root, 'workflow-event', current.context_id, (before) => ({
+    workflow_run_id: event.workflow_run_id || before.workflow_run_id || null,
+    workflow_stage: event.stage || before.workflow_stage || null,
+    workflow_status: event.status || before.workflow_status || null,
+    next_action: event.next_action || before.next_action || null
+  }));
+  const recorded = {
+    schema_version: '1.0.0',
+    event_id: makeId('WF-EVT'),
+    transaction_id: makeId('TX'),
+    event_phase: 'commit',
+    event_type: event.event_type || 'workflow-event',
+    occurred_at: nowIso(),
+    actor: 'autopilot',
+    state_revision_after: next.state_revision,
+    state_sha256: hashFile(stateFile(root)),
+    ...event
+  };
+  appendEvent(root, recorded);
+  return recorded;
 }
 
 export function closeContext(contextId, finalStatus = 'IDLE', root = process.cwd()) {

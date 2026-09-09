@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { parseArgs, projectRootFromHere, runGit, ensureDirectory } from './project-utils.mjs';
+
+const args = parseArgs(process.argv.slice(2));
+const root = path.resolve(args.project_root || projectRootFromHere());
+const topic = String(args.topic || args.task || 'project-milestone').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48) || 'project-milestone';
+const stage = String(args.stage || 'completed').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'completed';
+const commit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
+const stamp = new Date().toISOString().replace(/[-:TZ.]/g, '').slice(0, 14);
+const tag = args.tag || `t-${topic}-${stage}-${stamp}-${commit.slice(0, 7)}`;
+if (!/^t-[A-Za-z0-9][A-Za-z0-9._-]*$/.test(tag)) throw new Error('task tag must start with t- and contain only safe characters');
+if (runGit(root, ['show-ref', '--verify', '--quiet', `refs/tags/${tag}`], { allowFailure: true }).status === 0) throw new Error(`tag already exists: ${tag}`);
+const note = [`# ${tag}`, '', '## 基于标签', '当前 main', '', '## 基础内容核验', '不适用于任务里程碑 tag', '', '## 本次任务', args.task || topic, '', '## 本次调整', args.message || `记录任务里程碑：${stage}`, '', '## 优化内容', '任务流程状态已固定到当前 commit', '', '## 结果', `任务里程碑 ${stage} 已记录`, '', '## 主要限制', '该 tag 不代表正式研究结果，不替代 r-* 结果审计', '', '## 详细报告', args.report || '见任务卡、commit 和验证输出', '', '## Google Drive', args.drive_path || '不适用于任务里程碑 tag', ''].join('\n');
+const notePath = path.join(root, '_work/current/publish-notes', `${tag}.md`);
+ensureDirectory(path.dirname(notePath));
+fs.writeFileSync(notePath, note, 'utf8');
+runGit(root, ['tag', '-a', tag, '-F', notePath]);
+runGit(root, ['push', 'origin', `refs/tags/${tag}`], { timeout: 120000 });
+const remoteTag = runGit(root, ['ls-remote', 'origin', `refs/tags/${tag}^{}`]).stdout.trim();
+if (!remoteTag) throw new Error(`remote task tag verification failed: ${tag}`);
+console.log(JSON.stringify({ status: 'task-tagged', tag, commit, remote_tag: remoteTag, note: notePath }, null, 2));

@@ -38,6 +38,7 @@
     ,"farmer:stop": "node .codex/skills/farmer/farmer.mjs stop"
     ,"farmer:test": "node --test tests/farmer.test.mjs"
     ,"farmer:install": "node .codex/skills/farmer/farmer.mjs install"
+    ,"task:tag": "node .codex/skills/muion-project/scripts/create-task-tag.mjs"
     ,"test:agent-routing": "node --test tests/agent-routing.test.mjs"
     ,"test:evolution": "node --test tests/evolution.test.mjs"
     ,"evolution:discover": "node .codex/skills/evolution/evolution.mjs ."

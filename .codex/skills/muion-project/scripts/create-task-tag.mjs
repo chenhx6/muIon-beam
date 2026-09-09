@@ -11,7 +11,7 @@ const stamp = new Date().toISOString().replace(/[-:TZ.]/g, '').slice(0, 14);
 const tag = args.tag || `t-${topic}-${stage}-${stamp}-${commit.slice(0, 7)}`;
 if (!/^t-[A-Za-z0-9][A-Za-z0-9._-]*$/.test(tag)) throw new Error('task tag must start with t- and contain only safe characters');
 if (runGit(root, ['show-ref', '--verify', '--quiet', `refs/tags/${tag}`], { allowFailure: true }).status === 0) throw new Error(`tag already exists: ${tag}`);
-const note = [`# ${tag}`, '', '## 基于标签', '当前 main', '', '## 基础内容核验', '不适用于任务里程碑 tag', '', '## 本次任务', args.task || topic, '', '## 本次调整', args.message || `记录任务里程碑：${stage}`, '', '## 优化内容', '任务流程状态已固定到当前 commit', '', '## 结果', `任务里程碑 ${stage} 已记录`, '', '## 主要限制', '该 tag 不代表正式研究结果，不替代 r-* 结果审计', '', '## 详细报告', args.report || '见任务卡、commit 和验证输出', '', '## Google Drive', args.drive_path || '不适用于任务里程碑 tag', ''].join('\n');
+const note = [`# ${tag}`, '', '基于标签：当前 main', '基础内容核验：不适用于任务里程碑 tag', `本次任务：${args.task || topic}`, `本次调整：${args.message || `记录任务里程碑：${stage}`}`, '优化内容：任务流程状态已固定到当前 commit', `结果：任务里程碑 ${stage} 已记录`, '主要限制：该 tag 不代表正式研究结果，不替代 r-* 结果审计', `详细报告：${args.report || '见任务卡、commit 和验证输出'}`, `Google Drive 归档路径：${args.drive_path || '不适用于任务里程碑 tag'}`, ''].join('\n');
 const notePath = path.join(root, '_work/current/publish-notes', `${tag}.md`);
 ensureDirectory(path.dirname(notePath));
 fs.writeFileSync(notePath, note, 'utf8');

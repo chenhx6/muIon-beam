@@ -1,4 +1,4 @@
-import { ensureInitialized, readState, setWorkflowPhase } from '../../../../research-state/index.mjs';
+import { ensureInitialized, readState, setWorkflowPhase } from '../../../../07_research_system/control/research-state/index.mjs';
 
 export const phases = ['idle', 'interview', 'planned', 'approved', 'running', 'review', 'qa', 'archived', 'published', 'synced', 'blocked'];
 export function readWorkflowState(root) {

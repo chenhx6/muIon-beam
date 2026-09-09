@@ -16,8 +16,8 @@
 ## 事实和版本规则
 
 - Manifest 是任务、模型、运行、文件和归档的事实账本。
-- `research-state/state.yaml` 是当前科研运行状态唯一 Source of Truth；`research-workflow`、3D、COMSOL、Geant4、validation 和 failure diagnosis 都必须通过独立 `research-state` 边界建立或复用 context。`NOW.md`、聊天状态和可选 checklist 都由它派生，不能形成第二个可写科研状态源。
-- `research-state/events.jsonl` 是追加式审计日志，不取代 `state.yaml`；合同实例固定保存在 `contracts/instances/<contract_id>/contract.yaml`，dispatch 后不得静默修改。
+- `07_research_system/control/research-state/state.yaml` 是当前科研运行状态唯一 Source of Truth；`research-workflow`、3D、COMSOL、Geant4、validation 和 failure diagnosis 都必须通过独立状态边界建立或复用 context。`NOW.md`、聊天状态和可选 checklist 都由它派生，不能形成第二个可写科研状态源。
+- `07_research_system/control/research-state/events.jsonl` 是追加式审计日志，不取代 `state.yaml`；合同实例固定保存在 `07_research_system/control/contracts/instances/<contract_id>/contract.yaml`，dispatch 后不得静默修改。
 - SQLite 只能由 Manifest 生成，是可重建查询索引，不是唯一事实源。
 - Markdown/CSV 索引和 `VARIABLE_CATALOG.md` 由脚本生成，不手工维护。
 - 运行开始前固定实际使用的输入、代码、参数和模型快照。

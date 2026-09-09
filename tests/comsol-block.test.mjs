@@ -4,16 +4,16 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { parseYamlFile } from '../.codex/skills/muion-project/scripts/yaml-lite.mjs';
-import { validateTask, normalizeTask } from '../comsol/contracts/index.mjs';
-import { buildComsolModel } from '../comsol/build/index.mjs';
-import { executeCase, executeCases, makeCaseSpec } from '../comsol/solve/index.mjs';
-import { diagnoseCase, diagnoseCampaign } from '../comsol/diagnose/index.mjs';
-import { planAdaptiveBoundedExploration } from '../comsol/explore/index.mjs';
-import { runComsol } from '../comsol/index.mjs';
-import { writeResultBundle } from '../comsol/report/index.mjs';
-import { createHistorical100keVFixtureAdapter } from '../comsol/tests/fixtures/100kev-muon-adapter.mjs';
+import { validateTask, normalizeTask } from '../07_research_system/blocks/comsol/contracts/index.mjs';
+import { buildComsolModel } from '../07_research_system/blocks/comsol/build/index.mjs';
+import { executeCase, executeCases, makeCaseSpec } from '../07_research_system/blocks/comsol/solve/index.mjs';
+import { diagnoseCase, diagnoseCampaign } from '../07_research_system/blocks/comsol/diagnose/index.mjs';
+import { planAdaptiveBoundedExploration } from '../07_research_system/blocks/comsol/explore/index.mjs';
+import { runComsol } from '../07_research_system/blocks/comsol/index.mjs';
+import { writeResultBundle } from '../07_research_system/blocks/comsol/report/index.mjs';
+import { createHistorical100keVFixtureAdapter } from '../07_research_system/blocks/comsol/tests/fixtures/100kev-muon-adapter.mjs';
 
-const fixture = parseYamlFile('comsol/tests/fixtures/100kev-muon-aperture-failure.yaml');
+const fixture = parseYamlFile('07_research_system/blocks/comsol/tests/fixtures/100kev-muon-aperture-failure.yaml');
 
 test('ComsolTask requires explicit scope and rejects overlap', () => {
   const valid = validateTask(fixture);

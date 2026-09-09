@@ -1,0 +1,643 @@
+{
+  "baseline_commit": "2d49d82d6eb40f95eea665ac1730b34ed6b2e659",
+  "hash_basis": "source Git blob; destination filesystem bytes; normalized comparison accounts for checkout CRLF",
+  "files": [
+    {
+      "source": "3d/SKILL.md",
+      "destination": "07_research_system/blocks/3d/SKILL.md",
+      "source_git_sha256": "7d8ce16b22e33b8b8f3066cc5cae2febd52ac251ae9fca00b5736089b3961775",
+      "destination_sha256": "1b9f776882a9af2fba7e1d5c3c21e15e5da8b86339583b24fa53be5cc55d23f6",
+      "content_unchanged": false
+    },
+    {
+      "source": "3d/attribution/EXTERNAL-LICENSE.txt",
+      "destination": "07_research_system/blocks/3d/attribution/EXTERNAL-LICENSE.txt",
+      "source_git_sha256": "c4fdf46b5ebb48917864deffb876ef098af2d7ac7392616c9015e1a4cf6af862",
+      "destination_sha256": "c4fdf46b5ebb48917864deffb876ef098af2d7ac7392616c9015e1a4cf6af862",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/attribution/solidworks-automation-skill.md",
+      "destination": "07_research_system/blocks/3d/attribution/solidworks-automation-skill.md",
+      "source_git_sha256": "8300dcddc7fc9af52cda1c7d1d783f3c78c4922ed7e853b591574311e8965dd9",
+      "destination_sha256": "8300dcddc7fc9af52cda1c7d1d783f3c78c4922ed7e853b591574311e8965dd9",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/create/SKILL.md",
+      "destination": "07_research_system/blocks/3d/create/SKILL.md",
+      "source_git_sha256": "ab5a0016243c3bb4d8a65b2ba6a9d322263c1463333432a50e3a523edd88cefb",
+      "destination_sha256": "e6f09deda6e275e3efbff93494853b1934f255d7a1e43b9d534bf611f761b091",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/experience-candidates/README.md",
+      "destination": "07_research_system/blocks/3d/experience-candidates/README.md",
+      "source_git_sha256": "34af1d4968422ce31a8c54e674cdb0951db16c714d1e89cfbe3f452f9433cbfa",
+      "destination_sha256": "34af1d4968422ce31a8c54e674cdb0951db16c714d1e89cfbe3f452f9433cbfa",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/experience-candidates/candidate-template.yaml",
+      "destination": "07_research_system/blocks/3d/experience-candidates/candidate-template.yaml",
+      "source_git_sha256": "90f47fc8c17a400c4663bf20f9bf239c97c1e5628014042e098ed5c96abf5f40",
+      "destination_sha256": "90f47fc8c17a400c4663bf20f9bf239c97c1e5628014042e098ed5c96abf5f40",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/export/SKILL.md",
+      "destination": "07_research_system/blocks/3d/export/SKILL.md",
+      "source_git_sha256": "990af5e1bf88331c6f5881560698af9e02ee3674dbc8e0ab100897f0f6c8e6a3",
+      "destination_sha256": "b7482a99fd95b355d2d4bdd8cc4800adb2d3ba2c0465f3771ecf1d6a6de347a9",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/index.mjs",
+      "destination": "07_research_system/blocks/3d/index.mjs",
+      "source_git_sha256": "b6668215201d6b16f501ea44234cc38fd22789ceee62e63adaf8094fb34477aa",
+      "destination_sha256": "8597933bd8e04b9f8fad587dc5217fbbe3969f63d995460f3fe4ea7b8cf93ff7",
+      "content_unchanged": false
+    },
+    {
+      "source": "3d/inspect/SKILL.md",
+      "destination": "07_research_system/blocks/3d/inspect/SKILL.md",
+      "source_git_sha256": "c7692f30540a4ee213d4321bc08c0e71c0ca90b4cfd5cc7827a8ade975d566ac",
+      "destination_sha256": "2bc98ac1be8190ea5ba0aa4db49320a8fba19acfcad40a5f76cb6c911e9b96f9",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/modify/SKILL.md",
+      "destination": "07_research_system/blocks/3d/modify/SKILL.md",
+      "source_git_sha256": "f417e785aaeb6a22a6d32549ef6e663305a2b266c724bc354597d32896cf08aa",
+      "destination_sha256": "07a38797151aebd6c467c5bd48e67785e6567ce74d1933fb1718c17187eecfb0",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/references/cad-studio-test.md",
+      "destination": "07_research_system/blocks/3d/references/cad-studio-test.md",
+      "source_git_sha256": "6ef7097b318f3c5121758b61fb4d37fc19040d305eb1d6d2d3d8d5559283523e",
+      "destination_sha256": "3321cb08aac48704af8e128b4673581b642664f5bb71b6d1bcbeae4af1e9e095",
+      "content_unchanged": false
+    },
+    {
+      "source": "3d/references/external-automation-guide.md",
+      "destination": "07_research_system/blocks/3d/references/external-automation-guide.md",
+      "source_git_sha256": "f95f1c3b42aaba55bb5dea658ad0891adf6a8f6a446fd33b9adf4e4bcd102192",
+      "destination_sha256": "b0838fedf1920d40185151419087388f147052b167f7f3a93cc8d1c1a9ada245",
+      "content_unchanged": false
+    },
+    {
+      "source": "3d/references/smoke-test.md",
+      "destination": "07_research_system/blocks/3d/references/smoke-test.md",
+      "source_git_sha256": "cb047f6c526d161bc4cd3df2caa8a783626e9d46f896fa72578ce690a74ab3cd",
+      "destination_sha256": "1c2e2ff428a1132b6fd1e452e46e114cfe287f0989d80e9da5c3e1202fc19788",
+      "content_unchanged": false
+    },
+    {
+      "source": "3d/regression/check.mjs",
+      "destination": "07_research_system/blocks/3d/regression/check.mjs",
+      "source_git_sha256": "ea7b3ffba7bb306dcc62dd38f587289915105df945f17a5eaf58d8184ac75259",
+      "destination_sha256": "f3750a52affc92d5b737590c31858f33de804400a82a4a1d7d47fcfc63b0156f",
+      "content_unchanged": false
+    },
+    {
+      "source": "3d/regression/registry.yaml",
+      "destination": "07_research_system/blocks/3d/regression/registry.yaml",
+      "source_git_sha256": "df1a86071ef01226d14532875063b244e8f8963e21b1111b2527062ce4685044",
+      "destination_sha256": "df1a86071ef01226d14532875063b244e8f8963e21b1111b2527062ce4685044",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/cad_doctor.py",
+      "destination": "07_research_system/blocks/3d/scripts/cad_doctor.py",
+      "source_git_sha256": "601813770335bf031ffe15f60fb07c03d475b992e473d0eb45d7c0917c604946",
+      "destination_sha256": "601813770335bf031ffe15f60fb07c03d475b992e473d0eb45d7c0917c604946",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/cad_installation.py",
+      "destination": "07_research_system/blocks/3d/scripts/cad_installation.py",
+      "source_git_sha256": "a7af852f09e55568a2a26dd65bc8cf2d60d22b0927f8fc92601312d8a39fca25",
+      "destination_sha256": "a7af852f09e55568a2a26dd65bc8cf2d60d22b0927f8fc92601312d8a39fca25",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/sw_connect.py",
+      "destination": "07_research_system/blocks/3d/scripts/sw_connect.py",
+      "source_git_sha256": "7cd2781883ca0f33887f90b4fae275c8878209c380d93fdf14402bff397f8738",
+      "destination_sha256": "7cd2781883ca0f33887f90b4fae275c8878209c380d93fdf14402bff397f8738",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/sw_document_data.py",
+      "destination": "07_research_system/blocks/3d/scripts/sw_document_data.py",
+      "source_git_sha256": "7c4b89a9b50c4cb71e5d5ecbe109c65dc4b246333d0b1a7cf101295cc4e6421d",
+      "destination_sha256": "7c4b89a9b50c4cb71e5d5ecbe109c65dc4b246333d0b1a7cf101295cc4e6421d",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/sw_entity_reference.py",
+      "destination": "07_research_system/blocks/3d/scripts/sw_entity_reference.py",
+      "source_git_sha256": "10841096283fec9742621ad7d93b9ba2161a4f90dbae7d42a433c52d0a836d1a",
+      "destination_sha256": "10841096283fec9742621ad7d93b9ba2161a4f90dbae7d42a433c52d0a836d1a",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/sw_export.py",
+      "destination": "07_research_system/blocks/3d/scripts/sw_export.py",
+      "source_git_sha256": "a69384b56926b86a1526f234245655229969b09d15432c1e8daa331181da1860",
+      "destination_sha256": "a69384b56926b86a1526f234245655229969b09d15432c1e8daa331181da1860",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/sw_part.py",
+      "destination": "07_research_system/blocks/3d/scripts/sw_part.py",
+      "source_git_sha256": "8057eb884f3e3837a83d8298752399b471ef019b4a1f795eaf48824881a3b79d",
+      "destination_sha256": "8057eb884f3e3837a83d8298752399b471ef019b4a1f795eaf48824881a3b79d",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/sw_preflight.py",
+      "destination": "07_research_system/blocks/3d/scripts/sw_preflight.py",
+      "source_git_sha256": "85fbd2fefb0ef5a28c36668a3bda07388bdf26b4a4fa4e860e1ce7a71cd79060",
+      "destination_sha256": "85fbd2fefb0ef5a28c36668a3bda07388bdf26b4a4fa4e860e1ce7a71cd79060",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/sw_review.py",
+      "destination": "07_research_system/blocks/3d/scripts/sw_review.py",
+      "source_git_sha256": "cfcf3e42385215299f3c50e2880b81f893e6e3a8085b465db851f02b5b87b440",
+      "destination_sha256": "cfcf3e42385215299f3c50e2880b81f893e6e3a8085b465db851f02b5b87b440",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/scripts/sw_session.py",
+      "destination": "07_research_system/blocks/3d/scripts/sw_session.py",
+      "source_git_sha256": "e43550e542129b1f6bd79ee98ff1372815419b74f1b32f069eace79442ecbcd0",
+      "destination_sha256": "e43550e542129b1f6bd79ee98ff1372815419b74f1b32f069eace79442ecbcd0",
+      "content_unchanged": true
+    },
+    {
+      "source": "3d/tests/index.test.mjs",
+      "destination": "07_research_system/blocks/3d/tests/index.test.mjs",
+      "source_git_sha256": "41ffcb74436b9a71861188bb57189991412af7f5ae94987fb64a78884cb3e0af",
+      "destination_sha256": "41ffcb74436b9a71861188bb57189991412af7f5ae94987fb64a78884cb3e0af",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/SKILL.md",
+      "destination": "07_research_system/blocks/comsol/SKILL.md",
+      "source_git_sha256": "320dc39aa9f88b60962ee6e64242e154b996ca32639fa39e0b19300d75c1e16a",
+      "destination_sha256": "d2a5b31fb4c298e63fa031dfce5137d7c965745a0678db203c0f18437eccbad8",
+      "content_unchanged": false
+    },
+    {
+      "source": "comsol/adapters/README.md",
+      "destination": "07_research_system/blocks/comsol/adapters/README.md",
+      "source_git_sha256": "24b3d896e252d077cbfc62e94e8abc744853e7e737479a6d8d00ff8844b9bfb8",
+      "destination_sha256": "24b3d896e252d077cbfc62e94e8abc744853e7e737479a6d8d00ff8844b9bfb8",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/adapters/batch.mjs",
+      "destination": "07_research_system/blocks/comsol/adapters/batch.mjs",
+      "source_git_sha256": "5d3671a31cb91c3e6230b7af4376a75132bd1c4f2e80ddcb30947bdced2f2c3d",
+      "destination_sha256": "5d3671a31cb91c3e6230b7af4376a75132bd1c4f2e80ddcb30947bdced2f2c3d",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/build/index.mjs",
+      "destination": "07_research_system/blocks/comsol/build/index.mjs",
+      "source_git_sha256": "63a39a511e426ddf1ba2b0dafed9d914db99ba41d40839f492663101087bcdf7",
+      "destination_sha256": "63a39a511e426ddf1ba2b0dafed9d914db99ba41d40839f492663101087bcdf7",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/contracts/index.mjs",
+      "destination": "07_research_system/blocks/comsol/contracts/index.mjs",
+      "source_git_sha256": "39fc1a39db8fea95b48986b65a1e29b723750fc066e96a59a11db16579bf1a1c",
+      "destination_sha256": "39fc1a39db8fea95b48986b65a1e29b723750fc066e96a59a11db16579bf1a1c",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/contracts/result.schema.json",
+      "destination": "07_research_system/blocks/comsol/contracts/result.schema.json",
+      "source_git_sha256": "22582363b57f1375084ea43730d7ed75a39ceeae1e692e1d78f6b80e3ba60c88",
+      "destination_sha256": "22582363b57f1375084ea43730d7ed75a39ceeae1e692e1d78f6b80e3ba60c88",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/contracts/result.yaml",
+      "destination": "07_research_system/blocks/comsol/contracts/result.yaml",
+      "source_git_sha256": "d849921796bed1acdfdd385c2a40df688336ea8970392b17766cf796cddaffef",
+      "destination_sha256": "d849921796bed1acdfdd385c2a40df688336ea8970392b17766cf796cddaffef",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/contracts/task.schema.json",
+      "destination": "07_research_system/blocks/comsol/contracts/task.schema.json",
+      "source_git_sha256": "2040a93c232e4c1261761b293e2bb8150b490d06538c34c9d63fc40971652e5a",
+      "destination_sha256": "2040a93c232e4c1261761b293e2bb8150b490d06538c34c9d63fc40971652e5a",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/contracts/task.yaml",
+      "destination": "07_research_system/blocks/comsol/contracts/task.yaml",
+      "source_git_sha256": "bb1b2e5f527a87e5bbeed4478963090c6d2ea3f8e23742f161183bd7691561c7",
+      "destination_sha256": "bb1b2e5f527a87e5bbeed4478963090c6d2ea3f8e23742f161183bd7691561c7",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/diagnose/index.mjs",
+      "destination": "07_research_system/blocks/comsol/diagnose/index.mjs",
+      "source_git_sha256": "e0af90c939c9428055ee3cad084a59a082955781c1fd019e8a81678487835336",
+      "destination_sha256": "e0af90c939c9428055ee3cad084a59a082955781c1fd019e8a81678487835336",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/experience-candidates/README.md",
+      "destination": "07_research_system/blocks/comsol/experience-candidates/README.md",
+      "source_git_sha256": "d128f7024d1d23711d623ca9027512c8aba0348792c23ad358039c498c8bbabf",
+      "destination_sha256": "d128f7024d1d23711d623ca9027512c8aba0348792c23ad358039c498c8bbabf",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/experience-candidates/candidate-template.yaml",
+      "destination": "07_research_system/blocks/comsol/experience-candidates/candidate-template.yaml",
+      "source_git_sha256": "b6c99688b33dacf122ebac37a4a87b49e4500399d928320a212f44b465ddd9f3",
+      "destination_sha256": "b6c99688b33dacf122ebac37a4a87b49e4500399d928320a212f44b465ddd9f3",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/explore/index.mjs",
+      "destination": "07_research_system/blocks/comsol/explore/index.mjs",
+      "source_git_sha256": "1353dd8cd7f98a89de7a5dfa01659a80b70432219de356602da41efd20678663",
+      "destination_sha256": "1353dd8cd7f98a89de7a5dfa01659a80b70432219de356602da41efd20678663",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/index.mjs",
+      "destination": "07_research_system/blocks/comsol/index.mjs",
+      "source_git_sha256": "c1c73aceee0542a2ac078303d6b16927dc0e844bcec1c4f652f7b61b967c20e4",
+      "destination_sha256": "3b6296a41997de911f403a4101b30acd870d64ededf88330eaf77618c31eca44",
+      "content_unchanged": false
+    },
+    {
+      "source": "comsol/interface/index.mjs",
+      "destination": "07_research_system/blocks/comsol/interface/index.mjs",
+      "source_git_sha256": "d4388894734e7bb3cda4ec7ac42abf28e9065d69a51e7c63297f4b6884683d76",
+      "destination_sha256": "d4388894734e7bb3cda4ec7ac42abf28e9065d69a51e7c63297f4b6884683d76",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/report/index.mjs",
+      "destination": "07_research_system/blocks/comsol/report/index.mjs",
+      "source_git_sha256": "d1dfa67af7d92dcac7a32edda5201103e297141c17606db4a03e093bfe4170bf",
+      "destination_sha256": "d1dfa67af7d92dcac7a32edda5201103e297141c17606db4a03e093bfe4170bf",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/solve/index.mjs",
+      "destination": "07_research_system/blocks/comsol/solve/index.mjs",
+      "source_git_sha256": "3344fde5d8b0703a1d3b37e0bcf06a275aa51a0f1a4db3958dcd2c954d824320",
+      "destination_sha256": "3344fde5d8b0703a1d3b37e0bcf06a275aa51a0f1a4db3958dcd2c954d824320",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/tests/fixtures/100kev-muon-adapter.mjs",
+      "destination": "07_research_system/blocks/comsol/tests/fixtures/100kev-muon-adapter.mjs",
+      "source_git_sha256": "a7d4553ad287e60f50cefb7f71ffed4ad592164d258ad86b96ef70c1f13ac05a",
+      "destination_sha256": "a7d4553ad287e60f50cefb7f71ffed4ad592164d258ad86b96ef70c1f13ac05a",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/tests/fixtures/100kev-muon-aperture-failure.yaml",
+      "destination": "07_research_system/blocks/comsol/tests/fixtures/100kev-muon-aperture-failure.yaml",
+      "source_git_sha256": "4cc1a0293d6f57ed076335de39b0f5080b28e467124f4d5d96559663214fee1a",
+      "destination_sha256": "4cc1a0293d6f57ed076335de39b0f5080b28e467124f4d5d96559663214fee1a",
+      "content_unchanged": true
+    },
+    {
+      "source": "comsol/tests/smoke.mjs",
+      "destination": "07_research_system/blocks/comsol/tests/smoke.mjs",
+      "source_git_sha256": "0f36ddcf6416d10cc4536c1b04bd0b8f4a1e6777ad06d4b4f6d898be3df3759e",
+      "destination_sha256": "d1db04511eed4d6a98a052a8b267faa1ccc66e9005d316e57872dd7b8f968434",
+      "content_unchanged": false
+    },
+    {
+      "source": "contracts/README.md",
+      "destination": "07_research_system/control/contracts/README.md",
+      "source_git_sha256": "03130750ad53578d54e1b2edcd361bb3760e294b53d3bce9f135d69ed7e261c4",
+      "destination_sha256": "a4eb66d4bccefd3ae37ae00e8e431bc734cc66d4805f5fdad57739325761408e",
+      "content_unchanged": false
+    },
+    {
+      "source": "contracts/comsol-task.yaml",
+      "destination": "07_research_system/control/contracts/comsol-task.yaml",
+      "source_git_sha256": "c2c7a0780c9328e724c5834d88cfccfb7596e9e07a8c6d8ed3084f61cdb0e782",
+      "destination_sha256": "c2c7a0780c9328e724c5834d88cfccfb7596e9e07a8c6d8ed3084f61cdb0e782",
+      "content_unchanged": true
+    },
+    {
+      "source": "contracts/g4-task.yaml",
+      "destination": "07_research_system/control/contracts/g4-task.yaml",
+      "source_git_sha256": "841c49367f6a9a931232d185b15c733d7f513ff5a021ed76a370e24585839493",
+      "destination_sha256": "841c49367f6a9a931232d185b15c733d7f513ff5a021ed76a370e24585839493",
+      "content_unchanged": true
+    },
+    {
+      "source": "contracts/geometry-task.yaml",
+      "destination": "07_research_system/control/contracts/geometry-task.yaml",
+      "source_git_sha256": "42ad6b5028452bca3dc2d605158e9d3c1a981b784d397041797c25d9614807aa",
+      "destination_sha256": "42ad6b5028452bca3dc2d605158e9d3c1a981b784d397041797c25d9614807aa",
+      "content_unchanged": true
+    },
+    {
+      "source": "contracts/index.mjs",
+      "destination": "07_research_system/control/contracts/index.mjs",
+      "source_git_sha256": "06485b5aaaaad0a60faa0118ef70d03f1af6867e7c522c5695124b6262f618a4",
+      "destination_sha256": "d29fd3a9fd9003dbcf62d8715ed573dee0f6fea3c79a08aa190e4d91ccda8bb5",
+      "content_unchanged": false
+    },
+    {
+      "source": "contracts/result-issue-report.yaml",
+      "destination": "07_research_system/control/contracts/result-issue-report.yaml",
+      "source_git_sha256": "f4d504c0cc1cb976833dc845158facf69f3433d24a14513d7489d572a0fa115b",
+      "destination_sha256": "f4d504c0cc1cb976833dc845158facf69f3433d24a14513d7489d572a0fa115b",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/SKILL.md",
+      "destination": "07_research_system/blocks/geant4/SKILL.md",
+      "source_git_sha256": "d3a8a6c9c7080b8697fff78708639932cb1359bf56a07b62806aa29b9315064d",
+      "destination_sha256": "8f9f439d1570a5680c336a4c5cdf910b80325dbd49ce4466b662a35ef4152bee",
+      "content_unchanged": false
+    },
+    {
+      "source": "geant4/experience-candidates/README.md",
+      "destination": "07_research_system/blocks/geant4/experience-candidates/README.md",
+      "source_git_sha256": "908a5489f6b31848f878922e9fedbfabefb65852db17971caaffdbade17c7b01",
+      "destination_sha256": "908a5489f6b31848f878922e9fedbfabefb65852db17971caaffdbade17c7b01",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/experience-candidates/candidate-template.yaml",
+      "destination": "07_research_system/blocks/geant4/experience-candidates/candidate-template.yaml",
+      "source_git_sha256": "8c26a55685e9e2b72aee8f8fb22b5bdf0592b98a68b458f0b8c6667caf6b7fb6",
+      "destination_sha256": "8c26a55685e9e2b72aee8f8fb22b5bdf0592b98a68b458f0b8c6667caf6b7fb6",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/index.mjs",
+      "destination": "07_research_system/blocks/geant4/index.mjs",
+      "source_git_sha256": "a9c47afa3d06846a6a429e1d4ebe726981a40bed2957b330894c5439830d03dc",
+      "destination_sha256": "ab99b74781083a5a59d3eb3e160fd0f61f6658f112f27e96bfc1b237ee6cf7c6",
+      "content_unchanged": false
+    },
+    {
+      "source": "geant4/references/boundaries-and-issues.md",
+      "destination": "07_research_system/blocks/geant4/references/boundaries-and-issues.md",
+      "source_git_sha256": "bcd73cb0dfec27f18edcb46942cedbccd482f95c748dc6472b86c04b2ba39d03",
+      "destination_sha256": "bcd73cb0dfec27f18edcb46942cedbccd482f95c748dc6472b86c04b2ba39d03",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/references/historical-muon-ne.md",
+      "destination": "07_research_system/blocks/geant4/references/historical-muon-ne.md",
+      "source_git_sha256": "0b48b2652c2cca88413aa4ee1c57fddba95c19b3025fda850c89e41fed6b616a",
+      "destination_sha256": "0b48b2652c2cca88413aa4ee1c57fddba95c19b3025fda850c89e41fed6b616a",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/references/official-sources.md",
+      "destination": "07_research_system/blocks/geant4/references/official-sources.md",
+      "source_git_sha256": "524b54a0ced9404e266f78a11c87312071ddc29eeec2637a18df6b21f6d1f456",
+      "destination_sha256": "524b54a0ced9404e266f78a11c87312071ddc29eeec2637a18df6b21f6d1f456",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/references/smoke-model.md",
+      "destination": "07_research_system/blocks/geant4/references/smoke-model.md",
+      "source_git_sha256": "bb6a86b4dcbb89154316e7c150a677eace4671a3a9c2611c392bdcdb394cc9e1",
+      "destination_sha256": "bb6a86b4dcbb89154316e7c150a677eace4671a3a9c2611c392bdcdb394cc9e1",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/references/workflow.md",
+      "destination": "07_research_system/blocks/geant4/references/workflow.md",
+      "source_git_sha256": "44026cb75a69d72d02fe1f95a913a3fbfc297cc9f6a2630b2eed468b6764eace",
+      "destination_sha256": "44026cb75a69d72d02fe1f95a913a3fbfc297cc9f6a2630b2eed468b6764eace",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/scripts/build.mjs",
+      "destination": "07_research_system/blocks/geant4/scripts/build.mjs",
+      "source_git_sha256": "99f310db2d80bf1d8377278bc9e13a058282aeae85894681a284b02912fc65bb",
+      "destination_sha256": "32e067d9db506ebf86f66087e892d5adea3460aafb684054f2a160ceb10db69b",
+      "content_unchanged": false
+    },
+    {
+      "source": "geant4/scripts/common.mjs",
+      "destination": "07_research_system/blocks/geant4/scripts/common.mjs",
+      "source_git_sha256": "2a3d631d56d0eebd4a39baf2155803468ca3e4e3c115f1c796a3933c3e6e0eec",
+      "destination_sha256": "3404ec8f6d90f69ff3bafbae6df85996e0661e0125939d767ea476a184188ecc",
+      "content_unchanged": false
+    },
+    {
+      "source": "geant4/scripts/preflight.mjs",
+      "destination": "07_research_system/blocks/geant4/scripts/preflight.mjs",
+      "source_git_sha256": "10b145db5894dc91c6d158beaa894a084331418602f8b587b684ad8c3660ddc9",
+      "destination_sha256": "1f32cd77e4a85f61ee1342c0f63e6b5fd45502d0edbc241f9b93811be43e56e8",
+      "content_unchanged": false
+    },
+    {
+      "source": "geant4/scripts/run.mjs",
+      "destination": "07_research_system/blocks/geant4/scripts/run.mjs",
+      "source_git_sha256": "845319b5b9c05bea126e445b93e168930062015d5cb5fe236d2be935a8845458",
+      "destination_sha256": "223d0ae59d869185ab806353cf4acb1143db00bff0ac7d3b31c76eaa199bf8e3",
+      "content_unchanged": false
+    },
+    {
+      "source": "geant4/scripts/smoke.mjs",
+      "destination": "07_research_system/blocks/geant4/scripts/smoke.mjs",
+      "source_git_sha256": "cdf06df79bb65454660bbfade3fc53b48989278d4d9721a3f8896bcd3fc0e677",
+      "destination_sha256": "cdf06df79bb65454660bbfade3fc53b48989278d4d9721a3f8896bcd3fc0e677",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/scripts/summarize.mjs",
+      "destination": "07_research_system/blocks/geant4/scripts/summarize.mjs",
+      "source_git_sha256": "83d671fcf878cd3382fe1c49fa34ecfe641b4d5e07881eddb0dfec3f91904862",
+      "destination_sha256": "53737006754f11ca3dc71444d3c9393ad0e1e8a63bc549c08e55e849d108449b",
+      "content_unchanged": false
+    },
+    {
+      "source": "geant4/scripts/validate.mjs",
+      "destination": "07_research_system/blocks/geant4/scripts/validate.mjs",
+      "source_git_sha256": "4e302894a25c00f23e36fb806b3d459aa63738238eac1a92841b8fdd9e99f46f",
+      "destination_sha256": "113841f41e7b68513a2f57e6f4ff3be5bb714b5d9230b26295a9860dc0ee80fb",
+      "content_unchanged": false
+    },
+    {
+      "source": "geant4/tests/fixtures/mvp-smoke/CMakeLists.txt",
+      "destination": "07_research_system/blocks/geant4/tests/fixtures/mvp-smoke/CMakeLists.txt",
+      "source_git_sha256": "6b67a0ff2535a7a8e901140b074dfbf918d0ef96c2310a6254b78530585600a0",
+      "destination_sha256": "6b67a0ff2535a7a8e901140b074dfbf918d0ef96c2310a6254b78530585600a0",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/tests/fixtures/mvp-smoke/README.md",
+      "destination": "07_research_system/blocks/geant4/tests/fixtures/mvp-smoke/README.md",
+      "source_git_sha256": "13f7427ed298ca4db0a49a92b36f3f7be43602ba6425fd9b93da6a95b81eb4cc",
+      "destination_sha256": "13f7427ed298ca4db0a49a92b36f3f7be43602ba6425fd9b93da6a95b81eb4cc",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/tests/fixtures/mvp-smoke/main.cc",
+      "destination": "07_research_system/blocks/geant4/tests/fixtures/mvp-smoke/main.cc",
+      "source_git_sha256": "f7e880e56aa5c887efdbb523661adc9f69342ccb6745139583478c1ddd475ba1",
+      "destination_sha256": "f7e880e56aa5c887efdbb523661adc9f69342ccb6745139583478c1ddd475ba1",
+      "content_unchanged": true
+    },
+    {
+      "source": "geant4/tests/smoke.mjs",
+      "destination": "07_research_system/blocks/geant4/tests/smoke.mjs",
+      "source_git_sha256": "9cadc230577c857d936cdb107873a123fc0fc1b780e46d5d497c8205b66d89df",
+      "destination_sha256": "9cadc230577c857d936cdb107873a123fc0fc1b780e46d5d497c8205b66d89df",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-state/NOW.md",
+      "destination": "07_research_system/control/research-state/NOW.md",
+      "source_git_sha256": "1f5a1a807f7c4986ad5c3eed19af75b0fecc73046318e4b8d47111e9c283b040",
+      "destination_sha256": "1f5a1a807f7c4986ad5c3eed19af75b0fecc73046318e4b8d47111e9c283b040",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-state/decision-log.md",
+      "destination": "07_research_system/control/research-state/decision-log.md",
+      "source_git_sha256": "968c2310e9349f437e8539a0ea9391b274b37b15e8825d789eebcf246ffc5cb3",
+      "destination_sha256": "968c2310e9349f437e8539a0ea9391b274b37b15e8825d789eebcf246ffc5cb3",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-state/events.jsonl",
+      "destination": "07_research_system/control/research-state/events.jsonl",
+      "source_git_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-state/index.mjs",
+      "destination": "07_research_system/control/research-state/index.mjs",
+      "source_git_sha256": "636fecfbb3a000c720fa7b8f6fdb537ba9438bbe5f72154f0d803191706eccf0",
+      "destination_sha256": "1f2c1833f60db8ac484316add86b98ec16cba834a9395fcfd6fe41457555f710",
+      "content_unchanged": false
+    },
+    {
+      "source": "research-state/open-problems.yaml",
+      "destination": "07_research_system/control/research-state/open-problems.yaml",
+      "source_git_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "destination_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-state/state.yaml",
+      "destination": "07_research_system/control/research-state/state.yaml",
+      "source_git_sha256": "e350d038f19123e8f491a736ca0fdb35033c0d4afb11283a9ee4aac0ec6ce80a",
+      "destination_sha256": "e350d038f19123e8f491a736ca0fdb35033c0d4afb11283a9ee4aac0ec6ce80a",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-state/track.mjs",
+      "destination": "07_research_system/control/research-state/track.mjs",
+      "source_git_sha256": "ff5965795cc1c6adf77840a1b9e11bc29577570f4ebc5c244eb296f204a088c9",
+      "destination_sha256": "ff5965795cc1c6adf77840a1b9e11bc29577570f4ebc5c244eb296f204a088c9",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-workflow/README.md",
+      "destination": "07_research_system/control/research-workflow/README.md",
+      "source_git_sha256": "766260e8217e497a13bd4a11be751b3638358d57066aafd206d6fc819ac28a08",
+      "destination_sha256": "f423effe9e1981051e46c36edf2986ae82797eaf3a7f9c4d4c2b5e22f02b8120",
+      "content_unchanged": false
+    },
+    {
+      "source": "research-workflow/SKILL.md",
+      "destination": "07_research_system/control/research-workflow/SKILL.md",
+      "source_git_sha256": "d062b41c2258dba30bf7fa7c1624378d016b0fe6e9d73cc8f171719d903c0112",
+      "destination_sha256": "ff20dbef7733854a0372c026e31d9c42e64590c70c9e990fb8c3a887e9800d69",
+      "content_unchanged": false
+    },
+    {
+      "source": "research-workflow/index.mjs",
+      "destination": "07_research_system/control/research-workflow/index.mjs",
+      "source_git_sha256": "df0ee5868228adae0ce0a1c39203cffaf7abda42fcd2247da325a357ed2e13bb",
+      "destination_sha256": "1ad58bf0a68aef4c767b883d97c9a663a943b172db4fe05edee92d1afe53d3b3",
+      "content_unchanged": false
+    },
+    {
+      "source": "research-workflow/references/failure-diagnosis.md",
+      "destination": "07_research_system/control/research-workflow/references/failure-diagnosis.md",
+      "source_git_sha256": "fe4fb6abe01aa596294c87858751f9d9a1ffce00f7d3321e24fd1e01fa85fc63",
+      "destination_sha256": "fe4fb6abe01aa596294c87858751f9d9a1ffce00f7d3321e24fd1e01fa85fc63",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-workflow/references/goal-management.md",
+      "destination": "07_research_system/control/research-workflow/references/goal-management.md",
+      "source_git_sha256": "287b28b9a085fec0bbb2d46fc2e4233386b5c39f861c0ecf391e22cd2f3069f5",
+      "destination_sha256": "287b28b9a085fec0bbb2d46fc2e4233386b5c39f861c0ecf391e22cd2f3069f5",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-workflow/references/open-problem-tracking.md",
+      "destination": "07_research_system/control/research-workflow/references/open-problem-tracking.md",
+      "source_git_sha256": "e9587cae9e764ff8c788890b9bb9988cd5da43f9af234ad38bfbcb845d5cb23f",
+      "destination_sha256": "c2a594f330025a666563141272b5e935ef70d2275ecefa91f1178585b83a9284",
+      "content_unchanged": false
+    },
+    {
+      "source": "research-workflow/references/physics-reasoning.md",
+      "destination": "07_research_system/control/research-workflow/references/physics-reasoning.md",
+      "source_git_sha256": "82f83db1dca5236e2a3c662c773b3b3767b12ee97de0c51aec040676155d3c2b",
+      "destination_sha256": "82f83db1dca5236e2a3c662c773b3b3767b12ee97de0c51aec040676155d3c2b",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-workflow/references/research-report.md",
+      "destination": "07_research_system/control/research-workflow/references/research-report.md",
+      "source_git_sha256": "f5d8b536037d1ae2a06975ec4cde943fa8fa12fac0891086020da5d6b9e5d6be",
+      "destination_sha256": "f5d8b536037d1ae2a06975ec4cde943fa8fa12fac0891086020da5d6b9e5d6be",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-workflow/references/sub-agent-dispatch.md",
+      "destination": "07_research_system/control/research-workflow/references/sub-agent-dispatch.md",
+      "source_git_sha256": "ac115471d469ccf63313d3e03054802b4e25647cd70129de3105b0b366e7d647",
+      "destination_sha256": "ac115471d469ccf63313d3e03054802b4e25647cd70129de3105b0b366e7d647",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-workflow/references/task-routing.md",
+      "destination": "07_research_system/control/research-workflow/references/task-routing.md",
+      "source_git_sha256": "5b091c4472c5c029a3ea9892dbb7a2ee88a8b1de96f036a092016fd7f7927772",
+      "destination_sha256": "5b091c4472c5c029a3ea9892dbb7a2ee88a8b1de96f036a092016fd7f7927772",
+      "content_unchanged": true
+    },
+    {
+      "source": "research-workflow/scripts/adapters.mjs",
+      "destination": "07_research_system/control/research-workflow/scripts/adapters.mjs",
+      "source_git_sha256": "36f02d6e9211fa4dd8fc528099c9f88bc970108c1714633f823786ccef7df760",
+      "destination_sha256": "2044e9cee57f24e5f3fcb21f073e99ee9218e1fd10eee5df1bd947822f73b687",
+      "content_unchanged": false
+    },
+    {
+      "source": "research-workflow/scripts/contracts.mjs",
+      "destination": "07_research_system/control/research-workflow/scripts/contracts.mjs",
+      "source_git_sha256": "50a35f958485a0eb2600d056bd420f59b7a34dea5b46e38cf0a9736800a236ae",
+      "destination_sha256": "50a35f958485a0eb2600d056bd420f59b7a34dea5b46e38cf0a9736800a236ae",
+      "content_unchanged": true
+    }
+  ]
+}

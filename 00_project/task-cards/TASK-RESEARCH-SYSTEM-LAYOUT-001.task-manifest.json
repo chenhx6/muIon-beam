@@ -1,0 +1,15 @@
+{
+  "manifest_id": "TASK-RESEARCH-SYSTEM-LAYOUT-001",
+  "manifest_type": "task",
+  "schema_version": "1.0.0",
+  "task_id": "TASK-RESEARCH-SYSTEM-LAYOUT-001",
+  "task_name": "统一研究系统目录并完成路径收口",
+  "source_type": "user_request",
+  "requested_by": "user",
+  "objective_zh": "将 3D、COMSOL、Geant4、contracts、research-state 和 research-workflow 统一迁移到 07_research_system，并保持科研状态、合同冻结和模块 API 语义不变。",
+  "physical_object": "研究系统目录与工作流存储架构",
+  "initial_conditions": ["00_project 保持治理职责", "02_models、03_runs、04_results、05_reports 和 90_migration 不迁移", "历史 Manifest、报告和迁移记录不改写"],
+  "success_criteria": ["新目录结构完整且旧六个根目录不存在", "研究状态和合同实例只写入规范路径", "现有测试、Manifest 校验和架构 smoke 全部通过", "07_research_system 被纳入交付白名单"],
+  "scientific_revalidation": "not-applicable-for-architecture",
+  "acceptance_status": "implemented-pending-validation"
+}

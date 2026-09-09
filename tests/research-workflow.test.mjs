@@ -4,10 +4,10 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { parseYamlFile } from '../.codex/skills/muion-project/scripts/yaml-lite.mjs';
-import { beginContext, closeContext, ensureInitialized, readState, recordDiagnosis, recordValidation, renderChatStatus } from '../research-state/index.mjs';
-import { dispatchContract, executeContract, validateResearchContract } from '../research-workflow/index.mjs';
-import { freezeContract } from '../research-workflow/scripts/contracts.mjs';
-import { createHistorical100keVFixtureAdapter } from '../comsol/tests/fixtures/100kev-muon-adapter.mjs';
+import { beginContext, closeContext, ensureInitialized, readState, recordDiagnosis, recordValidation, renderChatStatus } from '../07_research_system/control/research-state/index.mjs';
+import { dispatchContract, executeContract, validateResearchContract } from '../07_research_system/control/research-workflow/index.mjs';
+import { freezeContract } from '../07_research_system/control/research-workflow/scripts/contracts.mjs';
+import { createHistorical100keVFixtureAdapter } from '../07_research_system/blocks/comsol/tests/fixtures/100kev-muon-adapter.mjs';
 
 function tempRoot(name) { return fs.mkdtempSync(path.join(os.tmpdir(), `muion-${name}-`)); }
 function contract(overrides = {}) {
@@ -32,7 +32,7 @@ test('state creates one context and append-only prepare/commit events', () => {
   const state = readState(root);
   assert.equal(state.task_status, 'IDLE');
   assert.match(renderChatStatus(root), /IDLE/);
-  const lines = fs.readFileSync(path.join(root, 'research-state/events.jsonl'), 'utf8').trim().split(/\r?\n/).filter(Boolean).map(JSON.parse);
+  const lines = fs.readFileSync(path.join(root, '07_research_system/control/research-state/events.jsonl'), 'utf8').trim().split(/\r?\n/).filter(Boolean).map(JSON.parse);
   assert.ok(lines.some((line) => line.event_phase === 'prepare'));
   assert.ok(lines.some((line) => line.event_phase === 'commit'));
 });
@@ -46,7 +46,7 @@ test('contract instance is frozen and cannot be overwritten', () => {
 
 test('workflow executes a bounded COMSOL fixture and writes a control report', async () => {
   const root = tempRoot('workflow');
-  const fixture = parseYamlFile('comsol/tests/fixtures/100kev-muon-aperture-failure.yaml');
+  const fixture = parseYamlFile('07_research_system/blocks/comsol/tests/fixtures/100kev-muon-aperture-failure.yaml');
   const result = await executeContract(contract({ inputs: fixture.inputs, assumptions: fixture.assumptions, fixed: fixture.fixed, explorable: fixture.variable.map((v) => ({ ...v, owner: 'comsol', allowed_values: v.diagnostic_probe_values })), forbidden: fixture.external, success_criteria: fixture.success_criteria, required_outputs: fixture.required_outputs, execution_policy: { exploration_level: fixture.exploration_level } }), { root, module_options: { adapter: createHistorical100keVFixtureAdapter() } });
   assert.equal(result.report.status, 'PARTIAL');
   assert.ok(fs.existsSync(path.join(root, result.files.report_path)));
@@ -63,24 +63,24 @@ test('COMSOL adapter guard blocks a case outside explorable scope before adapter
 
 test('direct 3D entrypoint records research-state without workflow', async () => {
   const root = tempRoot('3d');
-  const { run3dTracked } = await import('../3d/index.mjs');
+  const { run3dTracked } = await import('../07_research_system/blocks/3d/index.mjs');
   const result = await run3dTracked({ task_id: 'NATIVE-3D-TEST', mode: 'inspect', geometry_level: 'G1' }, { research_state_root: root, dryRun: true });
   assert.equal(result.status, 'dry-run');
   assert.equal(readState(root).task_status, 'IDLE');
-  assert.match(fs.readFileSync(path.join(root, 'research-state/events.jsonl'), 'utf8'), /module-result/);
+  assert.match(fs.readFileSync(path.join(root, '07_research_system/control/research-state/events.jsonl'), 'utf8'), /module-result/);
 });
 
 test('direct COMSOL and Geant4 entrypoints share the state boundary', async () => {
   const comsolRoot = tempRoot('direct-comsol');
-  const fixture = parseYamlFile('comsol/tests/fixtures/100kev-muon-aperture-failure.yaml');
-  const { runComsolTracked } = await import('../comsol/index.mjs');
+  const fixture = parseYamlFile('07_research_system/blocks/comsol/tests/fixtures/100kev-muon-aperture-failure.yaml');
+  const { runComsolTracked } = await import('../07_research_system/blocks/comsol/index.mjs');
   const comsol = await runComsolTracked(fixture, { research_state_root: comsolRoot, adapter: createHistorical100keVFixtureAdapter() });
   assert.equal(comsol.status, 'partial');
   assert.equal(readState(comsolRoot).task_status, 'IDLE');
-  assert.ok(fs.existsSync(path.join(comsolRoot, 'contracts/instances')));
+  assert.ok(fs.existsSync(path.join(comsolRoot, '07_research_system/control/contracts/instances')));
 
   const g4Root = tempRoot('direct-g4');
-  const { runGeant4Tracked } = await import('../geant4/index.mjs');
+  const { runGeant4Tracked } = await import('../07_research_system/blocks/geant4/index.mjs');
   const g4 = await runGeant4Tracked({ task_id: 'NATIVE-G4-TEST', objective: 'track', geometry: { ref: 'fixture' } }, { research_state_root: g4Root, run_smoke: false, backend: 'native' });
   assert.equal(g4.status, 'blocked');
   assert.equal(readState(g4Root).task_status, 'IDLE');
@@ -88,7 +88,7 @@ test('direct COMSOL and Geant4 entrypoints share the state boundary', async () =
 
 test('invalid event log fails closed', () => {
   const root = tempRoot('bad-events'); ensureInitialized(root);
-  fs.writeFileSync(path.join(root, 'research-state/events.jsonl'), '{bad json}\n');
+  fs.writeFileSync(path.join(root, '07_research_system/control/research-state/events.jsonl'), '{bad json}\n');
   assert.throws(() => readState(root), /invalid JSON/);
 });
 

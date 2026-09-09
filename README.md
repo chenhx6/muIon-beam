@@ -12,17 +12,17 @@
 
 ## 当前模块入口
 
-- 3D Block：由项目根目录 `3d/` Block 负责几何创建、修改、检查和导出，Codex 入口为 `.codex/skills/3d/`。
-- COMSOL Block：[`comsol/SKILL.md`](comsol/SKILL.md)，可执行入口为
-  `node comsol/index.mjs --task path/to/task.json`；当前适配器边界见
-  [`comsol/adapters/README.md`](comsol/adapters/README.md)。
-- Geant4 Block：[`geant4/SKILL.md`](geant4/SKILL.md)，可执行入口为
-  `node geant4/index.mjs --task path/to/task.yaml`；四项轻量原生 smoke
-  位于 `geant4/tests/fixtures/mvp-smoke/`。当前 WSL smoke 使用 Geant4
+- 研究系统统一位于 `07_research_system/`，按 `control/`（contracts、research-state、research-workflow）和 `blocks/`（3d、COMSOL、Geant4）分层。
+- 3D Block：[`07_research_system/blocks/3d/SKILL.md`](07_research_system/blocks/3d/SKILL.md)，Codex 入口为 `.codex/skills/3d/`。
+- COMSOL Block：[`07_research_system/blocks/comsol/SKILL.md`](07_research_system/blocks/comsol/SKILL.md)，可执行入口为
+  `node 07_research_system/blocks/comsol/index.mjs --task path/to/task.json`；当前适配器边界见
+  [`07_research_system/blocks/comsol/adapters/README.md`](07_research_system/blocks/comsol/adapters/README.md)。
+- Geant4 Block：[`07_research_system/blocks/geant4/SKILL.md`](07_research_system/blocks/geant4/SKILL.md)，可执行入口为
+  `node 07_research_system/blocks/geant4/index.mjs --task path/to/task.yaml`；四项轻量原生 smoke
+  位于 `07_research_system/blocks/geant4/tests/fixtures/mvp-smoke/`。当前 WSL smoke 使用 Geant4
   11.2.2，不能直接替代历史 11.3.2 μ−–Ne 结果。
-- Research Workflow 控制层由根目录 `research-workflow/` 提供；现有项目 skill 继续负责任务卡、快照、报告、归档和交付，不替代科研控制层。
-- Research Workflow 控制层：[`research-workflow/SKILL.md`](research-workflow/SKILL.md)，负责目标、物理推理、routing、合同、诊断和下一项研究决策。
-- Research State：[`research-state/index.mjs`](research-state/index.mjs)，是 3D、COMSOL、Geant4、validation 和 Research Workflow 共享的当前科研状态边界；直接入口也必须记录 context。
+- Research Workflow 控制层：[`07_research_system/control/research-workflow/SKILL.md`](07_research_system/control/research-workflow/SKILL.md)，负责目标、物理推理、routing、合同、诊断和下一项研究决策。
+- Research State：[`07_research_system/control/research-state/index.mjs`](07_research_system/control/research-state/index.mjs)，是 3D、COMSOL、Geant4、validation 和 Research Workflow 共享的当前科研状态边界；直接入口也必须记录 context。
 
 ## 使用顺序
 

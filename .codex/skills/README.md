@@ -13,6 +13,7 @@
 
 - **运行方式**：优先后台、短时、低干扰地执行自动化，避免长时间占用用户电脑。SolidWorks 测试或批处理使用专用会话和临时文件，绝不接管或关闭用户已有会话；完成后保存必要结果、清理测试状态并退出专用会话。不可避免的前台交互应先说明原因。
 
-- **经验演化**：3D 几何观察先进入 `3d/experience-candidates/`，经复现和 regression 后才提升为 reference、script、test 或稳定规则。`3d/regression/registry.yaml` 为空时状态为 `not-yet-validated`，不虚构 CAD 回归结果。
+- **经验演化**：3D 几何观察先进入 `07_research_system/blocks/3d/experience-candidates/`，经复现和 regression 后才提升为 reference、script、test 或稳定规则。`07_research_system/blocks/3d/regression/registry.yaml` 为空时状态为 `not-yet-validated`，不虚构 CAD 回归结果。
 
-- **模块入口**：3D Modeling Block 的权威实现位于项目根目录 3d/，.codex/skills/3d/ 仅提供 Codex 路由。模式为 create、modify、inspect、export。
+- **模块入口**：3D Modeling Block 的权威实现位于项目目录 07_research_system/blocks/3d/，.codex/skills/3d/ 仅提供 Codex 路由。模式为 create、modify、inspect、export。
+

@@ -3,14 +3,14 @@ name: comsol
 description: Route COMSOL Block work through the repository-owned COMSOL MVP.
 ---
 
-Use the repository-owned COMSOL Block at `comsol/`. Read
-[`comsol/SKILL.md`](../../../comsol/SKILL.md) for the frozen boundaries,
+Use the repository-owned COMSOL Block at `07_research_system/blocks/comsol/`. Read
+[`comsol/SKILL.md`](../../../07_research_system/blocks/comsol/SKILL.md) for the frozen boundaries,
 `ComsolTask`/`ComsolResult` contracts, adapter interface and smoke behaviour.
 
 The executable entry point is:
 
 ```text
-node comsol/index.mjs --task path/to/task.json
+node 07_research_system/blocks/comsol/index.mjs --task path/to/task.json
 ```
 
 Keep COMSOL-local execution autonomous, return cross-module issues as

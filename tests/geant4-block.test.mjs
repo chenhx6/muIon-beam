@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import { runGeant4, validateTask } from '../geant4/index.mjs';
-import { larmorRadius, validateSmokeResult } from '../geant4/scripts/validate.mjs';
-import { checkRegistry } from '../3d/regression/check.mjs';
+import { runGeant4, validateTask } from '../07_research_system/blocks/geant4/index.mjs';
+import { larmorRadius, validateSmokeResult } from '../07_research_system/blocks/geant4/scripts/validate.mjs';
+import { checkRegistry } from '../07_research_system/blocks/3d/regression/check.mjs';
 
 test('G4 task intake keeps geometry explicit and rejects incomplete scope', () => {
   assert.equal(validateTask({ task_id: 'G4-TEST', objective: 'track', geometry: { ref: 'fixture' } }).valid, true);
@@ -30,7 +30,7 @@ test('smoke validation accepts clean geometry and rejects a wrong field scale', 
 });
 
 test('3D regression registry starts explicitly not-yet-validated', () => {
-  const result = checkRegistry(path.resolve(import.meta.dirname, '../3d/regression/registry.yaml'));
+  const result = checkRegistry(path.resolve(import.meta.dirname, '../07_research_system/blocks/3d/regression/registry.yaml'));
   assert.equal(result.status, 'not-yet-validated');
   assert.equal(result.cases, 0);
 });

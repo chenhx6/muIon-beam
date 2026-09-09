@@ -82,42 +82,42 @@ capabilities:
     tests: ["tests/evolution.test.mjs"]
   - capability_id: comsol-block
     source_concept: COMSOL Block
-    existing_local_entrypoints: ["node comsol/index.mjs --task path/to/task.json", "comsol/SKILL.md"]
-    existing_scripts: ["comsol/index.mjs", "comsol/build/index.mjs", "comsol/explore/index.mjs", "comsol/solve/index.mjs", "comsol/diagnose/index.mjs", "comsol/report/index.mjs"]
-    existing_references: [".codex/skills/comsol/SKILL.md", "comsol/adapters/README.md"]
+    existing_local_entrypoints: ["node 07_research_system/blocks/comsol/index.mjs --task path/to/task.json", "07_research_system/blocks/comsol/SKILL.md"]
+    existing_scripts: ["07_research_system/blocks/comsol/index.mjs", "07_research_system/blocks/comsol/build/index.mjs", "07_research_system/blocks/comsol/explore/index.mjs", "07_research_system/blocks/comsol/solve/index.mjs", "07_research_system/blocks/comsol/diagnose/index.mjs", "07_research_system/blocks/comsol/report/index.mjs"]
+    existing_references: [".codex/skills/comsol/SKILL.md", "07_research_system/blocks/comsol/adapters/README.md"]
     decision: new
     decision_reason: "建立独立 COMSOL 计算模块；保留现有历史 COMSOL 资产并通过显式 adapter 接入"
-    primary_entrypoint: "node comsol/index.mjs --task path/to/task.json"
+    primary_entrypoint: "node 07_research_system/blocks/comsol/index.mjs --task path/to/task.json"
     aliases: [comsol]
     tests: ["tests/comsol-block.test.mjs"]
   - capability_id: geant4-block
     source_concept: Geant4 Block
-    existing_local_entrypoints: ["node geant4/index.mjs --task path/to/task.yaml", "geant4/SKILL.md"]
-    existing_scripts: ["geant4/index.mjs", "geant4/scripts/preflight.mjs", "geant4/scripts/build.mjs", "geant4/scripts/smoke.mjs", "geant4/scripts/run.mjs", "geant4/scripts/validate.mjs", "geant4/scripts/summarize.mjs"]
-    existing_references: ["geant4/references/workflow.md", "geant4/references/smoke-model.md", "geant4/references/official-sources.md", "geant4/references/historical-muon-ne.md", "geant4/references/boundaries-and-issues.md"]
+    existing_local_entrypoints: ["node 07_research_system/blocks/geant4/index.mjs --task path/to/task.yaml", "07_research_system/blocks/geant4/SKILL.md"]
+    existing_scripts: ["07_research_system/blocks/geant4/index.mjs", "07_research_system/blocks/geant4/scripts/preflight.mjs", "07_research_system/blocks/geant4/scripts/build.mjs", "07_research_system/blocks/geant4/scripts/smoke.mjs", "07_research_system/blocks/geant4/scripts/run.mjs", "07_research_system/blocks/geant4/scripts/validate.mjs", "07_research_system/blocks/geant4/scripts/summarize.mjs"]
+    existing_references: ["07_research_system/blocks/geant4/references/workflow.md", "07_research_system/blocks/geant4/references/smoke-model.md", "07_research_system/blocks/geant4/references/official-sources.md", "07_research_system/blocks/geant4/references/historical-muon-ne.md", "07_research_system/blocks/geant4/references/boundaries-and-issues.md"]
     decision: new
     decision_reason: "建立单一 Geant4 主 Skill，覆盖 setup/transport/scoring/statistics/validation，并以小规模 smoke 优先"
-    primary_entrypoint: "node geant4/index.mjs --task path/to/task.yaml"
+    primary_entrypoint: "node 07_research_system/blocks/geant4/index.mjs --task path/to/task.yaml"
     aliases: [geant4, g4]
-    tests: ["tests/geant4-block.test.mjs", "geant4/tests/smoke.mjs"]
+    tests: ["tests/geant4-block.test.mjs", "07_research_system/blocks/geant4/tests/smoke.mjs"]
   - capability_id: research-state
     source_concept: research-state
-    existing_local_entrypoints: ["node research-state/index.mjs status", "research-state/state.yaml"]
-    existing_scripts: ["research-state/index.mjs", "research-state/track.mjs"]
+    existing_local_entrypoints: ["node 07_research_system/control/research-state/index.mjs status", "07_research_system/control/research-state/state.yaml"]
+    existing_scripts: ["07_research_system/control/research-state/index.mjs", "07_research_system/control/research-state/track.mjs"]
     existing_references: []
     decision: new
     decision_reason: "Shared current research state for workflow, direct modules, validation and diagnosis"
-    primary_entrypoint: "node research-state/index.mjs status"
+    primary_entrypoint: "node 07_research_system/control/research-state/index.mjs status"
     aliases: [state]
     tests: ["tests/research-workflow.test.mjs"]
   - capability_id: research-workflow
     source_concept: research-workflow
-    existing_local_entrypoints: ["node research-workflow/index.mjs execute", "research-workflow/SKILL.md"]
-    existing_scripts: ["research-workflow/index.mjs", "research-workflow/scripts/adapters.mjs", "contracts/index.mjs"]
-    existing_references: ["research-workflow/references/task-routing.md", "research-workflow/references/failure-diagnosis.md"]
+    existing_local_entrypoints: ["node 07_research_system/control/research-workflow/index.mjs execute", "07_research_system/control/research-workflow/SKILL.md"]
+    existing_scripts: ["07_research_system/control/research-workflow/index.mjs", "07_research_system/control/research-workflow/scripts/adapters.mjs", "07_research_system/control/contracts/index.mjs"]
+    existing_references: ["07_research_system/control/research-workflow/references/task-routing.md", "07_research_system/control/research-workflow/references/failure-diagnosis.md"]
     decision: new
     decision_reason: "Single research decision layer over existing 3D, COMSOL and Geant4 Blocks"
-    primary_entrypoint: "node research-workflow/index.mjs execute"
+    primary_entrypoint: "node 07_research_system/control/research-workflow/index.mjs execute"
     aliases: [research-loop, routing]
     tests: ["tests/research-workflow.test.mjs"]
   - capability_id: toolchain-recovery

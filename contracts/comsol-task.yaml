@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+contract_id: null
+task_id: null
+parent_goal: null
+parent_task: null
+supersedes: null
+module: comsol
+objective: "Answer one bounded continuous-physics question."
+current_question: "What observable distinguishes the current hypotheses?"
+inputs:
+  geometry:
+    ref: null
+  materials: []
+  particle_source: {}
+  field_configuration: {}
+  initial_conditions: {}
+assumptions: []
+fixed: []
+explorable: []
+forbidden: []
+observables: []
+required_outputs:
+  - validation
+success_criteria: []
+validation_requirements:
+  - solver_convergence
+  - numerical_stability
+traceability: {}
+execution_policy:
+  exploration_level: diagnostic
+  max_dispatch_attempts: 2

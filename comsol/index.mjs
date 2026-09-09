@@ -9,6 +9,7 @@ import { diagnoseCase, diagnoseCampaign, validateCases } from './diagnose/index.
 import { buildComsolResult, renderMarkdownReport, writeResultBundle } from './report/index.mjs';
 import { makeWarning } from './interface/index.mjs';
 import { executeCases, makeCaseSpec } from './solve/index.mjs';
+import { trackExecution } from '../research-state/track.mjs';
 
 function aggregateExecution(records) {
   return records.reduce((acc, value) => ({
@@ -108,6 +109,11 @@ export async function runComsol(rawTask, options = {}) {
   return result;
 }
 
+export async function runComsolTracked(rawTask, options = {}) {
+  const tracked = await trackExecution({ root: options.research_state_root || process.cwd(), module: 'comsol', task: rawTask, contextId: options.context_id, execute: () => runComsol(rawTask, { ...options, research_state: false }) });
+  return tracked.raw;
+}
+
 function readTask(file) {
   const absolute = path.resolve(file);
   return absolute.toLowerCase().endsWith('.json') ? JSON.parse(fs.readFileSync(absolute, 'utf8')) : parseYamlFile(absolute);
@@ -122,7 +128,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToP
     process.exitCode = 2;
   } else {
     const outputDir = outputFlag >= 0 ? process.argv[outputFlag + 1] : null;
-    runComsol(readTask(process.argv[taskFlag + 1]), outputDir ? { output_dir: outputDir } : {}).then((result) => {
+    const options = { ...(outputDir ? { output_dir: outputDir } : {}), research_state_root: process.cwd() };
+    const runner = process.argv.includes('--no-research-state') ? runComsol : runComsolTracked;
+    runner(readTask(process.argv[taskFlag + 1]), options).then((result) => {
       if (reportFlag >= 0 && process.argv[reportFlag + 1]) fs.writeFileSync(path.resolve(process.argv[reportFlag + 1]), renderMarkdownReport(result));
       console.log(JSON.stringify(result, null, 2));
     }).catch((error) => { console.error(error.stack || error.message); process.exitCode = 1; });

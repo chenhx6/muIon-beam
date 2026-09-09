@@ -17,3 +17,8 @@ Keep COMSOL-local execution autonomous, return cross-module issues as
 structured records, and never modify the established 3D Block or implement
 Geant4/Research Workflow routing here.
 
+When invoked from the CLI or Codex Skill boundary, record the task through
+`research-state` before and after execution. When Research Workflow provides a
+`context_id`, reuse it instead of creating a second foreground context. This
+state hook records execution evidence only; it does not move COMSOL decisions
+into the state layer.

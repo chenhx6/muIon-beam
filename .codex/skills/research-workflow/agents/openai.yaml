@@ -1,0 +1,4 @@
+interface:
+  display_name: "Muon-Ion Research Workflow"
+  short_description: "Coordinate goals, contracts, routing, diagnosis and research state"
+  default_prompt: "Use $research-workflow for muon-ion research questions, immutable contracts, bounded module routing and evidence-backed state updates."

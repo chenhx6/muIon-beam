@@ -1,14 +1,11 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import { ensureInitialized, readState, setWorkflowPhase } from '../../../../research-state/index.mjs';
 
 export const phases = ['idle', 'interview', 'planned', 'approved', 'running', 'review', 'qa', 'archived', 'published', 'synced', 'blocked'];
 export function readWorkflowState(root) {
-  try { return JSON.parse(fs.readFileSync(path.join(root, '00_project/state/workflow-state.json'), 'utf8')); }
+  try { ensureInitialized(root); const state = readState(root); return { schema_version: 1, phase: state.legacy_phase || (state.task_status === 'IDLE' ? 'idle' : 'running'), active_goal_id: state.current_goal?.id || null, updated_at: state.updated_at }; }
   catch { return { phase: 'idle', active_goal_id: null, updated_at: null }; }
 }
 export function writeWorkflowState(root, state) {
   if (!phases.includes(state.phase)) throw new Error('invalid workflow phase: ' + state.phase);
-  const file = path.join(root, '00_project/state/workflow-state.json');
-  fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, JSON.stringify({ schema_version: 1, ...state, updated_at: new Date().toISOString() }, null, 2) + '\n');
+  setWorkflowPhase(root, state.phase, state.active_goal_id || null);
 }

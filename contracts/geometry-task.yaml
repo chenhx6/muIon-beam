@@ -1,0 +1,29 @@
+schema_version: 1.0.0
+contract_id: null
+task_id: null
+parent_goal: null
+parent_task: null
+supersedes: null
+module: 3d
+objective: "Create, modify, inspect or export the requested geometry."
+current_question: "What geometric evidence is required?"
+inputs:
+  mode: inspect
+  geometry_level: G1
+  geometry_ref: null
+assumptions: []
+fixed: []
+explorable: []
+forbidden:
+  - name: physics_model
+    owner: research-workflow
+    reason: "3D does not decide field or transport physics."
+observables: []
+required_outputs:
+  - geometry_artifact
+  - geometry_validation
+success_criteria: []
+validation_requirements: []
+traceability: {}
+execution_policy:
+  max_dispatch_attempts: 2

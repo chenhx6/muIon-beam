@@ -1,0 +1,68 @@
+{
+  "manifest_id": "TASK-RESEARCH-CONTROL-001",
+  "manifest_type": "task",
+  "schema_version": "1.0.0",
+  "created_at": "2026-09-09T01:50:00Z",
+  "updated_at": "2026-09-09T01:50:00Z",
+  "task_id": "TASK-RESEARCH-CONTROL-001",
+  "task_name": "建立 muon-ion research system 控制层 MVP",
+  "source_type": "user_request",
+  "is_upper_task": false,
+  "assignment_source": "当前会话的最终控制层执行计划",
+  "assignment_reference": "muon-ion research system 控制层 MVP 最终执行 PLAN",
+  "requested_by": "user",
+  "due_date": null,
+  "delivery_requirement": "代码、Skill、合同、状态机制和测试通过后自动提交并同步项目快照",
+  "delivery": {
+    "gitee": "auto",
+    "drive": "auto",
+    "audit": "auto",
+    "resolved_by": "delivery-policy"
+  },
+  "priority": "normal",
+  "objective_zh": "在不重构 3D、COMSOL、Geant4 执行模块的前提下，建立 contracts、research-state 和 research-workflow 控制层，并保证工作流、直接模块、validation 和 failure diagnosis 都能进入统一科研状态闭环。",
+  "physical_object": "muon-ion research system 控制层",
+  "initial_conditions": [
+    "3D、COMSOL、Geant4 现有 Skill 和入口保持自治",
+    "现有 Manifest、任务卡、运行快照和双报告流程继续作为项目交付体系",
+    "research-state 独立于 research-workflow，并覆盖 direct-module 入口"
+  ],
+  "model_references": [],
+  "variable_catalog_ref": "00_project/traceability/variable-catalog.yaml",
+  "variables": [
+    {"name": "fixed", "scope": "contracts", "description_zh": "执行模块不得修改的研究条件"},
+    {"name": "explorable", "scope": "contracts", "description_zh": "在合同范围内允许执行模块自主探索的变量"},
+    {"name": "forbidden", "scope": "contracts", "description_zh": "执行模块明确不得修改的对象"},
+    {"name": "state_revision", "scope": "research-state", "description_zh": "当前科研状态的单调修订号"}
+  ],
+  "analysis_questions": [
+    {
+      "analysis_id": "ANALYSIS-RESEARCH-CONTROL-ENTRYPOINTS",
+      "question_zh": "Research Workflow、直接 3D/COMSOL/Geant4、validation 和 diagnosis 是否都进入同一 research-state？",
+      "response_metrics": ["context_id", "state_revision", "entrypoint", "event_log"]
+    },
+    {
+      "analysis_id": "ANALYSIS-RESEARCH-CONTROL-PERMISSIONS",
+      "question_zh": "fixed/explorable/forbidden 是否互斥，且执行模块不能越权修改？",
+      "response_metrics": ["scope_overlap", "scope_violation", "contract_hash"]
+    }
+  ],
+  "success_criteria": [
+    "contracts 模板和不可变实例可读取、校验、冻结并通过 SHA256 追溯",
+    "state.yaml 是唯一当前科研状态源，NOW、聊天状态和旧 helper 不产生第二状态源",
+    "events.jsonl 支持 prepare/commit/abort/recovery 且损坏时 fail closed",
+    "直接 3D、COMSOL、Geant4、validation 和 diagnosis 入口都记录 context",
+    "research-workflow 能完成合同、执行、统一报告、诊断和状态收尾",
+    "既有执行模块测试保持通过，未发生领域逻辑重构"
+  ],
+  "failure_criteria": [
+    "合同 dispatch 后被原地修改",
+    "并发 context 覆盖当前 foreground task",
+    "未授权变量被执行模块扫描",
+    "缺少 executable、adapter 或 validation 时伪造成功",
+    "直接入口绕过 research-state"
+  ],
+  "expected_maturity": "F0",
+  "scientific_revalidation": "not-applicable-for-control-layer-architecture",
+  "acceptance_status": "implemented-pending-project-delivery"
+}

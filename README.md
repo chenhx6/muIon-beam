@@ -20,7 +20,9 @@
   `node geant4/index.mjs --task path/to/task.yaml`；四项轻量原生 smoke
   位于 `geant4/tests/fixtures/mvp-smoke/`。当前 WSL smoke 使用 Geant4
   11.2.2，不能直接替代历史 11.3.2 μ−–Ne 结果。
-- 完整 Research Workflow 仍由现有项目 skill 管理，本轮不重构。
+- Research Workflow 控制层由根目录 `research-workflow/` 提供；现有项目 skill 继续负责任务卡、快照、报告、归档和交付，不替代科研控制层。
+- Research Workflow 控制层：[`research-workflow/SKILL.md`](research-workflow/SKILL.md)，负责目标、物理推理、routing、合同、诊断和下一项研究决策。
+- Research State：[`research-state/index.mjs`](research-state/index.mjs)，是 3D、COMSOL、Geant4、validation 和 Research Workflow 共享的当前科研状态边界；直接入口也必须记录 context。
 
 ## 使用顺序
 

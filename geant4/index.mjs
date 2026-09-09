@@ -8,6 +8,7 @@ import { runExecutable } from './scripts/run.mjs';
 import { runSmoke } from './scripts/smoke.mjs';
 import { validateRunResult } from './scripts/validate.mjs';
 import { summarize } from './scripts/summarize.mjs';
+import { trackExecution } from '../research-state/track.mjs';
 
 function issue(category, code, message, evidence = [], suggested_next_checks = []) {
   return { issue_id: `G4-ISSUE-${code}`, category, code, observation: message, evidence, candidate_explanations: [], suggested_next_checks, owner: 'research-workflow' };
@@ -97,10 +98,19 @@ export async function runGeant4(rawTask, options = {}) {
   return result;
 }
 
+export async function runGeant4Tracked(rawTask, options = {}) {
+  const tracked = await trackExecution({ root: options.research_state_root || process.cwd(), module: 'geant4', task: rawTask, contextId: options.context_id, execute: () => runGeant4(rawTask, { ...options, research_state: false }) });
+  return tracked.raw;
+}
+
 function readTask(file) { const target = path.resolve(file); return target.toLowerCase().endsWith('.json') ? JSON.parse(fs.readFileSync(target, 'utf8')) : parseYamlFile(target); }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = parseArgs(process.argv.slice(2));
   if (!args.task) { console.error('Usage: node geant4/index.mjs --task path/to/task.yaml [--output-dir path]'); process.exitCode = 2; }
-  else runGeant4(readTask(args.task), { output_dir: args.output_dir ? path.resolve(args.output_dir) : null, workdir: args.workdir ? path.resolve(args.workdir) : undefined, backend: args.backend || 'auto', distribution: args.distribution || 'Ubuntu-20.04', env_script: args.env_script || null, executable: args.executable || null }).then((result) => console.log(JSON.stringify(result, null, 2))).catch((error) => { console.error(error.stack || error.message); process.exitCode = 1; });
+  else {
+    const options = { output_dir: args.output_dir ? path.resolve(args.output_dir) : null, workdir: args.workdir ? path.resolve(args.workdir) : undefined, backend: args.backend || 'auto', distribution: args.distribution || 'Ubuntu-20.04', env_script: args.env_script || null, executable: args.executable || null, research_state_root: process.cwd() };
+    const runner = process.argv.includes('--no-research-state') ? runGeant4 : runGeant4Tracked;
+    runner(readTask(args.task), options).then((result) => console.log(JSON.stringify(result, null, 2))).catch((error) => { console.error(error.stack || error.message); process.exitCode = 1; });
+  }
 }

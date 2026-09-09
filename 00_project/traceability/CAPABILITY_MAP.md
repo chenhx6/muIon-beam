@@ -14,3 +14,5 @@
 | evolution | new | evolution | 手动触发的跨项目能力发现和增量接入 |
 | comsol-block | new | node comsol/index.mjs --task path/to/task.json | 建立独立 COMSOL 计算模块；保留现有历史 COMSOL 资产并通过显式 adapter 接入 |
 | geant4-block | new | node geant4/index.mjs --task path/to/task.yaml | 建立单一 Geant4 主 Skill，覆盖 setup/transport/scoring/statistics/validation，并以小规模 smoke 优先 |
+| research-state | new | node research-state/index.mjs status | Shared current research state for workflow, direct modules, validation and diagnosis |
+| research-workflow | new | node research-workflow/index.mjs execute | Single research decision layer over existing 3D, COMSOL and Geant4 Blocks |

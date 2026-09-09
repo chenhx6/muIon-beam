@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "state_revision": 0,
+  "updated_at": null,
+  "context_id": null,
+  "entrypoint": null,
+  "context_kind": null,
+  "legacy_phase": "idle",
+  "current_goal": null,
+  "current_question": null,
+  "current_task": null,
+  "current_phase": "idle",
+  "task_status": "IDLE",
+  "completed_stages": [],
+  "blocked_reason": null,
+  "next_action": "deep-interview",
+  "active_contract": null,
+  "related_open_problems": [],
+  "last_result": null,
+  "last_validation": null
+}

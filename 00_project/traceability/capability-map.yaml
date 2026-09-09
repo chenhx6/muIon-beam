@@ -100,3 +100,23 @@ capabilities:
     primary_entrypoint: "node geant4/index.mjs --task path/to/task.yaml"
     aliases: [geant4, g4]
     tests: ["tests/geant4-block.test.mjs", "geant4/tests/smoke.mjs"]
+  - capability_id: research-state
+    source_concept: research-state
+    existing_local_entrypoints: ["node research-state/index.mjs status", "research-state/state.yaml"]
+    existing_scripts: ["research-state/index.mjs", "research-state/track.mjs"]
+    existing_references: []
+    decision: new
+    decision_reason: "Shared current research state for workflow, direct modules, validation and diagnosis"
+    primary_entrypoint: "node research-state/index.mjs status"
+    aliases: [state]
+    tests: ["tests/research-workflow.test.mjs"]
+  - capability_id: research-workflow
+    source_concept: research-workflow
+    existing_local_entrypoints: ["node research-workflow/index.mjs execute", "research-workflow/SKILL.md"]
+    existing_scripts: ["research-workflow/index.mjs", "research-workflow/scripts/adapters.mjs", "contracts/index.mjs"]
+    existing_references: ["research-workflow/references/task-routing.md", "research-workflow/references/failure-diagnosis.md"]
+    decision: new
+    decision_reason: "Single research decision layer over existing 3D, COMSOL and Geant4 Blocks"
+    primary_entrypoint: "node research-workflow/index.mjs execute"
+    aliases: [research-loop, routing]
+    tests: ["tests/research-workflow.test.mjs"]

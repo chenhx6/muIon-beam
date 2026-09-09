@@ -19,3 +19,8 @@ node 3d/index.mjs --mode create|modify|inspect|export
 Keep 3D-local execution autonomous. Return geometry, physical-meaning, COMSOL,
 Geant4 and research-objective questions as structured issue records; never
 modify COMSOL, Geant4 or Research Workflow state from this block.
+
+The public CLI boundary records direct 3D work through `research-state`.
+Reuse a supplied `context_id` when called by Research Workflow. The state hook
+records geometry inputs and evidence only; it does not make physics decisions or
+edit another module.

@@ -59,5 +59,11 @@
     ,"geant4:validate": "node geant4/scripts/validate.mjs"
     ,"geant4:run": "node geant4/scripts/run.mjs"
     ,"geant4:summarize": "node geant4/scripts/summarize.mjs"
+    ,"research-state:init": "node research-state/index.mjs init"
+    ,"research-state:status": "node research-state/index.mjs status"
+    ,"research-state:repair": "node research-state/index.mjs repair"
+    ,"research-workflow:status": "node research-workflow/index.mjs status"
+    ,"research-workflow:validate": "node research-workflow/index.mjs validate"
+    ,"research-workflow:execute": "node research-workflow/index.mjs execute"
   }
 }

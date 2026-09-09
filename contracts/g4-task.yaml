@@ -1,0 +1,34 @@
+schema_version: 1.0.0
+contract_id: null
+task_id: null
+parent_goal: null
+parent_task: null
+supersedes: null
+module: geant4
+objective: "Answer one bounded particle-transport question."
+current_question: "Which transport observable discriminates the hypotheses?"
+inputs:
+  geometry: {}
+  materials: []
+  source: {}
+  physics: {}
+  fields: {}
+  scoring: []
+  statistics_requirements:
+    observables: []
+    target_uncertainty: null
+    confidence: null
+assumptions: []
+fixed: []
+explorable: []
+forbidden: []
+observables: []
+required_outputs:
+  - scoring
+  - statistics
+  - validation
+success_criteria: []
+validation_requirements: []
+traceability: {}
+execution_policy:
+  max_dispatch_attempts: 2

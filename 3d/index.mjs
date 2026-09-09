@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { trackExecution } from '../research-state/track.mjs';
 
 const MODES = new Set(['create', 'modify', 'inspect', 'export']);
 const FORBIDDEN_KEYS = new Set(['comsol', 'geant4', 'physics', 'simulation', 'beam_optimization']);
@@ -25,8 +26,13 @@ export function run3d(task, { dryRun = false } = {}) {
     geometry_level: checked.geometry_level,
     entrypoint: `3d/${task.mode}`,
     next: task.mode === 'create' ? 'create or read native CAD' : `${task.mode} current CAD only`,
-    cross_module_policy: 'return an issue record; do not edit COMSOL, Geant4 or research state'
+    cross_module_policy: 'return an issue record; do not edit COMSOL, Geant4 or research-workflow state; the public boundary may record research-state evidence'
   };
+}
+
+export async function run3dTracked(task, { dryRun = false, research_state_root = process.cwd(), context_id = null } = {}) {
+  const tracked = await trackExecution({ root: research_state_root, module: '3d', task, contextId: context_id, execute: () => run3d(task, { dryRun }) });
+  return tracked.raw;
 }
 
 function help() {
@@ -40,5 +46,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const taskIndex = args.indexOf('--task');
   const mode = modeIndex >= 0 ? args[modeIndex + 1] : null;
   const task = taskIndex >= 0 ? JSON.parse(fs.readFileSync(path.resolve(args[taskIndex + 1]), 'utf8')) : { mode };
-  console.log(JSON.stringify(run3d(task, { dryRun: args.includes('--dry-run') }), null, 2));
+  const runner = args.includes('--no-research-state') ? run3d : run3dTracked;
+  Promise.resolve(runner(task, { dryRun: args.includes('--dry-run'), research_state_root: process.cwd() })).then((result) => console.log(JSON.stringify(result, null, 2))).catch((error) => { console.error(error.stack || error.message); process.exitCode = 1; });
 }

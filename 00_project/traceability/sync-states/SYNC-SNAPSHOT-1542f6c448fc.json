@@ -5373,6 +5373,8 @@
   "errors": [],
   "verified_at": "2026-09-09T01:37:59.185Z",
   "snapshot_commit": "1542f6c448fc6909d5df20d9140edff2a933787b",
-  "metadata_stage": "seed",
-  "metadata_recorded_at": "2026-09-09T01:38:11.041Z"
+  "metadata_stage": "finalized",
+  "metadata_recorded_at": "2026-09-09T01:38:11.041Z",
+  "metadata_commit": "f873654515007b6d6a840308c3e5df7cbd146851",
+  "metadata_finalized_at": "2026-09-09T01:38:11.214Z"
 }

@@ -11,6 +11,12 @@
   "initial_conditions": ["evolution 为唯一用户显式触发能力", "06_external_lib 为 reference-only 图书馆", "research-state 为唯一当前科研状态源", "外部工作流引擎不作为第一版运行时依赖"],
   "success_criteria": ["重复 capability 不再作为安全 rejection", "team capability map 与实际 Skill/脚本一致", "autopilot 支持 plan/run/status/resume/retry/close", "deep-interview 支持一次性启动 intake 和可恢复 requirements handoff", "consensus-plan/ralplan 强制 Architect→Critic 顺序并生成执行 handoff", "ultragoal 和 ultraqa 生成可追溯 ledger 与 QA 证据", "阶段事件、幂等键和 workflow-owned paths 可恢复", "直接模块不绕过正式运行门禁", "现有测试和新增恢复测试全部通过"],
   "scientific_revalidation": "not-applicable-for-control-layer",
-  "acceptance_status": "implemented-pending-validation",
-  "upstream_reference": "https://github.com/Yeachan-Heo/oh-my-codex@304fb3b"
+  "acceptance_status": "implemented-validated",
+  "upstream_reference": "https://github.com/Yeachan-Heo/oh-my-codex@304fb3b",
+  "validation": {
+    "tests": "npm test: 109 passed",
+    "architecture_smoke": "passed",
+    "manifest_validation": "passed",
+    "drive_snapshot": "SYNC-SNAPSHOT-fb5e9a1: three-way-verified"
+  }
 }

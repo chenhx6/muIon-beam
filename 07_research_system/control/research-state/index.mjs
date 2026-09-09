@@ -210,6 +210,13 @@ export function recordDecision(contextId, decision, root = process.cwd()) {
 
 export function recordWorkflowEvent(event, root = process.cwd()) {
   ensureInitialized(root);
+  const existingEvents = readEvents(root).filter((item) => item.idempotency_key === event.idempotency_key && event.idempotency_key);
+  if (existingEvents.length) {
+    const prior = existingEvents[existingEvents.length - 1];
+    const comparable = (value) => JSON.stringify({ event_type: value.event_type, workflow_run_id: value.workflow_run_id, task_id: value.task_id, stage: value.stage, status: value.status, next_action: value.next_action, artifact_refs: value.artifact_refs || [] });
+    if (comparable(prior) !== comparable(event)) throw new Error(`workflow event idempotency conflict: ${event.idempotency_key}`);
+    return prior;
+  }
   const current = readState(root);
   const next = mutate(root, 'workflow-event', current.context_id, (before) => ({
     workflow_run_id: event.workflow_run_id || before.workflow_run_id || null,

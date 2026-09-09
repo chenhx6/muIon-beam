@@ -1,13 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["schema_version", "workflow_run_id", "task_id", "stage", "status", "events", "owned_paths"],
+  "required": ["schema_version", "workflow_run_id", "task_id", "stage", "status", "attempts", "next_action", "events", "owned_paths"],
   "properties": {
     "schema_version": {"type": "string"},
     "workflow_run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
     "task_id": {"type": "string"},
-    "stage": {"type": "string"},
-    "status": {"type": "string"},
+    "stage": {"enum": ["INTAKE", "TASK_CARD_READY", "DEEP_INTERVIEW", "CONSENSUS_PLAN", "PRECHECK", "MODEL_CONFIRMED", "SNAPSHOT_READY", "CONTRACT_READY", "RUNNING", "VALIDATING", "REPORTING", "QA", "ARCHIVING", "PUBLISHED", "CLOSED"]},
+    "status": {"enum": ["PLANNED", "WAITING_USER", "READY", "RUNNING", "RECOVERABLE", "BLOCKED", "FAILED_RETRYABLE", "CLOSED", "FAILED_TERMINAL"]},
+    "attempts": {"type": "integer", "minimum": 0},
+    "next_action": {"type": ["string", "null"]},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
     "contract": {"type": ["string", "null"]},
     "snapshot_ref": {"type": ["string", "null"]},
     "run_dir": {"type": ["string", "null"]},
@@ -15,6 +19,8 @@
     "detailed_report": {"type": ["string", "null"]},
     "sync_state": {"type": ["string", "null"]},
     "owned_paths": {"type": "array", "items": {"type": "string"}},
-    "events": {"type": "array", "items": {"type": "object"}}
+    "events": {"type": "array", "items": {"type": "object"}},
+    "artifact_refs": {"type": "array", "items": {"type": "object"}},
+    "recovery": {"type": ["object", "null"]}
   }
 }

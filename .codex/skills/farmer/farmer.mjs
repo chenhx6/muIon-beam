@@ -16,7 +16,13 @@ export function classifyError(error, config) {
 }
 export function validateConfig(config) {
   if (!config || (config.max_attempts !== null && (!Number.isInteger(config.max_attempts) || config.max_attempts < 1))) throw new Error('max_attempts must be null or a positive integer');
+  if (config.watchdog_ms !== undefined && (!Number.isInteger(config.watchdog_ms) || config.watchdog_ms < 1)) throw new Error('watchdog_ms must be a positive integer');
   return config;
+}
+export function manualRetryLease(session, previous = {}) {
+  if (!session?.id || !session.latest?.payload?.turn_id) throw new Error('manual retry requires session and failed turn');
+  const event = session.latest;
+  return { ...previous, session_id: session.id, retry_of: previous.event_key || null, event_key: `${session.id}:${event.payload.turn_id}:${event.timestamp}`, attempts: 0, pending: false, next_at: 0, status: 'manual-retry-requested', lifecycle: 'queue_attempted', manual_retry: true };
 }
 export function parseSessionEvents(lines, projectRoot) {
   let meta = null; let latest = null; let latestStarted = null;
@@ -55,20 +61,25 @@ export function recoveryStep(session, previous, config, now, queue) {
   const sawNewStart = startedKey && startedKey !== previous?.last_started_event && previous?.event_key !== eventKey;
   const startAfterPreviousEvent = session.latestStarted && previousEventTimestamp && session.latestStarted.timestamp > previousEventTimestamp && session.latestStarted.payload.turn_id !== payload.turn_id;
   const reset = (sawNewStart || startAfterPreviousEvent) ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey } : previous;
-  if (payload.type === 'task_started') return { ...reset, status: 'running', event_key: eventKey, pending: false, attempts: 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp };
-  if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', pending: false, last_event_timestamp: event.timestamp };
-  if (!payload.error) return { ...reset, status: 'complete', pending: false, last_event_timestamp: event.timestamp };
+  if (payload.type === 'task_started') return { ...reset, status: 'running', lifecycle: 'turn_started', event_key: eventKey, pending: false, attempts: 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp };
+  if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', lifecycle: 'cancelled', pending: false, last_event_timestamp: event.timestamp };
+  if (!payload.error) return { ...reset, status: 'complete', lifecycle: 'succeeded', pending: false, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp };
   const errorClass = classifyError(payload.error, config);
-  if (!errorClass) return { ...reset, status: 'manual-attention-required', pending: false, last_event_timestamp: event.timestamp };
+  if (!errorClass) return { ...reset, status: 'manual-attention-required', lifecycle: 'failed', pending: false, last_event_timestamp: event.timestamp };
   const key = eventKey;
   let state = reset?.event_key === key ? { ...reset } : { event_key: key, attempts: reset?.status === 'running' ? reset.attempts || 0 : 0, pending: false, next_at: 0, last_started_event: reset?.last_started_event };
   state.error_class = errorClass;
-  if (state.pending) return { ...state, status: 'recovery-pending' };
+  if (state.pending) {
+    if (state.queue_accepted_at && now - state.queue_accepted_at >= (config.watchdog_ms || 30000)) return { ...state, status: 'queue-stuck', lifecycle: 'queue_stuck', pending: false, next_at: now };
+    return { ...state, status: 'recovery-pending', lifecycle: 'queued' };
+  }
   if (config.max_attempts !== null && state.attempts >= config.max_attempts) return { ...state, status: 'manual-attention-required' };
   if (now < state.next_at) return { ...state, status: 'waiting-retry' };
   const result = queue(session.id, config.recovery_message);
   state.attempts += 1; state.last_exit_code = result.status; state.last_action_at = new Date(now).toISOString();
-  state.pending = result.status === 0; state.status = state.pending ? 'recovery-pending' : 'waiting-retry';
+  state.queue_exit_code = result.status; state.queue_stdout = result.stdout ? String(result.stdout).slice(-2000) : null; state.queue_stderr = result.stderr ? String(result.stderr).slice(-2000) : null;
+  state.pending = result.status === 0; state.lifecycle = state.pending ? 'queued' : 'queue_attempted'; state.status = state.pending ? 'recovery-pending' : 'waiting-retry';
+  state.queue_accepted_at = state.pending ? now : null;
   state.next_at = now + batchDelay(state.attempts);
   state.last_event_timestamp = event.timestamp;
   return state;
@@ -76,7 +87,7 @@ export function recoveryStep(session, previous, config, now, queue) {
 function argumentsOf(argv) { const a = { command: argv[0] || 'status' }; for (let i = 1; i < argv.length; i++) if (argv[i].startsWith('--')) { const k = argv[i].slice(2); a[k] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true; } return a; }
 async function main() {
   const args = argumentsOf(process.argv.slice(2));
-  if (args.help || args.command === '--help') { console.log('farmer.mjs ensure|start|once|status|stop|install [--project-root PATH] [--codex-home PATH] [--dry-run]'); return; }
+  if (args.help || args.command === '--help') { console.log('farmer.mjs ensure|start|once|retry|status|stop|install [--project-root PATH] [--codex-home PATH] [--session ID] [--dry-run]'); return; }
   const root = path.resolve(args['project-root'] || rootDefault); const home = args['codex-home'] || process.env.CODEX_HOME || path.join(process.env.USERPROFILE || '', '.codex');
   const config = validateConfig(JSON.parse(fs.readFileSync(path.join(root, '00_project/config/farmer.json'), 'utf8')));
   const runtime = path.join(root, '_work/current/farmer'); const lock = path.join(runtime, 'lock.json'); const stateFile = path.join(runtime, 'state.json');
@@ -92,6 +103,7 @@ async function main() {
     const close = args['dry-run'] ? null : runCloseCandidate(root);
     if (!args['dry-run']) write(stateFile, states); return { sessions: sessions.length, states, close_candidate: close, dry_run: !!args['dry-run'] };
   };
+  if (args.command === 'retry') { const sessions = inspect(root, home); const session = sessions.find((item) => item.id === args.session); if (!session) throw new Error(`project session not found: ${args.session || '(missing)'}`); const states = read(stateFile, {}); states[session.id] = manualRetryLease(session, states[session.id] || {}); if (!args['dry-run']) write(stateFile, states); console.log(JSON.stringify({ session_id: session.id, state: states[session.id], dry_run: !!args['dry-run'] }, null, 2)); return; }
   if (args.command === 'once') { console.log(JSON.stringify(once(), null, 2)); return; }
   if (args.command !== 'start') throw new Error('unknown command');
   if (alive(owner.pid)) throw new Error(`farmer already running: ${owner.pid}`);

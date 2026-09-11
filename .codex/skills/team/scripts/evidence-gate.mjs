@@ -24,10 +24,12 @@ function executeCheck(root, check) {
   const expected = check.expected_exit ?? 0;
   if (check.executable) {
     const result = spawnSync(check.executable, check.args || [], { cwd: path.resolve(root, check.cwd || '.'), encoding: 'utf8', timeout: check.timeout_ms || 120000, maxBuffer: 2 * 1024 * 1024, windowsHide: true });
+    if (result.error) return { check_id: check.check_id || check.executable, status: 'blocked', exit_code: result.status, signal: result.signal || null, stdout: trim(result.stdout), stderr: trim(result.error.message || result.stderr), expected_exit: expected, environment_error: result.error.code || 'spawn-error' };
     return { check_id: check.check_id || check.executable, status: result.status === expected ? 'passed' : 'failed', exit_code: result.status, signal: result.signal || null, stdout: trim(result.stdout), stderr: trim(result.stderr), expected_exit: expected };
   }
   if (check.command && check.shell === true) {
     const result = spawnSync(check.command, { cwd: path.resolve(root, check.cwd || '.'), shell: true, encoding: 'utf8', timeout: check.timeout_ms || 120000, maxBuffer: 2 * 1024 * 1024, windowsHide: true });
+    if (result.error) return { check_id: check.check_id || 'shell-verification', status: 'blocked', exit_code: result.status, signal: result.signal || null, stdout: trim(result.stdout), stderr: trim(result.error.message || result.stderr), expected_exit: expected, shell: true, environment_error: result.error.code || 'spawn-error' };
     return { check_id: check.check_id || 'shell-verification', status: result.status === expected ? 'passed' : 'failed', exit_code: result.status, signal: result.signal || null, stdout: trim(result.stdout), stderr: trim(result.stderr), expected_exit: expected, shell: true };
   }
   return { check_id: check.check_id || 'verification', status: 'blocked', exit_code: null, stdout: '', stderr: 'structured executable/args required; shell commands need shell:true', expected_exit: expected };

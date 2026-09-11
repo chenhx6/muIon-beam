@@ -1,0 +1,3 @@
+export function normalizeLedger(item = {}) {
+  return { run: item.run_id || item.id || null, session: item.session_id || item.session || null, thread: item.thread_id || item.thread || null, model: item.selected_model || item.model || null, reasoning: item.reasoning || null, backend: item.backend || item.provider || null, state: item.lifecycle_state || item.lifecycle || item.status || null, retry: item.retry || item.retry_information || null, started_at: item.started_at || item.start_time || null, ended_at: item.ended_at || item.end_time || null, output: item.output_reference || item.output_ref || null, verification: item.verification || item.tests || null, unresolved_items: item.unresolved_items || item.unresolved || [] };
+}

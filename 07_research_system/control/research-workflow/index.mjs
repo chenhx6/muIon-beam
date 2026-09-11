@@ -4,10 +4,11 @@ import { parseYamlFile } from '../../../.codex/skills/muion-project/scripts/yaml
 import { beginContext, closeContext, ensureInitialized, makeId, recordDispatch, recordModuleResult, recordValidation, readState, renderChatStatus } from '../research-state/index.mjs';
 import { executeNative, normalizeModuleResult } from './scripts/adapters.mjs';
 import { freezeContract, loadContract, validateContract, writeAttemptReport } from './scripts/contracts.mjs';
+import { inspectPhysicsContract } from '../../../11_tools/research-dashboard/physics-gate.mjs';
 
 function inputDocument(file) { const target = path.resolve(file); return target.toLowerCase().endsWith('.json') ? JSON.parse(fs.readFileSync(target, 'utf8')) : parseYamlFile(target); }
 
-export function validateResearchContract(input) { return validateContract(input); }
+export function validateResearchContract(input) { const result = validateContract(input); return { ...result, advisory_physics_gate: inspectPhysicsContract(input) }; }
 
 export function dispatchContract(contractInput, { root = process.cwd(), sourcePath = null, context = {}, attempt_id = null } = {}) {
   ensureInitialized(root);

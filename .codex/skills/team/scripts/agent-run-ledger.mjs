@@ -50,12 +50,40 @@ export function createAgentRun({ root = process.cwd(), run_id, parent_id = null,
     failure_reason: null,
     retry: { count: 0, max: task.retry?.max ?? 1, previous_run_ids: [] },
     unresolved_items: [],
+    normalized_runtime: {
+      run: runId,
+      session: task.session_id || task.session || null,
+      thread: task.thread_id || task.thread || null,
+      model: selection?.model_id || null,
+      reasoning: selection?.reasoning_effort || task.reasoning || null,
+      backend: selection?.backend || selection?.provider || null,
+      state: 'planned',
+      retry: { count: 0, max: task.retry?.max ?? 1 },
+      started_at: null,
+      ended_at: null,
+      output: null,
+      verification: task.verification || {},
+      unresolved_items: []
+    },
     events: [{ at: now.toISOString(), from: null, to: 'planned', reason: 'run created' }]
   };
   writeAgentRun(root, record); return record;
 }
 
 export function writeAgentRun(root, record) {
+  record.normalized_runtime = {
+    ...(record.normalized_runtime || {}), run: record.run_id,
+    session: record.session_id || record.session || record.normalized_runtime?.session || null,
+    thread: record.thread_id || record.thread || record.normalized_runtime?.thread || null,
+    model: record.selected_model || record.normalized_runtime?.model || null,
+    reasoning: record.reasoning || record.normalized_runtime?.reasoning || null,
+    backend: record.backend || record.normalized_runtime?.backend || null,
+    state: record.lifecycle_state, retry: record.retry || record.normalized_runtime?.retry || null,
+    started_at: record.start_time || record.normalized_runtime?.started_at || null,
+    ended_at: record.end_time || record.normalized_runtime?.ended_at || null,
+    output: record.output_reference || record.normalized_runtime?.output || null,
+    verification: record.verification || {}, unresolved_items: record.unresolved_items || []
+  };
   const file = fileFor(root, record.run_id); fs.mkdirSync(ledgerDir(root), { recursive: true });
   const temp = `${file}.tmp-${process.pid}`; fs.writeFileSync(temp, JSON.stringify(record, null, 2) + '\n'); fs.renameSync(temp, file); return file;
 }
@@ -65,6 +93,7 @@ export function readAgentRun(root, runId) { return JSON.parse(fs.readFileSync(fi
 export function updateAgentRun(root, runId, next, patch = {}, now = new Date()) {
   const record = readAgentRun(root, runId); const previous = record.lifecycle_state; lifecycleTransition(previous, next);
   Object.assign(record, patch, { lifecycle_state: next });
+  record.normalized_runtime = { ...(record.normalized_runtime || {}), state: next, ended_at: ['succeeded', 'failed', 'cancelled', 'blocked'].includes(next) ? now.toISOString() : record.normalized_runtime?.ended_at || null, started_at: next === 'running' && !record.normalized_runtime?.started_at ? now.toISOString() : record.normalized_runtime?.started_at || null, retry: record.retry, verification: record.verification, unresolved_items: record.unresolved_items || [] };
   if (next === 'running' && !record.start_time) record.start_time = now.toISOString();
   if (['succeeded', 'failed', 'cancelled', 'blocked'].includes(next)) record.end_time = now.toISOString();
   if (next === 'retrying') record.retry = { ...record.retry, count: (record.retry?.count || 0) + 1 };

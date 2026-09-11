@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "evolution_id": "EVOLUTION-20260911-configure-deep-study",
+  "recorded_at": "2026-09-11",
+  "trigger": "user-explicit-evolution-deep-study",
+  "source": {
+    "url": "https://gitee.com/zhangxin8069/configure",
+    "revision": "5b98575eaa89aae11e60379585797e3ce7b7a67d",
+    "revision_kind": "main-head-fixed-by-git-ls-remote",
+    "license": "MIT",
+    "repository_signals": {"commits": 710, "branches": 12, "tags": 103, "stars": 2, "forks": 0},
+    "cache_notes": "_work/cache/evolution/configure-5b98575eaa89aae11e60379585797e3ce7b7a67d/README.md",
+    "cache_notes_sha256": "3039E373A601FE3C2E5B6D95E496E89E4DBB7EFAC4884A78E9E1707E8394F806"
+  },
+  "study_boundary": {
+    "mode": "read-only-study",
+    "external_code_executed": false,
+    "external_installers_executed": false,
+    "external_hooks_executed": false,
+    "muion_files_copied": false,
+    "canonical_layout_changed": false,
+    "research_contract_changed": false
+  },
+  "inspected_paths": {
+    "skills": ["all", "analy", "auto", "brainstorm", "debug", "diff", "dispatch", "doctor", "fast", "follow-up", "go-on", "init", "make", "optim", "phys-model", "plan", "pure", "report", "research-notes", "review", "skill-creator", "tag", "tdd", "team", "test", "up"],
+    "runtime": ["AGENTS.md", "bin/AGENTS.md", "bin/agent.sh", "bin/agent-runtime.sh", "bin/agent-runtime.ps1", "bin/agent-status.sh", "bin/agent.test.sh", "data/AGENTS.md"],
+    "hooks": ["hooks/README.md", "hooks/codex-hook.sh", "hooks/codex-verify.sh", "hooks/hooks.test.sh"],
+    "other": ["skills/AGENTS.md", "tools/AGENTS.md", "plugins/", "docs/", "README.md", "LICENSE"]
+  },
+  "design_findings": [
+    {"area": "go-on", "finding": "multi-source recovery, one-shot confirmation, TODO inheritance, native session continuation first, manual reconstruction fallback, orphan-process classification, bounded information-search loop", "local_gap": "farmer and workflow-store do not yet provide a recovery lease with confirmed continuation and research-state has no visible continuation presenter", "adoption": "extend"},
+    {"area": "auto-goal", "finding": "prefix wrapper around target skills, one-time authorization, native goal inheritance, zero interaction after authorization, stagnation guard, interruption and convergence checks", "local_gap": "autopilot has phase progression but lacks a reusable goal/round/stagnation adapter", "adoption": "extend-with-boundary"},
+    {"area": "up", "finding": "four-tree baseline, multi-source evidence, difference matrix, minimal change, one self-evolution candidate per round, convergence and anti-rationalization checks", "local_gap": "evolution has candidate eligibility/adoption but not the full local capability comparison matrix and convergence rubric", "adoption": "merge-reference"},
+    {"area": "dispatch", "finding": "independence proof, self-contained prompts, same-message fan-out, explicit output contract, integration-wide verification", "local_gap": "team dispatcher has manifest/DAG/ownership/model filters but not complete worker health and re-dispatch lifecycle", "adoption": "extend"},
+    {"area": "team", "finding": "state machine before workers, isolated workline, heartbeat/diff/exit-code health checks, classified recovery, re-dispatch, final integration convergence", "local_gap": "current team is protocol-preparation plus ledger; runtime worker supervision remains incomplete", "adoption": "extend"},
+    {"area": "runtime-hooks", "finding": "portable manifest/state/context/event fields, explicit hook adapter, read-only status, path boundary guard, stale/owner lock checks, shell regression fixtures", "local_gap": "farmer queue ack, pending timeout and no-resume-after-success are not proven; research-state status is not surfaced in Codex panel", "adoption": "extend"},
+    {"area": "research-notes", "finding": "facts before conclusions, evidence index, confirmed/inferred/unverified levels, incremental timeline, handoff summary", "local_gap": "evidence bundle exists but process-note and handoff conventions are not standardized", "adoption": "extend"},
+    {"area": "phys-model", "finding": "object definition, continuous model, dimensional/symmetry/conservation checks, discretization, error budget, limit/degeneracy tests, minimal executable model", "local_gap": "research blocks validate outputs but model-front checks are distributed across module workflows", "adoption": "reference-only-then-extend"},
+    {"area": "review", "finding": "review early/often, cropped context, severity levels, technical rebuttal, repair-and-rerun closure", "local_gap": "review evidence exists but a reusable feedback closure protocol is incomplete", "adoption": "extend"},
+    {"area": "plan-follow-up", "finding": "decision-complete plan, explicit consumes/produces, compact handoff and action items", "local_gap": "workflow has task cards/checkpoints but cross-session plan-to-state handoff is not consistently visible", "adoption": "reference-only-then-extend"},
+    {"area": "doctor-test-diff-optim", "finding": "preflight, content/diff inspection, failure injection, syntax/permission/idempotency checks, measured optimization", "local_gap": "project has preflight and tests but farmer/research-state need targeted failure-injection coverage", "adoption": "extend"},
+    {"area": "tag-init-plugins-tools", "finding": "explicit boundaries, dry-run/help, idempotency, separate recommendation from installation and controlled tag operations", "local_gap": "muIon-beam already has stronger personalized naming/publish/sync contracts", "adoption": "reference-only; preserve local contract"}
+  ],
+  "p1": [
+    "farmer recovery lease: observed/queue-attempted/queued/turn-started/running/succeeded; capture queue stderr/exit; pending watchdog; manual retry linkage; no resume after successful task_complete; project-root sessions only; original model preserved",
+    "research-state status presenter: unified NOW/workflow/next-action/blocked view; explicit IDLE/unactivated state; openable in Codex panel without native UI extension or second writable state",
+    "goal/checkpoint adapter: map runtime goal/checkpoint signals to research-state without duplicating scientific goal data or treating goal completion as research success",
+    "go-on continuation protocol: multi-source recovery, TODO/checkpoint inheritance, native session first, manual reconstruction fallback and one-shot confirmation",
+    "auto convergence guard: goal inheritance, stop-on-stall, interruption, convergence evidence and no bypass of contract/publish/archive gates",
+    "hook and failure-injection tests: queue failure, stale lock, owner mismatch, manual retry, no-new-turn timeout, cancel and success-no-resume"
+  ],
+  "p2": [
+    "research-notes evidence-index and handoff convention",
+    "phys-model dimensional/symmetry/conservation/limit/error-budget gates",
+    "team heartbeat, health-check, local re-dispatch and integration sampling",
+    "review feedback verification and technical rebuttal closure",
+    "up capability comparison matrix, skill-table/interop checks and one-candidate self-evolution",
+    "cross-platform field normalization in existing ledger without importing configure data/runs layout"
+  ],
+  "rejected_or_deferred": [
+    "configure/data/runs/<run-id> as a muIon-beam storage layout: conflicts with Gitee-pull continuity and current canonical paths",
+    "configure launcher defaults and shell deployment: machine-specific and outside research workflow scope",
+    "external plugin installers, hooks and launchers: not executed or copied",
+    "Codex native UI extension: unnecessary for first visibility layer and not required for the derived status presenter",
+    "automatic model fallback on capacity errors: user selected original-model preservation",
+    "treating configure's completion/convergence as a scientific verdict: rejected by research contract boundary"
+  ],
+  "tests": [
+    {"name": "source-pin", "result": "pass", "detail": "git ls-remote returned 5b98575eaa89aae11e60379585797e3ce7b7a67d"},
+    {"name": "license", "result": "pass", "detail": "Gitee UI and LICENSE identify MIT"},
+    {"name": "read-only-inspection", "result": "pass", "detail": "skills/runtime/hooks/data/tools/plugins/docs inspected through pinned public source views"},
+    {"name": "external-behavior-tests", "result": "not-run", "detail": "foreign shell launchers/hooks were not executed"}
+  ],
+  "decision": "reference-study-complete; no implementation adoption in this turn",
+  "next_adoption_gate": "future explicit implementation turn with bounded P1 scope and preserved muIon-beam canonical layout"
+}

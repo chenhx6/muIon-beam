@@ -77,5 +77,7 @@
     ,"ralplan": "node .codex/skills/muion-project/scripts/consensus-plan.mjs"
     ,"ultragoal": "node .codex/skills/muion-project/scripts/ultragoal.mjs"
     ,"ultraqa": "node .codex/skills/muion-project/scripts/ultraqa.mjs"
+    ,"research-dashboard": "node 11_tools/research-dashboard/server.mjs"
+    ,"test:dashboard": "node --test tests/research-dashboard.test.mjs"
   }
 }

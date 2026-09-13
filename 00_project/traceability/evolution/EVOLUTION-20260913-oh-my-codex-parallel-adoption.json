@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "evolution_id": "EVOLUTION-20260913-oh-my-codex-parallel-adoption",
+  "recorded_at": "2026-09-13",
+  "trigger": "user-explicit-parallel-session-maintenance",
+  "status": "adopted-thin-adapter",
+  "sources": [
+    {
+      "url": "https://github.com/Yeachan-Heo/oh-my-codex",
+      "ref": "v0.21.4",
+      "commit": "304fb3b4825c4132c273732b14d2d5e86b54f8e3",
+      "license": "MIT",
+      "adopted_ideas": ["default dedicated worktree", "versioned task claim", "claim token", "serialized integration", "canonical shared state root"],
+      "copied_external_code": false
+    },
+    {
+      "url": "https://github.com/jellologic/claude-fleet",
+      "ref": "main at inspected revision",
+      "commit": "453d58376ec5b5dd5901092042ee31f60b401d0b",
+      "license": "MIT",
+      "adopted_ideas": ["disjointness as a precondition", "serial worktree creation", "sequential merge gate", "preserve crashed work until clean check"],
+      "copied_external_code": false
+    }
+  ],
+  "study_cache": {
+    "root": "_work/cache/evolution",
+    "pinned_checkouts": [
+      "oh-my-codex-v0.21.4-full@304fb3b4825c4132c273732b14d2d5e86b54f8e3",
+      "claude-fleet-453d583@453d58376ec5b5dd5901092042ee31f60b401d0b"
+    ],
+    "selected_file_hashes": [
+      {"path": "oh-my-codex-v0.21.4-full/LICENSE", "sha256": "493B03C611B93C0C081E298E511086E6FC84D6056B56B7B2DC99B3EA9C928E8F"},
+      {"path": "oh-my-codex-v0.21.4-full/src/team/worktree.ts", "sha256": "E9692C29D0BCF14AADA44A57BACAB37F288F0756DBB0034AAA907A7F6795E6D7"},
+      {"path": "oh-my-codex-v0.21.4-full/src/team/state/locks.ts", "sha256": "540C2E89D271B171602C031FC63ED1E6856C5342E8497788D8F4484AF8F7FC45"},
+      {"path": "claude-fleet-453d583/README.md", "sha256": "2E23A68E296365A1A003DCF4425C1FA8471BF7F8BCF7CD94049C0677F933DA21"},
+      {"path": "claude-fleet-453d583/LICENSE", "sha256": "8D67B7D48ADA46BB4FA5EED1B2B37E7E9C1C437A2C88527A4012C46A3A011775"}
+    ]
+  },
+  "implementation": {
+    "files": [
+      ".codex/skills/team/scripts/session-concurrency.mjs",
+      ".codex/skills/team/scripts/dispatch-manifest.mjs",
+      ".codex/skills/muion-project/scripts/begin-task.mjs",
+      ".codex/skills/muion-project/scripts/auto-commit-push.mjs",
+      ".codex/skills/muion-project/scripts/task-close.mjs",
+      ".codex/skills/muion-project/scripts/workflow-ownership.mjs",
+      "tests/session-concurrency.test.mjs",
+      "00_project/config/parallel-session-policy.json",
+      "00_project/decisions/ADR-004-parallel-session-isolation.md"
+    ],
+    "mode": "extend",
+    "runtime": "Node project-local adapter",
+    "scientific_state_unchanged": true
+  },
+  "not_adopted": [
+    "oh-my-codex launcher, tmux runtime and external provider runtime",
+    "claude-fleet shell installer and GitHub issue/PR automation",
+    "OS sandbox claims for arbitrary subprocess writes",
+    "automatic ours/theirs conflict resolution",
+    "remote claim refs and external service dependencies"
+  ],
+  "tests": [
+    "node --test tests/session-concurrency.test.mjs",
+    "node --test tests/team-dispatch.test.mjs tests/workflow-ownership.test.mjs tests/task-close.test.mjs",
+    "node --test tests/external-lib.test.mjs"
+  ],
+  "remaining_risk": [
+    "Codex Desktop runtime does not automatically force every session into this adapter",
+    "OS-level sandboxing of arbitrary child-process writes is not available in this Node layer",
+    "leader integration still requires a clean leader checkout"
+  ]
+}

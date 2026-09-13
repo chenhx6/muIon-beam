@@ -5,7 +5,21 @@ import path from 'node:path';
 const ROLES = new Set(['architect', 'critic', 'physics-reviewer', 'executor', 'researcher', 'qa', 'reporter', 'archivist', 'leader']);
 const LIFECYCLE = ['planned', 'validated', 'ready', 'running', 'retrying', 'succeeded', 'failed', 'cancelled', 'blocked'];
 const asArray = (value) => Array.isArray(value) ? value : value == null ? [] : [value];
-const clean = (value) => String(value || '').replaceAll('\\', '/').replace(/^\.\//, '');
+function clean(value) {
+  let normalized = String(value || '').replaceAll('\\', '/').replace(/^\.\//, '');
+  // Dispatch paths are repository-relative.  Normalize lexical aliases before
+  // comparing them so Windows case-insensitivity and `src/../file` cannot hide
+  // a writer collision.  Keep glob stars intact while normalizing segments.
+  normalized = normalized.split('/').filter(Boolean).join('/');
+  const parts = [];
+  for (const part of normalized.split('/')) {
+    if (part === '.') continue;
+    if (part === '..') { if (parts.length) parts.pop(); continue; }
+    parts.push(part);
+  }
+  normalized = parts.join('/');
+  return normalized.toLowerCase();
+}
 
 function pathPatternMatches(a, b) {
   const left = clean(a).replace(/\*\*/g, '*'); const right = clean(b).replace(/\*\*/g, '*');
@@ -27,8 +41,8 @@ function permissionsFor(task) {
 }
 
 function taskConflict(a, b) {
-  if (overlaps(a.owns || a.writes, b.owns || b.writes)) return 'writer ownership overlap';
   const aWrites = [...asArray(a.owns), ...asArray(a.writes)]; const bWrites = [...asArray(b.owns), ...asArray(b.writes)];
+  if (overlaps(aWrites, bWrites)) return 'writer ownership overlap';
   if (overlaps(aWrites, b.reads) || overlaps(bWrites, a.reads)) {
     const frozen = new Set([...asArray(a.frozen_inputs), ...asArray(b.frozen_inputs)].map(clean));
     const reads = [...asArray(a.reads), ...asArray(b.reads)];
@@ -56,6 +70,7 @@ export function validateDispatchManifest(manifest, options = {}) {
   }
   const completed = new Set(options.completed_ids || []); const byId = new Map(tasks.map((task) => [task.task_id, task]));
   const statuses = new Map(tasks.map((task) => [task.task_id, completed.has(task.task_id) ? 'succeeded' : 'planned']));
+  const limit = manifest?.policy?.max_concurrency || manifest?.policy?.default_concurrency || options.max_concurrency || 2;
   const waves = [];
   let remaining = new Set(tasks.filter((task) => !completed.has(task.task_id)).map((task) => task.task_id));
   while (remaining.size) {
@@ -63,16 +78,19 @@ export function validateDispatchManifest(manifest, options = {}) {
     if (!ready.length) { errors.push('dependency cycle or unresolved dependency prevents a ready wave'); for (const id of remaining) statuses.set(id, 'blocked'); break; }
     const wave = []; const blocked = new Set();
     for (const task of ready) {
+      if (wave.length >= limit) {
+        blocked.add(task.task_id);
+        warnings.push(`${task.task_id} serialized after current wave: concurrency limit`);
+        continue;
+      }
       const conflict = wave.map((other) => ({ other, reason: taskConflict(task, other) })).find((item) => item.reason);
       if (conflict) { blocked.add(task.task_id); warnings.push(`${task.task_id} serialized after ${conflict.other.task_id}: ${conflict.reason}`); }
       else wave.push(task);
     }
-    if (wave.length) { waves.push(wave.map((task) => task.task_id)); for (const task of wave) { statuses.set(task.task_id, 'ready'); remaining.delete(task.task_id); } }
+    if (wave.length) { waves.push(wave.map((task) => task.task_id)); for (const task of wave) { statuses.set(task.task_id, 'ready'); remaining.delete(task.task_id); completed.add(task.task_id); } }
     if (blocked.size && !wave.length) { const [first] = blocked; waves.push([first]); statuses.set(first, 'ready'); remaining.delete(first); }
-    for (const task of wave) completed.add(task.task_id);
   }
   for (const task of tasks) if (statuses.get(task.task_id) === 'planned' && !completed.has(task.task_id)) statuses.set(task.task_id, 'blocked');
-  const limit = manifest?.policy?.max_concurrency || manifest?.policy?.default_concurrency || options.max_concurrency || 2;
   if (limit < 1) errors.push('concurrency limit must be positive');
   return { valid: errors.length === 0, errors, warnings, waves: waves.map((wave) => wave.slice(0, limit)), statuses: Object.fromEntries(statuses), permissions: Object.fromEntries(tasks.map((task) => [task.task_id, permissionsFor(task)])) };
 }

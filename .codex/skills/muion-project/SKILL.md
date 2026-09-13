@@ -58,7 +58,7 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `consensus-plan`: require ordered Architect and Critic evidence before execution (`ralplan` is the compatibility alias).
 - `autopilot`: supervise the complete restartable chain through execution, review, QA, report, tag and synchronization.
 - `ultragoal`: maintain durable goals and checkpoints in the workflow ledger.
-- `team`: dispatch isolated sub-agent lanes using runtime model discovery.
+- `team`: dispatch isolated sub-agent lanes using runtime model discovery and the project session/worktree boundary.
 - `physics-review`: check dimensions, boundaries, conservation, ranges and interpretation.
 - `ultraqa`: run project, traceability, physics and report gates and write machine-readable QA evidence.
 - `best-practice-research`: gather cited upstream evidence before architecture decisions.
@@ -67,7 +67,7 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `farmer`: ensure the project-local Codex Desktop session supervisor is running.
 - `evolution`: manual-only discovery and safe incremental adoption of external skills and scripts.
 - `auto-publish`: after validation, automatically commit and push only task-owned files; result tags require finalized reports and verified Drive/three-end state.
-- `task:begin` / `task:status` / `task:close` / `task:retry`: manage the delivery gate and pending outbox.
+- `task:begin` / `task:status` / `task:close` / `task:retry`: manage the delivery gate and pending outbox. For parallel writers use `.codex/skills/team/scripts/session-concurrency.mjs`; do not share the default checkout without an explicit `shared-write` session.
 
 Read only the relevant reference file for the selected mode. Do not load every reference by default.
 
@@ -75,7 +75,7 @@ Read only the relevant reference file for the selected mode. Do not load every r
 
 When a task is opened inside `D:\\muIon-beam`, ensure `farmer:ensure` has run, recover task-required tools through the project toolchain recovery when needed, and read lightweight project status. The workflow may select other modes automatically as the task moves through phases; users do not need to invoke each phase separately. Autopilot persists its phase and handoff artifacts under the canonical research-state control path and resumes from the last committed checkpoint. The startup intake is the only ordinary user-question phase; later gates either continue automatically or record a blocker. `evolution` is manual-only and must never be started by ordinary project work.
 
-At task start, record the Git baseline with `begin-task.mjs`. After task-owned changes pass validation, run `auto-commit-push.mjs --baseline <baseline>`; it refuses pre-existing user changes, protected model/output paths and missing baselines. Create an annotated result tag only after the report, Drive receipt and three-end audit are verified, and generate its Chinese note automatically.
+At task start, record the Git baseline with `begin-task.mjs`. New parallel writers must use a private session baseline and worktree; legacy no-flag `begin-task.mjs` is a whole-checkout shared writer and is serialized by a claim. After task-owned changes pass validation, run `auto-commit-push.mjs --session-id <session_id>` for a worker checkpoint or `auto-commit-push.mjs --baseline <baseline>` for the leader delivery path. The delivery path is locked and stages only its candidates. Create an annotated result tag only after the report, Drive receipt and three-end audit are verified, and generate its Chinese note automatically.
 
 Project assets that make a clone restartable (rules, skills, scripts, schemas, templates, task/model/run manifests, reports, indexes, milestone records and lightweight result files) are Gitee durable assets and must also be present in the matching Drive project snapshot. Local baselines, locks, session state, caches, generated smoke environments and unverified outboxes remain local.
 

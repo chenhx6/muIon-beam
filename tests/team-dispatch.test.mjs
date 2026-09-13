@@ -23,6 +23,13 @@ test('independent writers form one ready wave while overlap is rejected for the 
   assert.equal(overlaps(['src/a/**'], ['src/a/file.js']), true);
 });
 
+test('writer claims include owns and writes, normalize Windows aliases, and honor concurrency limits', () => {
+  const alias = validateDispatchManifest({ dispatch_id: 'alias', tasks: [task({ task_id: 'a', owns: [], writes: ['package.json'] }), task({ task_id: 'b', owns: [], writes: ['PACKAGE.JSON'] })] });
+  assert.equal(alias.waves.length, 2); assert.ok(alias.warnings.some((item) => item.includes('writer ownership overlap')));
+  const bounded = validateDispatchManifest({ dispatch_id: 'bounded', policy: { max_concurrency: 1 }, tasks: [task({ task_id: 'a', owns: ['a.txt'] }), task({ task_id: 'b', owns: ['b.txt'] }), task({ task_id: 'c', owns: ['c.txt'] })] });
+  assert.deepEqual(bounded.waves, [['a'], ['b'], ['c']]);
+});
+
 test('mutable read/write and exclusive resource conflicts are serialized; frozen input is safe', () => {
   const writer = task({ task_id: 'writer', owns: ['input.json'], resources: ['comsol-session'] });
   const reader = task({ task_id: 'reader', reads: ['input.json'], resources: ['comsol-session'] });

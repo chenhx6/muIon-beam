@@ -43,6 +43,18 @@
 
 工作流阶段由项目 skill 自动衔接；只有需要主动发现和吸收外部能力时才调用 evolution。常用检查命令包括 farmer:status、farmer:once、test:agent-routing 和 test:evolution。
 
+## 并行 session
+
+项目采用独立 Git worktree、路径 claim 和 leader 集成门来支持多个 session。写任务默认使用
+`codex/session/<session_id>` 分支和 `_work/current/worktrees/<session_id>`，同一文件或目录的
+active claim 会在启动前拒绝；不同 claim 可以并行运行。只读分析使用 `shared-read`，旧的单
+checkout 写流程只能显式使用 `shared-write`，没有声明 ownership 的 writer 会锁定整个 checkout。
+
+入口是 `node .codex/skills/team/scripts/session-concurrency.mjs begin|check|heartbeat|submit|integrate|close|reap|status`。
+worker 只在自己的分支上 checkpoint，leader 在 `leader-integration` 和 `leader-delivery` 锁下集成、
+测试、提交和发布。冲突会保留 worktree 与分支，写入 blocked receipt，不使用自动覆盖策略。详细
+决策见 [`ADR-004`](00_project/decisions/ADR-004-parallel-session-isolation.md)。
+
 项目级可恢复编排使用 `npm run autopilot`。它在启动阶段完成一次性 intake，随后按
 `deep-interview -> consensus-plan/ralplan -> preflight -> snapshot -> contract ->
 execute -> validate -> report -> ultraqa -> archive -> close` 自动推进。阶段账本位于

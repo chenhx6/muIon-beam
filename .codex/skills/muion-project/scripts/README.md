@@ -45,3 +45,22 @@ node .codex/skills/muion-project/scripts/autopilot.mjs resume --workflow-run-id 
 
 工作流账本写入 `07_research_system/control/research-state/workflows/`，`state.yaml`
 仍是当前状态唯一事实源；`_work/current/` 只保留临时执行输出和兼容镜像。
+
+## 并行 session 与文件隔离
+
+写任务使用项目自己的 session 边界，不直接共用默认 checkout：
+
+```powershell
+node .codex/skills/team/scripts/session-concurrency.mjs begin --project-root D:\muIon-beam --session-id geometry-a --task-id TASK-GEOMETRY --owned-path 07_research_system/blocks/3d/**
+node .codex/skills/team/scripts/session-concurrency.mjs check --project-root D:\muIon-beam --session-id geometry-a
+node .codex/skills/muion-project/scripts/auto-commit-push.mjs --project-root D:\muIon-beam --session-id geometry-a --message "checkpoint geometry"
+node .codex/skills/team/scripts/session-concurrency.mjs integrate --project-root D:\muIon-beam --session-id geometry-a
+```
+
+`begin` 会创建 `_work/current/worktrees/<session_id>` 和
+`codex/session/<session_id>`，并在中央 runtime registry 记录私有 baseline、
+heartbeat 和路径 claim。两个 active session 的 claim 重叠时会在启动前拒绝；
+没有声明路径的 writer 自动得到整个 checkout 的 claim。`shared-read` 允许并行
+读取，`shared-write` 只用于 legacy 单 writer 兼容路径。worker checkpoint 不会
+推送 `main`，leader 需要在干净 checkout 中执行锁定的集成步骤。脏 worktree、越权
+路径和合并冲突都会保留现场并阻塞该 session，不自动覆盖文件。

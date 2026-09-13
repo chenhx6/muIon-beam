@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "default_write_mode": "worktree",
+  "shared_write_mode": "explicit-only",
+  "claim_policy": "refuse-overlap",
+  "worktree_root": "_work/current/worktrees",
+  "session_state_root": "_work/current/concurrency",
+  "branch_prefix": "codex/session/",
+  "worktree_creation": "serialized",
+  "worker_execution": "parallel-when-claims-are-disjoint",
+  "leader_integration": "serialized-under-leader-integration-lock",
+  "delivery": "leader-only-under-leader-delivery-lock",
+  "conflict_policy": "preserve-work-and-block",
+  "stale_recovery": "reap-only-after-expired-lease-and-clean-worktree-check",
+  "scientific_state_authority": "07_research_system/control/research-state/state.yaml",
+  "notes": [
+    "A session without declared owned paths receives a whole-workspace claim.",
+    "Shared-write sessions are for legacy compatibility and cannot run beside another writer.",
+    "The Node layer cannot sandbox arbitrary subprocess writes; worktree and claim checks are mandatory protocol gates."
+  ]
+}

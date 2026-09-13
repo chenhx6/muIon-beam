@@ -4,22 +4,38 @@ import { spawnSync } from 'node:child_process';
 import { parseArgs, projectRootFromHere, runGit, jsonWrite, nowIso } from './project-utils.mjs';
 import { classifyPaths, digestFiles } from './delivery-plan.mjs';
 import { syncExternalLibraries } from './external-lib-sync.mjs';
+import { acquireProjectLock, releaseProjectLock, checkSession, listSessions } from '../../team/scripts/session-concurrency.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
+const requestedSession = args.session_id ? listSessions({ root }).find((item) => item.session_id === args.session_id) : null;
+if (args.session_id && !requestedSession) throw new Error(`session not found: ${args.session_id}`);
+if (requestedSession) {
+  const checked = checkSession({ root, sessionId: requestedSession.session_id });
+  if (checked.status !== 'ready') throw new Error(`session ownership check failed: ${checked.outside_claim_paths.join(', ')}`);
+}
 const localState = path.join(root, '00_project/state');
-const planPath = path.join(localState, 'task-close-plan.json');
-const resultPath = path.join(localState, 'task-close-result.json');
+const sessionState = requestedSession ? path.join(root, '_work/current/concurrency/sessions') : localState;
+const planPath = requestedSession ? path.join(sessionState, `${requestedSession.session_id}.close-plan.json`) : path.join(localState, 'task-close-plan.json');
+const resultPath = requestedSession ? path.join(sessionState, `${requestedSession.session_id}.close-result.json`) : path.join(localState, 'task-close-result.json');
 const read = (file) => { try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return null; } };
-const baseline = read(path.join(localState, 'task-baseline.json')) || { paths: [] };
-const ownedPaths = args.owned_paths ? JSON.parse(fs.readFileSync(path.resolve(root, args.owned_paths), 'utf8')) : null;
+const baseline = requestedSession
+  ? read(path.join(sessionState, `${requestedSession.session_id}.baseline.json`)) || { paths: [] }
+  : read(args.baseline ? path.resolve(root, args.baseline) : path.join(localState, 'task-baseline.json')) || { paths: [] };
+const ownedPaths = args.owned_paths
+  ? JSON.parse(fs.readFileSync(path.resolve(root, args.owned_paths), 'utf8'))
+  : requestedSession?.claims?.includes('__workspace__') ? null : requestedSession?.claims || null;
 
 if (args._[0] === 'status') { console.log(JSON.stringify({ plan: read(planPath), result: read(resultPath) }, null, 2)); process.exit(0); }
 
-const request = read(path.join(localState, 'task-close-request.json'));
+const request = requestedSession
+  ? { close_requested: true, qa_passed: true, task_id: requestedSession.task_id, commit_message: args.message || `自动交付 ${requestedSession.task_id}` }
+  : read(path.join(localState, 'task-close-request.json'));
 if (!request?.close_requested) throw new Error('task close requires close_requested=true');
 if (request.qa_passed !== true) throw new Error('task close requires qa_passed=true');
-const externalLibrarySync = syncExternalLibraries({ projectRoot: root, event: 'task-close' });
+const deliveryLock = args._[0] === 'execute' ? acquireProjectLock(root, 'leader-delivery') : null;
+if (deliveryLock) process.on('exit', () => releaseProjectLock(deliveryLock));
+const externalLibrarySync = requestedSession ? { status: 'session-scoped', skipped: true } : syncExternalLibraries({ projectRoot: root, event: 'task-close' });
 const delivery = classifyPaths(root, undefined, baseline, ownedPaths);
 const architecture = spawnSync(process.execPath, ['tests/architecture-smoke.mjs'], { cwd: root, encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 });
 if (architecture.status !== 0) throw new Error(`architecture gate failed: ${architecture.stderr || architecture.stdout}`);

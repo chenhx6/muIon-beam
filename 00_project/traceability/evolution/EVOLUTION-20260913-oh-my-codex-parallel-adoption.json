@@ -10,7 +10,7 @@
       "ref": "v0.21.4",
       "commit": "304fb3b4825c4132c273732b14d2d5e86b54f8e3",
       "license": "MIT",
-      "adopted_ideas": ["default dedicated worktree", "versioned task claim", "claim token", "serialized integration", "canonical shared state root"],
+      "adopted_ideas": ["default dedicated worktree", "session owner token and lease", "serialized integration", "canonical shared state root"],
       "copied_external_code": false
     },
     {
@@ -67,6 +67,7 @@
   "remaining_risk": [
     "Codex Desktop runtime does not automatically force every session into this adapter",
     "OS-level sandboxing of arbitrary child-process writes is not available in this Node layer",
-    "leader integration still requires a clean leader checkout"
+    "leader integration still requires a clean leader checkout",
+    "task-level expected-version queue claims remain a later extension"
   ]
 }

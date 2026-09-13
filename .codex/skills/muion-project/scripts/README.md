@@ -51,7 +51,7 @@ node .codex/skills/muion-project/scripts/autopilot.mjs resume --workflow-run-id 
 写任务使用项目自己的 session 边界，不直接共用默认 checkout：
 
 ```powershell
-node .codex/skills/team/scripts/session-concurrency.mjs begin --project-root D:\muIon-beam --session-id geometry-a --task-id TASK-GEOMETRY --owned-path 07_research_system/blocks/3d/**
+node .codex/skills/team/scripts/session-concurrency.mjs begin --project-root D:\muIon-beam --session-id geometry-a --task-id TASK-GEOMETRY --owned-path '07_research_system/blocks/3d/**'
 node .codex/skills/team/scripts/session-concurrency.mjs check --project-root D:\muIon-beam --session-id geometry-a
 node .codex/skills/muion-project/scripts/auto-commit-push.mjs --project-root D:\muIon-beam --session-id geometry-a --message "checkpoint geometry"
 node .codex/skills/team/scripts/session-concurrency.mjs integrate --project-root D:\muIon-beam --session-id geometry-a

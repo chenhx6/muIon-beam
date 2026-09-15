@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260915-muion-beam-cultivation-model",
+  "recorded_at": "2026-09-15T12:39:44.487Z",
+  "status": "recorded",
+  "polarity": "positive",
+  "category": "project-governance",
+  "title": "将 muIon-beam 按可培养科研同事建设",
+  "observation": "用户明确把 muIon-beam 视为由文件架构、脚本、skill、工具和通用大模型共同组成的可持续科研实体；文件架构承担记忆，模型承担当前推理，行为与结果通过经验档案积累并推动改进。",
+  "evidence": [
+    "本轮用户关于培养方式、文件架构、行为档案和经验继承的明确要求",
+    "00_project/traceability/experiences/README.md 的追加式经验规则",
+    "00_project/decisions/ADR-005-muion-beam-cultivation-and-modular-supervisor.md"
+  ],
+  "impact": [
+    "后续设计默认采用模块化、可追溯、可复盘和经验驱动的工作方式",
+    "监督器必须汇总 branch/session 的问题、阻塞、成功和下一步",
+    "普通自动化不得绕过科研状态、Manifest 和三端恢复边界"
+  ],
+  "reusable_value": "把 muIon-beam 当作需要长期培养的科研同事：事实先记录，失败保留，经验追加，规则由证据推动演进；supervisor 负责协作，不吞并各模块职责。",
+  "actions": [
+    "记录为 ADR-005 长期设计理念",
+    "将经验、阻塞和 checkpoint 纳入自动 supervisor 规划",
+    "后续同类任务自动查阅经验汇总"
+  ],
+  "tags": [
+    "muIon-beam",
+    "cultivation",
+    "experience",
+    "modularity",
+    "traceability"
+  ],
+  "related_paths": [
+    "AGENTS.md",
+    ".codex/skills/muion-project/SKILL.md",
+    ".codex/skills/team/SKILL.md",
+    "00_project/traceability/experiences/README.md"
+  ],
+  "related_commits": []
+}

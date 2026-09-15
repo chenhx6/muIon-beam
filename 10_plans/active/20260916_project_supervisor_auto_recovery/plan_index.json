@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "plan_id": "plan_project_supervisor_auto_recovery",
+  "plan_version": "v01",
+  "status": "planning",
+  "task_id": "task_project_supervisor_auto_recovery_001",
+  "objective": "自动触发除 evolution 外的全部项目能力，建立模块化 ProjectSupervisor、并行 session 隔离、结果归位、经验复盘和三端恢复链。",
+  "current_phase": "P0-contract-freeze",
+  "next_action": "review-plan-and-freeze-contracts",
+  "plan_files": ["plan_v01.md", "plan_v01.json", "decision_log.md"],
+  "handoff_directory": "handoffs",
+  "drive_cleanup": "deferred-copy-only-reorganization",
+  "evolution_policy": "manual-only"
+}

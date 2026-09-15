@@ -1,0 +1,95 @@
+{
+  "manifest_id": "task_project_supervisor_auto_recovery_001",
+  "manifest_type": "task",
+  "schema_version": "1.0.0",
+  "task_id": "task_project_supervisor_auto_recovery_001",
+  "task_name": "建立模块化自动监督、并行 session 与三端恢复体系",
+  "source_type": "user_request",
+  "requested_by": "user",
+  "objective_zh": "在不依赖用户手动触发脚本或 skill 的前提下，建立模块化 ProjectSupervisor，自动启动和监督 farmer、dashboard、session、并行 worker、结果归位、经验记录、Gitee 重建核心和 Google Drive 恢复档案；evolution 保持唯一人工采用边界。",
+  "physical_object": "muIon-beam 科研实体的自动运行、并行协作、长期记忆和三端恢复基础设施",
+  "initial_conditions": [
+    "D:\\muIon 已删除",
+    "C:\\AAA\\muIon 已删除",
+    "D:\\muIon-beam 是唯一当前工作区",
+    "farmer 当前可监督 session 并恢复 allowlisted transient failure",
+    "research-dashboard 当前是独立 Node server，尚未接入自动启动",
+    "session-concurrency 已具备 worktree、path claim、lease 和 leader integration 基础",
+    "Gitee 保存项目可重建核心；Google Drive 保存完整项目快照和大型运行档案",
+    "Google Drive 现有归档先保留，重整采用 copy-only 和 SHA256 验证"
+  ],
+  "scope": [
+    "AGENTS 与 active ADR 规则收口",
+    "模块化 ProjectSupervisor/ProcessSupervisor/SessionBootstrapper/DispatchPlanner/WorkerRuntime/ArtifactPromoter/ProgressAggregator/SyncCoordinator/ExperienceRecorder 接口",
+    "非-evolution 项目任务的自动触发链",
+    "自动 session worktree、claim、lease、checkpoint、恢复和 leader 集成",
+    "未登记输出队列、分支进度汇总和经验继承",
+    "Gitee Recovery Core 与可选卫星仓库的容量评估",
+    "Google Drive canonical layout、recovery index 和 copy-only 重整计划"
+  ],
+  "out_of_scope": [
+    "evolution 候选自动采用或底层规则静默修改",
+    "改变科研目标、物理模型、冻结 contract 或正式运行成功判据",
+    "本任务阶段直接删除或覆盖 Google Drive 历史档案",
+    "没有证据的自动模型切换",
+    "将 farmer 扩展为 dashboard、任务调度或发布器",
+    "在没有 Windows 宿主能力验证前宣称 OS 级子进程 sandbox 已完成"
+  ],
+  "automatic_policy": {
+    "user_actions": ["提出目标", "回答项目必须的科研 intake", "决定是否采用 evolution 候选"],
+    "automatic_actions": ["farmer ensure", "dashboard ensure/health", "session bootstrap", "worktree provisioning", "dispatch", "heartbeat", "checkpoint", "recovery", "artifact promotion", "progress aggregation", "experience recording", "QA", "Gitee delivery", "Drive archive", "three-end audit"],
+    "evolution_exception": "only evolution requires explicit user adoption decision"
+  },
+  "success_criteria": [
+    "用户不运行任何非-evolution 脚本或 skill",
+    "项目任务进入时自动识别 session、启动/复用 farmer 和 dashboard，并将 dashboard health 纳入状态",
+    "所有写任务默认进入独立 worktree；多个不相交任务自动并行",
+    "并行性无法判断时仍使用独立 worktree，并由 leader 串行集成",
+    "farmer 只处理可恢复中断并继续原 task/session，不能承担其他模块职责",
+    "同一文件、目录、资源、task 或不可兼容接口的竞争有明确阻塞或集成状态",
+    "未登记输出不会丢失，能够进入分类、提升、归档或保留阻塞队列",
+    "总进度按 session、branch、task、artifact、问题和下一步汇总全部分支",
+    "Gitee Recovery Core 可在不访问 Drive 的情况下重建项目规则、脚本、skill、Manifest、报告、索引和新任务入口",
+    "Google Drive 形成可校验的项目快照、运行归档和 recovery index，旧归档清理前保留唯一内容",
+    "research-state/state.yaml 仍是唯一科研状态源",
+    "所有自动模块具备结构测试、行为测试、并发测试、崩溃恢复测试和可重建证据"
+  ],
+  "failure_criteria": [
+    "任何普通任务要求用户手动运行脚本才能继续",
+    "worker 直接写入共享 main checkout 或绕过 session claim",
+    "farmer、dashboard、dispatch、同步或经验职责重新耦合到一个大脚本",
+    "未登记输出被删除、覆盖或从总进度中隐藏",
+    "Gitee 或 Drive 被宣称已恢复但缺少 commit、Manifest、数量或 SHA256 证据",
+    "自动流程修改科研目标、冻结 contract 或唯一原始数据"
+  ],
+  "expected_outputs": [
+    "active ADR index and corrected AGENTS summary",
+    "ProjectSupervisor component contracts and automatic trigger adapter",
+    "session/worker/artifact/progress/sync recovery schemas",
+    "automatic dashboard/farmer health and session bootstrap",
+    "parallel execution and leader integration evidence",
+    "unregistered artifact and branch progress triage records",
+    "Gitee recovery-core inventory and optional satellite repository plan",
+    "Drive reorganization manifest and recovery index",
+    "positive/negative/neutral experience records and summaries",
+    "concise and detailed Chinese implementation report"
+  ],
+  "delivery_requirement": {
+    "gitee": "auto",
+    "drive": "auto-after-verified-snapshot",
+    "audit": "auto",
+    "result_tag": "not applicable until formal infrastructure acceptance"
+  },
+  "user_confirmation": {
+    "task_scope": "confirmed-by-user",
+    "gitee_recovery_without_drive": "design-confirmed; capacity and exact binary coverage remain to be measured",
+    "drive_cleanup": "not yet authorized for deletion; copy-only reorganization first",
+    "evolution": "manual-only"
+  },
+  "related_decisions": [
+    "00_project/decisions/ADR-003-triggering-and-readiness.md",
+    "00_project/decisions/ADR-004-parallel-session-isolation.md",
+    "00_project/decisions/ADR-005-muion-beam-cultivation-and-modular-supervisor.md",
+    "00_project/decisions/ADR-006-three-end-reconstruction-contract.md"
+  ]
+}

@@ -5,8 +5,8 @@
 ## 当前边界
 
 - 新项目工作区：`D:\muIon-beam`
-- 旧工作区：`D:\muIon`，已完成任务，按精选规则 copy-only 迁移并保留原件
-- 已废弃工作区：`C:\AAA\muIon`
+- 旧工作区：`D:\muIon`，已由用户删除；`90_migration/` 只保留历史迁移事实，不再作为输入
+- 已删除工作区：`C:\AAA\muIon`，不得重建或作为输入输出位置
 - Gitee：`https://gitee.com/chx6/muIon-beam.git`
 - Google Drive：`H:\我的云端硬盘\muIon_archive`
 
@@ -36,18 +36,15 @@
 
 ## 自动工作流入口
 
-进入本项目任务时，项目会幂等确保 farmer 监督进程运行。可使用：
+自动化契约要求任务入口按需完成 farmer、session bootstrap、workflow skill 和健康检查，用户不承担手动运行脚本的步骤。ProjectSupervisor 已提供幂等服务启动、5 秒健康检查、session 私有 worktree 和恢复绑定；智能体按 AGENTS 自动调用入口。项目 SessionStart/UserPromptSubmit hooks 已配置，宿主信任和新任务端到端验收仍单独跟踪。dashboard 位于 `http://127.0.0.1:4317`，服务和分支状态独立显示。结果归位、自动完成门和 Drive 重整继续按 P3/P4 推进。只有主动发现和吸收外部能力时才由用户显式触发 evolution。
 
-    node .codex/skills/farmer/farmer.mjs ensure
-    node .codex/skills/muion-project/scripts/up.mjs .
-
-工作流阶段由项目 skill 自动衔接；只有需要主动发现和吸收外部能力时才调用 evolution。常用检查命令包括 farmer:status、farmer:once、test:agent-routing 和 test:evolution。
+运行环境和重建闭包见 [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) 与 [`00_project/config/reproducibility-environment.json`](00_project/config/reproducibility-environment.json)。
 
 ## 并行 session
 
 项目采用独立 Git worktree、路径 claim 和 leader 集成门来支持多个 session。写任务默认使用
 `codex/session/<session_id>` 分支和 `_work/current/worktrees/<session_id>`，同一文件或目录的
-active claim 会在启动前拒绝；不同 claim 可以并行运行。只读分析使用 `shared-read`，旧的单
+active claim 会在启动前拒绝；自动入口对未知独立性的任务使用双方显式登记的私有隔离模式，允许各自修改同一文件并在集成时解决冲突。不同 claim 可以并行运行。只读分析使用 `shared-read`，旧的单
 checkout 写流程只能显式使用 `shared-write`，没有声明 ownership 的 writer 会锁定整个 checkout。
 
 入口是 `node .codex/skills/team/scripts/session-concurrency.mjs begin|check|heartbeat|submit|integrate|close|reap|status`。

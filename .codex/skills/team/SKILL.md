@@ -28,6 +28,14 @@ Use `shared-read` for read-only work and `shared-write` only for legacy single-
 writer tasks. A session with no declared ownership receives a whole-workspace
 claim and cannot run beside another writer.
 
+The project SessionBootstrapper is the automatic task-entry adapter. For separate
+host sessions with unknown ownership it opts both private worktrees into
+`isolated_overlap`; edits remain physically separate and conflicts wait for the
+leader integration gate. This exception never applies to a shared checkout or
+to an explicitly claimed overlapping dispatch lane. Always use the returned
+worktree path for commands and edits; allocating it alone does not isolate a tool
+that still writes an absolute main-checkout path.
+
 `scripts/telemetry.mjs` summarizes only durable local agent-run observations:
 roles, models, families, stale use, fallback, retry, failure and correlation
 risk. Provider capacity is reported as `unknown` unless runtime metadata records

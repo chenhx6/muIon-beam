@@ -17,5 +17,6 @@
     "A session without declared owned paths receives a whole-workspace claim.",
     "Shared-write sessions are for legacy compatibility and cannot run beside another writer.",
     "The Node layer cannot sandbox arbitrary subprocess writes; worktree and claim checks are mandatory protocol gates."
-  ]
+  ],
+  "automatic_unknown_ownership": "isolated overlap only when both sessions use private worktrees and opt in; integrate serially"
 }

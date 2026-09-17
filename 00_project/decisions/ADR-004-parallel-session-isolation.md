@@ -5,8 +5,8 @@
 项目采用“独立 worktree + 路径 claim + leader 集成门”的并行模型。
 
 - 写任务默认创建 `_work/current/worktrees/<session_id>`，分配 `codex/session/<session_id>` 分支。
-- 每个写任务必须声明 `ownedPaths`；省略时自动认领整个 checkout，只允许串行。
-- active session 对重叠文件或目录 claim 直接拒绝。大小写、`..` 和 glob 别名先规范化，避免 Windows 路径别名绕过检查。
+- 显式适配器的写任务声明 `ownedPaths`；省略时默认认领整个 checkout。2026-09-17 的自动 SessionBootstrapper 对未知独立性使用 `isolated_overlap`：只有双方都是私有 worktree 且均声明这种模式，才容许重叠 claim，冲突留到串行集成门解决。
+- 有明确 ownership 的 active session 对重叠文件或目录 claim 直接拒绝。共享 checkout writer 始终不适用 overlap 例外。大小写、`..`、目录尾斜杠和 glob 别名先规范化，避免 Windows 路径别名绕过检查。
 - worktree 创建、session registry、ownership registry 和 leader integration 分别使用项目本地锁。
 - worker 只在自己的 branch 上 checkpoint；只有 leader 在 `leader-integration` 和 `leader-delivery` 锁下合并、测试、提交、推送或归档。
 - 合并冲突保留 worker worktree 和分支，写入 blocked receipt，不使用 `ours/theirs` 静默覆盖。

@@ -1,0 +1,31 @@
+{
+  "description": "muIon-beam automatic service startup and project context; no model, permission or evolution changes.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const p=require('node:path'),c=require('node:child_process');const r=c.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const x=c.spawnSync(process.execPath,[p.join(r,'11_tools/project-supervisor/hooks.mjs')],{stdio:'inherit',windowsHide:true});process.exit(x.status??1)\"",
+            "timeout": 25,
+            "statusMessage": "muIon-beam: checking farmer and dashboard",
+            "additionalContextLimit": 14000
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const p=require('node:path'),c=require('node:child_process');const r=c.execFileSync('git',['rev-parse','--show-toplevel'],{encoding:'utf8'}).trim();const x=c.spawnSync(process.execPath,[p.join(r,'11_tools/project-supervisor/hooks.mjs')],{stdio:'inherit',windowsHide:true});process.exit(x.status??1)\"",
+            "timeout": 25,
+            "additionalContextLimit": 14000
+          }
+        ]
+      }
+    ]
+  }
+}

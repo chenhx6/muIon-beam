@@ -29,7 +29,7 @@ Drive 是本地不可用时的可继续工作副本，保存：
 - 外部参考库和许可证归档；
 - 每个快照和运行的 `sync-state.json`、数量、大小和 SHA256 证据。
 
-当前根目录下已有 `project-management/project-snapshots/`、`simulation-runs/`、`external-libraries/` 和旧迁移归档。它们暂时保留；后续另开整理任务建立 canonical layout、索引和重复项迁移表，不在本规划阶段直接清理。
+当前根目录下已有 `project-management/project-snapshots/`、`simulation-runs/`、`external-libraries/` 和旧迁移归档。P4 重建允许在完成 canonical copy、去重、唯一内容确认、数量/大小/SHA256 校验和 recovery-index 写入后删除已经验证为冗余的旧目录；验证前不得删除，唯一内容不得删除。
 
 ### 本地：活动现场和可丢弃缓存
 
@@ -64,7 +64,7 @@ worktree 中的输出不能无限期停留在 `_work`：
 
 ## 当前澄清
 
-- Drive 是恢复副本和大型结果档案，不是随意堆放的临时目录；现有历史目录先保留，整理时必须有 manifest、哈希和可回滚迁移表。
+- Drive 是恢复副本和大型结果档案，不是随意堆放的临时目录；现有历史目录在 P4 校验完成前保留，整理必须有 manifest、哈希和可回滚迁移表，验证后允许删除已确认冗余的旧目录。
 - Gitee 是可重建历史，不只保存源码；规则、skill、行为档案、任务源、Manifest、报告、索引和必要结果都属于交付内容。
 - 本地 `_work` 是运行现场，不是最终结果目录，也不是唯一记忆。
 - 当前未提交工作树内容不等于已同步；自动 supervisor 以后必须在任务完成门后提交并触发三端同步，不能把脏工作树当作远端事实。

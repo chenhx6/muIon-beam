@@ -120,7 +120,7 @@ function normalizeClaimPath(root, value) {
   if (normalized === '..' || normalized.startsWith('../')) throw new Error(`owned path escapes repository: ${value}`);
   // Claims are compared case-insensitively so a Windows checkout cannot admit
   // both `Package.json` and `package.json` as independent work.
-  return normalized.toLowerCase();
+  return normalized.replace(/\/$/, '').toLowerCase();
 }
 
 function normalizeClaims(root, values) {
@@ -178,7 +178,13 @@ function currentStatus(cwd) {
 }
 
 function statusPaths(cwd) {
-  return currentStatus(cwd).map((line) => line.slice(3).replaceAll('\\', '/')).filter(Boolean);
+  const tokens = runGit(cwd, ['status', '--porcelain=v1', '-z', '--untracked-files=all']).stdout.split('\0').filter(Boolean);
+  const paths = [];
+  for (let index = 0; index < tokens.length; index++) {
+    const token = tokens[index]; paths.push(token.slice(3).replaceAll('\\', '/'));
+    if (/[RC]/.test(token.slice(0, 2))) paths.push(tokens[++index]);
+  }
+  return paths.filter(Boolean);
 }
 
 function branchInUse(repoRoot, branch) {
@@ -207,17 +213,17 @@ function hashesForPaths(cwd, claims) {
   return hashes;
 }
 
-function assertNoClaimCollision(root, sessionId, claims) {
+function assertNoClaimCollision(root, sessionId, claims, mode = null, isolatedOverlap = false) {
   const active = readClaims(root).claims.filter((claim) => claim.status === 'active' && claim.session_id !== sessionId);
-  const conflict = active.find((claim) => claimsOverlap(claim.paths, claims));
+  const conflict = active.find((claim) => claimsOverlap(claim.paths, claims) && !(mode === 'worktree' && claim.mode === 'worktree' && isolatedOverlap && claim.isolated_overlap));
   if (conflict) throw new Error(`path claim collision: ${conflict.session_id} owns ${conflict.paths.join(', ')}`);
 }
 
 function registerClaim(root, session) {
   const current = readClaims(root);
-  assertNoClaimCollision(root, session.session_id, session.claims);
+  assertNoClaimCollision(root, session.session_id, session.claims, session.mode, session.isolated_overlap);
   const retained = current.claims.filter((claim) => claim.session_id !== session.session_id);
-  retained.push({ session_id: session.session_id, task_id: session.task_id, paths: session.claims, mode: session.mode, status: 'active', updated_at: nowIso() });
+  retained.push({ session_id: session.session_id, task_id: session.task_id, paths: session.claims, mode: session.mode, isolated_overlap: Boolean(session.isolated_overlap), status: 'active', updated_at: nowIso() });
   writeClaims(root, { schema_version: SCHEMA_VERSION, claims: retained.sort((a, b) => a.session_id.localeCompare(b.session_id)) });
 }
 
@@ -226,23 +232,26 @@ function removeClaim(root, sessionId) {
   writeClaims(root, { schema_version: SCHEMA_VERSION, claims: current.claims.filter((claim) => claim.session_id !== sessionId) });
 }
 
-export function beginSession({ root = process.cwd(), sessionId = null, taskId = null, mode = 'worktree', ownedPaths = [], reads = [], leaseMs = DEFAULT_LEASE_MS, allowDirtyShared = false } = {}) {
+export function beginSession({ root = process.cwd(), sessionId = null, taskId = null, hostSessionId = null, mode = 'worktree', ownedPaths = [], reads = [], leaseMs = DEFAULT_LEASE_MS, allowDirtyShared = false, isolatedOverlap = false } = {}) {
   const repoRoot = repoRootFrom(path.resolve(root));
   const id = safeId(sessionId || `session-${Date.now()}-${process.pid}-${crypto.randomBytes(3).toString('hex')}`, 'session_id');
   if (!MODES.has(mode)) throw new Error(`invalid session mode: ${mode}`);
+  if (isolatedOverlap && mode !== 'worktree') throw new Error('overlap isolation requires a private worktree');
   const claims = mode === 'shared-read' ? [] : (ownedPaths.length ? normalizeClaims(repoRoot, ownedPaths) : ['__workspace__']);
   return withLock(repoRoot, 'session-registry', () => {
     const existing = readJson(sessionFile(repoRoot, id));
     if (existing?.status === 'active') {
-      if (existing.mode !== mode || JSON.stringify(existing.claims) !== JSON.stringify(claims)) throw new Error(`session already active with different ownership: ${id}`);
+      if (existing.mode !== mode || Boolean(existing.isolated_overlap) !== isolatedOverlap || JSON.stringify(existing.claims) !== JSON.stringify(claims)) throw new Error(`session already active with different ownership: ${id}`);
       return { ...existing, resumed: true, baseline_path: path.relative(repoRoot, baselineFile(repoRoot, id)).replaceAll('\\', '/') };
     }
     if (mode === 'shared-write' && !allowDirtyShared && currentStatus(repoRoot).length) throw new Error('shared-write requires a clean leader checkout; use worktree mode for dirty work');
+    assertNoClaimCollision(repoRoot, id, claims, mode, isolatedOverlap);
     const baseRef = runGit(repoRoot, ['rev-parse', 'HEAD']).stdout.trim();
     let worktreePath = repoRoot; let branch = null; let worktreeCreated = false;
     if (mode === 'worktree') ({ branch, directory: worktreePath, created: worktreeCreated } = ensureWorktree(repoRoot, id, baseRef));
     const session = {
       schema_version: SCHEMA_VERSION, session_id: id, task_id: taskId || id, mode, repo_root: repoRoot,
+      host_session_id: hostSessionId, isolated_overlap: isolatedOverlap,
       worktree_path: worktreePath, branch, base_ref: baseRef, claims, reads: normalizeClaims(repoRoot, reads),
       status: 'active', owner_token: crypto.randomUUID(), lease_until: new Date(Date.now() + leaseMs).toISOString(),
       worktree_created: worktreeCreated, created_at: nowIso(), updated_at: nowIso(),

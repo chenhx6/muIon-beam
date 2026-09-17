@@ -13,10 +13,10 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 
 ## Hard boundaries
 
-- Read the repository `AGENTS.md` before acting.
-- The legacy workspace `D:\muIon` is active again. Retain the already migrated baseline and read `00_project/decisions/legacy-source-change-decision.json` for the user's keep-original decision. Do not adopt subsequent source changes or start incremental migration until the user confirms phase completion. Preserve all source files.
+- Read the repository `AGENTS.md` and `00_project/decisions/active-adr.json` before acting; load active ADRs relevant to the task and consult related experience records.
+- The user deleted `D:\muIon` and `C:\AAA\muIon`. Do not use or recreate them. Migration manifests preserve historical facts, not live input locations or an implied successful migration acceptance. ADR-007 records the superseding decision.
 - Treat Manifest files as the source of truth. SQLite and Markdown/CSV are generated views.
-- Preserve user changes. Never reset or overwrite an unregistered model or code change.
+- Preserve user changes. During infrastructure design, prefer coherent modular refactoring over duplicate compatibility code; this does not authorize discarding unrelated edits. Prototype output cleanup follows ADR-007.
 - Before the first formal run, pause when a task-related model differs from its registered version.
 - After the user confirms the task card, continue within that task scope without asking for approval at every parameter sweep.
 
@@ -73,11 +73,18 @@ Read only the relevant reference file for the selected mode. Do not load every r
 
 ## Automatic project lifecycle
 
-When a task is opened inside `D:\\muIon-beam`, ensure `farmer:ensure` has run, recover task-required tools through the project toolchain recovery when needed, and read lightweight project status. The workflow may select other modes automatically as the task moves through phases; users do not need to invoke each phase separately. Autopilot persists its phase and handoff artifacts under the canonical research-state control path and resumes from the last committed checkpoint. The startup intake is the only ordinary user-question phase; later gates either continue automatically or record a blocker. `evolution` is manual-only and must never be started by ordinary project work.
+When a task is opened or resumed inside `D:\\muIon-beam`, automatically call `node 11_tools/project-supervisor/index.mjs enter --project-root D:\muIon-beam`. It loads active ADR context and ensures the independent farmer/dashboard services. Project SessionStart/UserPromptSubmit hooks call the same components when trusted by the host; if a hook is skipped, the agent performs this entry action without asking the user to run a script. Never modify host trust records or bypass hook review. If the entry fails, keep farmer running via its direct Node ensure command and repair the entry. Recover task-required tools through project toolchain recovery when needed. Autopilot persists workflow phases under the canonical research-state path. The startup intake is the ordinary task-question phase; subsequent gates continue or record a concrete blocker. `evolution` is manual-only.
 
 At task start, record the Git baseline with `begin-task.mjs`. New parallel writers must use a private session baseline and worktree; legacy no-flag `begin-task.mjs` is a whole-checkout shared writer and is serialized by a claim. After task-owned changes pass validation, run `auto-commit-push.mjs --session-id <session_id>` for a worker checkpoint or `auto-commit-push.mjs --baseline <baseline>` for the leader delivery path. The delivery path is locked and stages only its candidates. Create an annotated result tag only after the report, Drive receipt and three-end audit are verified, and generate its Chinese note automatically.
 
 Project assets that make a clone restartable (rules, skills, scripts, schemas, templates, task/model/run manifests, reports, indexes, milestone records and lightweight result files) are Gitee durable assets and must also be present in the matching Drive project snapshot. Local baselines, locks, session state, caches, generated smoke environments and unverified outboxes remain local.
+
+Model construction and simulation source under `02_models/` are eligible through
+the shared delivery policy, including existing Java/Python/C++ source locations.
+Generated binaries and raw output directories remain excluded. Record the full
+input/toolchain closure and a tested rebuild recipe before calling a model
+rebuildable. Use `REPRODUCIBILITY.md` and the environment manifest; a source file
+alone does not prove reconstruction or portable commercial-software licensing.
 
 ## Required project artifacts
 

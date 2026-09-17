@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260917-independent-service-supervision",
+  "recorded_at": "2026-09-17T03:48:21.882Z",
+  "status": "recorded",
+  "polarity": "positive",
+  "category": "runtime-supervision",
+  "title": "独立监督器启动并恢复 dashboard",
+  "observation": "统一 entry 启动服务并检查心跳；受控停止本任务 dashboard 后由监督器自动拉起，farmer 保持健康。",
+  "evidence": [
+    "11_tools/project-supervisor/README.md",
+    "tests/project-supervisor.test.mjs",
+    "05_reports/review/20260917_project_supervisor/detailed_report_zh.md"
+  ],
+  "impact": [
+    "用户无需运行 farmer/dashboard 启动脚本"
+  ],
+  "reusable_value": "服务健康、session 恢复和科研决策分别拥有接口与状态；真实退出恢复演练可验证启动链。",
+  "actions": [
+    "保留 hook 信任和宿主投递的待验收状态，不把 handler 测试冒充端到端验收"
+  ],
+  "tags": [],
+  "related_paths": [],
+  "related_commits": []
+}

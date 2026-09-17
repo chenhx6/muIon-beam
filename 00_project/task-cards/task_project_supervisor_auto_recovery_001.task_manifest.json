@@ -16,7 +16,7 @@
     "research-dashboard 当前是独立 Node server，尚未接入自动启动",
     "session-concurrency 已具备 worktree、path claim、lease 和 leader integration 基础",
     "Gitee 保存项目可重建核心；Google Drive 保存完整项目快照和大型运行档案",
-    "Google Drive 现有归档先保留，重整采用 copy-only 和 SHA256 验证"
+    "Google Drive 现有归档在校验前保留，P4 重整采用 copy-only、去重和 SHA256 验证，验证后允许删除已确认冗余目录"
   ],
   "scope": [
     "AGENTS 与 active ADR 规则收口",
@@ -50,7 +50,7 @@
     "未登记输出不会丢失，能够进入分类、提升、归档或保留阻塞队列",
     "总进度按 session、branch、task、artifact、问题和下一步汇总全部分支",
     "Gitee Recovery Core 可在不访问 Drive 的情况下重建项目规则、脚本、skill、Manifest、报告、索引和新任务入口",
-    "Google Drive 形成可校验的项目快照、运行归档和 recovery index，旧归档清理前保留唯一内容",
+    "Google Drive 形成可校验的项目快照、运行归档和 recovery index，验证后允许删除已确认冗余旧目录且不删除唯一内容",
     "research-state/state.yaml 仍是唯一科研状态源",
     "所有自动模块具备结构测试、行为测试、并发测试、崩溃恢复测试和可重建证据"
   ],
@@ -83,7 +83,7 @@
   "user_confirmation": {
     "task_scope": "confirmed-by-user",
     "gitee_recovery_without_drive": "design-confirmed; capacity and exact binary coverage remain to be measured",
-    "drive_cleanup": "not yet authorized for deletion; copy-only reorganization first",
+    "drive_cleanup": "authorized-after-copy-only-verification; unique content remains protected",
     "evolution": "manual-only"
   },
   "related_decisions": [

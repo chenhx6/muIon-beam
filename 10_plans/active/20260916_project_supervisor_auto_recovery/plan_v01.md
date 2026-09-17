@@ -2,7 +2,7 @@
 
 ## 计划状态
 
-当前状态：`planning`。本文件只冻结执行路线，不开始代码实现、不创建新的 Gitee 卫星仓库、不清理 Google Drive、不改变科研目标或正式运行结果。
+当前状态：`executing / P2–P3 automatic session lifecycle`。P0 规则与接口已落实；服务自动监督、worktree bootstrap、心跳、分支视图和未登记输出清单已实现并测试。宿主原生 hook 实际投递、任务完成后的结果归位和自动集成门、P4 云盘重整仍待完成。本检查点不创建卫星库、不清理旧 Drive 档案、不启动正式科研运行。
 
 任务卡：`task_project_supervisor_auto_recovery_001`。
 
@@ -14,9 +14,11 @@
 
 ## 规则收口
 
-第一项执行工作不是启动 solver，而是修订项目规则事实。`D:\\muIon` 和 `C:\\AAA\\muIon` 已由用户删除，不能继续被 `AGENTS.md` 或 `muion-project/SKILL.md` 描述为 active legacy workspace。历史迁移 Manifest、旧路径记录和 `90_migration` 仍然保留，作为历史记忆，不作为当前输入。
+第一项执行工作不是启动 solver，而是修订项目规则事实。`D:\\muIon` 和 `C:\\AAA\\muIon` 已由用户删除，不能继续被 `AGENTS.md` 或 `muion-project/SKILL.md` 描述为 active legacy workspace。历史迁移 Manifest、旧路径记录和 `90_migration` 仍然保留，作为历史记忆，不作为当前输入。P4 的 Drive 重建允许在新目录验证完成后删除已确认冗余旧目录，唯一内容继续保留。
 
 `AGENTS.md` 只保存必须每次读取的执行宪法：当前工作区、自动触发、模块化边界、科研状态唯一源、Gitee/Drive 恢复职责、experience 规则和 evolution 例外。ADR 保存完整理由、接口、版本和 superseded 关系。Codex 不会自动读取所有 ADR，因此 supervisor 还要读取 active ADR index 并把相关摘要加入 session context。
+
+本轮 P0 增量增加 `reproducibility-environment.json` 和 `REPRODUCIBILITY.md`。它们把 Node、Python、SolidWorks、COMSOL、WSL、Geant4、ROOT、CMake 和编译器的事实证据与状态分开记录，并明确源码候选、完整重建闭包、Gitee Recovery Core 和 Drive 快速恢复之间的边界。`02_models/` 的源码例外由同一个 delivery policy 判定器和定向测试覆盖，二进制、生成目录、NUL 伪装文本和字节预算仍拒绝进入 Gitee。
 
 ## 组件边界
 
@@ -78,9 +80,9 @@ unregistered -> classified -> promoted / archived / retained-blocked
 
 ## Gitee Recovery Core
 
-Gitee 主库 `muIon-beam` 必须包含可重建核心：规则、active ADR、skill、脚本、schema、测试、任务卡、计划、Manifest、报告、索引、经验和小型可复现实验输入。新设备或接班人只 clone 主库，也应该能够恢复项目身份、重建索引、运行 QA、继续新任务和查询历史。
+Gitee 主库 `muIon-beam` 必须包含可重建核心：规则、active ADR、skill、脚本、schema、测试、任务卡、计划、Manifest、报告、索引、经验和小型可复现实验输入。模型构建源码、模拟源码、宏、配置和测试也优先进入主库；接班人应能在本地重新生成模型和模拟结果。当前远端约 61 MB、源码/配置/Manifest/文档约 16.2 MB，按 Gitee 免费版约 500 MB 仓库/50 MB 单文件参考配额，现阶段不需要卫星库。
 
-只有当主库容量或单文件限制确实无法满足时，才考虑一个或两个用途明确的卫星库，例如 `muIon-beam-assets` 或 `muIon-beam-repro-inputs`。卫星库必须由主库中的固定 URL、ref、commit 和 SHA256 绑定，并由 bootstrap 自动 clone；不能依赖人工猜测多个库的版本。
+只有当主库接近软阈值、单文件接近限制、clone/push 失败或文件形成清晰独立生命周期时，才考虑一个用途明确的卫星库，例如 `muIon-beam-repro-inputs`。卫星库必须由主库中的固定 URL、ref、commit 和 SHA256 绑定，并由 bootstrap 自动 clone；不能依赖人工猜测多个库的版本。
 
 Gitee-only 的保证范围是“可重建项目和继续新工作”。某个历史运行如果依赖尚未发布到 Gitee 的大型二进制模型或原始输出，必须在 recovery index 中明确标为 `drive-required`，不能伪称已经完整复现。以后将根据实际 Gitee 单文件/仓库容量和运行输入清单决定是否扩大上传范围。
 
@@ -101,7 +103,7 @@ muIon_archive/
   quarantine/
 ```
 
-现有 `project-management`、`legacy-from-D-muIon`、`external-libraries` 和 `references` 先全部保留。整理时先清点 sync-state、Manifest、文件数量、大小和 SHA256；再用 copy-only 写入 canonical 目录；新目录验证完成后切换 supervisor；旧目录进入 `legacy` 或 `quarantine`。唯一内容不得自动删除。
+现有 `project-management`、`legacy-from-D-muIon`、`external-libraries` 和 `references` 在验证前全部保留。整理时先清点 sync-state、Manifest、文件数量、大小和 SHA256；再用 copy-only 写入 canonical 目录；新目录验证完成后切换 supervisor；已确认冗余的旧目录允许在 P4 最终门删除，唯一内容不得删除。
 
 `SyncCoordinator` 需要生成顶层 recovery index，串联：最新 Gitee commit、最新 project snapshot、各 run archive、未关闭 task/session、经验汇总、未登记 artifact 和下一步。这样从 Drive 可以直接恢复工作状态，从 Gitee 可以重建项目核心。
 

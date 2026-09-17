@@ -1,5 +1,17 @@
 # 决策日志
 
+## 2026-09-17：P0 到自动监督与 session bootstrap 的执行检查点
+
+- 新增独立 ProjectSupervisor、ProcessSupervisor、FarmerService、DashboardService、ProjectContext、SessionBootstrapper、WorkerRuntime、ArtifactCatalog 和 ProgressAggregator；farmer 不再调用 task-close。
+- 本机 Codex CLI 报告 hooks stable true；已配置项目 SessionStart/UserPromptSubmit。宿主新 hook 的信任和实际投递尚未实测，AGENTS 自动调用入口作为后备。未修改宿主信任数据库或绕过信任检查。
+- 实际 entry 启动 farmer 和 dashboard 并通过健康检查；停止本次拥有的 dashboard PID 24460 后，监督器自动拉起 PID 27612，状态接口恢复。PID 是当时观测，不是固定配置。
+- 修复目录 claim 尾斜杠、Git porcelain 中文/空格路径解析，以及碰撞拒绝前误创建 worktree 的问题。
+- 新任务默认私有 worktree；未知独立性的双方可显式登记 isolated overlap 后并行，明确重叠 ownership 仍拒绝，共享 writer 不享受例外。本次已有脏主工作树登记为 maintenance leader 续接，不接管其他任务修改。
+- 修复 preflight 只认主目录的问题，接受由该项目 common Git directory 登记的 worktree。
+- 源码上传判定覆盖 worker、leader 和旧 workflow model checkpoint；模型源码可以进入主库，二进制、输出目录、NUL/非 UTF-8 伪装和超限内容继续拒绝。
+- 独立只读审查三次受到模型容量错误，保持原模型，未获得审查结论；不能宣称独立审查通过。
+- P4 清理依据 ADR-007：可删除确认无用且不被重建链依赖的设计期原型生成物；保留必要设计/经验和删除 receipt。本检查点未删除 Drive 文件。
+
 ## 2026-09-16：进入执行计划制作
 
 - 用户确认：除 `evolution` 外，所有项目脚本和 skill 必须由任务入口自动按需触发，不能要求用户手动调用。
@@ -16,6 +28,14 @@
 - Gitee 当前单文件、仓库和卫星库容量，需要在 P4 用实际配额和候选 artifact 清单测量。
 - Drive canonical layout 的最终目录名和历史重复项归并，需要在 P4 生成 reorganization Manifest 后确认。
 - 大型历史模型是否发布到 Gitee satellite，按恢复价值、容量和可重建性逐项决定。
+
+## 2026-09-16：主库源码优先和 Drive 清理边界
+
+- 远端 `origin/main` 测量：约 1045 个 tracked files，Git tree 约 61 MB；源码/配置/Manifest/文档约 734 个文件、约 16.2 MB。
+- Gitee 帮助中心公开配额参考：免费版单仓库约 500 MB、单文件约 50 MB；当前规模无需卫星库。
+- 决定：所有可重建的模型构建源码、模拟源码、宏、配置、测试、Manifest 和文档优先进入 `muIon-beam` 主库；生成二进制、完整原始输出和大型模型按 Drive 归档。
+- 决定：只有主库接近软阈值、单文件接近限制、clone/push 失败或有清晰独立生命周期时，才评估一个用途明确的卫星库；卫星库必须由主库固定 ref/commit/hash 并可自动 bootstrap。
+- 用户授权：P4 最终重建阶段允许删除已经确认冗余的旧 Drive 目录；删除前必须完成 copy-only、去重、唯一内容检查、数量/大小/SHA256 验证和 recovery-index 写入。
 
 ## 停止条件
 

@@ -2,11 +2,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { ensureDirectory, relativePath, runGit, sha256File } from './project-utils.mjs';
+import { ensureDirectory, relativePath, runGit, sha256File, projectRootFromHere } from './project-utils.mjs';
+import { loadDeliveryPolicy, classifyPaths } from './delivery-plan.mjs';
+import { evaluateDeliveryPath } from './delivery-path-policy.mjs';
 import { claimsOverlap } from '../../team/scripts/session-concurrency.mjs';
 
 const ID = /^[A-Za-z0-9._-]+$/;
 const protectedRoots = ['02_models/', '03_runs/', '04_results/', '05_reports/', '_work/current/outbox/'];
+const modelPath = value => value === '02_models' || value.startsWith('02_models/');
+function deliveryPolicy(root) { return loadDeliveryPolicy(fs.existsSync(path.join(root, '00_project/config/delivery-policy.json')) ? root : projectRootFromHere()); }
 function validId(id) { if (!ID.test(String(id || ''))) throw new Error(`invalid workflow id: ${id}`); }
 function cleanPaths(root, paths) {
   return [...new Set((paths || []).map(String).map((raw) => {
@@ -46,7 +50,11 @@ function withOwnershipLock(root, fn) {
 export function createWorkflowOwnership(root, id, taskId, ownedPaths = []) {
   return withOwnershipLock(root, () => {
     const d = dir(root, id); ensureDirectory(d); const paths = cleanPaths(root, ownedPaths);
-    for (const p of paths) { safePath(root, p); if (protectedRoots.some(x => p === x.slice(0,-1) || p.startsWith(x))) throw new Error(`protected path cannot be owned: ${p}`); }
+    for (const p of paths) {
+      safePath(root, p);
+      const modelSource = modelPath(p) && evaluateDeliveryPath(p, deliveryPolicy(root).gitee).allowed;
+      if (!modelSource && protectedRoots.some(x => p === x.slice(0,-1) || p.startsWith(x))) throw new Error(`protected path cannot be owned: ${p}`);
+    }
     const wfRoot = path.join(root, '_work/current/workflows');
     for (const other of fs.existsSync(wfRoot) ? fs.readdirSync(wfRoot, {withFileTypes:true}).filter(e=>e.isDirectory() && e.name !== id) : []) {
       const f = path.join(wfRoot, other.name, 'owned_paths.json'); if (!fs.existsSync(f)) continue;
@@ -71,6 +79,11 @@ export function loadWorkflowOwnership(root, id) {
 export function commitOwnedPaths(root,id,{message,push=false}={}) {
   if (!message) throw new Error('commit message required'); const own=loadWorkflowOwnership(root,id), paths=own.owned_paths;
   if (!paths.length) return { committed:false, reason:'empty-owned-paths' };
+  const modelPaths = paths.filter(modelPath);
+  if (modelPaths.length) {
+    const plan = classifyPaths(root, deliveryPolicy(root), null, modelPaths);
+    if (plan.excluded.length) throw new Error('model checkpoint rejected by delivery policy: ' + plan.excluded.map(item => `${item.path} (${item.reason})`).join(', '));
+  }
   const changed=runGit(root,['status','--porcelain=v1','-z']).stdout || ''; // reject paths outside ownership only for safety audit
   const listFile=path.join(dir(root,id),`pathspec-${crypto.randomUUID()}.txt`); fs.writeFileSync(listFile, paths.join('\n')+'\n');
   try {

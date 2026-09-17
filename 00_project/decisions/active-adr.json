@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "purpose": "Project instruction routing; not research-state",
+  "read_first": "AGENTS.md",
+  "core": [
+    "00_project/decisions/ADR-005-muion-beam-cultivation-and-modular-supervisor.md",
+    "00_project/decisions/ADR-007-design-phase-and-source-recovery.md"
+  ],
+  "by_scope": {
+    "research_layout": ["00_project/decisions/ADR-002-research-system-layout.md"],
+    "automatic_entry": ["00_project/decisions/ADR-003-triggering-and-readiness.md"],
+    "parallel_sessions": ["00_project/decisions/ADR-004-parallel-session-isolation.md", "00_project/decisions/ADR-005-muion-beam-cultivation-and-modular-supervisor.md"],
+    "delivery_and_recovery": ["00_project/decisions/ADR-006-three-end-reconstruction-contract.md", "00_project/decisions/ADR-007-design-phase-and-source-recovery.md"]
+  },
+  "historical": [
+    {"path": "00_project/decisions/ADR-001-project-boundaries.md", "superseded_scope": "legacy workspace liveness and recovery storage policy", "superseded_by": "ADR-006/ADR-007"}
+  ],
+  "implementation_note": "ADR-004 describes the initial explicit adapter. ADR-005 specifies the target automatic lifecycle; existence of either file does not prove runtime activation."
+}

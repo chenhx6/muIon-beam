@@ -38,6 +38,7 @@ test('normalizes Windows path aliases and detects wildcard overlap', () => {
   assert.equal(normalizeClaimPath('C:/repo', 'src/../Package.json'), 'package.json');
   assert.equal(claimsOverlap(['src/**'], ['src/a/file.js']), true);
   assert.equal(claimsOverlap(['Package.json'], ['package.json']), true);
+  assert.equal(normalizeClaimPath('C:/repo', '02_models/'), '02_models');
 });
 
 test('help is read-only and does not create a session', () => {
@@ -67,6 +68,7 @@ test('rejects two active sessions claiming the same file but allows disjoint fil
   try {
     sessions.push(beginSession({ root, sessionId: 'one', ownedPaths: ['a.txt'] }));
     assert.throws(() => beginSession({ root, sessionId: 'two', ownedPaths: ['A.TXT'] }), /path claim collision/);
+    assert.equal(fs.existsSync(path.join(root, '_work/current/worktrees/two')), false);
     sessions.push(beginSession({ root, sessionId: 'three', ownedPaths: ['b.txt'] }));
     assert.equal(listSessions({ root }).filter((item) => item.status === 'active').length, 2);
   } finally { cleanup(root, sessions); }

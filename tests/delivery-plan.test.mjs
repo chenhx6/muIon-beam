@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { classifyPaths } from '../.codex/skills/muion-project/scripts/delivery-plan.mjs';
+import { evaluateDeliveryPath } from '../.codex/skills/muion-project/scripts/delivery-path-policy.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 test('delivery policy excludes generated smoke state and large/protected files', () => {
@@ -22,6 +23,6 @@ test('delivery policy excludes generated smoke state and large/protected files',
 
 test('delivery policy file is present and generated state remains local', () => {
   assert.equal(fs.existsSync(path.join(root, '00_project/config/delivery-policy.json')), true);
-  assert.equal(fs.existsSync(path.join(root, '00_project/state/3d-smoke')), true);
+  const policy = JSON.parse(fs.readFileSync(path.join(root, '00_project/config/delivery-policy.json'), 'utf8'));
+  assert.equal(evaluateDeliveryPath('00_project/state/3d-smoke/example.py', policy.gitee).allowed, false);
 });
-

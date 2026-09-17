@@ -1,79 +1,83 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { parseArgs, projectRootFromHere, runGit, gitStatusEntries, nowIso, ensureDirectory, jsonWrite } from './project-utils.mjs';
+import { parseArgs, projectRootFromHere, runGit, nowIso, jsonWrite } from './project-utils.mjs';
 import { syncExternalLibraries } from './external-lib-sync.mjs';
+import { classifyPaths, loadDeliveryPolicy, digestFiles } from './delivery-plan.mjs';
 import { acquireProjectLock, releaseProjectLock, checkSession, listSessions } from '../../team/scripts/session-concurrency.mjs';
 
-const args = parseArgs(process.argv.slice(2));
-const root = path.resolve(args.project_root || projectRootFromHere());
-if (!args.baseline && !args.session_id) throw new Error('automatic commit/push requires --baseline or --session-id');
-
-const baselinePath = args.baseline ? path.resolve(root, args.baseline) : null;
-if (baselinePath && !fs.existsSync(baselinePath)) throw new Error(`baseline not found: ${baselinePath}`);
-const baseline = baselinePath && fs.existsSync(baselinePath) ? JSON.parse(fs.readFileSync(baselinePath, 'utf8')) : {};
-const ownedPathFile = args.owned_paths ? path.resolve(root, args.owned_paths) : null;
-const ownedPaths = ownedPathFile && fs.existsSync(ownedPathFile) ? new Set(JSON.parse(fs.readFileSync(ownedPathFile, 'utf8')).flatMap((value) => [String(value), String(value).toLowerCase()])) : null;
-const sessionId = args.session_id || baseline.session_id || null;
-const session = sessionId ? listSessions({ root }).find((item) => item.session_id === sessionId) : null;
-if (sessionId && !session) throw new Error(`session not found: ${sessionId}`);
-if (sessionId && session?.mode === 'shared-read') throw new Error('read-only session cannot commit');
-if (sessionId && session?.mode === 'shared-write' && !args.baseline) throw new Error('shared-write commit requires its private or compatibility baseline');
-if (sessionId && session?.mode === 'worktree') {
-  const checked = checkSession({ root, sessionId });
-  if (checked.status !== 'ready') throw new Error(`session ownership check failed: ${checked.outside_claim_paths.join(', ')}`);
-  const worktree = session.worktree_path;
-  const dirty = gitStatusEntries(worktree).map((entry) => entry.path).filter(Boolean);
-  if (!dirty.length) { console.log(JSON.stringify({ status: 'no-task-owned-files', session_id: sessionId, branch: session.branch, pushed: false }, null, 2)); process.exit(0); }
-  const lock = acquireProjectLock(root, 'leader-delivery');
-  try {
-    runGit(worktree, ['add', '--', ...dirty]);
-    const commit = runGit(worktree, ['commit', '--only', '-m', args.message || `session checkpoint ${sessionId}`, '--', ...dirty], { allowFailure: true });
-    if (commit.status !== 0) throw new Error(commit.stderr || commit.stdout || 'session checkpoint failed');
-    const commitHash = runGit(worktree, ['rev-parse', 'HEAD']).stdout.trim();
-    console.log(JSON.stringify({ status: 'session-checkpoint-created', session_id: sessionId, branch: session.branch, worktree, commit: commitHash, pushed: false, note: 'worker commits stay on the isolated branch; leader integration is a separate locked step' }, null, 2));
-  } finally { releaseProjectLock(lock); }
-  process.exit(0);
+function readRequired(file, label) {
+  if (!fs.existsSync(file)) throw new Error(`${label} not found: ${file}`);
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
-
-const lock = acquireProjectLock(root, 'leader-delivery');
-try {
-  syncExternalLibraries({ projectRoot: root, event: 'auto-publish' });
-  const policy = JSON.parse(fs.readFileSync(path.join(root, '00_project/config/publish-policy.json'), 'utf8'));
-  const slug = (value) => String(value || 'project-update').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48) || 'project-update';
-  const status = gitStatusEntries(root);
-  const paths = status.map((entry) => entry.path).filter(Boolean);
-  const baselinePaths = new Set(baseline.paths || []);
-  const isBaselinePath = (file) => [...baselinePaths].some((entry) => file === entry || (entry.endsWith('/') && file.startsWith(entry)));
-  const existing = paths.filter(isBaselinePath);
-  const deletedExternal = new Set(status.filter((entry) => entry.status.includes('D') && entry.path.startsWith('06_external_lib/')).map((entry) => entry.path));
-  const managedExternalTrace = (file) => file.startsWith('00_project/traceability/external-libraries/');
-  const verifiedSyncStates = paths.filter((file) => !isBaselinePath(file) && file.startsWith('00_project/traceability/sync-states/')).filter((file) => {
-    try { return JSON.parse(fs.readFileSync(path.join(root, file), 'utf8')).status === 'three-way-verified'; } catch { return false; }
-  });
-  const rejected = paths.filter((file) => !isBaselinePath(file) && !managedExternalTrace(file) && !verifiedSyncStates.includes(file) && (policy.never_stage_prefixes.some((prefix) => file.startsWith(prefix)) || policy.never_stage_extensions.some((ext) => file.toLowerCase().endsWith(ext))));
-  if (rejected.length) throw new Error('protected paths require explicit project workflow: ' + rejected.join(', '));
-  const candidates = paths.filter((file) => (!ownedPaths || ownedPaths.has(file) || ownedPaths.has(file.toLowerCase())) && !isBaselinePath(file) && !deletedExternal.has(file) && !managedExternalTrace(file) && !rejected.includes(file) && (!file.startsWith('00_project/traceability/sync-states/') || verifiedSyncStates.includes(file)) && !file.startsWith('00_project/traceability/sync-outbox/'));
-  if (!candidates.length) { console.log(JSON.stringify({ status: 'no-task-owned-files', pushed: false, protected_preexisting: existing, rejected }, null, 2)); process.exit(0); }
-  const tests = spawnSync(process.execPath, ['tests/architecture-smoke.mjs'], { cwd: root, encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 });
-  if (tests.status !== 0) throw new Error('architecture test failed: ' + (tests.stderr || tests.stdout));
+function verifyArchitecture(root) {
+  const result = spawnSync(process.execPath, ['tests/architecture-smoke.mjs'], { cwd: root, encoding: 'utf8', windowsHide: true, maxBuffer: 20 * 1024 * 1024 });
+  if (result.status !== 0) throw new Error('architecture test failed: ' + (result.stderr || result.stdout || result.error));
+}
+function commitFiles(root, candidates, message, author) {
+  // --only leaves unrelated staged content untouched. No ordinary build tag.
   runGit(root, ['add', '--', ...candidates]);
-  const message = args.message || ('自动更新项目工作流 ' + new Date().toISOString().slice(0, 10));
-  const commit = runGit(root, ['-c', 'user.name=' + policy.author.name, '-c', 'user.email=' + policy.author.email, 'commit', '--only', '-m', message, '--', ...candidates], { allowFailure: true });
-  if (commit.status !== 0) throw new Error(commit.stderr || commit.stdout || 'automatic commit failed');
-  const commitHash = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
-  const stamp = new Date().toISOString().replace(/[-:TZ.]/g, '').slice(0, 14);
-  const tag = `b-${slug(args.topic || message)}-${stamp}-${commitHash.slice(0, 7)}`;
-  const notePath = path.join(root, '_work/current/publish-notes', `${tag}.md`);
-  const note = [`# ${tag}`, '', `基于标签：当前 main`, `基础内容核验：不适用于普通构建 tag`, `本次任务：${args.task || message}`, `本次调整：${message}`, '优化内容：自动提交、架构检查和远端分支校验已完成', '结果：普通构建提交已通过项目架构检查', '主要限制：该 tag 不代表正式研究结果，不包含结果级 Drive 归档和三端审计', `详细报告：${args.report || '见对应 commit、测试输出和任务记录'}`, `Google Drive 归档路径：${args.drive_path || '不适用于普通构建 tag'}`, ''].join('\n');
-  ensureDirectory(path.dirname(notePath)); fs.writeFileSync(notePath, note, 'utf8');
-  runGit(root, ['tag', '-a', tag, '-F', notePath]);
-  runGit(root, ['push', policy.remote, 'HEAD:' + policy.branch], { timeout: 120000 });
-  const tagPush = runGit(root, ['push', policy.remote, `refs/tags/${tag}`], { timeout: 120000, allowFailure: true });
-  let outbox = null;
-  if (tagPush.status !== 0) { outbox = path.join(root, '_work/current/tag-outbox', `${tag}.json`); jsonWrite(outbox, { tag, commit: commitHash, remote: policy.remote, branch: policy.branch, note: notePath, status: 'pending-tag-push', error: (tagPush.stderr || tagPush.stdout || '').trim(), created_at: nowIso() }); }
-  const remote = runGit(root, ['ls-remote', policy.remote, 'refs/heads/' + policy.branch]).stdout.trim().split(/\s+/)[0] || null;
-  if (remote !== commitHash) throw new Error('remote branch does not match ' + commitHash + ': ' + remote);
-  const remoteTag = runGit(root, ['ls-remote', policy.remote, `refs/tags/${tag}^{}`], { allowFailure: true }).stdout.trim();
-  console.log(JSON.stringify({ status: tagPush.status === 0 ? 'committed-pushed-and-tagged' : 'committed-and-pushed-tag-pending', commit: commitHash, tag, tag_remote: remoteTag || null, tag_outbox: outbox, candidates, protected_preexisting: existing, rejected, remote, pushed_at: nowIso() }, null, 2));
-} finally { releaseProjectLock(lock); }
+  runGit(root, ['-c', 'user.name=' + author.name, '-c', 'user.email=' + author.email, 'commit', '--only', '-m', message, '--', ...candidates]);
+  return runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
+}
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const root = path.resolve(args.project_root || projectRootFromHere());
+  if (!args.baseline && !args.session_id) throw new Error('automatic commit/push requires --baseline or --session-id');
+  let baseline = args.baseline ? readRequired(path.resolve(root, args.baseline), 'baseline') : null;
+  const sessionId = args.session_id || baseline?.session_id || null;
+  const session = sessionId ? listSessions({ root }).find(item => item.session_id === sessionId) : null;
+  if (sessionId && !session) throw new Error(`session not found: ${sessionId}`);
+  if (session && session.status !== 'active') throw new Error(`session is not active: ${sessionId}`);
+  if (session?.mode === 'shared-read') throw new Error('read-only session cannot commit');
+  if (session && !baseline) baseline = readRequired(path.join(root, '_work/current/concurrency/sessions', `${sessionId}.baseline.json`), 'session baseline');
+  if (baseline?.session_id && baseline.session_id !== sessionId) throw new Error('baseline/session mismatch');
+  if (!baseline || !Array.isArray(baseline.paths)) throw new Error('invalid baseline paths');
+  const scopeDocument = args.owned_paths ? readRequired(path.resolve(root, args.owned_paths), 'owned paths') : null;
+  const owned = scopeDocument ? (Array.isArray(scopeDocument) ? scopeDocument : scopeDocument.paths) : null;
+  if (scopeDocument && !Array.isArray(owned)) throw new Error('owned paths must be an array or an ownership record with paths');
+  const publication = readRequired(path.join(root, '00_project/config/publish-policy.json'), 'publish policy');
+  const delivery = loadDeliveryPolicy(root);
+  const worktree = session?.mode === 'worktree' ? session.worktree_path : root;
+  const lock = acquireProjectLock(root, session?.mode === 'worktree' ? `checkpoint:${sessionId}` : 'leader-delivery');
+  try {
+    if (session) {
+      const checked = checkSession({ root, sessionId });
+      if (checked.status !== 'ready') throw new Error(`session ownership check failed: ${checked.outside_claim_paths.join(', ')}`);
+    }
+    if (session?.mode !== 'worktree') syncExternalLibraries({ projectRoot: root, event: 'auto-publish' });
+    const plan = classifyPaths(worktree, delivery, baseline, owned);
+    const candidatePaths = plan.candidates.filter(file => {
+      if (!file.startsWith('00_project/traceability/sync-states/')) return true;
+      try { return JSON.parse(fs.readFileSync(path.join(worktree, file), 'utf8')).status === 'three-way-verified'; } catch { return false; }
+    });
+    // A worker must not checkpoint binary/generated payloads, even with a broad
+    // path claim. The leader can still deliver eligible files while retaining
+    // unrelated blocked payloads in its main workspace.
+    if (session?.mode === 'worktree') {
+      const blocked = plan.excluded.filter(item => item.reason !== 'preexisting-user-change');
+      if (blocked.length) throw new Error('checkpoint rejected by delivery policy: ' + blocked.map(item => `${item.path} (${item.reason})`).join(', '));
+    }
+    if (!candidatePaths.length) return { status: 'no-task-owned-files', session_id: sessionId, pushed: false, excluded: plan.excluded };
+    const hashes = digestFiles(worktree, candidatePaths);
+    verifyArchitecture(worktree);
+    const rechecked = classifyPaths(worktree, delivery, baseline, owned).candidates.filter(file => candidatePaths.includes(file));
+    if (JSON.stringify(rechecked) !== JSON.stringify(candidatePaths) || JSON.stringify(digestFiles(worktree, candidatePaths)) !== JSON.stringify(hashes)) {
+      throw new Error('candidate files changed during validation; regenerate delivery plan');
+    }
+    const message = args.message || (session?.mode === 'worktree' ? `session checkpoint ${sessionId}` : '自动更新项目工作流 ' + new Date().toISOString().slice(0, 10));
+    const commit = commitFiles(worktree, candidatePaths, message, publication.author);
+    if (session?.mode === 'worktree') return { status: 'session-checkpoint-created', session_id: sessionId, branch: session.branch, worktree, commit, candidates: candidatePaths, pushed: false };
+    const pushed = runGit(root, ['push', publication.remote, `HEAD:${publication.branch}`], { timeout: 120000, allowFailure: true });
+    if (pushed.status !== 0) {
+      const outbox = path.join(root, '_work/current/publish-outbox', `${commit}.json`);
+      jsonWrite(outbox, { commit, remote: publication.remote, branch: publication.branch, status: 'pending-push', error: (pushed.stderr || pushed.stdout || '').trim(), created_at: nowIso() });
+      process.exitCode = 2;
+      return { status: 'committed-push-pending', commit, pushed: false, outbox };
+    }
+    const remote = runGit(root, ['ls-remote', publication.remote, `refs/heads/${publication.branch}`]).stdout.trim().split(/\s+/)[0];
+    if (remote !== commit) throw new Error('remote branch differs from delivered commit');
+    return { status: 'committed-and-pushed', commit, remote, candidates: candidatePaths, excluded: plan.excluded, pushed_at: nowIso() };
+  } finally { releaseProjectLock(lock); }
+}
+console.log(JSON.stringify(main(), null, 2));

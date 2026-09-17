@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "run_id": "AGENT-supervisor-review-20260917",
+  "parent_id": null,
+  "task_id": "supervisor_review_20260917",
+  "role": "critic",
+  "lifecycle_state": "failed",
+  "selected_model": null,
+  "model_family": null,
+  "reasoning": null,
+  "backend": "collaboration",
+  "capability_requirements": {
+    "context": 0,
+    "modalities": [],
+    "tools": [],
+    "backend": null
+  },
+  "candidates_considered": [],
+  "selection_reason": "Use inherited parent model without override for read-only review",
+  "catalog_freshness": "unavailable",
+  "stale_model_catalog": true,
+  "fallback": "parent-model-inherited",
+  "permissions": {
+    "read": true,
+    "write": false,
+    "publish": false,
+    "spawn_child": false
+  },
+  "dependencies": [],
+  "resources": [],
+  "manifest_hash": "28798d57ea6de3977cdc91f20948ea4c2d9f0163fe8da67d84af56c4f377ba44",
+  "input_hash": null,
+  "start_time": "2026-09-17T03:24:28.112Z",
+  "end_time": "2026-09-17T03:49:01.134Z",
+  "output_reference": null,
+  "changed_paths": [],
+  "verification": {},
+  "tests": [],
+  "failure_reason": "Third model capacity error; no independent review result obtained",
+  "retry": {
+    "count": 2,
+    "max": 1,
+    "previous_run_ids": []
+  },
+  "unresolved_items": [
+    "Independent review not completed; parent tests provide validation, not reviewer approval"
+  ],
+  "normalized_runtime": {
+    "run": "AGENT-supervisor-review-20260917",
+    "session": null,
+    "thread": null,
+    "model": null,
+    "reasoning": null,
+    "backend": "collaboration",
+    "state": "failed",
+    "retry": {
+      "count": 2,
+      "max": 1,
+      "previous_run_ids": []
+    },
+    "started_at": "2026-09-17T03:24:28.112Z",
+    "ended_at": "2026-09-17T03:49:01.134Z",
+    "output": null,
+    "verification": {},
+    "unresolved_items": [
+      "Independent review not completed; parent tests provide validation, not reviewer approval"
+    ]
+  },
+  "events": [
+    {
+      "at": "2026-09-17T03:24:28.108Z",
+      "from": null,
+      "to": "planned",
+      "reason": "run created"
+    },
+    {
+      "at": "2026-09-17T03:24:28.110Z",
+      "from": "planned",
+      "to": "validated",
+      "reason": null
+    },
+    {
+      "at": "2026-09-17T03:24:28.111Z",
+      "from": "validated",
+      "to": "ready",
+      "reason": null
+    },
+    {
+      "at": "2026-09-17T03:24:28.112Z",
+      "from": "ready",
+      "to": "running",
+      "reason": null
+    },
+    {
+      "at": "2026-09-17T03:28:35.865Z",
+      "from": "running",
+      "to": "retrying",
+      "reason": "Transient model capacity error; same model and context retried once"
+    },
+    {
+      "at": "2026-09-17T03:28:35.867Z",
+      "from": "retrying",
+      "to": "running",
+      "reason": null
+    },
+    {
+      "at": "2026-09-17T03:28:35.869Z",
+      "from": "running",
+      "to": "failed",
+      "reason": "Second model capacity error; independent review unavailable; parent continues implementation and tests"
+    },
+    {
+      "at": "2026-09-17T03:49:01.131Z",
+      "from": "failed",
+      "to": "retrying",
+      "reason": "Same read-only task retried after capacity error; model preserved"
+    },
+    {
+      "at": "2026-09-17T03:49:01.133Z",
+      "from": "retrying",
+      "to": "running",
+      "reason": null
+    },
+    {
+      "at": "2026-09-17T03:49:01.134Z",
+      "from": "running",
+      "to": "failed",
+      "reason": "Third model capacity error; no independent review result obtained"
+    }
+  ]
+}

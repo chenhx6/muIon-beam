@@ -2,7 +2,7 @@
   "schema_version": 1,
   "plan_id": "plan_project_supervisor_auto_recovery",
   "plan_version": "v01",
-  "status": "planning",
+  "status": "executing",
   "task_id": "task_project_supervisor_auto_recovery_001",
   "objective": "让用户只提出任务，项目自动启动并按需调用除 evolution 外的全部脚本和 skill，同时使 Gitee 成为可重建核心、Google Drive 成为完整恢复档案。",
   "design_principles": [
@@ -16,16 +16,56 @@
     "evolution 是唯一需要人工采用决定的能力"
   ],
   "components": [
-    {"name": "ProjectSupervisor", "responsibility": "编排模块启动、阶段转换、恢复、完成和关闭", "state": "supervisor-run"},
-    {"name": "ProcessSupervisor", "responsibility": "ensure/health/restart farmer 和 dashboard", "state": "process-lease"},
-    {"name": "SessionBootstrapper", "responsibility": "session identity、context、worktree、claim、lease", "state": "session-registry"},
-    {"name": "DispatchPlanner", "responsibility": "任务拆分、依赖、资源、并行 wave 和接口端口", "state": "dispatch-manifest"},
-    {"name": "WorkerRuntime", "responsibility": "worker heartbeat、checkpoint、错误分类、恢复和重派", "state": "worker-ledger"},
-    {"name": "ResourceCoordinator", "responsibility": "COMSOL、SolidWorks、WSL 和共享构建的独占资源", "state": "resource-lease"},
-    {"name": "ArtifactPromoter", "responsibility": "输出登记、分类、归位、归档和清理资格", "state": "artifact-manifest"},
-    {"name": "ProgressAggregator", "responsibility": "branch/session/task/artifact/问题/下一步总进度", "state": "derived-overview"},
-    {"name": "SyncCoordinator", "responsibility": "Gitee Recovery Core、Drive full archive、本地现场和 recovery index", "state": "sync-state"},
-    {"name": "ExperienceRecorder", "responsibility": "正向、负向、中性行为和复用经验", "state": "experience-records"}
+    {
+      "name": "ProjectSupervisor",
+      "responsibility": "编排模块启动、阶段转换、恢复、完成和关闭",
+      "state": "supervisor-run"
+    },
+    {
+      "name": "ProcessSupervisor",
+      "responsibility": "ensure/health/restart farmer 和 dashboard",
+      "state": "process-lease"
+    },
+    {
+      "name": "SessionBootstrapper",
+      "responsibility": "session identity、context、worktree、claim、lease",
+      "state": "session-registry"
+    },
+    {
+      "name": "DispatchPlanner",
+      "responsibility": "任务拆分、依赖、资源、并行 wave 和接口端口",
+      "state": "dispatch-manifest"
+    },
+    {
+      "name": "WorkerRuntime",
+      "responsibility": "worker heartbeat、checkpoint、错误分类、恢复和重派",
+      "state": "worker-ledger"
+    },
+    {
+      "name": "ResourceCoordinator",
+      "responsibility": "COMSOL、SolidWorks、WSL 和共享构建的独占资源",
+      "state": "resource-lease"
+    },
+    {
+      "name": "ArtifactPromoter",
+      "responsibility": "输出登记、分类、归位、归档和清理资格",
+      "state": "artifact-manifest"
+    },
+    {
+      "name": "ProgressAggregator",
+      "responsibility": "branch/session/task/artifact/问题/下一步总进度",
+      "state": "derived-overview"
+    },
+    {
+      "name": "SyncCoordinator",
+      "responsibility": "Gitee Recovery Core、Drive full archive、本地现场和 recovery index",
+      "state": "sync-state"
+    },
+    {
+      "name": "ExperienceRecorder",
+      "responsibility": "正向、负向、中性行为和复用经验",
+      "state": "experience-records"
+    }
   ],
   "automatic_lifecycle": [
     "session-entered",
@@ -49,63 +89,180 @@
     {
       "id": "P0",
       "name": "规则、接口和事实层冻结",
-      "status": "planning",
-      "deliverables": ["superseding legacy-path ADR", "AGENTS executive constitution", "active ADR index", "component contracts", "state ownership table", "automatic trigger contract"],
-      "gates": ["D:\\muIon/C:\\AAA\\muIon deletion recorded", "evolution manual-only", "no duplicate research state source"]
+      "status": "completed",
+      "deliverables": [
+        "superseding legacy-path ADR",
+        "AGENTS executive constitution",
+        "active ADR index",
+        "component contracts",
+        "state ownership table",
+        "automatic trigger contract",
+        "reproducibility environment manifest",
+        "Gitee/Drive recovery instructions"
+      ],
+      "gates": [
+        "D:\\muIon/C:\\AAA\\muIon deletion recorded",
+        "evolution manual-only",
+        "no duplicate research state source"
+      ]
     },
     {
       "id": "P1",
       "name": "ProjectSupervisor 与 ProcessSupervisor 自动启动",
-      "status": "planned",
-      "deliverables": ["automatic farmer ensure", "dashboard ensure/health", "session identity adapter", "desktop/CLI entry adapter", "read-only status and diagnostics"],
-      "gates": ["user runs no script", "farmer and dashboard health are independently visible", "startup is idempotent"]
+      "status": "implemented-host-hook-verification-pending",
+      "deliverables": [
+        "automatic farmer ensure",
+        "dashboard ensure/health",
+        "session identity adapter",
+        "desktop/CLI entry adapter",
+        "read-only status and diagnostics"
+      ],
+      "gates": [
+        "user runs no script",
+        "farmer and dashboard health are independently visible",
+        "startup is idempotent"
+      ]
     },
     {
       "id": "P2",
       "name": "Session worktree、并行 worker 和恢复",
-      "status": "planned",
-      "deliverables": ["automatic worktree provisioning", "path/task/resource claim", "worker lease and heartbeat", "checkpoint and recovery", "leader integration lock"],
-      "gates": ["same file never shares active writer checkout", "unknown independence uses isolated worktrees", "dirty worktree never auto-deleted"]
+      "status": "automatic-bootstrap-and-heartbeat-implemented",
+      "deliverables": [
+        "automatic worktree provisioning",
+        "path/task/resource claim",
+        "worker lease and heartbeat",
+        "checkpoint and recovery",
+        "leader integration lock"
+      ],
+      "gates": [
+        "same file never shares active writer checkout",
+        "unknown independence uses isolated worktrees",
+        "dirty worktree never auto-deleted"
+      ]
     },
     {
       "id": "P3",
       "name": "结果归位、未登记输出和总进度",
-      "status": "planned",
-      "deliverables": ["artifact manifest", "unregistered triage queue", "canonical run/report/result promotion", "branch progress aggregator", "experience auto-recording"],
-      "gates": ["every branch visible", "every blocker has reason and next action", "no valuable output remains invisible in _work"]
+      "status": "progress-and-triage-implemented-promotion-pending",
+      "deliverables": [
+        "artifact manifest",
+        "unregistered triage queue",
+        "canonical run/report/result promotion",
+        "branch progress aggregator",
+        "experience auto-recording"
+      ],
+      "gates": [
+        "every branch visible",
+        "every blocker has reason and next action",
+        "no valuable output remains invisible in _work"
+      ]
     },
     {
       "id": "P4",
       "name": "Gitee Recovery Core 和 Drive canonical archive",
       "status": "planned",
-      "deliverables": ["Gitee inventory and quota report", "optional satellite repo decision", "recovery-core bootstrap", "Drive copy-only reorganization", "top-level recovery index", "sync coordinator"],
-      "gates": ["Gitee clone can rebuild project workflow without Drive", "Drive copy count/size/SHA verified", "old unique archive retained until explicit cleanup gate"]
+      "deliverables": [
+        "Gitee inventory and quota report",
+        "optional satellite repo decision",
+        "recovery-core bootstrap",
+        "Drive copy-only reorganization",
+        "top-level recovery index",
+        "sync coordinator"
+      ],
+      "gates": [
+        "Gitee clone can rebuild project workflow without Drive",
+        "Drive copy count/size/SHA verified",
+        "old unique archive retained until explicit cleanup gate"
+      ]
     },
     {
       "id": "P5",
       "name": "跨机器 CAS 和 Windows 进程写入边界",
       "status": "deferred",
-      "deliverables": ["remote claim CAS", "host/session/branch identity", "child-process write guard", "measured resource-aware concurrency"],
-      "gates": ["no claim split-brain across hosts", "out-of-worktree writes fail closed or are recorded as blocked"]
+      "deliverables": [
+        "remote claim CAS",
+        "host/session/branch identity",
+        "child-process write guard",
+        "measured resource-aware concurrency"
+      ],
+      "gates": [
+        "no claim split-brain across hosts",
+        "out-of-worktree writes fail closed or are recorded as blocked"
+      ]
     }
   ],
   "gitee_strategy": {
     "primary_repository": "muIon-beam",
-    "recovery_core_required": ["AGENTS", "active ADRs", "skills", "scripts", "schemas", "tests", "task cards", "plans", "manifests", "reports", "indexes", "experiences", "small reproducible inputs", "recovery commands"],
+    "recovery_core_required": [
+      "AGENTS",
+      "active ADRs",
+      "skills",
+      "scripts",
+      "schemas",
+      "tests",
+      "task cards",
+      "plans",
+      "manifests",
+      "reports",
+      "indexes",
+      "experiences",
+      "small reproducible inputs",
+      "recovery commands"
+    ],
     "satellite_repository_policy": "at most one or two purpose-specific repositories only after quota, clone and pinned-ref checks",
-    "satellite_candidates": ["muIon-beam-assets", "muIon-beam-repro-inputs"],
+    "satellite_candidates": [
+      "muIon-beam-assets",
+      "muIon-beam-repro-inputs"
+    ],
+    "current_decision": "main-repository-sources-first; satellite-not-needed-at-current-measured-size",
+    "soft_thresholds_for_satellite_review": {
+      "repository_tree_bytes": 300000000,
+      "single_file_bytes": 40000000,
+      "clone_or_push_failure": true
+    },
     "satellite_binding": "pinned URL/ref/commit/hash in the primary repository; automatic bootstrap may clone required satellites",
-    "drive_dependency": "not required for recovery-core startup and new work; required only for artifacts classified drive-required until they are also published"
+    "drive_dependency": "not required for recovery-core startup and new work; required only for artifacts classified drive-required until they are also published",
+    "future_options": [
+      "purpose-specific satellite repository",
+      "switch primary push remote to GitHub after capacity and compatibility review"
+    ],
+    "automatic_repository_creation": false
   },
   "drive_strategy": {
     "root": "H:\\我的云端硬盘\\muIon_archive",
-    "canonical_layout": ["project/snapshots", "project/recovery-index", "project/manifests", "runs/<run_id>", "models/<model_id>/<version>", "references", "external-libraries", "legacy", "quarantine"],
+    "canonical_layout": [
+      "project/snapshots",
+      "project/recovery-index",
+      "project/manifests",
+      "runs/<run_id>",
+      "models/<model_id>/<version>",
+      "references",
+      "external-libraries",
+      "legacy",
+      "quarantine"
+    ],
     "migration": "copy-only, manifest-first, count/size/SHA256 verified",
-    "cleanup": "separate later task; never delete unique content automatically"
+    "cleanup": "User-authorized after manifest, dependency checks, copy verification and recovery-index; ADR-007 permits removal of unneeded design-phase prototypes with deletion receipts. No deletion performed in this checkpoint."
   },
   "experience_policy": {
-    "record_after": ["successful automatic trigger", "failed trigger", "worker recovery", "ownership conflict", "artifact promotion", "sync verification", "user correction"],
-    "categories": ["project-governance", "runtime-supervision", "parallel-coordination", "artifact-lifecycle", "sync-recovery", "research-workflow", "toolchain-behavior"],
+    "record_after": [
+      "successful automatic trigger",
+      "failed trigger",
+      "worker recovery",
+      "ownership conflict",
+      "artifact promotion",
+      "sync verification",
+      "user correction"
+    ],
+    "categories": [
+      "project-governance",
+      "runtime-supervision",
+      "parallel-coordination",
+      "artifact-lifecycle",
+      "sync-recovery",
+      "research-workflow",
+      "toolchain-behavior"
+    ],
     "aggregation": "branch/task/problem-cluster summaries feed ProgressAggregator and future preflight"
   },
   "acceptance_tests": [
@@ -120,7 +277,13 @@
     "result promotion reaches canonical project/run/report path",
     "Gitee-only fresh clone rebuilds workflow core without Drive",
     "Drive canonical copy-only migration verifies hashes",
-    "all component and integration tests pass"
+    "all component and integration tests pass",
+    "environment manifest distinguishes observed, required, historical, verified, not_equivalent and license_required states"
   ],
-  "not_started_in_this_turn": ["implementation", "Drive cleanup", "satellite repository creation", "evolution adoption", "formal research run"]
+  "not_started_in_this_turn": [
+    "Drive cleanup",
+    "satellite repository creation",
+    "evolution adoption",
+    "formal research run"
+  ]
 }

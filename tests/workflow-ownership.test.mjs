@@ -4,3 +4,10 @@ function fixture(){const root=fs.mkdtempSync(path.join(os.tmpdir(),'ownership-')
 test('ownership records baseline and excludes unrelated staged changes',()=>{const r=fixture(); const own=createWorkflowOwnership(r,'wf-1','TASK-1',['src/a.txt']); fs.writeFileSync(path.join(r,'src/a.txt'),'changed'); fs.writeFileSync(path.join(r,'src/other.txt'),'unrelated'); spawnSync('git',['add','src/other.txt'],{cwd:r}); const out=commitOwnedPaths(r,'wf-1',{message:'owned'}); assert.equal(out.committed,true); assert.match(spawnSync('git',['log','-1','--format=%s'],{cwd:r,encoding:'utf8'}).stdout,/owned/); assert.match(spawnSync('git',['status','--short'],{cwd:r,encoding:'utf8'}).stdout,/other.txt/); assert.equal(loadWorkflowOwnership(r,'wf-1').head,own.head);});
 test('overlapping workflow ownership is rejected',()=>{const r=fixture(); createWorkflowOwnership(r,'a','T',['src/a.txt']); assert.throws(()=>createWorkflowOwnership(r,'b','T',['src']),/ownership conflict/);});
 test('empty ownership is a no-op and protected models reject',()=>{const r=fixture(); createWorkflowOwnership(r,'empty','T',[]); assert.equal(commitOwnedPaths(r,'empty',{message:'x'}).committed,false); assert.throws(()=>createWorkflowOwnership(r,'bad','T',['02_models/x']),/protected/);});
+test('workflow model source exception still refuses binary content at checkpoint',()=>{
+  const r=fixture(); createWorkflowOwnership(r,'source','T',['02_models/model.py']);
+  fs.mkdirSync(path.join(r,'02_models'),{recursive:true}); fs.writeFileSync(path.join(r,'02_models/model.py'),Buffer.from([0,1,2]));
+  assert.throws(()=>commitOwnedPaths(r,'source',{message:'bad'}),/model-source-is-binary/);
+  fs.writeFileSync(path.join(r,'02_models/model.py'),'print(1)\n');
+  assert.equal(commitOwnedPaths(r,'source',{message:'source'}).committed,true);
+});

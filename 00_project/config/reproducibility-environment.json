@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "manifest_type": "reproducibility-environment",
+  "project": "muIon-beam",
+  "documented_at": "2026-09-17T02:57:41Z",
+  "observation_scope": "Node/Python checked during this task; solver versions are prior evidence, not a new runtime verification",
+  "status_vocabulary": {
+    "observed": "在当前主机或已记录的环境中直接观察到版本或路径",
+    "required": "重建该工作流必须具备，但本机尚未完成验证",
+    "historical": "来自历史运行或迁移证据，不能自动当作当前版本",
+    "verified": "有可追溯 smoke、适配器或验收证据支持",
+    "not_equivalent": "版本、平台或输入闭包不同，不能直接比较结果",
+    "license_required": "需要用户合法安装和许可，项目不保存许可或凭据"
+  },
+  "components": [
+    {
+      "id": "node",
+      "kind": "runtime",
+      "version": "24.19.0",
+      "status": ["observed", "required"],
+      "platform": "Windows",
+      "check": "node --version",
+      "used_by": ["project scripts", "dashboard", "validation"]
+    },
+    {
+      "id": "python",
+      "kind": "runtime",
+      "version": "3.14.7",
+      "status": ["observed", "required"],
+      "platform": "Windows",
+      "launcher": "py -3.14",
+      "packages": [
+        {"name": "PyYAML", "status": ["required", "historical"], "version": "6.0.3"},
+        {"name": "pywin32", "status": ["historical", "verified"], "scope": "SolidWorks COM smoke"}
+      ],
+      "check": "py -3.14 -c \"import sys; print(sys.version)\"",
+      "notes": ["Windows shell 可能没有 python.exe；项目脚本不得假定 PATH 一定包含 python。"]
+    },
+    {
+      "id": "solidworks",
+      "kind": "cad",
+      "version": "2024 SP05 Revision 32.5.0",
+      "status": ["historical", "verified", "license_required"],
+      "platform": "Windows",
+      "evidence": "00_project/traceability/evolution/EVOLUTION-20260909-solidworks-automation-skill.json",
+      "rebuild_inputs": ["native SLDPRT/SLDASM when retained", "model parameters", "SolidWorks API scripts", "configuration names", "units"],
+      "notes": ["验证记录来自隔离 smoke；每台恢复机器仍需重新检查安装、COM 注册、版本和许可证。"]
+    },
+    {
+      "id": "comsol",
+      "kind": "multiphysics",
+      "version": "6.4",
+      "status": ["observed", "verified", "license_required"],
+      "platform": "Windows",
+      "configuration": "00_project/config/comsol-runtime.json",
+      "evidence": "adapter_executed_geometry_gate_passed",
+      "physics_solve_status": "not_evaluated",
+      "notes": ["几何适配器通过不等于新的物理求解已验证；需要合法 COMSOL 安装、模块和许可证。"]
+    },
+    {
+      "id": "wsl",
+      "kind": "linux-runtime",
+      "distribution": "Ubuntu-20.04",
+      "status": ["observed", "verified", "required"],
+      "configuration": "00_project/config/wsl-runtime.json",
+      "environment_script": "/home/ys/opt/physics/physics-env.sh",
+      "evidence": "00_project/traceability/wsl-runtime-evidence.json",
+      "execution_boundary": "必须先 source 环境脚本，再执行工具检查；不得读取 root secret。"
+    },
+    {
+      "id": "geant4",
+      "kind": "particle-transport",
+      "version": "11.2.2",
+      "status": ["observed", "verified", "required"],
+      "platform": "WSL Ubuntu-20.04",
+      "configuration": "00_project/config/geant4-runtime.json",
+      "evidence": "00_project/traceability/wsl-runtime-evidence.json",
+      "historical_versions": [
+        {"version": "11.3.2", "status": ["historical", "not_equivalent"], "scope": "旧 μ−–Ne 结果和历史 CMake 工程"}
+      ],
+      "notes": ["11.2.2 smoke 不能直接替代使用 11.3.2 生成的历史数值结果。"]
+    },
+    {
+      "id": "root",
+      "kind": "analysis",
+      "version": "6.34.08",
+      "status": ["observed", "verified", "required"],
+      "platform": "WSL Ubuntu-20.04",
+      "evidence": "00_project/traceability/wsl-runtime-evidence.json"
+    },
+    {
+      "id": "cmake",
+      "kind": "build-tool",
+      "version": "3.16.3",
+      "status": ["observed", "verified", "required"],
+      "platform": "WSL Ubuntu-20.04",
+      "evidence": "00_project/traceability/wsl-runtime-evidence.json"
+    },
+    {
+      "id": "compiler",
+      "kind": "cxx-toolchain",
+      "version": "g++ 9.4.0",
+      "status": ["observed", "verified", "required"],
+      "platform": "WSL Ubuntu-20.04",
+      "evidence": "00_project/traceability/wsl-runtime-evidence.json"
+    }
+  ],
+  "rebuild_closure": {
+    "status": ["required"],
+    "must_record": [
+      "源码、脚本和入口",
+      "输入几何、材料、场表和 stopping 表",
+      "参数、单位、坐标系、网格和 solver 设置",
+      "随机种子、事件数和并行设置",
+      "精确工具链版本、运行命令和环境变量",
+      "输出格式、检查项以及数值或统计容差",
+      "商业软件安装、模块和许可证边界"
+    ],
+    "rebuild_status_values": ["candidate", "rebuild-tested", "blocked", "drive-required"],
+    "rule": "仅有源码或单个模型文件时只能登记 candidate；在干净环境按闭包运行并通过检查后才能登记 rebuild-tested。"
+  },
+  "recovery_channels": {
+    "gitee": {
+      "role": "可重建核心和继续新工作的接班人入口",
+      "required_assets": ["rules", "active ADR", "skills", "scripts", "schemas", "tests", "manifests", "small inputs", "rebuild recipes"],
+      "large_binary_policy": "大型模型、原始输出和商业软件工程文件按 delivery-policy 标记 drive-required。"
+    },
+    "google_drive": {
+      "root": "H:\\我的云端硬盘\\muIon_archive",
+      "role": "已验证的重要模型、原始输出和运行现场的快速恢复档案",
+      "status": ["required"],
+      "layout": ["project/snapshots", "project/recovery-index", "project/manifests", "runs/<run_id>", "models/<model_id>/<version>", "references", "external-libraries", "legacy", "quarantine"]
+    }
+  },
+  "update_rule": "每次正式运行在 run-manifest 中记录实际工具链版本；环境变化先更新本 Manifest 和证据，再判断模型指纹与结果是否可比较。"
+}

@@ -7,6 +7,7 @@ import { readGoalCheckpoint } from './goal-adapter.mjs';
 import { buildContinuation } from './continuation-adapter.mjs';
 import { evaluateConvergence } from './convergence-guard.mjs';
 import { summarizeHealth } from './health-adapter.mjs';
+import { aggregateProgress } from '../project-supervisor/progress-aggregator.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const stateDir = path.join(ROOT,'07_research_system/control/research-state');
@@ -21,6 +22,21 @@ function snapshot(){ const warnings=[]; let state={}; try{state=read(path.join(s
  let agents=[]; try{agents=files(path.join(ROOT,'00_project/traceability/agent-runs'),'.json').map(f=>read(f,{}));}catch(e){warnings.push(e.message)}; let farmer=null; try{farmer=read(path.join(ROOT,'_work/current/farmer/state.json'),null);}catch(e){warnings.push(e.message)}; if(farmer&&typeof farmer==='object') for(const [id,a] of Object.entries(farmer)) agents.push({source:'farmer',session_id:id,...a}); const counts={total:agents.length,running:0,done:0,failed:0}; for(const a of agents){const s=String(a.status||a.lifecycle_state||a.lifecycle||'').toLowerCase(); if(['running','turn_started'].includes(s))counts.running++; else if(['done','succeeded','success','complete'].includes(s))counts.done++; else if(['failed','error','queue_stuck','manual-attention-required'].includes(s))counts.failed++;}
  const goal=state.current_goal||wf?.goal||wf?.workflow?.goal||null; const checkpoint=readGoalCheckpoint(ROOT,wf,state); warnings.push(...checkpoint.warnings); const continuation=buildContinuation(ROOT,state,wf); warnings.push(...continuation.warnings); const convergence=evaluateConvergence({criteriaMet:state.task_status==='SUCCESS'||state.task_status==='COMPLETED',blocked:state.task_status==='BLOCKED'||blocked.length>0}); const health=summarizeHealth(agents); const times=[state.updated_at,wf?.updated_at,wf?.updatedAt,...events.map(e=>e.occurred_at)].filter(Boolean).sort(); return {generated_at:new Date().toISOString(),research_state:state,workflow:wf?{...wf,__file:undefined}:null,display:{goal,checkpoint,continuation,convergence,health,current:current||{phase:state.current_phase,task:state.current_task,question:state.current_question},completed:[...new Set(completed)],pending,blocked,next_action:wf?.next_action||state.next_action||null,open_problems:problems,progress,last_update:times.at(-1)||null},agents:{available:agents.length>0,...counts,items:agents},warnings}; }
 const html=fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)),'index.html'),'utf8');
-export function handler(req,res){ if(req.method!=='GET'){res.writeHead(405);return res.end('Method Not Allowed');} if(req.url==='/'){res.writeHead(200,{'content-type':'text/html; charset=utf-8'});return res.end(html);} if(req.url==='/api/status'){res.writeHead(200,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});return res.end(JSON.stringify(snapshot()));} res.writeHead(404);res.end('Not Found'); }
-export function start({port=Number(process.env.RESEARCH_DASHBOARD_PORT||4317),host='127.0.0.1'}={}){const s=http.createServer(handler);return new Promise(r=>s.listen(port,host,()=>{console.log(`research-dashboard listening on http://${host}:${port}`);r(s);}));}
-if(process.argv[1]===fileURLToPath(import.meta.url)) start();
+export function handler(req,res){
+ if(req.method!=='GET'){res.writeHead(405);return res.end('Method Not Allowed');}
+ if(req.url==='/'){res.writeHead(200,{'content-type':'text/html; charset=utf-8'});return res.end(html);}
+ if(req.url==='/supervision.js'){res.writeHead(200,{'content-type':'text/javascript; charset=utf-8'});return res.end(fs.readFileSync(path.join(ROOT,'11_tools/research-dashboard/supervision.js'),'utf8'));}
+ if(req.url==='/api/health'){res.writeHead(200,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});return res.end(JSON.stringify({service:'muion-research-dashboard',project_root:ROOT,pid:process.pid}));}
+ if(req.url==='/api/status'){
+  try {
+   const value=snapshot();
+   const file=path.join(ROOT,'_work/current/project-supervisor/processes.json');
+   value.system_services=fs.existsSync(file)?read(file,null):null;
+   value.supervision=aggregateProgress(ROOT);
+   res.writeHead(200,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});return res.end(JSON.stringify(value));
+  } catch(error){res.writeHead(503,{'content-type':'application/json'});return res.end(JSON.stringify({error:error.message}));}
+ }
+ res.writeHead(404);res.end('Not Found');
+}
+export function start({port=Number(process.env.RESEARCH_DASHBOARD_PORT||4317),host='127.0.0.1'}={}){const s=http.createServer(handler);return new Promise((resolve,reject)=>{s.once('error',reject);s.listen(port,host,()=>{console.log(`research-dashboard listening on http://${host}:${s.address().port}`);resolve(s);});});}
+if(process.argv[1]===fileURLToPath(import.meta.url)) start().catch(error=>{console.error(error.message);process.exitCode=1;});

@@ -1,19 +1,19 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { projectRootFromHere, runGit, gitStatusEntries, sha256File } from './project-utils.mjs';
+import { evaluateDeliveryPath } from './delivery-path-policy.mjs';
 
 export function loadDeliveryPolicy(root) { return JSON.parse(fs.readFileSync(path.join(root, '00_project/config/delivery-policy.json'), 'utf8')); }
-const starts = (file, list) => list.some((prefix) => file === prefix || file.startsWith(prefix));
 function expand(root, file) {
   const target = path.join(root, file);
   try {
-    if (!fs.statSync(target).isDirectory()) return [file];
+    if (!fs.lstatSync(target).isDirectory()) return [file];
     const result = [];
     const visit = (dir) => {
       for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
         const full = path.join(dir, entry.name);
         if (entry.isDirectory()) visit(full);
-        else if (entry.isFile()) result.push(path.relative(root, full).replaceAll('\\', '/'));
+        else result.push(path.relative(root, full).replaceAll('\\', '/'));
       }
     };
     visit(target); return result;
@@ -22,22 +22,33 @@ function expand(root, file) {
 
 export function classifyPaths(root, policy = loadDeliveryPolicy(root), baseline = null, ownedPaths = null) {
   const entries = gitStatusEntries(root);
-  const ownedValues = ownedPaths == null ? [] : Array.isArray(ownedPaths) ? ownedPaths : [ownedPaths];
+  const ownedValues = ownedPaths == null ? [] : Array.isArray(ownedPaths) ? ownedPaths : ownedPaths.paths || [];
   const owned = ownedPaths ? new Set(ownedValues.flatMap((value) => [String(value), String(value).toLowerCase()])) : null;
-  const paths = entries.flatMap((entry) => expand(root, entry.path).map((file) => ({ file, deleted: entry.status.includes('D') }))).filter((item) => item.file && (!owned || owned.has(item.file) || owned.has(item.file.toLowerCase())));
+  const paths = entries.flatMap((entry) => [...expand(root, entry.path).map((file) => ({ file, deleted: entry.status.includes('D') })), ...(entry.status.includes('R') && entry.old_path ? [{ file: entry.old_path, deleted: true }] : [])]).filter((item) => item.file && (!owned || owned.has(item.file) || owned.has(item.file.toLowerCase())));
   const baselinePaths = new Set(baseline?.paths || []);
   const candidates = []; const adopted = []; const excluded = []; let totalBytes = 0;
   for (const entry of paths) {
     const file = entry.file;
-    const preexisting = [...baselinePaths].some((entry) => file === entry || (entry.endsWith('/') && file.startsWith(entry)));
-    const denied = starts(file, policy.gitee.deny_prefixes) || policy.gitee.deny_extensions.some((ext) => file.toLowerCase().endsWith(ext));
+    const preexisting = [...baselinePaths].some((entry) => file.toLowerCase() === entry.toLowerCase() || (entry.endsWith('/') && file.toLowerCase().startsWith(entry.toLowerCase())));
+    const eligibility = evaluateDeliveryPath(file, policy.gitee);
     const managed = file.startsWith('00_project/traceability/external-libraries/');
     const retainedExternalDeletion = entry.deleted && file.startsWith('06_external_lib/');
-    const allowed = starts(file, policy.gitee.allow_prefixes);
-    let size = 0; try { size = fs.statSync(path.join(root, file)).size; } catch {}
+    let size = 0; let contentError = null;
+    if (!entry.deleted) {
+      try {
+        const absolute = path.join(root, file); const stat = fs.lstatSync(absolute);
+        size = stat.size;
+        if (!stat.isFile() || stat.isSymbolicLink()) contentError = 'not-a-regular-file';
+        else if (eligibility.text_required && size <= policy.gitee.max_file_bytes) {
+          const bytes = fs.readFileSync(absolute);
+          if (bytes.includes(0)) contentError = 'model-source-is-binary';
+          else { try { new TextDecoder('utf-8', { fatal: true }).decode(bytes); } catch { contentError = 'model-source-not-utf8'; } }
+        }
+      } catch { contentError = 'file-unreadable'; }
+    }
     const oversized = size > policy.gitee.max_file_bytes || totalBytes + size > policy.gitee.max_task_bytes;
-    if (!managed && !retainedExternalDeletion && !denied && allowed && !oversized) { candidates.push(file); totalBytes += size; if (preexisting) adopted.push(file); }
-    else excluded.push({ path: file, reason: managed ? 'managed-by-external-library-workflow' : retainedExternalDeletion ? 'external-library-deletion-retained' : denied ? 'protected-path-or-extension' : oversized ? 'gitee-size-limit' : 'outside-allowlist', size });
+    if (!preexisting && !managed && !retainedExternalDeletion && eligibility.allowed && !oversized && !contentError) { candidates.push(file); totalBytes += size; }
+    else excluded.push({ path: file, reason: preexisting ? 'preexisting-user-change' : managed ? 'managed-by-external-library-workflow' : retainedExternalDeletion ? 'external-library-deletion-retained' : !eligibility.allowed ? eligibility.reason : oversized ? 'gitee-size-limit' : contentError, size });
   }
   return { gitee: candidates.length ? 'commit' : 'none', drive: candidates.length ? 'project' : 'none', candidates, adopted, excluded, total_bytes: totalBytes };
 }

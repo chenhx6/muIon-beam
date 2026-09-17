@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260917-worktree-entry-validation",
+  "recorded_at": "2026-09-17T03:48:21.881Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "parallel-coordination",
+  "title": "合法 worktree 曾被目录 claim 与 preflight 误拒",
+  "observation": "Git 场景测试发现目录尾斜杠使子文件被判越权；静态检查发现 preflight 只认 D:/muIon-beam，阻止私有 worktree 的 QA。",
+  "evidence": [
+    "tests/auto-commit-push-policy.test.mjs",
+    "tests/session-bootstrapper.test.mjs",
+    ".codex/skills/muion-project/scripts/preflight.mjs"
+  ],
+  "impact": [
+    "worker checkpoint 可能在合法隔离环境中失败"
+  ],
+  "reusable_value": "并行能力必须验证从工作区分配到真实 Git checkpoint/QA 的整条路径，而不只验证 worktree 创建。",
+  "actions": [
+    "规范目录 claim 和零分隔 Git 路径",
+    "在 admission 之前拒绝冲突",
+    "preflight 接受同一 common Git directory 的 worktree"
+  ],
+  "tags": [],
+  "related_paths": [],
+  "related_commits": []
+}

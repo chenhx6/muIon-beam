@@ -2,16 +2,25 @@
 
 本文件是 `D:\muIon-beam` 的长期项目规则。项目内的 `muion-project` skill 负责把这些规则落实为任务、模拟、报告和归档流程。
 
+## 项目身份与当前设计阶段
+
+- `muIon-beam` 是由长期档案、事实账本、脚本、skill 和通用大模型共同组成的科研协作系统。按培养科研同事/学生的方式积累经验：任务开始前查相关档案和用户建议，结束后记录事实、成功、失败、主意图偏差及下一步。
+- 当前阶段是基础设施设计，核心资产是架构、行为规则、源码、skill、测试、决策和经验。允许为清晰模块边界重构，不能为保持小 diff 堆积重复实现；也不能丢弃用户尚未登记的修改。
+- 模块化、封装、明确接口、单一职责、组合和资源生命周期管理是全项目基础原则；借鉴 C++ 设计思想，不要求把所有模块改写成 C++。
+- 除 `evolution` 外，脚本和 skill 必须由任务入口按需自动调用；常驻服务有可观测健康状态。用户不承担手动启动、心跳、合并、归档和恢复步骤。自动化是否已经接通必须由端到端证据说明，不能从 SKILL 文字推断。
+- farmer 只监督可恢复中断并继续原任务；dashboard、并行分配、交付和同步由独立组件负责。
+- 每次项目任务读取本文件和 `00_project/decisions/active-adr.json`，按任务范围读取有效 ADR。核心身份见 ADR-005，恢复设计见 ADR-006，当前阶段和源码政策修订见 ADR-007。
+- 用户确认既有验收尚未产出认可的 muon 离子束科学成果。旧模型/原始输出属于原型验收材料；P4 可按清单删除已判定无用的原型文件（包括唯一生成物），保留支撑架构和经验的必要证据。不得自动把该分类推广到将来的正式科研数据。
+
 ## 工作区边界
 
 - `D:\muIon-beam` 是新项目唯一工作区。
-- `D:\muIon` 正在继续气体密度—冷却关系图任务。当前保留已迁移和发布的版本，旧工作区后续变化暂不采用；允许只读核对，暂停新增迁移，待用户确认阶段任务完成后再处理增量。
-- 当前版本选择记录于 `00_project/decisions/legacy-source-change-decision.json`。旧源继续变化不等于已迁移副本损坏，不得据此覆盖原迁移哈希或宣称整体迁移完成。
-- 迁移默认采用 `copy-only`；迁移完成并通过实例验收前，不得删除、整理或重命名 `D:\muIon` 原件。
-- `C:\AAA\muIon` 已废弃，不得作为输入或输出位置。
+- `D:\muIon` 和 `C:\AAA\muIon` 已由用户删除，不作为当前输入、输出或自动迁移来源，不自动重建这两个目录。
+- `90_migration/` 和 `00_project/decisions/legacy-source-change-decision.json` 保留过去的来源、版本和校验事实；源目录删除不等于迁移验收通过，不改写历史路径或 SHA256。当前决定见 ADR-007。
 - 旧工作区迁移必须有 source index、migration Manifest 和逐文件 SHA256。
 - Google Drive 归档根目录是 `H:\我的云端硬盘\muIon_archive`。
 - Gitee 远程仓库是 `https://gitee.com/chx6/muIon-beam.git`。
+- 用户已配置 Gitee 向 `https://github.com/chenhx6/muIon-beam` 镜像推送。当前不建卫星库、不切换 origin；未来保留这两种容量方案。
 
 ## 事实和版本规则
 
@@ -40,7 +49,8 @@
 - P3 临时文件在任务结束、无活动进程和无锁文件后才允许自动清理。
 - Drive 归档成功并通过数量、大小和 SHA256 校验前，不得清理本地大型原始文件。
 - `.git` 不进入 Google Drive 同步目录。
-- Gitee 保存源码、Manifest、schema、索引、报告和重要小型结果；大型模型和完整原始输出进入 Drive。
+- Gitee 主库优先保存建模/模拟源码、宏、控制参数、必要输入、Manifest、schema、报告、索引与经验。`02_models/` 下合格文本源码不再整目录拒绝，发布入口共用 `delivery-policy.json`，二进制、生成目录和字节预算仍分别检查。
+- Drive 对齐项目目录，保存可直接使用的重要文件和必要生成物，减少恢复时重建模型与重跑计算；新机器仍需兼容的软件和许可证。运行版本以 `00_project/config/reproducibility-environment.json` 为基线，并在每次运行记录实际版本。
 
 ## 命名和报告规则
 
@@ -71,6 +81,10 @@ cache-audit
 ```
 
 ## 项目任务启动契约
+
+每次进入或恢复任务，智能体先执行 `node 11_tools/project-supervisor/index.mjs enter --project-root D:\muIon-beam`。该入口幂等确保独立监督进程、farmer 和 `127.0.0.1:4317` dashboard；用户无需执行命令。项目 `.codex/hooks.json` 连接 SessionStart/UserPromptSubmit，若宿主未信任新 hook，仍由读取本文件的智能体调用同一入口。不得改写宿主信任数据库、关闭权限机制或把未运行的 hook 宣称为已验收。入口不可用时先用 `node .codex/skills/farmer/farmer.mjs ensure` 保持恢复能力并修复入口。
+
+入口从 `CODEX_THREAD_ID` / `CODEX_SESSION_ID` 取得稳定身份，写任务自动分配或复用返回的 `session.worktree_path`。之后的文件修改和命令必须以该路径为工作目录；不能分配了 worktree 却继续写主目录。明确只读时使用 `--read-only`。被暂停、submitted 或 blocked 的分支先处理记录中的下一步，不能覆盖或删掉现场。当前这次基础设施维护从既有脏主工作树续接，其已登记 maintenance leader 是过渡例外，新任务不得照搬。
 
 进入 D:\\muIon-beam 的任务时，先检查必要工具；当前任务明确需要且来源可验证的工具或程序包缺失时，由 `muion-project` 的 toolchain recovery 在当前用户范围或隔离环境中自动下载安装、校验并重试原命令。不得安装任意包、执行未知安装钩子或修改 bundled runtime。由于 Codex Desktop shell 可能没有继承 npm PATH，启动 farmer 必须优先使用 `node .codex/skills/farmer/farmer.mjs ensure`，不得把 `npm run farmer:ensure` 作为唯一入口；工具链检查成功后才可使用 npm scripts。farmer 只监督本项目 Codex Desktop session，不改变模型、任务目标或 Manifest。其他工作流 skill 由 autopilot 根据任务阶段自动选择；只有 evolution 的外部能力搜索和采用仍需用户显式触发。
 

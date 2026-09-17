@@ -7,6 +7,9 @@ const root = path.resolve(import.meta.dirname, '..');
 const required = [
   'AGENTS.md',
   '00_project/config/delivery-policy.json',
+  '00_project/config/reproducibility-environment.json',
+  '00_project/decisions/active-adr.json',
+  'REPRODUCIBILITY.md',
   'README.md',
   '.gitignore',
   '.codex/skills/muion-project/SKILL.md',
@@ -92,6 +95,7 @@ const required = [
   '00_project/schemas/workflow-run.schema.json',
   '.codex/skills/muion-project/scripts/task-close.mjs',
   '.codex/skills/muion-project/scripts/delivery-plan.mjs',
+  '.codex/skills/muion-project/scripts/delivery-path-policy.mjs',
   '.codex/skills/muion-project/scripts/record-sync-metadata.mjs',
   '00_project/traceability/VARIABLE_CATALOG.md',
   '00_project/traceability/VARIABLE_CATALOG.csv',
@@ -136,6 +140,10 @@ for (const retired of ['3d', 'comsol', 'contracts', 'geant4', 'research-state', 
 }
 const missing = required.filter((file) => !fs.existsSync(path.join(root, file)));
 if (missing.length) throw new Error(`missing required files: ${missing.join(', ')}`);
+const adr = JSON.parse(fs.readFileSync(path.join(root, '00_project/decisions/active-adr.json'), 'utf8'));
+for (const file of [...adr.core, ...Object.values(adr.by_scope).flat()]) {
+  if (path.isAbsolute(file) || file.split('/').includes('..') || !fs.existsSync(path.join(root, file))) throw new Error(`invalid active ADR: ${file}`);
+}
 const catalog = parseYamlFile(path.join(root, '00_project/traceability/variable-catalog.yaml'));
 if (!Array.isArray(catalog.variables) || catalog.variables.length < 1) throw new Error('variable catalog has no variables');
 const validation = spawnSync(process.execPath, ['.codex/skills/muion-project/scripts/validate-variable-catalog.mjs'], { cwd: root, encoding: 'utf8' });

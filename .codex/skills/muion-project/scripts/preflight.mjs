@@ -11,7 +11,10 @@ function check(name, ok, detail) {
   if (!ok) result.blockers.push(`${name}: ${detail}`);
 }
 
-check('project-root', projectRoot.toLowerCase() === expected.toLowerCase(), `expected ${expected}`);
+const gitLocation = spawnSync('git', ['-C', projectRoot, 'rev-parse', '--path-format=absolute', '--git-common-dir', '--show-toplevel'], { encoding: 'utf8', windowsHide: true });
+const [commonDir, checkoutRoot] = (gitLocation.stdout || '').trim().split(/\r?\n/);
+const registeredWorktree = gitLocation.status === 0 && path.dirname(path.resolve(commonDir)).toLowerCase() === expected.toLowerCase() && path.resolve(checkoutRoot).toLowerCase() === projectRoot.toLowerCase();
+check('project-root', projectRoot.toLowerCase() === expected.toLowerCase() || registeredWorktree, `expected ${expected} or a Git worktree sharing its common directory`);
 check('agents', fs.existsSync(path.join(projectRoot, 'AGENTS.md')), 'AGENTS.md must exist');
 check('variable-catalog', fs.existsSync(path.join(projectRoot, '00_project', 'traceability', 'variable-catalog.yaml')), 'variable catalog must exist');
 check('research-system-layout', ['07_research_system/control/contracts/index.mjs', '07_research_system/control/research-state/state.yaml', '07_research_system/control/research-workflow/index.mjs', '07_research_system/blocks/3d/index.mjs', '07_research_system/blocks/comsol/index.mjs', '07_research_system/blocks/geant4/index.mjs'].every((file) => fs.existsSync(path.join(projectRoot, file))), '07_research_system canonical control and block entrypoints must exist');

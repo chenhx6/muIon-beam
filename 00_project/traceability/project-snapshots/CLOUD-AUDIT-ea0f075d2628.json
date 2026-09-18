@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "record_type": "snapshot-cloud-audit",
+  "snapshot_id": "SNAPSHOT-ea0f075d2628",
+  "commit": "ea0f075d2628946cc249e040ea07f1d19f9e71bc",
+  "recorded_at": "2026-09-18T09:08:13.376Z",
+  "mapped_drive_verification": "passed:1089-files/62228173-bytes/per-file-SHA256",
+  "cloud_upload_verification": "pending",
+  "connector_search": {
+    "query": "SNAPSHOT-ea0f075d2628",
+    "item_type": "folder",
+    "results": 0
+  },
+  "conclusion": "Mapped-drive copy verified; connected Drive search did not find the snapshot, so cloud completion and cleanup are not claimed.",
+  "next_action": "verify cloud-account synchronization before P4 cleanup"
+}

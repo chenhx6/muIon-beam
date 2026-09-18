@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260918-farmer-loop-containment",
+  "recorded_at": "2026-09-18T05:22:00Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "runtime-supervision",
+  "title": "自动恢复必须有持久停用开关和 event 熔断",
+  "observation": "farmer 的单次 queue 去重不足以防止 supervisor/entry 重新启动；容量错误期间用户观察到重复 farmer resume。",
+  "evidence": ["00_project/traceability/incidents/FARMER-INCIDENT-20260918.json", "tests/farmer.test.mjs", "tests/farmer-control-cli.test.mjs", "codex queue --help"],
+  "impact": ["自动恢复会打断用户任务并产生不可控的重复消息"],
+  "reusable_value": "所有可恢复循环都必须同时具备持久 operator pause、bounded attempts、event-key breaker、watchdog 不重发和显式人工 retry；停止单个进程不足以构成停用。",
+  "actions": ["farmer 读取 control.json", "ProjectSupervisor/hooks 尊重 disabled", "max_attempts 默认 3", "queue-stuck 只允许新 turn 或 manual retry 清除"],
+  "tags": ["farmer", "circuit-breaker", "queue-deduplication", "incident-containment"]
+}

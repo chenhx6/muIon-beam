@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "record_type": "farmer-incident",
+  "incident_id": "FARMER-INCIDENT-20260918",
+  "recorded_at": "2026-09-18T05:22:00Z",
+  "status": "contained",
+  "severity": "P1",
+  "symptom": "farmer repeatedly queued [farmer resume] after transient capacity events, producing an uncontrolled resume loop.",
+  "control": {
+    "path": "_work/current/farmer/control.json",
+    "disabled": true,
+    "reason": "user-requested emergency pause: farmer auto-recovery loop produced repeated resume messages"
+  },
+  "confirmed_farmer_queue_messages": [
+    {"thread_id": "01a0996b-ef69-7fa0-9eac-2e1f4f96d1a4", "message_id": "01a0ad8f-f159-7171-b08f-8ae25ac82991", "source": "farmer state queue_stdout"},
+    {"thread_id": "01a0ad7a-0928-7840-b615-d5d55984c900", "message_id": "01a0ae34-5ed5-7773-ae23-81e277fb2536", "source": "farmer state queue_stdout"}
+  ],
+  "queue_action": {
+    "requested": "cancel confirmed farmer-generated automatic recovery items only",
+    "result": "not_supported_by_installed_cli",
+    "evidence": "codex queue --help exposes enqueue (--thread/--message) only; no list or cancel operation",
+    "manual_messages_preserved": true,
+    "no_new_real_queue_message_sent": true
+  },
+  "fixes": [
+    "persistent control switch shared by farmer, ProjectSupervisor and hooks",
+    "bounded max_attempts default 3 with null safety fallback",
+    "queue-stuck circuit breaker keyed by event_key",
+    "explicit retry is the only breaker reset besides a new turn",
+    "cancelled and paused states do not auto-resume",
+    "isolated queue-stub tests cover no-send behavior"
+  ],
+  "acceptance": {
+    "farmer_process_count": 0,
+    "project_supervisor_process_count": 0,
+    "dashboard_policy": "preserve independent dashboard; no farmer/supervisor restart",
+    "tests": ["tests/farmer.test.mjs", "tests/farmer-control-cli.test.mjs", "tests/project-supervisor.test.mjs"],
+    "manual_queue_adapter_calls_in_disabled_tests": 0
+  },
+  "unresolved": [
+    "Historical queue items cannot be cancelled through the installed CLI without a supported queue-management API.",
+    "Dashboard is currently kept independent while farmer emergency pause is active.",
+    "Farmer must remain disabled until the user explicitly authorizes enable and the incident review is complete."
+  ]
+}

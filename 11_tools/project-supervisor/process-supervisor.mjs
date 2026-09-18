@@ -10,10 +10,12 @@ export class ProcessSupervisor {
         let state;
         try {
           state = await service.health();
-          if (state.status === 'stopped') {
-            await service.start(); const deadline = Date.now() + this.startTimeoutMs;
-            do { await delay(this.pollMs); state = await service.health(); } while (state.status === 'stopped' && Date.now() < deadline);
-            if (state.status === 'stopped') state = { status: 'blocked', reason: 'service-start-timeout' };
+          if (state.status === 'disabled') { current[service.name] = state; continue; }
+          if (state.status === 'stopped' || state.status === 'starting') {
+            if (state.status === 'stopped') await service.start();
+            const deadline = Date.now() + this.startTimeoutMs;
+            do { await delay(this.pollMs); state = await service.health(); } while (['stopped','starting'].includes(state.status) && Date.now() < deadline);
+            if (['stopped','starting'].includes(state.status)) state = { ...state, status: 'blocked', reason: 'service-start-timeout' };
           }
         } catch (error) { state = { status: 'blocked', reason: 'service-error', detail: error.message }; }
         current[service.name] = state;

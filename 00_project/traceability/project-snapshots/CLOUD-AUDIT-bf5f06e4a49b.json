@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "record_type": "snapshot-cloud-audit",
+  "snapshot_id": "SNAPSHOT-bf5f06e4a49b",
+  "commit": "bf5f06e4a49b651a7ab163b9d205c59169cef53c",
+  "recorded_at": "2026-09-17T07:12:36.481Z",
+  "mapped_drive_verification": "passed:1074-files/61116242-bytes/per-file-SHA256",
+  "cloud_upload_verification": "pending",
+  "evidence": [
+    {
+      "query": "SNAPSHOT-bf5f06e4a49b",
+      "kind": "folder",
+      "results": 0
+    },
+    {
+      "query": "name = muIon_archive; folder; not trashed",
+      "kind": "exact-folder-metadata",
+      "results": 0
+    }
+  ],
+  "conclusion": "Connected Drive metadata search did not find the authorized archive root or snapshot. The cause is not established; do not claim cloud completion or delete old archives.",
+  "next_action": "confirm the mounted Drive archive is uploaded and visible to the same authorized cloud account"
+}

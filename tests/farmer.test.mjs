@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { batchDelay, classifyError, inside, manualRetryLease, parseSessionEvents, recoveryStep, validateConfig } from '../.codex/skills/farmer/farmer.mjs';
+import { batchDelay, classifyError, inside, manualRetryLease, parseSessionEvents, recoveryStep, validateConfig, SAFE_MAX_ATTEMPTS } from '../.codex/skills/farmer/farmer.mjs';
 
 const config = { max_attempts: 99, recoverable_codes: ['server_overloaded', 'rate_limit_exceeded', 'temporarily_unavailable'], recoverable_patterns: ['Selected model is at capacity', 'temporarily unavailable', 'service unavailable', 'rate limit', 'timed out', 'connection reset'], recovery_message: 'resume' };
 test('farmer classifies transient and terminal errors', () => {
@@ -93,4 +93,28 @@ test('manual retry is linked to the failed event and resets attempt counter', ()
   const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:04Z', payload: { type: 'task_complete', turn_id: 't3', error: { message: 'busy' } } } };
   const r = manualRetryLease(session, { event_key: 's1:t2:old', attempts: 4, pending: true });
   assert.equal(r.manual_retry, true); assert.equal(r.retry_of, 's1:t2:old'); assert.equal(r.attempts, 0); assert.equal(r.pending, false);
+});
+test('disabled recovery is a durable paused state and never calls the queue adapter', () => {
+  let calls = 0;
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const state = recoveryStep(session, { attempts: 99 }, config, Date.now(), () => { calls++; return { status: 0 }; }, { disabled: true, reason: 'operator pause' });
+  assert.equal(calls, 0); assert.equal(state.status, 'paused'); assert.equal(state.lifecycle, 'paused');
+});
+test('null max_attempts uses a bounded safety fallback', () => {
+  let calls = 0; const cfg = { ...config, max_attempts: null };
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  let state = { event_key: 'old', attempts: 0 };
+  for (let i = 0; i < SAFE_MAX_ATTEMPTS + 1; i++) state = recoveryStep(session, state, cfg, Date.now() + i * 20000, () => { calls++; return { status: 1 }; });
+  assert.equal(calls, SAFE_MAX_ATTEMPTS); assert.equal(state.status, 'manual-attention-required');
+});
+test('watchdog breaker does not queue the same failed event again until explicit retry', () => {
+  let calls = 0; const cfg = { ...config, watchdog_ms: 1000 };
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const first = recoveryStep(session, { event_key: 'old', attempts: 0 }, cfg, 10000, () => { calls++; return { status: 0 }; });
+  const stuck = recoveryStep(session, first, cfg, 12001, () => { calls++; return { status: 0 }; });
+  const still = recoveryStep(session, stuck, cfg, 99999, () => { calls++; return { status: 0 }; });
+  assert.equal(calls, 1); assert.equal(stuck.status, 'queue-stuck'); assert.equal(still.status, 'queue-stuck');
+  const manual = manualRetryLease(session, stuck);
+  const retried = recoveryStep(session, manual, cfg, 200000, () => { calls++; return { status: 1 }; });
+  assert.equal(calls, 2); assert.equal(retried.status, 'waiting-retry');
 });

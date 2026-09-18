@@ -5,6 +5,7 @@ import { RuntimeStore, canonicalRoot, alive } from './runtime-store.mjs';
 import { ProjectSupervisor } from './project-supervisor.mjs';
 import { launchNode } from './services.mjs';
 import { parseArgs } from '../../.codex/skills/muion-project/scripts/project-utils.mjs';
+import { isDisabled, readControl } from '../../.codex/skills/farmer/farmer-control.mjs';
 
 const script = fileURLToPath(import.meta.url);
 export async function ensureDaemon(root) {
@@ -26,9 +27,11 @@ export async function ensureDaemon(root) {
 async function main() {
   const args = parseArgs(process.argv.slice(2)); const root = canonicalRoot(args.project_root || process.cwd());
   const supervisor = new ProjectSupervisor(root); const store = supervisor.store; const command = args._[0] || 'ensure';
+  if (command !== 'status' && command !== 'stop' && command !== 'watch' && isDisabled(root)) return { status: 'disabled', control: readControl(root), dashboard_policy: 'preserve-existing-only' };
   if (command === 'status') return { daemon: store.read('daemon.json'), services: await supervisor.processes.status() };
   if (command === 'stop') { const owner = store.read('daemon.json'); store.write('stop.json', { pid: owner?.pid }); return { stop_requested: owner?.pid }; }
   if (command === 'watch') {
+    if (isDisabled(root)) return { status: 'disabled', control: readControl(root) };
     const lock = await store.acquire('daemon', 0);
     const owner = { pid: process.pid, root, started_at: new Date().toISOString() };
     store.write('daemon.json', owner);

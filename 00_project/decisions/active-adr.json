@@ -9,6 +9,7 @@
   "by_scope": {
     "research_layout": ["00_project/decisions/ADR-002-research-system-layout.md"],
     "automatic_entry": ["00_project/decisions/ADR-003-triggering-and-readiness.md"],
+    "runtime_supervision": ["00_project/decisions/ADR-008-farmer-emergency-pause-and-circuit-breaker.md"],
     "parallel_sessions": ["00_project/decisions/ADR-004-parallel-session-isolation.md", "00_project/decisions/ADR-005-muion-beam-cultivation-and-modular-supervisor.md"],
     "delivery_and_recovery": ["00_project/decisions/ADR-006-three-end-reconstruction-contract.md", "00_project/decisions/ADR-007-design-phase-and-source-recovery.md"]
   },

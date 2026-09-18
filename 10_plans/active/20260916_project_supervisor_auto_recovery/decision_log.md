@@ -1,5 +1,14 @@
 # 决策日志
 
+## 2026-09-18：farmer 事故停用与恢复熔断
+
+- 用户报告 farmer 无限发送 `[farmer resume]`，要求优先停止并将修复纳入本任务。
+- 已写入 `_work/current/farmer/control.json`，`disabled=true`；真实 farmer 与 project-supervisor 进程数均为 0。独立 dashboard PID 21100 保留并通过 `/api/health` 验证。
+- `farmer ensure/start/once/retry`、ProjectSupervisor entry 和 hooks 在停用开关下均不启动恢复或写入队列；普通任务入口不会清除开关。
+- `max_attempts` 改为 3；`null` 仍在 recoveryStep 使用安全上限 3。watchdog 触发 `queue-stuck` 熔断，同一 event_key 不再重发；显式 retry 才清除。
+- 已确认 farmer 生成的 queue message ID：`01a0ad8f-f159-7171-b08f-8ae25ac82991`（当前线程）和 `01a0ae34-5ed5-7773-ae23-81e277fb2536`（farmer incident thread）。`codex queue --help` 只有 enqueue，没有 list/cancel，因此没有猜测性取消，也没有触碰人工消息；事件记录为 `not_supported_by_installed_cli`。
+- 隔离回归测试通过；真实停用路径不向 Codex queue 投递。
+
 ## 2026-09-17：P0 到自动监督与 session bootstrap 的执行检查点
 
 - 新增独立 ProjectSupervisor、ProcessSupervisor、FarmerService、DashboardService、ProjectContext、SessionBootstrapper、WorkerRuntime、ArtifactCatalog 和 ProgressAggregator；farmer 不再调用 task-close。

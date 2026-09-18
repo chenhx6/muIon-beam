@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 import { alive } from './runtime-store.mjs';
+import { isDisabled, readControl } from '../../.codex/skills/farmer/farmer-control.mjs';
 
 export function launchNode(script, args, { cwd, log, env = {} }) {
   fs.mkdirSync(path.dirname(log), { recursive: true });
@@ -17,14 +18,17 @@ export class FarmerService {
   name = 'farmer';
   constructor(root) { this.root = root; }
   async health() {
+    if (isDisabled(this.root)) return { status: 'disabled', detail: readControl(this.root).reason || 'farmer disabled by control switch' };
     const runtime = path.join(this.root, '_work/current/farmer');
     let owner; try { owner = JSON.parse(fs.readFileSync(path.join(runtime, 'lock.json'), 'utf8')); } catch { return { status: 'stopped' }; }
     if (!alive(owner.pid)) return { status: 'stopped' };
     let heartbeat; try { heartbeat = JSON.parse(fs.readFileSync(path.join(runtime, 'health.json'), 'utf8')); } catch {}
     const fresh = heartbeat?.pid === owner.pid && Date.now() - Date.parse(heartbeat.checked_at) < 30000;
-    return { status: fresh ? 'healthy' : 'degraded', pid: owner.pid, detail: fresh ? null : 'running process has no recent supervision heartbeat' };
+    const starting = Date.now() - Date.parse(owner.started_at) < 10000;
+    return { status: fresh ? 'healthy' : starting ? 'starting' : 'degraded', pid: owner.pid, detail: fresh ? null : starting ? 'waiting for first supervision heartbeat' : 'running process has no recent supervision heartbeat' };
   }
   async start() {
+    if (isDisabled(this.root)) return { status: 'disabled' };
     const result = spawnSync(process.execPath, [path.join(this.root, '.codex/skills/farmer/farmer.mjs'), 'ensure', '--project-root', this.root], { encoding: 'utf8', windowsHide: true, timeout: 10000 });
     if (result.status !== 0) throw new Error(result.stderr || 'farmer ensure failed');
     const value = JSON.parse(result.stdout); return { pid: value.started_pid || value.pid };

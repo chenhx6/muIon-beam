@@ -34,6 +34,12 @@ test('foreign listeners and degraded services are reported without duplicate sta
   await supervisor.ensure(); assert.equal(starts, 0);
   assert.equal(store.read('processes.json').services.blocked.status, 'blocked');
 });
+test('entry waits for a starting service first heartbeat without launching a duplicate', async t => {
+  const store = storeFor(t); let checks=0, starts=0;
+  const service={name:'farmer',health:async()=>({status:++checks<3?'starting':'healthy'}),start:async()=>{starts++;}};
+  const result=await new ProcessSupervisor(store,[service],{pollMs:1}).ensure();
+  assert.equal(result.farmer.status,'healthy'); assert.equal(starts,0);
+});
 test('service failure does not suppress independent service health or erase evidence', async t => {
   const store = storeFor(t);
   const supervisor = new ProcessSupervisor(store, [
@@ -59,15 +65,17 @@ test('foreign HTTP service cannot be adopted as dashboard', async t => {
   t.after(() => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); }));
   assert.equal((await new DashboardService(store.root, store, server.address().port).health()).status, 'blocked');
 });
-test('session hook carries context without persisting user prompt or changing the model', async () => {
+test('session hook carries context without persisting user prompt or changing the model', async t => {
+  const hookRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-hook-'));
+  t.after(() => { assert.equal(path.dirname(hookRoot), path.resolve(os.tmpdir())); fs.rmSync(hookRoot, { recursive: true, force: true }); });
   let entered; const event = { hook_event_name: 'SessionStart', session_id: 's1', cwd: '.', model: 'unchanged', prompt: 'not stored' };
   const supervisor = { enter: async args => {
     entered = args; return { ready: true, services: { farmer: { status: 'healthy' } }, context: [{ path: 'AGENTS.md', content: 'project context' }] };
   } };
-  const output = await handleHook(event, { root: '.', supervisor, ensure: async () => {} });
+  const output = await handleHook(event, { root: hookRoot, supervisor, ensure: async () => {} });
   assert.deepEqual(entered, { sessionId: 's1', source: 'SessionStart' });
   assert.equal(output.hookSpecificOutput.hookEventName, 'SessionStart');
   assert.match(output.hookSpecificOutput.additionalContext, /project context/);
   assert.doesNotMatch(JSON.stringify(output), /not stored/);
-  await assert.rejects(handleHook({ ...event, hook_event_name: 'Unknown' }, { root: '.', supervisor, ensure: async () => {} }), /unsupported/);
+  await assert.rejects(handleHook({ ...event, hook_event_name: 'Unknown' }, { root: hookRoot, supervisor, ensure: async () => {} }), /unsupported/);
 });

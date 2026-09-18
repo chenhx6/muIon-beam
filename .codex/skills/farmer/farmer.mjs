@@ -2,9 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { isDisabled, readControl, writeControl } from './farmer-control.mjs';
 
 export const rootDefault = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 export const batchDelay = (attempt) => Math.min(2 + 2 * Math.floor((attempt - 1) / 10), 10) * 1000;
+export const SAFE_MAX_ATTEMPTS = 3;
 export const inside = (child, root) => { const r = path.relative(path.resolve(root).toLowerCase(), path.resolve(child).toLowerCase()); return r === '' || (!r.startsWith('..') && !path.isAbsolute(r)); };
 export function classifyError(error, config) {
   if (!error) return null;
@@ -22,7 +24,7 @@ export function validateConfig(config) {
 export function manualRetryLease(session, previous = {}) {
   if (!session?.id || !session.latest?.payload?.turn_id) throw new Error('manual retry requires session and failed turn');
   const event = session.latest;
-  return { ...previous, session_id: session.id, retry_of: previous.event_key || null, event_key: `${session.id}:${event.payload.turn_id}:${event.timestamp}`, attempts: 0, pending: false, next_at: 0, status: 'manual-retry-requested', lifecycle: 'queue_attempted', manual_retry: true };
+  return { ...previous, session_id: session.id, retry_of: previous.event_key || null, event_key: `${session.id}:${event.payload.turn_id}:${event.timestamp}`, attempts: 0, pending: false, next_at: 0, status: 'manual-retry-requested', lifecycle: 'queue_attempted', manual_retry: true, breaker_cleared: true };
 }
 export function parseSessionEvents(lines, projectRoot) {
   let meta = null; let latest = null; let latestStarted = null;
@@ -44,8 +46,9 @@ export function inspect(root, codexHome) {
   for (const file of walk(path.join(codexHome, 'sessions'))) { try { const s = readSession(file, root); if (!s?.id || !s.latest) continue; const old = result.get(s.id); if (!old || s.latest.timestamp > old.latest.timestamp) result.set(s.id, s); } catch {} }
   return [...result.values()];
 }
-export function recoveryStep(session, previous, config, now, queue) {
+export function recoveryStep(session, previous, config, now, queue, options = {}) {
   validateConfig(config);
+  if (options.disabled) return { ...previous, status: 'paused', lifecycle: 'paused', pending: false, next_at: 0, pause_reason: options.reason || 'farmer disabled' };
   const event = session.latest; const payload = event?.payload;
   if (!event) return previous;
   const eventKey = payload ? `${session.id}:${payload.turn_id}:${event.timestamp}` : null;
@@ -60,13 +63,17 @@ export function recoveryStep(session, previous, config, now, queue) {
   const errorClass = classifyError(payload.error, config);
   if (!errorClass) return { ...reset, status: 'manual-attention-required', lifecycle: 'failed', pending: false, last_event_timestamp: event.timestamp };
   const key = eventKey;
+  const explicitRetry = previous?.manual_retry === true && previous.event_key === key;
+  if (!explicitRetry && ['queue-stuck', 'manual-attention-required', 'blocked'].includes(previous?.status) && previous.event_key === key) return previous;
   let state = reset?.event_key === key ? { ...reset } : { event_key: key, attempts: reset?.status === 'running' ? reset.attempts || 0 : 0, pending: false, next_at: 0, last_started_event: reset?.last_started_event };
+  if (explicitRetry) state = { ...state, attempts: 0, pending: false, next_at: 0, manual_retry: false, breaker_cleared: false, status: 'retrying', lifecycle: 'queue_attempted' };
   state.error_class = errorClass;
   if (state.pending) {
     if (state.queue_accepted_at && now - state.queue_accepted_at >= (config.watchdog_ms || 30000)) return { ...state, status: 'queue-stuck', lifecycle: 'queue_stuck', pending: false, next_at: now };
     return { ...state, status: 'recovery-pending', lifecycle: 'queued' };
   }
-  if (config.max_attempts !== null && state.attempts >= config.max_attempts) return { ...state, status: 'manual-attention-required' };
+  const maxAttempts = config.max_attempts == null ? SAFE_MAX_ATTEMPTS : config.max_attempts;
+  if (state.attempts >= maxAttempts) return { ...state, status: 'manual-attention-required', lifecycle: 'blocked', breaker_reason: 'max-attempts-reached' };
   if (now < state.next_at) return { ...state, status: 'waiting-retry' };
   const result = queue(session.id, config.recovery_message);
   state.attempts += 1; state.last_exit_code = result.status; state.last_action_at = new Date(now).toISOString();
@@ -80,28 +87,39 @@ export function recoveryStep(session, previous, config, now, queue) {
 function argumentsOf(argv) { const a = { command: argv[0] || 'status' }; for (let i = 1; i < argv.length; i++) if (argv[i].startsWith('--')) { const k = argv[i].slice(2); a[k] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true; } return a; }
 async function main() {
   const args = argumentsOf(process.argv.slice(2));
-  if (args.help || args.command === '--help') { console.log('farmer.mjs ensure|start|once|retry|status|stop|install [--project-root PATH] [--codex-home PATH] [--session ID] [--dry-run]'); return; }
+  if (args.help || args.command === '--help') { console.log('farmer.mjs ensure|start|once|retry|status|stop|disable|enable|install [--project-root PATH] [--codex-home PATH] [--session ID] [--dry-run]'); return; }
   const root = path.resolve(args['project-root'] || rootDefault); const home = args['codex-home'] || process.env.CODEX_HOME || path.join(process.env.USERPROFILE || '', '.codex');
   const config = validateConfig(JSON.parse(fs.readFileSync(path.join(root, '00_project/config/farmer.json'), 'utf8')));
   const runtime = path.join(root, '_work/current/farmer'); const lock = path.join(runtime, 'lock.json'); const stateFile = path.join(runtime, 'state.json');
   const read = (f, fallback) => { try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch { return fallback; } };
   const owner = read(lock, {});
-  if (args.command === 'status') { console.log(JSON.stringify({ running: alive(owner.pid), owner, sessions: read(stateFile, {}) }, null, 2)); return; }
+  if (args.command === 'status') { console.log(JSON.stringify({ running: alive(owner.pid), owner, control: readControl(root), sessions: read(stateFile, {}) }, null, 2)); return; }
+  if (args.command === 'disable') {
+    const control = writeControl(root, { disabled: true, reason: args.reason || 'user-requested farmer pause', changed_by: 'farmer-control' });
+    if (alive(owner.pid)) write(path.join(runtime, 'stop.json'), { pid: owner.pid, reason: 'disabled' });
+    console.log(JSON.stringify({ status: 'disabled', control, stop_requested: owner.pid || null }, null, 2)); return;
+  }
+  if (args.command === 'enable') {
+    const control = writeControl(root, { disabled: false, reason: null, changed_by: 'farmer-control' });
+    console.log(JSON.stringify({ status: 'enabled', control }, null, 2)); return;
+  }
   if (args.command === 'stop') { if (alive(owner.pid)) write(path.join(runtime, 'stop.json'), { pid: owner.pid }); console.log(JSON.stringify({ stop_requested: owner.pid || null })); return; }
   if (args.command === 'install') { console.log(JSON.stringify({ status: 'manual-install-required', command: `node "${fileURLToPath(import.meta.url)}" ensure`, note: 'Run this command from a user logon startup entry; no system task was installed.' }, null, 2)); return; }
-  if (args.command === 'ensure') { if (alive(owner.pid)) { console.log(JSON.stringify({ running: true, pid: owner.pid })); return; } if (args['dry-run']) { console.log(JSON.stringify({ would_start: true })); return; } fs.mkdirSync(runtime, { recursive: true }); const out = fs.openSync(path.join(runtime, 'daemon.log'), 'a'); const child = spawn(process.execPath, [fileURLToPath(import.meta.url), 'start', '--project-root', root, '--codex-home', home], { detached: true, stdio: ['ignore', out, out], windowsHide: true }); child.unref(); console.log(JSON.stringify({ started_pid: child.pid })); return; }
+  if (args.command === 'ensure') { if (isDisabled(root)) { console.log(JSON.stringify({ status: 'disabled', control: readControl(root), running: alive(owner.pid) })); return; } if (alive(owner.pid)) { console.log(JSON.stringify({ running: true, pid: owner.pid })); return; } if (args['dry-run']) { console.log(JSON.stringify({ would_start: true })); return; } fs.mkdirSync(runtime, { recursive: true }); const out = fs.openSync(path.join(runtime, 'daemon.log'), 'a'); const child = spawn(process.execPath, [fileURLToPath(import.meta.url), 'start', '--project-root', root, '--codex-home', home], { detached: true, stdio: ['ignore', out, out], windowsHide: true }); child.unref(); console.log(JSON.stringify({ started_pid: child.pid })); return; }
   const once = () => {
+    if (isDisabled(root)) return { status: 'disabled', control: readControl(root), sessions: 0, states: read(stateFile, {}) };
     const states = read(stateFile, {}); const sessions = inspect(root, home); const now = Date.now();
-    for (const session of sessions) { const before = states[session.id]; const next = recoveryStep(session, before, config, now, (id, message) => args['dry-run'] ? { status: 0 } : spawnSync('codex', ['queue', '--thread', id, '--message', message], { encoding: 'utf8', windowsHide: true, timeout: 15000 })); states[session.id] = next; }
+    for (const session of sessions) { const before = states[session.id]; const next = recoveryStep(session, before, config, now, (id, message) => args['dry-run'] ? { status: 0 } : spawnSync('codex', ['queue', '--thread', id, '--message', message], { encoding: 'utf8', windowsHide: true, timeout: 15000 }), { disabled: false }); states[session.id] = next; }
     if (!args['dry-run']) write(stateFile, states);
     return { sessions: sessions.length, states, dry_run: !!args['dry-run'] };
   };
-  if (args.command === 'retry') { const sessions = inspect(root, home); const session = sessions.find((item) => item.id === args.session); if (!session) throw new Error(`project session not found: ${args.session || '(missing)'}`); const states = read(stateFile, {}); states[session.id] = manualRetryLease(session, states[session.id] || {}); if (!args['dry-run']) write(stateFile, states); console.log(JSON.stringify({ session_id: session.id, state: states[session.id], dry_run: !!args['dry-run'] }, null, 2)); return; }
+  if (args.command === 'retry') { if (isDisabled(root)) { console.log(JSON.stringify({ status: 'disabled', control: readControl(root), manual_retry: false }, null, 2)); return; } const sessions = inspect(root, home); const session = sessions.find((item) => item.id === args.session); if (!session) throw new Error(`project session not found: ${args.session || '(missing)'}`); const states = read(stateFile, {}); states[session.id] = manualRetryLease(session, states[session.id] || {}); if (!args['dry-run']) write(stateFile, states); console.log(JSON.stringify({ session_id: session.id, state: states[session.id], dry_run: !!args['dry-run'] }, null, 2)); return; }
   if (args.command === 'once') { console.log(JSON.stringify(once(), null, 2)); return; }
   if (args.command !== 'start') throw new Error('unknown command');
+  if (isDisabled(root)) { console.log(JSON.stringify({ status: 'disabled', control: readControl(root) })); return; }
   if (alive(owner.pid)) throw new Error(`farmer already running: ${owner.pid}`);
   write(lock, { pid: process.pid, root, started_at: new Date().toISOString() });
-  let busy = false; const tick = () => { if (busy) return; busy = true; try { const stop = read(path.join(runtime, 'stop.json'), {}); if (stop.pid === process.pid) process.exit(0); const result = once(); write(path.join(runtime, 'health.json'), { pid: process.pid, checked_at: new Date().toISOString(), sessions: result.sessions }); } catch (e) { console.error(e.message); } finally { busy = false; } };
+  let busy = false; const tick = () => { if (busy) return; busy = true; try { const stop = read(path.join(runtime, 'stop.json'), {}); if (stop.pid === process.pid || isDisabled(root)) process.exit(0); const result = once(); write(path.join(runtime, 'health.json'), { pid: process.pid, checked_at: new Date().toISOString(), sessions: result.sessions }); } catch (e) { console.error(e.message); } finally { busy = false; } };
   process.on('exit', () => { if (read(lock, {}).pid === process.pid) fs.unlinkSync(lock); });
   try { fs.watch(path.join(home, 'sessions'), { recursive: true }, tick); } catch {}
   tick(); setInterval(tick, config.poll_interval_ms);

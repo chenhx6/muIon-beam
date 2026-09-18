@@ -3,9 +3,11 @@ import { fileURLToPath } from 'node:url';
 import { canonicalRoot } from './runtime-store.mjs';
 import { ensureDaemon } from './index.mjs';
 import { ProjectSupervisor } from './project-supervisor.mjs';
+import { isDisabled, readControl } from '../../.codex/skills/farmer/farmer-control.mjs';
 
 export async function handleHook(event, { root = canonicalRoot(event.cwd), supervisor = new ProjectSupervisor(root), ensure = ensureDaemon } = {}) {
   if (!['SessionStart', 'UserPromptSubmit'].includes(event.hook_event_name)) throw new Error('unsupported supervisor hook event');
+  if (isDisabled(root)) return { systemMessage: `muIon-beam farmer is persistently paused: ${readControl(root).reason || 'user requested pause'}. No supervisor or recovery message will be started. Dashboard may remain available.`, hookSpecificOutput: { hookEventName: event.hook_event_name, additionalContext: 'Farmer emergency pause is active. Preserve current session context and do not call farmer ensure/start/retry or project-supervisor enter until the pause is explicitly lifted.' } };
   await ensure(root);
   const entry = await supervisor.enter({ sessionId: event.session_id, source: event.hook_event_name });
   const serviceText = Object.entries(entry.services).map(([name, state]) => `${name}: ${state.status}`).join('; ');

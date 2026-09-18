@@ -34,7 +34,8 @@ export function parseSessionEvents(lines, projectRoot) {
       if (item.type === 'session_meta') meta = item.payload;
       if (item.type === 'response_item' && item.payload?.type === 'message' && item.payload.role === 'user') {
         const text = (item.payload.content || []).map(part => part.text || '').join('');
-        if (text) userPrompts.push({ text, timestamp: item.timestamp || null });
+        const kinds = item.payload.internal_chat_message_metadata_passthrough?.content_item_kinds || [];
+        if (text && (!kinds.length || kinds.includes('user.text'))) userPrompts.push({ text, timestamp: item.timestamp || null });
       }
       if (item.type === 'event_msg' && ['task_started', 'task_complete', 'turn_aborted'].includes(item.payload?.type)) {
         latest = item; if (item.payload.type === 'task_started') latestStarted = item;
@@ -68,11 +69,13 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   const previousEventTimestamp = previous?.last_event_timestamp || (previous?.event_key ? previous.event_key.split(':').slice(2).join(':') : null);
   const recoveryText = String(options.recovery_message || config.recovery_message || '').trim();
   const automaticResume = Boolean(recoveryText && (session.userPrompts || []).some(prompt => String(prompt.text || '').trim() === recoveryText && (!previousEventTimestamp || Date.parse(prompt.timestamp || '') > Date.parse(previousEventTimestamp))));
+  const manualUserPrompt = (session.userPrompts || []).some(prompt => !recoveryText || String(prompt.text || '').trim() !== recoveryText) && (session.userPrompts || []).some(prompt => !previousEventTimestamp || Date.parse(prompt.timestamp || '') > Date.parse(previousEventTimestamp));
   const sawNewStart = startedKey && startedKey !== previous?.last_started_event && previous?.event_key !== eventKey;
   const startAfterPreviousEvent = session.latestStarted && previousEventTimestamp && session.latestStarted.timestamp > previousEventTimestamp && session.latestStarted.payload.turn_id !== payload.turn_id;
-  const manualNewStart = (sawNewStart || startAfterPreviousEvent) && !automaticResume;
+  const manualNewStart = (sawNewStart || startAfterPreviousEvent) && !automaticResume && (manualUserPrompt || !previous?.recovery_chain_active);
   const reset = manualNewStart ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey, recovery_chain_active: false } : previous;
-  if (payload.type === 'task_started') return { ...reset, status: 'running', lifecycle: 'turn_started', event_key: eventKey, pending: false, attempts: automaticResume ? (previous?.attempts || 0) : 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, recovery_chain_active: automaticResume || Boolean(previous?.recovery_chain_active), automatic_resume: automaticResume };
+  const continuingRecovery = automaticResume || (Boolean(previous?.recovery_chain_active) && !manualUserPrompt);
+  if (payload.type === 'task_started') return { ...reset, status: 'running', lifecycle: 'turn_started', event_key: eventKey, pending: false, attempts: continuingRecovery ? (previous?.attempts || 0) : 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, recovery_chain_active: continuingRecovery, automatic_resume: automaticResume };
   if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', lifecycle: 'cancelled', pending: false, last_event_timestamp: event.timestamp };
   if (!payload.error) return { ...reset, status: 'complete', lifecycle: 'succeeded', pending: false, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp };
   const errorClass = classifyError(payload.error, config);

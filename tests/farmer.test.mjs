@@ -135,3 +135,13 @@ test('ordinary new user turn starts a new recovery chain', () => {
   const next = recoveryStep(session, { event_key: 's1:t1:2026-01-01T00:00:00Z', attempts: 2, status: 'waiting-retry', last_started_event: 's1:t1:old' }, cfg, Date.now(), () => ({ status: 0 }));
   assert.equal(next.attempts, 0); assert.equal(next.recovery_chain_active, false); assert.equal(next.automatic_resume, false);
 });
+test('synthetic AGENTS and environment messages do not reset an active recovery chain', () => {
+  const lines = [
+    JSON.stringify({ type: 'session_meta', payload: { session_id: 's1', cwd: 'D:/muIon-beam' } }),
+    JSON.stringify({ type: 'response_item', timestamp: '2026-01-01T00:01:00Z', payload: { type: 'message', role: 'user', content: [{ text: '# AGENTS.md instructions\n<INSTRUCTIONS>' }], internal_chat_message_metadata_passthrough: { content_item_kinds: ['agents_md.instructions'] } } }),
+    JSON.stringify({ type: 'event_msg', timestamp: '2026-01-01T00:01:01Z', payload: { type: 'task_started', turn_id: 't2' } })
+  ];
+  const parsed = parseSessionEvents(lines, 'D:/muIon-beam');
+  const next = recoveryStep({ ...parsed }, { event_key: 's1:t1:2026-01-01T00:00:00Z', attempts: 2, recovery_chain_active: true, status: 'waiting-retry', last_event_timestamp: '2026-01-01T00:00:00Z' }, config, Date.now(), () => ({ status: 0 }));
+  assert.equal(next.attempts, 2); assert.equal(next.automatic_resume, false); assert.equal(next.recovery_chain_active, true);
+});

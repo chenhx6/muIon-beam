@@ -118,3 +118,20 @@ test('watchdog breaker does not queue the same failed event again until explicit
   const retried = recoveryStep(session, manual, cfg, 200000, () => { calls++; return { status: 1 }; });
   assert.equal(calls, 2); assert.equal(retried.status, 'waiting-retry');
 });
+test('automatic resume keeps the same recovery attempt budget across new turns', () => {
+  let calls = 0; const cfg = { ...config, max_attempts: 3 };
+  const oldSession = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const exhausted = recoveryStep(oldSession, { event_key: 'old', attempts: 2, recovery_chain_active: true, status: 'waiting-retry', last_event_timestamp: '2026-01-01T00:00:00Z' }, cfg, Date.now(), () => { calls++; return { status: 0 }; });
+  const resumed = { id: 's1', latest: { timestamp: '2026-01-01T00:01:00Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:01:00Z', payload: { type: 'task_started', turn_id: 't2' } }, userPrompts: [{ timestamp: '2026-01-01T00:00:30Z', text: cfg.recovery_message }] };
+  const started = recoveryStep(resumed, exhausted, cfg, Date.now(), () => { calls++; return { status: 0 }; });
+  assert.equal(started.attempts, 3); assert.equal(started.automatic_resume, true);
+  const failed = { ...resumed, latest: { timestamp: '2026-01-01T00:01:01Z', payload: { type: 'task_complete', turn_id: 't2', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const blocked = recoveryStep(failed, started, cfg, Date.now(), () => { calls++; return { status: 0 }; });
+  assert.equal(calls, 1); assert.equal(blocked.status, 'manual-attention-required');
+});
+test('ordinary new user turn starts a new recovery chain', () => {
+  const cfg = { ...config, max_attempts: 3 };
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:01:00Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:01:00Z', payload: { type: 'task_started', turn_id: 't2' } }, userPrompts: [{ timestamp: '2026-01-01T00:00:30Z', text: 'new user task' }] };
+  const next = recoveryStep(session, { event_key: 's1:t1:2026-01-01T00:00:00Z', attempts: 2, status: 'waiting-retry', last_started_event: 's1:t1:old' }, cfg, Date.now(), () => ({ status: 0 }));
+  assert.equal(next.attempts, 0); assert.equal(next.recovery_chain_active, false); assert.equal(next.automatic_resume, false);
+});

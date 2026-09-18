@@ -1,4 +1,4 @@
-import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import crypto from 'node:crypto'; import {handler} from '../11_tools/research-dashboard/server.mjs';
+import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import crypto from 'node:crypto'; import {handler} from '../11_tools/research-dashboard/server.mjs';
 import {validateEvidenceNote} from '../11_tools/research-dashboard/evidence-notes.mjs';
 import {inspectPhysicsContract} from '../11_tools/research-dashboard/physics-gate.mjs';
 import {reviewClosure} from '../11_tools/research-dashboard/review-closure.mjs';
@@ -6,6 +6,7 @@ import {compareCapability} from '../11_tools/research-dashboard/capability-matri
 import {normalizeLedger} from '../11_tools/research-dashboard/ledger-normalizer.mjs';
 function request(method,url){return new Promise((resolve,reject)=>{const req={method,url};const chunks=[];const res={writeHead:(s,h)=>{res.statusCode=s;res.headers=h},end:b=>resolve({status:res.statusCode,body:String(b||''),headers:res.headers})};try{handler(req,res)}catch(e){reject(e)}})}
 test('dashboard routes are read-only',async()=>{assert.equal((await request('GET','/')).status,200);const api=await request('GET','/api/status');assert.equal(api.status,200);const data=JSON.parse(api.body);assert.ok(data.display);assert.ok(Array.isArray(data.warnings));for(const m of ['POST','PUT','DELETE']) assert.equal((await request(m,'/api/status')).status,405);assert.equal((await request('GET','/bad')).status,404)});
+test('dashboard exposes the farmer emergency pause instead of stale healthy process state',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);const control=fs.existsSync(path.join(process.cwd(),'_work/current/farmer/control.json'))?JSON.parse(fs.readFileSync(path.join(process.cwd(),'_work/current/farmer/control.json'),'utf8')):null;if(control?.disabled) assert.equal(data.system_services?.services?.farmer?.status,'disabled');});
 test('no workflow gives null progress when applicable',async()=>{const d=JSON.parse((await request('GET','/api/status')).body);if(!d.workflow) assert.equal(d.display.progress.value,null)});
 test('goal checkpoint adapter is read-only and optional',async()=>{const d=JSON.parse((await request('GET','/api/status')).body);assert.ok(d.display.checkpoint);assert.ok(Array.isArray(d.display.checkpoint.goals));});
 test('continuation summary is read-only and evidence based',async()=>{const d=JSON.parse((await request('GET','/api/status')).body);assert.ok(d.display.continuation);assert.ok(Array.isArray(d.display.continuation.source));assert.ok('next_action' in d.display.continuation);});

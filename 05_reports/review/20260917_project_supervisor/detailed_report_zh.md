@@ -49,6 +49,8 @@ Google Drive connector 按快照名和精确 archive 根目录查询未找到对
 
 用户报告 farmer 无限发送 `[farmer resume]`。已先写入 `_work/current/farmer/control.json` 的持久 `disabled` 开关，再停止 farmer 和 project-supervisor；dashboard 由独立 Node 进程保留，健康接口返回 `muion-research-dashboard`。普通 entry、hooks、`ensure`、`start`、`once` 和 `retry` 均不会解除开关或产生新的 queue 调用。
 
+随后隔离测试发现，若自动恢复消息触发了新的 `task_started`，简单按 turn 清零 attempts 仍会允许跨 turn 无限循环。现在 farmer 解析最近用户消息，只有精确匹配其 recovery message 才视为自动恢复链；该链保留 attempts 和熔断，普通用户输入才重置链。
+
 两条已确认的 farmer 自动消息 ID 写入 incident receipt。安装的 `codex queue --help` 仅有 enqueue 参数，没有 list/cancel 接口，因此没有对未知队列做猜测性删除，也没有触碰人工消息；这部分保持 `not_supported_by_installed_cli`，不能宣称历史消息已取消。
 
 回归测试在隔离临时项目完成：null attempts 使用安全上限 3；同一 event 的 watchdog `queue-stuck` 不重发；显式 manual retry 才清除熔断；停用 CLI 和 supervisor entry 不创建 daemon。真实项目 farmer 进程数验收为 0。Farmer 必须保持停用，直到用户明确允许 enable 并完成 incident review。

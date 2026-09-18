@@ -27,10 +27,22 @@ export function manualRetryLease(session, previous = {}) {
   return { ...previous, session_id: session.id, retry_of: previous.event_key || null, event_key: `${session.id}:${event.payload.turn_id}:${event.timestamp}`, attempts: 0, pending: false, next_at: 0, status: 'manual-retry-requested', lifecycle: 'queue_attempted', manual_retry: true, breaker_cleared: true };
 }
 export function parseSessionEvents(lines, projectRoot) {
-  let meta = null; let latest = null; let latestStarted = null;
-  for (const line of lines) { try { const item = JSON.parse(line); if (item.type === 'session_meta') meta = item.payload; if (item.type === 'event_msg' && ['task_started', 'task_complete', 'turn_aborted'].includes(item.payload?.type)) { latest = item; if (item.payload.type === 'task_started') latestStarted = item; } } catch {} }
+  let meta = null; let latest = null; let latestStarted = null; const userPrompts = [];
+  for (const line of lines) {
+    try {
+      const item = JSON.parse(line);
+      if (item.type === 'session_meta') meta = item.payload;
+      if (item.type === 'response_item' && item.payload?.type === 'message' && item.payload.role === 'user') {
+        const text = (item.payload.content || []).map(part => part.text || '').join('');
+        if (text) userPrompts.push({ text, timestamp: item.timestamp || null });
+      }
+      if (item.type === 'event_msg' && ['task_started', 'task_complete', 'turn_aborted'].includes(item.payload?.type)) {
+        latest = item; if (item.payload.type === 'task_started') latestStarted = item;
+      }
+    } catch {}
+  }
   if (!meta?.cwd || !inside(meta.cwd, projectRoot)) return null;
-  return { id: meta.session_id || meta.id, cwd: meta.cwd, latest, latestStarted };
+  return { id: meta.session_id || meta.id, cwd: meta.cwd, latest, latestStarted, userPrompts: userPrompts.slice(-12) };
 }
 function segment(file, start, length) { const fd = fs.openSync(file, 'r'); try { const b = Buffer.alloc(length); const n = fs.readSync(fd, b, 0, length, start); return b.subarray(0, n).toString('utf8'); } finally { fs.closeSync(fd); } }
 function readSession(file, root) {
@@ -54,10 +66,13 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   const eventKey = payload ? `${session.id}:${payload.turn_id}:${event.timestamp}` : null;
   const startedKey = session.latestStarted ? `${session.id}:${session.latestStarted.payload.turn_id}:${session.latestStarted.timestamp}` : previous?.last_started_event;
   const previousEventTimestamp = previous?.last_event_timestamp || (previous?.event_key ? previous.event_key.split(':').slice(2).join(':') : null);
+  const recoveryText = String(options.recovery_message || config.recovery_message || '').trim();
+  const automaticResume = Boolean(recoveryText && (session.userPrompts || []).some(prompt => String(prompt.text || '').trim() === recoveryText && (!previousEventTimestamp || Date.parse(prompt.timestamp || '') > Date.parse(previousEventTimestamp))));
   const sawNewStart = startedKey && startedKey !== previous?.last_started_event && previous?.event_key !== eventKey;
   const startAfterPreviousEvent = session.latestStarted && previousEventTimestamp && session.latestStarted.timestamp > previousEventTimestamp && session.latestStarted.payload.turn_id !== payload.turn_id;
-  const reset = (sawNewStart || startAfterPreviousEvent) ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey } : previous;
-  if (payload.type === 'task_started') return { ...reset, status: 'running', lifecycle: 'turn_started', event_key: eventKey, pending: false, attempts: 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp };
+  const manualNewStart = (sawNewStart || startAfterPreviousEvent) && !automaticResume;
+  const reset = manualNewStart ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey, recovery_chain_active: false } : previous;
+  if (payload.type === 'task_started') return { ...reset, status: 'running', lifecycle: 'turn_started', event_key: eventKey, pending: false, attempts: automaticResume ? (previous?.attempts || 0) : 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, recovery_chain_active: automaticResume || Boolean(previous?.recovery_chain_active), automatic_resume: automaticResume };
   if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', lifecycle: 'cancelled', pending: false, last_event_timestamp: event.timestamp };
   if (!payload.error) return { ...reset, status: 'complete', lifecycle: 'succeeded', pending: false, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp };
   const errorClass = classifyError(payload.error, config);
@@ -65,7 +80,7 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   const key = eventKey;
   const explicitRetry = previous?.manual_retry === true && previous.event_key === key;
   if (!explicitRetry && ['queue-stuck', 'manual-attention-required', 'blocked'].includes(previous?.status) && previous.event_key === key) return previous;
-  let state = reset?.event_key === key ? { ...reset } : { event_key: key, attempts: reset?.status === 'running' ? reset.attempts || 0 : 0, pending: false, next_at: 0, last_started_event: reset?.last_started_event };
+  let state = reset?.event_key === key ? { ...reset } : { event_key: key, attempts: (reset?.status === 'running' || reset?.recovery_chain_active) ? reset.attempts || 0 : 0, pending: false, next_at: 0, last_started_event: reset?.last_started_event, recovery_chain_active: Boolean(reset?.recovery_chain_active) };
   if (explicitRetry) state = { ...state, attempts: 0, pending: false, next_at: 0, manual_retry: false, breaker_cleared: false, status: 'retrying', lifecycle: 'queue_attempted' };
   state.error_class = errorClass;
   if (state.pending) {
@@ -79,6 +94,7 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   state.attempts += 1; state.last_exit_code = result.status; state.last_action_at = new Date(now).toISOString();
   state.queue_exit_code = result.status; state.queue_stdout = result.stdout ? String(result.stdout).slice(-2000) : null; state.queue_stderr = result.stderr ? String(result.stderr).slice(-2000) : null;
   state.pending = result.status === 0; state.lifecycle = state.pending ? 'queued' : 'queue_attempted'; state.status = state.pending ? 'recovery-pending' : 'waiting-retry';
+  state.recovery_chain_active = true;
   state.queue_accepted_at = state.pending ? now : null;
   state.next_at = now + batchDelay(state.attempts);
   state.last_event_timestamp = event.timestamp;

@@ -26,6 +26,7 @@
     "persistent control switch shared by farmer, ProjectSupervisor and hooks",
     "bounded max_attempts default 3 with null safety fallback",
     "queue-stuck circuit breaker keyed by event_key",
+    "automatic resume prompt detection preserves attempt budget across generated turns",
     "explicit retry is the only breaker reset besides a new turn",
     "cancelled and paused states do not auto-resume",
     "isolated queue-stub tests cover no-send behavior"

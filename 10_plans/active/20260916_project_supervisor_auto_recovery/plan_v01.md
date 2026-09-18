@@ -124,8 +124,8 @@ P0 先冻结规则、ADR index、模块接口和自动触发契约。P1 接入 f
 
 ## 当前暂停点：FARMER-INCIDENT-20260918
 
-2026-09-18 farmer 出现重复 `[farmer resume]`，主任务按用户要求进入事故停用暂停。`_work/current/farmer/control.json` 的 `disabled=true` 是持久本机开关；farmer 与 project-supervisor 保持停止，dashboard 独立保留。停用期间普通 hooks、entry、ensure、once 和 retry 不得解除开关或发送恢复消息。
+2026-09-18 farmer 出现重复 `[farmer resume]`，自动恢复子链按用户要求进入事故停用；主任务本身继续。`_work/current/farmer/control.json` 的 `disabled=true` 是持久本机开关；farmer 与 project-supervisor 保持停止，dashboard 独立保留。停用期间普通 hooks、entry、ensure、once 和 retry 不得解除开关或发送恢复消息。
 
-事故修复已经在隔离 checkout 通过 158 项测试并推送 Gitee `9ef64861baed0afdfae71fc05779efcf5a3e770a`。同一 event 的 watchdog 熔断、有界 attempts、显式 retry 清除、CLI disabled 入口和 supervisor 不启动均有测试。主任务在用户明确 review 并 enable farmer 前保持暂停；解除后从 P2/P3 artifact promotion 与 leader integration gate 继续，不重新启动正式科研运行。
+事故修复已经在隔离 checkout 通过测试并推送 Gitee `9ef64861baed0afdfae71fc05779efcf5a3e770a`，计划/归档证据随后推送为 `9abcb4ddcb1a45b5a79d203ffe692572226f9dad`。追加的跨自动 resume turn attempt 链修复将在下一检查点提交。同一 event 的 watchdog 熔断、有界 attempts、跨自动 resume turn 保留预算、显式 retry 清除、CLI disabled 入口和 supervisor 不启动均有测试。主任务继续进行 P2/P3 artifact promotion、leader integration 和 P4 Drive cloud visibility；farmer 自动恢复验收保持停用，直到用户 review 并 enable。
 
 `codex queue` 当前只有 enqueue 接口，没有安全的 list/cancel 操作。已确认的 farmer 自动 message ID、未完成取消事实和人工消息保护写入 `00_project/traceability/incidents/FARMER-INCIDENT-20260918.json`，不做猜测性队列删除。

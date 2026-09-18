@@ -8,6 +8,7 @@ import { buildContinuation } from './continuation-adapter.mjs';
 import { evaluateConvergence } from './convergence-guard.mjs';
 import { summarizeHealth } from './health-adapter.mjs';
 import { aggregateProgress } from '../project-supervisor/progress-aggregator.mjs';
+import { isDisabled, readControl } from '../../.codex/skills/farmer/farmer-control.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const stateDir = path.join(ROOT,'07_research_system/control/research-state');
@@ -32,6 +33,7 @@ export function handler(req,res){
    const value=snapshot();
    const file=path.join(ROOT,'_work/current/project-supervisor/processes.json');
    value.system_services=fs.existsSync(file)?read(file,null):null;
+   if (isDisabled(ROOT)) value.system_services={...(value.system_services||{}),services:{...(value.system_services?.services||{}),farmer:{status:'disabled',detail:readControl(ROOT).reason||'farmer disabled by control switch'}}};
    value.supervision=aggregateProgress(ROOT);
    res.writeHead(200,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});return res.end(JSON.stringify(value));
   } catch(error){res.writeHead(503,{'content-type':'application/json'});return res.end(JSON.stringify({error:error.message}));}

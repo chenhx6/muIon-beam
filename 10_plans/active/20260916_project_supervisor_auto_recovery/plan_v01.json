@@ -2,7 +2,7 @@
   "schema_version": 1,
   "plan_id": "plan_project_supervisor_auto_recovery",
   "plan_version": "v01",
-  "status": "paused-incident",
+  "status": "executing-incident-contained",
   "task_id": "task_project_supervisor_auto_recovery_001",
   "objective": "让用户只提出任务，项目自动启动并按需调用除 evolution 外的全部脚本和 skill，同时使 Gitee 成为可重建核心、Google Drive 成为完整恢复档案。",
   "design_principles": [
@@ -291,7 +291,7 @@
     "farmer_disabled": true,
     "project_supervisor_disabled": true,
     "dashboard_preserved": true,
-    "resume_requires": "explicit user review and farmer enable",
-    "main_task_continuation": "after incident containment, return to P2/P3 artifact promotion and P4 Drive cloud visibility"
+    "resume_requires": "explicit user review and farmer enable only for automatic recovery acceptance",
+    "main_task_continuation": "continue P2/P3 artifact promotion, leader integration and P4 Drive cloud visibility while farmer remains disabled"
   }
 }

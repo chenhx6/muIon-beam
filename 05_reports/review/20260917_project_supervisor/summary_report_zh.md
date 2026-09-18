@@ -15,3 +15,5 @@
 尚未完成：宿主原生 hooks 的新任务投递验收，任务完成到 artifact promotion/leader integration 的全自动闭环，Drive canonical 重整与恢复演练。P5 跨机器和任意子进程写边界继续延后。当前不是“全部自动化已验收”的最终报告。
 
 2026-09-18 发生 farmer 恢复循环事故：已写入持久 emergency pause，farmer 与 project-supervisor 进程保持 0，dashboard 独立保留。重复 queue 的具体 message ID、CLI 无取消接口、未完成事项和隔离验证见 `FARMER-INCIDENT-20260918.json`；在用户明确解除停用前，不会自动恢复 farmer。
+
+追加验证确认自动恢复消息触发的新 turn 不会重置同一 recovery chain 的 attempts；普通用户新输入才开启新链，避免跨 turn 无限循环。

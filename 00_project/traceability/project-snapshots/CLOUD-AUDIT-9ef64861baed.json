@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "record_type": "snapshot-cloud-audit",
+  "snapshot_id": "SNAPSHOT-9ef64861baed",
+  "commit": "9ef64861baed0afdfae71fc05779efcf5a3e770a",
+  "recorded_at": "2026-09-18T05:36:00Z",
+  "mapped_drive_verification": "passed:1083-files/61412419-bytes/per-file-SHA256",
+  "cloud_upload_verification": "pending",
+  "evidence": [
+    {"query": "SNAPSHOT-9ef64861baed", "kind": "folder", "results": 0},
+    {"query": "muIon_archive exact folder", "kind": "folder metadata", "results": 0}
+  ],
+  "conclusion": "The H: mapped-drive copy is verified. Connected Drive metadata search did not find the archive root or snapshot, so cloud completion is not claimed and no old archive is deleted.",
+  "next_action": "Confirm mapped-drive synchronization and cloud-account visibility before P4 cleanup."
+}

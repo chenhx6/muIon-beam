@@ -121,3 +121,11 @@ muIon_archive/
 P0 先冻结规则、ADR index、模块接口和自动触发契约。P1 接入 farmer/dashboard/session bootstrap。P2 接入 worktree、claim、worker lease、并行和恢复。P3 接入 artifact promotion、unregistered triage、总进度和经验。P4 建立 Gitee Recovery Core、可选卫星库策略、Drive canonical archive 和 recovery index。P5 再考虑跨机器 CAS 和 Windows 进程级写边界。
 
 每个阶段都必须有结构测试、行为测试、失败注入和可恢复证据。只有满足“用户不运行非-evolution 脚本”以及三端恢复门后，才可把阶段标记为完成。
+
+## 当前暂停点：FARMER-INCIDENT-20260918
+
+2026-09-18 farmer 出现重复 `[farmer resume]`，主任务按用户要求进入事故停用暂停。`_work/current/farmer/control.json` 的 `disabled=true` 是持久本机开关；farmer 与 project-supervisor 保持停止，dashboard 独立保留。停用期间普通 hooks、entry、ensure、once 和 retry 不得解除开关或发送恢复消息。
+
+事故修复已经在隔离 checkout 通过 158 项测试并推送 Gitee `9ef64861baed0afdfae71fc05779efcf5a3e770a`。同一 event 的 watchdog 熔断、有界 attempts、显式 retry 清除、CLI disabled 入口和 supervisor 不启动均有测试。主任务在用户明确 review 并 enable farmer 前保持暂停；解除后从 P2/P3 artifact promotion 与 leader integration gate 继续，不重新启动正式科研运行。
+
+`codex queue` 当前只有 enqueue 接口，没有安全的 list/cancel 操作。已确认的 farmer 自动 message ID、未完成取消事实和人工消息保护写入 `00_project/traceability/incidents/FARMER-INCIDENT-20260918.json`，不做猜测性队列删除。

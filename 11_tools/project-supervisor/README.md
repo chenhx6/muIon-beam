@@ -13,6 +13,7 @@ ProjectSupervisor composes independently testable modules. It does not choose ph
 | SessionBootstrapper | host identity, intent, claims | existing concurrency registry | private worktree before writes; resume preserves branch and files |
 | WorkerRuntime | farmer host state, session registry | worker health view | renew running leases; report ownership violations and retain files |
 | ArtifactCatalog | untracked and ignored worktree files | artifact triage records | record SHA256 and next action without deleting output |
+| ArtifactPromoter | explicit artifact plan and approved target | promotion receipt | copy-only, hash-checked promotion; binary/unknown output stays blocked |
 | ArtifactPromoter / ProgressAggregator (P3) | output inventory, branch facts | manifests / derived views | unregistered outputs remain visible and retained |
 | SyncCoordinator (P4) | validated delivery and archive contracts | sync receipts, recovery index | pending recovery remains explicit; no false success |
 

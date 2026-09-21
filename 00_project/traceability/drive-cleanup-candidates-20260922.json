@@ -9,6 +9,13 @@
   "reason": "Google Drive connector cannot see muIon_archive or the canonical snapshot names; mapped-drive hashes alone are insufficient for cleanup.",
   "categories": [
     {
+      "path": "muIon-beam",
+      "role": "canonical local-relative project mirror",
+      "observed": {"files": 2476, "bytes": 479473188},
+      "action": "keep",
+      "notes": "Mapped-drive copy is verified; cloud visibility and account identity remain unverified. This is the only new active recovery entrance."
+    },
+    {
       "path": "project/snapshots",
       "role": "canonical committed-project snapshots",
       "observed": {"directories": 6, "files": 6511, "bytes": 371962952},

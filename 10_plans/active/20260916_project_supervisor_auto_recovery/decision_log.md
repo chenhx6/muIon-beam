@@ -44,6 +44,7 @@
 - 自动生成并执行 `drive-mirror-plan.mjs` / `drive-mirror-sync.mjs`。本地镜像已复制 2473 个文件，共 479465396 字节，逐文件数量、大小和 SHA256 校验通过；`.git`、`_work`、缓存、日志、构建目录和临时文件未复制。
 - Drive 根目录已写入 `drive-mirror-manifest.json`，标记 `mapped-drive-count-size-sha256-verified`；该文件不把映射盘存在误写成云端可见。
 - Google Drive connector 仍找不到 `muIon-beam` 或 `drive-mirror-manifest.json`，只能看到不相关的 `mu-ion beam` 文件夹及其 `无标题文档`；因此云端上传仍为 `unverified`，旧归档目录继续保留，未执行删除或移动。
+- 新任务的 `sync-project-snapshot`、`sync-three-end`、`audit-three-end`、`task-close` 和外部库归档默认均通过 `drive-layout.mjs` 指向本地树镜像；显式旧路径只用于历史 receipt，不会再次生成旧目录。
 
 ## 2026-09-16：主库源码优先和 Drive 清理边界
 

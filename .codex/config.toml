@@ -2,6 +2,3 @@ sandbox_mode = "workspace-write"
 
 [plugins."ponytail@muion-beam"]
 enabled = true
-
-[plugins."ponytail@ponytail"]
-enabled = false

@@ -7,7 +7,7 @@ import { listSessions } from '../../team/scripts/session-concurrency.mjs';
 const readJson = (file, fallback = null) => { try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch (error) { if (error.code === 'ENOENT') return fallback; throw error; } };
 const listJson = directory => fs.existsSync(directory) ? fs.readdirSync(directory).filter(name => name.endsWith('.json')).map(name => path.join(directory, name)).sort() : [];
 
-export function buildRecoveryIndex(root, { driveRoot, git = (...args) => runGit(root, args).stdout.trim(), now = nowIso() } = {}) {
+export function buildRecoveryIndex(root, { driveRoot, git = args => runGit(root, args).stdout.trim(), now = nowIso() } = {}) {
   const projectRoot = path.resolve(root); const archiveRoot = path.resolve(driveRoot || 'H:\\我的云端硬盘\\muIon_archive');
   const latestCommit = git(['rev-parse', 'HEAD']); const remoteCommit = git(['ls-remote', 'origin', 'refs/heads/main']).split(/\s+/)[0] || null;
   const snapshotDir = path.join(projectRoot, '00_project/traceability/project-snapshots');

@@ -41,7 +41,7 @@
 ## 2026-09-22：本地树 canonical Drive 镜像
 
 - 采用 ADR-009：Drive 接续入口改为 `H:\\我的云端硬盘\\muIon_archive\\muIon-beam`，与 `D:\\muIon-beam` 保持相同相对路径；Gitee 保存版本历史，Drive 保存当前接续副本。
-- 自动生成并执行 `drive-mirror-plan.mjs` / `drive-mirror-sync.mjs`。本地镜像已复制 2473 个文件，共 479465396 字节，逐文件数量、大小和 SHA256 校验通过；`.git`、`_work`、缓存、日志、构建目录和临时文件未复制。
+- 自动生成并执行 `drive-mirror-plan.mjs` / `drive-mirror-sync.mjs`。按当前 retention policy，本地 canonical 镜像包含 1225 个文件、448589033 字节，逐文件数量、大小和 SHA256 校验通过；`.git`、`_work`、状态目录、缓存、日志、构建目录和临时文件未复制。旧宽策略镜像中的 1251 个文件被标为 stale candidate，继续保留，未删除。
 - Drive 根目录已写入 `drive-mirror-manifest.json`，标记 `mapped-drive-count-size-sha256-verified`；该文件不把映射盘存在误写成云端可见。
 - Google Drive connector 仍找不到 `muIon-beam` 或 `drive-mirror-manifest.json`，只能看到不相关的 `mu-ion beam` 文件夹及其 `无标题文档`；因此云端上传仍为 `unverified`，旧归档目录继续保留，未执行删除或移动。
 - 新任务的 `sync-project-snapshot`、`sync-three-end`、`audit-three-end`、`task-close` 和外部库归档默认均通过 `drive-layout.mjs` 指向本地树镜像；显式旧路径只用于历史 receipt，不会再次生成旧目录。

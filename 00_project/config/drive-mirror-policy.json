@@ -5,9 +5,10 @@
   "layout": "local-relative-tree",
   "include_prefixes": [""],
   "include_files": ["AGENTS.md", "README.md", "REPRODUCIBILITY.md", "LICENSE", "package.json", ".gitignore"],
-  "exclude_directory_names": [".git", "_work", "node_modules", "__pycache__", ".pytest_cache", "build", "dist", "cache", "logs", "outbox"],
-  "exclude_extensions": [".tmp", ".lock", ".recover", ".autosave", ".bak"],
-  "large_file_rule": "retain relative path; include only when Manifest retention says drive-required or quick-recovery",
+  "exclude_directory_names": [".git", "_work", "node_modules", "__pycache__", ".pytest_cache", "build", "dist", "cache", "logs", "outbox", "sync-outbox"],
+  "exclude_paths": ["00_project/state/", "00_project/traceability/recovery-index.json", "drive-mirror-manifest.json"],
+  "exclude_extensions": [".tmp", ".lock", ".recover", ".autosave", ".bak", ".pyc", ".mph~", ".sqlite-wal", ".sqlite-shm"],
+  "large_file_rule": "include important project files at their local relative paths regardless of size; preserve design-phase models and results until explicit retention cleanup",
   "version_rule": "Gitee Git history stores versions; Drive stores current mirror plus sync manifest and selected immutable receipts",
   "cleanup_rule": "copy-only, count/size/SHA256 verified, cloud-visible, recovery-index updated, then quarantine before deletion",
   "cloud_status": "unverified"

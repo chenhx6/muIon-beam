@@ -18,10 +18,10 @@ export function defaultRunMirrorPath(projectRoot, runDir, runId, explicitPath) {
   if (explicitPath) return path.resolve(explicitPath);
   const root = path.resolve(projectRoot); const source = path.resolve(runDir);
   const relative = relativePath(root, source);
-  const safeRelative = relative && !relative.startsWith('../') && !path.isAbsolute(relative)
-    ? relative
-    : path.join('03_runs', 'formal', runId);
-  return path.join(canonicalDriveMirrorRoot(), safeRelative);
+  if (!isPathInside(source, path.join(root, '03_runs')) || relative === '03_runs') {
+    throw new Error('run archive must keep a project-relative path below 03_runs');
+  }
+  return path.join(canonicalDriveMirrorRoot(), relative);
 }
 
 export function defaultExternalLibraryMirrorRoot(explicitRoot) {

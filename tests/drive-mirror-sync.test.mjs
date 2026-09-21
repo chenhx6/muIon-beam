@@ -18,3 +18,15 @@ test('Drive mirror copies the local relative tree and verifies each file', t => 
   const second = syncDriveMirror(root, { driveRoot: drive, policy, now: '2026-09-22T00:01:00Z' });
   assert.equal(second.manifest.reused_count, 2); assert.equal(second.manifest.copied_count, 0);
 });
+
+test('Drive mirror preserves an independent destination edit and blocks overwrite', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-drive-conflict-')); const drive = path.join(os.tmpdir(), `muion-drive-conflict-target-${path.basename(root)}`);
+  t.after(() => { fs.rmSync(root, { recursive: true, force: true }); fs.rmSync(drive, { recursive: true, force: true }); });
+  fs.writeFileSync(path.join(root, 'README.md'), 'source-v1\n');
+  const policy = { include_prefixes: [''], include_files: [], exclude_directory_names: ['.git', '_work'], exclude_extensions: [], cloud_status: 'unverified' };
+  syncDriveMirror(root, { driveRoot: drive, policy });
+  fs.writeFileSync(path.join(drive, 'README.md'), 'human-edit-on-drive\n');
+  fs.writeFileSync(path.join(root, 'README.md'), 'source-v2\n');
+  assert.throws(() => syncDriveMirror(root, { driveRoot: drive, policy }), /independent Drive change retained/);
+  assert.equal(fs.readFileSync(path.join(drive, 'README.md'), 'utf8'), 'human-edit-on-drive\n');
+});

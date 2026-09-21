@@ -11,9 +11,9 @@
     {
       "path": "muIon-beam",
       "role": "canonical local-relative project mirror",
-      "observed": {"files": 2476, "bytes": 479473188},
+      "observed": {"files": 1225, "bytes": 448589033, "stale_files_retained": 1251},
       "action": "keep",
-      "notes": "Mapped-drive copy is verified; cloud visibility and account identity remain unverified. This is the only new active recovery entrance."
+      "notes": "Mapped-drive copy is verified; cloud visibility and account identity remain unverified. 1251 files left from the prior broader mirror policy remain as stale candidates and are retained for dedup review."
     },
     {
       "path": "project/snapshots",

@@ -1,34 +1,45 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { parseArgs, projectRootFromHere, jsonWrite } from './project-utils.mjs';
+import { parseArgs, projectRootFromHere, jsonWrite, sha256File } from './project-utils.mjs';
+import { canonicalDriveMirrorRoot, assertMirrorDoesNotContainProject } from './drive-layout.mjs';
 
-const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
-const normalize = file => file.replaceAll('\\', '/');
-const walk = (root, policy) => {
-  const result = [];
+export const mirrorManifestName = 'drive-mirror-manifest.json';
+export const recoveryIndexRelativePath = '00_project/traceability/recovery-index.json';
+export function loadMirrorPolicy(root) {
+  return JSON.parse(fs.readFileSync(path.join(root, '00_project/config/drive-mirror-policy.json'), 'utf8'));
+}
+
+export function buildDriveMirrorPlan(root, { driveRoot, policy = loadMirrorPolicy(root) } = {}) {
+  const sourceRoot = fs.realpathSync(path.resolve(root));
+  const targetRoot = path.resolve(driveRoot || (process.env.MUION_DRIVE_ARCHIVE_ROOT ? canonicalDriveMirrorRoot() : policy.drive_root));
+  assertMirrorDoesNotContainProject(targetRoot, sourceRoot);
+  if (fs.existsSync(path.join(sourceRoot, '.git')) && fs.lstatSync(path.join(sourceRoot, '.git')).isFile()) {
+    throw new Error('worker worktrees cannot publish the shared Drive mirror; integrate with the leader first');
+  }
+  const entries = []; const skippedLinks = [];
+  const excludedNames = new Set(['.git', '_work', ...policy.exclude_directory_names].map(value => value.toLowerCase()));
+  const excludedPaths = [mirrorManifestName, recoveryIndexRelativePath, ...(policy.exclude_paths || [])].map(value => value.toLowerCase());
   const visit = dir => {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) { if (!policy.exclude_directory_names.includes(entry.name)) visit(full); continue; }
-      if (!entry.isFile() || policy.exclude_extensions.some(ext => entry.name.toLowerCase().endsWith(ext))) continue;
-      result.push(full);
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const full = path.join(dir, entry.name); const relative = path.relative(sourceRoot, full).replaceAll('\\', '/');
+      const lower = relative.toLowerCase();
+      if (excludedNames.has(entry.name.toLowerCase()) || excludedPaths.some(value => lower === value.replace(/\/$/, '') || (value.endsWith('/') && lower.startsWith(value)))) continue;
+      if (entry.isSymbolicLink()) { skippedLinks.push(relative); continue; }
+      if (entry.isDirectory()) { visit(full); continue; }
+      if (!entry.isFile() || policy.exclude_extensions.some(ext => lower.endsWith(ext.toLowerCase()))) continue;
+      if (!policy.include_files.includes(relative) && !policy.include_prefixes.some(prefix => relative.startsWith(prefix))) continue;
+      entries.push({ path: relative, bytes: fs.statSync(full).size, sha256: sha256File(full), source: full, target: path.join(targetRoot, relative) });
     }
   };
-  visit(root); return result;
-};
-
-export function buildDriveMirrorPlan(root, { driveRoot, policy = readJson(path.join(root, '00_project/config/drive-mirror-policy.json')) } = {}) {
-  const sourceRoot = path.resolve(root); const targetRoot = path.resolve(driveRoot || policy.drive_root); const files = walk(sourceRoot, policy);
-  const entries = files.filter(file => {
-    const relative = normalize(path.relative(sourceRoot, file));
-    return policy.include_files.includes(relative) || policy.include_prefixes.some(prefix => relative.startsWith(prefix));
-  }).map(file => {
-    const relative = normalize(path.relative(sourceRoot, file)); const bytes = fs.readFileSync(file);
-    return { path: relative, bytes: bytes.length, sha256: crypto.createHash('sha256').update(bytes).digest('hex'), source: file, target: path.join(targetRoot, relative), status: 'copy-candidate' };
-  });
-  return { schema_version: 1, record_type: 'drive-local-tree-mirror-plan', generated_at: new Date().toISOString(), source_root: sourceRoot, drive_root: targetRoot, layout: 'local-relative-tree', cloud_status: policy.cloud_status, file_count: entries.length, total_bytes: entries.reduce((sum, item) => sum + item.bytes, 0), entries, exclusions: { runtime: ['.git/', '_work/', 'node_modules/'], generated: policy.exclude_directory_names, temporary_extensions: policy.exclude_extensions }, cleanup: 'blocked-until-cloud-visible-and-copy-verified' };
+  visit(sourceRoot);
+  return {
+    schema_version: 1, record_type: 'drive-local-tree-mirror-plan', generated_at: new Date().toISOString(),
+    source_root: sourceRoot, drive_root: targetRoot, layout: 'local-relative-tree', cloud_status: 'unverified',
+    file_count: entries.length, total_bytes: entries.reduce((sum, item) => sum + item.bytes, 0), entries,
+    skipped_links: skippedLinks, exclusions: { directories: [...excludedNames], paths: excludedPaths, extensions: policy.exclude_extensions },
+    cleanup: 'blocked-until-cloud-visible-and-copy-verified'
+  };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))) {

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "record_type": "drive-cloud-visibility-audit",
+  "audit_id": "CLOUD-AUDIT-20260922-h-drive-visibility",
+  "audited_at": "2026-09-22T00:00:00+08:00",
+  "mapped_drive": {
+    "root": "H:\\我的云端硬盘\\muIon_archive",
+    "exists": true,
+    "canonical_snapshot_count": 9,
+    "local_verification": "snapshot files were copied from committed Git trees and verified by file count, size and SHA256"
+  },
+  "google_drive_connector": {
+    "root_listing": "visible",
+    "root_muion_archive_folder_results": 0,
+    "snapshot_name_search_results": 0,
+    "project_snapshots_folder_search_results": 0,
+    "visible_similar_folder": {
+      "title": "mu-ion beam",
+      "id": "1eUHFRXmOfvcZxUNYojK5UfwRixv--aWR",
+      "children_observed": ["无标题文档"]
+    }
+  },
+  "conclusion": "The H: mapped-drive canonical snapshots are locally verified but are not visible through the connected Google Drive account under muIon_archive or by snapshot name. The visible mu-ion beam folder does not contain the canonical snapshot tree. Cloud backup is therefore not verified.",
+  "status": "cloud-upload-unverified",
+  "cleanup_allowed": false,
+  "next_action": "Verify Google Drive Desktop account/path mapping and synchronize or upload the canonical snapshot tree; then repeat metadata and receipt audit before any old-directory cleanup."
+}

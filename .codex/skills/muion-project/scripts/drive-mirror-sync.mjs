@@ -47,6 +47,15 @@ export function syncDriveMirror(root, { driveRoot, policy, now = new Date().toIS
     files.push({ path: entry.path, bytes: entry.bytes, sha256: entry.sha256, status: canReuse ? 'reused-verified' : 'copied-verified' });
     if (files.length % 200 === 0) onProgress({ verified: files.length, total: plan.entries.length });
   }
+  const expected = new Set(files.map(file => file.path)); const stale = [];
+  const scanStale = directory => {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      const full = path.join(directory, entry.name); const relative = normalize(path.relative(targetRoot, full));
+      if (entry.isDirectory()) scanStale(full);
+      else if (entry.isFile() && entry.name !== 'drive-mirror-manifest.json' && !entry.name.includes('__muion_copying__') && !expected.has(relative)) stale.push(relative);
+    }
+  };
+  scanStale(targetRoot);
   const manifest = {
     schema_version: 1,
     record_type: 'drive-local-tree-mirror',
@@ -59,6 +68,8 @@ export function syncDriveMirror(root, { driveRoot, policy, now = new Date().toIS
     total_bytes: files.reduce((sum, file) => sum + file.bytes, 0),
     copied_count: copied,
     reused_count: reused,
+    stale_count: stale.length,
+    stale_files: stale,
     verification: 'mapped-drive-count-size-sha256-verified',
     cleanup_allowed: false,
     files

@@ -5,8 +5,8 @@
   "status": "executing-incident-contained",
   "task_id": "task_project_supervisor_auto_recovery_001",
   "objective": "自动触发除 evolution 外的全部项目能力，建立模块化 ProjectSupervisor、并行 session 隔离、结果归位、经验复盘和三端恢复链。",
-  "current_phase": "P2-P3-main-task-continues-with-farmer-paused",
-  "next_action": "continue artifact-promotion-and-leader-integration work without enabling farmer; review enable separately",
+  "current_phase": "P4-drive-cloud-visibility-and-recovery-index",
+  "next_action": "verify Google Drive cloud visibility and generate recovery index; defer cleanup until verified",
   "plan_files": [
     "plan_v01.md",
     "plan_v01.json",

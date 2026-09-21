@@ -2,7 +2,7 @@
 
 ## 计划状态
 
-当前状态：`executing / P2–P3 automatic session lifecycle`。P0 规则与接口已落实；服务自动监督、worktree bootstrap、心跳、分支视图和未登记输出清单已实现并测试。宿主原生 hook 实际投递、任务完成后的结果归位和自动集成门、P4 云盘重整仍待完成。本检查点不创建卫星库、不清理旧 Drive 档案、不启动正式科研运行。
+当前状态：`executing / P4 Drive cloud visibility`。P0 规则与接口、P1 服务监督、P2 worktree/claim/heartbeat、P3 artifact promotion 与 leader integration 已实现并测试。宿主原生 hook 实际投递、Drive 云端可见性、recovery index 和 P4 云盘重整仍待完成。本检查点不创建卫星库、不清理旧 Drive 档案、不启动正式科研运行。
 
 任务卡：`task_project_supervisor_auto_recovery_001`。
 

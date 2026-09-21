@@ -23,6 +23,11 @@
     },
     "canonical_mirror_visible": false
   },
+  "drivefs_observation": {
+    "account_token": "108812366906913845014",
+    "latest_activity": {"active_uploads": 0, "operation_queue_size": 0, "all_downloads": 0, "change_ids_up_to_date": true},
+    "upload_event": "DriveFS logged one temporary HTTP 502 while uploading a 20448-byte text/javascript item and marked it for retry; the later queue state was idle. This is evidence of an upload attempt, not cloud content verification."
+  },
   "conclusion": "The local H: mapped path now contains a hash-verified mirror of the current local project tree, but the connected Google Drive account still cannot see the canonical folder or manifest. DriveFS and the connector may be using different accounts or sync states; this does not prove that the Drive Desktop client has uploaded the files to the intended cloud account.",
   "status": "cloud-upload-unverified",
   "cleanup_allowed": false,

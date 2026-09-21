@@ -111,6 +111,7 @@ const required = [
   '.codex/skills/muion-project/scripts/delivery-plan.mjs',
   '.codex/skills/muion-project/scripts/delivery-path-policy.mjs',
   '.codex/skills/muion-project/scripts/archive-committed-project.mjs',
+  '.codex/skills/muion-project/scripts/recovery-index.mjs',
   '.codex/skills/muion-project/scripts/record-sync-metadata.mjs',
   '00_project/traceability/VARIABLE_CATALOG.md',
   '00_project/traceability/VARIABLE_CATALOG.csv',

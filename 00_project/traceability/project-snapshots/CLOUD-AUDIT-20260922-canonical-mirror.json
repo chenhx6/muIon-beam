@@ -8,7 +8,7 @@
     "canonical_path": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",
     "exists": true,
     "file_count": 1225,
-    "total_bytes": 448589033,
+    "total_bytes": 448590357,
     "stale_file_count": 1251,
     "exact_total_bytes_source": "muIon-beam/drive-mirror-manifest.json",
     "verification": "mapped-drive-count-size-sha256-verified",

@@ -25,7 +25,7 @@ Gitee-only 的承诺是“重建项目工作流并继续新工作”。历史运
 
 ## 从 Google Drive 快速恢复
 
-Drive 目标是本地设备损坏后直接接续重要工作。当前 canonical 入口是 `H:\我的云端硬盘\muIon_archive\muIon-beam\`，直接镜像本地项目的相对路径；根目录的 `drive-mirror-manifest.json` 是数量、大小和 SHA256 的校验账本。任务交付、报告定稿和归档事件自动调用镜像入口，用户不需要手动运行脚本。P4 整理采用 copy-only：先把内容写入 canonical 目录并完成校验，再确认 Google Drive 云端可见，最后才按清单隔离或删除旧归档。ADR-007 另允许删除确认无用且无依赖的设计期原型生成物，并保留删除 receipt。`.git`、session runtime、缓存和未验证 outbox 不进入 Drive 镜像。
+Drive 目标是本地设备损坏后直接接续重要工作。当前 canonical 入口是 `H:\我的云端硬盘\muIon_archive\muIon-beam\`，直接镜像本地项目的相对路径；根目录的 `drive-mirror-manifest.json` 是数量、大小和 SHA256 的校验账本。任务关闭交付和归档入口自动调用镜像入口，用户不需要手动运行脚本。P4 整理采用 copy-only：先把内容写入 canonical 目录并完成校验，再确认 Google Drive 云端可见，最后才按清单隔离或删除旧归档。ADR-007 另允许删除确认无用且无依赖的设计期原型生成物，并保留删除 receipt。`.git`、session runtime、缓存和未验证 outbox 不进入 Drive 镜像。
 
 恢复机器仍需安装兼容的 Node、Python、WSL、Geant4、ROOT、COMSOL 和 SolidWorks。商业软件的安装、模块和许可证不由项目保存；SolidWorks/COMSOL 的版本或插件变化必须重新做 preflight 和模型指纹检查。
 

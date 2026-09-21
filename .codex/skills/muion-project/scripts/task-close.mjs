@@ -61,7 +61,11 @@ if (remote !== commitHash) throw new Error('remote main does not match committed
 const snapshotId = `SNAPSHOT-${commitHash.slice(0, 12)}`;
 const drivePath = defaultProjectMirrorPath(args.drive_path);
 const snapshot = spawnSync(process.execPath, [path.join(import.meta.dirname, 'sync-project-snapshot.mjs'), '--project-root', root, '--snapshot-id', snapshotId, '--branch-ref', 'main', '--drive-path', drivePath], { cwd: root, encoding: 'utf8', maxBuffer: 50 * 1024 * 1024 });
-const result = { ...plan, status: snapshot.status === 0 ? 'complete' : 'pending', commit: commitHash, remote, snapshot: snapshot.stdout || null, snapshot_error: snapshot.stderr || null, finished_at: nowIso() };
+const mirror = args.drive_path
+  ? { status: 'skipped-explicit-historical-drive-path', reason: 'preserve explicit historical receipt path' }
+  : spawnSync(process.execPath, [path.join(import.meta.dirname, 'drive-mirror-sync.mjs'), '--project-root', root, '--drive-root', drivePath], { cwd: root, encoding: 'utf8', maxBuffer: 50 * 1024 * 1024 });
+const mirrorOk = typeof mirror.status === 'string' ? true : mirror.status === 0;
+const result = { ...plan, status: snapshot.status === 0 && mirrorOk ? 'complete' : 'pending', commit: commitHash, remote, snapshot: snapshot.stdout || null, snapshot_error: snapshot.stderr || null, mirror: typeof mirror.status === 'string' ? mirror : { stdout: mirror.stdout || null, stderr: mirror.stderr || null, status: mirror.status }, finished_at: nowIso() };
 jsonWrite(resultPath, result);
 console.log(JSON.stringify(result, null, 2));
-process.exitCode = snapshot.status === 0 ? 0 : 2;
+process.exitCode = result.status === 'complete' ? 0 : 2;

@@ -22,6 +22,7 @@
     "sync:three-end": "node .codex/skills/muion-project/scripts/sync-three-end.mjs",
     "publish:and-sync": "node .codex/skills/muion-project/scripts/publish-and-sync.mjs",
     "sync:project": "node .codex/skills/muion-project/scripts/sync-project-snapshot.mjs",
+    "sync:drive-mirror": "node .codex/skills/muion-project/scripts/drive-mirror-sync.mjs",
     "audit:project": "node .codex/skills/muion-project/scripts/audit-project-snapshot.mjs",
     "audit:three-end": "node .codex/skills/muion-project/scripts/audit-three-end.mjs",
     "sync:retry": "node .codex/skills/muion-project/scripts/retry-sync-outbox.mjs",

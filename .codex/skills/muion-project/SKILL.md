@@ -45,6 +45,7 @@ Use this project skill for tasks inside `D:\muIon-beam` involving physics planni
 - `audit-three-end`: perform a read-only drift audit.
 - `sync-project`: archive the tracked project and derived SQLite snapshots to a versioned Drive snapshot.
 - `archive-committed-project`: snapshot an already published Git commit directly from Git objects when the main checkout contains unrelated user edits. Verify count, size and SHA256; record mapped-drive verification separately from cloud-upload confirmation. It creates no result tag and does not capture uncommitted work or a derived SQLite snapshot.
+- `sync:drive-mirror`: copy the current project tree to the mapped Drive root using the same relative paths, exclude runtime/build data, and write a hash-verified `drive-mirror-manifest.json`; it never deletes mirror files and does not treat mapped-drive presence as cloud visibility.
 - `external-lib:sync`: detect added, modified, or retired Codex reference-library content, verify a complete content-addressed Drive archive, and publish only the eligible source/document subset to Gitee.
 - `experience:record` / `experience:summarize`: record positive, negative, or neutral reusable experiences and generate category summaries for future research and workflow improvement.
 - `audit-project`: read-only audit of the project snapshot against local Git and Gitee.

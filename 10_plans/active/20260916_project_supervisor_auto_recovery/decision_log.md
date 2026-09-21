@@ -38,6 +38,13 @@
 - Drive canonical layout 的最终目录名和历史重复项归并，需要在 P4 生成 reorganization Manifest 后确认。
 - 大型历史模型是否发布到 Gitee satellite，按恢复价值、容量和可重建性逐项决定。
 
+## 2026-09-22：本地树 canonical Drive 镜像
+
+- 采用 ADR-009：Drive 接续入口改为 `H:\\我的云端硬盘\\muIon_archive\\muIon-beam`，与 `D:\\muIon-beam` 保持相同相对路径；Gitee 保存版本历史，Drive 保存当前接续副本。
+- 自动生成并执行 `drive-mirror-plan.mjs` / `drive-mirror-sync.mjs`。本地镜像已复制 2473 个文件，共 479465396 字节，逐文件数量、大小和 SHA256 校验通过；`.git`、`_work`、缓存、日志、构建目录和临时文件未复制。
+- Drive 根目录已写入 `drive-mirror-manifest.json`，标记 `mapped-drive-count-size-sha256-verified`；该文件不把映射盘存在误写成云端可见。
+- Google Drive connector 仍找不到 `muIon-beam` 或 `drive-mirror-manifest.json`，只能看到不相关的 `mu-ion beam` 文件夹及其 `无标题文档`；因此云端上传仍为 `unverified`，旧归档目录继续保留，未执行删除或移动。
+
 ## 2026-09-16：主库源码优先和 Drive 清理边界
 
 - 远端 `origin/main` 测量：约 1045 个 tracked files，Git tree 约 61 MB；源码/配置/Manifest/文档约 734 个文件、约 16.2 MB。

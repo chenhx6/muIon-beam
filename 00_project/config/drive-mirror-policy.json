@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source_root": "D:\\muIon-beam",
+  "drive_root": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",
+  "layout": "local-relative-tree",
+  "include_prefixes": [""],
+  "include_files": ["AGENTS.md", "README.md", "REPRODUCIBILITY.md", "LICENSE", "package.json", ".gitignore"],
+  "exclude_directory_names": [".git", "_work", "node_modules", "__pycache__", ".pytest_cache", "build", "dist", "cache", "logs", "outbox"],
+  "exclude_extensions": [".tmp", ".lock", ".recover", ".autosave", ".bak"],
+  "large_file_rule": "retain relative path; include only when Manifest retention says drive-required or quick-recovery",
+  "version_rule": "Gitee Git history stores versions; Drive stores current mirror plus sync manifest and selected immutable receipts",
+  "cleanup_rule": "copy-only, count/size/SHA256 verified, cloud-visible, recovery-index updated, then quarantine before deletion",
+  "cloud_status": "unverified"
+}

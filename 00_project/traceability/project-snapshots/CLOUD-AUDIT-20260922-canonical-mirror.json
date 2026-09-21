@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "record_type": "drive-cloud-visibility-audit",
+  "audit_id": "CLOUD-AUDIT-20260922-canonical-mirror",
+  "audited_at": "2026-09-21T19:03:30Z",
+  "mapped_drive": {
+    "root": "H:\\我的云端硬盘\\muIon_archive",
+    "canonical_path": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",
+    "exists": true,
+    "file_count": 2473,
+    "total_bytes": 479465396,
+    "verification": "mapped-drive-count-size-sha256-verified",
+    "manifest": "muIon-beam/drive-mirror-manifest.json"
+  },
+  "google_drive_connector": {
+    "canonical_folder_search": "no result for muIon-beam",
+    "manifest_search": "no result for drive-mirror-manifest.json",
+    "similar_folder": {
+      "title": "mu-ion beam",
+      "id": "1eUHFRXmOfvcZxUNYojK5UfwRixv--aWR",
+      "children_observed": ["无标题文档"]
+    },
+    "canonical_mirror_visible": false
+  },
+  "conclusion": "The local H: mapped path now contains a hash-verified mirror of the current local project tree, but the connected Google Drive account still cannot see the canonical folder or manifest. This does not prove that the Drive Desktop client has uploaded the files to the intended cloud account.",
+  "status": "cloud-upload-unverified",
+  "cleanup_allowed": false,
+  "next_action": "Resolve Google Drive Desktop account/path or network synchronization, repeat connector visibility checks, then compare the cloud-visible manifest before quarantining old archive directories."
+}

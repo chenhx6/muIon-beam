@@ -34,6 +34,12 @@
 6. 由 Manifest 生成 SQLite、Markdown/CSV 索引。
 7. 归档到 Google Drive 并完成 Gitee 标签和中文说明。
 
+## Google Drive 镜像
+
+Drive 的当前接续入口是 `H:\我的云端硬盘\muIon_archive\muIon-beam\`，它按本地项目的相对路径保存工作树。打开本地目录或这个 Drive 目录，`.codex/`、`00_project/`、`02_models/`、`03_runs/`、`05_reports/` 等路径保持一致；根目录的 `drive-mirror-manifest.json` 记录文件数量、大小和 SHA256。`.git/`、`_work/`、缓存、日志、构建目录和临时文件不进入镜像。Gitee 保存版本历史，Drive 保存当前可直接恢复的副本，因此恢复时不需要在多个 snapshot 命令目录之间猜测入口。
+
+镜像同步由 `npm run sync:drive-mirror` 自动调用。该动作只复制和校验，不删除旧归档；只有 Google Drive 云端能看见 canonical 镜像、恢复索引更新并完成重复内容核对后，才处理旧目录的隔离或删除。
+
 ## 自动工作流入口
 
 自动化契约要求任务入口按需完成 farmer、session bootstrap、workflow skill 和健康检查，用户不承担手动运行脚本的步骤。ProjectSupervisor 已提供幂等服务启动、5 秒健康检查、session 私有 worktree 和恢复绑定；智能体按 AGENTS 自动调用入口。项目 SessionStart/UserPromptSubmit hooks 已配置，宿主信任和新任务端到端验收仍单独跟踪。dashboard 位于 `http://127.0.0.1:4317`，服务和分支状态独立显示。结果归位、自动完成门和 Drive 重整继续按 P3/P4 推进。只有主动发现和吸收外部能力时才由用户显式触发 evolution。

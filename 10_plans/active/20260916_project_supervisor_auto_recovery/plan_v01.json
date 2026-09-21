@@ -160,7 +160,7 @@
     {
       "id": "P4",
       "name": "Gitee Recovery Core 和 Drive canonical archive",
-      "status": "mapped-drive-snapshot-verified-cloud-visibility-pending",
+      "status": "canonical-local-tree-mirror-verified-cloud-visibility-pending",
       "deliverables": [
         "Gitee inventory and quota report",
         "optional satellite repo decision",

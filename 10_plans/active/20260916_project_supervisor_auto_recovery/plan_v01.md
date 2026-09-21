@@ -2,7 +2,7 @@
 
 ## 计划状态
 
-当前状态：`executing / P4 Drive cloud visibility`。P0 规则与接口、P1 服务监督、P2 worktree/claim/heartbeat、P3 artifact promotion 与 leader integration 已实现并测试。宿主原生 hook 实际投递、Drive 云端可见性、recovery index 和 P4 云盘重整仍待完成。本检查点不创建卫星库、不清理旧 Drive 档案、不启动正式科研运行。
+当前状态：`executing / P4 Drive cloud visibility`。P0 规则与接口、P1 服务监督、P2 worktree/claim/heartbeat、P3 artifact promotion 与 leader integration 已实现并测试。canonical 本地树镜像与 recovery index 已生成并通过 H: 映射盘 SHA256 校验；新任务默认写入本地相对目录。宿主原生 hook 实际投递、Drive 云端可见性和旧目录去重清理仍待完成。本检查点不创建卫星库、不清理旧 Drive 档案、不启动正式科研运行。
 
 任务卡：`task_project_supervisor_auto_recovery_001`。
 

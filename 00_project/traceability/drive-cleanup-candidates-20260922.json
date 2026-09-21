@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "record_type": "drive-cleanup-candidate-manifest",
+  "manifest_id": "DRIVE-CLEANUP-CANDIDATES-20260922",
+  "generated_at": "2026-09-22T00:00:00+08:00",
+  "root": "H:\\我的云端硬盘\\muIon_archive",
+  "cloud_visibility": "unverified",
+  "deletion_allowed": false,
+  "reason": "Google Drive connector cannot see muIon_archive or the canonical snapshot names; mapped-drive hashes alone are insufficient for cleanup.",
+  "categories": [
+    {
+      "path": "project/snapshots",
+      "role": "canonical committed-project snapshots",
+      "observed": {"directories": 6, "files": 6511, "bytes": 371962952},
+      "action": "keep",
+      "notes": "Retain verified snapshots until a retention policy selects older commits; do not delete the latest verified snapshot."
+    },
+    {
+      "path": "project/recovery-index",
+      "role": "current recovery entrypoint",
+      "observed": {"files": 2},
+      "action": "keep",
+      "notes": "Recovery index and latest committed-project receipt are required for restart."
+    },
+    {
+      "path": "project-management/project-snapshots",
+      "role": "legacy full-project snapshot tree",
+      "observed": {"directories": 26, "files": 20346, "bytes": 1422930189},
+      "action": "quarantine-after-cloud-verification",
+      "notes": "Main source of duplicate complexity. First compare receipts/content against project/snapshots, then move as one preserved legacy set. Do not delete now."
+    },
+    {
+      "path": "legacy-from-D-muIon",
+      "role": "historical migration evidence",
+      "observed": {"files": 524, "bytes": 325576841},
+      "action": "keep-immutable",
+      "notes": "Historical source and migration evidence; never treat as live input."
+    },
+    {
+      "path": "external-libraries",
+      "role": "external reference libraries",
+      "observed": {"files": 174, "bytes": 19990176},
+      "action": "keep-separate",
+      "notes": "Reference material and Drive-only payloads; do not merge into project snapshots."
+    },
+    {
+      "path": "references",
+      "role": "papers and presentation references",
+      "observed": {"files": 6, "bytes": 5563224},
+      "action": "keep-separate",
+      "notes": "Small reference set; may later move under project/references after cloud verification."
+    }
+  ],
+  "proposed_order": [
+    "verify Google Drive Desktop account and folder mapping",
+    "re-run connector metadata search and verify recovery-index visibility",
+    "compare legacy snapshot receipts and content hashes against canonical snapshots",
+    "write a reversible quarantine manifest and move only confirmed duplicate legacy snapshots",
+    "re-run count/size/SHA256 and recovery-index audit",
+    "only then decide whether any confirmed redundant content may be deleted"
+  ]
+}

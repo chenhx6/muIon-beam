@@ -1,12 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs, projectRootFromHere, runGit, walkFiles, sha256File, ensureDirectory, relativePath, jsonWrite, nowIso } from './project-utils.mjs';
+import { defaultRunMirrorPath } from './drive-layout.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
 const runDir = path.resolve(args.run_dir || path.join(root, '03_runs/formal', args.run_id || 'RUN-YYYYMMDD-NNN'));
 const runId = args.run_id || path.basename(runDir);
-const drivePath = args.drive_path || `H:\\我的云端硬盘\\muIon_archive\\simulation-runs\\${runId}`;
+const drivePath = defaultRunMirrorPath(root, runDir, runId, args.drive_path);
 if (!fs.existsSync(runDir)) throw new Error(`run directory not found: ${runDir}`);
 const sourceFiles = walkFiles(runDir, { ignoredDirectories: ['.git', 'node_modules'] }).filter((file) => !/(\.lock|\.recover|\.tmp|\.bak)$/i.test(file));
 const copied = [];
@@ -38,7 +39,7 @@ if (tag) {
   const ancestor = tagCommit ? runGit(root, ['merge-base', '--is-ancestor', tagCommit, localCommit], { allowFailure: true }).status === 0 : false;
   tagVerified = tagCommit === localCommit || ancestor;
 }
-const manifestFile = ['run-manifest.json', 'run-manifest.yaml', 'migration-manifest.json'].map((name) => path.join(runDir, name)).find((file) => fs.existsSync(file));
+const manifestFile = ['run_manifest.json', 'run-manifest.json', 'run-manifest.yaml', 'migration-manifest.json'].map((name) => path.join(runDir, name)).find((file) => fs.existsSync(file));
 const manifestSha256 = manifestFile ? sha256File(manifestFile) : null;
 const driveVerified = driveErrors.length === 0 && copied.length === sourceFiles.length;
 const status = driveVerified && remoteCommit === localCommit && tagVerified ? 'three-way-verified' : !driveVerified ? 'pending-drive' : remoteCommit !== localCommit ? 'pending-gitee' : 'pending-verification';

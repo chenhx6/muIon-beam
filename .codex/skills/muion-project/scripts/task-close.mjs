@@ -5,6 +5,7 @@ import { parseArgs, projectRootFromHere, runGit, jsonWrite, nowIso } from './pro
 import { classifyPaths, digestFiles } from './delivery-plan.mjs';
 import { syncExternalLibraries } from './external-lib-sync.mjs';
 import { acquireProjectLock, releaseProjectLock, checkSession, listSessions } from '../../team/scripts/session-concurrency.mjs';
+import { defaultProjectMirrorPath } from './drive-layout.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
@@ -58,7 +59,7 @@ runGit(root, ['push', 'origin', 'HEAD:main'], { timeout: 120000 });
 const remote = runGit(root, ['ls-remote', 'origin', 'refs/heads/main']).stdout.trim().split(/\s+/)[0] || null;
 if (remote !== commitHash) throw new Error('remote main does not match committed revision');
 const snapshotId = `SNAPSHOT-${commitHash.slice(0, 12)}`;
-const drivePath = args.drive_path || `H:\\我的云端硬盘\\muIon_archive\\project-management\\project-snapshots\\${snapshotId}`;
+const drivePath = defaultProjectMirrorPath(args.drive_path);
 const snapshot = spawnSync(process.execPath, [path.join(import.meta.dirname, 'sync-project-snapshot.mjs'), '--project-root', root, '--snapshot-id', snapshotId, '--branch-ref', 'main', '--drive-path', drivePath], { cwd: root, encoding: 'utf8', maxBuffer: 50 * 1024 * 1024 });
 const result = { ...plan, status: snapshot.status === 0 ? 'complete' : 'pending', commit: commitHash, remote, snapshot: snapshot.stdout || null, snapshot_error: snapshot.stderr || null, finished_at: nowIso() };
 jsonWrite(resultPath, result);

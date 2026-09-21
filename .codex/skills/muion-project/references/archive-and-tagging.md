@@ -17,4 +17,4 @@ r2-gap-scan
 
 自动发布使用 `publish-gitee.mjs`：默认只做 dry-run；指定 `--push` 后才提交、创建不可变 annotated tag、推送并用 `git ls-remote` 验证。发布记录允许有一个内容提交和一个后续记录提交，标签固定在内容提交上。
 
-发布完成后使用 `sync-three-end.mjs` 将运行快照和 `sync-state.json` 写入 Drive，并把同步状态保存到项目追溯目录。`audit-three-end.mjs` 只读检查三端漂移。
+发布完成后使用 `sync-three-end.mjs` 将运行快照和 `sync-state.json` 写入 Drive canonical mirror 下与本地 `03_runs/...` 相同的相对路径，并把同步状态保存到项目追溯目录。`audit-three-end.mjs` 只读检查三端漂移。

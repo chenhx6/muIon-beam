@@ -25,11 +25,11 @@ Drive 是本地不可用时的可继续工作副本，保存：
 
 - 与 Gitee commit 对应的完整项目快照；
 - 大型 CAD/COMSOL/Geant4 模型、完整运行输出和有价值的中间结果；
-- `simulation-runs/<run_id>` 的运行归档；
+- 当前 canonical mirror 中与本地 `03_runs/<...>/<run_id>` 相同相对路径的运行归档；旧 `simulation-runs/<run_id>` 仅作为历史 receipt 路径保留；
 - 外部参考库和许可证归档；
 - 每个快照和运行的 `sync-state.json`、数量、大小和 SHA256 证据。
 
-当前根目录下已有 `project-management/project-snapshots/`、`simulation-runs/`、`external-libraries/` 和旧迁移归档。P4 重建允许在完成 canonical copy、去重、唯一内容确认、数量/大小/SHA256 校验和 recovery-index 写入后删除已经验证为冗余的旧目录；验证前不得删除，唯一内容不得删除。
+历史根目录下已有 `project-management/project-snapshots/`、`simulation-runs/`、`external-libraries/` 和旧迁移归档。ADR-009 将新写入统一到本地树镜像；P4 重建允许在完成 canonical copy、去重、唯一内容确认、数量/大小/SHA256 校验和 recovery-index 写入后删除已经验证为冗余的旧目录；验证前不得删除，唯一内容不得删除。
 
 ### 本地：活动现场和可丢弃缓存
 
@@ -60,7 +60,7 @@ worktree 中的输出不能无限期停留在 `_work`：
   -> 按 run_id 恢复正式运行和报告
 ```
 
-`sync-project-snapshot.mjs` 负责已提交项目内容和 SQLite 快照；`sync-three-end.mjs` 负责单个运行目录。二者都不能把未提交主工作树或未登记 `_work` 状态宣称为完整备份。后续 `SyncCoordinator` 需要生成一个顶层 recovery index，把最新 project snapshot、run archive、未关闭任务、经验汇总和下一步串联起来。
+`sync-project-snapshot.mjs` 负责已提交项目内容和 SQLite 快照；`sync-three-end.mjs` 负责单个运行目录。二者都不能把未登记 `_work` 状态宣称为完整备份；本地树镜像由独立 `drive-mirror-sync.mjs` 在任务交付/归档事件中按 retention policy 处理。顶层 recovery index 把当前 mirror、历史 receipt、未关闭任务、经验汇总和下一步串联起来。
 
 ## 当前澄清
 

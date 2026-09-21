@@ -33,4 +33,4 @@ Drive 归档验证成功后，再生成索引、提交 Gitee 中应保存的内�
 
 从 Gitee 或 Drive 恢复时，必须能够读取最新任务、里程碑、Manifest、报告和源文件引用，并重建轻量结果；每个重要里程碑记录 source commit、result/report files、SHA256 和 rebuild commands。
 
-项目规则、skill、Manifest 和 SQLite 快照使用 `sync-project-snapshot.mjs` 写入 `project-management/project-snapshots/SNAPSHOT-<commit>`；运行资料使用 `sync-three-end.mjs` 写入 `simulation-runs/RUN-...`。两类快照都可由对应的只读 audit 脚本检查。
+项目规则、skill、Manifest 和 SQLite 快照使用 `sync-project-snapshot.mjs` 写入 Drive canonical mirror；运行资料使用 `sync-three-end.mjs` 写入本地相对路径对应的 `03_runs/...`。显式传入旧 Drive 路径的历史 receipt 仍按原路径审计，新任务不再生成 `project-management/project-snapshots` 或 `simulation-runs` 默认目录。

@@ -1,11 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs, projectRootFromHere, runGit, walkFiles, sha256File, relativePath } from './project-utils.mjs';
+import { defaultRunMirrorPath } from './drive-layout.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
 const runDir = path.resolve(args.run_dir || path.join(root, '03_runs/formal', args.run_id || 'RUN-YYYYMMDD-NNN'));
-const drivePath = args.drive_path || `H:\\我的云端硬盘\\muIon_archive\\simulation-runs\\${path.basename(runDir)}`;
+const drivePath = defaultRunMirrorPath(root, runDir, path.basename(runDir), args.drive_path);
 const localCommit = runGit(root, ['rev-parse', 'HEAD']).stdout.trim();
 const remoteLine = runGit(root, ['ls-remote', 'origin', 'refs/heads/main'], { allowFailure: true });
 const remoteCommit = remoteLine.status === 0 ? remoteLine.stdout.trim().split(/\s+/)[0] || null : null;

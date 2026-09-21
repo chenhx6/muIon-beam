@@ -3,6 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { parseArgs, projectRootFromHere, runGit, ensureDirectory, sha256File, relativePath, jsonWrite, nowIso } from './project-utils.mjs';
 import { syncExternalLibraries } from './external-lib-sync.mjs';
+import { defaultProjectMirrorPath } from './drive-layout.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = path.resolve(args.project_root || projectRootFromHere());
@@ -20,7 +21,7 @@ if (syncedLocalCommit !== localCommit) {
 const effectiveLocalCommit = syncedLocalCommit;
 const snapshotId = args.snapshot_id || `SNAPSHOT-${effectiveLocalCommit.slice(0, 12)}`;
 if (!/^[A-Za-z0-9._-]+$/.test(snapshotId)) throw new Error('invalid snapshot id');
-const drivePath = args.drive_path || `H:\\我的云端硬盘\\muIon_archive\\project-management\\project-snapshots\\${snapshotId}`;
+const drivePath = defaultProjectMirrorPath(args.drive_path);
 const tracked = runGit(root, ['ls-files', '-z']).stdout.split('\0').filter(Boolean);
 const extras = ['00_project/traceability/index.sqlite', '_work/cache/cache-index.sqlite'].filter((item) => fs.existsSync(path.join(root, item)));
 const excluded = (item) => item.startsWith('00_project/traceability/sync-states/') || item.startsWith('00_project/traceability/sync-outbox/');

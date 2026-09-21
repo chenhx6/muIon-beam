@@ -3,9 +3,10 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { parseArgs, projectRootFromHere, ensureDirectory, relativePath, sha256File, jsonWrite, nowIso, runGit } from './project-utils.mjs';
+import { defaultExternalLibraryMirrorRoot } from './drive-layout.mjs';
 
 const SCRIPT_FILE = fileURLToPath(import.meta.url);
-const DEFAULT_DRIVE_ROOT = 'H:\\我的云端硬盘\\muIon_archive\\external-libraries';
+const DEFAULT_DRIVE_ROOT = defaultExternalLibraryMirrorRoot();
 const EXTERNAL_ROOT = '06_external_lib';
 const REGISTRY_FILE = '06_external_lib/library-registry.json';
 const MANIFEST_FILE = '06_external_lib/library-manifest.json';

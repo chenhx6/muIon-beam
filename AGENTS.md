@@ -58,7 +58,7 @@
 - 每个正式运行必须有简洁版报告和详细版报告。
 - 图表按任务实际研究问题生成，不强制绘制没有研究价值的关系图。
 - 重要图必须登记来源数据、生成脚本、模型版本和解释。
-- 项目发布后应执行项目级快照同步，把 Git 跟踪文件和 SQLite 快照写入版本化 Drive 目录，并保存 sync-state。
+- 项目发布后应执行项目级 canonical mirror 同步，把当前项目相对目录下的 durable 文件和必要 SQLite 快照写入 `H:\我的云端硬盘\muIon_archive\muIon-beam`，并保存 sync-state；历史版本由 Gitee 保存，不再为每个新任务默认生成完整的 `project-management/project-snapshots` 树。
 
 ## 第二阶段工具入口
 

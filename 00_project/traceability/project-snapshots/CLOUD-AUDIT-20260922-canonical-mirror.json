@@ -2,7 +2,7 @@
   "schema_version": 1,
   "record_type": "drive-cloud-visibility-audit",
   "audit_id": "CLOUD-AUDIT-20260922-canonical-mirror",
-  "audited_at": "2026-09-22T07:35:07Z",
+  "audited_at": "2026-09-22T08:10:20Z",
   "mapped_drive": {
     "root": "H:\\我的云端硬盘\\muIon_archive",
     "canonical_path": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",

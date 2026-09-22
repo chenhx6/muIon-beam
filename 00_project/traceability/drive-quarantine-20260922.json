@@ -6623,5 +6623,13 @@
     "source_state_absent": true,
     "source_old_snapshot_root_absent": true,
     "quarantine_root_exists": true
-  }
+  },
+  "additional_stale_mirror_entries": [
+    {
+      "path": "muIon-beam/11_tools/research-dashboard/supervision.js",
+      "target": "quarantine/DRIVE-QUARANTINE-20260922/muIon-beam/11_tools/research-dashboard/supervision.js",
+      "reason": "stale previous mirror version observed during concurrent local dashboard edit",
+      "action": "quarantine-reversible"
+    }
+  ]
 }

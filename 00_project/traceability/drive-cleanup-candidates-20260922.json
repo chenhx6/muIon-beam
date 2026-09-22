@@ -11,9 +11,9 @@
     {
       "path": "muIon-beam",
       "role": "canonical local-relative project mirror",
-      "observed": {"files": 1225, "bytes": 448590357, "stale_files_retained": 1251},
+      "observed": {"files": 1226, "stale_files_retained": 0, "exact_totals_source": "muIon-beam/drive-mirror-manifest.json"},
       "action": "keep",
-      "notes": "Mapped-drive copy is verified; cloud visibility and account identity remain unverified. 1251 files left from the prior broader mirror policy remain as stale candidates and are retained for dedup review."
+      "notes": "Mapped-drive copy is verified; the old 1251 runtime/state files were moved to the reversible quarantine receipt DRIVE-QUARANTINE-20260922. Cloud visibility remains unverified."
     },
     {
       "path": "project/snapshots",
@@ -33,8 +33,8 @@
       "path": "project-management/project-snapshots",
       "role": "legacy full-project snapshot tree",
       "observed": {"directories": 26, "files": 20346, "bytes": 1422930189},
-      "action": "quarantine-after-cloud-verification",
-      "notes": "Main source of duplicate complexity. First compare receipts/content against project/snapshots, then move as one preserved legacy set. Do not delete now."
+      "action": "quarantined-reversible",
+      "notes": "Moved as one preserved legacy set to quarantine/DRIVE-QUARANTINE-20260922; 23 indexed snapshots point to Gitee ancestors and 3 remain unindexed for review. Do not permanently delete while cloud visibility is unverified."
     },
     {
       "path": "legacy-from-D-muIon",

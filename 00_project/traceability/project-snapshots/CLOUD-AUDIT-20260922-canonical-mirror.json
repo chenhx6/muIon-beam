@@ -36,5 +36,5 @@
   "conclusion": "The H: mapped path and the DriveFS-linked browser account both show the canonical local-tree mirror, its manifest, traceability receipt, and quarantine receipt. The separate connector account still cannot see these files, but the intended DriveFS account has verified the cloud-visible directory tree.",
   "status": "cloud-upload-verified",
   "cleanup_allowed": true,
-  "next_action": "Permanently delete only indexed duplicate snapshots and runtime trash from the verified quarantine; retain the three unindexed snapshots until review."
+  "next_action": "Review the three unindexed snapshots retained in quarantine; indexed duplicates and runtime trash have been permanently deleted."
 }

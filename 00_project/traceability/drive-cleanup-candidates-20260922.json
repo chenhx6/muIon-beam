@@ -33,8 +33,8 @@
       "path": "project-management/project-snapshots",
       "role": "legacy full-project snapshot tree",
       "observed": {"directories": 26, "files": 20346, "bytes": 1422930189},
-      "action": "quarantined-ready-for-indexed-deletion",
-      "notes": "Moved as one preserved legacy set to quarantine/DRIVE-QUARANTINE-20260922; 23 indexed snapshots point to Gitee ancestors and 3 remain unindexed for review."
+      "action": "indexed-duplicates-permanently-deleted",
+      "notes": "23 indexed snapshots were permanently deleted after browser cloud readback and Gitee ancestor verification; 3 unindexed snapshots remain in quarantine for review."
     },
     {
       "path": "legacy-from-D-muIon",

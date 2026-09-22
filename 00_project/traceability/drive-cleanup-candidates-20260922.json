@@ -18,7 +18,7 @@
     {
       "path": "project/snapshots",
       "role": "canonical committed-project snapshots",
-      "observed": {"directories": 6, "files": 6511, "bytes": 371962952},
+      "observed": {"directories": 1, "role": "latest verified snapshot plus recovery index", "retention": "keep"},
       "action": "keep",
       "notes": "Retain verified snapshots until a retention policy selects older commits; do not delete the latest verified snapshot."
     },
@@ -34,7 +34,7 @@
       "role": "legacy full-project snapshot tree",
       "observed": {"directories": 26, "files": 20346, "bytes": 1422930189},
       "action": "indexed-duplicates-permanently-deleted",
-      "notes": "23 indexed snapshots were permanently deleted after browser cloud readback and Gitee ancestor verification; 3 unindexed snapshots remain in quarantine for review."
+      "notes": "All active legacy project snapshots were removed; the three unindexed snapshots remain in quarantine for review."
     },
     {
       "path": "legacy-from-D-muIon",
@@ -44,18 +44,25 @@
       "notes": "Historical source and migration evidence; never treat as live input."
     },
     {
+      "path": "project-management/framework-20260907-r0-framework",
+      "role": "superseded framework snapshot",
+      "observed": {"files": 98, "bytes": 93865},
+      "action": "duplicate-deleted",
+      "notes": "Superseded by the current repository ProjectSupervisor and workflow modules; deletion recorded in DRIVE-HISTORY-CLEANUP-20260922."
+    },
+    {
       "path": "external-libraries",
       "role": "external reference libraries",
       "observed": {"files": 174, "bytes": 19990176},
-      "action": "keep-separate",
-      "notes": "Reference material and Drive-only payloads; do not merge into project snapshots."
+      "action": "duplicate-deleted",
+      "notes": "Content was already present in muIon-beam/06_external_lib; duplicate top-level archive removed."
     },
     {
       "path": "references",
       "role": "papers and presentation references",
       "observed": {"files": 6, "bytes": 5563224},
-      "action": "keep-separate",
-      "notes": "Small reference set; may later move under project/references after cloud verification."
+      "action": "duplicate-deleted",
+      "notes": "All six files matched muIon-beam/08_references; duplicate top-level folder removed."
     }
   ],
   "proposed_order": [

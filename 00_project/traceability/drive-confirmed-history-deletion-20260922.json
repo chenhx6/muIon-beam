@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "record_type": "drive-confirmed-history-deletion-receipt",
+  "receipt_id": "DRIVE-HISTORY-CLEANUP-20260922",
+  "generated_at": "2026-09-22T11:09:50.2221574Z",
+  "root": "H:\\我的云端硬盘\\muIon_archive",
+  "cloud_visibility": "verified-by-browser-readback",
+  "deletion_allowed": true,
+  "targets": [
+    {
+      "path": "H:\\我的云端硬盘\\muIon_archive\\external-libraries",
+      "files": 174,
+      "bytes": 19990176
+    },
+    {
+      "path": "H:\\我的云端硬盘\\muIon_archive\\references",
+      "files": 6,
+      "bytes": 5563224
+    },
+    {
+      "path": "H:\\我的云端硬盘\\muIon_archive\\project-management\\framework-20260907-r0-framework",
+      "files": 98,
+      "bytes": 93865
+    },
+    {
+      "path": "H:\\我的云端硬盘\\muIon_archive\\project\\snapshots\\SNAPSHOT-bf5f06e4a49b",
+      "files": 1075,
+      "bytes": 61382483
+    },
+    {
+      "path": "H:\\我的云端硬盘\\muIon_archive\\project\\snapshots\\SNAPSHOT-9ef64861baed",
+      "files": 1084,
+      "bytes": 61680798
+    },
+    {
+      "path": "H:\\我的云端硬盘\\muIon_archive\\project\\snapshots\\SNAPSHOT-bcbb0274a7f2",
+      "files": 1086,
+      "bytes": 61951946
+    },
+    {
+      "path": "H:\\我的云端硬盘\\muIon_archive\\project\\snapshots\\SNAPSHOT-9abcb4ddcb1a",
+      "files": 1088,
+      "bytes": 62222273
+    },
+    {
+      "path": "H:\\我的云端硬盘\\muIon_archive\\project\\snapshots\\SNAPSHOT-c8f079246af1",
+      "files": 1088,
+      "bytes": 62227506
+    }
+  ],
+  "deleted_count": 8,
+  "remaining": [],
+  "errors": [],
+  "retained": "legacy-from-D-muIon; project/snapshots/SNAPSHOT-ea0f075d2628; quarantine/DRIVE-QUARANTINE-20260922/project-management/ three unindexed snapshots",
+  "next_action": "review the three unindexed quarantine snapshots"
+}

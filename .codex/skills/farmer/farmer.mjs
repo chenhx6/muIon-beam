@@ -170,7 +170,9 @@ async function main() {
             states[id] = { ...(states[id] || {}), event_key: reservation.event_key, attempts: reservation.attempts, pending: true, status: 'queue-attempting', lifecycle: 'queue_attempting', recovery_chain_active: true, queue_reservation_id: reservation.reservation_id, queue_reserved_at: reservation.reserved_at, queue_reserved_at_iso: reservation.reserved_at_iso, last_event_timestamp: reservation.event_timestamp };
             write(stateFile, states);
           }
-          return args['dry-run'] ? { status: 0 } : spawnSync('codex', ['queue', '--thread', id, '--message', message], { encoding: 'utf8', windowsHide: true, timeout: 15000 });
+          const queueExecutable = process.env.FARMER_CODEX_BIN || 'codex';
+          const queueOptions = { encoding: 'utf8', windowsHide: true, timeout: 15000, shell: /\.(cmd|bat)$/i.test(queueExecutable) };
+          return args['dry-run'] ? { status: 0 } : spawnSync(queueExecutable, ['queue', '--thread', id, '--message', message], queueOptions);
         };
         states[session.id] = recoveryStep(session, before, config, now, queue, { disabled: false });
       }

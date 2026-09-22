@@ -4,10 +4,10 @@
   "quarantine_id": "DRIVE-QUARANTINE-20260922",
   "generated_at": "2026-09-22T07:11:08.1174623Z",
   "root": "H:\\我的云端硬盘\\muIon_archive",
-  "cloud_visibility": "unverified",
-  "deletion_allowed": false,
-  "status": "quarantined",
-  "reason": "user-authorized removal of historical duplicate/runtime trash; preserve reversible quarantine until cloud visibility is confirmed",
+  "cloud_visibility": "verified-by-browser-readback",
+  "deletion_allowed": true,
+  "status": "indexed-duplicates-deleted",
+  "reason": "user-authorized removal of historical duplicate/runtime trash after DriveFS-linked browser readback; retain only three unindexed snapshots for review",
   "state": {
     "source": "muIon-beam/00_project/state",
     "target": "quarantine/DRIVE-QUARANTINE-20260922/muIon-beam/00_project/state",
@@ -6614,7 +6614,7 @@
       "action": "quarantine-unindexed-review"
     }
   ],
-  "next_action": "confirm canonical cloud visibility and connector readback; only then decide whether quarantined duplicates can be permanently deleted",
+  "next_action": "review the three unindexed snapshot directories; do not delete them automatically",
   "quarantined_at": "2026-09-22T07:18:01.4595174Z",
   "verification": {
     "state_files_checked": 1251,
@@ -6631,5 +6631,19 @@
       "reason": "stale previous mirror version observed during concurrent local dashboard edit",
       "action": "quarantine-reversible"
     }
-  ]
+  ],
+  "deleted_at": "2026-09-22T09:11:46.2860710Z",
+  "deletion": {
+    "state_runtime_deleted": true,
+    "stale_dashboard_version_deleted": true,
+    "indexed_snapshot_directories_deleted": 23,
+    "unindexed_snapshot_directories_retained": 3,
+    "unindexed_snapshots": [
+      "SNAPSHOT-current-delivery-gate",
+      "SNAPSHOT-metadata-audit",
+      "SNAPSHOT-sync-metadata-integration"
+    ],
+    "deletion_scope": "receipt-listed paths only",
+    "verification": "source absence and retained unindexed paths checked"
+  }
 }

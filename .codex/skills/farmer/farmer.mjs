@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { isDisabled, readControl, writeControl } from './farmer-control.mjs';
@@ -7,6 +8,7 @@ import { isDisabled, readControl, writeControl } from './farmer-control.mjs';
 export const rootDefault = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 export const batchDelay = (attempt) => Math.min(2 + 2 * Math.floor((attempt - 1) / 10), 10) * 1000;
 export const SAFE_MAX_ATTEMPTS = 3;
+export const RECOVERY_LOCK_TTL_MS = 60_000;
 export const inside = (child, root) => { const r = path.relative(path.resolve(root).toLowerCase(), path.resolve(child).toLowerCase()); return r === '' || (!r.startsWith('..') && !path.isAbsolute(r)); };
 export function classifyError(error, config) {
   if (!error) return null;
@@ -28,6 +30,11 @@ export function manualRetryLease(session, previous = {}) {
 }
 export function parseSessionEvents(lines, projectRoot) {
   let meta = null; let latest = null; let latestStarted = null; const userPrompts = [];
+  const newer = (candidate, current) => {
+    if (!current) return true;
+    const candidateTime = Date.parse(candidate.timestamp || ''); const currentTime = Date.parse(current.timestamp || '');
+    return !Number.isFinite(currentTime) || (Number.isFinite(candidateTime) && candidateTime >= currentTime);
+  };
   for (const line of lines) {
     try {
       const item = JSON.parse(line);
@@ -38,7 +45,7 @@ export function parseSessionEvents(lines, projectRoot) {
         if (text && (!kinds.length || kinds.includes('user.text'))) userPrompts.push({ text, timestamp: item.timestamp || null });
       }
       if (item.type === 'event_msg' && ['task_started', 'task_complete', 'turn_aborted'].includes(item.payload?.type)) {
-        latest = item; if (item.payload.type === 'task_started') latestStarted = item;
+        if (newer(item, latest)) latest = item; if (item.payload.type === 'task_started' && newer(item, latestStarted)) latestStarted = item;
       }
     } catch {}
   }
@@ -54,6 +61,27 @@ function readSession(file, root) {
 function walk(dir) { if (!fs.existsSync(dir)) return []; return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith('.jsonl') ? [path.join(dir, e.name)] : []); }
 function write(file, data) { fs.mkdirSync(path.dirname(file), { recursive: true }); const tmp = `${file}.${process.pid}.tmp`; fs.writeFileSync(tmp, `${JSON.stringify(data, null, 2)}\n`); fs.renameSync(tmp, file); }
 function alive(pid) { try { process.kill(pid, 0); return true; } catch { return false; } }
+function recoveryLockPath(root) { return path.join(root, '_work', 'current', 'farmer', 'recovery.lock'); }
+export function acquireRecoveryLock(root, now = Date.now()) {
+  const file = recoveryLockPath(root); fs.mkdirSync(path.dirname(file), { recursive: true });
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const token = crypto.randomUUID();
+    try {
+      const fd = fs.openSync(file, 'wx'); fs.writeFileSync(fd, JSON.stringify({ pid: process.pid, token, acquired_at: new Date(now).toISOString() })); fs.closeSync(fd); return { file, token };
+    } catch (error) {
+      if (error.code !== 'EEXIST') throw error;
+      let owner = null; try { owner = JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+      const age = owner?.acquired_at ? now - Date.parse(owner.acquired_at) : Infinity;
+      if (!owner || !alive(owner.pid) || age > RECOVERY_LOCK_TTL_MS) { try { fs.unlinkSync(file); } catch {} continue; }
+      return null;
+    }
+  }
+  return null;
+}
+export function releaseRecoveryLock(lock) {
+  if (!lock) return;
+  try { if (JSON.parse(fs.readFileSync(lock.file, 'utf8')).token === lock.token) fs.unlinkSync(lock.file); } catch {}
+}
 export function inspect(root, codexHome) {
   const result = new Map();
   for (const file of walk(path.join(codexHome, 'sessions'))) { try { const s = readSession(file, root); if (!s?.id || !s.latest) continue; const old = result.get(s.id); if (!old || s.latest.timestamp > old.latest.timestamp) result.set(s.id, s); } catch {} }
@@ -67,6 +95,8 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   const eventKey = payload ? `${session.id}:${payload.turn_id}:${event.timestamp}` : null;
   const startedKey = session.latestStarted ? `${session.id}:${session.latestStarted.payload.turn_id}:${session.latestStarted.timestamp}` : previous?.last_started_event;
   const previousEventTimestamp = previous?.last_event_timestamp || (previous?.event_key ? previous.event_key.split(':').slice(2).join(':') : null);
+  const eventTime = Date.parse(event.timestamp || ''); const previousTime = Date.parse(previousEventTimestamp || '');
+  if (Number.isFinite(eventTime) && Number.isFinite(previousTime) && eventTime < previousTime) return { ...previous, stale_event_ignored: true };
   const recoveryText = String(options.recovery_message || config.recovery_message || '').trim();
   const automaticResume = Boolean(recoveryText && (session.userPrompts || []).some(prompt => String(prompt.text || '').trim() === recoveryText && (!previousEventTimestamp || Date.parse(prompt.timestamp || '') > Date.parse(previousEventTimestamp))));
   const manualUserPrompt = (session.userPrompts || []).some(prompt => !recoveryText || String(prompt.text || '').trim() !== recoveryText) && (session.userPrompts || []).some(prompt => !previousEventTimestamp || Date.parse(prompt.timestamp || '') > Date.parse(previousEventTimestamp));
@@ -77,7 +107,7 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   const continuingRecovery = automaticResume || (Boolean(previous?.recovery_chain_active) && !manualUserPrompt);
   if (payload.type === 'task_started') return { ...reset, status: 'running', lifecycle: 'turn_started', event_key: eventKey, pending: false, attempts: continuingRecovery ? (previous?.attempts || 0) : 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, recovery_chain_active: continuingRecovery, automatic_resume: automaticResume };
   if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', lifecycle: 'cancelled', pending: false, last_event_timestamp: event.timestamp };
-  if (!payload.error) return { ...reset, status: 'complete', lifecycle: 'succeeded', pending: false, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp };
+  if (!payload.error) return { ...reset, status: 'complete', lifecycle: 'succeeded', pending: false, recovery_chain_active: false, automatic_resume: false, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp };
   const errorClass = classifyError(payload.error, config);
   if (!errorClass) return { ...reset, status: 'manual-attention-required', lifecycle: 'failed', pending: false, last_event_timestamp: event.timestamp };
   const key = eventKey;
@@ -87,13 +117,16 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   if (explicitRetry) state = { ...state, attempts: 0, pending: false, next_at: 0, manual_retry: false, breaker_cleared: false, status: 'retrying', lifecycle: 'queue_attempted' };
   state.error_class = errorClass;
   if (state.pending) {
-    if (state.queue_accepted_at && now - state.queue_accepted_at >= (config.watchdog_ms || 30000)) return { ...state, status: 'queue-stuck', lifecycle: 'queue_stuck', pending: false, next_at: now };
+    const pendingValue = state.queue_accepted_at || state.queue_reserved_at; const pendingAt = typeof pendingValue === 'number' ? pendingValue : Date.parse(pendingValue || '');
+    if (pendingAt && now - pendingAt >= (config.watchdog_ms || 30000)) return { ...state, status: 'queue-stuck', lifecycle: 'queue_stuck', pending: false, next_at: now };
     return { ...state, status: 'recovery-pending', lifecycle: 'queued' };
   }
   const maxAttempts = config.max_attempts == null ? SAFE_MAX_ATTEMPTS : config.max_attempts;
   if (state.attempts >= maxAttempts) return { ...state, status: 'manual-attention-required', lifecycle: 'blocked', breaker_reason: 'max-attempts-reached' };
   if (now < state.next_at) return { ...state, status: 'waiting-retry' };
-  const result = queue(session.id, config.recovery_message);
+  const reservation = { reservation_id: crypto.randomUUID(), event_key: key, attempts: state.attempts + 1, reserved_at: now, reserved_at_iso: new Date(now).toISOString(), event_timestamp: event.timestamp };
+  state.queue_reservation_id = reservation.reservation_id; state.queue_reserved_at = reservation.reserved_at;
+  const result = queue(session.id, config.recovery_message, reservation);
   state.attempts += 1; state.last_exit_code = result.status; state.last_action_at = new Date(now).toISOString();
   state.queue_exit_code = result.status; state.queue_stdout = result.stdout ? String(result.stdout).slice(-2000) : null; state.queue_stderr = result.stderr ? String(result.stderr).slice(-2000) : null;
   state.pending = result.status === 0; state.lifecycle = state.pending ? 'queued' : 'queue_attempted'; state.status = state.pending ? 'recovery-pending' : 'waiting-retry';
@@ -127,12 +160,34 @@ async function main() {
   if (args.command === 'ensure') { if (isDisabled(root)) { console.log(JSON.stringify({ status: 'disabled', control: readControl(root), running: alive(owner.pid) })); return; } if (alive(owner.pid)) { console.log(JSON.stringify({ running: true, pid: owner.pid })); return; } if (args['dry-run']) { console.log(JSON.stringify({ would_start: true })); return; } fs.mkdirSync(runtime, { recursive: true }); const out = fs.openSync(path.join(runtime, 'daemon.log'), 'a'); const child = spawn(process.execPath, [fileURLToPath(import.meta.url), 'start', '--project-root', root, '--codex-home', home], { detached: true, stdio: ['ignore', out, out], windowsHide: true }); child.unref(); console.log(JSON.stringify({ started_pid: child.pid })); return; }
   const once = () => {
     if (isDisabled(root)) return { status: 'disabled', control: readControl(root), sessions: 0, states: read(stateFile, {}) };
-    const states = read(stateFile, {}); const sessions = inspect(root, home); const now = Date.now();
-    for (const session of sessions) { const before = states[session.id]; const next = recoveryStep(session, before, config, now, (id, message) => args['dry-run'] ? { status: 0 } : spawnSync('codex', ['queue', '--thread', id, '--message', message], { encoding: 'utf8', windowsHide: true, timeout: 15000 }), { disabled: false }); states[session.id] = next; }
-    if (!args['dry-run']) write(stateFile, states);
-    return { sessions: sessions.length, states, dry_run: !!args['dry-run'] };
+    const recoveryLock = acquireRecoveryLock(root); if (!recoveryLock) return { status: 'busy', sessions: 0, states: read(stateFile, {}) };
+    try {
+      const states = read(stateFile, {}); const sessions = inspect(root, home); const now = Date.now();
+      for (const session of sessions) {
+        const before = states[session.id];
+        const queue = (id, message, reservation) => {
+          if (!args['dry-run']) {
+            states[id] = { ...(states[id] || {}), event_key: reservation.event_key, attempts: reservation.attempts, pending: true, status: 'queue-attempting', lifecycle: 'queue_attempting', recovery_chain_active: true, queue_reservation_id: reservation.reservation_id, queue_reserved_at: reservation.reserved_at, queue_reserved_at_iso: reservation.reserved_at_iso, last_event_timestamp: reservation.event_timestamp };
+            write(stateFile, states);
+          }
+          return args['dry-run'] ? { status: 0 } : spawnSync('codex', ['queue', '--thread', id, '--message', message], { encoding: 'utf8', windowsHide: true, timeout: 15000 });
+        };
+        states[session.id] = recoveryStep(session, before, config, now, queue, { disabled: false });
+      }
+      if (!args['dry-run']) write(stateFile, states);
+      return { sessions: sessions.length, states, dry_run: !!args['dry-run'] };
+    } finally { releaseRecoveryLock(recoveryLock); }
   };
-  if (args.command === 'retry') { if (isDisabled(root)) { console.log(JSON.stringify({ status: 'disabled', control: readControl(root), manual_retry: false }, null, 2)); return; } const sessions = inspect(root, home); const session = sessions.find((item) => item.id === args.session); if (!session) throw new Error(`project session not found: ${args.session || '(missing)'}`); const states = read(stateFile, {}); states[session.id] = manualRetryLease(session, states[session.id] || {}); if (!args['dry-run']) write(stateFile, states); console.log(JSON.stringify({ session_id: session.id, state: states[session.id], dry_run: !!args['dry-run'] }, null, 2)); return; }
+  if (args.command === 'retry') {
+    if (isDisabled(root)) { console.log(JSON.stringify({ status: 'disabled', control: readControl(root), manual_retry: false }, null, 2)); return; }
+    const recoveryLock = acquireRecoveryLock(root); if (!recoveryLock) { console.log(JSON.stringify({ status: 'busy', manual_retry: false }, null, 2)); return; }
+    try {
+      const sessions = inspect(root, home); const session = sessions.find((item) => item.id === args.session); if (!session) throw new Error(`project session not found: ${args.session || '(missing)'}`);
+      const states = read(stateFile, {}); states[session.id] = manualRetryLease(session, states[session.id] || {}); if (!args['dry-run']) write(stateFile, states);
+      console.log(JSON.stringify({ session_id: session.id, state: states[session.id], dry_run: !!args['dry-run'] }, null, 2));
+    } finally { releaseRecoveryLock(recoveryLock); }
+    return;
+  }
   if (args.command === 'once') { console.log(JSON.stringify(once(), null, 2)); return; }
   if (args.command !== 'start') throw new Error('unknown command');
   if (isDisabled(root)) { console.log(JSON.stringify({ status: 'disabled', control: readControl(root) })); return; }

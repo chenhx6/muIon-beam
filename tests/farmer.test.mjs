@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { batchDelay, classifyError, inside, manualRetryLease, parseSessionEvents, recoveryStep, validateConfig, SAFE_MAX_ATTEMPTS } from '../.codex/skills/farmer/farmer.mjs';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { acquireRecoveryLock, batchDelay, classifyError, inside, manualRetryLease, parseSessionEvents, recoveryStep, releaseRecoveryLock, validateConfig, SAFE_MAX_ATTEMPTS } from '../.codex/skills/farmer/farmer.mjs';
 
 const config = { max_attempts: 99, recoverable_codes: ['server_overloaded', 'rate_limit_exceeded', 'temporarily_unavailable'], recoverable_patterns: ['Selected model is at capacity', 'temporarily unavailable', 'service unavailable', 'rate limit', 'timed out', 'connection reset'], recovery_message: 'resume' };
 test('farmer classifies transient and terminal errors', () => {
@@ -59,6 +62,15 @@ test('a fast start followed by failure is not missed', () => {
   assert.equal(state.attempts, 1);
   assert.equal(state.next_at - Date.now() <= 2100, true);
 });
+test('event selection prefers the newest timestamp even when rollout lines arrive out of order', () => {
+  const lines = [
+    JSON.stringify({ type: 'session_meta', payload: { session_id: 's1', cwd: 'D:/muIon-beam' } }),
+    JSON.stringify({ type: 'event_msg', timestamp: '2026-01-01T00:00:03Z', payload: { type: 'task_complete', turn_id: 't2' } }),
+    JSON.stringify({ type: 'event_msg', timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } })
+  ];
+  const parsed = parseSessionEvents(lines, 'D:/muIon-beam'); assert.equal(parsed.latest.timestamp, '2026-01-01T00:00:03Z');
+  assert.equal(recoveryStep(parsed, { recovery_chain_active: true }, config, Date.now(), () => { throw new Error('stale event queued'); }).status, 'complete');
+});
 test('accepted queue without a new turn becomes queue-stuck after watchdog', () => {
   let calls = 0;
   const cfg = { ...config, watchdog_ms: 1000 };
@@ -68,6 +80,12 @@ test('accepted queue without a new turn becomes queue-stuck after watchdog', () 
   assert.equal(calls, 1);
   assert.equal(stuck.status, 'queue-stuck');
   assert.equal(stuck.lifecycle, 'queue_stuck');
+});
+test('unconfirmed queue reservation also becomes queue-stuck after watchdog', () => {
+  const cfg = { ...config, watchdog_ms: 1000 };
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const state = recoveryStep(session, { event_key: 's1:t1:2026-01-01T00:00:00Z', attempts: 1, pending: true, lifecycle: 'queue_attempting', queue_reserved_at: 10000 }, cfg, 12001, () => { throw new Error('reservation must not queue again'); });
+  assert.equal(state.status, 'queue-stuck'); assert.equal(state.pending, false);
 });
 test('successful completion releases lease and never resumes same event', () => {
   let calls = 0;
@@ -144,4 +162,28 @@ test('synthetic AGENTS and environment messages do not reset an active recovery 
   const parsed = parseSessionEvents(lines, 'D:/muIon-beam');
   const next = recoveryStep({ ...parsed }, { event_key: 's1:t1:2026-01-01T00:00:00Z', attempts: 2, recovery_chain_active: true, status: 'waiting-retry', last_event_timestamp: '2026-01-01T00:00:00Z' }, config, Date.now(), () => ({ status: 0 }));
   assert.equal(next.attempts, 2); assert.equal(next.automatic_resume, false); assert.equal(next.recovery_chain_active, true);
+});
+test('recovery lock permits one queue evaluator at a time', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-farmer-lock-'));
+  try {
+    const first = acquireRecoveryLock(root); assert.ok(first);
+    assert.equal(acquireRecoveryLock(root), null);
+    releaseRecoveryLock(first);
+    const second = acquireRecoveryLock(root); assert.ok(second); releaseRecoveryLock(second);
+  } finally { fs.rmSync(root, { recursive: true, force: true }); }
+});
+test('successful recovery closes the chain and stale failures cannot queue again', () => {
+  let calls = 0; const cfg = { ...config, max_attempts: 3 };
+  const success = { id: 's1', latest: { timestamp: '2026-01-01T00:00:03Z', payload: { type: 'task_complete', turn_id: 't2' } } };
+  const completed = recoveryStep(success, { status: 'running', event_key: 's1:t2:old', attempts: 2, recovery_chain_active: true, last_event_timestamp: '2026-01-01T00:00:02Z' }, cfg, Date.now(), () => { calls += 1; return { status: 0 }; });
+  assert.equal(completed.status, 'complete'); assert.equal(completed.recovery_chain_active, false);
+  const stale = { id: 's1', latest: { timestamp: '2026-01-01T00:00:02Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const after = recoveryStep(stale, completed, cfg, Date.now() + 60000, () => { calls += 1; return { status: 0 }; });
+  assert.equal(calls, 0); assert.equal(after.status, 'complete'); assert.equal(after.stale_event_ignored, true);
+});
+test('queue reservation is supplied before the queue adapter runs', () => {
+  let reservation = null;
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const state = recoveryStep(session, { event_key: 'old', attempts: 0 }, config, Date.now(), (_id, _message, value) => { reservation = value; return { status: 0 }; });
+  assert.equal(reservation.event_key, state.event_key); assert.equal(reservation.attempts, 1); assert.match(reservation.reservation_id, /^[0-9a-f-]{36}$/); assert.equal(state.pending, true);
 });

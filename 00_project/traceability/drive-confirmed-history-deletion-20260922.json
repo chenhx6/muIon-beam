@@ -51,6 +51,6 @@
   "deleted_count": 8,
   "remaining": [],
   "errors": [],
-  "retained": "legacy-from-D-muIon; project/snapshots/SNAPSHOT-ea0f075d2628; quarantine/DRIVE-QUARANTINE-20260922/project-management/ three unindexed snapshots",
-  "next_action": "review the three unindexed quarantine snapshots"
+  "retained": "legacy-from-D-muIon; project/snapshots/SNAPSHOT-ea0f075d2628; project/recovery-index",
+  "next_action": "none; continue normal canonical mirror and research workflow"
 }

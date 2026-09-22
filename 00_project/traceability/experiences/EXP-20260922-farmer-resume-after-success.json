@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260922-farmer-resume-after-success",
+  "recorded_at": "2026-09-22T00:00:00Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "runtime-supervision",
+  "title": "恢复成功后仍持续投递 farmer resume",
+  "observation": "用户报告并由 rollout 顺序复核：自动恢复消息已经启动新的 task turn、session 继续运行时，旧的或并发接受的 [farmer resume] 仍继续到达，短时间累积超过十条。旧 incident 只记录了容量错误后的重复恢复，未单独记录恢复成功后的持续注入条件。",
+  "evidence": [
+    "00_project/traceability/incidents/FARMER-INCIDENT-20260918.json",
+    "_work/current/farmer/state.json",
+    ".codex/skills/farmer/farmer.mjs",
+    "tests/farmer.test.mjs",
+    "git commit 3d05b34"
+  ],
+  "impact": [
+    "自动消息可以打断健康运行中的任务并继续消耗队列容量",
+    "state.json 的单次 queue 记录无法代表实际已接受的消息数量",
+    "仅限制失败后的 attempts 不能覆盖恢复成功后的历史重复消息"
+  ],
+  "reusable_value": "恢复队列必须有跨进程原子锁、queue 前持久 reservation、成功后的 recovery-chain 关闭和旧事件时间戳保护；queue accepted 不等于 turn started，历史重复消息不能靠轮询撤回。",
+  "actions": [
+    "增加 recovery.lock，串行化 farmer queue evaluator",
+    "在调用 codex queue 前写入 queue reservation，崩溃后由 watchdog 熔断",
+    "task_complete 成功时关闭 recovery_chain_active",
+    "忽略时间戳早于已处理事件的旧失败事件",
+    "增加并发锁、reservation、乱序事件和成功后不再恢复的回归测试",
+    "保持 emergency pause，待用户 review 后再做受控 live canary"
+  ],
+  "tags": ["farmer", "recovery-loop", "queue-race", "success-after-recovery", "circuit-breaker"],
+  "related_paths": [
+    ".codex/skills/farmer/farmer.mjs",
+    "tests/farmer.test.mjs",
+    "00_project/traceability/incidents/FARMER-INCIDENT-20260918.json"
+  ],
+  "related_commits": ["3d05b34"]
+}

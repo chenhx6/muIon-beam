@@ -160,7 +160,7 @@
     {
       "id": "P4",
       "name": "Gitee Recovery Core 和 Drive canonical archive",
-      "status": "indexed-history-deleted-unindexed-review-open",
+      "status": "history-cleanup-complete",
       "deliverables": [
         "Gitee inventory and quota report",
         "optional satellite repo decision",

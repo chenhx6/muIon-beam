@@ -34,7 +34,7 @@
       "role": "legacy full-project snapshot tree",
       "observed": {"directories": 26, "files": 20346, "bytes": 1422930189},
       "action": "indexed-duplicates-permanently-deleted",
-      "notes": "All active legacy project snapshots were removed; the three unindexed snapshots remain in quarantine for review."
+      "notes": "All 26 active legacy project snapshots were permanently deleted after cloud readback and receipt verification."
     },
     {
       "path": "legacy-from-D-muIon",

@@ -2,7 +2,7 @@
 
 ## 计划状态
 
-当前状态：`executing / P4 indexed-history cleanup`。P0 规则与接口、P1 服务监督、P2 worktree/claim/heartbeat、P3 artifact promotion 与 leader integration 已实现并测试。canonical 本地树镜像、recovery index 和 quarantine receipt 已通过 H: SHA256 校验，并由 DriveFS-linked 浏览器账号读回确认；23 个有 Gitee ancestor 的历史快照、runtime/state 和旧 dashboard 版本已永久删除，3 个无索引快照保留复核。宿主原生 hook 实际投递仍待后续验证。本检查点不创建卫星库、不启动正式科研运行。
+当前状态：`executing / P4 history cleanup complete`。P0 规则与接口、P1 服务监督、P2 worktree/claim/heartbeat、P3 artifact promotion 与 leader integration 已实现并测试。canonical 本地树镜像、recovery index 和 quarantine receipt 已通过 H: SHA256 校验，并由 DriveFS-linked 浏览器账号读回确认；全部 26 个历史快照、runtime/state、旧 dashboard、外部库/参考副本和旧 framework 已永久清理。quarantine 顶层已移除，历史清理完成。宿主原生 hook 实际投递仍待后续验证。本检查点不创建卫星库、不启动正式科研运行。
 
 任务卡：`task_project_supervisor_auto_recovery_001`。
 

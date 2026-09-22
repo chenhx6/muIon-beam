@@ -48,6 +48,7 @@
 - 用户授权清理历史垃圾后，已将 canonical mirror 中 1251 个旧 runtime/state 文件和 `project-management/project-snapshots` 的 26 个历史快照整体移入 `quarantine/DRIVE-QUARANTINE-20260922`；状态文件逐个 SHA256 校验通过，23 个快照有 Gitee ancestor，3 个无索引，永久删除仍等待云端可见性和人工可追溯审查。
 - DriveFS-linked 浏览器账号随后读回 `muIon_archive/muIon-beam`、`drive-mirror-manifest.json`、traceability quarantine receipt 和 quarantine 目录；云端可见性已验证。下一步永久删除 23 个有 Gitee ancestor 的重复快照、runtime/state 和旧 dashboard 版本，保留 3 个无索引快照。
 - 云端读回确认后，已永久删除 23 个有 Gitee ancestor 的重复快照、1251 个 runtime/state 文件和旧 dashboard 版本；3 个无索引快照仍在 quarantine，未自动删除。
+- 用户要求“统统清理”后，3 个无索引快照、外部库重复副本、references 重复副本、旧 framework 和最后 quarantine 顶层均已删除；当前仅保留 canonical `muIon-beam`、latest project recovery snapshot、legacy migration evidence 和必要的恢复记录。
 
 ## 2026-09-16：主库源码优先和 Drive 清理边界
 

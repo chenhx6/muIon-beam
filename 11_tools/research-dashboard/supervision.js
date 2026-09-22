@@ -43,11 +43,11 @@ function renderCurrentSession(data) {
   if (current.status === 'unregistered') {
     text(title, '当前 Codex session 未登记'); text(metaNode, '当前运行身份没有匹配 session registry；research-state 只作为历史科研状态参考。');
     if (badgeNode) { badgeNode.className = 'badge badge-warn'; badgeNode.textContent = '未登记'; }
-    text($('#current-session-observed'), '最后观测：无'); return;
+    text($('#current-session-observed'), `Dashboard 读取：${formatAbsolute(data.supervision?.observed_at || data.generated_at)} · registry 记录：无`); return;
   }
   text(title, current.display_name || '未命名 session'); text(metaNode, [current.task_name, current.task_id, current.mode].filter(Boolean).join(' · ') || '未登记任务名称');
   if (badgeNode) { badgeNode.className = `badge ${statusClass(current.stale ? 'stale' : effectiveSessionStatus(current))}`; badgeNode.textContent = statusLabel(current.stale ? 'stale' : effectiveSessionStatus(current)); }
-  text($('#current-session-observed'), `最后观测：${formatAbsolute(current.last_observed_at)}` + (current.stale ? ` · ${current.stale_reasons?.join('、') || '状态过期'}` : ''));
+  text($('#current-session-observed'), `Dashboard 读取：${formatAbsolute(data.supervision?.observed_at || data.generated_at)} · registry 最后写入：${formatAbsolute(current.last_observed_at)}` + (current.stale ? ` · ${current.stale_reasons?.join('、') || '状态过期'}` : ''));
 }
 
 function renderSessions(data) {
@@ -62,7 +62,7 @@ function renderSessions(data) {
   for (const session of sessions) {
     const card = document.createElement('article'); card.className = 'session-card';
     const head = document.createElement('div'); head.className = 'session-card-head';
-    const titleBox = document.createElement('div'); const title = document.createElement('div'); title.className = 'session-name'; title.textContent = session.display_name || '未命名 session';
+    const titleBox = document.createElement('div'); const title = document.createElement('div'); title.className = 'session-name'; title.textContent = session.display_name || '名称缺失（需补登记）';
     const plan = plans.get(session.task_id); const kind = document.createElement('div'); kind.className = 'session-kind';
     kind.textContent = [session.task_name, session.mode].filter(Boolean).join(' · ') || '未登记任务名称';
     titleBox.append(title, kind); head.append(titleBox, badge(effectiveSessionStatus(session))); card.append(head);
@@ -70,7 +70,8 @@ function renderSessions(data) {
     metadata.append(meta('阶段', plan?.current_phase || session.mode), meta('宿主状态', session.host_status), meta('最后观测', formatTime(session.last_observed_at || session.updated_at || session.lease_until)));
     card.append(metadata);
     const next = document.createElement('div'); next.className = 'session-next'; const nextLabel = document.createElement('strong'); nextLabel.textContent = '下一步';
-    next.append(nextLabel, document.createTextNode(plan?.next_action || (session.integration && String(session.integration).startsWith('blocked') ? '处理集成阻塞' : '待记录'))); card.append(next);
+    const sessionStatus = normalizeStatus(session.status); const nextAction = plan?.next_action || (['abandoned', 'interrupted', 'cancelled'].includes(sessionStatus) ? '手动检查并继续任务' : sessionStatus === 'submitted' ? '等待 leader 集成' : session.integration && String(session.integration).startsWith('blocked') ? '处理集成阻塞' : '待记录');
+    next.append(nextLabel, document.createTextNode(nextAction)); card.append(next);
     if (session.blockers?.length || session.display_name_conflict) {
       const blockers = document.createElement('ul'); blockers.className = 'blocker-list';
       if (session.display_name_conflict) blockers.append(listItem('名称重复，已加序号显示'));
@@ -87,6 +88,7 @@ function renderTask(data) {
   const values = [task.objective || task.task_id || '无活动任务', current.phase || state.current_phase, state.workflow_status || '—'];
   const details = $('#task-details'); if (details) { [...details.querySelectorAll('dd')].forEach((node, index) => text(node, values[index])); }
   text($('#next-action'), data.display?.next_action || state.next_action || '无');
+  const todo = $('#todo-list'); if (todo) { todo.replaceChildren(); const addTodo = (label, valuesList) => { for (const value of valuesList || []) todo.append(listItem(`${label}：${value}`)); }; addTodo('已完成', data.display?.completed); addTodo('待处理', data.display?.pending); addTodo('阻塞', data.display?.blocked); if (!todo.children.length) todo.append(listItem(`当前阶段：${current.phase || state.current_phase || '未知'}；下一步：${data.display?.next_action || state.next_action || '待记录'}`)); }
   const chips = $('#stage-chips'); if (!chips) return; chips.replaceChildren();
   const add = (label, valuesList) => { for (const value of valuesList || []) { const chip = document.createElement('span'); chip.className = 'chip'; chip.textContent = `${label}：${value}`; chips.append(chip); } };
   add('已完成', data.display?.completed); add('待处理', data.display?.pending); add('阻塞', data.display?.blocked);
@@ -108,7 +110,7 @@ function renderHealth(data) {
 function renderWarnings(data) {
   const root = $('#warning-list'); if (!root) return; root.replaceChildren(); const warnings = [...(data.warnings || []), ...(data.supervision?.warnings || [])];
   for (const session of data.supervision?.sessions || []) {
-    if (session.display_name_source === 'generated') warnings.push(`${session.display_name}：没有可读名称`);
+    if (session.display_name_source === 'missing') warnings.push('有未完成 session 缺少可读名称，需要补登记');
     if (session.display_name_conflict) warnings.push(`${session.display_name}：名称重复，已加序号区分`);
     if (session.stale) warnings.push(`${session.display_name}：状态过期（${session.stale_reasons?.join('、') || '最后观测过旧'}）`);
   }

@@ -23,14 +23,14 @@ function deriveDisplayName(session) {
 }
 
 export function withDisplayNames(items = []) {
-  const rows = items.map((item, index) => {
+  const rows = items.map((item) => {
     const derived = deriveDisplayName(item);
-    return { ...item, display_name: derived.name || `未命名 session ${index + 1}`, display_name_source: derived.source };
+    return { ...item, display_name: derived.name || null, display_name_source: derived.name ? derived.source : 'missing' };
   });
-  const counts = new Map(); for (const row of rows) counts.set(row.display_name, (counts.get(row.display_name) || 0) + 1);
+  const counts = new Map(); for (const row of rows) if (row.display_name) counts.set(row.display_name, (counts.get(row.display_name) || 0) + 1);
   const seen = new Map();
   return rows.map((row) => {
-    if (counts.get(row.display_name) < 2) return row;
+    if (!row.display_name || counts.get(row.display_name) < 2) return row;
     const ordinal = (seen.get(row.display_name) || 0) + 1; seen.set(row.display_name, ordinal);
     return { ...row, display_name: `${row.display_name} · ${ordinal}`, display_name_conflict: true };
   });
@@ -46,8 +46,9 @@ function freshness(session, now = Date.now()) {
 function currentSession(sessions, now = Date.now()) {
   const hostSessionId = process.env.CODEX_THREAD_ID || process.env.CODEX_SESSION_ID || null;
   const match = hostSessionId ? sessions.find(session => session.host_session_id === hostSessionId || session.session_id === hostSessionId) : null;
-  if (match) return { ...match, current: true, source: 'session-registry' };
-  return { status: 'unregistered', current: true, source: 'runtime-session', display_name: null, task_id: null, host_session_id: hostSessionId, stale: true, stale_reasons: ['current-session-not-registered'], last_observed_at: null, age_ms: null };
+  const observedAt = new Date(now).toISOString();
+  if (match) return { ...match, current: true, source: 'session-registry', dashboard_observed_at: observedAt };
+  return { status: 'unregistered', current: true, source: 'runtime-session', display_name: null, task_id: null, host_session_id: hostSessionId, stale: true, stale_reasons: ['current-session-not-registered'], last_observed_at: null, dashboard_observed_at: observedAt, age_ms: null };
 }
 
 // A disposable read model. No writes to research state, plans or session registry.
@@ -82,6 +83,8 @@ export function aggregateProgress(root) {
     try { const item = read(file); artifacts.push(item); } catch(error) { warnings.push(error.message); }
   }
   const generated_at = new Date().toISOString();
-  const sessions = withDisplayNames(sessionRows).map(session => ({ ...session, ...freshness(session) }));
-  return { generated_at, sessions, current_session: currentSession(sessions), plans, artifact_triage:artifacts, counts:{sessions:sessions.length, active:sessions.filter(s=>s.status==='active').length, blocked:sessions.filter(s=>s.blockers.length||s.status==='blocked').length, stale:sessions.filter(s=>s.stale).length, unregistered_artifacts:artifacts.flatMap(record=>record.artifacts||[]).filter(item=>item.status==='unregistered').length}, warnings };
+  const terminal = new Set(['closed', 'complete', 'completed', 'done', 'succeeded', 'success']);
+  const visibleRows = sessionRows.filter(session => !terminal.has(String(session.status || '').toLowerCase()));
+  const sessions = withDisplayNames(visibleRows).map(session => ({ ...session, ...freshness(session) }));
+  return { generated_at, observed_at: generated_at, sessions, current_session: currentSession(sessions), plans, artifact_triage:artifacts, counts:{sessions:sessions.length, active:sessions.filter(s=>s.status==='active').length, blocked:sessions.filter(s=>s.blockers.length||s.status==='blocked').length, stale:sessions.filter(s=>s.stale).length, unregistered_artifacts:artifacts.flatMap(record=>record.artifacts||[]).filter(item=>item.status==='unregistered').length}, warnings };
 }

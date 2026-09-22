@@ -42,6 +42,8 @@ Git 已经保存 durable project assets 的版本历史；Drive 的目标是本�
 
 在 Google Drive 云端可见性未确认前，不得把 H: 映射盘存在当作云端备份成功，也不得删除旧目录。
 
+2026-09-22 用户授权清理历史垃圾后，已将旧 `project-management/project-snapshots` 和 canonical mirror 中不再属于当前 retention policy 的 runtime/state 内容移入 `quarantine/DRIVE-QUARANTINE-20260922`。这是可恢复隔离，不是永久删除；永久删除仍需云端可见性、无索引内容复核和 receipt 校验。
+
 ## 影响
 
 - 恢复入口变成“clone Gitee + 从 Drive 取同一相对路径的项目镜像”，不需要猜测 `project-management`、`simulation-runs` 和多层 snapshot 的关系。

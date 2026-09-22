@@ -3,13 +3,13 @@ const text = (node, value) => { if (node) node.textContent = value == null || va
 
 function normalizeStatus(value) { return String(value || 'unknown').toLowerCase(); }
 function statusLabel(value) {
-  const labels = { active: '运行中', running: '运行中', blocked: '已阻塞', failed: '失败', error: '失败', done: '已完成', complete: '已完成', completed: '已完成', succeeded: '已完成', closed: '已关闭', stopped: '已停止', disabled: '已停用', pending: '等待', unknown: '未知' };
+  const labels = { active: '运行中', running: '运行中', blocked: '已阻塞', failed: '失败', error: '失败', done: '已完成', complete: '已完成', completed: '已完成', succeeded: '已完成', closed: '已关闭', stopped: '已停止', disabled: '已停用', pending: '等待', stale: '已过期', unregistered: '未登记', unknown: '未知' };
   return labels[normalizeStatus(value)] || value || '未知';
 }
 function statusClass(value) {
   const status = normalizeStatus(value);
   if (['active', 'running', 'succeeded', 'done', 'complete', 'completed'].includes(status)) return 'badge-good';
-  if (['blocked', 'pending', 'stopped', 'disabled'].includes(status)) return 'badge-warn';
+  if (['blocked', 'pending', 'stopped', 'disabled', 'stale', 'unregistered'].includes(status)) return 'badge-warn';
   if (['failed', 'error'].includes(status)) return 'badge-bad';
   return 'badge-muted';
 }
@@ -21,8 +21,10 @@ function formatTime(value) {
   if (age < 86_400_000) return `${Math.floor(age / 3_600_000)} 小时前`;
   return new Date(timestamp).toLocaleString('zh-CN', { hour12: false });
 }
+function formatAbsolute(value) { const timestamp = Date.parse(value || ''); return Number.isFinite(timestamp) ? new Date(timestamp).toLocaleString('zh-CN', { hour12: false }) : '未知'; }
 function readable(value) { return typeof value === 'string' && value.trim() ? value.trim() : '—'; }
 function effectiveSessionStatus(session) {
+  if (session.stale) return 'stale';
   if (Array.isArray(session.blockers) && session.blockers.length) return 'blocked';
   if (session.integration && String(session.integration).startsWith('blocked')) return 'blocked';
   if (session.status === 'active') return session.host_status === 'failed' ? 'failed' : 'active';
@@ -35,6 +37,18 @@ function meta(label, value) {
   item.append(name, content); return item;
 }
 function listItem(value, className = '') { const li = document.createElement('li'); li.className = className; li.textContent = value; return li; }
+
+function renderCurrentSession(data) {
+  const current = data.supervision?.current_session || {}; const title = $('#current-session-title'); const metaNode = $('#current-session-meta'); const badgeNode = $('#current-session-badge');
+  if (current.status === 'unregistered') {
+    text(title, '当前 Codex session 未登记'); text(metaNode, '当前运行身份没有匹配 session registry；research-state 只作为历史科研状态参考。');
+    if (badgeNode) { badgeNode.className = 'badge badge-warn'; badgeNode.textContent = '未登记'; }
+    text($('#current-session-observed'), '最后观测：无'); return;
+  }
+  text(title, current.display_name || '未命名 session'); text(metaNode, [current.task_name, current.task_id, current.mode].filter(Boolean).join(' · ') || '未登记任务名称');
+  if (badgeNode) { badgeNode.className = `badge ${statusClass(current.stale ? 'stale' : effectiveSessionStatus(current))}`; badgeNode.textContent = statusLabel(current.stale ? 'stale' : effectiveSessionStatus(current)); }
+  text($('#current-session-observed'), `最后观测：${formatAbsolute(current.last_observed_at)}` + (current.stale ? ` · ${current.stale_reasons?.join('、') || '状态过期'}` : ''));
+}
 
 function renderSessions(data) {
   const root = $('#session-list'); if (!root) return; root.replaceChildren();
@@ -53,13 +67,14 @@ function renderSessions(data) {
     kind.textContent = [session.task_name, session.mode].filter(Boolean).join(' · ') || '未登记任务名称';
     titleBox.append(title, kind); head.append(titleBox, badge(effectiveSessionStatus(session))); card.append(head);
     const metadata = document.createElement('div'); metadata.className = 'session-meta';
-    metadata.append(meta('阶段', plan?.current_phase || session.mode), meta('宿主状态', session.host_status), meta('最后记录', formatTime(session.updated_at || session.lease_until)));
+    metadata.append(meta('阶段', plan?.current_phase || session.mode), meta('宿主状态', session.host_status), meta('最后观测', formatTime(session.last_observed_at || session.updated_at || session.lease_until)));
     card.append(metadata);
     const next = document.createElement('div'); next.className = 'session-next'; const nextLabel = document.createElement('strong'); nextLabel.textContent = '下一步';
     next.append(nextLabel, document.createTextNode(plan?.next_action || (session.integration && String(session.integration).startsWith('blocked') ? '处理集成阻塞' : '待记录'))); card.append(next);
     if (session.blockers?.length || session.display_name_conflict) {
       const blockers = document.createElement('ul'); blockers.className = 'blocker-list';
       if (session.display_name_conflict) blockers.append(listItem('名称重复，已加序号显示'));
+      if (session.stale) blockers.append(listItem(`状态过期：${session.stale_reasons?.join('、') || '最后观测过旧'}`));
       for (const blocker of session.blockers || []) blockers.append(listItem(`${blocker.reason || '阻塞'}：${blocker.next_action || '待处理'}`));
       card.append(blockers);
     }
@@ -95,19 +110,22 @@ function renderWarnings(data) {
   for (const session of data.supervision?.sessions || []) {
     if (session.display_name_source === 'generated') warnings.push(`${session.display_name}：没有可读名称`);
     if (session.display_name_conflict) warnings.push(`${session.display_name}：名称重复，已加序号区分`);
+    if (session.stale) warnings.push(`${session.display_name}：状态过期（${session.stale_reasons?.join('、') || '最后观测过旧'}）`);
   }
+  const current = data.supervision?.current_session;
+  if (current?.status === 'unregistered') warnings.push('当前 Codex session 未登记，页面不会把历史 research-state 视为当前 session 状态');
   if (!warnings.length) { root.append(listItem('暂无警告。')); return; }
   for (const warning of warnings) root.append(listItem(warning));
 }
 
 function render(data) {
   const state = data.research_state || {}; const counts = data.supervision?.counts || {};
-  text($('#metric-active'), counts.active || 0); text($('#metric-blocked'), counts.blocked || 0); text($('#metric-total'), counts.sessions || 0); text($('#metric-artifacts'), counts.unregistered_artifacts || 0);
-  text($('#revision'), `State revision ${state.state_revision ?? '—'}`); text($('#last-update'), `最后更新 ${formatTime(data.display?.last_update || state.updated_at)}`);
-  const current = data.display?.current || {}; const task = current.task || state.current_task || {}; text($('#current-summary'), `${task.objective || task.task_id || '无活动任务'} · 阶段：${current.phase || state.current_phase || '未知'} · 工作流：${state.workflow_status || '未知'}`);
-  const connection = $('#connection-status'); if (connection) { connection.className = `badge ${statusClass(state.task_status || 'unknown')}`; connection.textContent = `任务 ${statusLabel(state.task_status || 'unknown')}`; }
+  text($('#metric-active'), counts.active || 0); text($('#metric-blocked'), counts.blocked || 0); text($('#metric-total'), counts.sessions || 0); text($('#metric-artifacts'), counts.unregistered_artifacts || 0); text($('#metric-stale'), counts.stale || 0);
+  text($('#revision'), `State revision ${state.state_revision ?? '—'}`); text($('#dashboard-observed'), `Dashboard read ${formatTime(data.generated_at || data.supervision?.generated_at)}`); text($('#research-state-updated'), `Research state ${formatTime(state.updated_at)}`);
+  const current = data.display?.current || {}; const task = current.task || state.current_task || {}; text($('#current-summary'), `${task.objective || task.task_id || '无活动任务'} · 阶段：${current.phase || state.current_phase || '未知'} · 工作流：${state.workflow_status || '未知'} · 最后写入：${formatAbsolute(state.updated_at)}`);
+  const currentSession = data.supervision?.current_session || {}; const connection = $('#connection-status'); if (connection) { const connectionStatus = currentSession.status === 'unregistered' ? 'unregistered' : currentSession.stale ? 'stale' : effectiveSessionStatus(currentSession); connection.className = `badge ${statusClass(connectionStatus)}`; connection.textContent = currentSession.status === 'unregistered' ? '当前 session 未登记' : `session ${statusLabel(connectionStatus)}`; }
   const services = Object.entries(data.system_services?.services || {}).map(([name, value]) => `${name}：${statusLabel(value.status)}`); text($('#service-summary'), services.length ? services.join(' · ') : '服务状态未登记');
-  renderSessions(data); renderTask(data); renderPlans(data); renderHealth(data); renderWarnings(data); text($('#raw-status'), JSON.stringify(data, null, 2));
+  renderCurrentSession(data); renderSessions(data); renderTask(data); renderPlans(data); renderHealth(data); renderWarnings(data); text($('#raw-status'), JSON.stringify(data, null, 2));
 }
 
 function renderError(error) {
@@ -116,11 +134,15 @@ function renderError(error) {
   text($('#raw-status'), error.stack || error.message || String(error));
 }
 
-let inFlight = false;
+let inFlight = false; let lastResponseAt = 0; let lastGeneratedAt = 0;
+function updateFreshness() {
+  if (!lastResponseAt) return;
+  if (Date.now() - lastResponseAt > 10000) { const node = $('#connection-status'); if (node) { node.className = 'badge badge-bad'; node.textContent = '数据更新中断'; } }
+}
 async function refresh() {
   if (inFlight) return; inFlight = true;
-  try { const response = await fetch('/api/status', { cache: 'no-store' }); if (!response.ok) throw new Error(`状态接口返回 ${response.status}`); render(await response.json()); }
+  try { const response = await fetch('/api/status', { cache: 'no-store' }); if (!response.ok) throw new Error(`状态接口返回 ${response.status}`); const data = await response.json(); const generatedAt = Date.parse(data.generated_at || ''); if (lastGeneratedAt && Number.isFinite(generatedAt) && generatedAt < lastGeneratedAt) data.warnings = [...(data.warnings || []), 'dashboard generated_at 倒退，当前响应可能过期']; if (Number.isFinite(generatedAt)) lastGeneratedAt = generatedAt; lastResponseAt = Date.now(); render(data); }
   catch (error) { renderError(error); }
   finally { inFlight = false; }
 }
-refresh(); setInterval(refresh, 3000);
+refresh(); setInterval(refresh, 3000); setInterval(updateFreshness, 1000);

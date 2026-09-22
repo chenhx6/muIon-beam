@@ -36,6 +36,20 @@ export function withDisplayNames(items = []) {
   });
 }
 
+function freshness(session, now = Date.now()) {
+  const updatedAt = session.updated_at || null; const updatedMs = Date.parse(updatedAt || ''); const leaseMs = Date.parse(session.lease_until || ''); const reasons = [];
+  if (session.status === 'active' && Number.isFinite(leaseMs) && leaseMs < now) reasons.push('lease-expired');
+  if (Number.isFinite(updatedMs) && now - updatedMs > 5 * 60 * 1000) reasons.push('last-update-stale');
+  return { last_observed_at: updatedAt, age_ms: Number.isFinite(updatedMs) ? Math.max(0, now - updatedMs) : null, stale: reasons.length > 0, stale_reasons: reasons };
+}
+
+function currentSession(sessions, now = Date.now()) {
+  const hostSessionId = process.env.CODEX_THREAD_ID || process.env.CODEX_SESSION_ID || null;
+  const match = hostSessionId ? sessions.find(session => session.host_session_id === hostSessionId || session.session_id === hostSessionId) : null;
+  if (match) return { ...match, current: true, source: 'session-registry' };
+  return { status: 'unregistered', current: true, source: 'runtime-session', display_name: null, task_id: null, host_session_id: hostSessionId, stale: true, stale_reasons: ['current-session-not-registered'], last_observed_at: null, age_ms: null };
+}
+
 // A disposable read model. No writes to research state, plans or session registry.
 export function aggregateProgress(root) {
   const warnings = []; const sessionRows = [];
@@ -67,6 +81,7 @@ export function aggregateProgress(root) {
   for (const file of records(path.join(root, '_work/current/artifact-triage'))) {
     try { const item = read(file); artifacts.push(item); } catch(error) { warnings.push(error.message); }
   }
-  const sessions = withDisplayNames(sessionRows);
-  return { generated_at:new Date().toISOString(), sessions, plans, artifact_triage:artifacts, counts:{sessions:sessions.length, active:sessions.filter(s=>s.status==='active').length, blocked:sessions.filter(s=>s.blockers.length||s.status==='blocked').length, unregistered_artifacts:artifacts.flatMap(record=>record.artifacts||[]).filter(item=>item.status==='unregistered').length}, warnings };
+  const generated_at = new Date().toISOString();
+  const sessions = withDisplayNames(sessionRows).map(session => ({ ...session, ...freshness(session) }));
+  return { generated_at, sessions, current_session: currentSession(sessions), plans, artifact_triage:artifacts, counts:{sessions:sessions.length, active:sessions.filter(s=>s.status==='active').length, blocked:sessions.filter(s=>s.blockers.length||s.status==='blocked').length, stale:sessions.filter(s=>s.stale).length, unregistered_artifacts:artifacts.flatMap(record=>record.artifacts||[]).filter(item=>item.status==='unregistered').length}, warnings };
 }

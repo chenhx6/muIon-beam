@@ -3,13 +3,13 @@ const text = (node, value) => { if (node) node.textContent = value == null || va
 
 function normalizeStatus(value) { return String(value || 'unknown').toLowerCase(); }
 function statusLabel(value) {
-  const labels = { active: '运行中', running: '运行中', blocked: '已阻塞', failed: '失败', error: '失败', done: '已完成', complete: '已完成', completed: '已完成', succeeded: '已完成', closed: '已关闭', stopped: '已停止', disabled: '已停用', pending: '等待', stale: '已过期', unregistered: '未登记', unknown: '未知' };
+  const labels = { active: '运行中', running: '运行中', blocked: '已阻塞', failed: '失败', error: '失败', done: '已完成', complete: '已完成', completed: '已完成', succeeded: '已完成', closed: '已关闭', stopped: '已停止', disabled: '已停用', pending: '等待', stale: '已过期', unregistered: '未登记', matched: '已匹配', mismatch: '任务不一致', unknown: '未知' };
   return labels[normalizeStatus(value)] || value || '未知';
 }
 function statusClass(value) {
   const status = normalizeStatus(value);
   if (['active', 'running', 'succeeded', 'done', 'complete', 'completed'].includes(status)) return 'badge-good';
-  if (['blocked', 'pending', 'stopped', 'disabled', 'stale', 'unregistered'].includes(status)) return 'badge-warn';
+  if (['blocked', 'pending', 'stopped', 'disabled', 'stale', 'unregistered', 'mismatch'].includes(status)) return 'badge-warn';
   if (['failed', 'error'].includes(status)) return 'badge-bad';
   return 'badge-muted';
 }
@@ -85,6 +85,9 @@ function renderSessions(data) {
 
 function renderTask(data) {
   const state = data.research_state || {}; const current = data.display?.current || {}; const task = current.task || state.current_task || {};
+  const consistency = data.display?.consistency || {}; const consistencyBadge = $('#consistency-badge');
+  if (consistencyBadge) { consistencyBadge.className = `badge ${statusClass(consistency.status || 'unknown')}`; consistencyBadge.textContent = consistency.label || statusLabel(consistency.status); }
+  text($('#consistency-note'), `session task：${consistency.session_task_id || '—'} · research-state task：${consistency.research_task_id || '—'} · ${consistency.research_state_stale ? '科研状态已过期' : '科研状态时间有效'}`);
   const values = [task.objective || task.task_id || '无活动任务', current.phase || state.current_phase, state.workflow_status || '—'];
   const details = $('#task-details'); if (details) { [...details.querySelectorAll('dd')].forEach((node, index) => text(node, values[index])); }
   text($('#next-action'), data.display?.next_action || state.next_action || '无');
@@ -116,6 +119,7 @@ function renderWarnings(data) {
   }
   const current = data.supervision?.current_session;
   if (current?.status === 'unregistered') warnings.push('当前 Codex session 未登记，页面不会把历史 research-state 视为当前 session 状态');
+  const consistency = data.display?.consistency; if (consistency && consistency.status !== 'matched') warnings.push(`session/research-state：${consistency.label || consistency.status}`);
   if (!warnings.length) { root.append(listItem('暂无警告。')); return; }
   for (const warning of warnings) root.append(listItem(warning));
 }

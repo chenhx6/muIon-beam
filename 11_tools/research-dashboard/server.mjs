@@ -14,6 +14,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const stateDir = path.join(ROOT,'07_research_system/control/research-state');
 const read = (file, fallback) => { try { const t=fs.readFileSync(file,'utf8').replace(/^\uFEFF/,'').trim(); if(!t)return fallback; if(file.endsWith('.jsonl')) return t.split(/\r?\n/).filter(Boolean).map(x=>JSON.parse(x)); if(file.endsWith('.json') || t.startsWith('{') || t.startsWith('[')) return JSON.parse(t); return parseYaml(t); } catch(e){ throw new Error(`${path.relative(ROOT,file)}: ${e.message}`); } };
 function files(dir, suffix){ try{return fs.readdirSync(dir).filter(x=>x.endsWith(suffix)).map(x=>path.join(dir,x));}catch{return [];} }
+export function compareResearchStateToSession(state = {}, supervision = {}, now = Date.now()) {
+ const current = supervision.current_session || { status: 'unregistered' }; const task = state.current_task || null; const updated = Date.parse(state.updated_at || ''); const researchStale = !Number.isFinite(updated) || now - updated > 5 * 60 * 1000;
+ if (current.status === 'unregistered') return { status: 'unregistered', label: '当前 Codex session 未登记', session_task_id: null, research_task_id: task?.task_id || null, research_state_stale: researchStale, session_stale: true, next_action: state.next_action || null };
+ const taskMatch = Boolean(current.task_id && task?.task_id && current.task_id === task.task_id); const stale = Boolean(current.stale || researchStale);
+ return { status: stale ? 'stale' : taskMatch ? 'matched' : task?.task_id && current.task_id ? 'mismatch' : 'unknown', label: stale ? '状态过期' : taskMatch ? 'session 与 research-state 已匹配' : 'session 与 research-state 任务不一致', session_task_id: current.task_id || null, research_task_id: task?.task_id || null, research_state_stale: researchStale, session_stale: Boolean(current.stale), next_action: state.next_action || null };
+}
 function snapshot(){ const warnings=[]; let state={}; try{state=read(path.join(stateDir,'state.yaml'),{});}catch(e){warnings.push(e.message)}
  let problems=[]; try{problems=read(path.join(stateDir,'open-problems.yaml'),[]);}catch(e){warnings.push(e.message)}
  let events=[]; try{events=read(path.join(stateDir,'events.jsonl'),[]);}catch(e){warnings.push(e.message)}
@@ -36,6 +42,7 @@ export function handler(req,res){
    value.system_services={...(value.system_services||{}),services:{...(value.system_services?.services||{}),dashboard:{status:'healthy',pid:process.pid,url:`http://127.0.0.1:${process.env.RESEARCH_DASHBOARD_PORT||4317}/api/health`}}};
    if (isDisabled(ROOT)) value.system_services={...(value.system_services||{}),services:{...(value.system_services?.services||{}),farmer:{status:'disabled',detail:readControl(ROOT).reason||'farmer disabled by control switch'}}};
    value.supervision=aggregateProgress(ROOT);
+   value.display.consistency=compareResearchStateToSession(value.research_state, value.supervision);
    res.writeHead(200,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});return res.end(JSON.stringify(value));
   } catch(error){res.writeHead(503,{'content-type':'application/json'});return res.end(JSON.stringify({error:error.message}));}
  }

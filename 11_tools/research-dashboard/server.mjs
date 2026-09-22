@@ -12,7 +12,7 @@ import { isDisabled, readControl } from '../../.codex/skills/farmer/farmer-contr
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const stateDir = path.join(ROOT,'07_research_system/control/research-state');
-const read = (file, fallback) => { try { const t=fs.readFileSync(file,'utf8').replace(/^\uFEFF/,'').trim(); if(!t)return fallback; return file.endsWith('.jsonl') ? t.split(/\r?\n/).filter(Boolean).map(x=>JSON.parse(x)) : (file.endsWith('.json') ? JSON.parse(t) : parseYaml(t)); } catch(e){ throw new Error(`${path.relative(ROOT,file)}: ${e.message}`); } };
+const read = (file, fallback) => { try { const t=fs.readFileSync(file,'utf8').replace(/^\uFEFF/,'').trim(); if(!t)return fallback; if(file.endsWith('.jsonl')) return t.split(/\r?\n/).filter(Boolean).map(x=>JSON.parse(x)); if(file.endsWith('.json') || t.startsWith('{') || t.startsWith('[')) return JSON.parse(t); return parseYaml(t); } catch(e){ throw new Error(`${path.relative(ROOT,file)}: ${e.message}`); } };
 function files(dir, suffix){ try{return fs.readdirSync(dir).filter(x=>x.endsWith(suffix)).map(x=>path.join(dir,x));}catch{return [];} }
 function snapshot(){ const warnings=[]; let state={}; try{state=read(path.join(stateDir,'state.yaml'),{});}catch(e){warnings.push(e.message)}
  let problems=[]; try{problems=read(path.join(stateDir,'open-problems.yaml'),[]);}catch(e){warnings.push(e.message)}

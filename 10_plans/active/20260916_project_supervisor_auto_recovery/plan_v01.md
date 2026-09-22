@@ -2,7 +2,7 @@
 
 ## 计划状态
 
-当前状态：`executing / P4 Drive cloud visibility`。P0 规则与接口、P1 服务监督、P2 worktree/claim/heartbeat、P3 artifact promotion 与 leader integration 已实现并测试。canonical 本地树镜像与 recovery index 已生成并通过 H: 映射盘 SHA256 校验；旧 runtime/state 与历史 project snapshots 已按 receipt 移入可恢复 quarantine，新任务默认写入本地相对目录。宿主原生 hook 实际投递、Drive 云端可见性和 quarantine 永久删除门仍待完成。本检查点不创建卫星库、不启动正式科研运行。
+当前状态：`executing / P4 indexed-history cleanup`。P0 规则与接口、P1 服务监督、P2 worktree/claim/heartbeat、P3 artifact promotion 与 leader integration 已实现并测试。canonical 本地树镜像、recovery index 和 quarantine receipt 已通过 H: SHA256 校验，并由 DriveFS-linked 浏览器账号读回确认；23 个有 Gitee ancestor 的历史快照和 runtime/state 已获永久删除授权，3 个无索引快照保留复核。宿主原生 hook 实际投递仍待后续验证。本检查点不创建卫星库、不启动正式科研运行。
 
 任务卡：`task_project_supervisor_auto_recovery_001`。
 

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "record_type": "drive-cloud-visibility-audit",
   "audit_id": "CLOUD-AUDIT-20260922-canonical-mirror",
-  "audited_at": "2026-09-21T19:03:30Z",
+  "audited_at": "2026-09-22T07:35:07Z",
   "mapped_drive": {
     "root": "H:\\我的云端硬盘\\muIon_archive",
     "canonical_path": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",
@@ -15,15 +15,17 @@
     "manifest": "muIon-beam/drive-mirror-manifest.json"
   },
   "google_drive_connector": {
-    "canonical_folder_search": "no result for muIon-beam",
-    "manifest_search": "no result for drive-mirror-manifest.json",
+    "canonical_folder_search": "0 results for muIon-beam",
+    "manifest_search": "0 results for drive-mirror-manifest.json",
+    "quarantine_receipt_search": "0 results for DRIVE-QUARANTINE-20260922",
     "identity_observation": "DriveFS observed account token 108812366906913845014; the connected Drive connector profile was not verified as the same account, so an empty connector search cannot be treated as a failed H: upload.",
     "similar_folder": {
       "title": "mu-ion beam",
       "id": "1eUHFRXmOfvcZxUNYojK5UfwRixv--aWR",
       "children_observed": ["无标题文档"]
     },
-    "canonical_mirror_visible": false
+    "canonical_mirror_visible": false,
+    "transport": "search/list operations succeeded; target artifacts remain invisible"
   },
   "drivefs_observation": {
     "account_token": "108812366906913845014",
@@ -33,5 +35,5 @@
   "conclusion": "The local H: mapped path now contains a hash-verified mirror of the current local project tree, but the connected Google Drive account still cannot see the canonical folder or manifest. DriveFS and the connector may be using different accounts or sync states; this does not prove that the Drive Desktop client has uploaded the files to the intended cloud account.",
   "status": "cloud-upload-unverified",
   "cleanup_allowed": false,
-  "next_action": "Resolve Google Drive Desktop account/path or network synchronization, repeat connector visibility checks, then compare the cloud-visible manifest before quarantining old archive directories."
+  "next_action": "Resolve the DriveFS/Google Drive connector account or path mismatch, repeat canonical manifest and quarantine receipt searches, then decide whether the reversible quarantine may be permanently deleted."
 }

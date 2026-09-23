@@ -2,9 +2,9 @@
   "schema_version": 1,
   "task_id": "task_drive_oauth_and_governance_20260923",
   "task_name": "Drive OAuth 对齐与 M/D/?? 治理",
-  "status": "blocked_on_connector_oauth_account",
-  "current_phase": "P3-connector-oauth-account-alignment",
-  "next_action": "Reconnect Google Drive connector as malakarlio29@gmail.com, then verify folder, manifest, recovery index, count, size and SHA256",
+  "status": "p4_connector_readback_verified",
+  "current_phase": "P4-connector-readback-verified",
+  "next_action": "Sync the latest db02f51 and plan commit to the canonical Drive mirror, then verify manifest and recovery index against the new commit",
   "created_at": "2026-09-23T15:00:00+08:00",
   "updated_at": "2026-09-23T15:00:00+08:00",
   "owner": "codex-8f62a0ce8890af6b3331-1",
@@ -19,15 +19,18 @@
     "delivery_classification": "00_project/traceability/checkout-governance/DELIVERY-CLASSIFICATION-20260923.json",
     "gitee_commit": "db02f51cb3913294239c1a505049f8fa5e0ed0cd",
     "browser_drive_folder": "https://drive.google.com/drive/folders/1wzkqe4Wye-2IkbLfMYr8w_TLhr94piRO",
-    "connector_profile_observed": "malakarlio28@gmail.com",
-    "target_connector_profile": "malakarlio29@gmail.com"
+    "connector_profile_observed": "malakarlio29@gmail.com",
+    "target_connector_profile": "malakarlio29@gmail.com",
+    "connector_link_id": "link_6ab3e98996a48191821511fd47b0748f",
+    "connector_manifest_file_id": "1gNnfq6ajCq85Me-VJdLt_LLYfQfOwE6j",
+    "connector_recovery_index_file_id": "1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt"
   },
   "steps": [
     {"id": "P0", "status": "completed", "title": "Baseline, ADR and main checkout read-only inventory"},
     {"id": "P1", "status": "completed", "title": "Browser Drive account and canonical mirror visibility"},
     {"id": "P2", "status": "completed", "title": "Worktree-aware dashboard health check and Gitee push"},
-    {"id": "P3", "status": "blocked", "title": "Align connector OAuth account to malakarlio29@gmail.com", "exit_criteria": "connector profile and folder readback use target account"},
-    {"id": "P4", "status": "pending", "title": "Verify connector manifest and recovery index", "exit_criteria": "connector reads drive-mirror-manifest.json and recovery index; count, bytes and SHA256 agree"},
+    {"id": "P3", "status": "completed", "title": "Align connector OAuth account to malakarlio29@gmail.com", "exit_criteria": "connector profile and folder readback use target account"},
+    {"id": "P4", "status": "completed", "title": "Verify connector manifest and recovery index", "exit_criteria": "connector reads drive-mirror-manifest.json and recovery index; count, bytes and SHA256 agree"},
     {"id": "P5", "status": "pending", "title": "Archive Manifest-backed P2 outputs to Drive", "exit_criteria": "copy-only run receipt and per-file verification; no Gitee output publication"},
     {"id": "P6", "status": "pending", "title": "Govern M/D/?? in clean worktree", "exit_criteria": "each durable change, rename candidate, output and blocked item has a receipt; main checkout remains preserved"}
   ]

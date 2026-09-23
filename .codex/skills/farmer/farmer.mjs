@@ -83,6 +83,13 @@ export function releaseRecoveryLock(lock) {
   if (!lock) return;
   try { if (JSON.parse(fs.readFileSync(lock.file, 'utf8')).token === lock.token) fs.unlinkSync(lock.file); } catch {}
 }
+export function reconcileUnobservedStates(states = {}, observedIds = [], now = Date.now()) {
+  const observed = new Set(observedIds); const next = { ...states }; const active = new Set(['running', 'recovery-pending', 'recovery-observing', 'waiting-retry']);
+  for (const [id, state] of Object.entries(next)) {
+    if (!observed.has(id) && active.has(state?.status)) next[id] = { ...state, status: 'session-unavailable', lifecycle: 'not_observed', process_health: 'not-observed', pending: false, next_at: 0, last_observed_at: new Date(now).toISOString() };
+  }
+  return next;
+}
 export function inspect(root, codexHome) {
   const result = new Map();
   for (const file of walk(path.join(codexHome, 'sessions'))) { try { const s = readSession(file, root); if (!s?.id || !s.latest) continue; const old = result.get(s.id); if (!old || s.latest.timestamp > old.latest.timestamp || (s.latest.timestamp === old.latest.timestamp && s.rollout_mtime_ms > old.rollout_mtime_ms)) result.set(s.id, s); } catch {} }
@@ -169,7 +176,7 @@ async function main() {
     if (isDisabled(root)) return { status: 'disabled', control: readControl(root), sessions: 0, states: read(stateFile, {}) };
     const recoveryLock = acquireRecoveryLock(root); if (!recoveryLock) return { status: 'busy', sessions: 0, states: read(stateFile, {}) };
     try {
-      const states = read(stateFile, {}); const sessions = inspect(root, home); const now = Date.now();
+      const sessions = inspect(root, home); const now = Date.now(); const states = reconcileUnobservedStates(read(stateFile, {}), sessions.map(session => session.id), now);
       for (const session of sessions) {
         const before = states[session.id];
         const queue = (id, message, reservation) => {

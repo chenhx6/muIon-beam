@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { acquireRecoveryLock, batchDelay, classifyError, inside, manualRetryLease, parseSessionEvents, recoveryStep, releaseRecoveryLock, validateConfig, SAFE_MAX_ATTEMPTS } from '../.codex/skills/farmer/farmer.mjs';
+import { acquireRecoveryLock, batchDelay, classifyError, inside, manualRetryLease, parseSessionEvents, reconcileUnobservedStates, recoveryStep, releaseRecoveryLock, validateConfig, SAFE_MAX_ATTEMPTS } from '../.codex/skills/farmer/farmer.mjs';
 
 const config = { max_attempts: 99, recoverable_codes: ['server_overloaded', 'rate_limit_exceeded', 'temporarily_unavailable'], recoverable_patterns: ['Selected model is at capacity', 'temporarily unavailable', 'service unavailable', 'rate limit', 'timed out', 'connection reset'], recovery_message: 'resume' };
 test('farmer classifies transient and terminal errors', () => {
@@ -96,6 +96,10 @@ test('rollout activity proves the session is still writing after queue acceptanc
   const session = { id: 's1', rollout_mtime_ms: 11000, rollout_size: 120, latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
   const observing = recoveryStep(session, { event_key: 's1:t1:2026-01-01T00:00:00Z', attempts: 1, pending: true, queue_accepted_at: 10000, rollout_mtime_ms: 10000, last_event_timestamp: '2026-01-01T00:00:00Z' }, cfg, 12001, () => { calls += 1; return { status: 0 }; });
   assert.equal(calls, 0); assert.equal(observing.status, 'recovery-observing'); assert.equal(observing.process_health, 'writing'); assert.equal(observing.pending, true); assert.equal(observing.queue_accepted_at, 12001);
+});
+test('unobserved active state is marked unavailable instead of remaining running', () => {
+  const states = reconcileUnobservedStates({ live: { status: 'running', pending: false }, done: { status: 'complete' } }, [], 10000);
+  assert.equal(states.live.status, 'session-unavailable'); assert.equal(states.live.process_health, 'not-observed'); assert.equal(states.live.pending, false); assert.equal(states.done.status, 'complete');
 });
 test('unconfirmed queue reservation also becomes queue-stuck after watchdog', () => {
   const cfg = { ...config, watchdog_ms: 1000 };

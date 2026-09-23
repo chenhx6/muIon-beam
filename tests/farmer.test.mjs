@@ -175,6 +175,11 @@ test('a recovered turn is not followed by another automatic resume after its own
   const failedAgain = recoveryStep({ id: 's1', latest: { timestamp: '2026-01-01T00:00:02Z', payload: { type: 'task_complete', turn_id: 't2', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } }, started, cfg, 12000, () => { calls += 1; return { status: 0 }; });
   assert.equal(started.recovery_satisfied, true); assert.equal(started.recovery_chain_active, false); assert.equal(calls, 1); assert.equal(failedAgain.status, 'manual-attention-required'); assert.equal(failedAgain.breaker_reason, 'failure-after-recovery');
 });
+test('re-reading the same task_started event preserves recovery success', () => {
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } } };
+  const state = recoveryStep(session, { event_key: 's1:t2:2026-01-01T00:00:01Z', last_started_event: 's1:t2:2026-01-01T00:00:01Z', status: 'running', process_health: 'running', recovery_satisfied: true, recovered_turn_id: 't2', recovery_chain_active: false }, config, 12000, () => { throw new Error('same start must not queue'); });
+  assert.equal(state.recovery_satisfied, true); assert.equal(state.recovered_turn_id, 't2'); assert.equal(state.recovery_chain_active, false);
+});
 test('ordinary new user turn starts a new recovery chain', () => {
   const cfg = { ...config, max_attempts: 3 };
   const session = { id: 's1', latest: { timestamp: '2026-01-01T00:01:00Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:01:00Z', payload: { type: 'task_started', turn_id: 't2' } }, userPrompts: [{ timestamp: '2026-01-01T00:00:30Z', text: 'new user task' }] };

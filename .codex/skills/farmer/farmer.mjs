@@ -114,7 +114,7 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   const reset = manualNewStart ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey, recovery_chain_active: false, recovery_satisfied: false, recovered_turn_id: null } : previous;
   const continuingRecovery = automaticResume || (Boolean(previous?.recovery_chain_active) && !manualUserPrompt);
   if (payload.type === 'task_started') {
-    const recoveryStarted = automaticResume || Boolean(previous?.recovery_chain_active) || Boolean(previous?.pending);
+    const recoveryStarted = automaticResume || Boolean(previous?.recovery_chain_active) || Boolean(previous?.pending) || (previous?.recovery_satisfied === true && previous.recovered_turn_id === payload.turn_id);
     return { ...reset, status: 'running', lifecycle: 'turn_started', process_health: 'running', event_key: eventKey, pending: false, attempts: continuingRecovery ? (previous?.attempts || 0) : 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, rollout_mtime_ms: session.rollout_mtime_ms ?? previous?.rollout_mtime_ms ?? null, rollout_size: session.rollout_size ?? previous?.rollout_size ?? null, recovery_chain_active: false, recovery_satisfied: recoveryStarted, recovered_turn_id: recoveryStarted ? payload.turn_id : null, automatic_resume: automaticResume };
   }
   if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', lifecycle: 'cancelled', process_health: 'aborted', pending: false, last_event_timestamp: event.timestamp, rollout_mtime_ms: session.rollout_mtime_ms ?? previous?.rollout_mtime_ms ?? null, rollout_size: session.rollout_size ?? previous?.rollout_size ?? null };

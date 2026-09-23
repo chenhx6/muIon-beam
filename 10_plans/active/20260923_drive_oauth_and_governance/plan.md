@@ -11,11 +11,13 @@ M/D/?? 现场。
 
 - 浏览器账号 `malakarlio29@gmail.com` 可以看到 `muIon-beam` 和 `drive-mirror-manifest.json`。
 - connector 已切换并返回 `malakarlio29@gmail.com`；目标 folder、`drive-mirror-manifest.json` 和 recovery index 均可读。
-- Gitee `origin/main` 已指向 `47c2e3756340f297a864abae882894c7b5143128`。
+- Gitee `origin/main` 的最终提交号在每次交付后由 `git ls-remote origin main` 与
+  `project/recovery-index/recovery-index.json` 记录；本计划不硬编码会随最终回执变化的旧提交号。
 - supervisor 代码已接受同一 Git common root 下的 dashboard worktree；实时 dashboard API 和页面正常。
 - 主 checkout 的 778 项 M/D/?? 现场只读保留。
-- canonical mirror 已从当前提交同步：1155 个文件、68,326,515 bytes，映射盘数量/大小/SHA256 校验通过；connector 已读回同一 manifest 与 recovery index，Gitee commit 一致。
-- mirror 有 150 个 stale 文件；云端可见，但 `cleanup_allowed=false`。
+- canonical mirror 的最终文件数、字节数、stale 数量、生成时间和 SHA256 结果以最终
+  `drive-mirror-manifest.json` 为准；映射盘校验后再由 connector 读回 manifest 与 recovery index，
+  两者必须指向同一 Gitee 提交。旧文件只保留，不做删除。
 - P5 已完成：166 个 P2 日志复制到 canonical mirror，9,224,915 bytes，逐项 SHA256 通过；回执同时记录 60 个已归档 Manifest 文件、64 个已在镜像但待登记文件、2 个未登记阻塞文件和 1 个哈希漂移项。
 - P6 已完成治理回执：39 个 M 全部保留并标为逐项审查；235 个 D 中 82 个同 SHA 命名迁移候选、153 个内容变化/未决；504 个 ?? 中 209 个已交付 Gitee、293 个由输出回执管理、2 个 `.class` 构建产物忽略。
 
@@ -37,7 +39,7 @@ M/D/?? 现场。
 
 ## 当前阻塞
 
-OAuth blocker 已解除。Drive mirror、recovery index 和云端可见性审计已完成；P5 和 P6 都已留下
+OAuth blocker 已解除。Drive mirror、recovery index 和云端可见性审计在最终同步后完成；P5 和 P6 都已留下
 逐文件回执。剩余阻塞是 39 个 M 的内容审查、153 个 D 的内容变化/未决项、64 个已在 Drive
 但尚未登记的输出、2 个未登记日志，以及 1 个 Manifest 哈希漂移项。主 checkout 仍只读，
 后续需逐项解决这些阻塞后再考虑采用、quarantine 或清理。

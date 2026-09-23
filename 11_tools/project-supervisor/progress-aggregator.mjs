@@ -41,11 +41,12 @@ export function readCodexSessions(root, warnings = [], { codexHome = path.join(o
     const stateDb = new DatabaseSync(stateFile, { readOnly: true });
     const historyDb = new DatabaseSync(historyFile, { readOnly: true });
     const projectRoot = normalizeWindowsPath(root);
-    const threads = stateDb.prepare('SELECT id, name, title, cwd, archived, updated_at, updated_at_ms, source FROM threads WHERE archived = 0').all();
+    const threads = stateDb.prepare('SELECT id, name, title, cwd, archived, updated_at, updated_at_ms, source, rollout_path FROM threads WHERE archived = 0').all();
     const latestTurn = historyDb.prepare('SELECT status, started_at, completed_at FROM thread_turns WHERE thread_id = ? ORDER BY rollout_ordinal DESC LIMIT 1');
     const sessions = []; const terminalIds = new Set();
     for (const thread of threads) {
       if (normalizeWindowsPath(thread.cwd) !== projectRoot || String(thread.source || '').includes('subagent')) continue;
+      if (thread.rollout_path && !fs.existsSync(thread.rollout_path)) continue;
       const turn = latestTurn.get(thread.id); const status = codexStatus(turn?.status);
       if (!status) continue;
       if (status === 'completed') { terminalIds.add(thread.id); continue; }

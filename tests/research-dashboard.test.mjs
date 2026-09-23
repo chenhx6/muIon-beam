@@ -37,12 +37,13 @@ test('Codex index keeps named incomplete threads and filters completed or unname
  const home=fs.mkdtempSync(path.join(os.tmpdir(),'muion-codex-index-')); const statePath=path.join(home,'state_5.sqlite'); const historyPath=path.join(home,'thread_history_1.sqlite');
  try {
   const {DatabaseSync}=createRequire(import.meta.url)('node:sqlite'); const state=new DatabaseSync(statePath); const history=new DatabaseSync(historyPath);
-  state.exec('CREATE TABLE threads (id TEXT, name TEXT, title TEXT, cwd TEXT, archived INTEGER, updated_at INTEGER, updated_at_ms INTEGER, source TEXT)');
+  state.exec('CREATE TABLE threads (id TEXT, name TEXT, title TEXT, cwd TEXT, archived INTEGER, updated_at INTEGER, updated_at_ms INTEGER, source TEXT, rollout_path TEXT)');
   history.exec('CREATE TABLE thread_turns (thread_id TEXT, status TEXT, started_at INTEGER, completed_at INTEGER, rollout_ordinal INTEGER)');
-  const addThread=state.prepare('INSERT INTO threads VALUES (?,?,?,?,?,?,?,?)'); const addTurn=history.prepare('INSERT INTO thread_turns VALUES (?,?,?,?,?)'); const root=process.cwd();
-  addThread.run('active-thread','进行中任务','',root,0,0,Date.now(),'vscode'); addTurn.run('active-thread','inProgress',Math.floor(Date.now()/1000),null,1);
-  addThread.run('done-thread','已完成任务','',root,0,0,Date.now(),'vscode'); addTurn.run('done-thread','completed',Math.floor(Date.now()/1000)-10,Math.floor(Date.now()/1000),1);
-  addThread.run('unnamed-thread',null,'',root,0,0,Date.now(),'vscode'); addTurn.run('unnamed-thread','interrupted',Math.floor(Date.now()/1000)-10,null,1);
+  const addThread=state.prepare('INSERT INTO threads VALUES (?,?,?,?,?,?,?,?,?)'); const addTurn=history.prepare('INSERT INTO thread_turns VALUES (?,?,?,?,?)'); const root=process.cwd();
+  const activePath=path.join(home,'active.jsonl'); const donePath=path.join(home,'done.jsonl'); const unnamedPath=path.join(home,'unnamed.jsonl'); for(const file of [activePath,donePath,unnamedPath]) fs.writeFileSync(file,'');
+  addThread.run('active-thread','进行中任务','',root,0,0,Date.now(),'vscode',activePath); addTurn.run('active-thread','inProgress',Math.floor(Date.now()/1000),null,1);
+  addThread.run('done-thread','已完成任务','',root,0,0,Date.now(),'vscode',donePath); addTurn.run('done-thread','completed',Math.floor(Date.now()/1000)-10,Math.floor(Date.now()/1000),1);
+  addThread.run('unnamed-thread',null,'',root,0,0,Date.now(),'vscode',unnamedPath); addTurn.run('unnamed-thread','interrupted',Math.floor(Date.now()/1000)-10,null,1);
   state.close(); history.close();
   const warnings=[]; const result=readCodexSessions(root,warnings,{codexHome:home});
   assert.deepEqual(result.sessions.map(session=>session.display_name),['进行中任务']); assert.ok(result.terminal_ids.has('done-thread')); assert.deepEqual(warnings,[]);

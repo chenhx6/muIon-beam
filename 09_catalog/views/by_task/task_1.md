@@ -1,0 +1,6 @@
+# by_task: task_1
+
+- [00_project/state/3d-smoke/python-packages/win32comext/taskscheduler/test/__pycache__/test_addtask_1.cpython-312.pyc](00_project/state/3d-smoke/python-packages/win32comext/taskscheduler/test/__pycache__/test_addtask_1.cpython-312.pyc) — 00_project / source / general — 3682 bytes — 298edc6f356fffb6958c3d310e4abb9351d329f20406d38c3824729ca587cacd
+- [00_project/state/3d-smoke/python-packages/win32comext/taskscheduler/test/test_addtask_1.py](00_project/state/3d-smoke/python-packages/win32comext/taskscheduler/test/test_addtask_1.py) — 00_project / source / general — 2160 bytes — 3ab9c3b4fc7ff12c86d2ed3feda83a7a65dad61946158bdaec7a1f8b07b2eafa
+- [00_project/state/3d-smoke/python314-packages/win32comext/taskscheduler/test/__pycache__/test_addtask_1.cpython-314.pyc](00_project/state/3d-smoke/python314-packages/win32comext/taskscheduler/test/__pycache__/test_addtask_1.cpython-314.pyc) — 00_project / source / general — 3685 bytes — 61c855949ab39289a578dfa4ff1a1486885f679266dd90173ebfe5603cc8dcaf
+- [00_project/state/3d-smoke/python314-packages/win32comext/taskscheduler/test/test_addtask_1.py](00_project/state/3d-smoke/python314-packages/win32comext/taskscheduler/test/test_addtask_1.py) — 00_project / source / general — 2160 bytes — 3ab9c3b4fc7ff12c86d2ed3feda83a7a65dad61946158bdaec7a1f8b07b2eafa

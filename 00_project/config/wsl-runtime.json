@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "distribution": "Ubuntu-20.04",
+  "command_prefix": ["wsl.exe", "-d", "Ubuntu-20.04"],
+  "execution_policy": "require_escalated_first_call",
+  "sandboxed_probe_forbidden": true,
+  "known_failure": "Wsl/Service/E_ACCESSDENIED under Windows sandbox",
+  "direct_shell_commands": [
+    "source /home/ys/opt/physics/physics-env.sh",
+    "geant4-config --version",
+    "root-config --version"
+  ],
+  "credentials_policy": "never_read_or_store_root_secret",
+  "reason": "The Windows sandbox can reject WSL instance creation even when the user's WSL terminal works."
+}

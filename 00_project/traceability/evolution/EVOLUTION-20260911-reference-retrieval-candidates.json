@@ -1,0 +1,38 @@
+{
+  "evolution_id": "EVOLUTION-20260911-reference-retrieval-candidates",
+  "capability_id": "reference-retrieval",
+  "status": "candidate-evaluation",
+  "requested_sources": [
+    "https://github.com/unclecode/crawl4ai",
+    "https://github.com/browser-use/browser-use"
+  ],
+  "observed_sources": [
+    {
+      "name": "crawl4ai",
+      "license_observed": "Apache-2.0",
+      "latest_observed": "0.9.3",
+      "role": "web crawling, markdown extraction, structured extraction",
+      "install_notes": ["Python package", "Playwright/Chromium setup may be required"],
+      "security_notes": ["0.9.3 page describes recent PDF and Docker security fixes"],
+      "shell_clone_status": "blocked_by_environment_network",
+      "browser_inspection_url": "https://github.com/unclecode/crawl4ai"
+    },
+    {
+      "name": "browser-use",
+      "license_observed": "MIT",
+      "latest_observed": "0.13.10",
+      "role": "interactive browser agent and JavaScript-heavy source retrieval",
+      "install_notes": ["Python >= 3.11", "local library, CLI, and cloud browser paths are documented"],
+      "shell_clone_status": "blocked_by_environment_network",
+      "browser_inspection_url": "https://github.com/browser-use/browser-use"
+    }
+  ],
+  "adoption_recommendation": "reference-only-until-pinned-source-is-available",
+  "next_checks": [
+    "obtain pinned commit or release through an approved network path",
+    "verify license files and dependency lock data",
+    "run Windows bundled-runtime smoke tests",
+    "adopt only the adapter surface needed by reference retrieval"
+  ],
+  "created_at_cst": "20260911_1630"
+}

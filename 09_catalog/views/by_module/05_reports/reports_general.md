@@ -1,0 +1,24 @@
+# 05_reports / reports / general
+
+- [05_reports/interim/.gitkeep](05_reports/interim/.gitkeep) — 0 bytes — e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- [05_reports/interim/legacy/muon/ne/muon_ne_g4/README.md](05_reports/interim/legacy/muon/ne/muon_ne_g4/README.md) — 20459 bytes — 071a432dee76d761d27093574a1128e72396f6b3d47a32f31e14460bf64f2033
+- [05_reports/interim/legacy/muon/ne/README.md](05_reports/interim/legacy/muon/ne/README.md) — 20459 bytes — 071a432dee76d761d27093574a1128e72396f6b3d47a32f31e14460bf64f2033
+- [05_reports/interim/legacy/stage1_3d_feasibility/reports/FIGURE_QA.md](05_reports/interim/legacy/stage1_3d_feasibility/reports/FIGURE_QA.md) — 3165 bytes — 5fb8e428b5f5b0e88de0d8911c29681974b206c7acc22dd9db71c53d57b20490
+- [05_reports/interim/legacy/stage1_3d_feasibility/reports/PARAMETER_REFERENCE.md](05_reports/interim/legacy/stage1_3d_feasibility/reports/PARAMETER_REFERENCE.md) — 9122 bytes — e39268fc3592d7cb8edab570d68a8548acb418b9328468e342a0b8fe7a0e94f3
+- [05_reports/interim/legacy/stage1_3d_feasibility/reports/stage1_feasibility_report.md](05_reports/interim/legacy/stage1_3d_feasibility/reports/stage1_feasibility_report.md) — 10895 bytes — f24996d519fd740a3de50b02efacd822a3520422f73888f0bf816991f7623ef5
+- [05_reports/interim/legacy/stage1_3d_feasibility/reports/VALIDATION_CHECKLIST.md](05_reports/interim/legacy/stage1_3d_feasibility/reports/VALIDATION_CHECKLIST.md) — 1905 bytes — 90abe41a13c0bc9a027369581e93f7454aec047711111d7e9897a35c99e08358
+- [05_reports/README.md](05_reports/README.md) — 204 bytes — a83ce51efacabe14a5b482f77dad675063f7059d97fb853c5999c4dc6e202f78
+- [05_reports/release/.gitkeep](05_reports/release/.gitkeep) — 0 bytes — e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- [05_reports/release/framework-release-zh.md](05_reports/release/framework-release-zh.md) — 2058 bytes — ab4cbca66cd5d13fd95705fb8ff458e1205e3b458d67f3076995e03fc0cb3c82
+- [05_reports/release/r1-framework-acceptance-result-note-zh.md](05_reports/release/r1-framework-acceptance-result-note-zh.md) — 911 bytes — bbe410d695b9f8cb6f678de56bf787d768e58ab319d3fdfca73130f1275585d4
+- [05_reports/release/r1-index-and-sync-hardening-result-note-zh.md](05_reports/release/r1-index-and-sync-hardening-result-note-zh.md) — 1010 bytes — 6a8ffee55fe4c4b4aa1e96175cef7d3417b3a5111a4a67a7080cecd175447ab6
+- [05_reports/release/r1-legacy-migration-smoke-result-note-zh.md](05_reports/release/r1-legacy-migration-smoke-result-note-zh.md) — 925 bytes — 94f3ead9ff4ad26b78c3822a7bf76b2ab50234cffa76c84acb147c66b0c847cd
+- [05_reports/release/r1-legacy-migration-smoke-verified-result-note-zh.md](05_reports/release/r1-legacy-migration-smoke-verified-result-note-zh.md) — 984 bytes — 1bce8a4c903c57a7af2b7ca3e4e0f02d1d34bf369ffa73eb576e128f99dc59f6
+- [05_reports/release/r1-project-snapshot-verified-result-note-zh.md](05_reports/release/r1-project-snapshot-verified-result-note-zh.md) — 862 bytes — 3486fff024031176b31e52c3c8638714e6c117aa6f4f90a26c5367c3738b751b
+- [05_reports/review/.gitkeep](05_reports/review/.gitkeep) — 0 bytes — e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- [05_reports/review/evidence/retained-baseline-20260908.json](05_reports/review/evidence/retained-baseline-20260908.json) — 1152 bytes — 2b379d1e06426598db88644126a0d05d672838cb4974abd48f9b14c05628476a
+- [05_reports/review/framework-acceptance-zh.md](05_reports/review/framework-acceptance-zh.md) — 1035 bytes — 7b8f4f573b7cd6e6963627b5506f84ccdc7239050a177ea05a15a47ada67fb50
+- [05_reports/review/legacy-smoke-acceptance-final-zh.md](05_reports/review/legacy-smoke-acceptance-final-zh.md) — 1385 bytes — 6889257de28e82c495c5bde0e3d65841ec69b42956feff78fd4161a9cc39787b
+- [05_reports/review/legacy-smoke-acceptance-zh.md](05_reports/review/legacy-smoke-acceptance-zh.md) — 389 bytes — e68e4e3d548cc6ce6a49402953fae89f980f0361aa7172dfa72ce940cc895e1d
+- [05_reports/review/research-system-readiness-audit-zh.md](05_reports/review/research-system-readiness-audit-zh.md) — 3689 bytes — 24307d40ffb14a54c26716954a381fc8c326d10e45372435b85be0f7f104baa2
+- [05_reports/review/second-stage-final-acceptance-zh.md](05_reports/review/second-stage-final-acceptance-zh.md) — 4855 bytes — a925053cc995384240f307893768264d8e5802bbbc6010633f6d21455b70d9b8

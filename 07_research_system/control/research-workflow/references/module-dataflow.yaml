@@ -1,0 +1,17 @@
+schema_version: 1
+flow_id: level1_mu_ne_file_coupling
+geometry_source:
+  producer: solidworks
+  canonical_format: sldprt
+  neutral_format: step
+continuous_field:
+  producer: comsol
+  consumers: [validation, geant4]
+  interface: frozen_result_files
+particle_transport:
+  producer: geant4
+  consumers: [validation, reports]
+  interface: frozen_input_snapshot_and_score_files
+required_metadata: [producer_version, units, coordinate_frame, model_fingerprint, sha256]
+live_process_link: false
+feedback_mode: new_contract_and_snapshot

@@ -68,3 +68,11 @@ _work/cache/*.sqlite
 00_project/state/task-baseline.json
 00_project/state/3d-smoke/
 00_project/state/task-close-*.json
+
+# Narrow build, cache, and temporary-log outputs
+**/*.class
+**/build/
+**/dist/
+**/.cache/
+**/*.tmp.log
+**/*.log.tmp

@@ -1,0 +1,40 @@
+{
+  "handoff_id": "runtime_blockers_v01",
+  "plan_id": "plan_lvl1_mu_ne_rebuild",
+  "task_id": "task_lvl1_mu_ne_001",
+  "plan_hash": "61d2adf5d626d0dba8193a1719d24d3a3e53d702c037ae18971d266c391cd4d1",
+  "status": "comsol_runtime_blocker_remaining",
+  "passed_pre_science": [
+    "naming_and_id_normalization",
+    "10_plans_persistence_and_recovery_layout",
+    "09_catalog_build_and_drift_check",
+    "08_references_full_text_index_and_page_evidence",
+    "manifest_and_variable_validation",
+    "model_fingerprint_registration",
+    "architecture_and_full_test_suite",
+    "3d_contract_validation_and_dry_run"
+  ],
+  "blockers": [
+    {
+      "module": "comsol",
+      "code": "adapter_or_geometry_missing",
+      "evidence": "COMSOL 6.4 executable detected, but no explicit repository adapter command and no concrete geometry reference are configured."
+    },
+    {
+      "module": "geant4",
+      "code": "resolved",
+      "evidence": "Approved external WSL execution verified Geant4 11.2.2, fixture build/run, ROOT 6.34.08 and package download."
+    },
+    {
+      "module": "drive",
+      "code": "sandbox_eperm",
+      "evidence": "H:\\我的云端硬盘\\muIon_archive is mounted but inaccessible to this process sandbox."
+    }
+  ],
+  "resume_actions": [
+    "provide or configure explicit COMSOL batch adapter and geometry input",
+    "install or expose a verified Geant4 WSL toolchain and executable",
+    "retry Drive archive from a mapped-drive context",
+    "resume from plan_index.next_action"
+  ]
+}

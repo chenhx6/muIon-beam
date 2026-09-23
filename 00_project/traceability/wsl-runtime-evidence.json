@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "evidence_id": "wsl_runtime_20260912_0228",
+  "backend": "wsl",
+  "distribution": "Ubuntu-20.04",
+  "kernel": "Linux ys 6.6.114.1-microsoft-standard-WSL2 x86_64",
+  "user": "ys",
+  "environment_script": "/home/ys/opt/physics/physics-env.sh",
+  "geant4": {
+    "version": "11.2.2",
+    "prefix": "/home/ys/opt/physics/geant4-11.2.2",
+    "config_ok": true,
+    "cmake_version": "3.16.3",
+    "compiler": "g++ 9.4.0",
+    "fixture_build": "passed",
+    "fixture_run": "passed"
+  },
+  "cern_root": {
+    "version": "6.34.08",
+    "config_ok": true,
+    "runtime_smoke": "passed"
+  },
+  "package_download": {
+    "url": "https://github.com/unclecode/crawl4ai/archive/refs/tags/v0.9.3.tar.gz",
+    "http_status": 200,
+    "bytes": 9263916,
+    "status": "passed"
+  },
+  "credentials": "not_read_or_recorded",
+  "verified_at_cst": "2026-09-12T02:28:31+08:00"
+}

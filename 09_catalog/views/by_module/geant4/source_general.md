@@ -1,0 +1,25 @@
+# geant4 / source / general
+
+- [02_models/geant4/.gitkeep](02_models/geant4/.gitkeep) — 0 bytes — e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- [02_models/geant4/analysis/.gitkeep](02_models/geant4/analysis/.gitkeep) — 0 bytes — e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- [02_models/geant4/legacy/muon/ne/comsol_muNe_nu_ref.txt](02_models/geant4/legacy/muon/ne/comsol_muNe_nu_ref.txt) — 9918 bytes — 26fc86462a0e3696dc47f56ccc143dff1e40ae7bed992ad66bbed7b88e8ac600
+- [02_models/geant4/legacy/muon/ne/comsol_muNe_SN_SI.txt](02_models/geant4/legacy/muon/ne/comsol_muNe_SN_SI.txt) — 9918 bytes — c3bdf2e9445ad0891b80ef97807caceb5c8e701b36e5a61ac10391af649ded9d
+- [02_models/geant4/legacy/muon/ne/comsol_muNe_SN.txt](02_models/geant4/legacy/muon/ne/comsol_muNe_SN.txt) — 9918 bytes — 9460b3fd904412486ae026dbf8d3372489c80a97fbfeeb379944d7d99cc25032
+- [02_models/geant4/legacy/muon/ne/muon_ne_g4/CMakeLists.txt](02_models/geant4/legacy/muon/ne/muon_ne_g4/CMakeLists.txt) — 461 bytes — 5c3df0fccf52b52c4f58a714e3718485fb17ca59d9db40faf1500deeb92820b3
+- [02_models/geant4/legacy/muon/ne/muon_ne_g4/output/comsol_muNe_nu_ref.txt](02_models/geant4/legacy/muon/ne/muon_ne_g4/output/comsol_muNe_nu_ref.txt) — 9918 bytes — 26fc86462a0e3696dc47f56ccc143dff1e40ae7bed992ad66bbed7b88e8ac600
+- [02_models/geant4/legacy/muon/ne/muon_ne_g4/output/comsol_muNe_SN_SI.txt](02_models/geant4/legacy/muon/ne/muon_ne_g4/output/comsol_muNe_SN_SI.txt) — 9918 bytes — c3bdf2e9445ad0891b80ef97807caceb5c8e701b36e5a61ac10391af649ded9d
+- [02_models/geant4/legacy/muon/ne/muon_ne_g4/output/comsol_muNe_SN.txt](02_models/geant4/legacy/muon/ne/muon_ne_g4/output/comsol_muNe_SN.txt) — 9918 bytes — 9460b3fd904412486ae026dbf8d3372489c80a97fbfeeb379944d7d99cc25032
+- [02_models/geant4/macros/.gitkeep](02_models/geant4/macros/.gitkeep) — 0 bytes — e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- [02_models/geant4/physics-models/.gitkeep](02_models/geant4/physics-models/.gitkeep) — 0 bytes — e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+- [07_research_system/blocks/geant4/experience-candidates/candidate-template.yaml](07_research_system/blocks/geant4/experience-candidates/candidate-template.yaml) — 442 bytes — 8c26a55685e9e2b72aee8f8fb22b5bdf0592b98a68b458f0b8c6667caf6b7fb6
+- [07_research_system/blocks/geant4/index.mjs](07_research_system/blocks/geant4/index.mjs) — 10165 bytes — ab99b74781083a5a59d3eb3e160fd0f61f6658f112f27e96bfc1b237ee6cf7c6
+- [07_research_system/blocks/geant4/scripts/build.mjs](07_research_system/blocks/geant4/scripts/build.mjs) — 2767 bytes — 32e067d9db506ebf86f66087e892d5adea3460aafb684054f2a160ceb10db69b
+- [07_research_system/blocks/geant4/scripts/common.mjs](07_research_system/blocks/geant4/scripts/common.mjs) — 4552 bytes — 3404ec8f6d90f69ff3bafbae6df85996e0661e0125939d767ea476a184188ecc
+- [07_research_system/blocks/geant4/scripts/preflight.mjs](07_research_system/blocks/geant4/scripts/preflight.mjs) — 4736 bytes — 1f32cd77e4a85f61ee1342c0f63e6b5fd45502d0edbc241f9b93811be43e56e8
+- [07_research_system/blocks/geant4/scripts/run.mjs](07_research_system/blocks/geant4/scripts/run.mjs) — 2205 bytes — 223d0ae59d869185ab806353cf4acb1143db00bff0ac7d3b31c76eaa199bf8e3
+- [07_research_system/blocks/geant4/scripts/smoke.mjs](07_research_system/blocks/geant4/scripts/smoke.mjs) — 4240 bytes — cdf06df79bb65454660bbfade3fc53b48989278d4d9721a3f8896bcd3fc0e677
+- [07_research_system/blocks/geant4/scripts/summarize.mjs](07_research_system/blocks/geant4/scripts/summarize.mjs) — 1738 bytes — 53737006754f11ca3dc71444d3c9393ad0e1e8a63bc549c08e55e849d108449b
+- [07_research_system/blocks/geant4/scripts/validate.mjs](07_research_system/blocks/geant4/scripts/validate.mjs) — 5053 bytes — 113841f41e7b68513a2f57e6f4ff3be5bb714b5d9230b26295a9860dc0ee80fb
+- [07_research_system/blocks/geant4/tests/fixtures/mvp-smoke/CMakeLists.txt](07_research_system/blocks/geant4/tests/fixtures/mvp-smoke/CMakeLists.txt) — 530 bytes — 6b67a0ff2535a7a8e901140b074dfbf918d0ef96c2310a6254b78530585600a0
+- [07_research_system/blocks/geant4/tests/fixtures/mvp-smoke/main.cc](07_research_system/blocks/geant4/tests/fixtures/mvp-smoke/main.cc) — 12380 bytes — f7e880e56aa5c887efdbb523661adc9f69342ccb6745139583478c1ddd475ba1
+- [07_research_system/blocks/geant4/tests/smoke.mjs](07_research_system/blocks/geant4/tests/smoke.mjs) — 727 bytes — 9cadc230577c857d936cdb107873a123fc0fc1b780e46d5d497c8205b66d89df

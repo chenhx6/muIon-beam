@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "record_id": "stage1_cleanup_candidates",
+  "status": "candidate_only",
+  "reason": "New level-1 instance is an abstract reconstruction and does not use historical Stage-1 as active geometry or results.",
+  "protected_root": "90_migration",
+  "candidate_roots": [
+    "02_models/comsol/legacy",
+    "02_models/comsol/legacy-scripts",
+    "02_models/solidworks/legacy",
+    "03_runs/formal/run_legacy_smoke_001_stage1_centered",
+    "04_results/figures/legacy-smoke",
+    "05_reports/interim/legacy"
+  ],
+  "deletion_executed": false,
+  "cleanup_gate": "source mapping and current-instance acceptance evidence must be preserved before controlled cleanup",
+  "never_touch": ["D:\\muIon", "90_migration"]
+}

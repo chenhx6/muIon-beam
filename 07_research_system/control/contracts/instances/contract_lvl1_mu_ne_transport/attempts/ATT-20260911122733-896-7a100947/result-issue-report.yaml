@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "report_id": "REPORT-20260911122733-905-2d4eb5fe",
+  "task_id": "task_lvl1_mu_ne_001",
+  "contract_id": "contract_lvl1_mu_ne_transport",
+  "attempt_id": "ATT-20260911122733-896-7a100947",
+  "entrypoint": "geant4",
+  "module": "geant4",
+  "status": "FAILED",
+  "execution_status": "failed",
+  "summary": "Module returned failed; control-layer validation remains incomplete.",
+  "main_results": {
+    "status": "failed",
+    "issues": [
+      {
+        "category": "infrastructure",
+        "code": "module-exception",
+        "observation": "Invalid G4 Task: geometry.ref or geometry.inline is required",
+        "evidence": [
+          "Error: Invalid G4 Task: geometry.ref or geometry.inline is required\n    at runGeant4 (file:///D:/muIon-beam/07_research_system/blocks/geant4/index.mjs:40:28)\n    at executeNative (file:///D:/muIon-beam/07_research_system/control/research-workflow/scripts/adapters.mjs:56:10)\n    at executeContract (file:///D:/muIon-beam/07_research_system/control/research-workflow/index.mjs:26:21)\n    at file:///D:/muIon-beam/07_research_system/control/research-workflow/index.mjs:46:145\n    at file:///D:/muIon-beam/07_research_system/control/research-workflow/index.mjs:48:5\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+        ]
+      }
+    ]
+  },
+  "produced_artifacts": [],
+  "validation_status": "not-evaluated",
+  "validation": {},
+  "issues": [
+    {
+      "issue_id": "geant4-issue-1",
+      "category": "infrastructure",
+      "code": "module-exception",
+      "observation": "Invalid G4 Task: geometry.ref or geometry.inline is required",
+      "evidence": [
+        "Error: Invalid G4 Task: geometry.ref or geometry.inline is required\n    at runGeant4 (file:///D:/muIon-beam/07_research_system/blocks/geant4/index.mjs:40:28)\n    at executeNative (file:///D:/muIon-beam/07_research_system/control/research-workflow/scripts/adapters.mjs:56:10)\n    at executeContract (file:///D:/muIon-beam/07_research_system/control/research-workflow/index.mjs:26:21)\n    at file:///D:/muIon-beam/07_research_system/control/research-workflow/index.mjs:46:145\n    at file:///D:/muIon-beam/07_research_system/control/research-workflow/index.mjs:48:5\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+      ],
+      "candidate_explanations": [],
+      "suggested_next_checks": [],
+      "owner": "research-workflow",
+      "confidence": "preliminary"
+    }
+  ],
+  "limitations": [],
+  "recommendation": [],
+  "requires_new_contract": false,
+  "proposal": null,
+  "raw_result_reference": null,
+  "traceability": {
+    "contract_id": "contract_lvl1_mu_ne_transport",
+    "attempt_id": "ATT-20260911122733-896-7a100947"
+  }
+}

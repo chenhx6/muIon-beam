@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "evolution_id": "EVOLUTION-20260911-configure-review",
+  "recorded_at": "2026-09-11",
+  "trigger": "user-explicit-evolution-review",
+  "source": {
+    "url": "https://gitee.com/zhangxin8069/configure",
+    "tree_ref": "5b98575eaa89aae11e60379585797e3ce7b7a67d",
+    "branch_observed": "main",
+    "license": "MIT",
+    "repository_signals": {"commits": 710, "branches": 12, "tags": 103, "stars": 2, "forks": 0},
+    "cache": "_work/cache/evolution/configure-5b98575eaa89aae11e60379585797e3ce7b7a67d/README.md",
+    "cache_sha256": "3039E373A601FE3C2E5B6D95E496E89E4DBB7EFAC4884A78E9E1707E8394F806"
+  },
+  "eligibility": {
+    "status": "eligible-for-reference",
+    "source_pinned": true,
+    "license_allowed": true,
+    "unknown_install_hook_executed": false,
+    "external_code_executed": false
+  },
+  "comparison": {
+    "existing_capability": ["team", "muion-project", "research-workflow"],
+    "recommended_adoption_mode": "extend",
+    "recommendation": "reference-only pending an explicit adoption scope",
+    "incremental_value": ["cross-platform runtime manifest/state/resume fields", "explicit hook adapter", "read-only verification", "shell regression patterns", "path/lock hardening"],
+    "non_overlap": ["not a research decision layer", "not a provider model catalog", "not a replacement orchestration runtime"]
+  },
+  "inspected_paths": ["AGENTS.md", "bin/AGENTS.md", "bin/agent.sh", "bin/agent-runtime.sh", "bin/agent-runtime.ps1", "bin/agent-status.sh", "bin/agent.test.sh", "hooks/README.md", "hooks/codex-hook.sh", "hooks/codex-verify.sh", "hooks/hooks.test.sh", "data/AGENTS.md"],
+  "tests": [{"name": "source-inspection", "result": "pass", "detail": "public Gitee UI read-only inspection at pinned tree revision"}, {"name": "candidate-tests", "result": "not-run", "detail": "external shell tests were inspected but not executed"}],
+  "decision": "reference-only",
+  "adoption_scope": null,
+  "next_step": "If adopted later, extract small protocol ideas into team runtime adapter/evidence and lock tests; do not copy launcher defaults or installers."
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "plan_id": "plan_lvl1_mu_ne_rebuild",
+  "objective": "重建一级装置 mu-Ne 研究实例并统一项目文件、计划、档案和参考资料体系",
+  "initial_conditions": {
+    "coil_diameter": {"value": 100, "unit": "mm"},
+    "magnetic_field": {"value": 1, "unit": "T"},
+    "neon_temperature": {"value": 300, "unit": "K"},
+    "neon_number_density": {"min": "1e19", "max": "1e26", "unit": "m^-3"},
+    "electrode_aperture_diameter": {"value": 30, "unit": "mm"},
+    "initial_geometry": {"electrode_count": 4, "chamber_count": 3},
+    "alternative_geometry": {"electrode_count": 3, "chamber_count": 2},
+    "injected_mu_minus_kinetic_energy": {"mean": 100, "sigma": 20, "unit": "keV", "truncation_sigma": 3},
+    "intrinsic_radial_direction": {"mean": 0, "sigma": 9, "unit": "degree", "truncation_sigma": 3}
+  },
+  "acceptance": {
+    "transport_efficiency_min": 0.75,
+    "radial_kinetic_energy_max": {"value": 10, "unit": "eV", "plane": "extraction"},
+    "axial_kinetic_energy_target": {"mean": 1, "tolerance": 0.05, "unit": "keV", "plane": "extraction"}
+  },
+  "acceptance_scope": ["project_folder_architecture", "file_naming", "project_workflow", "research_control", "research_state", "three_module_file_interaction"],
+  "routing": ["3d", "comsol", "geant4", "validation", "report", "ultraqa", "archive"],
+  "deletion_policy": "90_migration cleanup is deferred to a separate controlled task after acceptance"
+}

@@ -1,0 +1,24 @@
+# 00_project / reports / general
+
+- [00_project/decisions/ADR-001-project-boundaries.md](00_project/decisions/ADR-001-project-boundaries.md) — 670 bytes — 3bde33c5849649fe33f0f5dcda288a379e982df492c63a80c2306252d9772169
+- [00_project/decisions/ADR-002-research-system-layout.md](00_project/decisions/ADR-002-research-system-layout.md) — 555 bytes — 91a1cb16bd64d27fbe93e8a01aed2e8b01d2ab4df76e3a66a279078d18ca9d2d
+- [00_project/decisions/ADR-003-triggering-and-readiness.md](00_project/decisions/ADR-003-triggering-and-readiness.md) — 1794 bytes — 7d615bfb7cb5e3ff2894d56c54ea45b20363d08e6dfea6644aba83b9f7931bdb
+- [00_project/roadmap/README.md](00_project/roadmap/README.md) — 516 bytes — 1618884d86c802d2b445775aaacb6c65b65c5c3feb3054ceaf9ca83d7b5bf198
+- [00_project/state/3d-smoke/python-packages/win32comext/mapi/NOTICE.md](00_project/state/3d-smoke/python-packages/win32comext/mapi/NOTICE.md) — 476 bytes — dedf997c8f5568a0e0aff57d009f501226ea30c401323d67912b6a8f8735a825
+- [00_project/state/3d-smoke/python314-packages/win32comext/mapi/NOTICE.md](00_project/state/3d-smoke/python314-packages/win32comext/mapi/NOTICE.md) — 476 bytes — dedf997c8f5568a0e0aff57d009f501226ea30c401323d67912b6a8f8735a825
+- [00_project/templates/result-note-zh.md](00_project/templates/result-note-zh.md) — 349 bytes — a3621866a5effe8d3c59497104df5465b27aa2fdbe46cdac03d3876893e33d1a
+- [00_project/traceability/CAPABILITY_MAP.md](00_project/traceability/CAPABILITY_MAP.md) — 2985 bytes — 07f8fb785ffb3330de623213c56e28a1a88cc26d229e616fadf662d58c6900cb
+- [00_project/traceability/CHANGELOG.md](00_project/traceability/CHANGELOG.md) — 392 bytes — 72df51a765fc4ed546d66146fc0b31aa9c5379dbd6391a5bcc945ec472fa9b13
+- [00_project/traceability/experiences/README.md](00_project/traceability/experiences/README.md) — 1065 bytes — 53ceeaf80338815407bc4aa38f3da11f77eb2cd981ad02632458cd1497658a43
+- [00_project/traceability/experiences/SUMMARY-assistant-mode-routing.md](00_project/traceability/experiences/SUMMARY-assistant-mode-routing.md) — 987 bytes — 179513c8aae213653499d054b266d293a28826d423889794915c2dd7c39fec86
+- [00_project/traceability/experiences/SUMMARY-external-library-sync.md](00_project/traceability/experiences/SUMMARY-external-library-sync.md) — 1600 bytes — 9ab64b166c03f0f846218fc56c75e491a0c44f006a859c446d2428a01b937d5e
+- [00_project/traceability/experiences/SUMMARY-sync-receipt-delivery.md](00_project/traceability/experiences/SUMMARY-sync-receipt-delivery.md) — 1621 bytes — fa0e0fe0575bdf5b5df509440ca6e0d8f29ebd0260020eee489b9f8990f0bd9a
+- [00_project/traceability/experiences/SUMMARY-toolchain-recovery.md](00_project/traceability/experiences/SUMMARY-toolchain-recovery.md) — 2200 bytes — 03949e601b17d89cd2af405ed384e3bfe566156acfec1c6cd62d59344f7f7c79
+- [00_project/traceability/lessons-learned/README.md](00_project/traceability/lessons-learned/README.md) — 882 bytes — dd7b68bc9a41a65a866644689169a1e29f76064b3d42317f11f2bbf895eec684
+- [00_project/traceability/MODEL_INDEX.md](00_project/traceability/MODEL_INDEX.md) — 145 bytes — 42cab7b57ce9f9e8f19253166b1274e6c7ff0b9b95e2fe11bbb31611bdf1c3d2
+- [00_project/traceability/PROJECT_INDEX.md](00_project/traceability/PROJECT_INDEX.md) — 7887 bytes — 6258171d228d6e62a288d50fc268c8aa861f9fe582ecde61780d8c60f9860f50
+- [00_project/traceability/README.md](00_project/traceability/README.md) — 180 bytes — 26cb91e28268f06c0bb81d85c3c177f3f8807a8970e1456e23e97f207369949c
+- [00_project/traceability/REFERENCE_INDEX.md](00_project/traceability/REFERENCE_INDEX.md) — 142 bytes — 69e1c14551281df24b988eb7d0079b2d2fbcbf97f3ef973e5b61b866badbd6a7
+- [00_project/traceability/RESULTS_INDEX.md](00_project/traceability/RESULTS_INDEX.md) — 506 bytes — bd547089b307bf3fc063c3283d765bbeae66b85244e00460f550a34d2ea89896
+- [00_project/traceability/TASK_INDEX.md](00_project/traceability/TASK_INDEX.md) — 926 bytes — 3621bda7e4b89353d99904deae73d1b5d5c9bae023545b6c15d9a4fbb163a499
+- [00_project/traceability/VARIABLE_CATALOG.md](00_project/traceability/VARIABLE_CATALOG.md) — 578 bytes — 6572a901cd502c30c38b012fce5cea033c3c4f01170b6ec62c2ae40c7d218a4b

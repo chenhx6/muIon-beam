@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "plan_id": "plan_lvl1_mu_ne_rebuild",
+  "instance_run_id": "run_lvl1_mu_ne_001",
+  "entry_gate": "runtime_bootstrap",
+  "runtime_checks": ["wsl", "geant4", "cern_root", "comsol", "solidworks_transfer", "comsol_adapter"],
+  "coupling": "frozen_files_and_manifests",
+  "credentials_policy": "local_interactive_or_os_credential_manager_only",
+  "science_start_condition": "all_runtime_and_traceability_gates_pass",
+  "current_status": "prepared_not_started"
+}

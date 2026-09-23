@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "report_id": "REPORT-20260911122733-707-803c3219",
+  "task_id": "task_lvl1_mu_ne_001",
+  "contract_id": "contract_lvl1_mu_ne_fields",
+  "attempt_id": "ATT-20260911122733-697-054a233e",
+  "entrypoint": "comsol",
+  "module": "comsol",
+  "status": "BLOCKED",
+  "execution_status": "blocked",
+  "summary": "Module returned blocked; control-layer validation remains incomplete.",
+  "main_results": [],
+  "produced_artifacts": [],
+  "validation_status": "incomplete",
+  "validation": {
+    "calculation_finished": false,
+    "validation_status": "incomplete",
+    "solver_convergence": [
+      {
+        "case_id": "baseline",
+        "value": "not-evaluated"
+      }
+    ],
+    "mesh_dependence": [
+      {
+        "case_id": "baseline",
+        "value": "not-evaluated"
+      }
+    ],
+    "time_step_dependence": [
+      {
+        "case_id": "baseline",
+        "value": "not-evaluated"
+      }
+    ],
+    "numerical_stability": [
+      {
+        "case_id": "baseline",
+        "value": "not-evaluated"
+      }
+    ],
+    "sanity_checks": [],
+    "success_criteria": [
+      {
+        "case_id": "baseline",
+        "value": "not-evaluated",
+        "passed": false
+      }
+    ],
+    "per_case": [
+      {
+        "case_id": "baseline",
+        "calculation_finished": false,
+        "solver_convergence": "not-evaluated",
+        "mesh_dependence": "not-evaluated",
+        "time_step_dependence": "not-evaluated",
+        "numerical_stability": "not-evaluated",
+        "sanity_checks": [],
+        "success_criteria": "not-evaluated",
+        "success_met": false
+      }
+    ],
+    "note": "Calculation finished does not imply physics validated."
+  },
+  "issues": [
+    {
+      "issue_id": "ISSUE-20260911122733",
+      "category": "unknown",
+      "code": "geometry-reference-missing",
+      "observation": "Build cannot choose a CAD or MPH geometry without an input reference.",
+      "evidence": [
+        "task.inputs.geometry is absent"
+      ],
+      "candidate_explanations": [],
+      "suggested_next_checks": "Research Workflow or the task author must provide the intended geometry reference.",
+      "owner": "research-workflow",
+      "confidence": "preliminary"
+    },
+    {
+      "issue_id": "comsol-issue-2",
+      "category": "adapter-unavailable",
+      "code": "module-issue",
+      "observation": "COMSOL Batch is installed, but no explicit repository adapter command is configured",
+      "evidence": [],
+      "candidate_explanations": [],
+      "suggested_next_checks": [],
+      "owner": "research-workflow",
+      "confidence": "preliminary"
+    },
+    {
+      "issue_id": "comsol-issue-3",
+      "category": "adapter-unavailable",
+      "code": "module-issue",
+      "observation": "COMSOL Batch is installed, but no explicit repository adapter command is configured",
+      "evidence": [],
+      "candidate_explanations": [],
+      "suggested_next_checks": [],
+      "owner": "research-workflow",
+      "confidence": "preliminary"
+    }
+  ],
+  "limitations": [],
+  "recommendation": [
+    {
+      "type": "Issue",
+      "issue_id": "ISSUE-20260911122733",
+      "code": "geometry-reference-missing",
+      "title": "Geometry input is not explicit",
+      "observation": "Build cannot choose a CAD or MPH geometry without an input reference.",
+      "evidence": [
+        "task.inputs.geometry is absent"
+      ],
+      "affected_scope": [
+        "external"
+      ],
+      "recommended_action": "Research Workflow or the task author must provide the intended geometry reference.",
+      "case_id": null
+    }
+  ],
+  "requires_new_contract": false,
+  "proposal": null,
+  "raw_result_reference": null,
+  "traceability": {
+    "contract_id": "contract_lvl1_mu_ne_fields",
+    "attempt_id": "ATT-20260911122733-697-054a233e"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "report_id": "REPORT-20260911122733-523-49c0aba1",
+  "task_id": "task_lvl1_mu_ne_001",
+  "contract_id": "contract_lvl1_mu_ne_geometry",
+  "attempt_id": "ATT-20260911122733-515-2d06deb1",
+  "entrypoint": "3d",
+  "module": "3d",
+  "status": "BLOCKED",
+  "execution_status": "blocked",
+  "summary": "Module returned blocked; control-layer validation remains incomplete.",
+  "main_results": {
+    "status": "blocked",
+    "owner": "3d",
+    "errors": [
+      "mode must be one of: create, modify, inspect, export"
+    ]
+  },
+  "produced_artifacts": [],
+  "validation_status": "not-evaluated",
+  "validation": {},
+  "issues": [],
+  "limitations": [],
+  "recommendation": [],
+  "requires_new_contract": false,
+  "proposal": null,
+  "raw_result_reference": null,
+  "traceability": {
+    "contract_id": "contract_lvl1_mu_ne_geometry",
+    "attempt_id": "ATT-20260911122733-515-2d06deb1"
+  }
+}

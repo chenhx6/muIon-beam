@@ -4,7 +4,7 @@
   "task_name": "Drive OAuth 对齐与 M/D/?? 治理",
   "status": "ready_for_user_review",
   "current_phase": "P4-readback-complete-review-before-execution",
-  "next_action": "Review this plan; after explicit start, sync the latest ebed44f tree and then execute P5/P6",
+  "next_action": "Review this plan; after explicit start, sync the current origin/main tree and then execute P5/P6",
   "created_at": "2026-09-23T15:00:00+08:00",
   "updated_at": "2026-09-23T15:30:00+08:00",
   "owner": "codex-8f62a0ce8890af6b3331-1",

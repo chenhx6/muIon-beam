@@ -81,6 +81,16 @@ test('accepted queue without a new turn becomes queue-stuck after watchdog', () 
   assert.equal(stuck.status, 'queue-stuck');
   assert.equal(stuck.lifecycle, 'queue_stuck');
 });
+test('queue timeout becomes a breaker and requires explicit retry', () => {
+  let calls = 0; const cfg = { ...config, watchdog_ms: 1000 };
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const timeout = Object.assign(new Error('queue timed out'), { code: 'ETIMEDOUT' });
+  const stuck = recoveryStep(session, { event_key: 'old', attempts: 0 }, cfg, 10000, () => { calls += 1; throw timeout; });
+  const still = recoveryStep(session, stuck, cfg, 20000, () => { calls += 1; return { status: 0 }; });
+  assert.equal(calls, 1); assert.equal(stuck.status, 'queue-stuck'); assert.equal(stuck.queue_uncertain, true); assert.equal(still.status, 'queue-stuck');
+  const retried = recoveryStep(session, manualRetryLease(session, stuck), cfg, 30000, () => { calls += 1; return { status: 0 }; });
+  assert.equal(calls, 2); assert.equal(retried.pending, true);
+});
 test('unconfirmed queue reservation also becomes queue-stuck after watchdog', () => {
   const cfg = { ...config, watchdog_ms: 1000 };
   const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };

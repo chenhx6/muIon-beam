@@ -126,9 +126,13 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   if (now < state.next_at) return { ...state, status: 'waiting-retry' };
   const reservation = { reservation_id: crypto.randomUUID(), event_key: key, attempts: state.attempts + 1, reserved_at: now, reserved_at_iso: new Date(now).toISOString(), event_timestamp: event.timestamp };
   state.queue_reservation_id = reservation.reservation_id; state.queue_reserved_at = reservation.reserved_at;
-  const result = queue(session.id, config.recovery_message, reservation);
+  let result;
+  try { result = queue(session.id, config.recovery_message, reservation); }
+  catch (error) { result = { status: null, error }; }
   state.attempts += 1; state.last_exit_code = result.status; state.last_action_at = new Date(now).toISOString();
   state.queue_exit_code = result.status; state.queue_stdout = result.stdout ? String(result.stdout).slice(-2000) : null; state.queue_stderr = result.stderr ? String(result.stderr).slice(-2000) : null;
+  state.queue_error = result.error ? { code: result.error.code || null, message: String(result.error.message || result.error).slice(-500) } : null;
+  if (result.error?.code === 'ETIMEDOUT' || result.signal) return { ...state, pending: false, status: 'queue-stuck', lifecycle: 'queue_stuck', next_at: now, breaker_reason: 'queue-outcome-uncertain', queue_uncertain: true, last_event_timestamp: event.timestamp };
   state.pending = result.status === 0; state.lifecycle = state.pending ? 'queued' : 'queue_attempted'; state.status = state.pending ? 'recovery-pending' : 'waiting-retry';
   state.recovery_chain_active = true;
   state.queue_accepted_at = state.pending ? now : null;

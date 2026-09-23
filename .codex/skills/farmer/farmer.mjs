@@ -3,13 +3,15 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { inspect, parseSessionEvents, readSession } from './farmer-observation.mjs';
 import { isDisabled, readControl, writeControl } from './farmer-control.mjs';
 
 export const rootDefault = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 export const batchDelay = (attempt) => Math.min(2 + 2 * Math.floor((attempt - 1) / 10), 10) * 1000;
 export const SAFE_MAX_ATTEMPTS = 3;
 export const RECOVERY_LOCK_TTL_MS = 60_000;
-export const inside = (child, root) => { const r = path.relative(path.resolve(root).toLowerCase(), path.resolve(child).toLowerCase()); return r === '' || (!r.startsWith('..') && !path.isAbsolute(r)); };
+export { inspect, parseSessionEvents, readSession } from './farmer-observation.mjs';
+export { inside } from './farmer-observation.mjs';
 export function classifyError(error, config) {
   if (!error) return null;
   const code = typeof error.codex_error_info === 'string' ? error.codex_error_info : error.code;
@@ -27,42 +29,6 @@ export function manualRetryLease(session, previous = {}) {
   if (!session?.id || !session.latest?.payload?.turn_id) throw new Error('manual retry requires session and failed turn');
   const event = session.latest;
   return { ...previous, session_id: session.id, retry_of: previous.event_key || null, event_key: `${session.id}:${event.payload.turn_id}:${event.timestamp}`, attempts: 0, pending: false, next_at: 0, status: 'manual-retry-requested', lifecycle: 'queue_attempted', manual_retry: true, breaker_cleared: true };
-}
-export function parseSessionEvents(lines, projectRoot) {
-  let meta = null; let latest = null; let latestStarted = null; const userPrompts = [];
-  const newer = (candidate, current) => {
-    if (!current) return true;
-    const candidateTime = Date.parse(candidate.timestamp || ''); const currentTime = Date.parse(current.timestamp || '');
-    return !Number.isFinite(currentTime) || (Number.isFinite(candidateTime) && candidateTime >= currentTime);
-  };
-  for (const line of lines) {
-    try {
-      const item = JSON.parse(line);
-      if (item.type === 'session_meta') meta = item.payload || item;
-      if (item.type === 'response_item' && item.payload?.type === 'message' && item.payload.role === 'user') {
-        const text = (item.payload.content || []).map(part => part.text || '').join('');
-        const kinds = item.payload.internal_chat_message_metadata_passthrough?.content_item_kinds || [];
-        if (text && (!kinds.length || kinds.includes('user.text'))) userPrompts.push({ text, timestamp: item.timestamp || null });
-      }
-      if (item.type === 'event_msg' && ['task_started', 'task_complete', 'turn_aborted'].includes(item.payload?.type)) {
-        if (newer(item, latest)) latest = item; if (item.payload.type === 'task_started' && newer(item, latestStarted)) latestStarted = item;
-      }
-    } catch {}
-  }
-  if (!meta?.cwd || !inside(meta.cwd, projectRoot)) return null;
-  return { id: meta.session_id || meta.id, cwd: meta.cwd, latest, latestStarted, userPrompts: userPrompts.slice(-12) };
-}
-function segment(file, start, length) { const fd = fs.openSync(file, 'r'); try { const b = Buffer.alloc(length); const n = fs.readSync(fd, b, 0, length, start); return b.subarray(0, n).toString('utf8'); } finally { fs.closeSync(fd); } }
-function readSession(file, root) {
-  const fileStat = fs.statSync(file); const size = fileStat.size; const head = segment(file, 0, Math.min(size, 262144)).split(/\r?\n/)[0];
-  let window = Math.min(size, 1048576); let parsed = null;
-  while (true) {
-    const offset = Math.max(0, size - window); const tail = segment(file, offset, size - offset);
-    parsed = parseSessionEvents([head, ...tail.split(/\r?\n/).slice(offset ? 1 : 0)], root);
-    if (parsed?.latest || offset === 0) break;
-    window = Math.min(size, window * 2);
-  }
-  return parsed ? { ...parsed, rollout_file: file, rollout_mtime_ms: fileStat.mtimeMs, rollout_size: size } : null;
 }
 function walk(dir) { if (!fs.existsSync(dir)) return []; return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith('.jsonl') ? [path.join(dir, e.name)] : []); }
 function write(file, data) { fs.mkdirSync(path.dirname(file), { recursive: true }); const tmp = `${file}.${process.pid}.tmp`; fs.writeFileSync(tmp, `${JSON.stringify(data, null, 2)}\n`); fs.renameSync(tmp, file); }
@@ -95,11 +61,6 @@ export function reconcileUnobservedStates(states = {}, observedIds = [], now = D
   }
   return next;
 }
-export function inspect(root, codexHome) {
-  const result = new Map();
-  for (const file of walk(path.join(codexHome, 'sessions'))) { try { const s = readSession(file, root); if (!s?.id || !s.latest) continue; const old = result.get(s.id); if (!old || s.latest.timestamp > old.latest.timestamp || (s.latest.timestamp === old.latest.timestamp && s.rollout_mtime_ms > old.rollout_mtime_ms)) result.set(s.id, s); } catch {} }
-  return [...result.values()];
-}
 export function recoveryStep(session, previous, config, now, queue, options = {}) {
   validateConfig(config);
   if (options.disabled) return { ...previous, status: 'paused', lifecycle: 'paused', pending: false, next_at: 0, pause_reason: options.reason || 'farmer disabled' };
@@ -119,18 +80,18 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   const reset = manualNewStart ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey, recovery_chain_active: false, recovery_satisfied: false, recovered_turn_id: null } : previous;
   const continuingRecovery = automaticResume || (Boolean(previous?.recovery_chain_active) && !manualUserPrompt);
   if (payload.type === 'task_started') {
-    const recoveryStarted = automaticResume || Boolean(previous?.recovery_chain_active) || Boolean(previous?.pending) || (previous?.recovery_satisfied === true && previous.recovered_turn_id === payload.turn_id);
+    const legacyRecovered = previous?.breaker_reason === 'max-attempts-reached' && previous?.last_started_event === eventKey;
+    const recoveryStarted = automaticResume || legacyRecovered || Boolean(previous?.recovery_chain_active) || Boolean(previous?.pending) || (previous?.recovery_satisfied === true && previous.recovered_turn_id === payload.turn_id);
     return { ...reset, status: 'running', lifecycle: 'turn_started', process_health: 'running', event_key: eventKey, pending: false, attempts: continuingRecovery ? (previous?.attempts || 0) : 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, rollout_mtime_ms: session.rollout_mtime_ms ?? previous?.rollout_mtime_ms ?? null, rollout_size: session.rollout_size ?? previous?.rollout_size ?? null, recovery_chain_active: false, recovery_satisfied: recoveryStarted, recovered_turn_id: recoveryStarted ? payload.turn_id : null, automatic_resume: automaticResume };
   }
   if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', lifecycle: 'cancelled', process_health: 'aborted', pending: false, last_event_timestamp: event.timestamp, rollout_mtime_ms: session.rollout_mtime_ms ?? previous?.rollout_mtime_ms ?? null, rollout_size: session.rollout_size ?? previous?.rollout_size ?? null };
   if (!payload.error) return { ...reset, status: 'complete', lifecycle: 'succeeded', process_health: 'complete', pending: false, recovery_chain_active: false, recovery_satisfied: false, recovered_turn_id: null, automatic_resume: false, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, rollout_mtime_ms: session.rollout_mtime_ms ?? previous?.rollout_mtime_ms ?? null, rollout_size: session.rollout_size ?? previous?.rollout_size ?? null };
   const errorClass = classifyError(payload.error, config);
   if (!errorClass) return { ...reset, status: 'manual-attention-required', lifecycle: 'failed', pending: false, last_event_timestamp: event.timestamp };
-  if (previous?.recovery_satisfied && previous.recovered_turn_id === payload.turn_id) return { ...previous, status: 'manual-attention-required', lifecycle: 'failed', process_health: 'failed', recovery_chain_active: false, pending: false, next_at: 0, breaker_reason: 'failure-after-recovery', error_class: errorClass, last_event_timestamp: event.timestamp };
   const key = eventKey;
   const explicitRetry = previous?.manual_retry === true && previous.event_key === key;
   if (!explicitRetry && ['queue-stuck', 'manual-attention-required', 'blocked'].includes(previous?.status) && previous.event_key === key) return previous;
-  let state = reset?.event_key === key ? { ...reset } : { event_key: key, attempts: (reset?.status === 'running' || reset?.recovery_chain_active) ? reset.attempts || 0 : 0, pending: false, next_at: 0, last_started_event: reset?.last_started_event, recovery_chain_active: Boolean(reset?.recovery_chain_active) };
+  let state = reset?.event_key === key ? { ...reset } : { event_key: key, attempts: (reset?.status === 'running' || reset?.recovery_chain_active) && !reset?.recovery_satisfied ? reset.attempts || 0 : 0, pending: false, next_at: 0, last_started_event: reset?.last_started_event, recovery_chain_active: Boolean(reset?.recovery_chain_active) };
   if (explicitRetry) state = { ...state, attempts: 0, pending: false, next_at: 0, manual_retry: false, breaker_cleared: false, status: 'retrying', lifecycle: 'queue_attempted' };
   state.error_class = errorClass;
   if (state.pending) {

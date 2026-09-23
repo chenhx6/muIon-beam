@@ -176,15 +176,21 @@ test('automatic resume keeps the same recovery attempt budget across new turns',
   assert.equal(started.attempts, 3); assert.equal(started.automatic_resume, true); assert.equal(started.recovery_satisfied, true); assert.equal(started.recovery_chain_active, false);
   const failed = { ...resumed, latest: { timestamp: '2026-01-01T00:01:01Z', payload: { type: 'task_complete', turn_id: 't2', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
   const blocked = recoveryStep(failed, started, cfg, Date.now(), () => { calls++; return { status: 0 }; });
-  assert.equal(calls, 1); assert.equal(blocked.status, 'manual-attention-required');
+  assert.equal(calls, 2); assert.equal(blocked.status, 'recovery-pending');
 });
-test('a recovered turn is not followed by another automatic resume after its own failure', () => {
+test('a recovered turn can start one new bounded chain after a new failure', () => {
   let calls = 0; const cfg = { ...config, max_attempts: 3 };
   const failed = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
   const queued = recoveryStep(failed, { event_key: 'old', attempts: 0 }, cfg, 10000, () => { calls += 1; return { status: 0 }; });
   const started = recoveryStep({ id: 's1', latest: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } } }, queued, cfg, 11000, () => { calls += 1; return { status: 0 }; });
   const failedAgain = recoveryStep({ id: 's1', latest: { timestamp: '2026-01-01T00:00:02Z', payload: { type: 'task_complete', turn_id: 't2', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } }, started, cfg, 12000, () => { calls += 1; return { status: 0 }; });
-  assert.equal(started.recovery_satisfied, true); assert.equal(started.recovery_chain_active, false); assert.equal(calls, 1); assert.equal(failedAgain.status, 'manual-attention-required'); assert.equal(failedAgain.breaker_reason, 'failure-after-recovery');
+  assert.equal(started.recovery_satisfied, true); assert.equal(started.recovery_chain_active, false); assert.equal(calls, 2); assert.equal(failedAgain.status, 'recovery-pending');
+});
+test('legacy max-attempt state is normalized when its started turn is observed', () => {
+  const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } } };
+  const key = 's1:t2:2026-01-01T00:00:01Z';
+  const state = recoveryStep(session, { event_key: key, last_started_event: key, status: 'running', breaker_reason: 'max-attempts-reached', attempts: 3 }, config, 12000, () => { throw new Error('legacy state must not queue'); });
+  assert.equal(state.recovery_satisfied, true); assert.equal(state.recovered_turn_id, 't2'); assert.equal(state.attempts, 0); assert.equal(state.recovery_chain_active, false);
 });
 test('re-reading the same task_started event preserves recovery success', () => {
   const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } } };

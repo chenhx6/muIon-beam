@@ -162,10 +162,18 @@ test('automatic resume keeps the same recovery attempt budget across new turns',
   const exhausted = recoveryStep(oldSession, { event_key: 'old', attempts: 2, recovery_chain_active: true, status: 'waiting-retry', last_event_timestamp: '2026-01-01T00:00:00Z' }, cfg, Date.now(), () => { calls++; return { status: 0 }; });
   const resumed = { id: 's1', latest: { timestamp: '2026-01-01T00:01:00Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:01:00Z', payload: { type: 'task_started', turn_id: 't2' } }, userPrompts: [{ timestamp: '2026-01-01T00:00:30Z', text: cfg.recovery_message }] };
   const started = recoveryStep(resumed, exhausted, cfg, Date.now(), () => { calls++; return { status: 0 }; });
-  assert.equal(started.attempts, 3); assert.equal(started.automatic_resume, true);
+  assert.equal(started.attempts, 3); assert.equal(started.automatic_resume, true); assert.equal(started.recovery_satisfied, true); assert.equal(started.recovery_chain_active, false);
   const failed = { ...resumed, latest: { timestamp: '2026-01-01T00:01:01Z', payload: { type: 'task_complete', turn_id: 't2', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
   const blocked = recoveryStep(failed, started, cfg, Date.now(), () => { calls++; return { status: 0 }; });
   assert.equal(calls, 1); assert.equal(blocked.status, 'manual-attention-required');
+});
+test('a recovered turn is not followed by another automatic resume after its own failure', () => {
+  let calls = 0; const cfg = { ...config, max_attempts: 3 };
+  const failed = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const queued = recoveryStep(failed, { event_key: 'old', attempts: 0 }, cfg, 10000, () => { calls += 1; return { status: 0 }; });
+  const started = recoveryStep({ id: 's1', latest: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } } }, queued, cfg, 11000, () => { calls += 1; return { status: 0 }; });
+  const failedAgain = recoveryStep({ id: 's1', latest: { timestamp: '2026-01-01T00:00:02Z', payload: { type: 'task_complete', turn_id: 't2', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } }, started, cfg, 12000, () => { calls += 1; return { status: 0 }; });
+  assert.equal(started.recovery_satisfied, true); assert.equal(started.recovery_chain_active, false); assert.equal(calls, 1); assert.equal(failedAgain.status, 'manual-attention-required'); assert.equal(failedAgain.breaker_reason, 'failure-after-recovery');
 });
 test('ordinary new user turn starts a new recovery chain', () => {
   const cfg = { ...config, max_attempts: 3 };
@@ -173,7 +181,7 @@ test('ordinary new user turn starts a new recovery chain', () => {
   const next = recoveryStep(session, { event_key: 's1:t1:2026-01-01T00:00:00Z', attempts: 2, status: 'waiting-retry', last_started_event: 's1:t1:old' }, cfg, Date.now(), () => ({ status: 0 }));
   assert.equal(next.attempts, 0); assert.equal(next.recovery_chain_active, false); assert.equal(next.automatic_resume, false);
 });
-test('synthetic AGENTS and environment messages do not reset an active recovery chain', () => {
+test('synthetic AGENTS and environment messages do not reset a recovered turn', () => {
   const lines = [
     JSON.stringify({ type: 'session_meta', payload: { session_id: 's1', cwd: 'D:/muIon-beam' } }),
     JSON.stringify({ type: 'response_item', timestamp: '2026-01-01T00:01:00Z', payload: { type: 'message', role: 'user', content: [{ text: '# AGENTS.md instructions\n<INSTRUCTIONS>' }], internal_chat_message_metadata_passthrough: { content_item_kinds: ['agents_md.instructions'] } } }),
@@ -181,7 +189,7 @@ test('synthetic AGENTS and environment messages do not reset an active recovery 
   ];
   const parsed = parseSessionEvents(lines, 'D:/muIon-beam');
   const next = recoveryStep({ ...parsed }, { event_key: 's1:t1:2026-01-01T00:00:00Z', attempts: 2, recovery_chain_active: true, status: 'waiting-retry', last_event_timestamp: '2026-01-01T00:00:00Z' }, config, Date.now(), () => ({ status: 0 }));
-  assert.equal(next.attempts, 2); assert.equal(next.automatic_resume, false); assert.equal(next.recovery_chain_active, true);
+  assert.equal(next.attempts, 2); assert.equal(next.automatic_resume, false); assert.equal(next.recovery_satisfied, true); assert.equal(next.recovery_chain_active, false);
 });
 test('recovery lock permits one queue evaluator at a time', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-farmer-lock-'));

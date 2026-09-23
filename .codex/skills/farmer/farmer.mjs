@@ -38,7 +38,7 @@ export function parseSessionEvents(lines, projectRoot) {
   for (const line of lines) {
     try {
       const item = JSON.parse(line);
-      if (item.type === 'session_meta') meta = item.payload;
+      if (item.type === 'session_meta') meta = item.payload || item;
       if (item.type === 'response_item' && item.payload?.type === 'message' && item.payload.role === 'user') {
         const text = (item.payload.content || []).map(part => part.text || '').join('');
         const kinds = item.payload.internal_chat_message_metadata_passthrough?.content_item_kinds || [];
@@ -54,9 +54,14 @@ export function parseSessionEvents(lines, projectRoot) {
 }
 function segment(file, start, length) { const fd = fs.openSync(file, 'r'); try { const b = Buffer.alloc(length); const n = fs.readSync(fd, b, 0, length, start); return b.subarray(0, n).toString('utf8'); } finally { fs.closeSync(fd); } }
 function readSession(file, root) {
-  const fileStat = fs.statSync(file); const size = fileStat.size; const head = segment(file, 0, Math.min(size, 262144));
-  const offset = Math.max(0, size - 1048576); const tail = segment(file, offset, size - offset);
-  const parsed = parseSessionEvents([...head.split(/\r?\n/).slice(0, 1), ...tail.split(/\r?\n/).slice(offset ? 1 : 0)], root);
+  const fileStat = fs.statSync(file); const size = fileStat.size; const head = segment(file, 0, Math.min(size, 262144)).split(/\r?\n/)[0];
+  let window = Math.min(size, 1048576); let parsed = null;
+  while (true) {
+    const offset = Math.max(0, size - window); const tail = segment(file, offset, size - offset);
+    parsed = parseSessionEvents([head, ...tail.split(/\r?\n/).slice(offset ? 1 : 0)], root);
+    if (parsed?.latest || offset === 0) break;
+    window = Math.min(size, window * 2);
+  }
   return parsed ? { ...parsed, rollout_file: file, rollout_mtime_ms: fileStat.mtimeMs, rollout_size: size } : null;
 }
 function walk(dir) { if (!fs.existsSync(dir)) return []; return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith('.jsonl') ? [path.join(dir, e.name)] : []); }

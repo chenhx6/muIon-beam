@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { acquireRecoveryLock, batchDelay, classifyError, inside, manualRetryLease, parseSessionEvents, reconcileUnobservedStates, recoveryStep, releaseRecoveryLock, validateConfig, SAFE_MAX_ATTEMPTS } from '../.codex/skills/farmer/farmer.mjs';
+import { acquireRecoveryLock, batchDelay, classifyError, inside, inspect, manualRetryLease, parseSessionEvents, reconcileUnobservedStates, recoveryStep, releaseRecoveryLock, validateConfig, SAFE_MAX_ATTEMPTS } from '../.codex/skills/farmer/farmer.mjs';
 
 const config = { max_attempts: 99, recoverable_codes: ['server_overloaded', 'rate_limit_exceeded', 'temporarily_unavailable'], recoverable_patterns: ['Selected model is at capacity', 'temporarily unavailable', 'service unavailable', 'rate limit', 'timed out', 'connection reset'], recovery_message: 'resume' };
 test('farmer classifies transient and terminal errors', () => {
@@ -34,6 +34,17 @@ test('farmer validates finite and unlimited attempt configuration', () => {
 test('farmer scopes sessions to the project', () => {
   assert.equal(inside('D:/muIon-beam/03_runs', 'D:/muIon-beam'), true);
   assert.equal(inside('D:/other', 'D:/muIon-beam'), false);
+});
+test('farmer reads current top-level Codex session metadata', () => {
+  const parsed = parseSessionEvents([JSON.stringify({ type: 'session_meta', session_id: 's1', cwd: 'D:/muIon-beam' }), JSON.stringify({ type: 'event_msg', timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't1' } })], 'D:/muIon-beam');
+  assert.equal(parsed.id, 's1'); assert.equal(parsed.cwd, 'D:/muIon-beam'); assert.equal(parsed.latest.payload.type, 'task_started');
+});
+test('farmer expands the rollout tail when tool output hides the lifecycle event', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-farmer-rollout-')); const home = path.join(root, 'codex-home'); const dir = path.join(home, 'sessions', '2026', '01'); fs.mkdirSync(dir, { recursive: true });
+  const file = path.join(dir, 'rollout.jsonl'); const filler = JSON.stringify({ type: 'response_item', payload: { type: 'reasoning', summary: 'x'.repeat(1000) } });
+  fs.writeFileSync(file, `${JSON.stringify({ type: 'session_meta', session_id: 'large-s1', cwd: root })}\n${JSON.stringify({ type: 'event_msg', timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't1' } })}\n${Array(1400).fill(filler).join('\n')}\n`);
+  try { const found = inspect(root, home).find(session => session.id === 'large-s1'); assert.equal(found.latest.payload.type, 'task_started'); }
+  finally { fs.rmSync(root, { recursive: true, force: true }); }
 });
 test('farmer queues one recovery and does not duplicate pending requests', () => {
   let calls = 0;

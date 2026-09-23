@@ -190,7 +190,7 @@ test('legacy max-attempt state is normalized when its started turn is observed',
   const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } } };
   const key = 's1:t2:2026-01-01T00:00:01Z';
   const state = recoveryStep(session, { event_key: key, last_started_event: key, status: 'running', breaker_reason: 'max-attempts-reached', attempts: 3 }, config, 12000, () => { throw new Error('legacy state must not queue'); });
-  assert.equal(state.recovery_satisfied, true); assert.equal(state.recovered_turn_id, 't2'); assert.equal(state.attempts, 0); assert.equal(state.recovery_chain_active, false);
+  assert.equal(state.recovery_satisfied, true); assert.equal(state.recovered_turn_id, 't2'); assert.equal(state.attempts, 0); assert.equal(state.recovery_chain_active, false); assert.equal(state.breaker_reason, null); assert.equal(state.error_class, null);
 });
 test('re-reading the same task_started event preserves recovery success', () => {
   const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } }, latestStarted: { timestamp: '2026-01-01T00:00:01Z', payload: { type: 'task_started', turn_id: 't2' } } };

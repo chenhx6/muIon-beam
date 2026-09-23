@@ -232,7 +232,7 @@ function removeClaim(root, sessionId) {
   writeClaims(root, { schema_version: SCHEMA_VERSION, claims: current.claims.filter((claim) => claim.session_id !== sessionId) });
 }
 
-export function beginSession({ root = process.cwd(), sessionId = null, taskId = null, hostSessionId = null, mode = 'worktree', ownedPaths = [], reads = [], leaseMs = DEFAULT_LEASE_MS, allowDirtyShared = false, isolatedOverlap = false } = {}) {
+export function beginSession({ root = process.cwd(), sessionId = null, taskId = null, name = null, hostSessionId = null, mode = 'worktree', ownedPaths = [], reads = [], leaseMs = DEFAULT_LEASE_MS, allowDirtyShared = false, isolatedOverlap = false } = {}) {
   const repoRoot = repoRootFrom(path.resolve(root));
   const id = safeId(sessionId || `session-${Date.now()}-${process.pid}-${crypto.randomBytes(3).toString('hex')}`, 'session_id');
   if (!MODES.has(mode)) throw new Error(`invalid session mode: ${mode}`);
@@ -242,7 +242,8 @@ export function beginSession({ root = process.cwd(), sessionId = null, taskId = 
     const existing = readJson(sessionFile(repoRoot, id));
     if (existing?.status === 'active') {
       if (existing.mode !== mode || Boolean(existing.isolated_overlap) !== isolatedOverlap || JSON.stringify(existing.claims) !== JSON.stringify(claims)) throw new Error(`session already active with different ownership: ${id}`);
-      return { ...existing, resumed: true, baseline_path: path.relative(repoRoot, baselineFile(repoRoot, id)).replaceAll('\\', '/') };
+      const resumed = typeof name === 'string' && name.trim() && !existing.name ? updateSession(repoRoot, existing, { name: name.trim() }) : existing;
+      return { ...resumed, resumed: true, baseline_path: path.relative(repoRoot, baselineFile(repoRoot, id)).replaceAll('\\', '/') };
     }
     if (mode === 'shared-write' && !allowDirtyShared && currentStatus(repoRoot).length) throw new Error('shared-write requires a clean leader checkout; use worktree mode for dirty work');
     assertNoClaimCollision(repoRoot, id, claims, mode, isolatedOverlap);
@@ -250,7 +251,7 @@ export function beginSession({ root = process.cwd(), sessionId = null, taskId = 
     let worktreePath = repoRoot; let branch = null; let worktreeCreated = false;
     if (mode === 'worktree') ({ branch, directory: worktreePath, created: worktreeCreated } = ensureWorktree(repoRoot, id, baseRef));
     const session = {
-      schema_version: SCHEMA_VERSION, session_id: id, task_id: taskId || id, mode, repo_root: repoRoot,
+      schema_version: SCHEMA_VERSION, session_id: id, task_id: taskId || id, name: typeof name === 'string' && name.trim() ? name.trim() : null, mode, repo_root: repoRoot,
       host_session_id: hostSessionId, isolated_overlap: isolatedOverlap,
       worktree_path: worktreePath, branch, base_ref: baseRef, claims, reads: normalizeClaims(repoRoot, reads),
       status: 'active', owner_token: crypto.randomUUID(), lease_until: new Date(Date.now() + leaseMs).toISOString(),
@@ -369,7 +370,7 @@ function main(argv = process.argv.slice(2)) {
     return 'Usage: node session-concurrency.mjs begin|check|heartbeat|submit|integrate|close|reap|status --project-root PATH [options]\n' +
       'begin options: --session-id ID --task-id ID --mode worktree|shared-read|shared-write --owned-path PATH';
   }
-  if (command === 'begin') return beginSession({ root, sessionId: args.session_id, taskId: args.task_id, mode: args.mode || 'worktree', ownedPaths: args.owned_path || [], reads: args.read || [], allowDirtyShared: Boolean(args.allow_dirty_shared) });
+  if (command === 'begin') return beginSession({ root, sessionId: args.session_id, taskId: args.task_id, name: args.name, mode: args.mode || 'worktree', ownedPaths: args.owned_path || [], reads: args.read || [], allowDirtyShared: Boolean(args.allow_dirty_shared) });
   if (command === 'heartbeat') return heartbeatSession({ root, sessionId: args.session_id, token: args.token });
   if (command === 'check') return checkSession({ root, sessionId: args.session_id });
   if (command === 'submit') return submitSession({ root, sessionId: args.session_id });

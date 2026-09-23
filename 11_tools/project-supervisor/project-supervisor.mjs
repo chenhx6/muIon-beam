@@ -14,9 +14,9 @@ export class ProjectSupervisor {
     this.workers = new WorkerRuntime(root, store);
   }
   async ensure() { return this.processes.ensure(); }
-  async enter({ sessionId, source = 'agent-entry', intent = 'write', ownedPaths = [] } = {}) {
+  async enter({ sessionId, sessionName = null, source = 'agent-entry', intent = 'write', ownedPaths = [] } = {}) {
     const context = loadProjectContext(this.root); const services = await this.ensure();
-    const session = sessionId ? await this.sessions.enter({ sessionId, intent, ownedPaths }) : null;
+    const session = sessionId ? await this.sessions.enter({ sessionId, sessionName, intent, ownedPaths }) : null;
     const record = { schema_version: 1, session_id: sessionId || null, source, entered_at: new Date().toISOString(), services, session, context_paths: context.map(item => item.path) };
     this.store.event('session-entered', record);
     return { ...record, ready: Object.values(services).every(service => service.status === 'healthy') && (!session || session.status === 'active'), context };

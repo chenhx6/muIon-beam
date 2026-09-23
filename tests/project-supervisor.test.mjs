@@ -79,3 +79,12 @@ test('session hook carries context without persisting user prompt or changing th
   assert.doesNotMatch(JSON.stringify(output), /not stored/);
   await assert.rejects(handleHook({ ...event, hook_event_name: 'Unknown' }, { root: hookRoot, supervisor, ensure: async () => {} }), /unsupported/);
 });
+test('session hook forwards a readable session name when provided', async t => {
+  const hookRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-hook-name-'));
+  t.after(() => { assert.equal(path.dirname(hookRoot), path.resolve(os.tmpdir())); fs.rmSync(hookRoot, { recursive: true, force: true }); });
+  let entered;
+  const event = { hook_event_name: 'SessionStart', session_id: 's1', session_name: '研究 dashboard 修复' };
+  const supervisor = { enter: async args => { entered = args; return { ready: true, services: { farmer: { status: 'healthy' } }, context: [] }; } };
+  await handleHook(event, { root: hookRoot, supervisor, ensure: async () => {} });
+  assert.deepEqual(entered, { sessionId: 's1', source: 'SessionStart', sessionName: '研究 dashboard 修复' });
+});

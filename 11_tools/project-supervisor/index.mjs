@@ -48,7 +48,7 @@ async function main() {
   }
   await ensureDaemon(root);
   if (command === 'ensure') return { root, services: await supervisor.ensure() };
-  if (command === 'enter') { const record = await supervisor.enter({ sessionId: args.session_id || process.env.CODEX_THREAD_ID || process.env.CODEX_SESSION_ID, intent: args.read_only ? 'read' : 'write', ownedPaths: args.owned_path ? [].concat(args.owned_path) : [] }); return { ...record, context: undefined }; }
+  if (command === 'enter') { const record = await supervisor.enter({ sessionId: args.session_id || process.env.CODEX_THREAD_ID || process.env.CODEX_SESSION_ID, sessionName: args.session_name || args.name || null, intent: args.read_only ? 'read' : 'write', ownedPaths: args.owned_path ? [].concat(args.owned_path) : [] }); return { ...record, context: undefined }; }
   throw new Error(`unknown supervisor command: ${command}`);
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === script) main().then(result => console.log(JSON.stringify(result, null, 2))).catch(error => { console.error(error.message); process.exitCode = 1; });

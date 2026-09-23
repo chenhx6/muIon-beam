@@ -3,13 +3,13 @@ const text = (node, value) => { if (node) node.textContent = value == null || va
 
 function normalizeStatus(value) { return String(value || 'unknown').toLowerCase(); }
 function statusLabel(value) {
-  const labels = { active: '运行中', running: '运行中', blocked: '已阻塞', failed: '失败', error: '失败', done: '已完成', complete: '已完成', completed: '已完成', succeeded: '已完成', closed: '已关闭', stopped: '已停止', disabled: '已停用', pending: '等待', stale: '已过期', unregistered: '未登记', matched: '已匹配', mismatch: '任务不一致', unknown: '未知' };
+  const labels = { active: '运行中', running: '运行中', blocked: '已阻塞', failed: '失败', error: '失败', interrupted: '已中断', aborted: '已中止', cancelled: '已取消', canceled: '已取消', abandoned: '待继续', done: '已完成', complete: '已完成', completed: '已完成', succeeded: '已完成', closed: '已关闭', stopped: '已停止', disabled: '已停用', pending: '等待', stale: '已过期', unregistered: '未登记', matched: '已匹配', mismatch: '任务不一致', unknown: '未知' };
   return labels[normalizeStatus(value)] || value || '未知';
 }
 function statusClass(value) {
   const status = normalizeStatus(value);
   if (['active', 'running', 'succeeded', 'done', 'complete', 'completed'].includes(status)) return 'badge-good';
-  if (['blocked', 'pending', 'stopped', 'disabled', 'stale', 'unregistered', 'mismatch'].includes(status)) return 'badge-warn';
+  if (['blocked', 'pending', 'stopped', 'disabled', 'stale', 'unregistered', 'mismatch', 'interrupted', 'aborted', 'cancelled', 'canceled', 'abandoned'].includes(status)) return 'badge-warn';
   if (['failed', 'error'].includes(status)) return 'badge-bad';
   return 'badge-muted';
 }
@@ -24,6 +24,7 @@ function formatTime(value) {
 function formatAbsolute(value) { const timestamp = Date.parse(value || ''); return Number.isFinite(timestamp) ? new Date(timestamp).toLocaleString('zh-CN', { hour12: false }) : '未知'; }
 function readable(value) { return typeof value === 'string' && value.trim() ? value.trim() : '—'; }
 function effectiveSessionStatus(session) {
+  if (['interrupted', 'failed', 'error', 'abandoned', 'cancelled', 'canceled'].includes(normalizeStatus(session.status))) return session.status;
   if (session.stale) return 'stale';
   if (Array.isArray(session.blockers) && session.blockers.length) return 'blocked';
   if (session.integration && String(session.integration).startsWith('blocked')) return 'blocked';
@@ -45,9 +46,11 @@ function renderCurrentSession(data) {
     if (badgeNode) { badgeNode.className = 'badge badge-warn'; badgeNode.textContent = '未登记'; }
     text($('#current-session-observed'), `Dashboard 读取：${formatAbsolute(data.supervision?.observed_at || data.generated_at)} · registry 记录：无`); return;
   }
-  text(title, current.display_name || '未命名 session'); text(metaNode, [current.task_name, current.task_id, current.mode].filter(Boolean).join(' · ') || '未登记任务名称');
+  const currentMeta = current.source === 'codex-thread' ? ['Codex session', current.mode].filter(Boolean) : [current.task_name, current.mode].filter(Boolean);
+  text(title, current.display_name || current.name || '名称未登记'); text(metaNode, currentMeta.join(' · ') || '名称未登记');
   if (badgeNode) { badgeNode.className = `badge ${statusClass(current.stale ? 'stale' : effectiveSessionStatus(current))}`; badgeNode.textContent = statusLabel(current.stale ? 'stale' : effectiveSessionStatus(current)); }
-  text($('#current-session-observed'), `Dashboard 读取：${formatAbsolute(data.supervision?.observed_at || data.generated_at)} · registry 最后写入：${formatAbsolute(current.last_observed_at)}` + (current.stale ? ` · ${current.stale_reasons?.join('、') || '状态过期'}` : ''));
+  const observedLabel = current.source === 'codex-thread' ? '最近观测' : 'registry 最后写入';
+  text($('#current-session-observed'), `Dashboard 读取：${formatAbsolute(data.supervision?.observed_at || data.generated_at)} · ${observedLabel}：${formatAbsolute(current.last_observed_at)}` + (current.stale ? ` · ${current.stale_reasons?.join('、') || '状态过期'}` : ''));
 }
 
 function renderSessions(data) {
@@ -62,7 +65,7 @@ function renderSessions(data) {
   for (const session of sessions) {
     const card = document.createElement('article'); card.className = 'session-card';
     const head = document.createElement('div'); head.className = 'session-card-head';
-    const titleBox = document.createElement('div'); const title = document.createElement('div'); title.className = 'session-name'; title.textContent = session.display_name || '名称缺失（需补登记）';
+    const titleBox = document.createElement('div'); const title = document.createElement('div'); title.className = 'session-name'; title.textContent = session.display_name || session.name || '名称未登记';
     const plan = plans.get(session.task_id); const kind = document.createElement('div'); kind.className = 'session-kind';
     kind.textContent = [session.task_name, session.mode].filter(Boolean).join(' · ') || '未登记任务名称';
     titleBox.append(title, kind); head.append(titleBox, badge(effectiveSessionStatus(session))); card.append(head);

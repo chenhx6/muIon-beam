@@ -26,6 +26,20 @@ test('unknown independent sessions automatically receive separate worktrees and 
   assert.equal((await bootstrap.enter({sessionId:'host-a'})).session_id,a.session_id);
   assert.equal(listSessions({root}).length,2);
 });
+test('session name is stored and returned without exposing generated ids', async t => {
+  const { root, bootstrap } = fixture(t);
+  const session = await bootstrap.enter({ sessionId: 'host-named', sessionName: '研究 dashboard 修复' });
+  assert.equal(session.name, '研究 dashboard 修复');
+  assert.equal(listSessions({ root })[0].name, '研究 dashboard 修复');
+});
+test('a later hook can fill a missing session name without changing its identity', async t => {
+  const { root, bootstrap } = fixture(t);
+  const first = await bootstrap.enter({ sessionId: 'host-later-name' });
+  const second = await bootstrap.enter({ sessionId: 'host-later-name', sessionName: '后来登记的任务' });
+  assert.equal(second.session_id, first.session_id);
+  assert.equal(second.name, '后来登记的任务');
+  assert.equal(listSessions({ root })[0].name, '后来登记的任务');
+});
 test('explicit overlapping claims still refuse admission and preserve the first worker', async t => {
   const {root,bootstrap}=fixture(t);
   const a=await bootstrap.enter({sessionId:'a',ownedPaths:['a.txt']});

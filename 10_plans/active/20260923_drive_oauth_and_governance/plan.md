@@ -17,6 +17,7 @@ M/D/?? 现场。
 - canonical mirror 已从当前提交同步：1155 个文件、68,326,515 bytes，映射盘数量/大小/SHA256 校验通过；connector 已读回同一 manifest 与 recovery index，Gitee commit 一致。
 - mirror 有 150 个 stale 文件；云端可见，但 `cleanup_allowed=false`。
 - P5 已完成：166 个 P2 日志复制到 canonical mirror，9,224,915 bytes，逐项 SHA256 通过；回执同时记录 60 个已归档 Manifest 文件、64 个已在镜像但待登记文件、2 个未登记阻塞文件和 1 个哈希漂移项。
+- P6 已完成治理回执：39 个 M 全部保留并标为逐项审查；235 个 D 中 82 个同 SHA 命名迁移候选、153 个内容变化/未决；504 个 ?? 中 209 个已交付 Gitee、293 个由输出回执管理、2 个 `.class` 构建产物忽略。
 
 ## 执行门
 
@@ -24,7 +25,7 @@ M/D/?? 现场。
 2. **P4 API 读回**：已完成；29 账号 connector 读回 canonical folder、manifest 和 recovery index。
 3. **P4b canonical mirror 刷新**：已完成；1155 个文件、68,325,653 bytes；connector 读回的 manifest 和 recovery index 均对应 Gitee `47c2e37`，SHA256 镜像验收通过。
 4. **P5 输出归档**：已完成 166 个 Manifest 与 SHA256 匹配的 P2 日志 copy-only 归档；2 个未登记日志保持 blocked/unregistered；另有 1 个文件在镜像中已保留，但 Manifest 只有路径匹配、没有 SHA256 匹配，需单独做 Manifest 修订。回执为 [OUTPUT-ARCHIVE-RECEIPT-20260924.json](receipts/OUTPUT-ARCHIVE-RECEIPT-20260924.json)。
-5. **P6 M/D/?? 治理**：39 个 M 逐项审核，235 个 D 按 82 个同 SHA rename 候选与 153 个内容变化/未决项处理，504 个 ?? 按 durable、model source、output、build 分类处理。
+5. **P6 M/D/?? 治理**：已完成逐项治理回执；39 个 M、235 个 D、504 个 ?? 的路径、大小、SHA256、处理决定和下一步已记录在 [MAIN-CHECKOUT-GOVERNANCE-RECEIPT-20260924.json](receipts/MAIN-CHECKOUT-GOVERNANCE-RECEIPT-20260924.json)。
 6. **关闭条件**：无未登记 durable 文件、Drive receipt 完成、connector/browser 账户一致、recovery index 更新；之后才评估旧目录 quarantine 或主 checkout 归位。
 
 ## 不变量
@@ -36,6 +37,7 @@ M/D/?? 现场。
 
 ## 当前阻塞
 
-OAuth blocker 已解除。Drive mirror 已刷新并完成 29 账号 connector 读回。P5 已完成，当前进入
-P6：审查 39 个 M、235 个 D、504 个 ??，为每项写出归宿或阻塞原因。主 checkout 仍只读，任何
-待确认文件在拿到可验证归宿前继续保留。
+OAuth blocker 已解除。Drive mirror、recovery index 和云端可见性审计已完成；P5 和 P6 都已留下
+逐文件回执。剩余阻塞是 39 个 M 的内容审查、153 个 D 的内容变化/未决项、64 个已在 Drive
+但尚未登记的输出、2 个未登记日志，以及 1 个 Manifest 哈希漂移项。主 checkout 仍只读，
+后续需逐项解决这些阻塞后再考虑采用、quarantine 或清理。

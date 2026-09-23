@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260923-farmer-recovery-chain-after-start",
+  "recorded_at": "2026-09-23T04:02:00Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "runtime-supervision",
+  "title": "恢复 turn 启动后仍按旧失败链重复投递",
+  "observation": "解除 emergency pause 后的受控 live canary 在同一 Codex session 中出现 task_complete(server_overloaded) → task_started → task_complete(server_overloaded) 的循环；旧逻辑在每次启动后继续保持 recovery_chain_active，连续投递了 3 条 farmer resume。",
+  "evidence": [
+    "当前 session rollout：01a0c2b5-5c91-7d33-9d15-ba73a6cc5a8a",
+    "2026-09-23 03:37:01、03:38:28、03:38:38 的三条 [farmer resume]",
+    "_work/current/farmer/state.json：attempts=3、recovery_chain_active=true",
+    "farmer live status：owner process 已停止，pause 已恢复",
+    "npm test：199 项通过"
+  ],
+  "impact": [
+    "模型容量错误会把一次恢复扩展成连续自动 resume，打断用户当前 session",
+    "仅按 max_attempts 限制次数无法表达 task_started 已经证明恢复成功",
+    "旧状态中的 running session 可能继续掩盖恢复链已经失效"
+  ],
+  "reusable_value": "task_started 是一次恢复成功证据；同一 recovered turn 后续失败不能重新开启自动恢复链，新用户 turn 才能开始新的恢复资格。",
+  "actions": [
+    "task_started 后写入 recovery_satisfied=true、recovered_turn_id，并关闭 recovery_chain_active",
+    "同一 recovered_turn_id 的后续 transient failure 记录 failure-after-recovery，不再 queue",
+    "记录 rollout mtime、rollout size 和 process_health，区分 running、writing、complete、not-observed",
+    "未再观察到的旧 active state 标记为 session-unavailable，避免伪装成正常运行",
+    "继续保持 emergency pause，待用户 review 修复后的 canary 结果后再恢复正常监督"
+  ],
+  "tags": ["farmer", "recovery-loop", "task-started", "process-health", "live-canary"],
+  "related_paths": [
+    ".codex/skills/farmer/farmer.mjs",
+    "tests/farmer.test.mjs",
+    "00_project/traceability/incidents/FARMER-INCIDENT-20260918.json"
+  ],
+  "related_commits": ["78daf03", "c99bdb2", "b83d770", "5e8c751"]
+}

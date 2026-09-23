@@ -33,5 +33,5 @@ M/D/?? 现场。
 ## 当前阻塞
 
 OAuth blocker 已解除。Drive manifest 仍描述旧的 `e69a716` 镜像，最新 Gitee 提交为
-`ee55fb2`。用户审阅计划并明确开始后，先执行 copy-only mirror/recovery-index 更新，
+`ebed44f`。用户审阅计划并明确开始后，先执行 copy-only mirror/recovery-index 更新，
 再进入 P5/P6。当前不归档输出，也不治理主 checkout 的 M/D/??。

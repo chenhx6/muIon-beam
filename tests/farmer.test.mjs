@@ -91,6 +91,12 @@ test('queue timeout becomes a breaker and requires explicit retry', () => {
   const retried = recoveryStep(session, manualRetryLease(session, stuck), cfg, 30000, () => { calls += 1; return { status: 0 }; });
   assert.equal(calls, 2); assert.equal(retried.pending, true);
 });
+test('rollout activity proves the session is still writing after queue acceptance', () => {
+  let calls = 0; const cfg = { ...config, watchdog_ms: 1000 };
+  const session = { id: 's1', rollout_mtime_ms: 11000, rollout_size: 120, latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };
+  const observing = recoveryStep(session, { event_key: 's1:t1:2026-01-01T00:00:00Z', attempts: 1, pending: true, queue_accepted_at: 10000, rollout_mtime_ms: 10000, last_event_timestamp: '2026-01-01T00:00:00Z' }, cfg, 12001, () => { calls += 1; return { status: 0 }; });
+  assert.equal(calls, 0); assert.equal(observing.status, 'recovery-observing'); assert.equal(observing.process_health, 'writing'); assert.equal(observing.pending, true); assert.equal(observing.queue_accepted_at, 12001);
+});
 test('unconfirmed queue reservation also becomes queue-stuck after watchdog', () => {
   const cfg = { ...config, watchdog_ms: 1000 };
   const session = { id: 's1', latest: { timestamp: '2026-01-01T00:00:00Z', payload: { type: 'task_complete', turn_id: 't1', error: { codex_error_info: 'server_overloaded', message: 'busy' } } } };

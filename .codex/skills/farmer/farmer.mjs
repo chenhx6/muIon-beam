@@ -54,9 +54,10 @@ export function parseSessionEvents(lines, projectRoot) {
 }
 function segment(file, start, length) { const fd = fs.openSync(file, 'r'); try { const b = Buffer.alloc(length); const n = fs.readSync(fd, b, 0, length, start); return b.subarray(0, n).toString('utf8'); } finally { fs.closeSync(fd); } }
 function readSession(file, root) {
-  const size = fs.statSync(file).size; const head = segment(file, 0, Math.min(size, 262144));
+  const fileStat = fs.statSync(file); const size = fileStat.size; const head = segment(file, 0, Math.min(size, 262144));
   const offset = Math.max(0, size - 1048576); const tail = segment(file, offset, size - offset);
-  return parseSessionEvents([...head.split(/\r?\n/).slice(0, 1), ...tail.split(/\r?\n/).slice(offset ? 1 : 0)], root);
+  const parsed = parseSessionEvents([...head.split(/\r?\n/).slice(0, 1), ...tail.split(/\r?\n/).slice(offset ? 1 : 0)], root);
+  return parsed ? { ...parsed, rollout_file: file, rollout_mtime_ms: fileStat.mtimeMs, rollout_size: size } : null;
 }
 function walk(dir) { if (!fs.existsSync(dir)) return []; return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith('.jsonl') ? [path.join(dir, e.name)] : []); }
 function write(file, data) { fs.mkdirSync(path.dirname(file), { recursive: true }); const tmp = `${file}.${process.pid}.tmp`; fs.writeFileSync(tmp, `${JSON.stringify(data, null, 2)}\n`); fs.renameSync(tmp, file); }
@@ -84,7 +85,7 @@ export function releaseRecoveryLock(lock) {
 }
 export function inspect(root, codexHome) {
   const result = new Map();
-  for (const file of walk(path.join(codexHome, 'sessions'))) { try { const s = readSession(file, root); if (!s?.id || !s.latest) continue; const old = result.get(s.id); if (!old || s.latest.timestamp > old.latest.timestamp) result.set(s.id, s); } catch {} }
+  for (const file of walk(path.join(codexHome, 'sessions'))) { try { const s = readSession(file, root); if (!s?.id || !s.latest) continue; const old = result.get(s.id); if (!old || s.latest.timestamp > old.latest.timestamp || (s.latest.timestamp === old.latest.timestamp && s.rollout_mtime_ms > old.rollout_mtime_ms)) result.set(s.id, s); } catch {} }
   return [...result.values()];
 }
 export function recoveryStep(session, previous, config, now, queue, options = {}) {
@@ -105,9 +106,9 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   const manualNewStart = (sawNewStart || startAfterPreviousEvent) && !automaticResume && (manualUserPrompt || !previous?.recovery_chain_active);
   const reset = manualNewStart ? { ...previous, attempts: 0, pending: false, next_at: 0, last_started_event: startedKey, recovery_chain_active: false } : previous;
   const continuingRecovery = automaticResume || (Boolean(previous?.recovery_chain_active) && !manualUserPrompt);
-  if (payload.type === 'task_started') return { ...reset, status: 'running', lifecycle: 'turn_started', event_key: eventKey, pending: false, attempts: continuingRecovery ? (previous?.attempts || 0) : 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, recovery_chain_active: continuingRecovery, automatic_resume: automaticResume };
-  if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', lifecycle: 'cancelled', pending: false, last_event_timestamp: event.timestamp };
-  if (!payload.error) return { ...reset, status: 'complete', lifecycle: 'succeeded', pending: false, recovery_chain_active: false, automatic_resume: false, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp };
+  if (payload.type === 'task_started') return { ...reset, status: 'running', lifecycle: 'turn_started', process_health: 'running', event_key: eventKey, pending: false, attempts: continuingRecovery ? (previous?.attempts || 0) : 0, next_at: 0, last_started_event: eventKey, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, rollout_mtime_ms: session.rollout_mtime_ms ?? previous?.rollout_mtime_ms ?? null, rollout_size: session.rollout_size ?? previous?.rollout_size ?? null, recovery_chain_active: continuingRecovery, automatic_resume: automaticResume };
+  if (payload.type === 'turn_aborted') return { ...previous, status: 'cancelled', lifecycle: 'cancelled', process_health: 'aborted', pending: false, last_event_timestamp: event.timestamp, rollout_mtime_ms: session.rollout_mtime_ms ?? previous?.rollout_mtime_ms ?? null, rollout_size: session.rollout_size ?? previous?.rollout_size ?? null };
+  if (!payload.error) return { ...reset, status: 'complete', lifecycle: 'succeeded', process_health: 'complete', pending: false, recovery_chain_active: false, automatic_resume: false, last_event_timestamp: event.timestamp, last_successful_activity: event.timestamp, rollout_mtime_ms: session.rollout_mtime_ms ?? previous?.rollout_mtime_ms ?? null, rollout_size: session.rollout_size ?? previous?.rollout_size ?? null };
   const errorClass = classifyError(payload.error, config);
   if (!errorClass) return { ...reset, status: 'manual-attention-required', lifecycle: 'failed', pending: false, last_event_timestamp: event.timestamp };
   const key = eventKey;
@@ -117,6 +118,8 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   if (explicitRetry) state = { ...state, attempts: 0, pending: false, next_at: 0, manual_retry: false, breaker_cleared: false, status: 'retrying', lifecycle: 'queue_attempted' };
   state.error_class = errorClass;
   if (state.pending) {
+    const rolloutChanged = Number.isFinite(session.rollout_mtime_ms) && (!Number.isFinite(Number(state.rollout_mtime_ms)) || session.rollout_mtime_ms > Number(state.rollout_mtime_ms));
+    if (rolloutChanged && event.timestamp === previous?.last_event_timestamp) return { ...state, status: 'recovery-observing', lifecycle: 'observing', process_health: 'writing', rollout_mtime_ms: session.rollout_mtime_ms, rollout_size: session.rollout_size ?? state.rollout_size ?? null, queue_accepted_at: now, last_observed_at: new Date(now).toISOString() };
     const pendingValue = state.queue_accepted_at || state.queue_reserved_at; const pendingAt = typeof pendingValue === 'number' ? pendingValue : Date.parse(pendingValue || '');
     if (pendingAt && now - pendingAt >= (config.watchdog_ms || 30000)) return { ...state, status: 'queue-stuck', lifecycle: 'queue_stuck', pending: false, next_at: now };
     return { ...state, status: 'recovery-pending', lifecycle: 'queued' };
@@ -125,7 +128,7 @@ export function recoveryStep(session, previous, config, now, queue, options = {}
   if (state.attempts >= maxAttempts) return { ...state, status: 'manual-attention-required', lifecycle: 'blocked', breaker_reason: 'max-attempts-reached' };
   if (now < state.next_at) return { ...state, status: 'waiting-retry' };
   const reservation = { reservation_id: crypto.randomUUID(), event_key: key, attempts: state.attempts + 1, reserved_at: now, reserved_at_iso: new Date(now).toISOString(), event_timestamp: event.timestamp };
-  state.queue_reservation_id = reservation.reservation_id; state.queue_reserved_at = reservation.reserved_at;
+  state.queue_reservation_id = reservation.reservation_id; state.queue_reserved_at = reservation.reserved_at; state.rollout_mtime_ms = session.rollout_mtime_ms ?? null; state.rollout_size = session.rollout_size ?? null; state.process_health = 'waiting-for-turn';
   let result;
   try { result = queue(session.id, config.recovery_message, reservation); }
   catch (error) { result = { status: null, error }; }

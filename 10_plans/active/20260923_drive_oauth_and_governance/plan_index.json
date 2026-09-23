@@ -2,9 +2,9 @@
   "schema_version": 1,
   "task_id": "task_drive_oauth_and_governance_20260923",
   "task_name": "Drive OAuth 对齐与 M/D/?? 治理",
-  "status": "ready_for_user_review",
-  "current_phase": "P4-readback-complete-review-before-execution",
-  "next_action": "Review this plan; after explicit start, sync the current origin/main tree and then execute P5/P6",
+  "status": "executing",
+  "current_phase": "P4b-refresh-canonical-drive-mirror",
+  "next_action": "Create a clean committed tree from origin/main and refresh the canonical Drive mirror, then verify the updated manifest and recovery index",
   "created_at": "2026-09-23T15:00:00+08:00",
   "updated_at": "2026-09-23T15:30:00+08:00",
   "owner": "codex-8f62a0ce8890af6b3331-1",
@@ -31,6 +31,7 @@
     {"id": "P2", "status": "completed", "title": "Worktree-aware dashboard health check and Gitee push"},
     {"id": "P3", "status": "completed", "title": "Align connector OAuth account to malakarlio29@gmail.com", "exit_criteria": "connector profile and folder readback use target account"},
     {"id": "P4", "status": "completed", "title": "Verify connector manifest and recovery index", "exit_criteria": "connector reads drive-mirror-manifest.json and recovery index; count, bytes and SHA256 agree"},
+    {"id": "P4b", "status": "running", "title": "Refresh canonical Drive mirror to current origin/main", "exit_criteria": "mapped-drive copy verified; manifest and recovery index identify current Gitee commit"},
     {"id": "P5", "status": "pending", "title": "Archive Manifest-backed P2 outputs to Drive", "exit_criteria": "copy-only run receipt and per-file verification; no Gitee output publication"},
     {"id": "P6", "status": "pending", "title": "Govern M/D/?? in clean worktree", "exit_criteria": "each durable change, rename candidate, output and blocked item has a receipt; main checkout remains preserved"}
   ]

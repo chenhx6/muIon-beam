@@ -3,14 +3,14 @@
   "manifest_type": "external-reference-library",
   "audience": "codex-internal-reference",
   "execution_policy": "reference-only",
-  "generated_at": "2026-09-09T01:12:48.795Z",
-  "last_changed_at": "2026-09-09T01:12:48.795Z",
+  "generated_at": "2026-09-24T11:59:20.479Z",
+  "last_changed_at": "2026-09-24T11:59:20.479Z",
   "changes": [
     {
       "type": "archive-path-changed",
       "library_id": "cad-studio-0.3.4-windows-x64-portable",
-      "before": "reviewed",
-      "after": "reviewed"
+      "before": "H:\\我的云端硬盘\\muIon_archive\\external-libraries\\cad-studio-0.3.4-windows-x64-portable\\ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719",
+      "after": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam\\06_external_lib\\cad-studio-0.3.4-windows-x64-portable\\ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719"
     }
   ],
   "libraries": [
@@ -1101,7 +1101,7 @@
           "archive": "gitee"
         }
       ],
-      "drive_archive_path": "H:\\我的云端硬盘\\muIon_archive\\external-libraries\\cad-studio-0.3.4-windows-x64-portable\\ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719"
+      "drive_archive_path": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam\\06_external_lib\\cad-studio-0.3.4-windows-x64-portable\\ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719"
     }
   ]
 }

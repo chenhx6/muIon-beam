@@ -1,0 +1,925 @@
+{
+  "schema_version": 1,
+  "record_type": "verified-formal-deletion-receipt",
+  "created_at": "2026-09-25T08:35:56.728Z",
+  "source_receipt": "quarantine-drive-verification-20260924.json",
+  "verified_count": 196,
+  "unverified_count": 32,
+  "verified": [
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/case_sweep.log",
+      "sha256": "b90c01d14cef60222273772757a1c5462310053db8e6c90ae4179af79d28d1cb"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/field_export.log",
+      "sha256": "0fe8902b234deecc26477a83aedae7320875e6f32c339ccb61bc0f23184a33d4"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/reload_validation.log",
+      "sha256": "20e1d115d02e6ec234ee2a887cf537feb9943df127c92e4d8ba8216c2fa18374"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/transport_tuning.log",
+      "sha256": "9d5a600268e6aa9134708dee15483943cace150a13d9c33bea873374f8d5707f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/prefs_step_import_final/logs/batch1.log",
+      "sha256": "61b21ba29c141b523a4c5938705cf47f7638347a55dbc5512300e3a083ea934f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/prefs_step_import_final/logs/batch1_render.log",
+      "sha256": "041f9cd290271f6cfd6d3481212d140673fa67fc414cae5b452f22260a6e3ffb"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch1.log",
+      "sha256": "481a9c8c88878af03c2a16f809e60488964d795bf5482de727548dc027eac477"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch1_render.log",
+      "sha256": "fc309cb5f39070418914e589bf8a12191b05c857c4389dac24dfb2056b45e900"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch2.log",
+      "sha256": "610c937c3f0dc5984109f3dfef37f9dafb732cf9e2809777624a45f676c77d13"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch2_render.log",
+      "sha256": "a4d53191109027c1d0afdfa25cf94bf2687385cc15b651c3ccdd9ce1bf713510"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile1_prefs/logs/batch1.log",
+      "sha256": "044b18e5bf44cadfb41a670fbfd6d8bbe259f4b601e29fd6982875407de853d3"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile1_prefs/logs/batch1_render.log",
+      "sha256": "bf57130df8e6cabbf0ac265a476e22f2de59a711ffcb51a20e70186df3ad6e71"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_From_file0_prefs/logs/batch1.log",
+      "sha256": "16279ee4882a9fcc6be8e9939ce860fa4738f763ea083370632b71f426aa6d49"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_From_file0_prefs/logs/batch1_render.log",
+      "sha256": "4a82cb14476f34fc3beef57bdc6244a198c07421889c349251862af5745dd37b"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_api_prefs/logs/batch1.log",
+      "sha256": "2616d47aab8469726b4b65da4af83eafabe2e5a5f685e87e9d4e83dd9f6d55a2"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_api_prefs/logs/batch1_render.log",
+      "sha256": "76f2a5dbc194baf5edecdb0a3368710d0ad839f6988d9dcbdbfdb732bfa3ae2a"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_interp_prefs/logs/batch1.log",
+      "sha256": "9585cb8105ff99409436f5cc401c1c187fbaaf81156f0efa577826ecf2d1969f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_interp_prefs/logs/batch1_render.log",
+      "sha256": "889785d0333827cacd9d2214e69bc3892e8b6347ec0ba314c47cb30f51ab694f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs/logs/batch1.log",
+      "sha256": "caaf8dacd6fefe66121109edc8ce1d6d7718cd11eaa7fb0864f2e6c5f61857da"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs/logs/batch1_render.log",
+      "sha256": "8b70d4b8ddded64d32ff9412aefc56e00ad01b3e59ed2206cb3676e2deaa2cea"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs2/logs/batch1.log",
+      "sha256": "30d7dc8678278c39f17e7c2b9a18452b0b5122e66b22d03c84202de3d82bc3c4"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs2/logs/batch1_render.log",
+      "sha256": "b38ab9f5df2ceca2697008d6cea1788451303b117db8ac1f01eae04aabe0de64"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newcpt_prefs/logs/batch1.log",
+      "sha256": "e9d3f5661af8955ad6ccace2e54ac46e7584c26f4026dcf8b21286c20553ed53"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newcpt_prefs/logs/batch1_render.log",
+      "sha256": "c826b2ac0b81dd59fde1622811649dcaac6a1deecc11bdc927ca28d821e12b03"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_args_prefs/logs/batch1.log",
+      "sha256": "21f0eff69bc5e821c576ef1f3ec83b857ce79986e1e4e424411f8fbbef398f8f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_args_prefs/logs/batch1_render.log",
+      "sha256": "b6a64e93b121000880603ef2789e4f7dba699769d565af0fbfd9af5097c24e7c"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs/logs/batch1.log",
+      "sha256": "1e4083e5450c9b4528f90cdcf4620f45c08ba3371844d593523cb3bfa71e2221"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs/logs/batch1_render.log",
+      "sha256": "40990734261b377ac9b09747f9221c87dda51d464648404ba1e946c9e0f910d3"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs2/logs/batch1.log",
+      "sha256": "b4712ba462f8fd1a5b9f282fa1b302bb391330934dd52695cdb0b0cadf7ab68a"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs2/logs/batch1_render.log",
+      "sha256": "08f1e4f3f15307e90589b9a3d68ab7a32ee4cafe6e2a8e23ef47239b4946b811"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs3/logs/batch1.log",
+      "sha256": "dfa7e2189c1e71e5bf07d82c5f9ffab8d18e9db9a1b35263e0b34056174211b5"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs3/logs/batch1_render.log",
+      "sha256": "fa1e84f9d0b6a9ae3d6637fcf61944ed40e563454c3d632dc8fa0063cd73bdd1"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs4/logs/batch1.log",
+      "sha256": "f7fbd4545eb642f0ffdf076f5ca69e30ac440aa7d22ebc1a8a5e8965923442c2"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs4/logs/batch1_render.log",
+      "sha256": "2e2a861145555c7b7d40eace663fe3e37395e092f433e40fccfbeaf30981d0d4"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs5/logs/batch1.log",
+      "sha256": "bd4fbfccb960ee3dd1b32b96799c74a839966c4c260c502c154412a941432dbe"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs5/logs/batch1_render.log",
+      "sha256": "3f2aaed66c49bb4bd35caf724b3e67073e998fcbc6d8fb90ed20fa13ae2f2979"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs/logs/batch1.log",
+      "sha256": "87d88bf7624ed9bf6a83901a68c396fd7a1e55068450d2fc08dff42634c7c709"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs/logs/batch1_render.log",
+      "sha256": "c29a832e35d0e93f9b4d9d6080fca52623f4d0312b44a05607ef754981ca1f66"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs2/logs/batch1.log",
+      "sha256": "77e8867e9b71bebf4edf0c2cce921040f3e931a75d1a850875b61064bb1aba2a"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs2/logs/batch1_render.log",
+      "sha256": "675e4c2c2bb4692ec98299a29ba2b69ac0c4a8e57f62c800a3f1cb363c28c269"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs3/logs/batch1.log",
+      "sha256": "51948fc7b4930cb29d222491514fca85b338382b128c9d3bb6271e1d57c75730"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs3/logs/batch1_render.log",
+      "sha256": "c747b549bcaf896004ec5395fcb91ce8d31e8f911db553530e5e66ede0f98b6f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs4/logs/batch1.log",
+      "sha256": "f0c3fa04ef3c2337c87de959c133c0aa421760e68db82d1f48e2102363ad5675"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs4/logs/batch1_render.log",
+      "sha256": "38de7f5c09aed27a6176e013ae758e51bc99a3018821bc86ad4c90714485bce9"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs5/logs/batch1.log",
+      "sha256": "45e39c55ac6e7658871f9b40d4d6bae090077b38b350f8d61f80380185864b1e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs5/logs/batch1_render.log",
+      "sha256": "9078e755508b75a55e78a4198783e7529ccc72d56d6278686d80a13634c05f6f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs6/logs/batch1.log",
+      "sha256": "c94ecb9afac2bbf13b0acaacf664b7b85559eabac2d4dbd9955a7bd4c8c34277"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs6/logs/batch1_render.log",
+      "sha256": "13af9faa7988f52bc5f53e00c8476b19779209d50a3284c0ccd3a3ea9cdd0ad1"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval2_prefs/logs/batch1.log",
+      "sha256": "36c50b842a4457593d3e386d7c3685a691251691ca98c934b3afde50b4e00dfa"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval2_prefs/logs/batch1_render.log",
+      "sha256": "e1a5dad943d350279e8c9e5fc1d1cc467bafd8e5980a403d6902dd645370aeb2"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval3_prefs/logs/batch1.log",
+      "sha256": "689ab505680d8b85f49b135c40d02779c2c030e80a9a4774f6390cce837f3994"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval3_prefs/logs/batch1_render.log",
+      "sha256": "7cd0838c6e88958ac73b08ac964634aac5669e30464e04ba68d636ebca619285"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval4_prefs/logs/batch1.log",
+      "sha256": "3076ee191bc8197eafe8279364dca85b005f623e79242241615c805de7911370"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval4_prefs/logs/batch1_render.log",
+      "sha256": "9f820b4a2afbbe459796b89894e2eabfc398ed2ebe434c4bc321a9dad2d429cb"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval5_prefs/logs/batch1.log",
+      "sha256": "9695b26414d9aeb0c1786d383ead4b1c2a6b0875b5d1f5d583c2dd2408d15796"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval5_prefs/logs/batch1_render.log",
+      "sha256": "ae848ccc0a41fd00cdde0a4b1b2af63e3f8c6e510b2f33fc4c5206387318094e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval_prefs/logs/batch1.log",
+      "sha256": "73e084eb3635362cde021b02ad32f4c78e8c5c1f4c88bb2928ca1b980375634d"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval_prefs/logs/batch1_render.log",
+      "sha256": "0e6995b8cac326b0d459809dc513f229131e885b53919ac77e1bbb6bc79a4495"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_evalall_prefs/logs/batch1.log",
+      "sha256": "48a2570686d40fb1a779d99779ce167597007ebe0825ce100a4579dd4e2b3aa5"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_evalall_prefs/logs/batch1_render.log",
+      "sha256": "9a3f5b0c481d47d07f5fe368af5d92f84e49a2c36a3a38d1f566e65647f93250"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_import_prefs/logs/batch1.log",
+      "sha256": "86e9607967964de8b941aa669534e6be1bb7521a6b03224668604865b9ce2d9b"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_import_prefs/logs/batch1_render.log",
+      "sha256": "71dc27e09bacf95d39c85db24cd4d796c1d461228152e0a0fb8b4d8589b99554"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_prefs/logs/batch1.log",
+      "sha256": "328fbb987b3f3d71d93629fd93e5be47fbeaad324f1b4de24f3db96fd46518ca"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_prefs/logs/batch1_render.log",
+      "sha256": "6506fd1269f835248c0dbff85028031099a31d959a900673df1779b8b682bc15"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/aperture_phase_fine_20260904_2050_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/axial_source_20260905_0430_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/axial_source_20260905_0430_stdout.log",
+      "sha256": "cbed2f5a468baf5c7d480f018eed1ce7f87d5480e4225d53ff70b117aa40a075"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0006_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0006_stdout.log",
+      "sha256": "96116232d362f61e74e7be4ff8ffb03d786b412fd23f0eb03b638a3ff102647a"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0012_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0012_stdout.log",
+      "sha256": "87358fa3105147d722a51dfbbac443e9ffc6d752b4ad131dd9c00491f41c430a"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0020_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0020_stdout.log",
+      "sha256": "175cf6c551082ccce7a52cf7ae47f51974bdfebea4fda34f24defcc7880e79c3"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0028_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0028_stdout.log",
+      "sha256": "e9a263da38b877ff3904cc0b5075f364b3bc04a92ae93a71eccb2e6cc27d58b6"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0040_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0040_stdout.log",
+      "sha256": "66aec14f24074aaa28febcf72f5d1da9abe660aa882d2649d5ebd4609a4342be"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0050_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0050_stdout.log",
+      "sha256": "5b256b6e31817a5d35e7c1e3dbd76db83e04383c6f073a4e051302aa78c253ee"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0100_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0100_stdout.log",
+      "sha256": "962e77db83d31a6eb99b99e27ca811cecb4dd5a0bba0365ec267508ee0be018a"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0112_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0112_stdout.log",
+      "sha256": "c3fa1d2a9f31c7f357ef81647a64d86c580c226cefe08faac4d99f339845dbd5"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0125_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0125_stdout.log",
+      "sha256": "dbc9ac890d8597ce2018fe3d610081e63dc67b00e285628528a61b0bdbe9fdbf"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0155_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0155_stdout.log",
+      "sha256": "d38ff115bbbef9d8af649b060a16ea60e534ad32ff220c3a1b3297266fa28ff6"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_stdout.log",
+      "sha256": "9c4167566f7b701670a64e9d8635501f3f7935105ad8dbb08a6aa08a8670c0da"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_0720_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_0720_stdout.log",
+      "sha256": "306b723c6f85620a9f810b778e622ccddb5d57c1c82187d50d11e0d789364e0e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_1820_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_1820_stdout.log",
+      "sha256": "eaa3cb797415dcaf61848bfdb30ec8fae3652755fb3588b65a1fe0b7287a6dfd"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble_20260905_0615_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble_20260905_0615_stdout.log",
+      "sha256": "809b193028b9a057a02b4af1cbc62d128f13d1365281a04cd0cce6526c921115"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/final_builder_20260905_1930_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/final_builder_20260905_1930_stdout.log",
+      "sha256": "f947d1340b78fd0be153cefb2a029074bc8904c45b4e511a0ba95853ac474002"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/fine_acceptance_20260904_1350_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/fine_acceptance_20260904_1705_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/phase_refine_20260904_1030_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/phase_refine_20260904_1230_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0902_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0958_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/short_gap_bridge_20260905_0030_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/short_gap_bridge_20260905_0030_stdout.log",
+      "sha256": "469c1ed360515fcfe4397f6dae156ef9a42e8702a75f0d322cd79fe25893904b"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0825_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0825_stdout.log",
+      "sha256": "812aca78263f43f9deaac1595e3a127998942f5329936e427262a533b50a4213"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0834_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0834_stdout.log",
+      "sha256": "fe4f63b737e553c52661dc076927037f1aae498c3092e8fa21209e538d05b8c4"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0845_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder.err.log",
+      "sha256": "4aa394da2d670479029c39a214a252ce04c1d4ce097e21d343fc0490d2a0fbf7"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet.err.log",
+      "sha256": "c118c2161c8ae51b8cbf7672f7faaa78cda7122522058ad37087b3c26e435861"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_diag.err.log",
+      "sha256": "7886faa38297a15d34bf2ad7e862d22b0749c2edc51b3d957146f7ccb1ba6b20"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_diag.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v2.err.log",
+      "sha256": "6241b13d05e3dd51bef4e65c68633103327c7c303006f59f2f57f207bb49459d"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v3.err.log",
+      "sha256": "8e95dd67b3d749097c709a0e3b102260fe97545f92e1e009536734292d22ea34"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v4.err.log",
+      "sha256": "b70b8aa7a6171b837768174b82a1cf784fce0317f438ea835b53ce15a9aea901"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v4.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final.err.log",
+      "sha256": "93078e8438e7d9197dc8d2a1c10fa54867525bb180a1340f47af2ec55960db3e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final_zfillet.err.log",
+      "sha256": "b70b8aa7a6171b837768174b82a1cf784fce0317f438ea835b53ce15a9aea901"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final_zfillet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_v2.err.log",
+      "sha256": "93078e8438e7d9197dc8d2a1c10fa54867525bb180a1340f47af2ec55960db3e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_v2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_diag2.err.log",
+      "sha256": "b301f24f63d14feac84c46f8605f41f74974b7f1951b5a0e6d530f294fad912e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_diag2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_fillet_facewalk.err.log",
+      "sha256": "902fe71253bf59ce71e147e0d2956ee4c985199178b03defe0f165faf161f124"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_fillet_facewalk.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_final.err.log",
+      "sha256": "de3fe0b3fba140f138e0d0349d4ecee17e5b5a340bc510f5888906e412ca579f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zfillet.err.log",
+      "sha256": "ea84c16b51de7c43d618db00ae8bb2c8dab5070ed39e52724cc08936af0285fb"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zfillet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation.log",
+      "sha256": "75a39b60589105eb3821da9df08158273d0094e36abbd43c72df7c0a90a248a1"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_box.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_final.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_final.log",
+      "sha256": "75a39b60589105eb3821da9df08158273d0094e36abbd43c72df7c0a90a248a1"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export.log",
+      "sha256": "00b82fc7bc883c97caf833efc677156dd75f660f23b15b50a587d048af8474f2"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_final.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_final.log",
+      "sha256": "a8bc7e66c4e31977b6b94e8b2a827b6928f75fa85670f5bb983f4add10664a66"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_v2.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_v2.log",
+      "sha256": "a8bc7e66c4e31977b6b94e8b2a827b6928f75fa85670f5bb983f4add10664a66"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export.log",
+      "sha256": "846e38ab7c4012d63000f4c0b0e563704701b400f5a4561bb477ad8177aeddcd"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export_final.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export_final.log",
+      "sha256": "846e38ab7c4012d63000f4c0b0e563704701b400f5a4561bb477ad8177aeddcd"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_20260904_1645.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_20260904_1645.log",
+      "sha256": "c81691e5464785508f80bc76c66e2336f7ec87a91a52c84380feb844b166e9a2"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_test_ring_err.log",
+      "sha256": "327f6156ce98c8d904f22d85d115dce3f151c802245578340b61f06e1d813d57"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_test_ring_run.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/transport_bridge_20260904_2320_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/transport_bridge_20260904_2320_stdout.log",
+      "sha256": "88b707817422bdf46197cbea8f7a0bdb588878fc0e516c4dfee305260f944efc"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/validate_stage1_comsol_20260905_1945.err.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/validate_stage1_comsol_20260905_1945.log",
+      "sha256": "376726ed1a35282eb88c96d0b3795de7491fe5fb7e1e0e81939bf943a8ef173b"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/velocity_phase_20260904_1900_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.csv",
+      "sha256": "8442b1b996da840aeab5547caa8417f6c18c3cded57fc4ce9b87575e449888d0"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.json",
+      "sha256": "68fe48fe824639bad05f721136ca0fcd8597555cc47a7ab48a484ea150e99689"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.csv",
+      "sha256": "3154bed16991dbd5b84c8db0b65544d94bc1271ef4561044e135d5f218ca20c9"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.json",
+      "sha256": "c7e5aedf6e2e1f079da1774f3afd25205f31e201770614eab75e5d5aa8f150fe"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.csv",
+      "sha256": "aa3d9333836eeda91f1d2d4e00f2a0818b29fa59c9597d76612f262da0ff93cf"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.json",
+      "sha256": "9a04b4f7719912436a5ac147d4fa720cf5174aae52ac9925d9008d13b80af348"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.csv",
+      "sha256": "dec3b994b70670410c1d00ccc2b95ea5e0e857d40cc2bdab6634f87589bdc2e5"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.json",
+      "sha256": "9a6e5177847539b4d2a34432b879acaffe4554e07a1734453872e3e80f64831e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.csv",
+      "sha256": "90095a6fa68f7e2b04f2d65bb1c285387617646533340ce9f1bb3ac4e7d9c2a0"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.json",
+      "sha256": "670f0fb219ae7e820d3c0ef183fe94e22f74bcba15c31a32cd58fc06b5c7b37c"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.csv",
+      "sha256": "506a82bc8200dfab415ecc2293796c36899ef9c711da76edc6a8ca72c3cad1a1"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.json",
+      "sha256": "0c556a4206a37d0081fd497cb442e54a84822548f69d5bf2e5e2ec497d3e8eee"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.csv",
+      "sha256": "30885ead8d8a6b92b58b64be797f1928bbcff13e9c2fb2ec55f5f99ee0f5a028"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.json",
+      "sha256": "974068447adcab061b7aef8aa9bf151cc97895c0b49a93dd899f353e1e8b69e0"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.csv",
+      "sha256": "90095a6fa68f7e2b04f2d65bb1c285387617646533340ce9f1bb3ac4e7d9c2a0"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.json",
+      "sha256": "2ed7ec4d8844cd470738fbce2ae91903f09e2098dcdd85b675a840beaaa8714e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.csv",
+      "sha256": "90f235c5421827a86c0f425cb5e4b2bbed6ec8089793fce04cee8b20de073166"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.json",
+      "sha256": "0e14a86904987d1ead0c7bd2e5e36977301a0253961a42017e84a127db3576a6"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/candidate_parameter_sets.csv",
+      "sha256": "9200e53d2b668990b2296da0faa970dfaeda63c7dc8e4a03fb6aae581e335f0f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/candidate_parameter_sets.csv",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_loss_diagnostics.csv",
+      "sha256": "79ea57f9de12bf441a5faaa4613de39c201eb908df77be05c67fc88eeff4c803"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_transport_scan_master.csv",
+      "sha256": "a89f5ba1d49fc1f22e0bcbe17e3bf56a5ea35d336a472e4248e5e8cf930995c2"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_scan.csv",
+      "sha256": "90deaa9418bda271172a9e58fd7837e5d3cde6ef1a51296e795b8b08034021c3"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_summary.csv",
+      "sha256": "90deaa9418bda271172a9e58fd7837e5d3cde6ef1a51296e795b8b08034021c3"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/field_aperture_zoom.csv",
+      "sha256": "1f4b9de0460b360c4fbac0e524ccd4315ab90c50b6dd764b162e107e192b57ff"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/field_summary.csv",
+      "sha256": "c16258903618fbcc57e27b65aaef3a6bc4b014595f59545de2cef6aa457b182f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/loss_diagnostics.csv",
+      "sha256": "79ea57f9de12bf441a5faaa4613de39c201eb908df77be05c67fc88eeff4c803"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/transport_scan_master.csv",
+      "sha256": "a89f5ba1d49fc1f22e0bcbe17e3bf56a5ea35d336a472e4248e5e8cf930995c2"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/variable_sensitivity.csv",
+      "sha256": "cc62b12397642f75c95eb0be4d94e839e547d1d6c1324c6a9c79d69c8a9ea96b"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/model-snapshot/snapshot-manifest.json",
+      "sha256": "1d846ec91fd47012ec466b3b4b2ae14ff3e99ce0291027575ce27a8e5c9f0a04"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/behavior-analysis.json",
+      "sha256": "fa35d8f0e99c16e792f30e1e7b45de00de259549db5eb51130ab61d8670f5765"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/detailed-report-zh.md",
+      "sha256": "9def982292a23a3fdfc48b5c1e2d9dd4e4173e906794f20b024c702d43423c8e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/figure-manifest.json",
+      "sha256": "d70442753f6f219cff7342a43ff4599b25585cf1d4854bbde7c522c52b093796"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/summary-report-zh.md",
+      "sha256": "7064316304f878e3dfbb379bfb7f11c72d18133bc04c1e830c8950542283fb42"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/run-manifest.json",
+      "sha256": "9fa7244cd4664660126687197fbe7eb5c22d7e36bc2dbb6d7729f32eb71f49b4"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/smoke-test-result.json",
+      "sha256": "d570af7257a1d50c0b572fac45a53e35877913cc11c95fa60180846466f9d297"
+    }
+  ],
+  "unverified": [
+    {
+      "path": "03_runs/formal/README.md",
+      "sha256": "29ab5326d36fff853013fe38591832212c9d2512c1a4ecd7f626f134f411435d"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/aperture_phase_fine_20260904_2050_stdout.log",
+      "error": "git-show-failed"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0902_stdout.log",
+      "error": "git-show-failed"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0958_stdout.log",
+      "error": "git-show-failed"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_native_rounding_final.log",
+      "sha256": "af860c44c883eea86f7362f9ea273aae83c3a87a98279f4bd54f790cf78a99bb"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_box.log",
+      "sha256": "779fda5cdfc526f243886fa3f618d59f24ac869d3e2792b50f567059ae0fab26"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_final.log",
+      "sha256": "b8b6c62adbb45a06744a0570b3919e9632eb9285608305c0633ede00a7f2d8df"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/field/apertures/linear/V2_aperture_E_linear.png",
+      "sha256": "5411faf5c57d240e445bcd41e858dae39ff5040b8b105d5839027071a70d7cdf"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/field/overall/linear/overall_E_linear.png",
+      "sha256": "4e2cb616441586c21b21c2d6f93f82f37b2a334311092eabf697d77a7e5cddc8"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/particle/centered_trajectories_rz.png",
+      "sha256": "2a3e3747dca4402d6aad64fc95475a0f023fdb92c3fe916a6c4bbe6124ef1942"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/particle/centered_trajectories_xy.png",
+      "sha256": "2eef66ca82d282413426ea1a0178378e93412fe0cd9013db95d0904a8af17096"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/aperture_peak_field_reference.png",
+      "sha256": "ce60f0a4c46f7f44414192dc4a8d89aa8cc64c793b9e1104b6eda611d5d4e510"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/baseline_candidate_final_comparison.png",
+      "sha256": "b9eb4e63489ae7114a019958cea4c84615e86107fa1908234fbd175ec68e7240"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/density_x_field_EN.png",
+      "sha256": "c093f58a3cc5ae12af12cc1710c936b1bf9f6ef62fbc540152d2e792674b7fcc"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/density_x_field_P90_exit_time.png",
+      "sha256": "21b8ae2914bb5436b6c3510c7cb76b54b732a80b9e511ba9bb367061ec143e66"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/density_x_field_transport_rate.png",
+      "sha256": "53ee32134ccf96cd08b9dbd8ee89cb9bc32fc402e75d72b4b5eea5a1b4b1ac4e"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/electric_field_strength_acceleration_time.png",
+      "sha256": "ac11e8e79b1724b713c7f56928dc1792fee9baa167193ea5aa58e78902d3eb11"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/electric_field_strength_axial_velocity.png",
+      "sha256": "2d805ce2ef9799e357cc839e17ab3606420e76dc37accae003d8030dab2a84c1"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/neon_number_density_Kperp.png",
+      "sha256": "28c72624ceaee61f1ef3cd45e68d5333318bc599ed97eeb091ee23468601b7fc"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/neon_number_density_radial_cooling_time.png",
+      "sha256": "9d118f6f13e1f1312cba2e099d9546f63902be469b94716ac9a692e9feb79a9a"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/neon_number_density_threshold_fraction.png",
+      "sha256": "170bc75d025ba09b25d6524b6522b0e70bd1f97d2907ae1ec29e024b1db5f489"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/figures/legacy/stage1_3d_feasibility/figures/centered/scans/source_K_theta_distribution.png",
+      "sha256": "e53ae527de966469c90881e0ea01771e57d4ea30b131223f135e388cf7a49d68"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.txt",
+      "sha256": "2f76648aa687173c4fd70909ca16f6b58b50c111d1adf95b35f64b1e669dd603"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.txt",
+      "sha256": "16f944ace42ed622339e195c510cad3bf2c53641c5f8d9692b32842f2ce39f45"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.txt",
+      "sha256": "1018390819f9a5df6ce14c715abf89746531a1e8b723d7db7c611d17c15acdb7"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.txt",
+      "sha256": "518d7695586b945a837e39585a28417672b33da3cb12d589e0c7dc8d397a7e4c"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.txt",
+      "sha256": "2d30820506fe79a32a23d46016189029017b287ac179539e8d2a1c7a97a12d47"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.txt",
+      "sha256": "a244d7f6470be0d41cbfb505e664f62dd8840e17b21c71d7321b611e81a87c7f"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.txt",
+      "sha256": "d1bf70eb528c080ba565237f083f1b12c9cb40e49dd8e9ec415e672a1d473454"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.txt",
+      "sha256": "0071b1b35baeae9dce87c26fcf20e76b2c53c62a747105ad28494f76345b96c4"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.txt",
+      "sha256": "638e16e2c3131cb56334095d86d5640bdd12412a8efc687499d313484a4f4af5"
+    },
+    {
+      "path": "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_scan_plan.csv",
+      "sha256": "60f71ade3565920fe2bc2cc0cdcdfb5d6a5757f9034d5ec630c10d9915b9f1cf"
+    }
+  ],
+  "status": "verified-deletions-approved-unverified-retained"
+}

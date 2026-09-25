@@ -1,18 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-09-07T10:36:28.557Z",
+  "updated_at": "2026-09-11T12:43:49.718Z",
   "models": [
-    {
-      "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/stage1_3d_feasibility.mph",
-      "absolute_path": "D:\\muIon-beam\\02_models\\comsol\\legacy\\stage1_3d_feasibility\\comsol\\stage1_3d_feasibility.mph",
-      "size": 50727722,
-      "modified_at": "2026-09-04T11:14:25.308Z",
-      "sha256": "7be63bd896e815e2ff21c6bf566a7564b6969d4148d3fd3bc8777ac178d2c50c",
-      "extension": ".mph",
-      "geometry_summary": {
-        "size_bytes": 50727722
-      }
-    },
     {
       "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/centered_cooling_calibration.mph",
       "absolute_path": "D:\\muIon-beam\\02_models\\comsol\\legacy\\stage1_3d_feasibility\\comsol\\centered_cooling_calibration.mph",
@@ -25,6 +14,39 @@
       }
     },
     {
+      "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/centered_stage1_highfield_10_v2.mph",
+      "absolute_path": "D:\\muIon-beam\\02_models\\comsol\\legacy\\stage1_3d_feasibility\\comsol\\centered_stage1_highfield_10_v2.mph",
+      "size": 54595025,
+      "modified_at": "2026-09-07T03:21:04.924Z",
+      "sha256": "2b712dc333807dc31d95de9dcf66d0ed098d19f747f7d9b322d14663eac91694",
+      "extension": ".mph",
+      "geometry_summary": {
+        "size_bytes": 54595025
+      }
+    },
+    {
+      "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/stage1_3d_feasibility.mph",
+      "absolute_path": "D:\\muIon-beam\\02_models\\comsol\\legacy\\stage1_3d_feasibility\\comsol\\stage1_3d_feasibility.mph",
+      "size": 50727722,
+      "modified_at": "2026-09-04T11:14:25.308Z",
+      "sha256": "7be63bd896e815e2ff21c6bf566a7564b6969d4148d3fd3bc8777ac178d2c50c",
+      "extension": ".mph",
+      "geometry_summary": {
+        "size_bytes": 50727722
+      }
+    },
+    {
+      "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/stage1_solidworks_step_import_check.mph",
+      "absolute_path": "D:\\muIon-beam\\02_models\\comsol\\legacy\\stage1_3d_feasibility\\comsol\\stage1_solidworks_step_import_check.mph",
+      "size": 286751,
+      "modified_at": "2026-09-04T22:39:59.152Z",
+      "sha256": "b0f0376539979d5f4b930519c6ee1e4f86631245c9d0a2bd2156d1d6cacbdf5a",
+      "extension": ".mph",
+      "geometry_summary": {
+        "size_bytes": 286751
+      }
+    },
+    {
       "path": "02_models/solidworks/legacy/stage1_3d_feasibility/cad/Stage1_Master_3D.SLDPRT",
       "absolute_path": "D:\\muIon-beam\\02_models\\solidworks\\legacy\\stage1_3d_feasibility\\cad\\Stage1_Master_3D.SLDPRT",
       "size": 196356,
@@ -33,6 +55,28 @@
       "extension": ".sldprt",
       "geometry_summary": {
         "size_bytes": 196356
+      }
+    },
+    {
+      "path": "02_models/solidworks/legacy/stage1_3d_feasibility/cad/Stage1_Master_3D.step",
+      "absolute_path": "D:\\muIon-beam\\02_models\\solidworks\\legacy\\stage1_3d_feasibility\\cad\\Stage1_Master_3D.step",
+      "size": 105584,
+      "modified_at": "2026-09-04T22:35:36.108Z",
+      "sha256": "49b4d36c4390b7d1934d4dd117b79a445fada7dadd74c08241f2a38d8d22b2e8",
+      "extension": ".step",
+      "geometry_summary": {
+        "size_bytes": 105584
+      }
+    },
+    {
+      "path": "02_models/solidworks/legacy/stage1_3d_feasibility/comsol/stage1_3d_physics_geometry.step",
+      "absolute_path": "D:\\muIon-beam\\02_models\\solidworks\\legacy\\stage1_3d_feasibility\\comsol\\stage1_3d_physics_geometry.step",
+      "size": 68156,
+      "modified_at": "2026-09-04T11:14:24.824Z",
+      "sha256": "7d2dd2f0f2801259bfa2f6c5f335b27d1fbc064edb50eb9eba0c63aea8833ba3",
+      "extension": ".step",
+      "geometry_summary": {
+        "size_bytes": 68156
       }
     }
   ]

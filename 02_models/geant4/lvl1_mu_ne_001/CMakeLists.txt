@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.16)
+project(lvl1_mu_ne_stopping LANGUAGES CXX)
+find_package(Geant4 11.0 CONFIG REQUIRED)
+include(${Geant4_USE_FILE})
+add_executable(lvl1_mu_ne_stopping mu_ne_stopping.cc)
+target_compile_features(lvl1_mu_ne_stopping PRIVATE cxx_std_17)
+target_link_libraries(lvl1_mu_ne_stopping PRIVATE ${Geant4_LIBRARIES})
+set_target_properties(lvl1_mu_ne_stopping PROPERTIES CXX_EXTENSIONS OFF)
+
+add_executable(lvl1_mu_ne_transport mu_ne_transport.cc)
+target_compile_features(lvl1_mu_ne_transport PRIVATE cxx_std_17)
+target_link_libraries(lvl1_mu_ne_transport PRIVATE ${Geant4_LIBRARIES})
+set_target_properties(lvl1_mu_ne_transport PROPERTIES CXX_EXTENSIONS OFF)

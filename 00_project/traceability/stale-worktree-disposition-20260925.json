@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "record_type": "stale-worktree-disposition",
+  "created_at": "2026-09-25T08:22:00Z",
+  "session_id": "codex-99a28b0d4e49abebe69a-1",
+  "main_checkout": "D:/muIon-beam",
+  "worktree": "D:/muIon-beam/_work/current/worktrees/codex-99a28b0d4e49abebe69a-1",
+  "head": "c7b3a017b18fe81f63bbb173e3c88623a7c636f2",
+  "status_path_count_main": 780,
+  "status_path_count_worktree": 780,
+  "status_path_sets_equal": true,
+  "worktree_unique_paths": 0,
+  "content_differences": 539,
+  "difference_summary": "All observed differences were files present in the main checkout and missing from the stale worktree; no worktree-only files were found.",
+  "disposition": "safe-to-remove-stale-worktree-only",
+  "preservation_rule": "Do not modify or delete main checkout content."
+}

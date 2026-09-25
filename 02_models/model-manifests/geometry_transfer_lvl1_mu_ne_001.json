@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "source": "current_project_geometry_transfer",
+  "status": "passed",
+  "files": {
+    "solidworks_native": {
+      "path": "02_models/solidworks/legacy/stage1_3d_feasibility/cad/Stage1_Master_3D.SLDPRT",
+      "bytes": 196356,
+      "sha256": "aec67f613293c0c422c240040f0cc52c6c322427617bc015ec454dec4f2d1a8a"
+    },
+    "step_transfer": {
+      "path": "02_models/solidworks/legacy/stage1_3d_feasibility/cad/Stage1_Master_3D.step",
+      "bytes": 105584,
+      "sha256": "49b4d36c4390b7d1934d4dd117b79a445fada7dadd74c08241f2a38d8d22b2e8"
+    },
+    "comsol_import_check": {
+      "path": "02_models/comsol/legacy/stage1_3d_feasibility/comsol/stage1_solidworks_step_import_check.mph",
+      "bytes": 286751,
+      "sha256": "b0f0376539979d5f4b930519c6ee1e4f86631245c9d0a2bd2156d1d6cacbdf5a"
+    },
+    "transfer_log": {
+      "path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_final.log",
+      "bytes": 418,
+      "sha256": "b8b6c62adbb45a06744a0570b3919e9632eb9285608305c0633ede00a7f2d8df"
+    }
+  },
+  "missing": [],
+  "evidence": {
+    "step_import_success": true,
+    "closed_shell_6": true,
+    "manifold_solid_brep_6": true
+  },
+  "notes": [
+    "STEP is the neutral interface for COMSOL and Geant4 geometry ingestion.",
+    "Native SLDPRT remains the editable CAD source.",
+    "This check validates file presence, hashes and recorded transfer evidence; it does not claim a new physical solve."
+  ]
+}

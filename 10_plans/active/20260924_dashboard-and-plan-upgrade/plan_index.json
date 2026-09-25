@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "plan_id": "plan_dashboard_and_plan_upgrade_20260924",
+  "plan_version": "v02",
+  "status": "completed",
+  "execution_started": true,
+  "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260924",
+  "objective": "本次完成全部既有基础设施遗留治理：主 checkout 干净、worker 集成闭环、dashboard 持久部署与三端验证；不执行科研任务",
+  "current_phase": "P4-main-branch-published-three-end-verified",
+  "next_action": "retain receipts and begin a new task for any future scope",
+  "accepted_upstream_ideas": [
+    "task-start offline plan bundle",
+    "one aggregate goal objective with story/checkpoint evidence",
+    "append-only checkpoint ledger and finite blocked/recovery states"
+  ],
+  "dashboard_requirements": [
+    "当前 session 在活动卡中标注；孤儿和过期 session 统一进入需要处理区，不增加历史列"
+  ],
+  "observed_root_cause": [
+    "当前 4317 服务的 /api/health 返回 project_root=D:\\muIon-beam\\_work\\current\\worktrees\\codex-8f62a0ce8890af6b3331-1，而本 session 是 codex-d80b7f12073a98b4eb63-1",
+    "主 runtime 的 processes.json 已将 dashboard 标为 dashboard-port-owned-by-another-service",
+    "dashboard 进程读取的是另一个 worktree 的 idle research-state，因此页面与当前任务没有关系",
+    "本地 dashboard 代码将 session registry、Codex SQLite、10_plans 和 research-state 合并到一个扁平数组，历史/异常/当前任务的可见性规则不够明确",
+    "SessionBootstrapper 可以接收 sessionName，但当前自动入口记录的 name 仍可能为 null"
+  ],
+  "candidate_sources": [
+    {
+      "name": "Tabler",
+      "url": "https://github.com/tabler/tabler",
+      "revision": "f4d5c3d2bc6b9c567eda0c8a8df758306219c7d0",
+      "license": "MIT",
+      "cache": "_work/cache/evolution/tabler-head",
+      "use": "copy a small dashboard shell/card/token subset or vendor compiled core CSS/JS",
+      "risk": "full repository is a pnpm/turbo monorepo; do not install or copy the whole workspace"
+    },
+    {
+      "name": "jKanban",
+      "url": "https://github.com/riktar/jkanban",
+      "revision": "963cf2031d0f2cf07e5edbe368978f59bb2e30fd",
+      "license": "Apache-2.0",
+      "cache": "_work/cache/evolution/jkanban-head",
+      "use": "reference-only; not used in this repair",
+      "risk": "not needed because this dashboard has no column drag/drop requirement",
+      "status": "rejected-for-current-scope"
+    },
+    {
+      "name": "Crawl4AI",
+      "url": "https://github.com/unclecode/crawl4ai",
+      "revision": "86e6464f6db215e0d608f6aa1da41e8505636ede",
+      "license": "Apache-2.0",
+      "cache": "_work/cache/evolution/crawl4ai-head",
+      "use": "batch web crawling, clean Markdown, structured extraction, caching, deep crawl and optional MCP/Docker service",
+      "risk": "large Python/Playwright dependency tree, browser downloads, SSRF/credential/cookie exposure and external-site terms/rate limits",
+      "status": "approved-project-local-install"
+    },
+    {
+      "name": "Browser Use",
+      "url": "https://github.com/browser-use/browser-use",
+      "revision": "d8110c5ff87ccba887aaa726cdb780f2f84bef8d",
+      "license": "MIT",
+      "cache": "_work/cache/evolution/browser-use-head",
+      "use": "dynamic browser interaction, login-aware workflows, real browser/CDP control and agent-driven research tasks",
+      "risk": "authenticated browser profiles and API keys are sensitive; full extras are large; browser actions can mutate external systems",
+      "status": "approved-project-local-install-without-desktop-or-harness",
+      "compatibility_pin": {
+        "version": "0.13.2",
+        "tag_commit": "1e75d1f1f3ae970ad673e479a2ac9b3b613f82be",
+        "pyproject_sha256": "7ab3f53b7be1bc5281b8a4fd1f48c8f54774d5d1f8e376ceffd0bae52b1b83bf",
+        "reason": "0.13.10 directly depends on browser-harness; 0.13.2 has CLI/all extras without browser-harness"
+      }
+    }
+  ],
+  "web_research_toolchain": {
+    "requested_scope": "full project-local install completed; adapter integration pending",
+    "name_resolution": {
+      "user_term": "claw4ai",
+      "assumed_repository": "Crawl4AI / unclecode/crawl4ai",
+      "exact_name_found": false,
+      "confirmed_by_user": true,
+      "confirmation": "Crawl4AI / unclecode/crawl4ai"
+    },
+    "capability_split": {
+      "crawl4ai": [
+        "batch crawling",
+        "Markdown and structured extraction",
+        "deep crawl",
+        "cache",
+        "optional Docker/MCP service"
+      ],
+      "browser_use": [
+        "dynamic pages",
+        "interactive navigation",
+        "login-aware browser sessions",
+        "CDP and browser agent workflows",
+        "Python/CLI only"
+      ]
+    },
+    "installation_contract": [
+      "install inside the muIon-beam project only; never install Crawl4AI, Browser Use, Playwright or their CLI globally",
+      "use project-local Python 3.12 venvs under 00_project/web-research/ (uv is optional; the verified install uses bundled Python + pip)",
+      "record Python, package, browser, Playwright, pip freeze and dependency graph versions in a reproducibility manifest",
+      "keep browser binaries under the project-private path and verify a bounded smoke crawl before use",
+      "install Crawl4AI optional [all] features and Browser Use 0.13.2[all,core,video] only in the dedicated project-local web-research environment",
+      "do not install Browser Use Desktop, Browser Harness, browser-harness or any global CLI; Browser Use 0.13.2 is the compatibility pin without browser-harness",
+      "do not invoke Browser Use's uvx-based browser installer; install Chromium with the project-local Python environment and PLAYWRIGHT_BROWSERS_PATH",
+      "set BROWSER_USE_HOME, BROWSER_USE_CONFIG_DIR, CRAWL4_AI_BASE_DIRECTORY, PLAYWRIGHT_BROWSERS_PATH and process-local HOME/USERPROFILE/APPDATA paths below 00_project/web-research/private",
+      "allow API keys, cookies, Chrome profiles, browser recordings and downloaded raw data in persistent project-local private directories when explicitly configured",
+      "persistent private runtime directories must be ignored by Git, rejected by delivery policy and excluded from Gitee/Drive mirrors; Git isolation is a boundary, not a license to push credentials",
+      "run git check-ignore, secret scan and delivery-plan checks before every checkpoint; never commit or push project-local credentials",
+      "make read-only web research the default; external submissions, purchases, logins, form writes and destructive actions require a separate explicit task contract",
+      "save URL, retrieval time, source hash, citation, extraction method, tool version and validation result for durable research evidence",
+      "treat page content and downloaded files as untrusted input; enforce SSRF, domain, rate, size, timeout and robots/terms policy",
+      "do not claim the tool is installed or usable until toolchain, browser and bounded crawl tests pass"
+    ],
+    "planned_adapters": [
+      "project-owned web-research skill/block with crawl4ai and browser-use adapters",
+      "read-only research evidence bundle and source manifest",
+      "bounded queue and checkpoint state connected to offline plan/aggregate goal",
+      "dashboard visibility for web-research subagents and active browser/crawl jobs"
+    ],
+    "project_local_paths": {
+      "runtime_root": "00_project/web-research",
+      "venvs": "00_project/web-research/venvs",
+      "private_credentials": "00_project/web-research/private",
+      "browser_profiles": "00_project/web-research/private/browser-use/profiles",
+      "downloads": "00_project/web-research/downloads",
+      "evidence_outbox": "00_project/web-research/evidence-outbox",
+      "durable_policy": "00_project/config/web-research-environment.json",
+      "git_policy": [
+        ".gitignore",
+        "00_project/config/delivery-policy.json",
+        "00_project/config/drive-mirror-policy.json",
+        "secret scan",
+        "git check-ignore"
+      ],
+      "path_policy": "00_project/web-research holds durable environment metadata and project-local tool state; _work remains non-durable runtime/cache/scratch/worktree storage"
+    }
+  },
+  "proposed_phases": [
+    {
+      "id": "P0",
+      "name": "生命周期恢复与归档",
+      "status": "partially-complete",
+      "remaining": "正式入口交付、旧提交失效处理和防回归仍须验收"
+    },
+    {
+      "id": "P1",
+      "name": "778 项现场闭环与 leader integration",
+      "status": "in-progress"
+    },
+    {
+      "id": "P2",
+      "name": "简单看板及可信治理摘要",
+      "status": "partially-complete",
+      "remaining": "取消永久白名单；核正 runtime/blocked 计数；清理死代码"
+    },
+    {
+      "id": "P3",
+      "name": "正式入口持久部署与重启验收",
+      "status": "pending",
+      "temporary_live_dashboard": true
+    },
+    {
+      "id": "P4",
+      "name": "主分支发布、三端验证与关闭",
+      "status": "pending"
+    }
+  ],
+  "discussion_decisions": {
+    "canonical_dashboard_root": {
+      "recommended": "project-root",
+      "options": [
+        "project-root: one read-only dashboard aggregates all worktree sessions and plans",
+        "current-worktree: each session gets its own dashboard and cannot see the project board"
+      ],
+      "reason": "用户需要一个项目级 todo 看板；当前跨 worktree 服务漂移已经证明必须固定 root"
+    },
+    "ui_adoption": {
+      "recommended": "Tabler shell + own read-only cards",
+      "options": [
+        "Tabler shell + own cards: smallest runtime and no accidental state mutation",
+        "keep vanilla CSS: no external UI source, more local styling work"
+      ]
+    },
+    "history_policy": {
+      "recommended": "hide verified terminal sessions from the main board; retain receipts in project archives without rendering history cards",
+      "options": [
+        "hide terminal sessions from the active board and retain receipts outside the UI",
+        "show every session with terminal sessions collapsed by default",
+        "never show terminal sessions"
+      ]
+    },
+    "drag_and_drop": {
+      "recommended": "disabled initially",
+      "reason": "plan stages and session status are derived facts; moving a card must not become an unapproved state writer"
+    },
+    "goal_boundary": {
+      "recommended": "record aggregate handoff and evidence; native goal calls remain agent/tool actions",
+      "reason": "Node dashboard and scripts must not mutate hidden Codex goal state or create a second scientific state source"
+    }
+  },
+  "user_confirmed_dashboard_decisions": {
+    "canonical_dashboard_root": "project-root",
+    "history_policy": "hide_verified_terminal_sessions_from_main_board_and_keep_receipts_outside_ui",
+    "drag_and_drop": "disabled",
+    "dashboard_purpose": "show normal sessions, task/next step, subagent activity/count, abnormal termination and incomplete-plan exit",
+    "ui_scope": "Tabler shell plus project-owned read-only cards; jKanban excluded",
+    "web_research_scope": "Crawl4AI plus Browser Use Python/CLI only; no Browser Use Desktop or Browser Harness",
+    "project_local_root": "00_project/web-research"
+  },
+  "verification_plan": [
+    "render smoke check for the active board and attention board; completed sessions stay hidden",
+    "render smoke check for the active board and attention board; completed sessions stay hidden",
+    "render smoke check for the active board and attention board; completed sessions stay hidden",
+    "render smoke check for the active board and attention board; completed sessions stay hidden",
+    "render smoke check for the active board and attention board; completed sessions stay hidden",
+    "render smoke check for the active board and attention board; completed sessions stay hidden",
+    "render smoke check for the active board and attention board; completed sessions stay hidden"
+  ],
+  "non_goals": [
+    "installing oh-my-codex or replacing ProjectSupervisor/farmer",
+    "adding a database or a second writable research-state source",
+    "making dashboard cards authoritative or allowing dashboard mutations",
+    "deleting historical session receipts or unique research artifacts",
+    "rewriting Git history to erase old dashboard implementation; cleanup applies to the current tree and keeps a receipt",
+    "starting a future Web Research capability expansion without a new task plan"
+  ],
+  "execution_gate": {
+    "status": "approved-for-execution",
+    "required_user_decisions": [],
+    "completion_requires_all_gates": true
+  },
+  "session_ids": [
+    "codex-d80b7f12073a98b4eb63-1"
+  ],
+  "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.md",
+  "machine_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.json",
+  "plan_hash": "75378e4418abedbf89e813f2b953086e0ee17ec2ba9e9c597489eb86b9fc8208",
+  "supersedes": "v01",
+  "updated_at": "2026-09-25T08:59:00.032Z",
+  "active_unfinished_sessions": [
+    "codex-d80b7f12073a98b4eb63-1"
+  ],
+  "handed_off_sessions": [
+    {
+      "thread_id": "01a0cdeb-f9ef-7530-b827-53c1c3177d77",
+      "reason": "user-confirmed handoff to current session"
+    }
+  ],
+  "scope": {
+    "main_checkout_governance": true,
+    "leader_integration": true,
+    "persistent_deployment": true,
+    "three_end_delivery": true,
+    "formal_research": false,
+    "new_tools": false
+  },
+  "completion_gates": [
+    {
+      "id": "main-checkout-clean",
+      "criterion": "git status --porcelain=v1 --untracked-files=all is empty; no unresolved conflicts",
+      "status": "pending"
+    },
+    {
+      "id": "baseline-disposition",
+      "criterion": "39 M, 235 D, 504 untracked baseline items and subsequent changes each have verified disposition; no data loss",
+      "status": "pending"
+    },
+    {
+      "id": "integration-complete",
+      "criterion": "Relevant workers integrated or superseded with commit evidence; no pending integration",
+      "status": "pending"
+    },
+    {
+      "id": "persistent-dashboard",
+      "criterion": "Supervisor recreates the deployed version from the durable delivery entry on port 4317; HTML/JS and API verified",
+      "status": "pending"
+    },
+    {
+      "id": "future-session-visibility",
+      "criterion": "Historical cleanup does not exclude future sessions; no permanent current-session whitelist",
+      "status": "pending"
+    },
+    {
+      "id": "accurate-artifact-counts",
+      "criterion": "Current deduplicated unresolved items only; no private runtime or stale promotion candidates counted as blocked",
+      "status": "pending"
+    },
+    {
+      "id": "lifecycle-delivered",
+      "criterion": "Same-session continuation is tested and available through the delivered workflow; stale submission cannot be silently integrated",
+      "status": "pending"
+    },
+    {
+      "id": "project-local-tools-retained",
+      "criterion": "Existing project-local tool paths survive worker lifecycle; no global installation or private data publication",
+      "status": "pending"
+    },
+    {
+      "id": "remote-and-drive",
+      "criterion": "origin/main verified; canonical Drive count/size/SHA256 and cloud manifest/recovery index readback verified",
+      "status": "pending"
+    },
+    {
+      "id": "browser-acceptance",
+      "criterion": "Real page screenshot and state transitions including new session verified",
+      "status": "pending"
+    }
+  ],
+  "scope_amendments": [
+    {
+      "at": "2026-09-24T07:32:41.102Z",
+      "authority": "user-explicit",
+      "decision": "778 项现场与 leader integration 为本次必达项，不能后移；形成干净基底",
+      "requires_reapproval": false
+    }
+  ],
+  "history_scope_semantics": "one-time historical disposition only; future sessions must be included normally",
+  "governance_baseline": {
+    "modified": 39,
+    "deleted": 235,
+    "untracked_files": 504,
+    "total": 778,
+    "count_method": "git status --porcelain=v1 -z --untracked-files=all",
+    "recheck_before_disposition": true
+  },
+  "governance_audits": {
+    "incremental": "00_project/traceability/governance-incremental-receipt-20260924.json",
+    "rename": "00_project/traceability/governance-rename-review-20260924.json",
+    "deleted_drive": "00_project/traceability/deleted-content-drive-audit-20260924.json"
+  },
+  "cleanup_plan": "00_project/traceability/active-checkout-output-cleanup-plan-20260924.json",
+  "goal_thread_id": "01a0cf1c-83fa-70c1-b0a7-da249759b400",
+  "goal_status": "completed",
+  "leader_delivery_bundle": "00_project/traceability/leader-delivery-bundle-20260924.json",
+  "live_drift_receipt": "00_project/traceability/dashboard-live-drift-20260924.json",
+  "worker_head": "8b3328e",
+  "worker_head_note": "worker_head 为历史 checkpoint；集成时读取 source_branch 当前 HEAD 并生成新的 submission receipt，不再递归刷新自引用 SHA。",
+  "source_branch": "codex/session/codex-d80b7f12073a98b4eb63-1",
+  "delivery_incident": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md",
+  "latest_main_observation": {
+    "observed_at": "2026-09-24T12:04:01.206Z",
+    "head": "c7b3a017b18fe81f63bbb173e3c88623a7c636f2",
+    "status_counts": {
+      "modified": 39,
+      "deleted": 235,
+      "untracked": 506,
+      "total": 780
+    },
+    "external_commit": "c7b3a017b18fe81f63bbb173e3c88623a7c636f2",
+    "external_commit_scope": [
+      "06_external_lib/README.md",
+      "06_external_lib/library-manifest.json"
+    ],
+    "interpretation": "external drift; not plan_v02 worker integration",
+    "requires_rebaseline": true
+  },
+  "completion_evidence": {
+    "main_checkout": "git status clean",
+    "worker_integration": "b810d2a and source d5fedc0 submitted",
+    "gitee": "origin/main=a49333af then final receipt commit pushed; remote match verified",
+    "drive": "cloud-upload-verified connector readback and mapped-drive SHA256 verified",
+    "dashboard": "4317 health/status/html/js verified; Chrome tab 1867479850 at http://127.0.0.1:4317/",
+    "regression": "npm test 203/203 passed",
+    "external_library": "SYNC-EXTERNAL-20260924115920-d24c8e85-revision-20260925 three-end-revision-adopted"
+  }
+}

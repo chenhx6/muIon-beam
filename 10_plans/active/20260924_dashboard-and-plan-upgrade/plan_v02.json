@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "plan_id": "plan_dashboard_and_plan_upgrade_20260924",
+  "plan_version": "v02",
+  "supersedes": "v01",
+  "status": "completed",
+  "execution_started": true,
+  "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260924",
+  "objective": "本次完成全部既有基础设施遗留治理：主 checkout 干净、worker 集成闭环、dashboard 持久部署与三端验证；不执行科研任务",
+  "current_phase": "P4-main-branch-published-three-end-verified",
+  "next_action": "retain receipts and begin a new task for any future scope",
+  "active_unfinished_sessions": [],
+  "handed_off_sessions": [
+    {
+      "thread_id": "01a0cdeb-f9ef-7530-b827-53c1c3177d77",
+      "reason": "用户确认其未完成计划由当前 session 接替"
+    }
+  ],
+  "history_policy": "retain archival receipts but remove historical sessions and research-state panels from current dashboard projection",
+  "artifact_policy": {
+    "ignored_runtime_visible": false,
+    "stale_8993_metric_removed": true,
+    "durable_unregistered_visible": true,
+    "blocked_outputs_visible": true
+  },
+  "lifecycle_resume": {
+    "command": "node .codex/skills/team/scripts/session-concurrency.mjs resume --project-root D:\\muIon-beam --session-id <session_id> --reason <user-approved-reason>",
+    "allowed_from": [
+      "submitted",
+      "blocked",
+      "interrupted",
+      "paused"
+    ],
+    "reuses_worktree": true,
+    "discards_integration_receipt": false,
+    "fresh_submission_required_after_resume": true,
+    "stale_receipt_rejected": true
+  },
+  "scope": {
+    "formal_research": false,
+    "new_tools": false,
+    "dashboard": true,
+    "governance": true,
+    "deployment": true,
+    "main_checkout_governance": true,
+    "leader_integration": true,
+    "persistent_deployment": true,
+    "three_end_delivery": true
+  },
+  "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.md",
+  "machine_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.json",
+  "plan_hash": "75378e4418abedbf89e813f2b953086e0ee17ec2ba9e9c597489eb86b9fc8208",
+  "verification": [
+    "node --test tests/session-concurrency.test.mjs",
+    "node --test tests/research-dashboard.test.mjs tests/supervisor-progress.test.mjs",
+    "node --test tests/architecture-smoke.mjs tests/project-supervisor.test.mjs",
+    "live GET /api/health and /api/status on 127.0.0.1:4317",
+    "browser render check"
+  ],
+  "updated_at": "2026-09-25T08:59:00.032Z",
+  "lifecycle_bug_record": {
+    "experience": "00_project/traceability/experiences/EXP-20260924-submitted-session-resume-lifecycle.json",
+    "incident": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-SUBMITTED-RESUME.json"
+  },
+  "proposed_phases": [
+    {
+      "id": "P0",
+      "name": "生命周期恢复与归档",
+      "status": "completed",
+      "remaining": "正式入口交付、旧提交失效处理和防回归仍须验收"
+    },
+    {
+      "id": "P1",
+      "name": "778 项现场闭环与 leader integration",
+      "status": "completed"
+    },
+    {
+      "id": "P2",
+      "name": "简单看板及可信治理摘要",
+      "status": "completed",
+      "remaining": "取消永久白名单；核正 runtime/blocked 计数；清理死代码"
+    },
+    {
+      "id": "P3",
+      "name": "正式入口持久部署与重启验收",
+      "status": "completed",
+      "temporary_live_dashboard": true
+    },
+    {
+      "id": "P4",
+      "name": "主分支发布、三端验证与关闭",
+      "status": "completed"
+    }
+  ],
+  "completion_gates": [
+    {
+      "id": "main-checkout-clean",
+      "criterion": "git status --porcelain=v1 --untracked-files=all is empty; no unresolved conflicts",
+      "status": "completed"
+    },
+    {
+      "id": "baseline-disposition",
+      "criterion": "39 M, 235 D, 504 untracked baseline items and subsequent changes each have verified disposition; no data loss",
+      "status": "completed"
+    },
+    {
+      "id": "integration-complete",
+      "criterion": "Relevant workers integrated or superseded with commit evidence; no pending integration",
+      "status": "completed"
+    },
+    {
+      "id": "persistent-dashboard",
+      "criterion": "Supervisor recreates the deployed version from the durable delivery entry on port 4317; HTML/JS and API verified",
+      "status": "completed"
+    },
+    {
+      "id": "future-session-visibility",
+      "criterion": "Historical cleanup does not exclude future sessions; no permanent current-session whitelist",
+      "status": "completed"
+    },
+    {
+      "id": "accurate-artifact-counts",
+      "criterion": "Current deduplicated unresolved items only; no private runtime or stale promotion candidates counted as blocked",
+      "status": "completed"
+    },
+    {
+      "id": "lifecycle-delivered",
+      "criterion": "Same-session continuation is tested and available through the delivered workflow; stale submission cannot be silently integrated",
+      "status": "completed"
+    },
+    {
+      "id": "project-local-tools-retained",
+      "criterion": "Existing project-local tool paths survive worker lifecycle; no global installation or private data publication",
+      "status": "completed"
+    },
+    {
+      "id": "remote-and-drive",
+      "criterion": "origin/main verified; canonical Drive count/size/SHA256 and cloud manifest/recovery index readback verified",
+      "status": "completed"
+    },
+    {
+      "id": "browser-acceptance",
+      "criterion": "Real page screenshot and state transitions including new session verified",
+      "status": "completed"
+    }
+  ],
+  "scope_amendments": [
+    {
+      "at": "2026-09-24T07:32:41.102Z",
+      "authority": "user-explicit",
+      "decision": "778 项现场与 leader integration 为本次必达项，不能后移；形成干净基底",
+      "requires_reapproval": false
+    }
+  ],
+  "history_scope_semantics": "one-time historical disposition only; future sessions must be included normally",
+  "governance_baseline": {
+    "modified": 39,
+    "deleted": 235,
+    "untracked_files": 504,
+    "total": 778,
+    "count_method": "git status --porcelain=v1 -z --untracked-files=all",
+    "recheck_before_disposition": true
+  },
+  "execution_gate": {
+    "status": "approved-for-execution",
+    "required_user_decisions": [],
+    "completion_requires_all_gates": true
+  },
+  "governance_audits": {
+    "incremental": "00_project/traceability/governance-incremental-receipt-20260924.json",
+    "rename": "00_project/traceability/governance-rename-review-20260924.json",
+    "deleted_drive": "00_project/traceability/deleted-content-drive-audit-20260924.json"
+  },
+  "cleanup_plan": "00_project/traceability/active-checkout-output-cleanup-plan-20260924.json",
+  "goal_thread_id": "01a0cf1c-83fa-70c1-b0a7-da249759b400",
+  "goal_status": "completed",
+  "leader_delivery_bundle": "00_project/traceability/leader-delivery-bundle-20260924.json",
+  "live_drift_receipt": "00_project/traceability/dashboard-live-drift-20260924.json",
+  "worker_head": "8b3328e",
+  "worker_head_note": "worker_head 为历史 checkpoint；集成时读取 source_branch 当前 HEAD 并生成新的 submission receipt，不再递归刷新自引用 SHA。",
+  "source_branch": "codex/session/codex-d80b7f12073a98b4eb63-1",
+  "delivery_incident": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md",
+  "latest_main_observation": {
+    "observed_at": "2026-09-24T12:04:01.203Z",
+    "head": "c7b3a017b18fe81f63bbb173e3c88623a7c636f2",
+    "status_counts": {
+      "modified": 39,
+      "deleted": 235,
+      "untracked": 506,
+      "total": 780
+    },
+    "external_commit": "c7b3a017b18fe81f63bbb173e3c88623a7c636f2",
+    "external_commit_scope": [
+      "06_external_lib/README.md",
+      "06_external_lib/library-manifest.json"
+    ],
+    "interpretation": "external drift; not plan_v02 worker integration",
+    "requires_rebaseline": true
+  },
+  "completion_evidence": {
+    "main_checkout": "git status clean",
+    "worker_integration": "b810d2a and source d5fedc0 submitted",
+    "gitee": "origin/main=a49333af then final receipt commit pushed; remote match verified",
+    "drive": "cloud-upload-verified connector readback and mapped-drive SHA256 verified",
+    "dashboard": "4317 health/status/html/js verified; Chrome tab 1867479850 at http://127.0.0.1:4317/",
+    "regression": "npm test 203/203 passed",
+    "external_library": "SYNC-EXTERNAL-20260924115920-d24c8e85-revision-20260925 three-end-revision-adopted"
+  }
+}

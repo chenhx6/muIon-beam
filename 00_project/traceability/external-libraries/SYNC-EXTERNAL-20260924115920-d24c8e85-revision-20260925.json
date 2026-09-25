@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "record_type": "external-library-sync-revision-receipt",
+  "revision_id": "SYNC-EXTERNAL-20260924115920-d24c8e85-revision-20260925",
+  "revision_of": "SYNC-EXTERNAL-20260924115920-d24c8e85",
+  "created_at": "2026-09-25T08:57:19.586Z",
+  "reason": "Adopt the verified Drive archive path change after normal origin/main publication; legacy receipt had no gitee_tag and therefore was not retried with an invented default.",
+  "gitee": {
+    "status": "verified",
+    "remote": "origin",
+    "branch": "main",
+    "commit": "0bab2d868da7470efb6b14f27c785b7236e9e26c",
+    "remote_commit": "0bab2d868da7470efb6b14f27c785b7236e9e26c",
+    "tag": null
+  },
+  "drive": {
+    "status": "verified",
+    "root": "H:/我的云端硬盘/muIon_archive/muIon-beam/06_external_lib",
+    "library_id": "cad-studio-0.3.4-windows-x64-portable",
+    "content_sha256": "ea27263b95cd9809b2bf3e347d3fdd580b88b83e019abb780037d7fa53f39719",
+    "file_count": 173,
+    "total_bytes": 19954434
+  },
+  "status": "three-end-revision-adopted",
+  "pending_actions": []
+}

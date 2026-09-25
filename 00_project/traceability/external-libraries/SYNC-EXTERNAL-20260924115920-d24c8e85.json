@@ -4,7 +4,7 @@
   "schema_version": "1.0.0",
   "created_at": "2026-09-24T11:59:20.479Z",
   "event": "task-begin",
-  "status": "pending-gitee",
+  "status": "superseded",
   "changes": [
     {
       "type": "archive-path-changed",
@@ -25,12 +25,14 @@
     }
   ],
   "gitee": {
-    "status": "pending",
-    "commit": null
+    "status": "superseded-by-revision",
+    "commit": "0bab2d868da7470efb6b14f27c785b7236e9e26c"
   },
   "manifest_path": "06_external_lib/library-manifest.json",
   "readme_path": "06_external_lib/README.md",
   "errors": [
     "To https://gitee.com/chx6/muIon-beam.git\n ! [rejected]        HEAD -> main (non-fast-forward)\nerror: failed to push some refs to 'https://gitee.com/chx6/muIon-beam.git'\nhint: Updates were rejected because the tip of your current branch is behind\nhint: its remote counterpart. If you want to integrate the remote changes,\nhint: use 'git pull' before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.\n"
-  ]
+  ],
+  "superseded_by": "SYNC-EXTERNAL-20260924115920-d24c8e85-revision-20260925",
+  "superseded_at": "2026-09-25T08:57:19.586Z"
 }

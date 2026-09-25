@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "record_type": "build-artifact-quarantine-manifest",
+  "created_at": "2026-09-25T08:36:30.740Z",
+  "items": [
+    {
+      "path": "07_research_system/blocks/comsol/adapter_level1/AdapterSmoke.class",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/build-artifacts/AdapterSmoke.class",
+      "bytes": 1811,
+      "sha256": "b0b324d39e731fdf08ad78d5928a00128e3479905a9eca7bdcab6bf39343c9af"
+    },
+    {
+      "path": "07_research_system/blocks/comsol/adapter_level1/BuildLevel1ComsolAdapter.class",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/build-artifacts/BuildLevel1ComsolAdapter.class",
+      "bytes": 7658,
+      "sha256": "5df186fb18cfd1d3ae0e2a32032ac25d57bcae2f5c0a3796cf6816272a5ecd8b"
+    }
+  ],
+  "status": "retained-local-pending-drive-verification"
+}

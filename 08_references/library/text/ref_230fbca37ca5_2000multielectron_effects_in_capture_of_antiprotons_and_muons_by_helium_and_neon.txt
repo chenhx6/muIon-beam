@@ -1,0 +1,1167 @@
+
+
+--- page 1 ---
+
+Multielectron effects in capture of antiprotons and muons by helium and neon
+James S. Cohen *
+Theoretical Division, Los Alamos National Laboratory, Los Alamos, New Mexico 87545
+~Received 9 December 1999; published 19 July 2000 !
+Antiproton ( p¯) and negative muon ( m2) captures by helium and neon atoms are treated using the fermion-
+molecular-dynamics method, yielding capture cross sections, initial quantum numbers, and ejected-electron
+energies. The calculated angular-momentum distributions tend to pile up at l5n21 and are not well ﬁtted by
+the form (2 l11) e
+al, which is often assumed in experimental analyses. The residual electrons are generally left
+in a ‘‘shake-up’’ state. When capture is accompanied by multiple ionization, the second and later electrons
+escape with increasing kinetic energies, a process that is not well described as quasiadiabatic. In a 50:50
+mixture of helium and neon, the calculated Ne:He capture ratios are 3.36 for p
+¯ and 3.69 for m2. The m2
+per-atom capture probability is almost independent of the neon fraction and is in overall agreement with
+several m2 and p2 experiments; for p¯ there is a rather strong dependence on neon fraction, but there are as yet
+no experiments. The possible experimental indication of a strong isotope effect on capture of p2 in mixtures
+of 3He and 4He is not supported by the present calculation.
+PACS number~s!: 36.10. 2k, 34.10.1x, 25.43.1t, 03.65.Sq
+I. INTRODUCTION
+Atomic capture of heavy negative particles has been stud-
+ied almost since the discovery of these particles. 1 Negative-
+particle collisions with atoms are fundamentally different
+from normal ion-atom collisions, as was ﬁrst demonstrated
+experimentally by Barkas et al. @1#. The negative particle
+feels an increasingly attractive potential as it approaches the
+nucleus. One or more electrons can be ionized as the nega-
+tive particle is captured. In this process, multiple electronic
+continua come into play and electron-electron as well as ex-
+otic particle-electron correlation may be important. Experi-
+ments have been conducted with all the noble-gas atoms, as
+well as with many simple and complex molecules @2#.
+The theory was pioneered by Fermi and Teller @3# using
+the Thomas-Fermi model for the target atom. Their model is
+fairly successful on the average, but its degenerate electron-
+gas treatment is not valid for light elements and does not
+allow for shell effects, ﬁrst observed by Zinov et al. @4#.
+Most of the detailed theory has been done for the hydrogen
+atom @5,6#, while capture by this simplest target is yet to be
+examined experimentally.
+2 Several theoretical treatments of
+the hydrogen atom have shown that the capture energy pri-
+marily goes to target ionization with the ionized electron
+carrying off little kinetic energy, as predicted by the
+adiabatic-ionization model @8#. Capture by multielectron
+atomic targets involves additional questions: ~i! how many
+electrons are ionized, ~ii! is the target atom left in its ground
+electronic state immediately after capture, and ~iii! are the
+electrons ionized with very low kinetic energy? The analog
+to the adiabatic-ionization model would suggest the answer
+to ~i! is the minimum number consistent with positive an-
+swers to ~ii! and ~iii!.
+It can be inferred from experimental observations of rela-
+tive capture probabilities that additional electrons tend to in-
+crease the capture probability, though not monotonically;
+simple Z scaling @3# is clearly inadequate. The opposite sup-
+position, that the capture cross section depends mainly on the
+target ionization potential, as suggested by capture occurring
+at low collision energies, is also clearly inconsistent with the
+data. Semiempirical formulas @9–11#, motivated by these and
+other considerations, have been fairly successful in ﬁtting the
+observed capture probabilities, but leave many basic ques-
+tions, like those above, unanswered. In the present paper, we
+report calculations on helium and neon, the simplest atoms
+for which experiments have been performed @12–15#.
+Answering these questions requires a theoretical method
+capable of treating all electron dynamics, including multiple
+ionization and correlation. Previous work showed that muon-
+electron correlation is essential in capture by the hydrogen
+atom @16#. These demands exceed the capability of any ex-
+isting fully quantum-mechanical method, but are treatable by
+the quasiclassical method known as fermion molecular dy-
+namics ~FMD!@ 17#. The FMD method uses pseudopotentials
+to approximate quantum-mechanical behavior and formulate
+the problem within Hamilton’s equations of motion. It ac-
+counts for the three-dimensional, correlated motion of all
+electrons.
+A recent experiment on
+m2 capture by neon @18# has
+provided unprecedented information on the initial capture.
+Comparison with the present calculations yields new under-
+standing of the mixed electronic-muonic state.
+II. METHOD
+A. Fermion molecular dynamics
+The FMD method has previously been described in detail
+@17#. It utilizes the Kirschbaum-Wilets ~KW! ansatz for the
+*Electronic address: cohen@lanl.gov
+1Muon m2 of mass 206.77 me ~in 1937 !, pion p2 of mass
+273.14me ~in 1947 !, kaon K2 of mass 966.04 me ~in 1947 !, and
+antiproton p¯ of mass 1836.15 me ~in 1955!.
+2The ASACUSA collaboration @7# is preparing an experiment on
+p¯ capture by the hydrogen atom using the new antiproton decelera-
+tor ~AD! at CERN.
+PHYSICAL REVIEW A, VOLUME 62, 022512
+1050-2947/2000/62~2!/022512~14!/$15.00 ©2000 The American Physical Society62 022512-1
+
+--- page 2 ---
+
+atomic structure @19#; pseudopotentials VH and VP , which
+constrain the quasiclassical dynamics to satisfy the Heisen-
+berg uncertainty and Pauli exclusion principles, respectively,
+stabilize the quasiclassical multielectron atom and provide a
+shell structure @20#. Similar terms are included for the exotic
+atom structure, but have little effect since it is formed in a
+highly excited state, which behaves nearly classically accord-
+ing to the correspondence principle.
+The FMD effective Hamiltonian for the system is written
+H
+FMD5H01VH1VP , ~1!
+where H0 is the usual Hamiltonian of the system containing
+the kinetic energies of all particles and Coulomb potentials
+for all pairs of particles. The extra terms are
+V
+H5(
+i51
+Ne
+f~rni ,pni ;jH ,aH!1 f~rnx ,pnx ;jH ,aH! ~2!
+and
+VP5(
+i51
+Ne
+(
+j5i11
+Ne
+f~rij ,pij ;jP ,aP!dsi ,s j, ~3!
+where rni is the distance of electron i from the nucleus n, rnx
+is the distance of the exotic particle x from the nucleus n, rij
+is the distance between electrons i and j, and si is the spin of
+electron i.
+As usual in the FMD method, the constraining potentials
+are chosen to be of the form @19#
+f~rln ,pln ;j,a!5
+~j\!2
+4arln
+2 mln
+expHaF12S
+rlnpln
+j\ D
+4
+GJ,
+~4!
+where subscripts l and n designate pairs of particles with
+reduced mass mln . The parameter j reﬂects the size of the
+core ~Heisenberg or Pauli ! while a is a hardness parameter.
+The only way in which we deviate from the original pre-
+scription of KW is to use values of jH and jP optimized for
+the target atom, rather than the universal values, and softer
+values of aH and aP , as later recommended by Beck and
+Wilets @21#. The modiﬁcation of the hardness parameters aH
+and aP is not as important for the low-energy collisions un-
+der present consideration as it was for the stopping powers
+calculated by Beck and Wilets, but we use the same values
+aH52.0 and aP51.0.
+The values of jH and jP were chosen to match the ﬁrst
+ionization potential and total binding energy of the target
+atom, since the ﬁrst ionization potential is most important for
+the capture dynamics and the higher ionization potentials on
+the average will be correct. This procedure is exact for all
+atoms except He, for which the parameter
+jP has no effect
+since its two electrons have antiparallel spins. ( aH and aP
+are not useful variables for this procedure. ! The parameters
+obtained for the atoms H through Ne are given in Table I.
+Beyond the Monte Carlo statistical errors, the main uncer-
+tainties in these calculations come from the use of quasiclas-
+sical dynamics and the approximate target shell structure, as
+discussed above. Although there are no comparable calcula-
+tions of capture of exotic particles by multielectron targets,
+some indications of the accuracy of the FMD method can be
+gained from comparisons of FMD calculations of capture by
+the hydrogen atom with accurate quantum-mechanical calcu-
+lations @6# and comparisons of FMD calculations of ioniza-
+tion and electron transfer in ion-atom collisions with experi-
+ments @22#. The comparisons, in Secs. IV and V, of some
+calculated features with experiments, will also help gauge
+the accuracy.
+B. Pseudoquantum numbers
+In order to model the cascade, the distributions of n and l
+quantum numbers of the capture orbital are needed as well as
+the total capture cross section. Because the n values are large
+(*
+Amx /me) the quasiclassical assignment by binning is
+quite satisfactory. However, there is still uncertainty that
+arises from approximating the structure actually calculated
+with single-particle ~hydrogenlike! quantum numbers when
+in fact there may be residual electrons present. This compli-
+TABLE I. Optimized FMD parameters. In all cases, aH52.0 and aP51.0.
+FMD parameters Associated energies
+jH jP IP1 ~a.u.! Etot ~a.u.!
+H 0.8946 0.4998 20.4998
+He 0.9343 0.9737 22.807
+Li 0.9116 4.066 0.1981 27.478
+Be 0.9014 4.924 0.3425 214.67
+B 0.9369 2.378 0.3050 224.66
+C 0.9424 2.332 0.4138 237.86
+N 1.0167 1.840 0.5340 254.61
+O 0.9881 1.996 0.5006 275.11
+F 1.1244 1.464 0.6402 299.81
+Ne 1.1311 1.511 0.7924 2129.1
+aFor He, the FMD parameters were chosen to minimize a weighted error in IP 1 and Etot ; the exact values are
+0.9037 and 22.904, respectively.
+JAMES S. COHEN PHYSICAL REVIEW A 62 022512
+022512-2
+
+--- page 3 ---
+
+cation does not directly affect the angular momentum l of the
+exotic particle with respect to the nucleus, but does affect its
+association with a given n, which is important in determining
+the probabilities of subsequent radiative and Auger cascade
+transitions @23,24#. The direct transfer of angular momentum
+between the exotic particle and the electrons is relatively
+small. We have taken two different approaches to this prob-
+lem: ~1! using the full nuclear charge ignoring the electrons
+and ~2! using an effective nuclear charge to approximate
+electron screening, as follows.
+1. Two-body approach
+Two-particle binding is calculated simply as
+E252
+Z
+r 1
+prel
+2
+2m , ~5!
+where r and prel are the distance and momentum of the cap-
+tured exotic particle relative to the nucleus of charge Z and m
+is its reduced mass. Then this quantum number, which we
+denote n2, is given by
+n25S
+2mZ2
+2E2
+D
+1/2
+~6!
+~actually the nearest integer!. One advantage of this approach
+is that the inequality l<n2 ~nonintegerized values ! rigor-
+ously holds ~see the Appendix !. With the identiﬁcation @l#
+!l and @n210.5#!n, the quantum-mechanical relation l
+<n21 is essentially satisﬁed for large n (@x# designates the
+greatest integer less than or equal to x).
+2. Screening approach
+The effective n, taking screening into account, is not
+unique. We calculate the energy of the total system Etot ~in-
+cluding even apparently free electrons! and the energy of the
+system with the exotic particle removed E2x ; the difference
+yields the effective binding energy
+Eeff5Etot2E2x . ~7!
+The effective nuclear charge Zeff is then taken to be the
+charge that would exert the actual central component of
+force on the exotic particle if there were no electrons; i.e.,
+2Zeff
+urx2rnu2 52
+~rx2rn!
+urx2rnu  rxH. ~8!
+Then
+neff5S
+2mZeff
+2
+2Eeff
+D
+1/2
+. ~9!
+Due to the electrons, the effective potential is neither Cou-
+lomb nor central, and the relation l<neff does not necessarily
+apply. Since circular orbitals ( l5n21) pose bottlenecks for
+the subsequent cascade and are thus particularly important,
+method ~2! may be seriously deﬁcient.
+III. CAPTURE OF p¯ AND µÀ BY HELIUM
+The simplest physical system for which exotic-particle
+capture experiments have been performed is the helium
+atom. These experiments include capture ratios for muons
+@12,13# and pions @14,15# in mixtures of helium with other
+gases, the x-ray cascade of muonic @25–31#, pionic
+@25,27,32,33#, and antiprotonic @34–36# helium, and, most
+recently, spectroscopy of the metastable electron-antiproton
+system
+ap¯e2 @37–40#. Capture of exotic particles by helium
+has previously been treated theoretically by a variety of ap-
+proximations, including plane-wave Born @41#
+(
+m2,p2,K2,p¯), Coulomb-Born @42# (m2), optical potential
+with Hartree-Fock wave functions @43# (m2), diabatic states
+@44# (m2,p2,K2,p¯), coupled-channel semiclassical @45#
+(m2,p2,K2,p¯), nonadiabatic black body @46# (m2,p¯), and
+FMD @47# (p¯). Apart from the ﬁrst two perturbative meth-
+ods, all these calculations agree that the exotic particles are
+captured only after being slowed to kinetic energies compa-
+rable to the ﬁrst ionization potential of the target helium
+atom.
+The previous FMD calculation on p
+¯ capture by He was
+mainly concerned with characterizing long-lived states of the
+ap¯e2 system @47#. That work found that about 22% of the
+antiprotons captured by He survived in the three-body sys-
+tem beyond times of 10 5 a.u. ~2.4 ps!. Here we take a simi-
+lar approach in following the dynamics long enough that
+prompt ionization of the second electron has an opportunity
+to occur, which usually takes &0.1 ps. Characterization of
+the states after prompt ionization is most relevant to experi-
+ments. In essential agreement with Beck et al. @47#,w eﬁ n d
+that 20% of the
+ap¯e2 escape prompt ionization and survive
+beyond 1 ps. In similar calculations of m2 capture by he-
+lium, we ﬁnd a somewhat smaller fraction 14% surviving
+beyond 1 ps. At longer times the calculated decay is much
+slower. However, characterization of the behavior at the ex-
+perimental time of ;
+ms by the present approach is imprac-
+tical because of the extreme number of integration steps that
+would be required, and in any case would be of dubious
+validity with the quasiclassical description.
+The distributions of principal quantum numbers n, deter-
+mined at ;0.3 ps, are shown in Figs. 1 ~a! and 1 ~b! for p
+¯
+and m2 capture, respectively, by He. The distributions peak
+at n534 for p¯a and n512 for m2a. The shoulder, visible in
+both cases on the high- n side, corresponds to systems still
+retaining one electron, generally with the electron having
+large l as well as large n. These distributions have been in-
+tegrated over capture energy, weighted by the capture frac-
+tion
+scapt(E)/ stot(E), as is appropriate for situations in
+which the exotic particle is slowed down and captured in the
+target medium. Figure 2 shows the distribution for p¯ capture
+at a particular energy ( Ec.m.50.4 a.u.). This distribution
+clearly reveals the separation of the p¯a states at low n and
+p¯ae2 states at high n. The p¯ae2 states have small values of
+n2l and decay on a time scale at least an order of magnitude
+slower.
+MULTIELECTRON EFFECTS IN CAPTURE O F... P H Y SICAL REVIEW A 62 022512
+022512-3
+
+--- page 4 ---
+
+The most useful l distributions are for given n since it is
+n2l that tends to be most important in determining cascade
+steps. Frequently this distribution has been approximated by
+the form (2 l11) eal for 0 <l,n, where a50 corresponds
+to a statistical distribution, a.0 to overpopulation of large l,
+and a,0 to underpopulation of large l. This characterization
+is most important at n’n05Amx /me; for very large n
+(@n0), the population will cut off at l,n since particles
+with very large l do not penetrate to distances where the
+electron density and capture probability are large. In Fig. 3
+the l distributions for p¯a(n534) and m2a(n512), inte-
+grated over capture energy, are shown. For p¯a, the l distri-
+bution is fairly statistical at low-to-moderate values of l and
+peaks strongly at l5n21, with a valley in between. A simi-
+lar behavior is seen for m2a, with the peak at l5n21 not
+quite so pronounced. Obviously this sort of distribution can-
+not be accurately represented by the form (2 l11) eal.
+The capture and total ionization cross sections for antipro-
+ton and muon capture by helium are enumerated in Table II
+and shown in Figs. 4 ~a! and 4~b!, respectively. As required
+for conservation of energy, the capture and total ionization
+FIG. 1. Principal quantum number n distributions ~integrated
+over capture collision energies ! for ~a! p¯ and ~b! m2 capture by
+helium. These distributions were obtained at a time of ;0.3 ps
+after the arrival of the projectile at the target. At the peaks both
+electrons are ionized, but in the region of the shoulder and higher
+some atoms retain an electron.
+FIG. 2. Principal quantum number n distribution for p¯ captured
+by helium in a collision at center-of-mass energy 0.4 a.u. The popu-
+lation in the second peak at higher n retains an electron in a rela-
+tively long-lived high- l state.
+FIG. 3. Angular-momentum l distributions for ~a! p¯ captured by
+helium in n534 and ~b! m2 captured by helium in n512 ~the most
+probable n in Fig. 1!. ~Note: In this histogram the statistical error is
+;15%; i.e., ﬁne-scale roughness in this and other histograms is not
+signiﬁcant.!
+JAMES S. COHEN PHYSICAL REVIEW A 62 022512
+022512-4
+
+--- page 5 ---
+
+TABLE II. Capture and total ionization cross sections for ~a! p¯1He and ~b! m21He.
+Ec.m. ~a.u.! a scapt ~units of a0
+2) a stot ~units of a0
+2) Ec.m. ~a.u.! a scapt ~units of a0
+2) a stot ~units of a0
+2)
+~a! p¯1He
+0.01 77.76 61.13 77.76 61.13
+0.10 18.20 60.28 18.20 60.28
+0.20 9.55 60.14 9.55 60.14
+0.30 6.90 60.09 6.90 60.09
+0.40 5.34 60.06 5.34 60.06
+0.50 4.56 60.07 4.56 60.07
+0.60 3.94 60.06 3.94 60.06
+0.70 3.54 60.05 3.54 60.05
+0.80 3.27 60.04 3.27 60.04
+0.90 3.05 60.05 3.07 60.05
+1.00 2.91 60.05 2.95 60.05
+1.10 1.76 60.07 2.80 60.05
+1.20 0.95 60.06 2.70 60.05
+1.50 0.38 60.05 2.41 60.06
+2.00 0.10 60.03 2.17 60.06
+2.50 0.01 60.01 2.03 60.07
+3.00 1.90 60.05
+4.00 1.82 60.05
+6.00 1.84 60.05
+8.00 1.91 60.05
+10.00 2.06 60.06
+12.00 2.28 60.06
+15.00 2.36 60.06
+18.00 2.59 60.07
+21.00 2.60 60.06
+25.00 2.74 60.07
+30.00 2.95 60.07
+~b! m21He
+0.01 72.31 61.17 72.31 61.17
+0.10 18.98 60.28 18.98 60.28
+0.20 10.42 60.13 10.42 60.13
+0.30 7.59 60.12 7.60 60.12
+0.40 6.05 60.08 6.06 60.08
+0.50 5.13 60.07 5.16 60.07
+0.60 4.54 60.07 4.59 60.07
+0.70 4.12 60.07 4.17 60.07
+0.80 3.80 60.06 3.89 60.06
+0.90 3.59 60.06 3.69 60.06
+1.00 3.41 60.05 3.57 60.06
+1.10 2.91 60.06 3.56 60.06
+1.20 2.02 60.07 3.35 60.06
+1.50 1.02 60.07 3.21 60.07
+2.00 0.59 60.05 3.19 60.08
+2.50 0.33 60.04 3.20 60.08
+3.00 0.09 60.02 3.19 60.07
+4.00 3.30 60.07
+6.00 3.40 60.07
+8.00 3.48 60.07
+10.00 3.47 60.07
+12.00 3.59 60.07
+15.00 3.55 60.07
+18.00 3.69 60.07
+21.00 3.63 60.07
+25.00 3.74 60.07
+30.00 3.89 60.07
+a1 a.u.527.21 eV; 1 a0
+250.280 310 216 cm2.
+cross sections coincide at collision energies below the ﬁrst
+ionization potential of the target. Like the hydrogen atom
+target, it is still generally true that capture by the helium
+atom occurs with ionization of a single electron. The kinetic-
+energy distributions of the ﬁrst ejected electron are shown in
+Figs. 5 ~a! and 5 ~b! for p
+¯ and m2 capture, respectively, by
+helium.
+Strictly speaking, adiabatic ionization cannot occur for the
+He target since the adiabatic correlation is to H 2, which is
+bound. In a quasiadiabatic description, the ﬁrst electron
+ejected has near-zero kinetic energy. It can be seen by com-
+paring Figs. 5 ~a! and 5~b! that the heavier p
+¯ behaves more
+adiabatically than does the lighter m2. The average electron
+energy for the former is 0.10 a.u., for the latter 0.15 a.u. This
+can be compared to 0.05 a.u. and 0.09 a.u. for p¯1H and
+m21H, respectively. Though the behavior with helium is
+less adiabatic than with the hydrogen atom, the simple qua-
+siadiabatic picture still has some qualitative validity. The
+capture cross section falls off fairly rapidly at collision ener-
+gies above the ﬁrst ionization potential. This ﬁnding is in
+agreement with earlier diabatic-state ~DS! calculations of ex-
+otic helium formation @44#; the DS treatment yields cross
+sections, which elude the purely adiabatic treatment.
+In most cases it is the ionization of the ﬁrst electron that
+effects capture by helium. The second electron then usually
+follows by an internal Auger process in which the captured p
+¯
+deexcites. However, the two physical processes are similar
+and there is sometimes not a sharp separation. In fact, careful
+comparison of Fig. 4~a! with Fig. 5~a! and Fig. 4~b! with Fig.
+5~b! reveals that the capture cross section is still signiﬁcant at
+energies exceeding the target ﬁrst ionization potential by
+more than the maximum kinetic energy of the ﬁrst ejected
+electron. This is evidence of participation of the second elec-
+tron in the initial capture. In the case of p
+¯ it appears that the
+second electron is left excited but not ionized; for m2 the
+second electron may sometimes be ionized since the capture
+cross section extends to energies exceeding the total binding
+energy of the helium atom ~2.81 a.u. in our FMD descrip-
+tion!.
+IV. CAPTURE OF p¯ AND µÀ BY NEON
+The cross sections for p¯ and m2 reactions with neon are
+enumerated in Table III and shown in Fig. 4 along with the
+MULTIELECTRON EFFECTS IN CAPTURE O F... P H Y SICAL REVIEW A 62 022512
+022512-5
+
+--- page 6 ---
+
+helium cross sections. The capture cross sections for neon
+reach considerably higher collision energies than for helium,
+still signiﬁcant at ;10 a.u. While Figs. 6 ~a! and 6~b! show
+that the ﬁrst ejected electron carries off about twice as much
+kinetic energy ~average 0.21 a.u. for p¯1Ne and 0.34 a.u. for
+m21Ne) than in the case of helium targets, it is still evident
+that more than one electron must be ionized to effect capture
+at such high collision energies. Subsequent electrons have
+higher ionization potentials, and the calculations show that
+they escape with increasingly higher kinetic energies. The
+kinetic-energy distributions for the second ejected electron
+are shown in Figs. 7~a! and 7~b!; on the average, the energies
+of the second electron are about twice as large as for the ﬁrst
+electron. Nonetheless, even more electrons must be ionized
+for capture to occur at collision energies as high as 10 a.u.
+The calculations of capture by neon were carried out with
+a somewhat different strategy than those for helium. Though
+the captures at high energies require ionization of multiple
+electrons, we certainly want to characterize the state before
+all ten electrons are ionized. Since the time-dependent trans-
+fer of energy from the heavy negative particle to the elec-
+trons can be nonmonotonic, the ‘‘instant’’ of capture is not a
+well-deﬁned quantity, nor is the initial n quantum number.
+The chosen strategy, consistent with a typical experimental
+analysis @18#, is to follow each trajectory until some more-
+or-less arbitrary n value is reached. The values chosen were
+45 for p
+¯1Ne and 16 for m21Ne.
+The number of electrons remaining at this point is impor-
+tant to the subsequent cascade, which initially proceeds by
+Auger conversion of electrons as the exotic particle deexcites
+to lower orbitals. Actually the ion is left in a shake-up state
+and some electrons will simultaneously be removed by
+purely electron-electron interactions. We attempt to deal
+with this situation by utilizing two limiting measures of the
+number of bound electrons: ~i! counting all remaining elec-
+trons, no matter how weakly bound and ~ii! counting only the
+electrons that would remain bound if electronic Auger pro-
+cesses proceeded to completion while the exotic particle re-
+FIG. 4. Capture ~solid curves ! and total-ionization ~dashed
+curves! cross sections for ~a! p¯ collisions with helium ~closed-
+circular points! and neon ~closed-square points! and ~b! m2 colli-
+sions with helium ~open-circular points ! and neon ~open-square
+points!. The error bars indicate the Monte Carlo statistics.
+FIG. 5. Distributions of the kinetic energies of the ﬁrst electron
+ejected in collisions where ~a! p¯ and ~b! m2 are captured by helium.
+JAMES S. COHEN PHYSICAL REVIEW A 62 022512
+022512-6
+
+--- page 7 ---
+
+mained frozen in its initial state ( n545 for p¯Ne and n516
+for m2Ne). The latter measure is approximated by compar-
+ing the energy of the electronic system with the ground-state
+energy of the ion having just lower energy. The minimum
+number of residual electrons is obtained by supposing that
+each ejected electron carries off negligible kinetic energy.
+The effective number of electrons should lie in between these
+two measures.
+The number of bound electrons, determined by these two
+measures, accompanying p
+¯Ne(n545) and m2Ne(n516)
+are shown in Figs. 8 ~a! and 8 ~b!, respectively. The experi-
+mental analysis of Kirch et al. @18# found a best ﬁt for m2Ne
+at n516 with ne54.720.3
+10.8 . They interpreted a fractional
+value of ne as a mixture of the next lower and next higher
+integer charges, though higher and lower charge states can-
+not really be precluded. This experimental distribution
+agrees well with the measure ~ii! in Fig. 8~b!. This ﬁnding is
+consistent with both the fast reaction times for the light elec-
+trons and the weak interaction between the muon and very
+diffuse electrons.
+The situations of
+m2Ne(n516) and p¯Ne(n545) appear
+to be similar. This is as expected since the binding energies
+2mx/2nx
+2 of these two states are about equal @actually the
+mass ratio would imply n546.7 for the p¯Ne with the same
+energy as n516 of m2Ne, which is consistent with ne in
+Fig. 8~a! being a bit smaller than in Fig. 8 ~b!#.
+We now consider the angular-momentum distributions.
+The analysis was done with both the n2 of Eq. ~6! and neff of
+Eq. ~9!. The description with n2 was found to converge
+somewhat more rapidly and to have other apparent advan-
+TABLE III. Capture and total ionization cross sections for ~a!
+p¯1Ne and ~b! m21Ne.
+Ec.m. ~a.u.! scapt ~units of a0
+2) stot ~units of a0
+2)
+~a! p¯1Ne
+0.01 32.23 61.98 24.32 61.98
+0.10 13.82 60.41 13.82 60.41
+0.20 10.04 60.35 10.04 60.35
+0.40 7.99 60.24 7.99 60.24
+0.60 6.41 60.14 6.41 60.14
+0.80 6.38 60.17 6.38 60.17
+1.00 5.66 60.13 5.84 60.11
+1.50 3.71 60.12 5.53 60.13
+2.00 2.61 60.12 5.09 60.15
+3.00 1.66 60.16 5.03 60.16
+4.00 1.19 60.15 4.90 60.16
+6.00 0.66 60.13 4.59 60.16
+8.00 0.41 60.11 4.27 60.16
+10.00 0.22 60.08 4.08 60.15
+12.00 0.03 60.03 4.05 60.15
+15.00 4.04 60.17
+18.00 3.92 60.17
+21.00 3.80 60.15
+25.00 3.70 60.15
+30.00 3.72 60.16
+~b! m21Ne
+0.01 36.19 62.20 24.88 62.39
+0.10 12.82 60.51 12.44 60.50
+0.20 9.75 60.35 9.75 60.35
+0.40 7.63 60.23 7.63 60.23
+0.60 6.53 60.19 6.53 60.19
+0.80 5.91 60.16 5.91 60.16
+1.00 5.53 60.17 5.66 60.17
+1.50 4.15 60.15 4.90 60.16
+2.00 3.46 60.10 4.43 60.16
+3.00 2.01 60.15 4.12 60.15
+4.00 1.63 60.05 3.99 60.15
+6.00 0.86 60.03 3.63 60.13
+8.00 0.49 60.04 3.41 60.12
+10.00 0.35 60.04 3.29 60.12
+12.00 0.22 60.03 3.20 60.12
+15.00 0.10 60.02 2.92 60.10
+18.00 0.03 60.01 2.88 60.10
+21.00 0.03 60.01 2.83 60.10
+25.00 0.01 60.01 2.62 60.10
+30.00 2.52 60.10
+FIG. 6. Distributions of the kinetic energies of the ﬁrst electron
+ejected in collisions where ~a! p¯ and ~b! m2 are captured by neon.
+MULTIELECTRON EFFECTS IN CAPTURE O F... P H Y SICAL REVIEW A 62 022512
+022512-7
+
+--- page 8 ---
+
+tages, but both will be presented. The results for p¯Ne(n2
+545) and m2Ne(n2516) are shown in Figs. 9 ~a! and 9~b!,
+respectively. They display a ﬂat-to-statistical shape for low-
+to-moderate l and a strong peak at l5n21. This pileup may
+be attributed in part to the initial steps of the cascade. To the
+extent it can be ascertained, the initial capture often occurs in
+still higher n. In some cases this is signiﬁcantly higher than
+the l values where capture occurs, those being limited to
+impact parameters about equal to the size of the target atom.
+However, for purpose of experimental analysis, it is more
+relevant to initialize the cascade at the moderate values.
+Such an experimental analysis has been done for
+m2 cap-
+ture by neon @18#. A form P(l)}(2 l11) eal was assumed
+and a best ﬁt was obtained with a50.09020.015
+10.035 , as shown in
+Fig. 9 ~b!. This curve is like the theoretical distribution in
+enhancing the largest allowed l, but the form is clearly inca-
+pable of faithfully representing the theoretical populations. It
+should be noted that the simple exponential factor has no real
+theoretical basis. This form would do an even poorer job of
+ﬁtting the theoretical angular-momentum distribution shown
+in Fig. 9 ~a! for p
+¯Ne.
+The theoretical angular-momentum distributions have
+also been calculated taking electron screening into account
+using Eqs. ~7!–~9!. The effective nuclear charge, which
+would yield the same force toward the nucleus, is calculated
+by Eq. ~8! and shown in Figs. 10~a! and 10~b! for the capture
+orbitals of p
+¯Ne and m2Ne, respectively. The effective
+nuclear charges felt by p¯ in neff545 and m2 in neff516,
+determined by Eq. ~9!, are similar; somewhat less than half
+of the captured exotic particles feel the full nuclear charge
+and a few are subject to an effective charge as small as 4 at
+this point. The corresponding angular-momentum distribu-
+tions are shown in Fig. 11. As in Fig. 9, the distributions
+strongly peak at the largest l populated. However, this maxi-
+mum l value is here less than n
+eff21; evidently the centrifu-
+gal barrier is also distorted by the electrons. This shift of the
+angular-momentum end point demonstrates the inadequacy
+of the hydrogenic orbital treatment. But if such a model must
+be used, it could cause a serious error to really take l
+max,n
+21. Since present practical treatments use the effective
+FIG. 7. Distributions of the kinetic energies of the second elec-
+tron ejected in collisions where ~a! p¯ and ~b! m2 are captured by
+neon.
+FIG. 8. Number of residual bound electrons when ~a! p¯Ne
+reaches n545 and ~b! m2Ne reaches n516. The dashed histogram
+includes weakly bound electrons; the solid histogram counts only
+electrons that would still be bound after electron-electron Auger
+relaxation. In ~b!, the hatched area shows the results of the experi-
+mental analysis ~Ref. @18#!, n
+e54.720.3
+10.8 , with the assumption that
+only the next-lower and next-higher charge states occur ~the cross-
+hatched area corresponds to ne54.7).
+JAMES S. COHEN PHYSICAL REVIEW A 62 022512
+022512-8
+
+--- page 9 ---
+
+single-particle model, it is probably more appropriate to use
+the distributions shown in Fig. 9.
+V. CAPTURE IN MIXTURES OF HELIUM AND NEON
+In this section we consider the capture of p¯ and m2 in a
+thick target of uniformly mixed helium and neon ~‘‘thick’’
+here means that both the slowing down and capture of an
+initially energetic p¯ or m2 occur within the medium !. Cap-
+ture of a monoenergetic beam in a thin target would depend
+only on the capture cross sections at that energy, but capture
+in a thick target depends on the slowing down history as well
+as the energy-dependent capture cross sections. Rigorous cal-
+culation would require solution of an integral equation for
+the arrival function ~spectral ﬂux density ! starting with ex-
+otic particles at energies much higher than where capture
+occurs @48#. We have not calculated the slowing-down cross
+sections at such energies; however, other work suggests that
+the arrival function for heavy negative particles tends to be
+rather ﬂat @49#. This is because slowing down occurs by
+much the same mechanism as capture, namely ionization,
+and thus the energy steps in the slowing down are similar to
+the energies where capture occurs. A ﬂat arrival function
+justiﬁes calculation of capture distributions by quadratures
+over the capture cross sections; e.g., in the case of principal
+quantum number n,
+P
+~n!’N E
+0
+‘
+F~n;E!
+scapt~E!
+stot~E! dE , ~10!
+where F(n;E) is the population distribution calculated for
+incident energy E, scapt is the capture cross section, stot is
+the total ionization cross section, and N is a normalization
+constant such that
+(
+n51
+‘
+P~n!51.
+Under the same assumption, the probability of capture by
+component i in a binary mixture is given by
+FIG. 9. Angular-momentum l distributions for ~a! p¯ captured by
+neon in n545 and ~b! m2 captured by neon in n516. This analysis
+was done with the n quantum number deﬁned by Eq. ~6!. The
+dashed curves in ~b! are the experimental ﬁts ~Ref. @18#! obtained
+assuming the form (2 l11) eal with a50.090 ~central value ! and
+0.075 and 0.125 ~error limits!.
+FIG. 10. Effective nuclear charges felt by the ~a! p¯ and ~b! m2
+initially captured by neon.
+MULTIELECTRON EFFECTS IN CAPTURE O F... P H Y SICAL REVIEW A 62 022512
+022512-9
+
+--- page 10 ---
+
+Wi’N E
+0
+‘ ciscapt
+(i) ~Elab!
+c1stot
+(1) ~Elab!1c2stot
+(2) ~Elab!
+dE lab , ~11!
+where c1 and c2 are the atomic concentrations of each spe-
+cies ~here He and Ne !, c11c251, and N is a normalization
+constant such that Pcapt
+(1) 1Pcapt
+(2) 51. The cross sections in this
+expression are those shown in Fig. 4 ~a! for p¯1He/Ne and
+Fig. 4~b! for m21He/Ne, transformed to the laboratory sys-
+tem using
+Elab5S11
+mx
+mt
+DEc.m. , ~12!
+where mt is the target mass and mx is the projectile ( p¯ or
+m2) mass. Except for p¯1He, the differences of the plots as
+a function of Ec.m. and Elab would barely be noticeable on the
+scale of this ﬁgure.
+The most informative way of looking at capture is the
+reduced capture ratio, i.e., the ratio of capture probabilities
+per atom
+A
+~Z1 ,Z2!5
+W~Z1!/c~Z1!
+W~Z2!/c~Z2! . ~13!
+If the process is linear in Z then this ratio is independent of
+cNe ; however, as ﬁrst pointed out by Vogel et al. @50#, this
+ratio can in fact depend on the concentration. The reduced
+capture ratios for p¯ and m2 in Ne:He mixtures are shown in
+Figs. 12~a! and 12~b!, respectively. In both cases the prob-
+ability of capture by neon is the greater, as expected from its
+capture cross sections reaching much higher energies. For a
+50:50 mixture, the reduced ratios are similar, A(Ne,He)
+53.36 for p
+¯ and A(Ne,He) 53.69 for m2.
+FIG. 11. Angular-momentum l distributions for ~a! p¯ captured
+by neon in neff545 and ~b! m2 captured by neon in neff516. This
+analysis was done with the n quantum number deﬁned by Eq. ~9!.
+Note that, in this effective-charge analysis, lmax,n21 ~see text !.
+The dashed curves in ~b! are the experimental ﬁts ~Ref. @18#! ob-
+tained assuming the form (2 l11) eal with a50.090 ~central value!
+and 0.075 and 0.125 ~error limits!.
+FIG. 12. Reduced capture ratios for ~a! p¯ and ~b! m2 captured in
+mixtures of helium and neon.
+JAMES S. COHEN PHYSICAL REVIEW A 62 022512
+022512-10
+
+--- page 11 ---
+
+Upon closer inspection, there is a signiﬁcant difference
+between the dependencies on the mixture fractions in the two
+cases. The reduced capture ratio for p¯, shown in Fig. 12 ~a!,
+has a substantial monotonic dependence on the mixture,
+varying from 4.3 in predominantly helium to 2.7 in predomi-
+nantly neon. This variation is due to the total ionization cross
+section for p
+¯ collisions with neon being about twice as large
+as the total ionization cross section for p¯ collisions with he-
+lium, as shown in Fig. 4 ~a!. Thus an increased neon fraction
+increases the effective slowing-down cross section @in the
+denominator of Eq. ~11!# and enables more p¯ to reach the
+lower energies where capture by helium becomes possible,
+as indicated in Table IV. On the other hand, the reduced
+capture ratio for
+m2, shown in Fig. 12 ~b!, is much less de-
+pendent on the mixture. This behavior is like that previously
+found for capture in mixtures of hydrogen and deuterium
+@51#. The dependence is weak because the total ionization
+cross sections for
+m21He and m21Ne are similar; thus
+their weighted sum in the denominator of Eq. ~11! is almost
+constant. The slight maximum at cNe’0.35 is due to the
+crossing of the m21He and m21Ne total ionization cross
+sections at ;8 a.u.
+There have been a number of experimental determinations
+of capture ratios for helium and neon using negative muons
+and pions. ~The p2 mass is close enough to that of the m2
+that the atomic capture properties can be expected to be
+about the same. ! All of the capture ratios between 4He and
+TABLE IV. Reduced capture ratios and average capture energies for ~a! p¯ and ~b! m2 in neon-helium
+mixtures.
+C(Ne) A(Ne,He) E¯ capt
+lab ~eV!
+He Ne Average
+~a! p¯ capture
+0.01 4.25 21.4 70.1 21.9
+0.10 4.04 20.5 67.6 26.5
+0.50 3.36 17.6 59.5 40.7
+0.90 2.83 14.0 53.2 50.2
+0.99 2.71 12.9 51.8 51.6
+~b!
+m2 capture
+0.01 3.67 21.1 63.0 21.6
+0.10 3.69 20.8 64.1 26.3
+0.50 3.69 18.9 68.2 50.5
+0.90 3.59 16.2 71.4 68.4
+0.99 3.54 15.4 72.2 72.0
+TABLE V. Comparison with experimental capture ratios. Uncertainties do not include errors due to the
+intermediary gas for indirectly determined ratios.
+A(Z1 ,Z2) Projectile Target ( Z1 :Z2) Intermediary gas Source
+3.523.7a m2 Ne:4He none Present calculation
+3.460.7 m2 Ne:4He Ar Hutson et al.b
+4.160.3 m2 Ne:4He Ar Budyashov et al.c
+4.260.3 p2 Ne:4He H 2 Petrukhin et al.d
+5.561.0 p2 Ne:4He 3He Bannikov et al.e
+3.523.7 m2 Ne:3He none Present calculation
+4.1360.15 p2 Ne:3He none Bannikov et al.e
+0.99 m2 4He:3He none Present calculation
+0.7560.13 p2 4He:3He none Bannikov et al.e
+aThis is the range for different neon concentrations.
+bReference @13#.
+cReference @12#.
+dReference @14#.
+eReference @15#.
+MULTIELECTRON EFFECTS IN CAPTURE O F... P H Y SICAL REVIEW A 62 022512
+022512-11
+
+--- page 12 ---
+
+Ne have been determined indirectly. The capture fraction of
+helium is measured with some third species (Ar, H 2,o r 3He)
+and the capture fraction of neon with that same species; then
+the ratio of these two measurements is assumed to give the
+ratio that would be obtained with a mixture of helium and
+neon. Though there is no rigorous theoretical basis for this
+assumption, there is empirical evidence for its validity in
+chemical compounds @52#. The results of these measure-
+ments are given in Table V. The experimental values bracket
+the presently calculated reduced capture ratio of ;3.6 shown
+in Fig. 12 ~b!. It is not known to what extent the deviations
+may be due to the indirect method of determination.
+The concentration dependence of the reduced capture ra-
+tios for neon and helium has not been measured experimen-
+tally. Measurements of the concentration dependence for
+m2
+capture in argon-neon, krypton-argon, and xenon-argon mix-
+tures have been reported by Ehrhart et al. @53#. For the ﬁrst
+two mixtures, they found a signiﬁcant concentration depen-
+dence, about as strong as we calculate for p¯ in the neon-
+helium mixture. However, it is in the oppposite direction;
+A(Ar,Ne) and A(Kr,Ar) increase as the fraction of the
+heavier element increases, while we ﬁnd A(Ne,He) de-
+creases as the neon fraction increases. Though we have no
+knowledge of the total cross sections for argon and krypton
+that controverts opposing behaviors, it may be noted that the
+absolute numbers of Ehrhart et al. @53# for A(Ar,Ne) and
+A(Kr,Ar) disagree with other experiments @12,13,54#.
+The experiment of Bannikov et al. @15# found the reduced
+capture ratio of pions in a
+4He:3He mixture to be 0.75
+60.13. This result differs from unity by only 2 sigma, and
+they were careful not to claim proof of an isotope effect. An
+isotope effect of this magnitude would be quite surprising
+since the electronic structures are the same and the p2 is
+much lighter than either nucleus. Therefore we have done
+FMD calculations on m213He and p¯13He for comparison
+with the similar calculations on 4He targets reported in Sec.
+III. The cross sections for 3He in its center-of-mass system
+were found to agree with those for 4He within the Monte
+Carlo error bars in all cases. Using these cross sections, re-
+duced capture ratios A(4He,3He) were calculated as 0.991
+for m2 and 0.890 for p¯ @the dependence on c(3He) is ex-
+tremely weak#.
+To see how much of this small isotope effect might be
+due to the center-of-mass cross sections and how much to
+their transformation to the laboratory system, we repeated
+the calculation using exactly the same center-of-mass cross
+sections. This result was negligibly different, 0.987 for
+m2
+and 0.900 for p¯. The ratio for p2 should be close to that for
+m2; in any event, a ratio as small as 0.75 seems unlikely. If
+we compare with the value of 4.13 directly obtained experi-
+mentally with Ne: 3He mixtures, instead of with the indirect
+Ne:4He value, the agreement with the present calculation
+and with other experiments is considerably improved.
+VI. CONCLUSIONS
+The present calculations have demonstrated key features
+of the negative-particle capture process. Our results for p¯ and
+m2 capture by helium and neon suggest that the capture
+probabilities of increasingly heavy atoms grow both because
+more electrons are ionized and because the additional elec-
+trons carry off larger kinetic energies. The oft-invoked qua-
+siadiabatic arguments are still fairly descriptive of capture by
+helium, but are virtually useless for the ten-electron neon
+atom. For neon, multiple ionization occurs and the residual
+ion is generally left in a shake-up state. Comparison of our
+results with recent experiments on muonic neon @18# sug-
+gests that many of the attached electrons autoionize without
+changing the atomic state of the exotic particle. Only subse-
+quently can electron emission be unambiguously associated
+with cascading transitions of the exotic particle. In the in-
+terim, the convenient assumption that Auger steps in the cas-
+cade occur with the electron making transitions between
+adiabatic ground states is not valid. Another experiment with
+antiprotonic neon @55# conﬁrms that our neglect of x-ray
+emission during the initial Auger relaxation is valid and
+showed that the cascade in antiprotonic neon is nearly circu-
+lar at least by n515.
+Really, the various ionization processes proceed continu-
+ously and the instant of capture is not sharply deﬁned. For
+this reason, we chose to follow the trajectory until the exotic
+particle reached some speciﬁed principal quantum number,
+which can provide a reasonable starting point for a quantum-
+mechanical cascade calculation. We observed a propensity
+for the exotic particle to reach circular orbits ( l5n21) at
+moderate n. The angular-momentum distributions are consid-
+erably more peaked at l5n21 than can be represented by
+the (2 l11) e
+al distribution often assumed. We also found
+that the interpretation of the exotic particle as in a hydro-
+genic orbital with a screened nuclear charge @56# can be mis-
+leading since it distorts the all-important population of the
+angular-momentum states near n21.
+Within the limitations of the model used in analyzing a
+recent experiment on negative muon capture by neon @18#,
+we obtained satisfactory agreement with the inferred number
+of bound electrons and the angular-momentum distribution.
+Fairly good agreement was also obtained with a number of
+experiments determining relative capture in helium and neon
+mixtures. However, a strong isotope effect on the capture of
+pions in mixtures of
+3He and 4He, as suggested by one of
+the experiments @15#, is not consistent with our calculations.
+All experiments to date have used thick targets. Future
+experiments with monoenergetic beams of very slow antipro-
+tons passing through thin targets promise to shed more light
+on the capture dynamics @7#. Capture at a known collision
+energy would avoid the complication resulting from compe-
+tition between the slowing down and capture processes. For
+antiprotons in a helium-neon mixture we predict that this
+competition causes the per-atom capture probabilities to vary
+signiﬁcantly with neon fraction.
+ACKNOWLEDGMENTS
+I am grateful to F. J. Hartmann, D. Horva ´th, K. S. Kirch,
+F. Kottmann, and L. M. Simons for helpful comments. This
+work was performed under the auspices of the U.S. Depart-
+ment of Energy.
+JAMES S. COHEN PHYSICAL REVIEW A 62 022512
+022512-12
+
+--- page 13 ---
+
+APPENDIX: PROOF THAT lˇn CLASSICALLY
+The energy of a single negative charge bound by a posi-
+tive charge 1Z can be written
+E52
+Z
+r 1
+pr
+2
+2m 1
+l2
+2mr2 ~A1!
+in terms of the radial momentum pr and angular momentum
+l. We deﬁne the pseudoquantum number n by
+n252
+mZ2
+2E . ~A2!
+Then
+n25
+2m2Z2r2
+22mZr 1pr
+2r21l2 , ~A3!
+or
+l252mZR 2pr
+2r22
+m2Z2
+n2 r2. ~A4!
+It follows by maximization of l with respect to pr and r that
+lmax5n ~A5!
+is achieved when pr50 and r5n2/mZ.
+In the present application, n is always large enough that
+the distortion of the Coulomb potential on the exotic particle
+by the nonclassical FMD pseudopotentials is negligible.
+@1# W. Barkas, J. Dyer, and H. Heckman, Phys. Rev. Lett. 11,2 6
+~1963!.
+@2# D. Horva´th and R.M. Lambrecht, Exotic Atoms, A Bibliogra-
+phy 1939 –1982 ~Elsevier, Amsterdam, 1984 !.
+@3# E. Fermi and E. Teller, Phys. Rev. 72, 399 ~1947!.
+@4# V.G. Zinov, A.D. Konin, and A.I. Mukhin, Yad. Fiz. 2, 859
+~1965!@ Sov. J. Nucl. Phys. 2, 613 ~1966!#.
+@5# J.S. Cohen, in Electromagnetic Cascade and Chemistry of Ex-
+otic Atoms, edited by L.M. Simons, D. Horva´th, and G. Torelli
+~Plenum, New York, 1990 !, pp. 1–22.
+@6# J.S. Cohen, J. Phys. B 31, L833 ~1998!.
+@7# ASACUSA collaboration proposal CERN/SPSC 97-19, SPSC
+P-307 ~1997!.
+@8# A.S. Wightman, Phys. Rev. 77, 521 ~1950!.
+@9# H. Schneuwly, V.I. Pokrovsky, and V.I. Ponomarev, Nucl.
+Phys. A 312, 419 ~1978!.
+@10# H. Daniel, Z. Phys. A 291,2 9 ~1979!.
+@11# T. von Egidy, D.H. Jakubassa-Amundsen, and F.J. Hartmann,
+Phys. Rev. A 29, 455 ~1984!.
+@12# Yu.G. Budyashov, V.G. Zinov, A.D. Konin, and A.I. Mukhin,
+Yad. Fiz. 5, 830 ~1967!@ Sov. J. Nucl. Phys. 5, 589 ~1967!#.
+@13# R.L. Hutson, J.D. Knight, M. Leon, M.E. Schillaci, H.B.
+Knowles, and J.J. Reidy, Phys. Lett. A 76, 226 ~1980!.
+@14# V.I. Petrukhin and V.M. Suvorov, Zh. E ´ ksp. Teor. Fiz. 70,
+1145 ~1976!@ Sov. Phys. JETP 43, 595 ~1976!#.
+@15# A.V. Bannikov, B. Le´vay, V.I. Petrukhin, V.A. Vasilyev, L.M.
+Kochenda, A.A. Markov, V.I. Medvedev, G.L. Sokolov, I.I.
+Strakovsky, and D. Horva´th, Nucl. Phys. A 403, 515 ~1983!.
+@16# N.H. Kwong, J.D. Garcia, and J.S. Cohen, J. Phys. B 22, L633
+~1989!.
+@17# For a review, see L. Wilets and J.S. Cohen, Contemp. Phys.
+39, 163 ~1998!.
+@18# K. Kirch, D. Abbott, B. Bach, P. Hauser, P. Indelicato, F.
+Kottmann, J. Missimer, P. Patte, R.T. Siegel, L.M. Simons,
+and D. Viel, Phys. Rev. A 59, 3375 ~1999!.
+@19# C.L. Kirschbaum and L. Wilets, Phys. Rev. A 21, 834 ~1980!.
+@20# J.S. Cohen, Phys. Rev. A 51, 266 ~1995!; 57, 4964 ~1998!.
+@21# W.A. Beck and L. Wilets, Phys. Rev. A 55, 2821 ~1997!.
+@22# J.S. Cohen, Phys. Rev. A 54, 573 ~1996!.
+@23# F.J. Hartmann, in Electromagnetic Cascade and Chemistry of
+Exotic Atoms ~Ref. @5#!, pp. 127–139.
+@24# R. Landua and E. Klempt, Phys. Rev. Lett. 48, 1722 ~1982!.
+@25# R.J. Wetmore, D.C. Buckle, J.R. Kane, and R.T. Siegel, Phys.
+Rev. Lett. 19, 1003 ~1967!.
+@26# A. Placci, E. Polacco, E. Zavattini, K. Ziock, G. Carboni, U.
+Gastaldi, G. Gorini, G. Neri, and G. Torelli, Nuovo Cimento A
+1, 445 ~1971!.
+@27# G. Backenstoss, J. Egger, T. von Egidy, R. Hagelberg, C.J.
+Herrlander, H. Koch, H.P. Povel, A. Schwitter, and
+L. Tauscher, Nucl. Phys. A 232, 519 ~1974!.
+@28# H.P. von Arb, F. Dittus, H. Heeb, H. Hofer, F. Kottmann, S.
+Niggli, R. Schaeren, D. Taqqu, J. Unterna¨hrer, and P. Egelhof,
+Phys. Lett. B 136, 232 ~1984!.
+@29# M. Eckhause, P. Guss, D. Joyce, J.R. Kane, R.T. Siegel, W.
+Vulcan, R.E. Welsh, R. Whyley, R. Dietlicher, and A.
+Zehnder, Phys. Rev. A 33, 1743 ~1986!.
+@30# A. Blaer, J. French, A.M. Sachs, M. May, and E. Zavattini,
+Phys. Rev. A 40, 158 ~1989!.
+@31# S. Tresch, F. Mulhauser, C. Piller, L.A. Schaller, L. Schellen-
+berg, H. Schneuwly, Y.A. Thalmann, A. Werthmu¨ller, P. Ack-
+erbauer, W.H. Breunlich, M. Cargnelli, B. Gartner, R. King, B.
+Lauss, J. Marton, W. Prymas, J. Zmeskal, C. Petitjean, M.
+Augsburger, D. Chatellard, J.P. Egger, E. Jeannet, T. von
+Egidy, F.J. Hartmann, M. Mu ¨hlbauer, and W. Schott, Phys.
+Rev. A 58, 3528 ~1998!.
+@32# R. Abela, G. Backenstoss, A.B. d’Oliveira, M. Izycki, H.O.
+Meyer, I. Schwanner, L. Tauscher, P. Blu ¨m, W. Fetscher, D.
+Gotta, H. Koch, H. Poth, and L.M. Simons, Phys. Lett. B 68,
+429 ~1977!.
+@33# C.J. Batty, S.F. Biagi, S.D. Hoath, P. Sharman, J.D. Davies,
+G.J. Pyle, and G.T.A. Squier, Nucl. Phys. A 326, 455 ~1979!.
+@34# J.D. Davies, T.P. Gorringe, J. Lowe, J.M. Nelson, S.M. Play-
+fer, G.J. Pyle, G.T.A. Squier, C.A. Baker, C.J. Batty, S.A.
+Clark, S. Sakamoto, R.E. Welsh, R.G. Winter, and E.W.A.
+MULTIELECTRON EFFECTS IN CAPTURE O F... P H Y SICAL REVIEW A 62 022512
+022512-13
+
+--- page 14 ---
+
+Lingeman, Phys. Lett. B 145, 319 ~1984!.
+@35# C.A. Baker, C.J. Batty, J. Moir, S. Sakamoto, J.D. Davies, J.
+Lowe, J.M. Nelson, G.J. Pyle, G.T.A. Squier, R.E. Welsh,
+R.G. Winter, and E.W.A. Lingeman, Nucl. Phys. A 494, 507
+~1989!.
+@36# M. Schneider, R. Bacher, P. Blu¨m, D. Gotta, K. Heitlinger, W.
+Kunold, D. Rohmann, J. Egger, L.M. Simons, and K. Elsener,
+Z. Phys. A 338, 217 ~1991!.
+@37# M. Iwasaki, S.N. Nakamura, K. Shigaki, Y. Shimizu, H.
+Tamura, T. Ishikawa, R.S. Hayano, E. Takada, E. Widmann,
+H. Outa, M. Aoki, P. Kitching, and T. Yamazaki, Phys. Rev.
+Lett. 67, 1246 ~1991!.
+@38# E. Widmann, I. Sugai, T. Yamazaki, R.S. Hayano, M. Iwasaki,
+S.N. Nakamura, H. Tamura, T.M. Ito, A. Kawachi, N. Nishida,
+W. Higemoto, Y. Ito, N. Morita, F.J. Hartmann, H. Daniel, T.
+von Egidy, W. Schmid, J. Hoffmann, and J. Eades, Phys. Rev.
+A 51, 2870 ~1995!.
+@39# R.S. Hayano, T. Ishikawa, H. Tamura, H.A. Torii, M. Hori,
+F.E. Maas, N. Morita, M. Kumakura, I. Sugai, F.J. Hartmann,
+H. Daniel, T. von Egidy, B. Ketzer, R. Pohl, D. Horva ´th, J.
+Eades, E. Widmann, and T. Yamazaki, Phys. Rev. A 55,R 1
+~1997!.
+@40# B. Ketzer, F.J. Hartmann, T. von Egidy, C. Maierl, R. Pohl, J.
+Eades, E. Widmann, T. Yamazaki, M. Kumakura, N. Morita,
+R.S. Hayano, M. Hori, T. Ishikawa, H.A. Torii, I. Sugai, and
+D. Horva´th, Phys. Rev. Lett. 78, 1671 ~1997!.
+@41# G.Ya. Korenman and S.I. Rogovaya, Radiat. Eff. 46, 189
+~1980!.
+@42# P.K. Haff and T.A. Tombrello, Ann. Phys. ~N.Y.! 86, 178
+~1974!.
+@43# N.A. Cherepkov and L.V. Chernysheva, Yad. Fiz. 32, 709
+~1980!@ Sov. J. Nucl. Phys. 32, 366 ~1980!#.
+@44# J.S. Cohen, R.L. Martin, and W.R. Wadt, Phys. Rev. A 27,
+1821 ~1983!.
+@45# V.K. Dolinov, G.Ya. Korenman, I.V. Moskalenko, and V.P.
+Popov, Muon Catal. Fusion 4, 169 ~1989!.
+@46# G.Ya. Korenman, Hyperﬁne Interact. 101Õ102,8 1 ~1996!.
+@47# W.A. Beck, L. Wilets, and M.A. Alberg, Phys. Rev. A 48,
+2779 ~1993!.
+@48# M. Leon, Phys. Rev. A 17, 2112 ~1978!.
+@49# J.S. Cohen, R.L. Martin, and W.R. Wadt, Phys. Rev. A 24,3 3
+~1981!.
+@50# P. Vogel, P.K. Haff, V. Akylas, and A. Winther, Nucl. Phys. A
+254, 445 ~1975!.
+@51# J.S. Cohen, Phys. Rev. A 59, 1160 ~1999!.
+@52# T. von Egidy and F.J. Hartmann, Phys. Rev. A 26, 2355
+~1982!.
+@53# P. Ehrhart, F.J. Hartmann, E. Ko ¨hler, and H. Daniel, Phys.
+Rev. A 27, 575 ~1983!; Z. Phys. A 311, 259 ~1983!.
+@54# H.-J. Pfeiffer, K. Springer, and H. Daniel, Nucl. Phys. A 254,
+433 ~1975!.
+@55# R. Bacher, P. Blu¨m, D. Gotta, K. Heitlinger, M. Schneider, J.
+Missimer, L.M. Simons, and K. Elsener, Phys. Rev. A 38,
+4395 ~1988!.
+@56# J.E. Grifﬁth, P.K. Haff, and T.A. Tombrello, Ann. Phys.
+~N.Y.! 87,1 ~1974!.
+JAMES S. COHEN PHYSICAL REVIEW A 62 022512
+022512-14

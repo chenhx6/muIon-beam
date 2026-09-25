@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "plan_id": "plan_lvl1_mu_ne_rebuild",
+  "plan_version": "v03",
+  "status": "blocked_on_physics_acceptance",
+  "task_id": "task_lvl1_mu_ne_001",
+  "workflow_run_id": "workflow_run_lvl1_mu_ne_001_v03",
+  "run_id": "run_lvl1_mu_ne_001",
+  "human_plan": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/plan_v03.md",
+  "machine_plan": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/plan_v03.json",
+  "decision_log": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/decision_log.md",
+  "next_action": "repair_comsol_field_solve_and_geant4_electric_stopping_interface",
+  "instance_execution_plan": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/instance_execution_plan_v01.md",
+  "handoff": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/handoffs/runtime_blockers_v01.json",
+  "resume_command": null,
+  "scope": [
+    "naming_and_id_normalization",
+    "catalog_and_plans",
+    "reference_full_text_library",
+    "reference_retrieval_candidates",
+    "level1_mu_ne_reconstruction"
+  ],
+  "deferred": [
+    "delete_90_migration",
+    "modify_D_muIon"
+  ],
+  "created_at_cst": "2026-09-11T16:30:00+08:00"
+}

@@ -1,7 +1,7 @@
 schema_version: 1.0.0
 analyses:
-  - analysis_id: ANALYSIS-RUN-YYYYMMDD-NNN-001
-    run_id: RUN-YYYYMMDD-NNN-short-name
+  - analysis_id: ANALYSIS-run_yyyymmdd_nnn_001
+    run_id: run_yyyymmdd_nnn_short_name
     checkpoint_id: checkpoint-01-parameter-screen
     question_zh: ""
     factor_variables: []

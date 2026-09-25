@@ -1,6 +1,6 @@
 schema_version: 0.1.0
 result_id: COMSOL-RESULT-YYYYMMDD-NNN
-task_id: COMSOL-TASK-YYYYMMDD-NNN
+task_id: COMSOL-task_yyyymmdd_nnn
 status: partial
 adapter:
   kind: unavailable

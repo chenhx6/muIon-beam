@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "contract_lvl1_mu_ne_fields",
+  "task_id": "task_lvl1_mu_ne_001",
+  "module": "comsol",
+  "objective": "建立一级装置磁场、电极场和轴向输运的连续场 dry-run 接口。",
+  "current_question": "电极场接口能否在 1 T、30 mm 孔径和候选腔体结构下提供可验证的轴向输运观测量？",
+  "inputs": {
+    "geometry_ref": "model_lvl1_mu_ne_001",
+    "target_magnetic_field_T": 1,
+    "neon_temperature_K": 300
+  },
+  "fixed": [
+    {
+      "name": "target_magnetic_field_T",
+      "current": 1,
+      "canonical_name": "target_magnetic_field_t",
+      "scope": "fixed"
+    },
+    {
+      "name": "neon_temperature_K",
+      "current": 300,
+      "canonical_name": "neon_temperature_k",
+      "scope": "fixed"
+    }
+  ],
+  "explorable": [
+    {
+      "name": "neon_number_density_m3",
+      "owner": "comsol",
+      "allowed_range": {
+        "min": 10000000000000000000,
+        "max": 1e+26
+      },
+      "canonical_name": "neon_number_density_m3",
+      "scope": "explorable"
+    }
+  ],
+  "forbidden": [
+    {
+      "name": "transport_efficiency",
+      "owner": "research_workflow",
+      "canonical_name": "transport_efficiency",
+      "scope": "forbidden"
+    }
+  ],
+  "required_outputs": [
+    "field_summary",
+    "trajectory_observables",
+    "validation"
+  ],
+  "success_criteria": [
+    "field and trajectory output interface is bounded"
+  ],
+  "validation_requirements": [
+    "solver_convergence",
+    "numerical_stability"
+  ]
+}

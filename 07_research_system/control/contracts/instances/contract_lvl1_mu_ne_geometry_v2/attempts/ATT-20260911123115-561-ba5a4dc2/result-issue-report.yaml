@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "report_id": "REPORT-20260911123115-571-ffbc022b",
+  "task_id": "task_lvl1_mu_ne_001",
+  "contract_id": "contract_lvl1_mu_ne_geometry_v2",
+  "attempt_id": "ATT-20260911123115-561-ba5a4dc2",
+  "entrypoint": "3d",
+  "module": "3d",
+  "status": "PARTIAL",
+  "execution_status": "dry-run",
+  "summary": "Module returned dry-run; control-layer validation remains incomplete.",
+  "main_results": {
+    "status": "dry-run",
+    "owner": "3d",
+    "mode": "inspect",
+    "geometry_level": "G1",
+    "entrypoint": "3d/inspect",
+    "next": "inspect current CAD only",
+    "cross_module_policy": "return an issue record; do not edit COMSOL, Geant4 or research-workflow state; the public boundary may record research-state evidence"
+  },
+  "produced_artifacts": [],
+  "validation_status": "not-evaluated",
+  "validation": {},
+  "issues": [],
+  "limitations": [],
+  "recommendation": [],
+  "requires_new_contract": false,
+  "proposal": null,
+  "raw_result_reference": null,
+  "traceability": {
+    "contract_id": "contract_lvl1_mu_ne_geometry_v2",
+    "attempt_id": "ATT-20260911123115-561-ba5a4dc2"
+  }
+}

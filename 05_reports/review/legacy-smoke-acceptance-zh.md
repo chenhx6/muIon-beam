@@ -1,8 +1,8 @@
 # Legacy smoke acceptance
 
-- Task: `TASK-LEGACY-SMOKE-001`
-- Model: `MODEL-LEGACY-SMOKE-001`
-- Run: `RUN-LEGACY-SMOKE-001-stage1-centered`
+- Task: `task_legacy_smoke_001`
+- Model: `model_legacy_smoke_001`
+- Run: `run_legacy_smoke_001_stage1_centered`
 - Migration files checked: 293
 - File/hash validation: PASSED
 - Scientific revalidation: NOT PERFORMED

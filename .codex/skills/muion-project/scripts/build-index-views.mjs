@@ -9,6 +9,10 @@ const traceability = path.join(root, '00_project', 'traceability');
 const files = walkFiles(root, { ignoredDirectories: ['.git', 'node_modules', '_work', '3d-smoke'] }).filter((file) => /\.(ya?ml|json)$/i.test(file));
 const docs = [];
 const errors = [];
+function displayId(value) {
+  if (typeof value !== 'string') return value || '';
+  return value.replace(/\b(TASK|RUN|MODEL|FIGURES?|MANIFEST|SNAPSHOT|PUBLICATION|WF)-([A-Za-z0-9-]+)\b/g, (_, prefix, body) => `${prefix.toLowerCase()}_${body.toLowerCase().replaceAll('-', '_')}`);
+}
 for (const file of files) {
   const relative = relativePath(root, file);
   if (/^(00_project\/traceability\/(VARIABLE_CATALOG|PROJECT_INDEX|TASK_INDEX|MODEL_INDEX|RESULTS_INDEX|REFERENCE_INDEX)\.(md|csv)|package-lock\.json)$/i.test(relative)) continue;
@@ -30,23 +34,23 @@ for (const { file, doc } of docs) {
   const manifestId = doc.manifest_id || doc.migration_id || doc.publication_id || doc.sync_id || file;
   if (!seen.manifests.has(String(manifestId))) {
     seen.manifests.add(String(manifestId));
-    generated.PROJECT_INDEX.push(`| ${manifestId} | ${doc.manifest_type || ''} | ${file} | ${doc.status || ''} |`);
+    generated.PROJECT_INDEX.push(`| ${displayId(manifestId)} | ${doc.manifest_type || ''} | ${file} | ${doc.status || ''} |`);
   }
   if (doc.task_id && !seen.tasks.has(String(doc.task_id))) {
     seen.tasks.add(String(doc.task_id));
-    generated.TASK_INDEX.push(`| ${doc.task_id} | ${doc.task_name || ''} | ${doc.source_type || doc.run_kind || ''} | ${doc.status || ''} | ${doc.run_id || ''} |`);
+    generated.TASK_INDEX.push(`| ${displayId(doc.task_id)} | ${doc.task_name || ''} | ${doc.source_type || doc.run_kind || ''} | ${doc.status || ''} | ${displayId(doc.run_id)} |`);
   }
   for (const model of doc.model_references || []) {
     const modelId = typeof model === 'object' ? model.model_id || model.path : model;
     if (!modelId || seen.models.has(String(modelId))) continue;
     seen.models.add(String(modelId));
-    generated.MODEL_INDEX.push(`| ${modelId} | ${typeof model === 'object' ? model.model_type || '' : ''} | ${typeof model === 'object' ? model.revision || '' : ''} | ${typeof model === 'object' ? model.path || '' : ''} | ${doc.run_id || ''} |`);
+    generated.MODEL_INDEX.push(`| ${displayId(modelId)} | ${typeof model === 'object' ? model.model_type || '' : ''} | ${typeof model === 'object' ? model.revision || '' : ''} | ${typeof model === 'object' ? model.path || '' : ''} | ${displayId(doc.run_id)} |`);
   }
   if (doc.run_id && !seen.runs.has(String(doc.run_id))) {
     seen.runs.add(String(doc.run_id));
     const git = doc.git || {};
     const drive = doc.drive || {};
-    generated.RESULTS_INDEX.push(`| ${doc.run_id} | ${doc.task_id || ''} | ${doc.parent_result_tag || ''} | ${doc.maturity_level || ''} | ${git.tag || ''} | ${doc.human_summary_zh || ''} | ${drive.archive_path || doc.drive_path || ''} |`);
+    generated.RESULTS_INDEX.push(`| ${displayId(doc.run_id)} | ${displayId(doc.task_id)} | ${doc.parent_result_tag || ''} | ${doc.maturity_level || ''} | ${git.tag || ''} | ${doc.human_summary_zh || ''} | ${drive.archive_path || doc.drive_path || ''} |`);
   }
 }
 for (const [name, lines] of Object.entries(generated)) fs.writeFileSync(path.join(traceability, `${name}.md`), `${lines.join('\n')}\n`, 'utf8');

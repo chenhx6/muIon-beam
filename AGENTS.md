@@ -86,6 +86,14 @@ cache-audit
 
 入口从 `CODEX_THREAD_ID` / `CODEX_SESSION_ID` 取得稳定身份，写任务自动分配或复用返回的 `session.worktree_path`。之后的文件修改和命令必须以该路径为工作目录；不能分配了 worktree 却继续写主目录。明确只读时使用 `--read-only`。被暂停、submitted 或 blocked 的分支先处理记录中的下一步，不能覆盖或删掉现场。当前这次基础设施维护从既有脏主工作树续接，其已登记 maintenance leader 是过渡例外，新任务不得照搬。
 
+### WSL 执行边界
+
+- 对 `wsl.exe -d Ubuntu-20.04` 的调用必须使用已批准的 sandbox 外执行路径，即 `functions.exec` 的 `sandbox_permissions: "require_escalated"`，并使用命令前缀 `wsl.exe -d Ubuntu-20.04`。
+- 禁止先用默认 Windows sandbox 调用该前缀进行探测；已知默认 sandbox 会返回 `Wsl/Service/E_ACCESSDENIED`，第一次调用必须直接走允许的外部执行路径。
+- 该规则的机器配置保存在 `00_project/config/wsl-runtime.json`。换 session 后先读本文件和本节，再执行 WSL 命令。
+- WSL 内先 `source /home/ys/opt/physics/physics-env.sh`，再检查 `geant4-config`、`root-config`、CMake、编译器和下载能力。
+- 不读取、复制或保存 `/home/ys/ROOT_SECRET.txt` 或任何 root 密码；需要 root 时使用本地交互或系统凭据机制。
+
 进入 D:\\muIon-beam 的任务时，先检查必要工具；当前任务明确需要且来源可验证的工具或程序包缺失时，由 `muion-project` 的 toolchain recovery 在当前用户范围或隔离环境中自动下载安装、校验并重试原命令。不得安装任意包、执行未知安装钩子或修改 bundled runtime。由于 Codex Desktop shell 可能没有继承 npm PATH，启动 farmer 必须优先使用 `node .codex/skills/farmer/farmer.mjs ensure`，不得把 `npm run farmer:ensure` 作为唯一入口；工具链检查成功后才可使用 npm scripts。farmer 只监督本项目 Codex Desktop session，不改变模型、任务目标或 Manifest。其他工作流 skill 由 autopilot 根据任务阶段自动选择；只有 evolution 的外部能力搜索和采用仍需用户显式触发。
 
 默认采用事件触发的三端审计：正式运行完成、报告定稿、Drive 归档、Gitee 发布和任务关闭时执行。Windows 每日定时审计不是默认流程；若以后启用，只能运行只读审计，不得自动提交、上传或删除。

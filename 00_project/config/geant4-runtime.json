@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "backend": "wsl",
+  "distribution": "Ubuntu-20.04",
+  "env_script": "/home/ys/opt/physics/physics-env.sh",
+  "geant4_config": "/home/ys/opt/physics/geant4-11.2.2/bin/geant4-config",
+  "reported_version": "11.2.2",
+  "reported_by_user_terminal": true,
+  "codex_process_verification": "passed_via_approved_external_wsl_execution",
+  "runtime_evidence": "00_project/traceability/wsl-runtime-evidence.json",
+  "credentials": "never_store_or_log"
+}

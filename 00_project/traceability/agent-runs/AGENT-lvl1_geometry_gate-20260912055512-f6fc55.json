@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "run_id": "AGENT-lvl1_geometry_gate-20260912055512-f6fc55",
+  "parent_id": "plan_lvl1_mu_ne_rebuild",
+  "task_id": "lvl1_geometry_gate",
+  "role": "executor",
+  "lifecycle_state": "ready",
+  "selected_model": "gpt-6-astra",
+  "model_family": null,
+  "reasoning": "xhigh",
+  "backend": null,
+  "capability_requirements": {
+    "context": 16000,
+    "modalities": [],
+    "tools": [
+      "filesystem",
+      "shell"
+    ],
+    "backend": null
+  },
+  "candidates_considered": [],
+  "selection_reason": "stale catalog could not be refreshed for a write/high-risk dispatch",
+  "catalog_freshness": "stale",
+  "stale_model_catalog": true,
+  "fallback": "parent-model",
+  "permissions": {
+    "read": true,
+    "write": true,
+    "publish": false,
+    "spawn_child": false
+  },
+  "dependencies": [],
+  "resources": [
+    "solidworks"
+  ],
+  "manifest_hash": "aadb7c205232aaeb54a06c1b745d37403817ba049e862797d21e137212c733ec",
+  "input_hash": null,
+  "start_time": null,
+  "end_time": null,
+  "output_reference": null,
+  "changed_paths": [],
+  "verification": {
+    "gate_type": "geometry-transfer",
+    "deterministic_oracle": true
+  },
+  "tests": [],
+  "failure_reason": null,
+  "retry": {
+    "count": 0,
+    "max": 1,
+    "previous_run_ids": []
+  },
+  "unresolved_items": [],
+  "normalized_runtime": {
+    "run": "AGENT-lvl1_geometry_gate-20260912055512-f6fc55",
+    "session": null,
+    "thread": null,
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "backend": null,
+    "state": "ready",
+    "retry": {
+      "count": 0,
+      "max": 1,
+      "previous_run_ids": []
+    },
+    "started_at": null,
+    "ended_at": null,
+    "output": null,
+    "verification": {
+      "gate_type": "geometry-transfer",
+      "deterministic_oracle": true
+    },
+    "unresolved_items": []
+  },
+  "events": [
+    {
+      "at": "2026-09-12T05:55:12.425Z",
+      "from": null,
+      "to": "planned",
+      "reason": "run created"
+    },
+    {
+      "at": "2026-09-12T05:55:12.427Z",
+      "from": "planned",
+      "to": "validated",
+      "reason": null
+    },
+    {
+      "at": "2026-09-12T05:55:12.428Z",
+      "from": "validated",
+      "to": "ready",
+      "reason": null
+    }
+  ]
+}

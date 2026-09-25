@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "module": "comsol",
+  "runtime": {
+    "executable": "C:\\Program Files\\COMSOL\\COMSOL64\\Multiphysics\\bin\\win64\\comsolbatch.exe",
+    "version": "6.4",
+    "status": "adapter_executed_geometry_gate_passed"
+  },
+  "level1_adapter": {
+    "status": "executed_geometry_gate",
+    "geometry_input": "02_models/model-manifests/model_lvl1_mu_ne_001.geometry.json",
+    "historical_transfer_evidence": "02_models/solidworks/legacy/stage1_3d_feasibility/cad/Stage1_Master_3D.step",
+    "step_import_entrypoint": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/ImportStage1SolidWorksStep.java",
+    "field_build_entrypoint": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/BuildCenteredStage1Model.java",
+    "cooling_build_entrypoint": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/BuildCenteredCoolingModel.java",
+    "case_entrypoint": "02_models/comsol/legacy-scripts/stage1_3d_feasibility/scripts/RunCenteredCoolingCase.java",
+    "result_interface": {
+      "format": "json_and_csv",
+      "required_metadata": [
+        "producer_version",
+        "units",
+        "coordinate_frame",
+        "model_fingerprint",
+        "sha256"
+      ],
+      "manifest_required": true,
+      "geometry_gate": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-ne_field-r_manifest-v01-en.json",
+      "physics_solve": "not_evaluated"
+    },
+    "command_template": "{executable} -np 1 -inputfile {java_entrypoint} -outputfile {result_file}",
+    "notes": [
+      "The batch adapter must be exercised with an explicit Java entrypoint and task-specific arguments.",
+      "Do not infer a historical Java class from a missing geometry reference.",
+      "SolidWorks to COMSOL coupling uses STEP and a transfer Manifest, not a live process link."
+    ]
+  }
+}

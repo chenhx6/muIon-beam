@@ -2,7 +2,7 @@
   "decision_id": "DECISION-LEGACY-KEEP-MIGRATED-001",
   "decision_type": "legacy-source-change-disposition",
   "migration_manifest": "90_migration/from-D-muIon/migration-manifest.json",
-  "run_id": "RUN-LEGACY-SMOKE-001-stage1-centered",
+  "run_id": "run_legacy_smoke_001_stage1_centered",
   "decision": "keep-original-migrated-version",
   "authority": "explicit-user-instruction",
   "source_workspace_state": "active-gas-density-cooling-plot-task",

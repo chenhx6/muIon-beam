@@ -86,7 +86,7 @@ const taskManifest = {
   scientific_revalidation: 'not-performed',
   migration_manifest: relativeProject(migrationPath)
 };
-jsonWrite(path.join(root, '00_project/task-cards', `${taskId}.task-manifest.json`), taskManifest);
+jsonWrite(path.join(root, '00_project/task-cards', `${taskId}.task_manifest.json`), taskManifest);
 
 const modelManifest = {
   manifest_id: modelId,
@@ -103,7 +103,7 @@ const modelManifest = {
   files: modelItems.map((item) => ({ path: item.destination_path, legacy_source_path: item.legacy_source_path, sha256: item.legacy_source_sha256, size: item.legacy_source_size, retention_level: item.retention_level })),
   used_by_runs: [runId]
 };
-jsonWrite(path.join(root, '02_models/model-manifests', `${modelId}.model-manifest.json`), modelManifest);
+jsonWrite(path.join(root, '02_models/model-manifests', `${modelId}.model_manifest.json`), modelManifest);
 
 const figureManifest = {
   manifest_id: `FIGURES-${runId}`,
@@ -112,7 +112,7 @@ const figureManifest = {
   run_id: runId,
   figures: figureItems.map((item, index) => ({ figure_id: `FIG-${runId}-${String(index + 1).padStart(3, '0')}`, run_id: runId, figure_type: /trajectory|particle/i.test(item.destination_path) ? 'analysis' : 'diagnostic', path: item.destination_path, source_data: [], generation_script: null, sha256: item.legacy_source_sha256, retention_level: item.retention_level, legacy_source_path: item.legacy_source_path, interpretation_zh: '历史导入图件，未重新生成。' }))
 };
-jsonWrite(path.join(reportDir, 'figure-manifest.json'), figureManifest);
+jsonWrite(path.join(reportDir, 'figure_manifest.json'), figureManifest);
 
 const behaviorManifest = {
   manifest_id: `BEHAVIOR-${runId}`,
@@ -121,7 +121,7 @@ const behaviorManifest = {
   run_id: runId,
   analyses: taskManifest.analysis_questions.map((question) => ({ ...question, run_id: runId, control_variables: [], baseline_run_id: null, comparison_run_ids: [], source_data_refs: [coolingTable?.destination_path, transportTable?.destination_path, sensitivityTable?.destination_path].filter(Boolean), evidence_figure_ids: figureManifest.figures.map((figure) => figure.figure_id), analysis_type: 'historical-evidence-mapping', confidence: 'historical-not-revalidated', interpretation_zh: '仅验证旧结果的文件关系和证据引用，不重新判断物理结论。', limitations_zh: '未重新运行原模型。' }))
 };
-jsonWrite(path.join(reportDir, 'behavior-analysis.json'), behaviorManifest);
+jsonWrite(path.join(reportDir, 'behavior_analysis.json'), behaviorManifest);
 
 const relativeReportSource = reportSource ? reportSource.destination_path : 'unknown';
 const summary = `# 简洁版任务报告：旧工作区迁移冒烟测试\n\n## 任务目标\n\n验证旧工作区 Stage-1 居中源资料能否按新框架建立任务、模型、运行、报告和图件关系。\n\n## 基于的历史资料\n\n- 历史报告：\`${relativeReportSource}\`\n- 迁移 Manifest：\`${relativeProject(migrationPath)}\`\n- 选中文件数：${migration.selected_count}\n\n## 本次调整\n\n将旧资料按 P0/P1/P2 规则精选复制到新项目，并记录源路径、源 SHA256 和目标路径。\n\n## 结果\n\n- 复制和哈希校验：${errors.length ? '失败' : '通过'}\n- JSON/CSV 读取：${errors.length ? '需检查错误' : '通过'}\n- 新项目实例 Manifest：已生成\n- 科学重新验证：未进行\n\n## 主要限制\n\n这是迁移结构冒烟测试，不代表重新完成 COMSOL 或 Geant4 物理验证。\n\n## 详细报告\n\n[detailed-report-zh.md](detailed-report-zh.md)\n\n## Google Drive 归档路径\n\n${migration.drive_root || '待同步'}\n`;
@@ -159,10 +159,10 @@ const runManifest = {
   unknowns: ['历史运行的完整软件环境需要从旧资料补充'],
   limitations: ['未重新运行 COMSOL', '未重新运行 Geant4', '不代表新的物理验证']
 };
-jsonWrite(path.join(runDir, 'run-manifest.json'), runManifest);
+jsonWrite(path.join(runDir, 'run_manifest.json'), runManifest);
 const acceptance = `# Legacy smoke acceptance\n\n- Task: \`${taskId}\`\n- Model: \`${modelId}\`\n- Run: \`${runId}\`\n- Migration files checked: ${migration.selected_count}\n- File/hash validation: ${errors.length ? 'FAILED' : 'PASSED'}\n- Scientific revalidation: NOT PERFORMED\n- Source preserved: ${migration.preserve_source === true ? 'YES' : 'CHECK MANIFEST'}\n\nThis acceptance record validates data structure and traceability only. It does not certify the historical physics result.\n`;
 fs.writeFileSync(path.join(root, '05_reports/review/legacy-smoke-acceptance-zh.md'), acceptance, 'utf8');
-const result = { task_manifest: relativeProject(path.join(root, '00_project/task-cards', `${taskId}.task-manifest.json`)), model_manifest: relativeProject(path.join(root, '02_models/model-manifests', `${modelId}.model-manifest.json`)), run_manifest: relativeProject(path.join(runDir, 'run-manifest.json')), report_dir: relativeProject(reportDir), selected_files: migration.selected_count, figure_count: figureItems.length, json_count: jsonInputs.length, csv_count: csvInputs.length, valid: errors.length === 0, errors, warnings };
-jsonWrite(path.join(runDir, 'smoke-test-result.json'), result);
+const result = { task_manifest: relativeProject(path.join(root, '00_project/task-cards', `${taskId}.task_manifest.json`)), model_manifest: relativeProject(path.join(root, '02_models/model-manifests', `${modelId}.model_manifest.json`)), run_manifest: relativeProject(path.join(runDir, 'run_manifest.json')), report_dir: relativeProject(reportDir), selected_files: migration.selected_count, figure_count: figureItems.length, json_count: jsonInputs.length, csv_count: csvInputs.length, valid: errors.length === 0, errors, warnings };
+jsonWrite(path.join(runDir, 'smoke_test_result.json'), result);
 console.log(JSON.stringify(result, null, 2));
 process.exitCode = errors.length ? 1 : 0;

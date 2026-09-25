@@ -20,5 +20,5 @@ for (const sourceArg of sourceArgs) {
   records.push({ source_path: relativePath(root, source), snapshot_path: relativePath(root, destination), source_sha256: sha256File(source), snapshot_sha256: sha256File(destination), size: fs.statSync(source).size });
 }
 const manifest = { manifest_id: `SNAPSHOT-${path.basename(runDir)}`, manifest_type: 'run-snapshot', schema_version: '1.0.0', created_at: nowIso(), run_dir: relativePath(root, runDir), files: records };
-jsonWrite(path.join(snapshotDir, 'snapshot-manifest.json'), manifest);
+jsonWrite(path.join(snapshotDir, 'snapshot_manifest.json'), manifest);
 console.log(JSON.stringify({ runDir, snapshotDir, files: records, valid: records.every((item) => item.source_sha256 === item.snapshot_sha256) }, null, 2));

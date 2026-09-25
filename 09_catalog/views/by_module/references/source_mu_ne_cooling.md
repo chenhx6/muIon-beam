@@ -1,0 +1,3 @@
+# references / source / mu_ne_cooling
+
+- [08_references/library/text/ref_9d3e4959ff87_mucool_a_next_step_towards_efficient_muon_beam_compression.txt](08_references/library/text/ref_9d3e4959ff87_mucool_a_next_step_towards_efficient_muon_beam_compression.txt) — 39060 bytes — 491dfdb5eaf12f4ec75185ed93e9b2d023037b4d860794dc3d3843451dd7c686

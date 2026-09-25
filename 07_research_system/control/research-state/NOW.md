@@ -1,24 +1,24 @@
 # MUON-ION NOW
 
-State revision: 0
+State revision: 23
 
 ## Current Goal
 none
 
 ## Current Task
-none
+task_lvl1_mu_ne_001
 
 ## Current Phase
-idle
+decision
 
 ## Progress
-IDLE
+RUNNING
 
 ## Completed
 - none
 
 ## Running
-- none
+- task_lvl1_mu_ne_001
 
 ## Blocked
 none
@@ -27,6 +27,6 @@ none
 - none
 
 ## Next
-deep-interview
+diagnose_field_and_energy_transport_failure
 
 Source: state.yaml

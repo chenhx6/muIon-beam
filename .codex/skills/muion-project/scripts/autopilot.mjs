@@ -56,7 +56,7 @@ function advance(root, run) {
   if (run.stage === 'MODEL_CONFIRMED') {
     if (!run.snapshot_ref && run.snapshot_sources?.length) {
       const snapshot = executeNode(root, '.codex/skills/muion-project/scripts/create-run-snapshot.mjs', ['--project-root', root, '--run-dir', run.run_dir || `03_runs/formal/${run.workflow_run_id}`, ...run.snapshot_sources.flatMap((file) => ['--source', file])]);
-      if (snapshot.status === 0) { const parsed = readJsonFromOutput(snapshot.stdout); run.snapshot_ref = parsed?.snapshotDir ? rel(root, path.join(parsed.snapshotDir, 'snapshot-manifest.json')) : null; }
+      if (snapshot.status === 0) { const parsed = readJsonFromOutput(snapshot.stdout); run.snapshot_ref = parsed?.snapshotDir ? rel(root, path.join(parsed.snapshotDir, 'snapshot_manifest.json')) : null; }
     }
     return run.snapshot_ref && fs.existsSync(resolve(root, run.snapshot_ref)) ? event(root, run, 'stage-completed', 'SNAPSHOT_READY', 'READY', 'contract') : event(root, run, 'stage-blocked', 'MODEL_CONFIRMED', 'BLOCKED', 'create-run-snapshot', { reason: 'snapshot_ref is missing or unavailable' });
   }

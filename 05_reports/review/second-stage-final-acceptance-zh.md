@@ -17,7 +17,7 @@
 - 项目目录、`AGENTS.md` 和 `muion-project` skill：通过。
 - 精选迁移：293 个文件、约 190.6 MB，源文件 SHA256、目标文件 SHA256 和 Drive 文件 SHA256 一致。
 - 迁移安全：`copy_only: true`、`preserve_source: true`，旧工作区原件保留。
-- 历史冒烟实例：`TASK-LEGACY-SMOKE-001`、`MODEL-LEGACY-SMOKE-001`、`RUN-LEGACY-SMOKE-001-stage1-centered` 已建立。
+- 历史冒烟实例：`task_legacy_smoke_001`、`model_legacy_smoke_001`、`run_legacy_smoke_001_stage1_centered` 已建立。
 - 历史冒烟实例：JSON/CSV、任务关系、模型关系、运行关系、报告和图件引用检查通过。
 - SQLite：已由 Manifest 重建，当前索引包含任务、模型、运行、artifact、图和行为分析记录。
 - Nature 绘图：`nature-figure` 已固定 commit `287ee37542620711a56c7c58a73f44ef5c2bede0`；Python 图源代码检查通过，PDF 文字审计通过，碰撞审计通过。
@@ -48,10 +48,10 @@ node D:\muIon-beam\.codex\skills\muion-project\scripts\sync-project-snapshot.mjs
 node D:\muIon-beam\.codex\skills\muion-project\scripts\audit-project-snapshot.mjs `
   --drive-path H:\我的云端硬盘\muIon_archive\project-management\project-snapshots\SNAPSHOT-<current-commit>
 node D:\muIon-beam\.codex\skills\muion-project\scripts\audit-three-end.mjs `
-  --run-dir D:\muIon-beam\03_runs\formal\RUN-LEGACY-SMOKE-001-stage1-centered `
-  --run-id RUN-LEGACY-SMOKE-001-stage1-centered `
+  --run-dir D:\muIon-beam\03_runs\formal\run_legacy_smoke_001_stage1_centered `
+  --run-id run_legacy_smoke_001_stage1_centered `
   --tag r1-framework-acceptance `
-  --drive-path H:\我的云端硬盘\muIon_archive\legacy-from-D-muIon\selected-migration-20260907-stage1\smoke-run\RUN-LEGACY-SMOKE-001-stage1-centered
+  --drive-path H:\我的云端硬盘\muIon_archive\legacy-from-D-muIon\selected-migration-20260907-stage1\smoke-run\run_legacy_smoke_001_stage1_centered
 ```
 
 如果推送后远端提交与本地一致，项目状态改为最终 `three-way-verified`。在此之前，不删除或清理任何正式迁移文件。

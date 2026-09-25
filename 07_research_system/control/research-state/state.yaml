@@ -1,21 +1,31 @@
 {
   "schema_version": "1.0.0",
-  "state_revision": 0,
-  "updated_at": null,
-  "context_id": null,
-  "entrypoint": null,
-  "context_kind": null,
+  "state_revision": 23,
+  "updated_at": "2026-09-12T17:52:39.791Z",
+  "context_id": "ctx_lvl1_mu_ne_rebuild_v03",
+  "entrypoint": "plan_lvl1_mu_ne_rebuild",
+  "context_kind": "formal-instance-acceptance",
   "legacy_phase": "idle",
   "current_goal": null,
-  "current_question": null,
-  "current_task": null,
-  "current_phase": "idle",
-  "task_status": "IDLE",
+  "current_question": "一级装置研究重建实例验收：项目文件体系与三模块研究工作流",
+  "current_task": {
+    "task_id": "task_lvl1_mu_ne_001",
+    "module": "research-workflow",
+    "objective": "一级装置研究重建实例验收：项目文件体系与三模块研究工作流",
+    "external_task_id": null,
+    "status": "RUNNING"
+  },
+  "current_phase": "decision",
+  "task_status": "RUNNING",
   "completed_stages": [],
   "blocked_reason": null,
-  "next_action": "deep-interview",
+  "next_action": "diagnose_field_and_energy_transport_failure",
   "active_contract": null,
   "related_open_problems": [],
   "last_result": null,
-  "last_validation": null
+  "last_validation": null,
+  "workflow_run_id": "workflow_run_lvl1_mu_ne_001_v03",
+  "workflow_stage": "geant4_acceptance",
+  "workflow_status": "FAILED"
 }
+

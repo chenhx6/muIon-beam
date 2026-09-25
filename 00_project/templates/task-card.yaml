@@ -1,4 +1,4 @@
-task_id: TASK-YYYYMMDD-NNN-short-name
+task_id: task_yyyymmdd_nnn_short_name
 task_name: ""
 source_type: self_directed
 is_upper_task: false

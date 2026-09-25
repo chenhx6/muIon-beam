@@ -6,6 +6,16 @@
     "test": "node --test tests/*.mjs",
     "preflight": "node .codex/skills/muion-project/scripts/preflight.mjs .",
     "validate:manifest": "node .codex/skills/muion-project/scripts/validate-manifests.mjs",
+    "naming:glossary": "node .codex/skills/muion-project/scripts/build-naming-glossary.mjs .",
+    "naming:check": "node .codex/skills/muion-project/scripts/check-file-names.mjs .",
+    "catalog:build": "node .codex/skills/muion-project/scripts/catalog-build.mjs .",
+    "catalog:check": "node .codex/skills/muion-project/scripts/catalog-check.mjs .",
+    "plan:check": "node .codex/skills/muion-project/scripts/validate-plan-system.mjs .",
+    "reference:index": "node .codex/skills/muion-project/scripts/reference-index.mjs .",
+    "reference:search": "node 07_research_system/blocks/reference_retrieval/index.mjs .",
+    "id:dry-run": "node .codex/skills/muion-project/scripts/normalize-project-ids.mjs .",
+    "id:normalize": "node .codex/skills/muion-project/scripts/normalize-project-ids.mjs . --apply",
+    "geometry:transfer-check": "node .codex/skills/muion-project/scripts/validate-geometry-transfer.mjs .",
     "validate:variables": "node .codex/skills/muion-project/scripts/validate-variable-catalog.mjs",
     "build:variables": "node .codex/skills/muion-project/scripts/build-variable-catalog-view.mjs",
     "build:index": "node .codex/skills/muion-project/scripts/build-index-views.mjs .",
@@ -31,54 +41,54 @@
     "gitee:note": "node .codex/skills/muion-project/scripts/create-result-note.mjs",
     "nature:install": "node .codex/skills/muion-project/scripts/install-nature-figure.mjs",
     "figure:qa": "node .codex/skills/muion-project/scripts/figure-qa.mjs",
-    "acceptance:finalize": "node .codex/skills/muion-project/scripts/finalize-legacy-acceptance.mjs"
-    ,"farmer:ensure": "node .codex/skills/farmer/farmer.mjs ensure"
-    ,"farmer:start": "node .codex/skills/farmer/farmer.mjs start"
-    ,"farmer:once": "node .codex/skills/farmer/farmer.mjs once"
-    ,"farmer:status": "node .codex/skills/farmer/farmer.mjs status"
-    ,"farmer:stop": "node .codex/skills/farmer/farmer.mjs stop"
-    ,"farmer:test": "node --test tests/farmer.test.mjs"
-    ,"farmer:install": "node .codex/skills/farmer/farmer.mjs install"
-    ,"task:tag": "node .codex/skills/muion-project/scripts/create-task-tag.mjs"
-    ,"test:agent-routing": "node --test tests/agent-routing.test.mjs"
-    ,"test:team-dispatch": "node --test tests/team-dispatch.test.mjs"
-    ,"team:dispatch": "node .codex/skills/team/scripts/dispatch.mjs"
-    ,"test:evolution": "node --test tests/evolution.test.mjs"
-    ,"evolution:discover": "node .codex/skills/evolution/evolution.mjs ."
-    ,"toolchain:ensure": "node .codex/skills/muion-project/scripts/ensure-toolchain.mjs check --package PyYAML --record"
-    ,"toolchain:recover": "node .codex/skills/muion-project/scripts/ensure-toolchain.mjs check --package PyYAML --install --record"
-    ,"sync:receipt:audit": "node .codex/skills/muion-project/scripts/audit-sync-receipt.mjs"
-    ,"sync:receipt:deliver": "node .codex/skills/muion-project/scripts/record-sync-receipt-delivery.mjs"
-    ,"task:begin": "node .codex/skills/muion-project/scripts/begin-task.mjs ."
-    ,"external-lib:sync": "node .codex/skills/muion-project/scripts/external-lib-sync.mjs"
-    ,"experience:record": "node .codex/skills/muion-project/scripts/record-experience.mjs"
-    ,"experience:summarize": "node .codex/skills/muion-project/scripts/summarize-experiences.mjs"
-    ,"auto:commit-push": "node .codex/skills/muion-project/scripts/auto-commit-push.mjs"
-    ,"delivery:plan": "node .codex/skills/muion-project/scripts/delivery-plan.mjs ."
-    ,"sync:record-metadata": "node .codex/skills/muion-project/scripts/record-sync-metadata.mjs"
-    ,"task:close": "node .codex/skills/muion-project/scripts/task-close.mjs"
-    ,"task:status": "node .codex/skills/muion-project/scripts/task-close.mjs status"
-    ,"up": "node .codex/skills/muion-project/scripts/up.mjs ."
-    ,"build:capability-map": "node .codex/skills/muion-project/scripts/build-capability-map.mjs ."
-    ,"geant4:preflight": "node 07_research_system/blocks/geant4/scripts/preflight.mjs"
-    ,"geant4:build": "node 07_research_system/blocks/geant4/scripts/build.mjs"
-    ,"geant4:smoke": "node 07_research_system/blocks/geant4/scripts/smoke.mjs"
-    ,"geant4:validate": "node 07_research_system/blocks/geant4/scripts/validate.mjs"
-    ,"geant4:run": "node 07_research_system/blocks/geant4/scripts/run.mjs"
-    ,"geant4:summarize": "node 07_research_system/blocks/geant4/scripts/summarize.mjs"
-    ,"research-state:init": "node 07_research_system/control/research-state/index.mjs init"
-    ,"research-state:status": "node 07_research_system/control/research-state/index.mjs status"
-    ,"research-state:repair": "node 07_research_system/control/research-state/index.mjs repair"
-    ,"research-workflow:status": "node 07_research_system/control/research-workflow/index.mjs status"
-    ,"research-workflow:validate": "node 07_research_system/control/research-workflow/index.mjs validate"
-    ,"research-workflow:execute": "node 07_research_system/control/research-workflow/index.mjs execute"
-    ,"autopilot": "node .codex/skills/muion-project/scripts/autopilot.mjs"
-    ,"deep-interview": "node .codex/skills/muion-project/scripts/deep-interview.mjs"
-    ,"consensus-plan": "node .codex/skills/muion-project/scripts/consensus-plan.mjs"
-    ,"ralplan": "node .codex/skills/muion-project/scripts/consensus-plan.mjs"
-    ,"ultragoal": "node .codex/skills/muion-project/scripts/ultragoal.mjs"
-    ,"ultraqa": "node .codex/skills/muion-project/scripts/ultraqa.mjs"
-    ,"research-dashboard": "node 11_tools/research-dashboard/server.mjs"
-    ,"test:dashboard": "node --test tests/research-dashboard.test.mjs"
+    "acceptance:finalize": "node .codex/skills/muion-project/scripts/finalize-legacy-acceptance.mjs",
+    "farmer:ensure": "node .codex/skills/farmer/farmer.mjs ensure",
+    "farmer:start": "node .codex/skills/farmer/farmer.mjs start",
+    "farmer:once": "node .codex/skills/farmer/farmer.mjs once",
+    "farmer:status": "node .codex/skills/farmer/farmer.mjs status",
+    "farmer:stop": "node .codex/skills/farmer/farmer.mjs stop",
+    "farmer:test": "node --test tests/farmer.test.mjs",
+    "farmer:install": "node .codex/skills/farmer/farmer.mjs install",
+    "task:tag": "node .codex/skills/muion-project/scripts/create-task-tag.mjs",
+    "test:agent-routing": "node --test tests/agent-routing.test.mjs",
+    "test:team-dispatch": "node --test tests/team-dispatch.test.mjs",
+    "team:dispatch": "node .codex/skills/team/scripts/dispatch.mjs",
+    "test:evolution": "node --test tests/evolution.test.mjs",
+    "evolution:discover": "node .codex/skills/evolution/evolution.mjs .",
+    "toolchain:ensure": "node .codex/skills/muion-project/scripts/ensure-toolchain.mjs check --package PyYAML --record",
+    "toolchain:recover": "node .codex/skills/muion-project/scripts/ensure-toolchain.mjs check --package PyYAML --install --record",
+    "sync:receipt:audit": "node .codex/skills/muion-project/scripts/audit-sync-receipt.mjs",
+    "sync:receipt:deliver": "node .codex/skills/muion-project/scripts/record-sync-receipt-delivery.mjs",
+    "task:begin": "node .codex/skills/muion-project/scripts/begin-task.mjs .",
+    "external-lib:sync": "node .codex/skills/muion-project/scripts/external-lib-sync.mjs",
+    "experience:record": "node .codex/skills/muion-project/scripts/record-experience.mjs",
+    "experience:summarize": "node .codex/skills/muion-project/scripts/summarize-experiences.mjs",
+    "auto:commit-push": "node .codex/skills/muion-project/scripts/auto-commit-push.mjs",
+    "delivery:plan": "node .codex/skills/muion-project/scripts/delivery-plan.mjs .",
+    "sync:record-metadata": "node .codex/skills/muion-project/scripts/record-sync-metadata.mjs",
+    "task:close": "node .codex/skills/muion-project/scripts/task-close.mjs",
+    "task:status": "node .codex/skills/muion-project/scripts/task-close.mjs status",
+    "up": "node .codex/skills/muion-project/scripts/up.mjs .",
+    "build:capability-map": "node .codex/skills/muion-project/scripts/build-capability-map.mjs .",
+    "geant4:preflight": "node 07_research_system/blocks/geant4/scripts/preflight.mjs",
+    "geant4:build": "node 07_research_system/blocks/geant4/scripts/build.mjs",
+    "geant4:smoke": "node 07_research_system/blocks/geant4/scripts/smoke.mjs",
+    "geant4:validate": "node 07_research_system/blocks/geant4/scripts/validate.mjs",
+    "geant4:run": "node 07_research_system/blocks/geant4/scripts/run.mjs",
+    "geant4:summarize": "node 07_research_system/blocks/geant4/scripts/summarize.mjs",
+    "research-state:init": "node 07_research_system/control/research-state/index.mjs init",
+    "research-state:status": "node 07_research_system/control/research-state/index.mjs status",
+    "research-state:repair": "node 07_research_system/control/research-state/index.mjs repair",
+    "research-workflow:status": "node 07_research_system/control/research-workflow/index.mjs status",
+    "research-workflow:validate": "node 07_research_system/control/research-workflow/index.mjs validate",
+    "research-workflow:execute": "node 07_research_system/control/research-workflow/index.mjs execute",
+    "autopilot": "node .codex/skills/muion-project/scripts/autopilot.mjs",
+    "deep-interview": "node .codex/skills/muion-project/scripts/deep-interview.mjs",
+    "consensus-plan": "node .codex/skills/muion-project/scripts/consensus-plan.mjs",
+    "ralplan": "node .codex/skills/muion-project/scripts/consensus-plan.mjs",
+    "ultragoal": "node .codex/skills/muion-project/scripts/ultragoal.mjs",
+    "ultraqa": "node .codex/skills/muion-project/scripts/ultraqa.mjs",
+    "research-dashboard": "node 11_tools/research-dashboard/server.mjs",
+    "test:dashboard": "node --test tests/research-dashboard.test.mjs"
   }
 }

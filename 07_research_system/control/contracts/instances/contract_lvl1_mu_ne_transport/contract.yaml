@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "contract_lvl1_mu_ne_transport",
+  "task_id": "task_lvl1_mu_ne_001",
+  "module": "geant4",
+  "objective": "建立一级装置 mu-minus 在 Ne 中冷却、输运和引出统计的粒子传输 dry-run 接口。",
+  "current_question": "粒子传输统计如何同时报告输运效率、径向动能和轴向动能？",
+  "inputs": {
+    "geometry": "model_lvl1_mu_ne_001",
+    "material": "ne",
+    "source_coordinate_system": "muon_intrinsic"
+  },
+  "source": {
+    "particle": "mu_minus",
+    "kinetic_energy_keV": {
+      "mean": 100,
+      "sigma": 20,
+      "truncation_sigma": 3
+    },
+    "radial_direction_degree": {
+      "mean": 0,
+      "sigma": 9,
+      "truncation_sigma": 3
+    }
+  },
+  "physics": {
+    "neon_temperature_K": 300,
+    "neon_number_density_m3": {
+      "min": 10000000000000000000,
+      "max": 1e+26
+    }
+  },
+  "fields": {
+    "target_magnetic_field_T": 1
+  },
+  "scoring": [
+    "transport_efficiency",
+    "radial_kinetic_energy_at_extraction",
+    "axial_kinetic_energy_at_extraction"
+  ],
+  "statistics_requirements": {
+    "observables": [
+      "transport_efficiency",
+      "radial_kinetic_energy_at_extraction",
+      "axial_kinetic_energy_at_extraction"
+    ],
+    "target_uncertainty": null,
+    "confidence": null
+  },
+  "fixed": [
+    {
+      "name": "target_magnetic_field_T",
+      "current": 1,
+      "canonical_name": "target_magnetic_field_t",
+      "scope": "fixed"
+    }
+  ],
+  "explorable": [
+    {
+      "name": "neon_number_density_m3",
+      "owner": "geant4",
+      "allowed_range": {
+        "min": 10000000000000000000,
+        "max": 1e+26
+      },
+      "canonical_name": "neon_number_density_m3",
+      "scope": "explorable"
+    }
+  ],
+  "forbidden": [
+    {
+      "name": "transport_efficiency",
+      "owner": "research_workflow",
+      "canonical_name": "transport_efficiency",
+      "scope": "forbidden"
+    }
+  ],
+  "required_outputs": [
+    "scoring",
+    "statistics",
+    "validation"
+  ],
+  "success_criteria": [
+    "scoring contract is reproducible"
+  ],
+  "validation_requirements": [
+    "source_distribution_check",
+    "score_definition_check"
+  ]
+}

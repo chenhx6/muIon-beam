@@ -1,0 +1,57 @@
+schema_version: 1
+policy_id: naming_policy_v1
+timezone: Asia/Shanghai
+timestamp_format: YYYYMMDD_HHMM
+field_delimiter: '-'
+field_separator_note: timestamp_is_one_field
+word_case: snake_case
+version_format: vNN
+locale_codes:
+  zh: Chinese
+  en: English
+stable_control_files:
+  - README.md
+  - LICENSE
+  - AGENTS.md
+  - run_manifest.json
+  - model_manifest.json
+  - report_index.json
+  - plan_index.json
+  - workflow.json
+object_id_pattern: '^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$'
+artifact_filename_pattern: '^[0-9]{8}_[0-9]{4}-[a-z][a-z0-9_]*-[a-z][a-z0-9_]*-[a-z][a-z0-9_]*-v[0-9]{2}-[a-z]{2}\\.[a-z0-9]+$'
+forbidden_tokens:
+  - latest
+  - final2
+  - new
+  - revised
+  - 修正版
+abbreviations:
+  mu: { expansion: muon, zh: muon, category: particle }
+  mu_minus: { expansion: negative_muon, zh: 负mu子, category: particle }
+  ne: { expansion: neon, zh: neon, category: material }
+  lvl1: { expansion: level_1, zh: 一级, category: device }
+  dev: { expansion: device, zh: 装置, category: object }
+  run: { expansion: run, zh: 运行, category: object }
+  geom: { expansion: geometry, zh: 几何, category: physics }
+  fld: { expansion: field, zh: 场, category: physics }
+  rad: { expansion: radial, zh: 径向, category: physics }
+  ax: { expansion: axial, zh: 轴向, category: physics }
+  cool: { expansion: cooling, zh: 冷却, category: physics }
+  trn: { expansion: transport, zh: 输运, category: physics }
+  cap: { expansion: capture, zh: 俘获, category: physics }
+  loss: { expansion: loss, zh: 损失, category: physics }
+  r: { expansion: result, zh: 结果, category: artifact }
+  sum: { expansion: summary, zh: 简洁, category: artifact }
+  det: { expansion: detailed, zh: 详细, category: artifact }
+  acc: { expansion: acceptance, zh: 验收, category: artifact }
+  aud: { expansion: audit, zh: 审计, category: artifact }
+  fig: { expansion: figure, zh: 图, category: artifact }
+  tbl: { expansion: table, zh: 表, category: artifact }
+  log: { expansion: log, zh: 日志, category: artifact }
+  qa: { expansion: quality_assurance, zh: 质量检查, category: artifact }
+  ref: { expansion: reference, zh: 参考资料, category: artifact }
+control_exceptions:
+  - conventional_tooling_names
+  - immutable_audit_history
+  - git_history

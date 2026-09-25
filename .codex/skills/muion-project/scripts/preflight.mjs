@@ -41,6 +41,10 @@ function walk(dir) {
   return out;
 }
 const models = walk(path.join(projectRoot, '02_models'));
-if (models.length) result.warnings.push(`model binaries require registered fingerprints: ${models.length}`);
+const fingerprintFile = path.join(projectRoot, '02_models/model-fingerprints.json');
+let registered = new Set();
+try { const registry = JSON.parse(fs.readFileSync(fingerprintFile, 'utf8')); registered = new Set((registry.models || []).map((item) => path.resolve(projectRoot, item.path).toLowerCase())); } catch { /* reported by model check when needed */ }
+const unregisteredModels = models.filter((file) => !registered.has(path.resolve(file).toLowerCase()));
+if (unregisteredModels.length) result.warnings.push(`model binaries require registered fingerprints: ${unregisteredModels.length}`);
 console.log(JSON.stringify(result, null, 2));
 process.exitCode = result.blockers.length ? 1 : 0;

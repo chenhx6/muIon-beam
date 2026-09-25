@@ -1,0 +1,763 @@
+
+
+--- page 1 ---
+
+Eur. Phys. J. C (2019) 79:430
+https://doi.org/10.1140/epjc/s10052-019-6932-z
+Regular Article - Experimental Physics
+muCool: a next step towards efﬁcient muon beam compression
+I. Belosevic1,a, A. Antognini1,2,Y .B a o2,5, A. Eggenberger1, M. Hildebrandt2,R .I w a i1, D. M. Kaplan 3,
+K. S. Khaw1,6,K .K i r c h1,2, A. Knecht2,A .P a p a2,4, C. Petitjean2, T. J. Phillips3,F .M .P i e g s a1,7, N. Ritjoho2,
+A. Stoykov2, D. Taqqu1, G. Wichmann1
+1 Institute for Particle Physics and Astrophysics, ETH Zürich, 8093 Zürich, Switzerland
+2 Paul Scherrer Institute, 5232 Villigen-PSI, Switzerland
+3 Illinois Institute of Technology, Chicago, IL 60616, USA
+4 Dipartimento di Fisica, Università di Pisa, and INFN sez. Pisa, Largo B. Pontecorvo 3, 56127 Pisa, Italy
+5 Present address: Institute of High Energy Physics, Chinese Academy of Sciences, Beijing 100049, China
+6 Present address: Department of Physics, University of Washington, Seattle, W A 98195, USA
+7 Present address:Laboratory for High Energy Physics, Albert Einstein Center for Fundamental Physics, University of Bern, 3012 Bern, Switzerland
+Received: 20 November 2018 / Accepted: 9 May 2019 / Published online: 21 May 2019
+© The Author(s) 2019
+Abstract A novel device to compress the phase space of a
+muon beam by a factor of 1010 w i t ha1 0−3 efﬁciency is under
+development. A surface muon beam is stopped in a helium
+gas target consisting of several compression stages, wherein
+strong electric and magnetic ﬁelds are applied. The spatial
+extent of the stopped muon swarm is decreased by means of
+these ﬁelds until muons with eV energy are extracted into vac-
+uum through a small oriﬁce. It was observed that a 20 cm long
+muon stop distribution can be compressed in the longitudinal
+direction to a sub-mm extent within 2µs. Additionally, a drift
+perpendicular to the magnetic ﬁeld of the compressed low-
+energy muon swarm was successfully demonstrated, paving
+the way towards extraction from the gas and re-acceleration
+of the muons.
+1 Introduction
+Standard surface muon beams have a relatively poor phase
+space quality. An improvement of the muon beam quality
+would open the way for new experiments in low energy par-
+ticle physics, atomic physics and material research. Exam-
+ples of such experiments include muonium 1S-2S spec-
+troscopy, muon electric dipole moment (EDM) measure-
+ment and muon spin rotation (μSR) applications. Due to the
+limited lifetime of the muons ( τ = 2197 ns), a fast cool-
+ing scheme is required, and thus conventional beam cooling
+methods such as stochastic [1] or electron cooling [2] cannot
+be applied. Several alternative muon beam cooling schemes
+have been developed: based on frictional cooling [3], ioniza-
+a e-mail: ivanabe@phys.ethz.ch
+tion cooling (MICE) [4] or moderation in solid rare gas layers
+[5]. The common principle of the phase space compression
+obtained using these techniques is momentum spread reduc-
+tion in all directions by moderation in matter and subsequent
+re-acceleration in the longitudinal direction.
+In contrast, the scheme presented here (muCool device
+[6]) moderates the muon beam momentum while simultane-
+ously compressing its beam spot. Such a phase space com-
+pression is achieved by stopping the incomingμ
++ in He gas,
+while manipulating them in the gas with electric and mag-
+netic ﬁelds in order to decrease their spatial extent. After
+compression, which takes place within 10µs, the muons are
+extracted at eV energies from the He gas and re-accelerated.
+When this technique is applied to a standard surface μ
++
+beam, the 6D phase space is reduced by a factor of 10 10
+with an efﬁciency of 10−3, mainly limited by the muon life-
+time. Thus, the brightness of the incoming beam is enhanced
+by a factor of 10
+7.
+The decrease of the muon swarm extent is obtained by
+making the drift velocity of the μ+ in the gas position-
+dependent. The drift velocity vector of μ+ in gas, in the
+presence of electric and magnetic ﬁelds, can be written as
+[7]:
+vD = μ|E|
+1 + ω2/ν2
+[
+ˆE + ω
+ν
+ˆE × ˆB + ω2
+ν2
+(
+ˆE · ˆB
+)
+ˆB
+]
+, (1)
+where μ = e/νm is the mobility of the muon,ˆE and ˆB are the
+unit vectors of the electric and magnetic ﬁelds, ω = eB/m
+is the cyclotron frequency of the muon and ν the average
+collision frequency of the muon with the He gas atoms. The
+drift velocity vD can be made position-dependent by apply-
+ing a position-dependent electric ﬁeld E and/or by making
+123
+
+--- page 2 ---
+
+430 Page 2 of 9 Eur. Phys. J. C (2019) 79 :430
+Fig. 1 Overview of the proposed phase space compression scheme.
+A standard surface muon beam, propagating along the − z-direction, is
+stopped in cryogenic helium gas with a vertical temperature gradient
+inside a 5 T magnetic ﬁeld. The stopped muon swarm is then compressed
+by means of E-a n d B-ﬁelds in the y-direction (“transverse compres-
+sion”), and at the same time it is steered in the x-direction towards the
+longitudinal compression stage. There, the He gas is at room tempera-
+ture, and there is a component of the electric ﬁeld parallel to the magnetic
+ﬁeld axis. Thus, the muon swarm is compressed towards the center of
+this stage. Finally, the muons with a swarm size of
+O(mm) are extracted
+through a small oriﬁce into vacuum, where they are re-accelerated and
+sent to the next experiment
+the collision frequencyνposition-dependent, which changes
+the weights of the three components in Eq. 1.
+A sketch of the He gas target where such a compression
+occurs is shown in Fig. 1, together with the coordinate sys-
+tem used throughout this paper. The target consists of sev-
+eral stages and is placed in a homogeneous magnetic ﬁeld,
+oriented along the +z-direction, i.e. B = (0, 0, B), with
+B = 5T e s l a .
+The incoming μ
++ beam, propagating along the − z direc-
+tion, is stopped in the ﬁrst stage which is at cryogenic tem-
+peratures, with a vertical ( y-direction) gas density gradient
+induced by a temperature gradient between T = 4Ka tt h e
+bottom and T = 12 K at the top of the roughly 3 cm high
+target [8]. The gas density gradient gives rise to a position-
+dependent collision frequency ν= ν(x, y, z).
+An electric ﬁeld E = (Ex, Ey, 0) with Ex = Ey ≈
+1k V c m−1 is applied perpendicular to the magnetic ﬁeld
+in this stage, thus only the ﬁrst two terms in Eq. 1 remain.
+The muons in a region of higher gas density (colder tem-
+peratures) follow the ˆE-direction becauseνis large, whereas
+muons in a region of lower gas density (warmer tempera-
+tures) primarily follow the ˆE × ˆB-direction. With our choice
+of E, B and ν(x, y, z) we achieve compression of the stopped
+muon swarm in the vertical (y) direction (called “transverse
+compression”), with superimposed drift in the +x-direction
+towards the second compression stage, where longitudinal
+(in the z-direction) compression occurs.
+The second stage is at room temperature (much lower gas
+density) and the electric ﬁeld is parallel to the magnetic ﬁeld:
+E = (0, 0,∓ E
+z) pointing towards the center of the target,
+as indicated in Fig. 1, with Ez ≈ 50 V cm−1. Therefore, in
+the second stage Eq. 1 simpliﬁes to vD ≈ μE, and the muon
+swarm is compressed along the ±z-direction (“longitudinal
+compression”) towards z = 0. Adding an electric ﬁeld in
+the y-direction gives rise to a superimposed drift in the +x-
+direction, which guides the compressed muon swarm towards
+an oriﬁce of about 1 mm diameter, through which the muons
+are extracted into vacuum. After extraction into the vacuum,
+the μ
++ are accelerated to keV energy, while maintaining eV
+energy spread, and are subsequently extracted from the mag-
+netic ﬁeld.
+Initially, the various stages of the compression target can
+be tested separately, simplifying the experimental approach
+considerably. Transverse compression has been successfully
+demonstrated and will be presented in a separate publication.
+Longitudinal compression has been demonstrated to be feasi-
+ble [9]. However, several problems prevented quantiﬁcation
+of the muon swarm compression efﬁciency. The major issue
+was impurities in the helium gas target, which captured low-
+energy muons and thus lowered the compression efﬁciency.
+Moreover, a large background allowed us to demonstrate only
+qualitatively the feasibility of the longitudinal compression.
+In this paper we present an improved demonstration of the
+longitudinal compression with a quantiﬁcation of the com-
+pression efﬁciency. Furthermore, we demonstrate that the
+muon swarm can be steered in the +x-direction by adding a
+vertical (y-direction) electric ﬁeld. This is crucial to guiding
+the μ
++ through the various compression stages and ﬁnally
+towards the point of extraction. The experiments were per-
+formed at the πE1 beam line at the Paul Scherrer Institute
+(PSI), which delivers about 104 μ+/s at 11 MeV/c.
+2 Test of longitudinal compression
+In order to test longitudinal compression, an 11 MeV/c muon
+beam was injected longitudinally into a target containing He
+gas of a few mbar pressure at room temperature. The setup
+is sketched in Fig. 2. The muons ﬁrst have to pass through
+a5 5 µm thick entrance detector (D1), giving the initial time
+t
+0 = 0, then through a 2 µm Mylar target window enclosing
+t h eH eg a s .O n l yas m a l lf r a c t i o nO(1%) of the muons pro-
+ducing the signal in D1 stop in the gas, while the remaining
+muons stop in D1 or the target window (region I in Fig.2)o r
+the downstream part of the target (region II in Fig. 2).
+The longitudinal compression target had a transverse cross
+section of 12×12 mm2, and an “active” length, within which
+the electric ﬁeld was deﬁned, of about 200 mm. The side walls
+of the target were lined with gold electrodes that created a
+V-shaped electric potential with a minimum at the center of
+the target cell at z = 0. This choice of the electric potential
+produced an electric ﬁeld pointing towards z = 0, which
+123
+
+--- page 3 ---
+
+Eur. Phys. J. C (2019) 79 :430 Page 3 of 9 430
+Fig. 2 Sketch of the He gas target used to measure the longitudinal
+compression (not to scale). The muon beam passes through an entrance
+detector D1, target window (region I) and enters the He gas (indicated
+in pink). Some of the muons are stopped in the gas and subjected to the
+electric ﬁeld, pointing towards the center of the target. A large fraction
+of the muons pass through the target and stop in region II. Several
+scintillators (S1, ... , S21, T1, T2) detect the positrons from muons
+decaying in their vicinity
+caused the muons to move along the ±z-direction towards
+the potential minimum.1
+The exact electric ﬁeld was simulated using a ﬁnite-
+element method within COMSOL Multiphysics® [ 10] and
+imported into the Geant4 simulation package [11], allowing
+us to study muon motion in the realistic electric ﬁeld. The
+Geant4 simulation included the most relevant low-energy
+processes down to eV energies, namely low-energy elastic
+collisions (μ
++−He and muonium−He) and charge exchange
+processes (muonium formation and ionization) [ 9]. Cross
+sections for elastic collisions and charge exchange were
+implemented by energy and velocity scaling [ 12], respec-
+tively, of the proton cross sections from [13,14].
+A simulation of the muon distribution inside the target at
+two different times t is shown in Fig. 3. The distribution at
+t = 0.15 µs represents the initial muon stop distribution,
+while the distribution at t = 2 µs shows the muon distribu-
+tion when the longitudinal compression is almost completed.
+To highlight the muon swarm compression, the number of
+counts has been scaled with exp(t/τ), where τ= 2197 ns is
+the muon lifetime, in order to compensate for muon decay.
+Under such conditions and neglecting muon decay, att =
+2 µs, 63% of the muons that were in the active region at
+t = 0.15 µs are still within the active region, with 90%
+of those already within z =± 5 mm. Moreover, 50% of all
+muons in the active region att = 2 µs are already compressed
+in the center within an even smaller region of z =± 1 mm.
+Therefore, the fraction of muons within the region of z =
+±1 mm increases by about a factor of 20 between 0 .15 µs
+and 2 µs.
+The other 37% of the muons that were initially in the active
+region are lost through two main mechanisms: 26% through
+muonium formation and 11% through scattering out of the
+1 Because of∇· E = 0, at z = 0 the electric ﬁeld will also have a radial
+component. This component is included automatically in the COMSOL
+Multiphysics® simulation but it is so small that it does not signiﬁcantly
+affect the muon motion.
+Fig. 3 Simulated muon distribution along thez-axis for various times.
+The histograms have been corrected for the ﬁnite muon lifetime by
+multiplying the counts with e
+t/2197 ns . As can be seen, for t = 2 µs
+most of the muons are close to the center of the active region. The
+shaded areas show the fraction of the μ
++ that stopped in the walls of
+the target. At t = 2 µs, the distribution of theμ+ adhering to the target
+walls is not ﬂat anymore. The reason for the peak around z = 0i st h a t
+some of the μ+ are scattered into the wall while drifting towards the
+center of the target
+active region due to low-energy elastic collisions. A muon
+bound in the neutral muonium atom is not conﬁned by the
+5 tesla magnetic ﬁeld, causing it to ﬂy into the walls of the
+target. The losses due to scattering of μ
++ are relevant only
+when the muon beam is injected into the longitudinal tar-
+get at keV energies, because the μ+ mean free path at these
+energies can be up to a few cm. These losses will therefore
+be absent in the ﬁnal setup, in which muons enter the longi-
+tudinal compression stage from the transverse compression
+stage at eV energies. Indeed, at such energies, the μ
++ mean
+free path is sub-mm. Similarly, the losses due to muonium
+formation will be strongly reduced in the ﬁnal setup.
+The muon swarm movement was measured experimen-
+tally by placing 21 identical plastic (BC-404) scintillators
+(S1 to S21) along the target z-axis, as shown in Fig. 2.T h e
+scintillators had dimensions of 30 × 5 × 6m m3 and were
+wrapped in Teﬂon™ tape. When positrons from muon decays
+pass through the scintillators they produce scintillation light
+which is then read out by Silicon Photomultipliers (SiPMs)
+with 3× 3m m
+3 active area. The acceptance of some of these
+scintillators as a function of muon decayz-position is plotted
+in Fig. 4. Each detector has an average geometrical accep-
+tance in the z-direction of 16.5m m( F W H M ) .
+The number of measured positrons in each scintillator is
+presented for t = 150 ns (black dots) andt = 2000 ns (green
+dots) in Fig.5. Note that the number of counts has been scaled
+with et/2197 ns to compensate for muon decay.
+In Fig. 5 the measured μ+ distributions (dots) are com-
+pared to the Geant4 simulations (curves). The simulated
+number of positron hits in each of the detectors S1-S21
+123
+
+--- page 4 ---
+
+430 Page 4 of 9 Eur. Phys. J. C (2019) 79 :430
+Fig. 4 Simulated geometrical acceptance of scintillators S1-S21 (only
+every second detector is shown) versusz-position. Shown is the normal-
+ized probability that a positron from aμ+ decay will be detected in the
+corresponding scintillator. For comparison, the geometrical acceptance
+of the T1 & T2 coincidence is also plotted (red line). The maximum
+of the efﬁciency for each detector was normalized to 1 to highlight the
+different geometrical resolutions
+Fig. 5 Measured (dots) and simulated (curves) positron hits in the 21
+scintillators shown in Fig. 2,f o r t = 150 ns and t = 2000 ns. The
+center-to-center distance between two adjacent scintillators is 10 mm.
+The simulated data are the same as in Fig. 3, but convoluted with the
+geometrical acceptance of the detectors. The width of the peak at t =
+2 µs is due to the large geometrical acceptance of the 21 scintillators
+and does not reﬂect the width of the muon swarm directly (compare
+with Fig. 3). The shaded areas show the simulated contributions to the
+positron hits from muons stopped in regions I and II. The data and
+the simulations have been corrected for the ﬁnite muon lifetime by
+multiplying the counts by e
+t/2197 ns
+is obtained by convoluting the simulated spatial distribu-
+tion of the muon swarm at the corresponding time, given in
+Fig. 3, with the detection efﬁciency of the appropriate detec-
+tor, given in Fig. 4. These positron hits originate not only
+from the muons in the active region, but also from muons
+from the regions where the electric ﬁeld is not well deﬁned,
+giving rise to a substantial background.
+This background is dominated by positron hits from μ
++
+that stop in the regions I and II (as deﬁned in Fig. 2). The
+background is larger for the detectors placed at the periphery
+of the active region (S1, S2 and S20, S21), as shown in Fig.5
+(shaded areas). The shape of the background caused by these
+muons can be simulated. However, the exact number of μ+
+which stop in the regions I and II depends strongly on the
+momentum distribution of the initial muon beam, which is
+not sufﬁciently well known.
+Therefore, two measured distributions along the z-axis
+(for t = 150 ns and t = 2000 ns) are ﬁtted simultaneously
+with the sum of 4 contributions:
+1. Background arising from the region I.
+2. Background arising from the region II.
+3. Linear (in time) background.
+4. Simulation of all μ
++ that stop in the gas (which includes
+μ+ in the active region).
+The shapes of these 4 contributions are known, under the
+assumption that all the detectors (S1 to S21) have the same
+detection efﬁciency. Each of the contributions has to be scaled
+with a different scaling factor to account for the different
+stopping probabilities in region I, region II, the gas, and
+prompt stops at the target lateral walls. The additional linear
+background allows us to account for possible misalignment
+between the target and the magnetic ﬁeld axis, which would
+lead to different numbers of muon wall stops at the positions
+of the various scintillators.
+Even though we observe fair agreement between the mea-
+surement and the simulation (reduced chi-square
+2 χ2
+red =
+2.3, for 37 degrees of freedom), it is difﬁcult to extract pre-
+cise values of the compression efﬁciency and of the width of
+the muon swarm from these measurements, given the lim-
+ited geometrical resolution of the detectors S1 to S21 and the
+large background from regions I and II. The relatively large
+χ
+2
+red could be attributed to small variations of the detector
+efﬁciencies.
+In order to better quantify the compression efﬁciency we
+turn our attention to the two telescope detectors T1 & T2
+in coincidence that were placed below the target, at z = 0,
+as shown in Fig. 2. These scintillators had dimensions of
+32×3×3m m
+3 and were also read out by 3×3m m2 SiPMs.
+Massive brass shielding all around the target ensured that
+2 In this paper we are using following deﬁnition of the reduced chi-
+square:
+χ2
+red = 1
+ndf
+N∑
+i=1
+(ndata,i − nsim,i )2
+σ2
+data,i
+, (2)
+where N is the number of bins in the histogram, ndata,i and nsim,i are
+the numbers of counts in the i-th bin of the data and simulation his-
+tograms, respectively, σdata,i is the statistical uncertainty of ndata,i and
+ndf is the number of degrees of freedom (equal to N - the number of
+ﬁtted parameters). The statistical uncertainty of the simulated points is
+signiﬁcantly smaller than σ
+data,i , and can therefore be neglected.
+123
+
+--- page 5 ---
+
+Eur. Phys. J. C (2019) 79 :430 Page 5 of 9 430
+Fig. 6 Measured (dots) and simulated (curves) time spectra for 5 mbar
+He gas pressure and potentials of−500 V (red), 0 V (black) and+500 V
+(green). The data have been normalized to the number of incoming
+muons in the entrance detector D1 and ﬁtted simultaneously with only
+2 free parameters, a common normalization and a common background.
+In total 5·10
+8 muons have been simulated. The data and the simulations
+have been corrected for the ﬁnite muon lifetime by multiplying the
+counts by e
+t/2197 ns
+coincidence hits in T1 & T2 originated only from muons
+decaying within the small region between aboutz =± 3m m
+in the center of the target, as shown in Fig. 4. From the time
+difference t = t1 − t0 between the positron hits in T1 and
+T2 in coincidence (at time t1) and the entrance detector, at
+time t0, a time spectrum can be obtained as shown in Fig. 6.
+The time spectra were recorded for different applied electric
+potentials.
+It can be seen in Fig. 6 that if no electric ﬁeld is applied
+(black points) the number of muons decaying in the center of
+the target (in the T1 & T2 acceptance region) stays constant
+(after compensation for μ
++ decay). When a negative poten-
+tial (red points) is applied in the center of the target cell,
+the measured number of counts increases with time. In that
+case, the stopped muons are attracted towards the potential
+minimum, so that more muons decay within the acceptance
+region of T1 & T2. This means that the muon swarm extent
+has been decreased in the z-direction, representing a com-
+plementary way to demonstrate longitudinal compression.
+On the contrary, if the “wrong” polarity is applied (green
+points), the muons drift away from the center of the target,
+out of the acceptance region of T1 & T2. The very few counts
+at late times in that case are due to some small background
+(mostly muons stopping in the wall of the target). The reduc-
+tion to a nearly background-free measurement represents a
+major improvement compared with the earlier measurements
+from 2011 [9] and compared to the measurement of the μ
++
+z-distribution of Fig. 5.
+The measurements of Fig.6 are compared to Geant4 simu-
+lations. The three simulations (+, − and 0 voltage) are ﬁtted
+simultaneously to the corresponding measured time spec-
+tra. Only two free parameters were used: a common scaling
+factor and a common ﬂat background. The common scaling
+factor is needed to remove the uncertainties related to the
+positron detection and muon stopping efﬁciencies. The ﬂat
+background was included in the ﬁt to account for potential
+misalignment of the target with respect to the magnetic ﬁeld
+axis, which would lead to increased muon stops in the walls.
+The simultaneous ﬁt of the 3 curves has a reduced chi-
+square χ
+2
+red = 1.41 (for 46 degrees of freedom). Introduc-
+tion of additional losses during the compression process, as
+detailed in the next section, improves the χ2
+red value to 0.95.
+Alternatively, a smallerχ2
+red can also be obtained by a minor
+tuning of the detector acceptance, related to uncertainties in
+the position, tilt and energy threshold of the T1 & T2 scin-
+tillators.
+3 Additional muon losses?
+As mentioned in the introduction, in the previous (2011)
+experiment [9], the data displayed lower-than-expected com-
+pression efﬁciency, which was visible from the premature
+termination (at around t = 0.5 µs) of the compression in the
+measured time spectra. This was attributed to severe losses of
+“free” muons, hypothesized to have been caused by impuri-
+ties present in the helium gas (from outgassing of the Araldite
+glue and PCB boards used in the target construction). The
+presence of such impurities would cause the capture of low-
+energy muons by the contaminant molecules. Additionally,
+other issues affected the previous measurements such as mis-
+alignment between target and magnetic ﬁeld axis, small tar-
+get size and poor spatial resolution of the positron detector.
+These issues suppress the rise in the time spectra, thereby
+imitating the signature of the “free” muon losses, making it
+difﬁcult to quantify the actual compression efﬁciency.
+In the experiments presented here, care was taken to
+improve the aspects limiting the previous experiment: the
+detector resolution was enhanced by introducing more
+shielding around the positron detectors and using the tele-
+scope detectors (T1 & T2) in coincidence instead of a sin-
+gle detector, the target size was increased and the electric
+ﬁeld strength and homogeneity were improved. As a con-
+sequence, the sensitivity to target misalignment was consid-
+erably reduced. Additionally, high gas purity was ensured
+by constructing the target from glass plates, using a low-
+outgassing glue and purifying the He gas in a cold-trap before
+feeding it into the target.
+In order to prove the hypothesis that indeed the compres-
+sion efﬁciency is lowered if contaminants are present in the
+gas, we introduced in a controlled way various amounts of
+123
+
+--- page 6 ---
+
+430 Page 6 of 9 Eur. Phys. J. C (2019) 79 :430
+Fig. 7 Measured time spectra for 5 mbar pure He gas, and vari-
+ous admixtures of contaminants: (black) no additional contaminants,
+(dashed blue) 0.01 mbar H
+2, (dashed orange) 0.02 mbar H 2,( d a s h e d
+green) 0.01 mbar of O 2. All data were normalized to the number of
+incoming muons and corrected for the ﬁnite muon lifetime by multi-
+plying the counts bt e
+t/2197 ns
+contaminant gases into the pure helium gas. The results of this
+test are presented in the time spectra of Fig.7. It is observed
+that the compression stops at earlier times when contaminants
+are introduced, and consequently the compression efﬁciency
+decreases (i.e., the number of muons that are brought to the
+center of target).
+The sensitivity of the measurements of Fig.6 to the muon
+loss mechanisms has been investigated assuming constant (in
+time) effective loss rates R during compression, that cause
+the “free” muon population to decrease according to e
+− Rt .
+Various simulations have been performed with R ranging
+from R = 0u pt o R = 0.5 µs−1. The time spectrum with an
+effective loss rate R = 0.5 µs−1 would correspond roughly
+to the measured time spectrum with 0.01 mbar H2 contami-
+nation (blue dashed line in Fig. 7).
+The simultaneous ﬁt of the simulations for +, − and 0
+voltages to the corresponding measurements has been per-
+formed for each effective loss rate R (as in Fig. 6,b u tf o r
+R ̸= 0). Figure 8 (top) shows the ﬁtted time spectra (only
+for negative voltage) for several effective loss rates R.F o r
+each of the effective loss rates R,t h eχ2
+red between the mea-
+surement (only −500 V data) and simulations has been cal-
+culated and plotted in Fig. 8 (bottom). A parabola was then
+ﬁtted to these points (green line). The best agreement (mini-
+mum χ2
+red) between simulation and measurement is obtained
+for R = 0.14 µs−1, corresponding to an additional effec-
+tive loss at t = 2 µso f1 − e−0.14 µs−1·2 µs = 24%. The
+χ2
+red,min + 1 is obtained for R = 0.35 µs−1 corresponding
+to an additional loss at t = 2 µs of 51%. Therefore, we con-
+clude that the total additional “free” muon loss after 2 µsi s
+24+27
+−24%.
+Had these losses been caused by capture of the muons by
+gas impurities, the partial pressure of the impurities would
+Fig. 8 (Top) Simulated time spectra for effective loss rates of R =
+(0, 0.125, 0.25, 0.333) µs−1 (curves). The −500 V measurement is
+represented by square points. The data and the simulations have been
+corrected for the ﬁnite muon lifetime by multiplying the counts by
+e
+t/2197 ns . (Middle) Residuals for the time spectra from the top ﬁgure.
+For simplicity, error bars are shown only for the curve with reduced
+χ
+2 = 0.95. For other curves error bars are of similar size. (Bottom)
+Reduced χ2 as a function of the effective loss rate R. A second-order
+polynomial was ﬁtted to these points (green line)
+have been ∼ 10−3 mbar.3 However, the purity of the He gas
+in the target was analyzed with a mass spectrometer and such
+impurity levels have not been observed. Thus, it is reason-
+able to conclude that the origin of these “effective losses” R
+cannot be attributed solely to the impurities.
+3 The relation between ﬁtted R and impurity concentration is obtained
+by ﬁtting the simulation for various loss rates R to the measured time
+spectra of Fig. 7 with the additional 0.01 mbar H2 contamination.
+123
+
+--- page 7 ---
+
+Eur. Phys. J. C (2019) 79 :430 Page 7 of 9 430
+Other explanations, such as small deviations of the detec-
+tor acceptance (spatial resolution) and of the cross sections
+from the values implemented in the simulations, are more
+favored. For example, a shift of only 0.5 mm (which is within
+the tolerance of the mechanics) of the T1 y-position from
+the design position would decrease the acceptance of T1 &
+T2 in coincidence by 5%. This would then translate to a 5%
+decrease of the number of counts at late times in the measured
+time spectra of Fig. 8 (top), thereby imitating the signature
+of the “free” muon loss. This 5% decrease in the number
+of counts at late times roughly corresponds to the decrease
+caused by an effective loss rate R = 0.125 µs
+−1 (compare
+red and black lines of Fig. 8 (top)).
+4E × B-Drift
+The next important step towards the realization of the com-
+plete muCool device is the demonstration of the so-called
+E × B drift. This drift guides the muons from one compres-
+sion stage to the next, and is also used to extract them ﬁnally
+into vacuum through a small oriﬁce.
+For this purpose we modiﬁed the target cell to gener-
+ate an electric ﬁeld with an additional vertical component
+E
+y = 120 V/cm. The non-vanishing central term in Eq. 1
+leads to a drift of the muons in the +x-direction. The target
+cell was enlarged to a transverse cross section of 24×12 mm2
+and, additionally, the muon beam was injected off-center, as
+indicated in Fig. 9 by the yellow circle. These two modiﬁca-
+tions allowed μ+ to drift for longer times before hitting the
+right wall of the target, thus enhancing the sensitivity of the
+measured time spectra to the muon drift.
+In total seven plastic scintillators were mounted around
+the target at z = 0 along the x-direction to monitor this
+drift, as shown in the sketch of Fig. 9. For simplicity, we
+present only the time spectra from three of them, namely
+“Left”, “Middle”, “Right”, given their favorable detection
+efﬁciency and sensitivity to the muon motion. As before, the
+scintillators were read out by 3 × 3m m
+2 SiPMs.
+The simulated spatial distribution of the muon swarm as
+a function of time is given in Fig. 10. This distribution, con-
+voluted with the corresponding detector acceptances, gives
+rise to the simulated time spectra shown in Fig. 11, together
+with the corresponding measurements.
+At early times, the time spectra are dominated by the
+muon swarm compression in the z-direction, thus the num-
+ber of detected positrons increases in all scintillators. How-
+ever, after about 2 µs, the number of detected positrons in
+the “Left” scintillator decreases, indicating that the muons
+are moving out of the acceptance region of this scintillator.
+On the other hand, “Right” scintillator detects increasingly
+more positrons. This ﬁnding indicates that the muon swarm
+Fig. 9 Sketch of the setup to measure theE× B drift. The muon beam
+was injected off-axis to allow the muons to drift a longer distance before
+hitting the lateral wall. The electric ﬁeld has az-component for longitu-
+dinal compression and a y-component to drift the muons inx-direction.
+Seven plastic scintillators are positioned above the target at z = 0, but
+at different x-coordinates, to monitor the muon swarm movement in
+the x-direction. The scintillators had a cross section of 2 × 2m m
+2 and
+length (in the y-direction) of 32.5 mm for the three central scintillators
+and 48.5 mm for the four scintillators on the left and right sides of the
+target
+Fig. 10 Muon positions in the xz -plane for various times. The time
+is given by the color scale. Muon beam centered at x =− 6m mw i t h
+3 mm radius is stopped uniformly along the z-axis. The muons drift in
+the +x-direction while compression occurs in z-direction
+slowly drifts in the x-direction towards the prospective point
+of extraction.
+Also in this case, the measured time spectra of all seven
+“drift” detectors were ﬁtted simultaneously with the simula-
+tion allowing for one common scaling factor, and a different
+ﬂat background for each detector. A fair agreement between
+data and simulation has been observed (χ
+2
+red = 3.44 for 433
+degrees of freedom), given that no systematic effects were
+accounted for in the simulation.
+123
+
+--- page 8 ---
+
+430 Page 8 of 9 Eur. Phys. J. C (2019) 79 :430
+Fig. 11 Measured (dots) time spectra for the three scintillators “Left”,
+“Middle” and “Right”. The increase and decrease of positron counts in
+the “Right” and “Left” detectors, respectively, indicates that the muons
+are moving towards the right. Simulated time spectra for additional
+muon loss rate R = 0 (continuous lines) and R = 0.125 µs
+−1 (dashed
+lines) are ﬁtted to the measured time spectra. The χ2
+red for R = 0i s
+3.44 for 433◦ degrees of freedom. Introducing the additional loss rate
+R = 0.125 µs−1 improves the χ2
+red to 2.23. Note that the data and
+the simulations have been corrected for the ﬁnite muon lifetime by
+multiplying the counts with e
+t/2197 ns
+To study the effect of additional muon losses on the
+measured time spectra, an effective loss rate R has been
+introduced in the simulation, analogously to the procedure
+described in the previous section. The obtained time spec-
+tra for the various R were then ﬁtted to the data. The best
+agreement between simulation and the data is obtained for
+R = 0.125 µs
+−1, consistent with the loss rate R reported in
+the previous section. The best ﬁt, which gives aχ2
+red = 2.23,
+is shown in Fig. 11 (dashed lines).
+To extract the uncertainty of the hypothetical loss rate that
+describes the data the best, we repeated the procedure of the
+previous section: namely, ﬁtting with a parabola the plot of
+the reduced chi-square versus loss rate (similar to Fig. 8).
+Note that for that procedure, the error bars of the data were
+scaled up by a factor of 2.23 to produce a minimum reduced
+chi-square of 1. From this analysis we determined that the
+loss rate that best describes the data is R = 0.17
++0.23
+−0.17 µs−1
+corresponding to a total ”free” muon loss at t = 2 µso f
+28+26
+−28%.
+Even with the additional muon losses introduced, some
+systematic discrepancies between the data and the simulation
+still remain. Yet the main goal, namely to demonstrate the
+feasibility of the E × B drift, has been achieved.
+The difference between the simulation and the measure-
+ment can be attributed either to the simpliﬁed modelling of
+the additional losses (without any energy dependence) or a
+misalignment of the beam with respect to the magnetic ﬁeld
+axis.
+According to the simulation, the drift velocity is about
+2m m/µs. This value can be increased in the ﬁnal setup by
+increasing the strength of the electric ﬁeld in they-direction.
+5 Conclusions
+The longitudinal compression stage of the muCool device
+under development at PSI has been demonstrated. An elon-
+gated muon swarm of 200 mm length has been compressed
+to below 2 mm length within 2µs. Good agreement between
+the simulation and the measurement has been observed.
+Furthermore, the ability to drift the μ
++ beam in E × B-
+direction towards the prospective position of the extraction
+hole has been demonstrated by performing a measurement
+with the electric ﬁeld having also a component perpendicular
+to the magnetic ﬁeld.
+In both cases, slightly better agreement between simula-
+tions and measurements is achieved by including small addi-
+tional effective losses in the simulation, that decrease the
+actual compression efﬁciency by about 25% relative to (ideal)
+simulations. These effective losses could be caused by gas
+impurities. Alternatively, the small discrepancies between the
+simulations and measurements could be attributed to a minor
+(5%) overestimation of the detector acceptance or minor vari-
+ation of the cross sections for muonium formation, muonium
+ionization and muonium-He elastic scattering. In any case,
+even with this additional effective loss, the proposedμ
++ com-
+pression efﬁciency of 10−3 is attainable.
+Acknowledgements The experimental work was performed at the pro-
+ton accelerator at PSI. We thank the machine and beam line groups
+for providing excellent conditions. We gratefully acknowledge the out-
+standing support received from the workshops and support groups at
+ETH Zurich and PSI. Furthermore, we thank F. Kottmann, M. Horis-
+berger, U. Greuter, R. Scheuermann, T. Prokscha, D. Reggiani, K. Deit-
+ers, T. Rauber, and F. Barchetti for their help. This work was supported
+by the SNF Grants No. 200020_159754 and 200020_172639.
+Data A vailability StatementThis manuscript has no associated data or
+the data will not be deposited. [Authors’ comment: Raw or preprocessed
+data and analysis software used can be provided by the corresponding
+author upon request.]
+Open Access This article is distributed under the terms of the Creative
+Commons Attribution 4.0 International License ( http://creativecomm
+ons.org/licenses/by/4.0/), which permits unrestricted use, distribution,
+and reproduction in any medium, provided you give appropriate credit
+to the original author(s) and the source, provide a link to the Creative
+Commons license, and indicate if changes were made.
+Funded by SCOAP
+3.
+References
+1. S. van der Meer, Rev. Mod. Phys. 57, 3 (1985)
+2. G.I. Budker, A.N. Skrinskii, Sov. Phys. Usp. 21, 277 (1978)
+3. M. Mühlbauer et al., Hyperﬁne Interact. 119, 1–4 (1999)
+123
+
+--- page 9 ---
+
+Eur. Phys. J. C (2019) 79 :430 Page 9 of 9 430
+4. T. A. Mohayai [MICE Collaboration]. arXiv:1806.01807
+5. P. Bakule, E. Morenzoni, Contemp. Phys. 45, 3 (2004)
+6. D. Taqqu, Phys. Rev. Lett. 97, 194801 (2006)
+7. W. Blum, W. Riegler, L. Rolandi,Particle detection with drift cham-
+bers, 2nd edn. (Springer, Berlin, 2008)
+8. G. Wichmann et al., Nucl. Instrum. Methods A 814, 33–38 (2016)
+9. Y . Bao et al., Phys. Rev. Lett. 112, 224801 (2014)
+10. COMSOL Multiphysics®5.2. http://www.comsol.com.C O M S O L
+AB, Stockholm, Sweden
+11. S. Agostinelli et al., Nucl. Instrum. Methods A 506, 3 (2003)
+12. M. Senba, J. Phys. B 22, 12 (1989)
+13. P.S. Krstic, D.R. Schultz, Phys. Plasmas 13, 5 (2006)
+14. Y . Nakai et al., At. Data Nucl. Data Tables 37, 1 (1987)
+123

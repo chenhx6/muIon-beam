@@ -37,7 +37,7 @@ function main() {
   } else if (command === 'skip') {
     if (!args.reason) throw new Error('skip requires --reason');
     if (run.stage !== 'DEEP_INTERVIEW' || !['WAITING_USER', 'RECOVERABLE', 'BLOCKED'].includes(run.status)) throw new Error('skip requires a waiting deep-interview stage');
-    const card = args.task_card || path.join('00_project/task-cards', `${run.task_id}.task-manifest.json`);
+    const card = args.task_card || path.join('00_project/task-cards', `${run.task_id}.task_manifest.json`);
     if (!fs.existsSync(path.resolve(root, card))) throw new Error(`task card not found: ${card}`);
     const files = artifact(run, { task_card: card, skip_reason: args.reason, intake: { source: 'confirmed-task-card' } }, true);
     run.requirements_handoff = files.requirements_handoff; run.context_snapshot = files.context_snapshot; appendStageEvent(root, run, 'interview-skipped', 'CONSENSUS_PLAN', 'READY', 'consensus-plan', { artifact_refs: [files.requirements_handoff, files.context_snapshot], skip_reason: args.reason });

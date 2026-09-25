@@ -7,9 +7,21 @@ import { ROOT, commandExists, parseArgs, runCommand, toWslPath } from './common.
 function check(name, ok, detail, extra = {}) { return { name, ok: Boolean(ok), detail, ...extra }; }
 
 function detectWslGeant4(distribution) {
+  const commandResult = runCommand('bash', ['-lc', 'command -v geant4-config'], { backend: 'wsl', distribution, timeout: 30000 });
+  const commandPath = commandResult.status === 0 ? commandResult.stdout.trim().split(/\r?\n/).find((line) => line.startsWith('/')) : null;
+  if (commandPath) {
+    const candidateEnv = path.posix.join(path.posix.dirname(path.posix.dirname(path.posix.dirname(commandPath))), 'physics-env.sh');
+    return { config: commandPath, env_script: candidateEnv };
+  }
   const result = runCommand('find', ['/home', '/opt', '-path', '*/bin/geant4-config', '-type', 'f', '-print', '-quit'], { backend: 'wsl', distribution, timeout: 30000 });
   const config = result.status === 0 ? result.stdout.trim().split(/\r?\n/).find((line) => line.startsWith('/') && line.endsWith('/geant4-config')) : null;
   return config ? { config, env_script: path.posix.join(path.posix.dirname(config), 'geant4.sh') } : null;
+}
+
+function wslCommandExists(command, distribution, envScript) {
+  const source = envScript ? `source '${envScript.replaceAll("'", "'\\''")}' && ` : '';
+  const result = runCommand('bash', ['-lc', `${source}command -v '${command}'`], { backend: 'wsl', distribution, timeout: 30000 });
+  return result.status === 0 && Boolean(result.stdout.trim());
 }
 
 export function preflight({ project = ROOT, backend = 'auto', distribution = 'Ubuntu-20.04', geant4_dir = null, env_script = null } = {}) {
@@ -27,8 +39,8 @@ export function preflight({ project = ROOT, backend = 'auto', distribution = 'Ub
       const prefixResult = runCommand('geant4-config', ['--prefix'], { backend: 'wsl', distribution, envScript: runtime.env_script, timeout: 30000 });
       runtime.version = versionResult.status === 0 && /^\d+\.\d+/.test(versionResult.stdout.trim()) ? versionResult.stdout.trim() : null;
       runtime.prefix = prefixResult.status === 0 && prefixResult.stdout.trim().startsWith('/') ? prefixResult.stdout.trim() : null;
-      checks.push(check('wsl-cmake', commandExists('cmake', { backend: 'wsl', distribution }), 'command -v cmake'), check('wsl-compiler', commandExists('g++', { backend: 'wsl', distribution }), 'command -v g++'), check('wsl-geant4-config', Boolean(runtime.config), runtime.config || 'find */bin/geant4-config'), check('wsl-geant4-version', Boolean(runtime.version), runtime.version || 'geant4-config --version')); 
-    } else checks.push(check('wsl-cmake', commandExists('cmake', { backend: 'wsl', distribution }), 'command -v cmake'), check('wsl-compiler', commandExists('g++', { backend: 'wsl', distribution }), 'command -v g++'), check('wsl-geant4-config', false, 'No Geant4 installation was found in /home or /opt'));
+      checks.push(check('wsl-cmake', wslCommandExists('cmake', distribution, runtime.env_script), 'command -v cmake'), check('wsl-compiler', wslCommandExists('g++', distribution, runtime.env_script), 'command -v g++'), check('wsl-geant4-config', Boolean(runtime.config), runtime.config || 'command -v geant4-config'), check('wsl-geant4-version', Boolean(runtime.version), runtime.version || 'geant4-config --version'));
+    } else checks.push(check('wsl-cmake', wslCommandExists('cmake', distribution, null), 'command -v cmake'), check('wsl-compiler', wslCommandExists('g++', distribution, null), 'command -v g++'), check('wsl-geant4-config', false, 'command -v geant4-config'));
   } else {
     const config = geant4_dir ? path.join(geant4_dir, 'bin/geant4-config') : 'geant4-config';
     runtime = { config, env_script: env_script || null };

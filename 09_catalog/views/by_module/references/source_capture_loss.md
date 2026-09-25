@@ -1,0 +1,3 @@
+# references / source / capture_loss
+
+- [08_references/library/text/ref_230fbca37ca5_2000multielectron_effects_in_capture_of_antiprotons_and_muons_by_helium_and_neon.txt](08_references/library/text/ref_230fbca37ca5_2000multielectron_effects_in_capture_of_antiprotons_and_muons_by_helium_and_neon.txt) — 52482 bytes — d24a614b6022a27c989efb44068faef7d3a4a5d6712d8f9f6ebabd3fcb12ea79

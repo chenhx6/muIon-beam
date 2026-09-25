@@ -1,5 +1,5 @@
 schema_version: 0.1.0
-task_id: COMSOL-TASK-YYYYMMDD-NNN
+task_id: COMSOL-task_yyyymmdd_nnn
 objective: "A concrete question this COMSOL task must answer."
 inputs:
   geometry:

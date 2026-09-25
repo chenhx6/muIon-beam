@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "dispatch_id": "dispatch_lvl1_mu_ne_rebuild_v03b",
+  "parent_id": "plan_lvl1_mu_ne_rebuild",
+  "goal": "按冻结接口串行完成一级装置 3D、COMSOL、Geant4 和只读 reviewer 验收 lane。",
+  "policy": {
+    "default_concurrency": 1,
+    "max_concurrency": 1,
+    "exclusive_resources": true,
+    "leader_owns_state_and_delivery": true
+  },
+  "tasks": [
+    {
+      "task_id": "lvl1_geometry_gate",
+      "parent_id": "plan_lvl1_mu_ne_rebuild",
+      "role": "executor",
+      "summary": "验证并冻结当前四电极三腔 SolidWorks/STEP 几何接口、尺寸和哈希。",
+      "depends_on": [],
+      "reads": [
+        "02_models/solidworks/lvl1_mu_ne_001/**",
+        "02_models/model-manifests/model_lvl1_mu_ne_001.geometry.json",
+        "02_models/model-manifests/geometry_manifest_lvl1_mu_ne_001.json"
+      ],
+      "owns": [
+        "00_project/traceability/geometry/**",
+        "03_runs/formal/run_lvl1_mu_ne_001/geometry/**",
+        "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/handoffs/geometry_gate_v01.json"
+      ],
+      "writes": [
+        "00_project/traceability/geometry/**",
+        "03_runs/formal/run_lvl1_mu_ne_001/geometry/**",
+        "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/handoffs/geometry_gate_v01.json"
+      ],
+      "resources": ["solidworks"],
+      "required_context": 16000,
+      "required_tools": ["filesystem", "shell"],
+      "reasoning": "xhigh",
+      "parent_model": "gpt-6-astra",
+      "parent_effort": "xhigh",
+      "permissions": {"read": true, "write": true, "publish": false, "spawn_child": false},
+      "verification": {"gate_type": "geometry-transfer", "deterministic_oracle": true},
+      "output_contract": {"requires_sha256": true, "requires_current_geometry": true}
+    },
+    {
+      "task_id": "lvl1_comsol_gate",
+      "parent_id": "plan_lvl1_mu_ne_rebuild",
+      "role": "executor",
+      "summary": "消费冻结几何，通过 COMSOL 6.4 batch adapter 生成可追溯场/轨迹接口结果。",
+      "depends_on": ["lvl1_geometry_gate"],
+      "reads": [
+        "02_models/solidworks/lvl1_mu_ne_001/lvl1_mu_ne_001.geometry.step",
+        "02_models/model-manifests/geometry_manifest_lvl1_mu_ne_001.json",
+        "03_runs/formal/run_lvl1_mu_ne_001/geometry/**",
+        "00_project/config/comsol-runtime.json"
+      ],
+      "owns": [
+        "07_research_system/blocks/comsol/adapter_level1/**",
+        "00_project/traceability/comsol/**",
+        "03_runs/formal/run_lvl1_mu_ne_001/comsol/**"
+      ],
+      "writes": [
+        "07_research_system/blocks/comsol/adapter_level1/**",
+        "00_project/traceability/comsol/**",
+        "03_runs/formal/run_lvl1_mu_ne_001/comsol/**"
+      ],
+      "resources": ["comsol_batch"],
+      "frozen_inputs": ["02_models/solidworks/lvl1_mu_ne_001/lvl1_mu_ne_001.geometry.step", "03_runs/formal/run_lvl1_mu_ne_001/geometry/**"],
+      "required_context": 24000,
+      "required_tools": ["filesystem", "shell"],
+      "reasoning": "xhigh",
+      "parent_model": "gpt-6-astra",
+      "parent_effort": "xhigh",
+      "permissions": {"read": true, "write": true, "publish": false, "spawn_child": false},
+      "verification": {"gate_type": "comsol-batch", "deterministic_oracle": true},
+      "output_contract": {"requires_result_manifest": true, "requires_units_and_coordinate_frame": true}
+    },
+    {
+      "task_id": "lvl1_geant4_gate",
+      "parent_id": "plan_lvl1_mu_ne_rebuild",
+      "role": "executor",
+      "summary": "消费冻结几何和 COMSOL 接口，运行 Geant4 stopping/角散射/有限输运统计。",
+      "depends_on": ["lvl1_comsol_gate"],
+      "reads": [
+        "02_models/solidworks/lvl1_mu_ne_001/lvl1_mu_ne_001.geometry.step",
+        "03_runs/formal/run_lvl1_mu_ne_001/geometry/**",
+        "03_runs/formal/run_lvl1_mu_ne_001/comsol/**",
+        "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/**",
+        "00_project/config/geant4-runtime.json"
+      ],
+      "owns": [
+        "02_models/geant4/lvl1_mu_ne_001/**",
+        "00_project/traceability/geant4/**",
+        "03_runs/formal/run_lvl1_mu_ne_001/geant4/**"
+      ],
+      "writes": [
+        "02_models/geant4/lvl1_mu_ne_001/**",
+        "00_project/traceability/geant4/**",
+        "03_runs/formal/run_lvl1_mu_ne_001/geant4/**"
+      ],
+      "resources": ["wsl_geant4"],
+      "frozen_inputs": ["03_runs/formal/run_lvl1_mu_ne_001/geometry/**", "03_runs/formal/run_lvl1_mu_ne_001/comsol/**", "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/**"],
+      "required_context": 24000,
+      "required_tools": ["filesystem", "shell"],
+      "reasoning": "xhigh",
+      "parent_model": "gpt-6-astra",
+      "parent_effort": "xhigh",
+      "permissions": {"read": true, "write": true, "publish": false, "spawn_child": false},
+      "verification": {"gate_type": "geant4-statistics", "deterministic_oracle": true},
+      "output_contract": {"requires_statistics": true, "requires_source_distribution": true, "requires_sha256": true}
+    },
+    {
+      "task_id": "lvl1_reviewer_gate",
+      "parent_id": "plan_lvl1_mu_ne_rebuild",
+      "role": "physics-reviewer",
+      "summary": "只读复核合同、快照、单位、坐标系、统计定义、哈希和模块交互证据。",
+      "depends_on": ["lvl1_geant4_gate"],
+      "reads": [
+        "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/**",
+        "00_project/task-cards/task_lvl1_mu_ne_001.task_manifest.json",
+        "02_models/model-manifests/**",
+        "03_runs/formal/run_lvl1_mu_ne_001/**",
+        "00_project/traceability/geometry/**",
+        "00_project/traceability/comsol/**",
+        "00_project/traceability/geant4/**"
+      ],
+      "resources": [],
+      "required_context": 24000,
+      "required_tools": ["filesystem", "shell"],
+      "reasoning": "xhigh",
+      "parent_model": "gpt-6-astra",
+      "parent_effort": "xhigh",
+      "permissions": {"read": true, "write": false, "publish": false, "spawn_child": false},
+      "verification": {"gate_type": "read-only-physics-traceability-review", "deterministic_oracle": false},
+      "output_contract": {"advisory_only": true, "requires_findings": true}
+    }
+  ]
+}

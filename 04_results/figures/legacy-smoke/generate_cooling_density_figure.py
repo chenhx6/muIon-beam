@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 
 ROOT = Path(__file__).resolve().parents[3]
-SOURCE = ROOT / "03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_summary.csv"
+SOURCE = ROOT / "03_runs/formal/run_legacy_smoke_001_stage1_centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_summary.csv"
 OUTPUT = Path(__file__).resolve().parent / "neon-density-radial-cooling-smoke"
 
 mpl.rcParams.update(

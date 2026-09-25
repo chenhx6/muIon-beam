@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "dispatch_id": "DISPATCH-20260911122733-906-858dac76",
+  "attempt_id": "ATT-20260911122733-896-7a100947",
+  "contract_id": "contract_lvl1_mu_ne_transport",
+  "contract_path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_transport/contract.yaml",
+  "contract_sha256": "c31fdbd783ab37d82eff1753eb9b5cc4dd0778d304beeff57bc3d8fd22041013",
+  "created_at": "2026-09-11T12:27:33.906Z"
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "run_id": "AGENT-lvl1_geant4_gate-20260912053439-9d595e",
+  "parent_id": "plan_lvl1_mu_ne_rebuild",
+  "task_id": "lvl1_geant4_gate",
+  "role": "executor",
+  "lifecycle_state": "blocked",
+  "selected_model": null,
+  "model_family": null,
+  "reasoning": "xhigh",
+  "backend": null,
+  "capability_requirements": {
+    "context": 24000,
+    "modalities": [],
+    "tools": [
+      "filesystem",
+      "shell"
+    ],
+    "backend": null
+  },
+  "candidates_considered": [],
+  "selection_reason": null,
+  "catalog_freshness": null,
+  "stale_model_catalog": false,
+  "fallback": null,
+  "permissions": {
+    "read": true,
+    "write": true,
+    "publish": false,
+    "spawn_child": false
+  },
+  "dependencies": [
+    "lvl1_comsol_gate"
+  ],
+  "resources": [
+    "wsl_geant4"
+  ],
+  "manifest_hash": "69af1fbd9553b81cc3fce5f7c022b5c4fa68c0ed99f024308da0306491498daf",
+  "input_hash": null,
+  "start_time": null,
+  "end_time": "2026-09-12T05:34:39.594Z",
+  "output_reference": null,
+  "changed_paths": [],
+  "verification": {
+    "gate_type": "geant4-statistics",
+    "deterministic_oracle": true
+  },
+  "tests": [],
+  "failure_reason": "no compatible model and no parent fallback",
+  "retry": {
+    "count": 0,
+    "max": 1,
+    "previous_run_ids": []
+  },
+  "unresolved_items": [],
+  "normalized_runtime": {
+    "run": "AGENT-lvl1_geant4_gate-20260912053439-9d595e",
+    "session": null,
+    "thread": null,
+    "model": null,
+    "reasoning": "xhigh",
+    "backend": null,
+    "state": "blocked",
+    "retry": {
+      "count": 0,
+      "max": 1,
+      "previous_run_ids": []
+    },
+    "started_at": null,
+    "ended_at": "2026-09-12T05:34:39.594Z",
+    "output": null,
+    "verification": {
+      "gate_type": "geant4-statistics",
+      "deterministic_oracle": true
+    },
+    "unresolved_items": []
+  },
+  "events": [
+    {
+      "at": "2026-09-12T05:34:39.592Z",
+      "from": null,
+      "to": "planned",
+      "reason": "run created"
+    },
+    {
+      "at": "2026-09-12T05:34:39.593Z",
+      "from": "planned",
+      "to": "validated",
+      "reason": null
+    },
+    {
+      "at": "2026-09-12T05:34:39.594Z",
+      "from": "validated",
+      "to": "blocked",
+      "reason": "no compatible model and no parent fallback"
+    }
+  ]
+}

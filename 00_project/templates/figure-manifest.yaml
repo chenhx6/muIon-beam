@@ -1,7 +1,7 @@
 schema_version: 1.0.0
 figures:
-  - figure_id: FIG-RUN-YYYYMMDD-NNN-checkpoint-00-baseline
-    run_id: RUN-YYYYMMDD-NNN-short-name
+  - figure_id: FIG-run_yyyymmdd_nnn_checkpoint_00_baseline
+    run_id: run_yyyymmdd_nnn_short_name
     figure_class: diagnostic
     source_code:
       path: ""

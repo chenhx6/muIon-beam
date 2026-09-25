@@ -1,0 +1,286 @@
+
+
+--- page 1 ---
+
+　第 12 卷　第 6 期 强 激 光 与 粒 子 束 V o l. 12, N o. 6 　
+　2000 年 11 月 H IGH POW ER LA SER AND PA R T I CL EB EAM S N ov. , 2000 　
+文章编号: 　1001—4322 (2000) 06—0771—05
+H IRFL-CSR 实验环电子冷却装置参数优化
+Ξ
+杨晓东
+1
+, 　V. V. Parkhom chuk
+2
+(1 . 中国科学院近代物理研究所, 兰州市31 信箱 730000; 　2 . 俄罗斯科学院核物理研究所, 新西伯利亚630090, 俄罗斯)
+　　摘　要: 　以 400M eVöu 的238
+U
+91+ 为例, 用电子冷却模拟程序计算了冷却时间随冷却段长度 、 冷却段磁
+感应强度 、 磁场平行度 、 电子密度 、 电子束半径 、 电子温度的变化规律, 并分析了影响冷却时间的因素, 获得了
+电子冷却装置最优参数 。
+　　关键词: 　电子冷却; 　冷却时间; 　参数
+　　中图分类号: 　TL 503 . 91　　　　文献标识码: 　A
+　　电子冷却方法是由G. B udker 在六十年代中提出的, 其基本原理是以相同平均速度运动的电子束与离
+子束通过库仑作用将相对较热的离子束的能量转移到冷的电子束, 从而降低离子束的横向发射度和纵向动量
+分散, 最后离子与电子的温度达到平衡 。
+　　冷却作用的强弱及快慢由冷却力和冷却时间来描述, 冷却力不仅与储存环光学参数 、 被冷却离子束的质
+量和电荷态 、 初始参数有关, 而且与冷却装置本身的有效长度 、 磁感应强度以及磁场平行度有关, 更重要的
+是, 与电子束的密度 、 半径及横向温度T e 有关 。 这些参数一方面受到储存环及相关技术水平的限制, 另一方
+面它们之间相互制约 。
+　　电子冷却装置中电子束的品质由电子束的温度来衡量 。 一般来说, 由热阴极发射的电子, 其横向温度为
+0 . 1eV (1000K) , 电子经加速及通过弯曲螺线管到达冷却段时, 其横向温度约为0 . 2eV。由于静电加速, 电子
+纵向温度约为0 . 1m eV (1K)。
+　　为了获得较低的横向温度, 电子束放在由螺线管产生的纵向磁场中, 磁场 “ 磁化” 了电子束的横向运动,
+这种现象称为磁化效应, 其结果是离子与冷的拉摩环作用, 而不是与自由电子作用, 当自由电子的温度为
+2000K 时, 拉摩环的有效温度仅为1K, 这个值与电子纵向温度具有相同的数量级, 这种过程被称为快速电子
+冷却
+[ 1 ]
+。 快速冷却可以使用较高温度的电子束, 不会降低冷却力 。
+1　冷却力与冷却时间
+　　在有限的磁场情况下, 冷却力
+[ 1 ]
+的公式为
+F = - 4Z
+2
+e
+4
+ne
+A m pm e
+v
+(v
+2
++ v
+2
+eff) 3
+ln (Θm ax + Θm in + ΘL
+Θm in + ΘL
+) (1)
+其中 ne 为电子密度, e 为电子电荷, m e 为电子质量, m p 为质子质量, Z 为离子电荷数, A 为离子质量数, v 为
+运动坐标系中离子速度 。 在冷却之前, 离子速度远大于电子速度 。v eff= v
+2
+∥e+ (∃v ⊥e) 2
+为电子纵向速度v ∥e
+和由于横向磁场 、 电场作用产生的电子横向漂移速度∃v ⊥e的合成 。Θm ax= vö(Ξe+ 1 öΣ) 为最大碰撞参数, 这里
+Ξe= 4Πe
+2
+neöm 为电子束等离子频率, Σ是离子单次穿过冷却段的时间, Θm ax= e
+2
+ö(m v
+2) 为最小碰撞参数, ΘL
+= m v eö(e B) 为以 v e 速度在磁感应强度为B 的冷却段中运动的电子的拉摩半径 。
+　　冷却时间可以用以下经验公式
+[ 2 ]
+描述
+Σ≈ 4 × 10
+12 R
+L c
+A
+Z
+2
+Β
+4
+Χ
+5
+j e
+Η
+3 (2)
+　　其 中, R 为储存环平均半径, L c 冷却段长度, Β, Χ为相对论因子, j e 电子束密度, Η离子与电子在冷却
+Ξ 收稿日期: 2000205216; 　　修订日期: 2000210228
+基金项目: 国家重大科学工程H I R FL2CSR 冷却储存环项目资助
+作者简介: 杨晓东(19662 ) , 男, 副研 。
+© 1995-2005 Tsinghua Tongfang Optical Disc Co., Ltd.   All rights reserved.
+
+--- page 2 ---
+
+段的角分散 。 可以看出, 冷却时间不仅与冷却段的长度 、 离子种类以及电子密度有关, 而且与离子动能有关 。
+2　H IRFL-CSR 参数
+　　H I R FL2CSR 由两个储存环组成, 主环CSRm 用于离子束的累积 、 加速, 实验环CSR e 用于内靶实验, 作
+为高精度 、 高分辨率的探测器, 电子冷却系统的主要参数见表1。
+表 1　H IRFL-CSR 电子冷却系统的主要参数
+Table 1　M a i nparameters of H IRFL-CSR electron cooli ng syste m
+CSRm CSR e
+energy of i onE ionö(M eV ·u
+- 1 ) 8～ 50 25～ 400
+energy of electron E electronökeV 4. 39～ 27 . 43 13. 7～ 219 . 44
+circum ference of the ring öm 161. 2 125. 38
+length of electron coo ling system öm 4. 0 4. 0
+betatron functi on ΒHöm 6. 9 7. 5
+betatron functi on ΒV öm 11. 7 14. 9
+dispersi on functi on D öm 0 0
+m agnetic field strength in coo ling system öT < 0 . 15 < 0. 15
+m ax i m umelectron cu rren t öA 3 3
+beam em ittance befo re coo led　　ΕH ö(Πmm ·m rad) 150 30
+　　　　　　　　　　　　　 　 ΕV ö(Πmm ·m rad) 20 30
+beam mom en tum befo re coo led ∃P öP ±1. 5 ×10- 3 < ±5×10- 4
+beam em ittance after coo led　ΕH ö(Πmm ·m rad) 30 1
+　　　　　　　　　　　　　ΕV ö(Πmm ·m rad) 30 1
+beam mom en tum after coo led ∃P öP ±5×10- 4 < ±1×10- 6
+3　储存环光学参数
+　　对于给定发射度和动量分散的离子束而言, Β 函数(以后记为 ΒT ) 和色散函数D 决定其尺寸和角度分
+散 。从式(2) 可以看出, 冷却时间与离子和电子之间的角度分散Η成三次方关系, 当离子与电子平均速度匹配
+很好时, Η只由离子和电子的角度分散给出: Η= Η
+2
+i + Η
+2
+e。 当电子温度T e 为 0 . 1eV 时, 其角度分散为Ηe=
+T eöm c
+2
+Β
+2
+Χ
+2
+≈ 4m rad; 而离子的角度分散为Ηi= ΕöΒT ö2, Ε为离子的发射度(下标H、V 分别表示水平方
+向和垂直方向)。 当离子角度分散大于电子角度分散时, 较大的ΒT 函数可以提供较快的电子冷却; 但离子束
+尺寸接近电子束尺寸时, 由于空间电荷作用很难达到离子 、 电子速度之间的匹配, 而造成冷却力的减弱 。ΒT 函
+数还决定离子束的大小a
+2
+i = ΕΒT。 色散函数D 决定了离子轨道的偏移量, 为了获得最强的冷却, 电子冷却装置
+一般位于储存环色散函数D 为零的直线节, ΒT 函数值选择在10m 左右 。
+4　离子束参数
+　　从公式(1) 中得知, 冷却力与离子电荷数Z 成平方关系, 与质量数A 成反比 。 从公式(2) 中得知, 冷却时
+间与离子和电子平均运动速度 〈v 〉= Βc 有关 。 对于同一种的离子, 其它参数相同情况下, 能量越高, 冷却时间
+越长 。 可以从电子束密度ne= IöΠR
+2
+eΒc 来分析, 对于固定长度的电子冷却装置而言, 相当于静止于储存环中
+的 、 具有一定厚度的薄膜, 在电子流强和半径固定情况下, 离子运动速度越大, 离子在电子束中停留时间越
+短; 电子束密度越小, 与离子相互作用的电子数越少, 冷却作用越弱 。
+5　冷却段长度
+　　以离子平均速度运动的电子束放置在环中的一段直线节内, 电子束占据离子轨道的部分越大, 离子越快
+被冷却 。 图1 为冷却时间随冷却段长度变化规律 。
+2 7 7 强 激 光 与 粒 子 束 第 12 卷
+© 1995-2005 Tsinghua Tongfang Optical Disc Co., Ltd.   All rights reserved.
+
+--- page 3 ---
+
+F ig. 1 　Coo ling ti m eas a functi on of
+the coo ling secti on length
+图 1　冷却时间随冷却段长度的变化规律
+F ig. 2 　Coo ling ti m eas a functi on of the m agnetic
+inductive strength in the coo ling secti on
+图 2　冷却时间随冷却段磁感应强度的变化规律
+6　电子冷却装置磁场参数
+　　由于电子束内散射加热电子从而导致高电子流强下冷却能力的下降, 提高磁场一方面降低了电子束的
+横向漂移速度 。另一方面, 更好地磁化电子横向运动, 缩小了拉摩环的半径 。在强磁场情况下, 可以提高电子
+束流强, 以获得强的冷却作用 。图2 为冷却时间随冷却段磁感应强度的变化规律 。磁场越强, 冷却时间越短 。
+F ig. 3 　Coo ling ti m eas a functi on of
+the m agnetic field parallelis m in coo ling secti on
+图 3　冷却时间随冷却段磁场平行度的变化规律
+　　在高能情况下, 冷却段螺线管线圈的不准直引起
+的磁场横向分量是非常严重的问题 。 由此引起的电子
+的有效速度为v eff= Χv 0∃B öB , v 0 为实验室坐标系中电
+子速度, Χ= 1 ö 1- v
+2
+0öc
+2
+。对于 H I R FL2CSR 的实验
+环,
+238
+U
+91+
+最高能量400M eV öu, 如果 ∃∀ö∀ 为 10
+- 4
+,
+那么有效速度为v eff= 3 ×10
+4
+m ös, 相应的有效温度为
+53K, 也就是说如果 ∃B öB > 10
+- 4
+, 冷却率就会下降 。
+图 3 为冷却时间随冷却段磁场平行度的变化规律 。
+7　电子束参数
+　　如果电子冷却装置中没有其它的引起电子横向运
+动的因素, 只有电子束的空间电荷效应, 那么, 方程(1) 中的有效速度v eff仅为电子在磁场B 中的漂移运动速
+度 v eff= 2 ΠneR bcöB , R b 为电子束半径 。
+　　从方程(1) 中可以看出, 增大电子束密度ne 有利于电子冷却, 当 v eff= v 冷却力达到最大值, 最佳的电子
+密度为
+ne = ΒΧ
+2
+B ö(2ΠeΒT) (3)
+　写为实用单位形式
+j e [A õ cm
+- 2
+]≈ 1 . 6(ΒΧ) 2
+B [T ]
+ΒT [m ] (4)
+　　对于 400M eV öu 的
+238
+U
+91+
+, 相应的电子能量为219 . 44keV , 实验环的ΒT = 14 . 9m , j e= 1 . 68A öc m
+2
+, 如
+果电子束半径为0 . 025m , 那么最佳的冷却要求电子流强达到33A。
+　　冷却力受到电子密度和有效温度的限制, 当提高电子密度时, 由于空间电荷作用和束内散射增大了电子
+的有效温度 。 图4 为六种不同半径的电子束在不同电流情况下冷却时间随电子密度的变化规律, 可以看出, 电
+子束半径小而流强大的情况下(图中实心圆所示) , 电子密度较高, 但由于与离子作用的面积有限, 而不能有
+效地 、 快速地冷振荡幅度较大的离子, 相反, 电子束半径大而电子束流强较小的情况下(图中空心圆所示) , 电
+3 7 7第 6 期 杨晓东等 : H I R FL2CSR 实验环电子冷却装置参数优化
+© 1995-2005 Tsinghua Tongfang Optical Disc Co., Ltd.   All rights reserved.
+
+--- page 4 ---
+
+子密度较低, 冷却时间变长 。 图5 给出了固定电子束半径改变电子束流强, 冷却时间的变化规律 。 随着流强增
+大, 冷却时间迅速缩短, 但并不是随着电子密度的增加而持续降低, 而是存在最佳值, 流强超过这个值之后,
+再增大流强并未缩短冷却时间 。
+F ig. 4 　Coo ling ti m eas a functi on of
+the electron beam density
+图 4　冷却时间随电子束密度的变化规律
+F ig. 5 　Coo ling ti m eas a functi on of
+the electron beam current
+图 5　冷却时间随电子束流强的变化规律
+　　图 6 给出了固定电子密度, 改变电子束半径, 冷却时间的变化规律 。 由于在冷却段离子束的横截面为圆
+形或椭圆形状, 如果电子束将离子束完全包裹住, 那么要求电子束的尺寸非常大, 而冷却装置所能提供的最大
+电流值是有限的, 增大电子束半径就意味着降低电子密度 。 在保持电子密度不变的情况下, 当电子束半径超过
+某一值, 冷却时间不随半径变化 。如果将电子束尺寸设定为略小于椭圆的长轴 、 略大于椭圆的短轴, 就可获得
+较高的电子密度 。 电子束如果太大, 由于离子振荡的幅值有限, 将不会与处于大半径的电子相互作用 。 如果电
+子束的尺寸小于初始离子束的尺寸, 对于大幅度的离子, 冷却效率随电子束的减小变化非常慢, 而对于小幅度
+的离子, 冷却效率随着电子束尺寸减小而增加 。
+　　在电子冷却段, 电子的横向运动由两部分组成, 一种为电子围绕磁力线的拉摩运动, 它由阴极温度即初
+始能量及电子由阴极经加速段 、 偏转元件运动到冷却段过程中横向电场 、 磁场引起的横向运动所决定, 另一种
+为在冷却段交叉电磁场中的漂移运动, 图 7 给出了电子拉摩运动对冷却时间的影响 。磁化冷却过程对电子束
+横向温度不敏感, 电子束横向温度对冷却影响不大 。
+F ig. 6 　Coo ling ti m eas a functi on of
+the radius of electron beam
+图 6　冷却时间随电子束半径的变化规律
+F ig. 7 　Coo ling ti m eas a functi on of
+the transverse temperature of electron
+图 7　冷却时间随电子横向温度的变化规律
+　　在模拟计算中, 采用相同的初始离子束尺寸, 图 1, 3, 7 中 ΒT 函数为7 . 5m , 图 2, 4, 5, 6 中 ΒT 函数为14 .
+9m , 即前者的初始发射度为后者的二倍 。
+　　在储存环中, 离子俘获电子是离子损失的主要途径, 离子与电子的相对速度越低, 俘获几率越大 。 冷却
+后, 离子束的能量分散很小, 尺寸也很小, 正好位于电子束中心区域, 而这里的电子同样具有很小的能量分
+4 7 7 强 激 光 与 粒 子 束 第 12 卷
+© 1995-2005 Tsinghua Tongfang Optical Disc Co., Ltd.   All rights reserved.
+
+--- page 5 ---
+
+散, 离子俘获电子的几率迅速增大, 对电子束横向温度非常敏感, 由此可以考虑用空心电子束, 一方面, 可以
+将离子束冷却到预期的参数, 另一方面降低离子俘获电子的可能性 。 文献[ 2 ]给出的CERN L EA R 冷却实验
+结果表明, 相同种类的离子, 电荷态不同, 损失率不同; 损失率随电子束流强呈线性变化趋势, 不同电荷态的
+曲线斜率不同 。
+8　结　论
+　　在低能情况下, 电子束密度要达到最佳值, 高能情况下, 电子束密度要尽可能高; 冷却段长度尽可能长;
+电子束半径略小于离子束最大半径; 电子束温度尽可能低; 冷却段磁场大于0 . 1T , 平行度好于10
+- 4
+, 才能获
+得最短的冷却时间 。
+参考文献:
+[ 1 ]　Parkhom chuk V V. N ew insigh ts in the theo ry of electron coo ling[J ] . N ucl Instr and M eth , 2000, A441: 9～ 17 .
+[ 2 ]　Bo sser J, Carli C, Chanel M , et al. O n the op ti m umdispersi on of a sto rage ring fo r electron coo lingw ith h igh space charge [J ] .
+N ucl Instr and M eth , 2000, A441: 60～ 63 .
+[ 3 ]　D ikansky N S, Kudelainen V I, L ebedev V A , et al. U lti m atepo ssibilities of electron coo ling[R ] . P rep rin t IN P 88261, 1988 .
+Param eters O pti m iza tionof H IRFL-CSR Exper i m en t
+R i ngElectron Cool i ngD ev ice
+YAN G X iao2dong
+1, V. V. PA R KHOM CHU K
+2
+(1 .Institu te of M od ern P hy sics, T he Ch inese A cad e m yof S ciences, P. O. B ox 31, L anz hou 730000, Ch ina;
+2 .B ud ker Institu te of N uclea r P hy sics, R ussian A cad e m yof S cience, N ovosibirsk 630090, R ussia )
+　　ABSTRACT: 　W ith the help of electron coo ling code, the influence of the m ain param eters of electron coo ling
+device on the coo ling ti m ew as si m u lated, coo ling ti m esof 　238
+U
+91+
+i onw ith the energy 400M eVöu at differen t param eters
+w ere calcu lated, and the facto rs w h ich influence the coo ling ti m ew ere analyzed in th is paper.
+　　KEY WOR D S: 　electron coo ling; coo ling ti m e; param eter
+5 7 7第 6 期 杨晓东等 : H I R FL2CSR 实验环电子冷却装置参数优化
+© 1995-2005 Tsinghua Tongfang Optical Disc Co., Ltd.   All rights reserved.

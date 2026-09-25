@@ -2,4 +2,5 @@
 
 | 模型 ID/引用 | 类型 | 版本 | 来源路径 | 使用运行 |
 |---|---|---|---|---|
-| MODEL-LEGACY-SMOKE-001 |  |  |  |  |
+| model_legacy_smoke_001 |  |  |  |  |
+| model_lvl1_mu_ne_001 |  |  |  |  |

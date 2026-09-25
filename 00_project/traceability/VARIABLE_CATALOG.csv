@@ -1,2 +1,13 @@
 canonical_name,display_name_zh,definition_zh,unit,dimension,data_type,value_type,physical_region,model_layer,input_or_output,allowed_alias,introduced_in,deprecated_in,change_reason
 "neon_number_density","氖气数密度","单位体积内的氖原子数","1/m^3","number_density","floating_point","input","R02-slowing-capture; R03-charge-state-conversion; R04-fast-extraction","Geant4|COMSOL","input","Ne_density","0.1.0","","初始变量目录"
+"coil_diameter","螺线管直径","一级装置螺线管直径","mm","length","floating_point","input","R01-device-geometry","3D|COMSOL","input","","0.2.0","","一级装置重建实例"
+"target_magnetic_field","目标磁场","螺线管轴向目标磁场","T","magnetic_field","floating_point","input","R01-device-geometry; R02-slowing-capture","3D|COMSOL","input","","0.2.0","","一级装置重建实例"
+"neon_temperature","氖气温度","Ne 工作气体温度","K","temperature","floating_point","input","R02-slowing-capture","Geant4|COMSOL","input","","0.2.0","","一级装置重建实例"
+"electrode_aperture_diameter","电极孔径","环形电极中心孔直径","mm","length","floating_point","input","R01-device-geometry; R03-charge-state-conversion","3D|COMSOL","input","","0.2.0","","一级装置重建实例"
+"mu_minus_initial_kinetic_energy_mean","初始负mu子动能均值","截断前初始负mu子动能分布均值","keV","energy","floating_point","input","R02-slowing-capture","Geant4","input","","0.2.0","","一级装置重建实例"
+"mu_minus_initial_kinetic_energy_sigma","初始负mu子动能标准差","初始负mu子动能分布标准差","keV","energy","floating_point","input","R02-slowing-capture","Geant4","input","","0.2.0","","一级装置重建实例"
+"mu_minus_intrinsic_radial_direction_mean","本征径向动量方向均值","muon本征坐标系中的径向动量方向均值","degree","angle","floating_point","input","R02-slowing-capture","Geant4|COMSOL","input","","0.2.0","","一级装置重建实例"
+"mu_minus_intrinsic_radial_direction_sigma","本征径向动量方向标准差","muon本征坐标系中的径向动量方向标准差","degree","angle","floating_point","input","R02-slowing-capture","Geant4|COMSOL","input","","0.2.0","","一级装置重建实例"
+"transport_efficiency","输运效率","到达引出平面的粒子数与截断后实际注入粒子数之比","dimensionless","ratio","floating_point","output","R04-fast-extraction","Geant4|COMSOL","output","","0.2.0","","一级装置重建实例"
+"radial_kinetic_energy_at_extraction","引出径向动能","粒子到达引出平面时的径向动能","eV","energy","floating_point","output","R04-fast-extraction","Geant4|COMSOL","output","","0.2.0","","一级装置重建实例"
+"axial_kinetic_energy_at_extraction","引出轴向动能","粒子到达引出平面时的轴向动能","keV","energy","floating_point","output","R04-fast-extraction","Geant4|COMSOL","output","","0.2.0","","一级装置重建实例"

@@ -4,7 +4,7 @@
 
 ## 本轮核对
 
-- 运行：`RUN-LEGACY-SMOKE-001-stage1-centered`。
+- 运行：`run_legacy_smoke_001_stage1_centered`。
 - 已迁移本地副本：293/293 与原迁移 SHA256 一致。
 - 已迁移 Drive 副本：293/293 与原迁移 SHA256 一致。
 - 旧工作区继续修改的文件：`BuildCenteredCoolingModel.java`、`RunCenteredCoolingScan.java`、`make_centered_cooling_threshold_plot.ps1` 和 `scripts/README.md`。

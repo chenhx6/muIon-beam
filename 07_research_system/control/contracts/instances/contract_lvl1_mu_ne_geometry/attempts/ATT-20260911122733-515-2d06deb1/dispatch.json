@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "dispatch_id": "DISPATCH-20260911122733-523-e886cd74",
+  "attempt_id": "ATT-20260911122733-515-2d06deb1",
+  "contract_id": "contract_lvl1_mu_ne_geometry",
+  "contract_path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_geometry/contract.yaml",
+  "contract_sha256": "559230883be69ea4aebeccae92cac1172faaebcc565a2c7e1c157e5113e55c11",
+  "created_at": "2026-09-11T12:27:33.523Z"
+}

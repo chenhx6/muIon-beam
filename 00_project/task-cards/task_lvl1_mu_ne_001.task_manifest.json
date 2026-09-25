@@ -1,0 +1,76 @@
+{
+  "manifest_id": "task_lvl1_mu_ne_001",
+  "manifest_type": "task",
+  "schema_version": "1.0.0",
+  "task_id": "task_lvl1_mu_ne_001",
+  "task_name": "一级装置 mu-Ne 输运与冷却重建实例",
+  "source_type": "reference_and_legacy_reconstruction",
+  "is_upper_task": true,
+  "assignment_source": "user_confirmed_plan",
+  "objective_zh": "用抽象后的一级装置 mu-Ne 输运与冷却实例真实验收项目工作流（文件架构、文件命名、总体流程）和研究工作流（总控、工作状态、合同与三模块交互）。历史 Stage-1 仅作来源记录，不作为当前活动模型。",
+  "physical_object": "100 mm 螺线管、1 T 磁场、300 K Ne 气体和环形电极组成的一级 mu-minus 装置",
+  "initial_conditions": [
+    "coil_diameter = 100 mm",
+    "target_magnetic_field = 1 T",
+    "neon_temperature = 300 K",
+    "neon_number_density = 1e19..1e26 1/m^3",
+    "electrode_aperture_diameter = 30 mm",
+    "initial_geometry = 4 annular electrodes and 3 chambers",
+    "alternative_geometry = 3 annular electrodes and 2 chambers",
+    "mu_minus_initial_kinetic_energy mean = 100 keV, sigma = 20 keV, 3-sigma truncation",
+    "mu_minus_intrinsic_radial_direction mean = 0 degree, sigma = 9 degree, 3-sigma truncation"
+  ],
+  "model_references": ["model_lvl1_mu_ne_001"],
+  "variable_catalog_ref": "00_project/traceability/variable-catalog.yaml",
+  "variables": [
+    "coil_diameter",
+    "target_magnetic_field",
+    "neon_temperature",
+    "neon_number_density",
+    "electrode_aperture_diameter",
+    "mu_minus_initial_kinetic_energy_mean",
+    "mu_minus_initial_kinetic_energy_sigma",
+    "mu_minus_intrinsic_radial_direction_mean",
+    "mu_minus_intrinsic_radial_direction_sigma",
+    "transport_efficiency",
+    "radial_kinetic_energy_at_extraction",
+    "axial_kinetic_energy_at_extraction"
+  ],
+  "analysis_questions": [
+    {"analysis_id": "design_chamber_topology", "question_zh": "两腔和三腔电极结构哪一种更适合输运和引出接受度？"},
+    {"analysis_id": "neon_radial_cooling", "question_zh": "Ne 数密度如何影响径向冷却和粒子损失？"},
+    {"analysis_id": "axial_electrode_transport", "question_zh": "电极场如何将轴向动能保持在 1.00 keV ± 0.05 keV？"},
+    {"analysis_id": "extraction_acceptance", "question_zh": "引出平面的输运效率能否达到 0.75，且径向动能不超过 10 eV？"}
+  ],
+  "response_metrics": [
+    "transport_efficiency",
+    "accepted_extraction_efficiency",
+    "radial_kinetic_energy_at_extraction",
+    "axial_kinetic_energy_at_extraction",
+    "radial_cooling_time",
+    "wall_loss_fraction"
+  ],
+  "success_criteria": [
+    "项目文件架构、文件命名和总体工作流通过真实实例验收",
+    "research-state、总控、合同与 3D/COMSOL/Geant4 文件接口通过真实实例验收",
+    "活动 ID 和任务卡路径符合小写命名规范",
+    "任务、模型、运行和报告关系可以由 09_catalog 定位",
+    "本征坐标系初始能量和方向分布可复现",
+    "transport_efficiency >= 0.75",
+    "radial_kinetic_energy_at_extraction <= 10 eV",
+    "axial_kinetic_energy_at_extraction = 1.00 keV +/- 0.05 keV",
+    "生成带中国时间前缀的简洁和详细报告",
+    "完成物理检查、报告 QA、归档和三端审计"
+  ],
+  "failure_criteria": [
+    "初始分布没有按 3-sigma 截断",
+    "本征坐标系到实验室坐标系的变换无法追踪",
+    "输运效率低于 0.75",
+    "引出径向动能超过 10 eV",
+    "引出轴向动能超出 1.00 keV +/- 0.05 keV",
+    "关键结果没有来源或哈希证据"
+  ],
+  "expected_maturity": "F1",
+  "historical_result": false,
+  "user_confirmation": "confirmed"
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "contract_lvl1_mu_ne_geometry_v2",
+  "task_id": "task_lvl1_mu_ne_001",
+  "module": "3d",
+  "objective": "比较一级装置两腔和三腔环形电极几何方案，建立后续连续场模型的几何接口。",
+  "current_question": "哪种腔体拓扑满足孔径、同轴性和后续电场建模接口要求？",
+  "inputs": {
+    "mode": "inspect",
+    "geometry_level": "G1",
+    "geometry_ref": "model_lvl1_mu_ne_001",
+    "coil_diameter_mm": 100,
+    "electrode_aperture_diameter_mm": 30
+  },
+  "fixed": [
+    {
+      "name": "coil_diameter_mm",
+      "current": 100,
+      "canonical_name": "coil_diameter_mm",
+      "scope": "fixed"
+    },
+    {
+      "name": "electrode_aperture_diameter_mm",
+      "current": 30,
+      "canonical_name": "electrode_aperture_diameter_mm",
+      "scope": "fixed"
+    }
+  ],
+  "explorable": [
+    {
+      "name": "chamber_topology",
+      "owner": "3d",
+      "explicit_cases": [
+        "two_chamber",
+        "three_chamber"
+      ],
+      "canonical_name": "chamber_topology",
+      "scope": "explorable"
+    }
+  ],
+  "forbidden": [
+    {
+      "name": "physics_model",
+      "owner": "research_workflow",
+      "canonical_name": "physics_model",
+      "scope": "forbidden"
+    }
+  ],
+  "required_outputs": [
+    "geometry_artifact",
+    "geometry_validation"
+  ],
+  "success_criteria": [
+    "both chamber topologies have an inspectable geometry interface"
+  ],
+  "validation_requirements": [
+    "geometry_consistency",
+    "coaxiality_check"
+  ]
+}

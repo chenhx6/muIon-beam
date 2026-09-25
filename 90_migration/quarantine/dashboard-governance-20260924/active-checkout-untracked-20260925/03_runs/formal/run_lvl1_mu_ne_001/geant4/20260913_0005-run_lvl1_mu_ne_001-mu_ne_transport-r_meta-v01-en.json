@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "result_type": "geant4_transport_statistics",
+  "status": "complete",
+  "model_status": "bounded_em_transport_surrogate",
+  "geant4_version": "$Name: geant4-11-02-patch-02 $",
+  "physics_list": "G4EmStandardPhysics_option3",
+  "inputs": {
+    "geometry_path": "/mnt/d/muIon-beam/02_models/model-manifests/geometry_manifest_lvl1_mu_ne_001.json",
+    "geometry_sha256": "not-recorded",
+    "comsol_field_snapshot_path": "/mnt/d/muIon-beam/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260913_0000-run_lvl1_mu_ne_001-ne_field-r_snapshot-v01-en.json",
+    "comsol_field_snapshot_sha256": "not-recorded",
+    "stopping_table_path": "/mnt/d/muIon-beam/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_interface_si-v01-en.txt",
+    "stopping_table_sha256": "not-recorded",
+    "number_density_m3": 9.9999999999999992e+22,
+    "magnetic_field_T": 1.0000000000000000e+00,
+    "axial_electric_field_V_per_m": 0.0000000000000000e+00
+  },
+  "source_distribution": {
+    "particle": "mu_minus",
+    "energy_mean_eV_target": 100000.0,
+    "energy_sigma_eV_target": 20000.0,
+    "energy_truncation_sigma": 3.0,
+    "intrinsic_radial_direction_mean_deg_target": 0.0,
+    "intrinsic_radial_direction_sigma_deg_target": 9.0,
+    "intrinsic_radial_direction_truncation_sigma": 3.0,
+    "coordinate_system": "muon_intrinsic_to_lab_z_extraction",
+    "sample_mean_energy_eV": 1.0032079488552643e+05,
+    "sample_sigma_energy_eV": 2.0421544067690960e+04,
+    "sample_mean_direction_deg": -1.8657668033684605e-01,
+    "sample_sigma_direction_deg": 9.0008963363602206e+00
+  },
+  "geometry": {
+    "aperture_diameter_mm": 3.0000000000000000e+01,
+    "electrode_count": 4,
+    "chamber_count": 3,
+    "total_length_mm": 5.9700000000000000e+02,
+    "extraction_z_m": 2.9849999999999999e-01
+  },
+  "statistics": {
+    "requested_events": 1000,
+    "injected_events": 1000,
+    "extracted_events": 519,
+    "lost_events": 481,
+    "incomplete_events": 0,
+    "transport_efficiency": 5.1900000000000002e-01,
+    "transport_efficiency_wilson_lower_95": 4.8801914625314236e-01,
+    "accepted_extraction_events": 0,
+    "accepted_extraction_efficiency": 0.0000000000000000e+00,
+    "accepted_extraction_efficiency_wilson_lower_95": 2.1684043449710089e-19
+  },
+  "extraction_scores": {
+    "radial_kinetic_energy_p50_eV": 1.5478594218032692e+03,
+    "radial_kinetic_energy_p90_eV": 6.4520209244467833e+03,
+    "axial_kinetic_energy_mean_eV": 6.2599256297679021e+04,
+    "axial_kinetic_energy_p50_eV": 6.2372017470913386e+04,
+    "axial_kinetic_energy_p90_eV": 9.4108421532899287e+04,
+    "extraction_time_p50_ns": 4.8540737447187837e+01
+  },
+  "limitations": [
+    "COMSOL field is consumed through a frozen snapshot; there is no direct process link.",
+    "The stopping table is an electromagnetic mean stopping interface; atomic capture and muonic-atom formation are not modeled.",
+    "Electrode/aperture loss is explicit, but this run is not a complete mu-minus survival or capture model."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "manifest_id": "manifest_run_lvl1_mu_ne_001",
+  "manifest_type": "run",
+  "schema_version": "1.0.0",
+  "created_at": "2026-09-11T11:41:21Z",
+  "updated_at": "2026-09-11T11:41:21Z",
+  "parent_manifest_id": null,
+  "task_id": "task_lvl1_mu_ne_001",
+  "run_id": "run_lvl1_mu_ne_001",
+  "status": "stopping_ready",
+  "maturity_level": "F0",
+  "retention_level": "P1",
+  "physical_regions": ["R01-device-geometry", "R02-slowing-capture", "R04-fast-extraction"],
+  "input_references": ["08_references/catalog/reference_index.json", "03_runs/formal/run_lvl1_mu_ne_001/stopping_manifest.json"],
+  "model_references": ["model_lvl1_mu_ne_001"],
+  "variable_catalog_ref": "00_project/traceability/variable-catalog.yaml",
+  "software_versions": {},
+  "git": {"commit": null, "tag": null, "dirty_files": []},
+  "drive": {"archive_path": "H:\\我的云端硬盘\\muIon_archive\\simulation-runs\\run_lvl1_mu_ne_001", "archive_status": "pending", "archive_manifest_id": null},
+  "reports": {
+    "summary_report": "report/20260911_1941-run_lvl1_mu_ne_001-lvl1_mu_ne_rebuild-r_sum-v01-zh.md",
+    "detailed_report": "report/20260911_1941-run_lvl1_mu_ne_001-lvl1_mu_ne_rebuild-r_det-v01-zh.md",
+    "report_index": "report/report_index.json"
+  },
+  "files": [],
+  "human_summary_zh": "一级装置 mu-Ne 输运与冷却重建实例，等待模型和合同准备。",
+  "unknowns": ["two_chamber_or_three_chamber_design"],
+  "limitations": ["未执行正式 3D、COMSOL 或 Geant4 计算"]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "manifest_id": "comsol_manifest_lvl1_mu_ne_001_v01",
+  "status": "geometry_gate_passed_field_solve_not_evaluated",
+  "runtime": "COMSOL 6.4.0.293",
+  "geometry_sha256": "a848e3bc7bf38f294a86a64734e72223d5fb9f9f10800361996f37bcdb7c7194",
+  "files": [
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2235-run_lvl1_mu_ne_001-ne_field-comsol_gate-v01.mph",
+      "sha256": "fbc23a6deec3df56fdb37b77f50e3cba3c35f70d9722fc0559ba667be055be5d",
+      "bytes": 286988
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-geom-gate-v01_Level1MuNeAdapter.mph",
+      "sha256": "9dbfb3beee008632d82f91a44b71c2a835139e2763c90facd146397dad3b4e53",
+      "bytes": 287390
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-geom-gate-v01.mph.status",
+      "sha256": "af3c1925fd627b785b9cf2fe1010cb40e5955199947f6ac6d931c91f2a16628f",
+      "bytes": 20
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-geom-log-v01-en.log",
+      "sha256": "74f29042a2b56c8d500ab75f95801a945866b98b69717c82ba2697127bc58e1e",
+      "bytes": 7397
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-ne_field-r_meta-v01-en.json",
+      "sha256": "d1db80a1d7235085a30a1d26dd5a054f0c9a722d19bc9c9f2bfb63b7e30e777a",
+      "bytes": 555
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-ne_field-r_tbl-v01-en.csv",
+      "sha256": "534c1bff1161dc252dddc54334ad2335fbc4f2bf7288363256f96141e2f777b4",
+      "bytes": 364
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/level1_gate.mph",
+      "sha256": "4e2a963319080ab42ee46211d2ced33139b761ac2b6e06b2f2a171a7894df9a2",
+      "bytes": 285941
+    }
+  ],
+  "limitations": [
+    "No COMSOL field or particle solve was executed",
+    "This is a geometry import and MPH checkpoint gate"
+  ]
+}

@@ -1,0 +1,16 @@
+*******************************************
+***COMSOL 6.4.0.293 progress output file***
+*******************************************
+Sat Sep 12 14:01:19 CST 2026
+COMSOL Multiphysics 6.4 (开发版本: 293) 在批处理模式下启动
+正在运行: D:\muIon-beam\07_research_system\blocks\comsol\adapter_level1\AdapterSmoke.class
+
+/***************/
+/*****错误********/
+/***************/
+运行 Java 类时出错。
+Cannot read the array length because "args" is null
+ - 类: AdapterSmoke
+正在保存模型: D:\muIon-beam\03_runs\formal\run_lvl1_mu_ne_001\comsol\adapter_smoke_AdapterSmoke.mph
+保存时间: 0 s.
+总时间: 3 s.

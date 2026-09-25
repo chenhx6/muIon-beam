@@ -1,0 +1,15 @@
+{
+  "task_manifest": "00_project/task-cards/task_legacy_smoke_001.task_manifest.json",
+  "model_manifest": "02_models/model-manifests/model_legacy_smoke_001.model_manifest.json",
+  "run_manifest": "03_runs/formal/run_legacy_smoke_001_stage1_centered/run_manifest.json",
+  "report_dir": "03_runs/formal/run_legacy_smoke_001_stage1_centered/report",
+  "selected_files": 293,
+  "figure_count": 15,
+  "json_count": 13,
+  "csv_count": 29,
+  "valid": true,
+  "errors": [],
+  "warnings": [
+    "CSV header is unusual: 03_runs/formal/run_legacy_smoke_001_stage1_centered/input/legacy/stage1_3d_feasibility/tables/centered/candidate_parameter_sets.csv"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "manifest_id": "geant4_manifest_lvl1_mu_ne_001_v01",
+  "status": "completed_1000_event_bounded_em_transport",
+  "runtime": "Geant4 11.2.2",
+  "geometry_sha256": "a848e3bc7bf38f294a86a64734e72223d5fb9f9f10800361996f37bcdb7c7194",
+  "field_snapshot_sha256": "c875d5f73f596ac715586ed6878b74e12526e9c69ae81eb16e293526534807a2",
+  "stopping_sha256": "c3bdf2e9445ad0891b80ef97807caceb5c8e701b36e5a61ac10391af649ded9d",
+  "result": "03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_meta-v01-en.json",
+  "event_output": "03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_tbl-v01-en.csv",
+  "limitations": [
+    "bounded electromagnetic transport surrogate",
+    "no atomic capture or muonic atom formation",
+    "COMSOL field snapshot is geometry gate only; axial field set to 0 V/m"
+  ]
+}

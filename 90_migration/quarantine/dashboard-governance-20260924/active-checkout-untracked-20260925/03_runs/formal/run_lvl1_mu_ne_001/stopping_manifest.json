@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "manifest_id": "stopping_manifest_run_lvl1_mu_ne_001_v01",
+  "run_id": "run_lvl1_mu_ne_001",
+  "producer": {"module": "geant4", "version": "11.2.2", "physics_list": "G4EmStandardPhysics_option3", "source": "02_models/geant4/lvl1_mu_ne_001/mu_ne_stopping.cc"},
+  "reference_number_density_m3": "1e22",
+  "energy_range_eV": {"min": 10, "max": 1000000, "points": 261},
+  "interpolation_variable": "Ktotal",
+  "density_scaling_validation": {"points_m3": ["1e21", "1e22", "1e23"], "max_relative_error": 4.440892098500626e-16, "status": "passed"},
+  "files": [
+    {"role": "stopping_table", "path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_tbl-v01-en.csv", "sha256": "80b14d1c725d9d2dae54c07a168d17fa789537dc06cb5cc1b5cd5b9113ed02d4"},
+    {"role": "comsol_interface", "path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_interface-v01-en.txt", "sha256": "9460b3fd904412486ae026dbf8d3372489c80a97fbfeeb379944d7d99cc25032"},
+    {"role": "density_qa", "path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-ne_density_scaling-r_qa-v01-en.csv", "sha256": "4583a5155a7ce277e001b5515108f0ba9ccfc2556f35b3d056a10f729fe9979"}
+  ],
+  "limitations": ["The Geant4 stopping model does not include atomic capture in this run.", "Current runtime validates 10 eV lower model range; below-range behavior is not extrapolated."],
+  "status": "passed_stopping_and_density_scaling"
+}

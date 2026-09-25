@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "field_snapshot_id": "field_lvl1_mu_ne_001_v01",
+  "status": "adapter_geometry_gate_only",
+  "coordinate_convention": "+z is extraction direction",
+  "target_magnetic_field_T": 1.0,
+  "axial_electric_field_V_per_m": 0.0,
+  "extraction_z_m": 0.2985,
+  "geometry_sha256": "a848e3bc7bf38f294a86a64734e72223d5fb9f9f10800361996f37bcdb7c7194",
+  "source_solver": "comsol",
+  "physics_solve": "not_evaluated",
+  "mph_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/level1_gate.mph"
+}

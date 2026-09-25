@@ -1,0 +1,7 @@
+{
+  "mode": "export",
+  "geometry_level": "G1",
+  "geometry_ref": "02_models/solidworks/lvl1_mu_ne_001/lvl1_mu_ne_001.geometry.SLDPRT",
+  "neutral_interface": "02_models/solidworks/lvl1_mu_ne_001/lvl1_mu_ne_001.geometry.step",
+  "artifact_id": "geom_lvl1_mu_ne_001"
+}

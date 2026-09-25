@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "record_type": "untracked-formal-output-quarantine-manifest",
+  "created_at": "2026-09-25T08:34:09.400Z",
+  "source_root": "03_runs/formal",
+  "quarantine_root": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925",
+  "files": 67,
+  "bytes": 47116670,
+  "items": [
+    {
+      "path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/model-snapshot/snapshot_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_legacy_smoke_001_stage1_centered/model-snapshot/snapshot_manifest.json",
+      "bytes": 1627,
+      "sha256": "6a7fa45542ec4d029362078522d10e2e69917344899fcc9bfad46afdc9e95ac7"
+    },
+    {
+      "path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/report/behavior_analysis.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/behavior_analysis.json",
+      "bytes": 6631,
+      "sha256": "a037460135a4ee7ccc034f54e29fcf15b90c967f76c6a146fd3d15356d670a30"
+    },
+    {
+      "path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/report/detailed-report-zh.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/detailed-report-zh.md",
+      "bytes": 2166,
+      "sha256": "a59400f3ace785ca4f9d00e8f9e2286d296210cf9644bf14056d6ea5cd2da3fa"
+    },
+    {
+      "path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/report/figure_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/figure_manifest.json",
+      "bytes": 11431,
+      "sha256": "8e7645f37609d38d831c90930dd4c7124d7d2879d0d7d38f5cd9a991da1e2d71"
+    },
+    {
+      "path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/report/summary-report-zh.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/summary-report-zh.md",
+      "bytes": 1026,
+      "sha256": "09ccf18896da457929d1490991c1afefe4839fdde337ef9c54607d547c015bb2"
+    },
+    {
+      "path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/run_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_legacy_smoke_001_stage1_centered/run_manifest.json",
+      "bytes": 133919,
+      "sha256": "8b6a09644d795ad921312f79370f93ce2def03c70c9cc4bf809febf86294ebc6"
+    },
+    {
+      "path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/smoke_test_result.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_legacy_smoke_001_stage1_centered/smoke_test_result.json",
+      "bytes": 665,
+      "sha256": "1f06955d0f0cf9ec41402db1dc9451821f509e0cf27363d30bd6c2b589294bc2"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_1600-run_lvl1_mu_ne_comsol_batch.log.status",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_1600-run_lvl1_mu_ne_comsol_batch.log.status",
+      "bytes": 20,
+      "sha256": "813b7aaebb539729cadc54272d40695982514a0a67934c7964c125874e995b66"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_det-v01-en.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_det-v01-en.md",
+      "bytes": 559,
+      "sha256": "e1efbb2008435860483b0f28b361c5d8e22b88b2edf33d764ca04adf82afbe9a"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_meta-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_meta-v01-en.json",
+      "bytes": 446,
+      "sha256": "a96616f131c4c75e52ae6f2ac12c29c18352e4bb00c254acee59ed1ae93050b3"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-ne_field-r_manifest-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-ne_field-r_manifest-v01-en.json",
+      "bytes": 2069,
+      "sha256": "d69cb0867776d11339ffd6e5e135fda8f2f071d9ab5caa07f642f6e0b82a7856"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260913_0000-run_lvl1_mu_ne_001-ne_field-r_snapshot-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260913_0000-run_lvl1_mu_ne_001-ne_field-r_snapshot-v01-en.json",
+      "bytes": 518,
+      "sha256": "c875d5f73f596ac715586ed6878b74e12526e9c69ae81eb16e293526534807a2"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke.mph.status",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke.mph.status",
+      "bytes": 20,
+      "sha256": "12e4477bef5f89f5e88ba5a28b7f9658ae602f5a086da2bd9668d7dc2c99e068"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_batch.log",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_batch.log",
+      "bytes": 645,
+      "sha256": "7e747fd873b4ce05a77d6c6a91ed0e3b896b2a0398b34290c32e47f18c70cb07"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_stdout.log",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_stdout.log",
+      "bytes": 44,
+      "sha256": "cae1ae1d5af8c7377d0a41ae2a460e653059b736b3654de0a801dafd38f37e31"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/batch.log.status",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/batch.log.status",
+      "bytes": 20,
+      "sha256": "a4a221e468c798b2a1dc155baf953d1741815366d75f0743854aed89b107b7ff"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/directory.rm",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/directory.rm",
+      "bytes": 11,
+      "sha256": "9329e3ec60ca44c032e07dc03e5f5c1792118deae604305c2779b51f6971a6e9"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributions.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributions.1",
+      "bytes": 5563,
+      "sha256": "cbd68ef95903fc61ca6ea033941ec1def3baca1a3911c7d1cd8b134a84b5ddc5"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributors.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributors.1",
+      "bytes": 8116,
+      "sha256": "c261c7ed0fe920b7c20cf28621b4cb9092bdadda9361c5a81b372f1959ee1d3a"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.extraData.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.extraData.1",
+      "bytes": 4315525,
+      "sha256": "e2682dd3c2e4026225adf2aff8a072c8d48947e67cb8e3190b218b2142c91ec9"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.mainData.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.mainData.1",
+      "bytes": 3004136,
+      "sha256": "90787564ca258338034642c0dfae95504b325b2b0e7f1680d3f211b35a620292"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.7",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.7",
+      "bytes": 160,
+      "sha256": "12e18486af7ba5ffd30cfb705e4fe7c4d9e1d86c21e9efd5f025859bcdd864c3"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.8",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.8",
+      "bytes": 160,
+      "sha256": "722a4d6803bfa1910175da06cf59134a01e95f8d7e6022ba80f5880332ea3d1d"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.namespaces.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.namespaces.1",
+      "bytes": 7459,
+      "sha256": "4e5fba79744b0ff7e6778e590af2c49e52142b2b1713e1142be62eeb1f7d6141"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.orphans.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.orphans.1",
+      "bytes": 214,
+      "sha256": "47bd3ec7a02df5a5c10b6a0faf0e0bc96bccb3fe23c2cddba021d7f77f180fca"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.table.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.table.1",
+      "bytes": 181725,
+      "sha256": "6dc26fe80d8955d583e41179c072ebb4474c75c2fc2437c818c0172b89cefba5"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.1",
+      "bytes": 79,
+      "sha256": "3638a547541d5a1ea17ee14fc634f5ff284406b5997646b497c884040cdd50dd"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.2",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.2",
+      "bytes": 79,
+      "sha256": "54d9a2b46b43c62a5fb39863177c704a632ac49dc059861f752a13400dda79ef"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/framework.info.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/framework.info.1",
+      "bytes": 880633,
+      "sha256": "1adb644ae3e0eda9a3f4c2b4ebce3bd6c16a4ead827d19b9cf88f7e60f952728"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/last.config.stamp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/last.config.stamp",
+      "bytes": 16,
+      "sha256": "073ed8b39ef81b15fbe1e1ea06c7d76c2fba1bed1bc545f4e4b8f1a93a9411a7"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/platform.xml",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/platform.xml",
+      "bytes": 198,
+      "sha256": "1a8a806c4821202883db0478b57f866eeb1c5dd891246d9084b0ca23557a781d"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/comsol.recoveries",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/comsol.recoveries",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1.log",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1.log",
+      "bytes": 17995,
+      "sha256": "ecf0b4b7de2edd3a2cda85f45331ba8c2f4e71237448871272fe27d2ef8f5eb0"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1_render.log",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1_render.log",
+      "bytes": 402,
+      "sha256": "e0c25d100f14e22067679ecd7d0aacfe872602498f2e03aa8345f5ba83dcad58"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/diagnostics/20260913_0100-run_lvl1_mu_ne_001-failure-diagnosis-r_det-v01-zh.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/diagnostics/20260913_0100-run_lvl1_mu_ne_001-failure-diagnosis-r_det-v01-zh.md",
+      "bytes": 980,
+      "sha256": "4a4d8cc58ae3ee45331e393239a865156dcd363cde520612d4ba937ea2f41842"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_manifest-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_manifest-v01-en.json",
+      "bytes": 910,
+      "sha256": "aff7153f5abff5e2c69a76006048bc65064368eb2fb45e92ca8b2a2baaa92f99"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_meta-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_meta-v01-en.json",
+      "bytes": 3106,
+      "sha256": "7c904c57838147f899d36a465bf57c0dc8eff5a458fcf792155858b940b4b915"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_tbl-v01-en.csv",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_tbl-v01-en.csv",
+      "bytes": 42074,
+      "sha256": "00cdf671b543ea48986dab72f42ff6062653c76effedc5675660185e5f38d603"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/test.csv",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geant4/test.csv",
+      "bytes": 735,
+      "sha256": "a0642f5619cd4ec8e1fbf7216c3a449152d282fac2f73c65477fcae74d9d8df3"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/test.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geant4/test.json",
+      "bytes": 3097,
+      "sha256": "5c85c39650b6671963274ba4862b285d67cfe32c464055d14e6ee091a3b24fd6"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_export_task_v01.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_export_task_v01.json",
+      "bytes": 275,
+      "sha256": "0bcab6e437bc269241fb6270ec8875c3c96a63f1cbf4dd2374147e94dadc2475"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_inspect_task_v01.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_inspect_task_v01.json",
+      "bytes": 184,
+      "sha256": "08f998a1d4c8c076da96e90616c75650559bf400a0cb94f7d97711e3b17e2bd0"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_front.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_front.bmp",
+      "bytes": 4800054,
+      "sha256": "7e02fd6d9bb95510f8b126dad2aef6b24ed30420a9fa876a9eaf42900fde6681"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_isometric.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_isometric.bmp",
+      "bytes": 4800054,
+      "sha256": "20afcfccb5a6a1ff4ab092fd6cdb2513f4e3d8366348300ce2f669a446e6c207"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_report.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_report.json",
+      "bytes": 18809,
+      "sha256": "30defbfd94e9dc28b06b050e2e67b72be541fba7745ae709c4d7539aaf9c9625"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_summary.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_summary.md",
+      "bytes": 987,
+      "sha256": "f5e1444081dd22744ed2a655e7ee5bc1e4f315e2266fbf77600ecf03de145fc0"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_right.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_right.bmp",
+      "bytes": 4800054,
+      "sha256": "adcc32756e8b5397f680c45e32db339a004acdd7f5fbb4eeb80f66ecd3931154"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_top.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_top.bmp",
+      "bytes": 4800054,
+      "sha256": "daa04df628cf1a83471751515ea880315b7ce0960bdbcc5626475d10edaed42e"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_front.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_front.bmp",
+      "bytes": 4800054,
+      "sha256": "36a9b1870ea2f0e48c5ef9d39053c45fff38eec79fafae6a2ec4235faa10a325"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_isometric.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_isometric.bmp",
+      "bytes": 4800054,
+      "sha256": "3113ba6b656fbdffb2de3fe57aaa639716fc85b3e67a8788869dc14ad34a13fd"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_report.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_report.json",
+      "bytes": 19291,
+      "sha256": "ad4baec358d15e7d1a44f236145fbf84757a39266a1ce2306764ef68d2985ff6"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_summary.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_summary.md",
+      "bytes": 1051,
+      "sha256": "60ded03469b4637f435ebe652ab62de78d30c483536843866538f562a8ab318f"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_right.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_right.bmp",
+      "bytes": 4800054,
+      "sha256": "53754985b04a5d31aec4f0ac1391f68ee46d4e4da2ed25d99f6adf8c841b6747"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_top.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_top.bmp",
+      "bytes": 4800054,
+      "sha256": "c44f104795af62e040f50acf9db0ce2ed347379ac4dd2cb8e59a641d5df284e4"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/lvl1_mu_ne_stopping_v01.csv",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/lvl1_mu_ne_stopping_v01.csv",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/contract.yaml",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/contract.yaml",
+      "bytes": 1548,
+      "sha256": "3deaf4e4b06fbe2d2e43df5d3026d157aaea31cbec33e90d0eb921b58700dc51"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/geometry_manifest_lvl1_mu_ne_001.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/geometry_manifest_lvl1_mu_ne_001.json",
+      "bytes": 1228,
+      "sha256": "1c4d4d9112bad0a09e1627fa9c6131d807c436ba63aa93024bb424550d2145c6"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.geometry.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.geometry.json",
+      "bytes": 952,
+      "sha256": "0d64a0d45cb5ceb82fd4501a4221875ee902566391973ab5b616703812513a35"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.model_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.model_manifest.json",
+      "bytes": 1988,
+      "sha256": "6088c60792a493d2b2fe77b36b3b4d20735cb36509845b287cdf3c8e291e9f66"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/task_lvl1_mu_ne_001.task_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/task_lvl1_mu_ne_001.task_manifest.json",
+      "bytes": 3797,
+      "sha256": "8c6fe54058b5df81ed9e5fde6c712bba75376c5e9f36c482d5887c5847abb7d8"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/report/report_index.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/report/report_index.json",
+      "bytes": 355,
+      "sha256": "3b1d11bbf6fd04ecc4a4acbd963d65f58c9eb53da75fb8b62e85902cd60da1b8"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/run_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/run_manifest.json",
+      "bytes": 1506,
+      "sha256": "715caafd7cb3f4a307f7fa18d74592421e4106c2a473e47cf6178be160db45d4"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_damping-r_tbl-v01-en.txt",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_damping-r_tbl-v01-en.txt",
+      "bytes": 10179,
+      "sha256": "e8e262cff6f8b4092fe0a4592b79d5fda87ceac79fae25c2c07b6ee626b13d75"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_interface_si-v01-en.txt",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_interface_si-v01-en.txt",
+      "bytes": 10179,
+      "sha256": "b96654ee329e20b701ddf25513f69fbb8545c828ca39b635ec461fa3780dd446"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_meta-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_meta-v01-en.json",
+      "bytes": 5655,
+      "sha256": "e2e78d1d26046f3045e6aad1c810865168f545f92f471a6a95a268a5af827eec"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-ne_density_scaling-r_qa-v01-en.csv",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-ne_density_scaling-r_qa-v01-en.csv",
+      "bytes": 1517,
+      "sha256": "7170da86f58b5480e64e81db1449fe1833aded20befbe4100d6b8d69ab1a97af"
+    },
+    {
+      "path": "03_runs/formal/run_lvl1_mu_ne_001/stopping_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/active-checkout-untracked-20260925/03_runs/formal/run_lvl1_mu_ne_001/stopping_manifest.json",
+      "bytes": 1558,
+      "sha256": "c73df22b370861420b523cd9f66c6fc9497c18a3abbe213223027fcd74f6cd80"
+    }
+  ],
+  "status": "retained-local-pending-drive-verification",
+  "updated_at": "2026-09-25T08:34:33.379Z"
+}

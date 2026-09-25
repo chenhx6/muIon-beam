@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "artifact_id": "geom_lvl1_mu_ne_001",
+  "model_id": "model_lvl1_mu_ne_001",
+  "status": "planned",
+  "coordinate_system": "right_handed_lab_frame_with_intrinsic_source_transform",
+  "device": {
+    "coil_diameter_mm": 100,
+    "target_magnetic_field_T": 1,
+    "electrode_aperture_diameter_mm": 30,
+    "initial_electrode_count": 4,
+    "initial_chamber_count": 3,
+    "alternative_electrode_count": 3,
+    "alternative_chamber_count": 2
+  },
+  "geometry_roles": ["injection_chamber", "acceleration_chamber", "deceleration_or_extraction_chamber"],
+  "interfaces": {
+    "solidworks": "native_editable_geometry_to_be_created_or_rebuilt",
+    "comsol": "step_neutral_geometry_after_current_model_export",
+    "geant4": "step_or_verified_geometry_snapshot"
+  },
+  "historical_source_policy": "stage1_files_are_evidence_only_and_not_the_active_geometry",
+  "created_at_cst": "2026-09-12T02:30:00+08:00"
+}

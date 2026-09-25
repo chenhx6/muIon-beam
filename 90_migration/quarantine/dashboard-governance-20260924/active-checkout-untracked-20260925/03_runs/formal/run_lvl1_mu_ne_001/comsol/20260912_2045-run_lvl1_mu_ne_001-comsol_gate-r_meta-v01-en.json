@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "artifact_id": "comsol_gate_lvl1_mu_ne_001_v01",
+  "status": "blocked",
+  "runtime": "COMSOL 6.4.0.293",
+  "entrypoint": "07_research_system/blocks/comsol/adapter_level1/BuildLevel1ComsolAdapter.class",
+  "physics_solve": "not_evaluated",
+  "reason": "COMSOL Java batch security policy denied filesystem write access",
+  "source_geometry": "02_models/solidworks/lvl1_mu_ne_001/lvl1_mu_ne_001.geometry.step"
+}

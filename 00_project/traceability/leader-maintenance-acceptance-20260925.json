@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "record_type": "leader-maintenance-acceptance",
+  "recorded_at": "2026-09-25T08:27:30Z",
+  "main_checkout": "D:/muIon-beam",
+  "maintenance_session": "session-1790324619577-29768-c656b1",
+  "gates": {
+    "cleanup": {
+      "receipt": "00_project/traceability/leader-cleanup-execution-receipt-20260925.json",
+      "requested": 226,
+      "deleted": 226,
+      "failed": 0,
+      "deleted_bytes": 11718076,
+      "status": "completed"
+    },
+    "drive_quarantine": {
+      "receipt": "worker:00_project/traceability/quarantine-drive-verification-20260924.json",
+      "local_verified": 220,
+      "drive_verified": 220,
+      "status": "three-end-local-drive-hash-verified"
+    },
+    "worker_submit": {
+      "session_id": "codex-d80b7f12073a98b4eb63-1",
+      "source_head": "d5fedc0e9fe28393e560320a187191943cc9d476",
+      "status": "pending-integration"
+    },
+    "dashboard": {
+      "health": "passed",
+      "status_display": true,
+      "html_served": true,
+      "supervision_js_sha256": "9e9f18d2989d454569bff6071bf31df662f07bbb6cabb168cee80019210b1a8c",
+      "pid": 16552
+    },
+    "gitee": {
+      "remote": "origin",
+      "remote_main": "06a595d8a48e8395c734a1976cff2b9ba6bd8e7c",
+      "local_vs_remote": {"ahead": 2, "behind": 15},
+      "status": "blocked-non-fast-forward"
+    },
+    "leader_integration": {
+      "status": "blocked",
+      "reason": "main checkout contains pre-existing governed and untracked changes; project policy requires clean delivery checkout and explicit disposition before merge"
+    }
+  },
+  "prohibited_operations": ["reset", "clean", "stash", "ours", "theirs", "force-overwrite"],
+  "overall_status": "partial-gates-complete-integration-and-gitee-push-blocked"
+}

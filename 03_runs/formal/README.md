@@ -3,7 +3,7 @@
 每个正式运行使用独立目录：
 
 ```text
-RUN-YYYYMMDD-NNN-short-name/
+run_yyyymmdd_nnn_short_name/
 ├─ input/
 ├─ model-snapshot/
 ├─ raw/

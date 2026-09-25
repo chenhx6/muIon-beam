@@ -68,3 +68,6 @@ _work/cache/*.sqlite
 00_project/state/task-baseline.json
 00_project/state/3d-smoke/
 00_project/state/task-close-*.json
+
+# Local pending synchronization records; durable receipts remain tracked
+00_project/traceability/sync-outbox/*

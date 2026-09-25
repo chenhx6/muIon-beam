@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "record_type": "leader-delivery-regression-receipt",
+  "recorded_at": "2026-09-25T08:32:00Z",
+  "delivery_checkout": "D:/muIon-beam/_work/current/leader-delivery-merge",
+  "base": "origin/main@06a595d8a48e8395c734a1976cff2b9ba6bd8e7c",
+  "worker_head": "d5fedc0e9fe28393e560320a187191943cc9d476",
+  "merge_commit": "b810d2a",
+  "regression": {"tests": 209,"passed":207,"failed":2,"failures":["project-supervisor dashboard identity test in clean checkout without its listener","web-research test because project-local browser-use executable is absent"]},
+  "main_dashboard": {"health": "passed","status_display": true,"html_bytes": 11320,"supervision_js_sha256": "9e9f18d2989d454569bff6071bf31df662f07bbb6cabb168cee80019210b1a8c"},
+  "drive": {"canonical_mirror_receipt": "00_project/traceability/project-snapshots/CLOUD-AUDIT-20260922-canonical-mirror.json","status": "previously-cloud-upload-verified"},
+  "gitee": {"remote_main": "06a595d8a48e8395c734a1976cff2b9ba6bd8e7c","local_main": "773c12dffa15e4a284578756ea0d10970b3a8d7a","push_status": "blocked-non-fast-forward"},
+  "main_status": {"modified":2,"deleted":235,"untracked":88,"total":325},
+  "overall_status": "delivery-merge-created-regression-recorded-main-and-remote-gates-open",
+  "prohibited_operations": ["reset","clean","stash","ours","theirs","force-push"]
+}

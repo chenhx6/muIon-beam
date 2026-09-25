@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "record_type": "final-leader-gate-receipt",
+  "recorded_at": "2026-09-25T08:44:33.400Z",
+  "main_head_before_receipt": "eca3af3d4bcf55cdf0b7434b8e2e4c731a9dee15",
+  "gitee_remote_verified": "eca3af3d4bcf55cdf0b7434b8e2e4c731a9dee15",
+  "drive_mirror": {
+    "status": "mapped-drive-verified",
+    "manifest": "H:/我的云端硬盘/muIon_archive/muIon-beam/drive-mirror-manifest.json",
+    "file_count": 1214,
+    "total_bytes": 449498953,
+    "cloud_status": "pending-cloud-visibility-audit"
+  },
+  "recovery_index": "H:/我的云端硬盘/muIon_archive/project/recovery-index/recovery-index.json",
+  "dashboard": {
+    "health": "passed",
+    "status_display": true,
+    "pid": 20492,
+    "html_bytes": 5259,
+    "js_sha256": "5b198fd01a7d36ef0ed368b3fabe5b3c8ab28dea44e3c027746c7e84ac24fdcd"
+  },
+  "regression": {
+    "tests": 203,
+    "passed": 199,
+    "failed": 4,
+    "failures": [
+      "research-dashboard Codex index temp cleanup EPERM",
+      "dashboard semantic session surface assertions expect newer markup",
+      "dashboard current-session semantic surface assertion expects newer markup",
+      "dashboard refresh regex expects spaced setInterval syntax"
+    ]
+  },
+  "retry_sync": {
+    "status": "invalid-pending",
+    "reason": "external sync outbox lacks gitee_tag; no implicit default used"
+  },
+  "status_before_receipt": "",
+  "overall_status": "delivery-published-gates-partial-plan-not-completed"
+}

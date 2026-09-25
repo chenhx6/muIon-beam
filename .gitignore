@@ -71,3 +71,11 @@ _work/cache/*.sqlite
 
 # Local pending synchronization records; durable receipts remain tracked
 00_project/traceability/sync-outbox/*
+
+# Narrow build, cache, and temporary-log outputs
+**/*.class
+**/build/
+**/dist/
+**/.cache/
+**/*.tmp.log
+**/*.log.tmp

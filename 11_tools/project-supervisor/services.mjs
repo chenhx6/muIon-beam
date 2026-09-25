@@ -4,6 +4,16 @@ import { spawn, spawnSync } from 'node:child_process';
 import { alive } from './runtime-store.mjs';
 import { isDisabled, readControl } from '../../.codex/skills/farmer/farmer-control.mjs';
 
+function gitCommonDir(root) {
+  const result = spawnSync('git', ['-C', path.resolve(root), 'rev-parse', '--path-format=absolute', '--git-common-dir'], { encoding: 'utf8', windowsHide: true });
+  return result.status === 0 ? path.resolve(result.stdout.trim()) : null;
+}
+
+function sameRepository(left, right) {
+  const expected = gitCommonDir(left); const actual = gitCommonDir(right);
+  return Boolean(expected && actual && expected.toLowerCase() === actual.toLowerCase());
+}
+
 export function launchNode(script, args, { cwd, log, env = {} }) {
   fs.mkdirSync(path.dirname(log), { recursive: true });
   const fd = fs.openSync(log, 'a');
@@ -43,7 +53,7 @@ export class DashboardService {
     try {
       const response = await fetch(url, { signal: AbortSignal.timeout(2000) });
       const data = await response.json();
-      if (!response.ok || data.service !== 'muion-research-dashboard' || path.resolve(data.project_root || '').toLowerCase() !== path.resolve(this.root).toLowerCase()) {
+      if (!response.ok || data.service !== 'muion-research-dashboard' || (!sameRepository(this.root, data.project_root) && path.resolve(data.project_root || '').toLowerCase() !== path.resolve(this.root).toLowerCase())) {
         return { status: 'blocked', reason: 'dashboard-port-owned-by-another-service', url };
       }
       // A healthy listener must also serve the actual status view.

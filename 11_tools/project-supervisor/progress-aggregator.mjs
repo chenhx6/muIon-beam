@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { createRequire } from 'node:module';
+import { spawnSync } from 'node:child_process';
 
 const read = (file, fallback = null) => { try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch (error) { if (error.code === 'ENOENT') return fallback; throw error; } };
 const records = directory => fs.existsSync(directory) ? fs.readdirSync(directory).filter(name => name.endsWith('.json')).map(name => path.join(directory, name)) : [];
@@ -9,9 +10,17 @@ const records = directory => fs.existsSync(directory) ? fs.readdirSync(directory
 const terminalSessionStatuses = new Set(['closed', 'complete', 'completed', 'done', 'succeeded', 'success', 'expired', 'archived']);
 const codexTerminalStatuses = new Set(['completed', 'succeeded', 'success', 'done', 'closed', 'cancelled', 'canceled']);
 const codexInterruptedStatuses = new Set(['failed', 'interrupted', 'aborted', 'cancelled', 'canceled', 'stopped']);
+const projectRoots = new Map();
 
 function normalizeWindowsPath(value) {
   return path.win32.normalize(String(value || '').replace(/^\\\\\?\\/, '')).replace(/[\\/]+$/, '').toLowerCase();
+}
+
+function canonicalProjectRoot(root) {
+  const key = path.resolve(root); if (projectRoots.has(key)) return projectRoots.get(key);
+  const result = spawnSync('git',['-C',key,'rev-parse','--path-format=absolute','--git-common-dir'],{encoding:'utf8',windowsHide:true});
+  const value = result.status === 0 ? path.dirname(path.resolve(key,result.stdout.trim())) : key;
+  projectRoots.set(key,value); return value;
 }
 
 function timestamp(value) {
@@ -40,19 +49,24 @@ export function readCodexSessions(root, warnings = [], { codexHome = path.join(o
     const { DatabaseSync } = createRequire(import.meta.url)('node:sqlite');
     const stateDb = new DatabaseSync(stateFile, { readOnly: true });
     const historyDb = new DatabaseSync(historyFile, { readOnly: true });
-    const projectRoot = normalizeWindowsPath(root);
-    const threads = stateDb.prepare('SELECT id, name, title, cwd, archived, updated_at, updated_at_ms, source, rollout_path FROM threads WHERE archived = 0').all();
+    const projectRoot = normalizeWindowsPath(canonicalProjectRoot(root));
+    const threads = stateDb.prepare('SELECT id, name, title, cwd, archived, updated_at, updated_at_ms, recency_at, recency_at_ms, source, rollout_path FROM threads WHERE archived = 0').all();
     const latestTurn = historyDb.prepare('SELECT status, started_at, completed_at FROM thread_turns WHERE thread_id = ? ORDER BY rollout_ordinal DESC LIMIT 1');
     const sessions = []; const terminalIds = new Set();
     for (const thread of threads) {
       if (normalizeWindowsPath(thread.cwd) !== projectRoot || String(thread.source || '').includes('subagent')) continue;
       if (thread.rollout_path && !fs.existsSync(thread.rollout_path)) continue;
-      const turn = latestTurn.get(thread.id); const status = codexStatus(turn?.status);
+      const turn = latestTurn.get(thread.id);
+      const updatedAt = timestamp(thread.updated_at_ms ?? thread.updated_at ?? turn?.started_at);
+      let status = codexStatus(turn?.status);
+      // ponytail: Infer an unindexed turn from a newer user recency marker; use a host lifecycle API if available.
+      const recencyAt = timestamp(thread.recency_at_ms ?? thread.recency_at);
+      const turnEndedAt = timestamp(turn?.completed_at ?? turn?.started_at);
+      if (['completed', 'interrupted'].includes(status) && recencyAt && turnEndedAt && Date.parse(recencyAt) - Date.parse(turnEndedAt) > 5000) status = 'active';
       if (!status) continue;
       if (status === 'completed') { terminalIds.add(thread.id); continue; }
       const name = readableName(thread.name || thread.title);
       if (!name) continue;
-      const updatedAt = timestamp(thread.updated_at_ms ?? thread.updated_at ?? turn?.started_at);
       sessions.push({
         session_id: thread.id, host_session_id: thread.id, name, display_name: name,
         display_name_source: 'codex-thread-name', task_id: thread.id, task_name: name,

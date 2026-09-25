@@ -1,10 +1,17 @@
-import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import crypto from 'node:crypto'; import {createRequire} from 'node:module'; import {handler} from '../11_tools/research-dashboard/server.mjs';
+import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import crypto from 'node:crypto'; import {createRequire} from 'node:module'; import {spawnSync} from 'node:child_process'; import {handler} from '../11_tools/research-dashboard/server.mjs';
 import {validateEvidenceNote} from '../11_tools/research-dashboard/evidence-notes.mjs';
 import {inspectPhysicsContract} from '../11_tools/research-dashboard/physics-gate.mjs';
 import {reviewClosure} from '../11_tools/research-dashboard/review-closure.mjs';
 import {compareCapability} from '../11_tools/research-dashboard/capability-matrix.mjs';
 import {normalizeLedger} from '../11_tools/research-dashboard/ledger-normalizer.mjs';
 import {isDashboardSession, readCodexSessions, withDisplayNames} from '../11_tools/project-supervisor/progress-aggregator.mjs';
+function removeTempTree(target) {
+ try { fs.rmSync(target,{recursive:true,force:true,maxRetries:100,retryDelay:100}); }
+ catch (error) {
+  const cleanup=spawnSync(process.execPath,['-e',"require('node:fs').rmSync(process.env.MUION_TEST_TEMP,{recursive:true,force:true})"],{env:{...process.env,MUION_TEST_TEMP:target},encoding:'utf8'});
+  if (cleanup.status!==0 || fs.existsSync(target)) throw error;
+ }
+}
 function request(method,url){return new Promise((resolve,reject)=>{const req={method,url};const chunks=[];const res={writeHead:(s,h)=>{res.statusCode=s;res.headers=h},end:b=>resolve({status:res.statusCode,body:String(b||''),headers:res.headers})};try{handler(req,res)}catch(e){reject(e)}})}
 test('dashboard routes are read-only',async()=>{assert.equal((await request('GET','/')).status,200);const api=await request('GET','/api/status');assert.equal(api.status,200);const data=JSON.parse(api.body);assert.ok(data.display);assert.ok(Array.isArray(data.warnings));for(const m of ['POST','PUT','DELETE']) assert.equal((await request(m,'/api/status')).status,405);assert.equal((await request('GET','/bad')).status,404)});
 test('dashboard exposes the farmer emergency pause instead of stale healthy process state',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);const control=fs.existsSync(path.join(process.cwd(),'_work/current/farmer/control.json'))?JSON.parse(fs.readFileSync(path.join(process.cwd(),'_work/current/farmer/control.json'),'utf8')):null;if(control?.disabled) assert.equal(data.system_services?.services?.farmer?.status,'disabled');});
@@ -33,27 +40,27 @@ test('dashboard omits expired sessions but keeps interrupted work visible',()=>{
  assert.equal(isDashboardSession({status:'abandoned',lease_until:'2026-09-22T00:00:00Z'},now),true);
  assert.equal(isDashboardSession({status:'blocked',lease_until:'2026-09-22T00:00:00Z'},now),true);
 });
-test('Codex index keeps named incomplete threads and filters completed or unnamed threads',()=>{
- const home=fs.mkdtempSync(path.join(os.tmpdir(),'muion-codex-index-')); const statePath=path.join(home,'state_5.sqlite'); const historyPath=path.join(home,'thread_history_1.sqlite');
+test('Codex index keeps named incomplete threads and filters completed or unnamed threads',t=>{
+ const home=fs.mkdtempSync(path.join(os.tmpdir(),'muion-codex-index-')); t.after(()=>removeTempTree(home)); const statePath=path.join(home,'state_5.sqlite'); const historyPath=path.join(home,'thread_history_1.sqlite');
  try {
   const {DatabaseSync}=createRequire(import.meta.url)('node:sqlite'); const state=new DatabaseSync(statePath); const history=new DatabaseSync(historyPath);
-  state.exec('CREATE TABLE threads (id TEXT, name TEXT, title TEXT, cwd TEXT, archived INTEGER, updated_at INTEGER, updated_at_ms INTEGER, source TEXT, rollout_path TEXT)');
+  state.exec('CREATE TABLE threads (id TEXT, name TEXT, title TEXT, cwd TEXT, archived INTEGER, updated_at INTEGER, updated_at_ms INTEGER, recency_at INTEGER, recency_at_ms INTEGER, source TEXT, rollout_path TEXT)');
   history.exec('CREATE TABLE thread_turns (thread_id TEXT, status TEXT, started_at INTEGER, completed_at INTEGER, rollout_ordinal INTEGER)');
-  const addThread=state.prepare('INSERT INTO threads VALUES (?,?,?,?,?,?,?,?,?)'); const addTurn=history.prepare('INSERT INTO thread_turns VALUES (?,?,?,?,?)'); const root=process.cwd();
+  const addThread=state.prepare('INSERT INTO threads VALUES (?,?,?,?,?,?,?,?,?,?,?)'); const addTurn=history.prepare('INSERT INTO thread_turns VALUES (?,?,?,?,?)'); const root=process.cwd();
   const activePath=path.join(home,'active.jsonl'); const donePath=path.join(home,'done.jsonl'); const unnamedPath=path.join(home,'unnamed.jsonl'); for(const file of [activePath,donePath,unnamedPath]) fs.writeFileSync(file,'');
-  addThread.run('active-thread','进行中任务','',root,0,0,Date.now(),'vscode',activePath); addTurn.run('active-thread','inProgress',Math.floor(Date.now()/1000),null,1);
-  addThread.run('done-thread','已完成任务','',root,0,0,Date.now(),'vscode',donePath); addTurn.run('done-thread','completed',Math.floor(Date.now()/1000)-10,Math.floor(Date.now()/1000),1);
-  addThread.run('unnamed-thread',null,'',root,0,0,Date.now(),'vscode',unnamedPath); addTurn.run('unnamed-thread','interrupted',Math.floor(Date.now()/1000)-10,null,1);
+  addThread.run('active-thread','进行中任务','',root,0,0,Date.now(),null,null,'vscode',activePath); addTurn.run('active-thread','inProgress',Math.floor(Date.now()/1000),null,1);
+  addThread.run('done-thread','已完成任务','',root,0,0,Date.now(),null,null,'vscode',donePath); addTurn.run('done-thread','completed',Math.floor(Date.now()/1000)-10,Math.floor(Date.now()/1000),1);
+  addThread.run('unnamed-thread',null,'',root,0,0,Date.now(),null,null,'vscode',unnamedPath); addTurn.run('unnamed-thread','interrupted',Math.floor(Date.now()/1000)-10,null,1);
   state.close(); history.close();
   const warnings=[]; const result=readCodexSessions(root,warnings,{codexHome:home});
   assert.deepEqual(result.sessions.map(session=>session.display_name),['进行中任务']); assert.ok(result.terminal_ids.has('done-thread')); assert.deepEqual(warnings,[]);
- } finally { fs.rmSync(home,{recursive:true,force:true}); }
+ } finally { /* t.after runs after the SQLite handles leave this test scope. */ }
 });
 test('existing session uses a readable task or Codex thread name',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);const row=data.supervision.sessions.find(session=>session.task_id==='task_project_supervisor_auto_recovery_001');if(row){assert.ok(row.display_name);assert.doesNotMatch(row.display_name,/^[a-f0-9-]{20,}$/i);assert.ok(['task_name','display_name','codex-thread-name'].includes(row.display_name_source));}});
 test('dashboard board excludes terminal sessions from the work list',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);assert.ok(data.supervision.sessions.every(session=>!['closed','complete','completed','done','succeeded','success'].includes(String(session.status||'').toLowerCase())));});
-test('dashboard page has a semantic session surface and keeps raw state secondary',async()=>{const page=(await request('GET','/')).body;assert.match(page,/id="session-list"/);assert.match(page,/<details class="panel raw">/);assert.doesNotMatch(page,/JSON\.stringify\(d\.display/);});
+test('dashboard page exposes active and pending session surfaces',async()=>{const page=(await request('GET','/')).body;for(const id of ['active-list','pending-list','active-count','pending-count']) assert.match(page,new RegExp(`id="${id}"`));assert.doesNotMatch(page,/JSON\.stringify\(d\.display/);});
 test('dashboard reads JSON-backed yaml state as structured data',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);assert.equal(typeof data.research_state.state_revision,'number');assert.equal(typeof data.research_state.current_task?.task_id,'string');assert.equal(data.display.current.task.task_id,data.research_state.current_task.task_id);assert.ok(Array.isArray(data.display.open_problems));});
 test('dashboard separates current session freshness from historical research-state time',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);assert.ok(data.generated_at);assert.ok(data.supervision.generated_at);assert.ok(data.supervision.observed_at);assert.ok(data.supervision.current_session);assert.ok(data.supervision.current_session.dashboard_observed_at);assert.ok(data.display.consistency);assert.ok(['matched','mismatch','unregistered','stale','unknown'].includes(data.display.consistency.status));assert.equal(typeof data.supervision.counts.stale,'number');assert.ok(['session-registry','runtime-session','codex-thread'].includes(data.supervision.current_session.source));for(const session of data.supervision.sessions) assert.equal(typeof session.stale,'boolean');});
 test('live Codex work uses its readable thread name and keeps incomplete turns visible',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);const current=data.supervision.current_session;if(current.source==='codex-thread'){assert.ok(current.display_name);assert.equal(current.status,'active');assert.equal(current.mode,'codex');assert.doesNotMatch(current.display_name,/01a[0-9a-f-]{20,}/i);assert.equal(data.display.consistency.status,'unregistered');}});
-test('dashboard page exposes current-session freshness, consistency and todo surfaces',async()=>{const page=(await request('GET','/')).body;for(const id of ['current-session-title','current-session-meta','current-session-badge','current-session-observed','dashboard-observed','research-state-updated','metric-stale','consistency-badge','consistency-note','todo-list']) assert.match(page,new RegExp(`id="${id}"`));});
-test('dashboard refresh policy stays below the ten-second freshness threshold',()=>{const script=fs.readFileSync(path.join(process.cwd(),'11_tools/research-dashboard/supervision.js'),'utf8');assert.match(script,/setInterval\(refresh, 3000\)/);assert.match(script,/lastResponseAt/);});
+test('dashboard page exposes current status counts and freshness',async()=>{const page=(await request('GET','/')).body;for(const id of ['updated','active-count','pending-count','active-list','pending-list']) assert.match(page,new RegExp(`id="${id}"`));assert.match(page,/自动刷新/);});
+test('dashboard refresh policy stays below the ten-second freshness threshold',()=>{const script=fs.readFileSync(path.join(process.cwd(),'11_tools/research-dashboard/supervision.js'),'utf8');assert.match(script,/setInterval\(refresh,\s*3000\)/);assert.match(script,/refresh\(\);/);});

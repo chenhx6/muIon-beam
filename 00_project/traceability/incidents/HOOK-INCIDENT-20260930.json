@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "record_type": "project-hook-incident",
+  "incident_id": "HOOK-INCIDENT-20260930",
+  "recorded_at": "2026-09-30T03:40:00+08:00",
+  "status": "recovered; individual hook stderr not captured",
+  "thread_id": "01a0ee4b-e9d0-7c33-9053-a879f7786ec1",
+  "observed_hook_stats": {
+    "runs": 8,
+    "blocked": 0,
+    "failed": 2,
+    "failed_rows": [
+      { "event": "SessionStart", "source": "Project" },
+      { "event": "UserPromptSubmit", "source": "Project" }
+    ],
+    "plugin_rows": "SessionStart and UserPromptSubmit plugin hooks completed",
+    "evidence_image": "00_project/traceability/incidents/HOOK-INCIDENT-20260930-screenshot.png",
+    "evidence_image_sha256": "19a57177ab74cb33322a37aa65f767fe85d450a52fc6b489428cb7e4f0b1fab3"
+  },
+  "confirmed_local_evidence": [
+    "At 2026-09-29T17:52:40Z the same project-supervisor enter path failed with Unexpected token NUL while parsing JSON.",
+    "daemon.json (133 bytes), processes.json (302 bytes), and workers.json (64 bytes) under _work/current/project-supervisor were entirely NUL bytes; they were preserved as .corrupt-20260930-015544 files before retry.",
+    "11_tools/project-supervisor/runtime-store.mjs parses these files with JSON.parse; .codex/hooks.json routes both Project hook events through 11_tools/project-supervisor/hooks.mjs and supervisor.enter.",
+    "After recovery, project-supervisor/events.jsonl recorded a successful agent entry at 2026-09-29T18:00:11Z and successful UserPromptSubmit entries at 18:07:23Z, 18:13:36Z, and 19:20:03Z; farmer and dashboard were healthy."
+  ],
+  "preserved_runtime_evidence": [
+    { "path": "_work/current/project-supervisor/daemon.json.corrupt-20260930-015544", "bytes": 133, "sha256": "57ffc9ca3beb6ee6226c28248ab9c77b2076ef6acffba839cec21fac28a8fd1f" },
+    { "path": "_work/current/project-supervisor/processes.json.corrupt-20260930-015544", "bytes": 302, "sha256": "9552cf2fc804becaa59379ee29e4be6800d0aac515738799dbd442919841d23d" },
+    { "path": "_work/current/project-supervisor/workers.json.corrupt-20260930-015544", "bytes": 64, "sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b" }
+  ],
+  "causal_assessment": {
+    "likely": "Both initial Project hook failures came from the NUL runtime JSON, because both hook events use supervisor.enter and neither has a successful entry receipt before the files were preserved and replaced.",
+    "not_proven": "The screenshot has collapsed rows and does not show each hook's stderr, exit code, or timestamp. Do not claim an exact one-to-one error assignment without those details.",
+    "separate_recovery_blockers": [
+      "An expired shared-write claim later caused path claim collision during manual retry; it was reaped by the project session tool after its lease and clean main checkout were checked.",
+      "Windows long paths then blocked initial worktree creation; repository-local core.longpaths was enabled and the failed branch was safely retried. Neither is confirmed as one of the two Hook Stats failures."
+    ]
+  },
+  "recovery_performed": [
+    "Kept farmer running with its direct Node ensure entry.",
+    "Preserved the three NUL runtime records with .corrupt-20260930-015544 suffixes; regenerated only derived supervisor runtime state.",
+    "Reaped only the expired clean shared-write session claim, enabled repository-local Git long paths, and retried the project entry.",
+    "Verified real UserPromptSubmit receipts and current farmer/dashboard health; did not change host hook trust or clear historical Hook Stats."
+  ],
+  "future_prevention": [
+    "On a failed Project hook, capture the expanded Hook Stats row, event, exit code, stderr, and time before correlating it with project-supervisor/events.jsonl and the Codex rollout. A failed counter alone does not identify the root cause.",
+    "Before retrying enter, validate generated supervisor JSON. If a file is all NUL, preserve it with a unique .corrupt suffix, verify farmer health, then regenerate only that derived state. Never delete or overwrite session, research, model, or user data as a blanket recovery.",
+    "Check claim ownership, lease, and checkout cleanliness before reaping a stale session; preserve blocked, submitted, and dirty worktrees.",
+    "On Windows, verify repository-local core.longpaths before creating deep project worktrees; do not change global Git configuration.",
+    "After recovery, require a real SessionStart or UserPromptSubmit receipt from the host plus healthy services; a direct handler test alone is insufficient."
+  ],
+  "next_action": "If NUL runtime records recur, add a narrowly scoped, tested quarantine path for rebuildable supervisor records; keep host trust and project data protections intact."
+}

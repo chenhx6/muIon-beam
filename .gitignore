@@ -31,6 +31,10 @@ _work/cleanup-candidates/*
 __pycache__/
 .pytest_cache/
 node_modules/
+00_project/web-research/venvs/
+00_project/web-research/private/
+00_project/web-research/downloads/
+00_project/web-research/evidence-outbox/
 
 # 大型二进制模型和原始输出默认不提交 Gitee
 *.mph

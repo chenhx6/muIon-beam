@@ -24,4 +24,12 @@ test('Git status parser returns the destination path for a rename', () => {
   assert.match(entry.status, /R/);
   assert.equal(entry.path, 'new.txt');
   assert.equal(entry.old_path, 'old.txt');
+  fs.writeFileSync(path.join(root, '.gitignore'), 'private/\n');
+  fs.mkdirSync(path.join(root, 'private'));
+  fs.mkdirSync(path.join(root, 'public'));
+  fs.writeFileSync(path.join(root, 'private', 'secret.txt'), 'ignored\n');
+  fs.writeFileSync(path.join(root, 'public', 'visible.txt'), 'visible\n');
+  const paths = gitStatusEntries(root).map((item) => item.path);
+  assert.ok(paths.includes('public/visible.txt'));
+  assert.ok(!paths.some((item) => item.startsWith('private/')));
 });

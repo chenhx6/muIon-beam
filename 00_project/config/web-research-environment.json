@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-29T18:39:52.402Z",
+  "scope": "project-local",
+  "launcher": "00_project/web-research/run.ps1",
+  "python": "3.12.14",
+  "environment_root": "00_project/web-research/venvs",
+  "private_root": "00_project/web-research/private",
+  "packages": {
+    "ponytail": {
+      "version": "4.10.0",
+      "status": "up-to-date; existing project-enabled plugin, no new download",
+      "source": "https://github.com/DietrichGebert/ponytail",
+      "tag": "v4.10.0",
+      "commit": "1d95ff7d39de12d87014ea40d4e22201bddc501b",
+      "license": "MIT"
+    },
+    "crawl4ai": {
+      "version": "0.9.4",
+      "extras": [
+        "all"
+      ],
+      "venv": "00_project/web-research/venvs/crawl4ai",
+      "freeze": "00_project/web-research/crawl4ai-freeze.txt",
+      "freeze_sha256": "c92df6a406be1a9f6aae9306366d12e94e095a8e9f35078290e813f9f994ff52",
+      "wheel_sha256": "46779c8a93b35c7c5f9be9642ddef5e7b515e36b094639bb8e1e418bf0266179",
+      "source": "https://github.com/unclecode/crawl4ai",
+      "tag": "v0.9.4",
+      "commit": "133e1d92e37885dfccc03ea2e3687d06c98b7ceb",
+      "license": "Apache-2.0"
+    },
+    "browser_use": {
+      "version": "0.13.10",
+      "extras": [
+        "core",
+        "video",
+        "cli",
+        "aws",
+        "oci"
+      ],
+      "omitted_extra": "examples: imgcat==0.6.0 has no Windows wheel",
+      "venv": "00_project/web-research/venvs/browser-use",
+      "freeze": "00_project/web-research/browser-use-freeze.txt",
+      "freeze_sha256": "8ba6f67e541a684af42aca9328d518b6d5bbe9d9982935bc5fdcff0771c0c47e",
+      "wheel_sha256": "66eb20153094f21728bc0110ada17c03a0c475df2374985d6b47e349cbd47705",
+      "source": "https://github.com/browser-use/browser-use",
+      "tag": "0.13.10",
+      "commit": "5c892e013a73e6622e6f50336e1eb0aa2c4405f2",
+      "license": "MIT"
+    },
+    "browser_harness": {
+      "version": "0.1.13",
+      "wheel_sha256": "2491459e4bfc0ee8aea22dc6c4680fc0f791b7ba553446323c50d2883449d769",
+      "source": "https://github.com/browser-use/browser-harness",
+      "tag": "v0.1.13",
+      "commit": "c24e5072ee66f8499bacd663f4f4bcb089bc4492",
+      "license": "MIT"
+    }
+  },
+  "browser": {
+    "playwright": "1.63.0",
+    "chromium_revision": "1243",
+    "chrome_product_version": "153.0.8010.12",
+    "path": "00_project/web-research/private/browsers"
+  },
+  "wheel_hashes": "00_project/traceability/evolution/EVOLUTION-20260930-web-tools-wheels.json",
+  "verification": [
+    "pip check in both venvs",
+    "crawl4ai smoke: HTTPS fetch 200 and HTML extracted",
+    "browser-use smoke: project-local Chromium launch, navigation and title"
+  ]
+}

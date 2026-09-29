@@ -79,7 +79,7 @@ export function runGit(root, args, options = {}) {
 }
 
 export function gitStatusEntries(root) {
-  const raw = runGit(root, ['status', '--porcelain=v1', '-z']).stdout || '';
+  const raw = runGit(root, ['status', '--porcelain=v1', '-z', '--untracked-files=all']).stdout || '';
   const tokens = raw.split('\0').filter(Boolean);
   const entries = [];
   for (let index = 0; index < tokens.length; index += 1) {

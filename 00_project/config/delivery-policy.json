@@ -29,6 +29,10 @@
       "_work/",
       "00_project/state/3d-smoke/",
       "00_project/traceability/sync-outbox/",
+      "00_project/web-research/venvs/",
+      "00_project/web-research/private/",
+      "00_project/web-research/downloads/",
+      "00_project/web-research/evidence-outbox/",
       "02_models/",
       "03_runs/formal/"
     ],

@@ -6,7 +6,7 @@
   "include_prefixes": [""],
   "include_files": ["AGENTS.md", "README.md", "REPRODUCIBILITY.md", "LICENSE", "package.json", ".gitignore"],
   "exclude_directory_names": [".git", "_work", "node_modules", "__pycache__", ".pytest_cache", "build", "dist", "cache", "logs", "outbox", "sync-outbox"],
-  "exclude_paths": ["00_project/state/", "00_project/traceability/recovery-index.json", "drive-mirror-manifest.json"],
+  "exclude_paths": ["00_project/state/", "00_project/traceability/recovery-index.json", "00_project/web-research/venvs/", "00_project/web-research/private/", "00_project/web-research/downloads/", "00_project/web-research/evidence-outbox/", "drive-mirror-manifest.json"],
   "exclude_extensions": [".tmp", ".lock", ".recover", ".autosave", ".bak", ".pyc", ".mph~", ".sqlite-wal", ".sqlite-shm"],
   "large_file_rule": "include important project files at their local relative paths regardless of size; preserve design-phase models and results until explicit retention cleanup",
   "version_rule": "Gitee Git history stores versions; Drive stores current mirror plus sync manifest and selected immutable receipts",

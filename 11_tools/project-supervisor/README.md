@@ -25,3 +25,9 @@ The scientific authority remains `07_research_system/control/research-state/stat
 The repo-local `.codex/hooks.json` connects SessionStart (including resume/compact) and UserPromptSubmit to `hooks.mjs`. Hooks receive structured input on stdin and return project context. Local CLI inspection on 2026-09-17 reported `hooks stable true`. Host trust remains an independent prerequisite: a new or changed hook can be skipped until trusted. The AGENTS entry route remains available in Desktop and CLI and requires no user script invocation. A direct handler test is not proof of host delivery; live hook receipts are recorded separately from agent-entry receipts.
 
 Source: [official Codex hooks](https://learn.chatgpt.com/docs/hooks). No hook-trust bypass, managed-policy injection or trust database writes are part of this implementation.
+
+## Project hook failure recovery
+
+`HOOK-INCIDENT-20260930` records two failed **Project** hooks (`SessionStart` and `UserPromptSubmit`). During that startup, three rebuildable supervisor JSON files contained only NUL bytes and `RuntimeStore.read` failed to parse them. The individual hook error details were not captured, so the common cause is likely rather than proven per run. Preserve expanded hook errors before assigning a cause.
+
+The agent keeps farmer running with `node .codex/skills/farmer/farmer.mjs ensure`, preserves invalid generated runtime records under `_work/current/project-supervisor/`, and retries entry only after checking session claims and Git worktree readiness. Do not clear host trust, discard a dirty worktree, or treat later manual recovery blockers as confirmed hook failures. Verify a subsequent host-delivered hook receipt in `events.jsonl` and healthy services. See `00_project/traceability/incidents/HOOK-INCIDENT-20260930.json` for evidence and the bounded recovery sequence.

@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260930-project-hook-bootstrap-nul-json",
+  "recorded_at": "2026-09-29T19:42:36.633Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "runtime-supervision",
+  "title": "Project 启动 hook 两次失败与 NUL 运行态",
+  "observation": "Hook Stats 显示 SessionStart 和 UserPromptSubmit 的 Project hook 各失败一次，Plugin hook 正常。相同 supervisor.enter 路径在任务开始时因三份仅含 NUL 的可重建运行态 JSON 解析失败；截图未展开逐条 stderr，因此两条 hook 与 NUL 错误的对应关系仍是高可信推断。",
+  "evidence": [
+    "00_project/traceability/incidents/HOOK-INCIDENT-20260930.json",
+    "00_project/traceability/incidents/HOOK-INCIDENT-20260930-screenshot.png",
+    "_work/current/project-supervisor/events.jsonl",
+    "11_tools/project-supervisor/runtime-store.mjs"
+  ],
+  "impact": [
+    "自动 SessionStart/UserPromptSubmit 项目上下文曾未能投递；agent 入口需手动恢复后才分配 worktree",
+    "Hook Stats 历史失败数保留，不能仅凭计数判断当前健康"
+  ],
+  "reusable_value": "把宿主 hook 的失败事件与项目入口、运行态文件和成功 receipt 分层核对；对仅含 NUL 的派生状态先保留证据再重建，绝不把后续 claim/长路径阻塞误记为已证实的 hook 根因。",
+  "actions": [
+    "已保留损坏运行态文件、恢复 farmer、回收过期且干净的 claim、启用仓库局部 Git 长路径并验证后续真实 UserPromptSubmit receipt",
+    "未来再现时先收集展开的 Hook Stats stderr/exit/time，再按 README 的受限恢复顺序处理；若 NUL 复发，再实现带测试的派生状态隔离恢复"
+  ],
+  "tags": [
+    "hooks",
+    "project-supervisor",
+    "bootstrap",
+    "nul-json",
+    "evidence-boundary"
+  ],
+  "related_paths": [
+    ".codex/hooks.json",
+    "11_tools/project-supervisor/hooks.mjs",
+    "11_tools/project-supervisor/runtime-store.mjs",
+    "11_tools/project-supervisor/README.md"
+  ],
+  "related_commits": []
+}

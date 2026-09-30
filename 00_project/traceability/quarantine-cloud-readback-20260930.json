@@ -1,0 +1,1805 @@
+{
+  "schema_version": 1,
+  "record_type": "quarantine-cloud-readback",
+  "status": "verified",
+  "created_at": "2026-09-30T10:51:16.844Z",
+  "readback_method": "Authenticated Google Drive UI ZIP download; source files were rehashed after extraction.",
+  "cloud_path": "muIon-beam/90_migration/quarantine/dashboard-governance-20260924",
+  "source_session_id": "codex-d80b7f12073a98b4eb63-1",
+  "source_file_count": 222,
+  "manifest_payload_count": 220,
+  "verified_payload_count": 220,
+  "total_verified_bytes": 57622293,
+  "cloud_zip": {
+    "bytes": 9513976,
+    "sha256": "bfb0cb4487afaadb900c42a01232b6c11824a005112d8c0081d40f666a958c1b"
+  },
+  "manifest_files": [
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+      "d80_sha256": "d15b1d82fe73ad51145e75641f5b5068b764fa10f35399f43abb426a0fdcec2f",
+      "main_sha256": "66925e422610f6a67b68393a657e3243d23be64458564682b8f47a3540354a33",
+      "cloud_sha256": "66925e422610f6a67b68393a657e3243d23be64458564682b8f47a3540354a33",
+      "d80_to_main_line_endings_normalized": true,
+      "main_to_cloud_byte_match": true,
+      "items_identical": true,
+      "item_count": 153,
+      "declared_bytes": 10510718,
+      "source_preserved": true
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+      "d80_sha256": "2d2b109a5cc5afc7e45e384e1d48627dc653d7c512d15bda318871a85ea9c4b6",
+      "main_sha256": "af169c5157b41f95b848f9324ed6279d8efab0bbe828fb4bde2a58e076730978",
+      "cloud_sha256": "af169c5157b41f95b848f9324ed6279d8efab0bbe828fb4bde2a58e076730978",
+      "d80_to_main_line_endings_normalized": true,
+      "main_to_cloud_byte_match": true,
+      "items_identical": true,
+      "item_count": 67,
+      "declared_bytes": 47111575,
+      "source_preserved": true
+    }
+  ],
+  "files": [
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/00_project/task-cards/TASK-COMSOL-MVP-001.task-manifest.json",
+      "bytes": 2877,
+      "source_sha256": "9569240a59b73f35487d4be5db95825839e02a7a48ebadb0aeadc25c831a279a",
+      "cloud_sha256": "9569240a59b73f35487d4be5db95825839e02a7a48ebadb0aeadc25c831a279a",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/00_project/task-cards/TASK-LEGACY-SMOKE-001.task-manifest.json",
+      "bytes": 2243,
+      "source_sha256": "6f0195e68105e4b94cce5d0a995427746bb5e49c53fcd26f16bb9abd5aaba158",
+      "cloud_sha256": "6f0195e68105e4b94cce5d0a995427746bb5e49c53fcd26f16bb9abd5aaba158",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/00_project/task-cards/TASK-RESEARCH-CONTROL-001.task-manifest.json",
+      "bytes": 3571,
+      "source_sha256": "70c6f18ca8d753da5934068f4b13b157cc828bc586a1ed32c915805460e0d3a9",
+      "cloud_sha256": "70c6f18ca8d753da5934068f4b13b157cc828bc586a1ed32c915805460e0d3a9",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/00_project/task-cards/TASK-RESEARCH-ORCHESTRATOR-001.task-manifest.json",
+      "bytes": 1750,
+      "source_sha256": "c8b540dc9e0e1058c44c219b00d590a79fea33814629e9bd179edef0e36a43b8",
+      "cloud_sha256": "c8b540dc9e0e1058c44c219b00d590a79fea33814629e9bd179edef0e36a43b8",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/00_project/task-cards/TASK-RESEARCH-READINESS-AUDIT-001.task-manifest.json",
+      "bytes": 1051,
+      "source_sha256": "36eb312814ef0eeebc365aece92686808633a7c6e8680106010fb327f95c43ad",
+      "cloud_sha256": "36eb312814ef0eeebc365aece92686808633a7c6e8680106010fb327f95c43ad",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/00_project/task-cards/TASK-RESEARCH-SYSTEM-LAYOUT-001.task-manifest.json",
+      "bytes": 1097,
+      "source_sha256": "2f7cc0206151ab69e0b2214d070edd5cf01c84fb1dd2c31a38ea993a97e1cdec",
+      "cloud_sha256": "2f7cc0206151ab69e0b2214d070edd5cf01c84fb1dd2c31a38ea993a97e1cdec",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/00_project/task-cards/TASK-SYNC-TOOLCHAIN-EXPERIENCE-001.task-manifest.json",
+      "bytes": 3370,
+      "source_sha256": "368b409670c38570be0a45a13f17696ac720917d32464487dba6a2e9e8ea08b5",
+      "cloud_sha256": "368b409670c38570be0a45a13f17696ac720917d32464487dba6a2e9e8ea08b5",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/02_models/model-manifests/MODEL-LEGACY-SMOKE-001.model-manifest.json",
+      "bytes": 3268,
+      "source_sha256": "cbdb88873adb1ab621f4849b01b10a1daea2ae7e6629028133600aabef2119bc",
+      "cloud_sha256": "cbdb88873adb1ab621f4849b01b10a1daea2ae7e6629028133600aabef2119bc",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/case_sweep.log",
+      "bytes": 87571,
+      "source_sha256": "b90c01d14cef60222273772757a1c5462310053db8e6c90ae4179af79d28d1cb",
+      "cloud_sha256": "b90c01d14cef60222273772757a1c5462310053db8e6c90ae4179af79d28d1cb",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/field_export.log",
+      "bytes": 646,
+      "source_sha256": "0fe8902b234deecc26477a83aedae7320875e6f32c339ccb61bc0f23184a33d4",
+      "cloud_sha256": "0fe8902b234deecc26477a83aedae7320875e6f32c339ccb61bc0f23184a33d4",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/reload_validation.log",
+      "bytes": 446,
+      "source_sha256": "20e1d115d02e6ec234ee2a887cf537feb9943df127c92e4d8ba8216c2fa18374",
+      "cloud_sha256": "20e1d115d02e6ec234ee2a887cf537feb9943df127c92e4d8ba8216c2fa18374",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/comsol_muon_stage1_feasibility/logs/transport_tuning.log",
+      "bytes": 794815,
+      "source_sha256": "9d5a600268e6aa9134708dee15483943cace150a13d9c33bea873374f8d5707f",
+      "cloud_sha256": "9d5a600268e6aa9134708dee15483943cace150a13d9c33bea873374f8d5707f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/prefs_step_import_final/logs/batch1.log",
+      "bytes": 14432,
+      "source_sha256": "61b21ba29c141b523a4c5938705cf47f7638347a55dbc5512300e3a083ea934f",
+      "cloud_sha256": "61b21ba29c141b523a4c5938705cf47f7638347a55dbc5512300e3a083ea934f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/prefs_step_import_final/logs/batch1_render.log",
+      "bytes": 422,
+      "source_sha256": "041f9cd290271f6cfd6d3481212d140673fa67fc414cae5b452f22260a6e3ffb",
+      "cloud_sha256": "041f9cd290271f6cfd6d3481212d140673fa67fc414cae5b452f22260a6e3ffb",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch1.log",
+      "bytes": 19720,
+      "source_sha256": "481a9c8c88878af03c2a16f809e60488964d795bf5482de727548dc027eac477",
+      "cloud_sha256": "481a9c8c88878af03c2a16f809e60488964d795bf5482de727548dc027eac477",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch1_render.log",
+      "bytes": 424,
+      "source_sha256": "fc309cb5f39070418914e589bf8a12191b05c857c4389dac24dfb2056b45e900",
+      "cloud_sha256": "fc309cb5f39070418914e589bf8a12191b05c857c4389dac24dfb2056b45e900",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch2.log",
+      "bytes": 19928,
+      "source_sha256": "610c937c3f0dc5984109f3dfef37f9dafb732cf9e2809777624a45f676c77d13",
+      "cloud_sha256": "610c937c3f0dc5984109f3dfef37f9dafb732cf9e2809777624a45f676c77d13",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile0_prefs/logs/batch2_render.log",
+      "bytes": 424,
+      "source_sha256": "a4d53191109027c1d0afdfa25cf94bf2687385cc15b651c3ccdd9ce1bf713510",
+      "cloud_sha256": "a4d53191109027c1d0afdfa25cf94bf2687385cc15b651c3ccdd9ce1bf713510",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile1_prefs/logs/batch1.log",
+      "bytes": 19720,
+      "source_sha256": "044b18e5bf44cadfb41a670fbfd6d8bbe259f4b601e29fd6982875407de853d3",
+      "cloud_sha256": "044b18e5bf44cadfb41a670fbfd6d8bbe259f4b601e29fd6982875407de853d3",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_FromFile1_prefs/logs/batch1_render.log",
+      "bytes": 424,
+      "source_sha256": "bf57130df8e6cabbf0ac265a476e22f2de59a711ffcb51a20e70186df3ad6e71",
+      "cloud_sha256": "bf57130df8e6cabbf0ac265a476e22f2de59a711ffcb51a20e70186df3ad6e71",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_From_file0_prefs/logs/batch1.log",
+      "bytes": 19926,
+      "source_sha256": "16279ee4882a9fcc6be8e9939ce860fa4738f763ea083370632b71f426aa6d49",
+      "cloud_sha256": "16279ee4882a9fcc6be8e9939ce860fa4738f763ea083370632b71f426aa6d49",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_From_file0_prefs/logs/batch1_render.log",
+      "bytes": 425,
+      "source_sha256": "4a82cb14476f34fc3beef57bdc6244a198c07421889c349251862af5745dd37b",
+      "cloud_sha256": "4a82cb14476f34fc3beef57bdc6244a198c07421889c349251862af5745dd37b",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_api_prefs/logs/batch1.log",
+      "bytes": 11514,
+      "source_sha256": "2616d47aab8469726b4b65da4af83eafabe2e5a5f685e87e9d4e83dd9f6d55a2",
+      "cloud_sha256": "2616d47aab8469726b4b65da4af83eafabe2e5a5f685e87e9d4e83dd9f6d55a2",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_api_prefs/logs/batch1_render.log",
+      "bytes": 418,
+      "source_sha256": "76f2a5dbc194baf5edecdb0a3368710d0ad839f6988d9dcbdbfdb732bfa3ae2a",
+      "cloud_sha256": "76f2a5dbc194baf5edecdb0a3368710d0ad839f6988d9dcbdbfdb732bfa3ae2a",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_interp_prefs/logs/batch1.log",
+      "bytes": 14486,
+      "source_sha256": "9585cb8105ff99409436f5cc401c1c187fbaaf81156f0efa577826ecf2d1969f",
+      "cloud_sha256": "9585cb8105ff99409436f5cc401c1c187fbaaf81156f0efa577826ecf2d1969f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_interp_prefs/logs/batch1_render.log",
+      "bytes": 421,
+      "source_sha256": "889785d0333827cacd9d2214e69bc3892e8b6347ec0ba314c47cb30f51ab694f",
+      "cloud_sha256": "889785d0333827cacd9d2214e69bc3892e8b6347ec0ba314c47cb30f51ab694f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs/logs/batch1.log",
+      "bytes": 25248,
+      "source_sha256": "caaf8dacd6fefe66121109edc8ce1d6d7718cd11eaa7fb0864f2e6c5f61857da",
+      "cloud_sha256": "caaf8dacd6fefe66121109edc8ce1d6d7718cd11eaa7fb0864f2e6c5f61857da",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs/logs/batch1_render.log",
+      "bytes": 421,
+      "source_sha256": "8b70d4b8ddded64d32ff9412aefc56e00ad01b3e59ed2206cb3676e2deaa2cea",
+      "cloud_sha256": "8b70d4b8ddded64d32ff9412aefc56e00ad01b3e59ed2206cb3676e2deaa2cea",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs2/logs/batch1.log",
+      "bytes": 14486,
+      "source_sha256": "30d7dc8678278c39f17e7c2b9a18452b0b5122e66b22d03c84202de3d82bc3c4",
+      "cloud_sha256": "30d7dc8678278c39f17e7c2b9a18452b0b5122e66b22d03c84202de3d82bc3c4",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_master_prefs2/logs/batch1_render.log",
+      "bytes": 422,
+      "source_sha256": "b38ab9f5df2ceca2697008d6cea1788451303b117db8ac1f01eae04aabe0de64",
+      "cloud_sha256": "b38ab9f5df2ceca2697008d6cea1788451303b117db8ac1f01eae04aabe0de64",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newcpt_prefs/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "e9d3f5661af8955ad6ccace2e54ac46e7584c26f4026dcf8b21286c20553ed53",
+      "cloud_sha256": "e9d3f5661af8955ad6ccace2e54ac46e7584c26f4026dcf8b21286c20553ed53",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newcpt_prefs/logs/batch1_render.log",
+      "bytes": 421,
+      "source_sha256": "c826b2ac0b81dd59fde1622811649dcaac6a1deecc11bdc927ca28d821e12b03",
+      "cloud_sha256": "c826b2ac0b81dd59fde1622811649dcaac6a1deecc11bdc927ca28d821e12b03",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_args_prefs/logs/batch1.log",
+      "bytes": 15573,
+      "source_sha256": "21f0eff69bc5e821c576ef1f3ec83b857ce79986e1e4e424411f8fbbef398f8f",
+      "cloud_sha256": "21f0eff69bc5e821c576ef1f3ec83b857ce79986e1e4e424411f8fbbef398f8f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_args_prefs/logs/batch1_render.log",
+      "bytes": 429,
+      "source_sha256": "b6a64e93b121000880603ef2789e4f7dba699769d565af0fbfd9af5097c24e7c",
+      "cloud_sha256": "b6a64e93b121000880603ef2789e4f7dba699769d565af0fbfd9af5097c24e7c",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs/logs/batch1.log",
+      "bytes": 18984,
+      "source_sha256": "1e4083e5450c9b4528f90cdcf4620f45c08ba3371844d593523cb3bfa71e2221",
+      "cloud_sha256": "1e4083e5450c9b4528f90cdcf4620f45c08ba3371844d593523cb3bfa71e2221",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs/logs/batch1_render.log",
+      "bytes": 424,
+      "source_sha256": "40990734261b377ac9b09747f9221c87dda51d464648404ba1e946c9e0f910d3",
+      "cloud_sha256": "40990734261b377ac9b09747f9221c87dda51d464648404ba1e946c9e0f910d3",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs2/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "b4712ba462f8fd1a5b9f282fa1b302bb391330934dd52695cdb0b0cadf7ab68a",
+      "cloud_sha256": "b4712ba462f8fd1a5b9f282fa1b302bb391330934dd52695cdb0b0cadf7ab68a",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs2/logs/batch1_render.log",
+      "bytes": 425,
+      "source_sha256": "08f1e4f3f15307e90589b9a3d68ab7a32ee4cafe6e2a8e23ef47239b4946b811",
+      "cloud_sha256": "08f1e4f3f15307e90589b9a3d68ab7a32ee4cafe6e2a8e23ef47239b4946b811",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs3/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "dfa7e2189c1e71e5bf07d82c5f9ffab8d18e9db9a1b35263e0b34056174211b5",
+      "cloud_sha256": "dfa7e2189c1e71e5bf07d82c5f9ffab8d18e9db9a1b35263e0b34056174211b5",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs3/logs/batch1_render.log",
+      "bytes": 425,
+      "source_sha256": "fa1e84f9d0b6a9ae3d6637fcf61944ed40e563454c3d632dc8fa0063cd73bdd1",
+      "cloud_sha256": "fa1e84f9d0b6a9ae3d6637fcf61944ed40e563454c3d632dc8fa0063cd73bdd1",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs4/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "f7fbd4545eb642f0ffdf076f5ca69e30ac440aa7d22ebc1a8a5e8965923442c2",
+      "cloud_sha256": "f7fbd4545eb642f0ffdf076f5ca69e30ac440aa7d22ebc1a8a5e8965923442c2",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs4/logs/batch1_render.log",
+      "bytes": 425,
+      "source_sha256": "2e2a861145555c7b7d40eace663fe3e37395e092f433e40fccfbeaf30981d0d4",
+      "cloud_sha256": "2e2a861145555c7b7d40eace663fe3e37395e092f433e40fccfbeaf30981d0d4",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs5/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "bd4fbfccb960ee3dd1b32b96799c74a839966c4c260c502c154412a941432dbe",
+      "cloud_sha256": "bd4fbfccb960ee3dd1b32b96799c74a839966c4c260c502c154412a941432dbe",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_newinterp_prefs5/logs/batch1_render.log",
+      "bytes": 425,
+      "source_sha256": "3f2aaed66c49bb4bd35caf724b3e67073e998fcbc6d8fb90ed20fa13ae2f2979",
+      "cloud_sha256": "3f2aaed66c49bb4bd35caf724b3e67073e998fcbc6d8fb90ed20fa13ae2f2979",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "87d88bf7624ed9bf6a83901a68c396fd7a1e55068450d2fc08dff42634c7c709",
+      "cloud_sha256": "87d88bf7624ed9bf6a83901a68c396fd7a1e55068450d2fc08dff42634c7c709",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs/logs/batch1_render.log",
+      "bytes": 422,
+      "source_sha256": "c29a832e35d0e93f9b4d9d6080fca52623f4d0312b44a05607ef754981ca1f66",
+      "cloud_sha256": "c29a832e35d0e93f9b4d9d6080fca52623f4d0312b44a05607ef754981ca1f66",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs2/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "77e8867e9b71bebf4edf0c2cce921040f3e931a75d1a850875b61064bb1aba2a",
+      "cloud_sha256": "77e8867e9b71bebf4edf0c2cce921040f3e931a75d1a850875b61064bb1aba2a",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs2/logs/batch1_render.log",
+      "bytes": 423,
+      "source_sha256": "675e4c2c2bb4692ec98299a29ba2b69ac0c4a8e57f62c800a3f1cb363c28c269",
+      "cloud_sha256": "675e4c2c2bb4692ec98299a29ba2b69ac0c4a8e57f62c800a3f1cb363c28c269",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs3/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "51948fc7b4930cb29d222491514fca85b338382b128c9d3bb6271e1d57c75730",
+      "cloud_sha256": "51948fc7b4930cb29d222491514fca85b338382b128c9d3bb6271e1d57c75730",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs3/logs/batch1_render.log",
+      "bytes": 423,
+      "source_sha256": "c747b549bcaf896004ec5395fcb91ce8d31e8f911db553530e5e66ede0f98b6f",
+      "cloud_sha256": "c747b549bcaf896004ec5395fcb91ce8d31e8f911db553530e5e66ede0f98b6f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs4/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "f0c3fa04ef3c2337c87de959c133c0aa421760e68db82d1f48e2102363ad5675",
+      "cloud_sha256": "f0c3fa04ef3c2337c87de959c133c0aa421760e68db82d1f48e2102363ad5675",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs4/logs/batch1_render.log",
+      "bytes": 423,
+      "source_sha256": "38de7f5c09aed27a6176e013ae758e51bc99a3018821bc86ad4c90714485bce9",
+      "cloud_sha256": "38de7f5c09aed27a6176e013ae758e51bc99a3018821bc86ad4c90714485bce9",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs5/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "45e39c55ac6e7658871f9b40d4d6bae090077b38b350f8d61f80380185864b1e",
+      "cloud_sha256": "45e39c55ac6e7658871f9b40d4d6bae090077b38b350f8d61f80380185864b1e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs5/logs/batch1_render.log",
+      "bytes": 423,
+      "source_sha256": "9078e755508b75a55e78a4198783e7529ccc72d56d6278686d80a13634c05f6f",
+      "cloud_sha256": "9078e755508b75a55e78a4198783e7529ccc72d56d6278686d80a13634c05f6f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs6/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "c94ecb9afac2bbf13b0acaacf664b7b85559eabac2d4dbd9955a7bd4c8c34277",
+      "cloud_sha256": "c94ecb9afac2bbf13b0acaacf664b7b85559eabac2d4dbd9955a7bd4c8c34277",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_release_prefs6/logs/batch1_render.log",
+      "bytes": 423,
+      "source_sha256": "13af9faa7988f52bc5f53e00c8476b19779209d50a3284c0ccd3a3ea9cdd0ad1",
+      "cloud_sha256": "13af9faa7988f52bc5f53e00c8476b19779209d50a3284c0ccd3a3ea9cdd0ad1",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval2_prefs/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "36c50b842a4457593d3e386d7c3685a691251691ca98c934b3afde50b4e00dfa",
+      "cloud_sha256": "36c50b842a4457593d3e386d7c3685a691251691ca98c934b3afde50b4e00dfa",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval2_prefs/logs/batch1_render.log",
+      "bytes": 426,
+      "source_sha256": "e1a5dad943d350279e8c9e5fc1d1cc467bafd8e5980a403d6902dd645370aeb2",
+      "cloud_sha256": "e1a5dad943d350279e8c9e5fc1d1cc467bafd8e5980a403d6902dd645370aeb2",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval3_prefs/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "689ab505680d8b85f49b135c40d02779c2c030e80a9a4774f6390cce837f3994",
+      "cloud_sha256": "689ab505680d8b85f49b135c40d02779c2c030e80a9a4774f6390cce837f3994",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval3_prefs/logs/batch1_render.log",
+      "bytes": 426,
+      "source_sha256": "7cd0838c6e88958ac73b08ac964634aac5669e30464e04ba68d636ebca619285",
+      "cloud_sha256": "7cd0838c6e88958ac73b08ac964634aac5669e30464e04ba68d636ebca619285",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval4_prefs/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "3076ee191bc8197eafe8279364dca85b005f623e79242241615c805de7911370",
+      "cloud_sha256": "3076ee191bc8197eafe8279364dca85b005f623e79242241615c805de7911370",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval4_prefs/logs/batch1_render.log",
+      "bytes": 426,
+      "source_sha256": "9f820b4a2afbbe459796b89894e2eabfc398ed2ebe434c4bc321a9dad2d429cb",
+      "cloud_sha256": "9f820b4a2afbbe459796b89894e2eabfc398ed2ebe434c4bc321a9dad2d429cb",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval5_prefs/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "9695b26414d9aeb0c1786d383ead4b1c2a6b0875b5d1f5d583c2dd2408d15796",
+      "cloud_sha256": "9695b26414d9aeb0c1786d383ead4b1c2a6b0875b5d1f5d583c2dd2408d15796",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval5_prefs/logs/batch1_render.log",
+      "bytes": 426,
+      "source_sha256": "ae848ccc0a41fd00cdde0a4b1b2af63e3f8c6e510b2f33fc4c5206387318094e",
+      "cloud_sha256": "ae848ccc0a41fd00cdde0a4b1b2af63e3f8c6e510b2f33fc4c5206387318094e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval_prefs/logs/batch1.log",
+      "bytes": 13570,
+      "source_sha256": "73e084eb3635362cde021b02ad32f4c78e8c5c1f4c88bb2928ca1b980375634d",
+      "cloud_sha256": "73e084eb3635362cde021b02ad32f4c78e8c5c1f4c88bb2928ca1b980375634d",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_eval_prefs/logs/batch1_render.log",
+      "bytes": 425,
+      "source_sha256": "0e6995b8cac326b0d459809dc513f229131e885b53919ac77e1bbb6bc79a4495",
+      "cloud_sha256": "0e6995b8cac326b0d459809dc513f229131e885b53919ac77e1bbb6bc79a4495",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_evalall_prefs/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "48a2570686d40fb1a779d99779ce167597007ebe0825ce100a4579dd4e2b3aa5",
+      "cloud_sha256": "48a2570686d40fb1a779d99779ce167597007ebe0825ce100a4579dd4e2b3aa5",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_evalall_prefs/logs/batch1_render.log",
+      "bytes": 428,
+      "source_sha256": "9a3f5b0c481d47d07f5fe368af5d92f84e49a2c36a3a38d1f566e65647f93250",
+      "cloud_sha256": "9a3f5b0c481d47d07f5fe368af5d92f84e49a2c36a3a38d1f566e65647f93250",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_import_prefs/logs/batch1.log",
+      "bytes": 13572,
+      "source_sha256": "86e9607967964de8b941aa669534e6be1bb7521a6b03224668604865b9ce2d9b",
+      "cloud_sha256": "86e9607967964de8b941aa669534e6be1bb7521a6b03224668604865b9ce2d9b",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_import_prefs/logs/batch1_render.log",
+      "bytes": 427,
+      "source_sha256": "71dc27e09bacf95d39c85db24cd4d796c1d461228152e0a0fb8b4d8589b99554",
+      "cloud_sha256": "71dc27e09bacf95d39c85db24cd4d796c1d461228152e0a0fb8b4d8589b99554",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_prefs/logs/batch1.log",
+      "bytes": 19720,
+      "source_sha256": "328fbb987b3f3d71d93629fd93e5be47fbeaad324f1b4de24f3db96fd46518ca",
+      "cloud_sha256": "328fbb987b3f3d71d93629fd93e5be47fbeaad324f1b4de24f3db96fd46518ca",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/intermediate/probe_solve_prefs/logs/batch1_render.log",
+      "bytes": 420,
+      "source_sha256": "6506fd1269f835248c0dbff85028031099a31d959a900673df1779b8b682bc15",
+      "cloud_sha256": "6506fd1269f835248c0dbff85028031099a31d959a900673df1779b8b682bc15",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/aperture_phase_fine_20260904_2050_stdout.log",
+      "bytes": 1124364,
+      "source_sha256": "0e03b679ec9d58514896c36a6d4af0fcdaa3216802b1f8b5e1918aeff016bb52",
+      "cloud_sha256": "0e03b679ec9d58514896c36a6d4af0fcdaa3216802b1f8b5e1918aeff016bb52",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/axial_source_20260905_0430_stdout.log",
+      "bytes": 568025,
+      "source_sha256": "cbed2f5a468baf5c7d480f018eed1ce7f87d5480e4225d53ff70b117aa40a075",
+      "cloud_sha256": "cbed2f5a468baf5c7d480f018eed1ce7f87d5480e4225d53ff70b117aa40a075",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0006_stdout.log",
+      "bytes": 2704,
+      "source_sha256": "96116232d362f61e74e7be4ff8ffb03d786b412fd23f0eb03b638a3ff102647a",
+      "cloud_sha256": "96116232d362f61e74e7be4ff8ffb03d786b412fd23f0eb03b638a3ff102647a",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0012_stdout.log",
+      "bytes": 4255,
+      "source_sha256": "87358fa3105147d722a51dfbbac443e9ffc6d752b4ad131dd9c00491f41c430a",
+      "cloud_sha256": "87358fa3105147d722a51dfbbac443e9ffc6d752b4ad131dd9c00491f41c430a",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0020_stdout.log",
+      "bytes": 10441,
+      "source_sha256": "175cf6c551082ccce7a52cf7ae47f51974bdfebea4fda34f24defcc7880e79c3",
+      "cloud_sha256": "175cf6c551082ccce7a52cf7ae47f51974bdfebea4fda34f24defcc7880e79c3",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0028_stdout.log",
+      "bytes": 11376,
+      "source_sha256": "e9a263da38b877ff3904cc0b5075f364b3bc04a92ae93a71eccb2e6cc27d58b6",
+      "cloud_sha256": "e9a263da38b877ff3904cc0b5075f364b3bc04a92ae93a71eccb2e6cc27d58b6",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0040_stdout.log",
+      "bytes": 171863,
+      "source_sha256": "66aec14f24074aaa28febcf72f5d1da9abe660aa882d2649d5ebd4609a4342be",
+      "cloud_sha256": "66aec14f24074aaa28febcf72f5d1da9abe660aa882d2649d5ebd4609a4342be",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0050_stdout.log",
+      "bytes": 175361,
+      "source_sha256": "5b256b6e31817a5d35e7c1e3dbd76db83e04383c6f073a4e051302aa78c253ee",
+      "cloud_sha256": "5b256b6e31817a5d35e7c1e3dbd76db83e04383c6f073a4e051302aa78c253ee",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0100_stdout.log",
+      "bytes": 187938,
+      "source_sha256": "962e77db83d31a6eb99b99e27ca811cecb4dd5a0bba0365ec267508ee0be018a",
+      "cloud_sha256": "962e77db83d31a6eb99b99e27ca811cecb4dd5a0bba0365ec267508ee0be018a",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0112_stdout.log",
+      "bytes": 184034,
+      "source_sha256": "c3fa1d2a9f31c7f357ef81647a64d86c580c226cefe08faac4d99f339845dbd5",
+      "cloud_sha256": "c3fa1d2a9f31c7f357ef81647a64d86c580c226cefe08faac4d99f339845dbd5",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0125_stdout.log",
+      "bytes": 216052,
+      "source_sha256": "dbc9ac890d8597ce2018fe3d610081e63dc67b00e285628528a61b0bdbe9fdbf",
+      "cloud_sha256": "dbc9ac890d8597ce2018fe3d610081e63dc67b00e285628528a61b0bdbe9fdbf",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_20260904_0155_stdout.log",
+      "bytes": 189645,
+      "source_sha256": "d38ff115bbbef9d8af649b060a16ea60e534ad32ff220c3a1b3297266fa28ff6",
+      "cloud_sha256": "d38ff115bbbef9d8af649b060a16ea60e534ad32ff220c3a1b3297266fa28ff6",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/build_stage1_3d_stdout.log",
+      "bytes": 1458,
+      "source_sha256": "9c4167566f7b701670a64e9d8635501f3f7935105ad8dbb08a6aa08a8670c0da",
+      "cloud_sha256": "9c4167566f7b701670a64e9d8635501f3f7935105ad8dbb08a6aa08a8670c0da",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_0720_stdout.log",
+      "bytes": 112677,
+      "source_sha256": "306b723c6f85620a9f810b778e622ccddb5d57c1c82187d50d11e0d789364e0e",
+      "cloud_sha256": "306b723c6f85620a9f810b778e622ccddb5d57c1c82187d50d11e0d789364e0e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble500_20260905_1820_stdout.log",
+      "bytes": 128215,
+      "source_sha256": "eaa3cb797415dcaf61848bfdb30ec8fae3652755fb3588b65a1fe0b7287a6dfd",
+      "cloud_sha256": "eaa3cb797415dcaf61848bfdb30ec8fae3652755fb3588b65a1fe0b7287a6dfd",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/ensemble_20260905_0615_stdout.log",
+      "bytes": 171845,
+      "source_sha256": "809b193028b9a057a02b4af1cbc62d128f13d1365281a04cd0cce6526c921115",
+      "cloud_sha256": "809b193028b9a057a02b4af1cbc62d128f13d1365281a04cd0cce6526c921115",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/final_builder_20260905_1930_stdout.log",
+      "bytes": 173011,
+      "source_sha256": "f947d1340b78fd0be153cefb2a029074bc8904c45b4e511a0ba95853ac474002",
+      "cloud_sha256": "f947d1340b78fd0be153cefb2a029074bc8904c45b4e511a0ba95853ac474002",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0902_stdout.log",
+      "bytes": 1329192,
+      "source_sha256": "fe90b150da2e81220d6f0ff77535f401a93cbf13e332ce037f456b960a5ca6a3",
+      "cloud_sha256": "fe90b150da2e81220d6f0ff77535f401a93cbf13e332ce037f456b960a5ca6a3",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/refine_sweep_20260904_0958_stdout.log",
+      "bytes": 1645098,
+      "source_sha256": "0e97aee99ae63123bdb49e36d2cf4c2ee7db621516d14e103fd330290c608c7e",
+      "cloud_sha256": "0e97aee99ae63123bdb49e36d2cf4c2ee7db621516d14e103fd330290c608c7e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/short_gap_bridge_20260905_0030_stdout.log",
+      "bytes": 659446,
+      "source_sha256": "469c1ed360515fcfe4397f6dae156ef9a42e8702a75f0d322cd79fe25893904b",
+      "cloud_sha256": "469c1ed360515fcfe4397f6dae156ef9a42e8702a75f0d322cd79fe25893904b",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0825_stdout.log",
+      "bytes": 586,
+      "source_sha256": "812aca78263f43f9deaac1595e3a127998942f5329936e427262a533b50a4213",
+      "cloud_sha256": "812aca78263f43f9deaac1595e3a127998942f5329936e427262a533b50a4213",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/single_sweep_20260904_0834_stdout.log",
+      "bytes": 586,
+      "source_sha256": "fe4f63b737e553c52661dc076927037f1aae498c3092e8fa21209e538d05b8c4",
+      "cloud_sha256": "fe4f63b737e553c52661dc076927037f1aae498c3092e8fa21209e538d05b8c4",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder.err.log",
+      "bytes": 504,
+      "source_sha256": "4aa394da2d670479029c39a214a252ce04c1d4ce097e21d343fc0490d2a0fbf7",
+      "cloud_sha256": "4aa394da2d670479029c39a214a252ce04c1d4ce097e21d343fc0490d2a0fbf7",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet.err.log",
+      "bytes": 793,
+      "source_sha256": "c118c2161c8ae51b8cbf7672f7faaa78cda7122522058ad37087b3c26e435861",
+      "cloud_sha256": "c118c2161c8ae51b8cbf7672f7faaa78cda7122522058ad37087b3c26e435861",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_diag.err.log",
+      "bytes": 1121,
+      "source_sha256": "7886faa38297a15d34bf2ad7e862d22b0749c2edc51b3d957146f7ccb1ba6b20",
+      "cloud_sha256": "7886faa38297a15d34bf2ad7e862d22b0749c2edc51b3d957146f7ccb1ba6b20",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v2.err.log",
+      "bytes": 813,
+      "source_sha256": "6241b13d05e3dd51bef4e65c68633103327c7c303006f59f2f57f207bb49459d",
+      "cloud_sha256": "6241b13d05e3dd51bef4e65c68633103327c7c303006f59f2f57f207bb49459d",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v3.err.log",
+      "bytes": 1148,
+      "source_sha256": "8e95dd67b3d749097c709a0e3b102260fe97545f92e1e009536734292d22ea34",
+      "cloud_sha256": "8e95dd67b3d749097c709a0e3b102260fe97545f92e1e009536734292d22ea34",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_fillet_v4.err.log",
+      "bytes": 1825,
+      "source_sha256": "b70b8aa7a6171b837768174b82a1cf784fce0317f438ea835b53ce15a9aea901",
+      "cloud_sha256": "b70b8aa7a6171b837768174b82a1cf784fce0317f438ea835b53ce15a9aea901",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final.err.log",
+      "bytes": 550,
+      "source_sha256": "93078e8438e7d9197dc8d2a1c10fa54867525bb180a1340f47af2ec55960db3e",
+      "cloud_sha256": "93078e8438e7d9197dc8d2a1c10fa54867525bb180a1340f47af2ec55960db3e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_final_zfillet.err.log",
+      "bytes": 1825,
+      "source_sha256": "b70b8aa7a6171b837768174b82a1cf784fce0317f438ea835b53ce15a9aea901",
+      "cloud_sha256": "b70b8aa7a6171b837768174b82a1cf784fce0317f438ea835b53ce15a9aea901",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_v2.err.log",
+      "bytes": 550,
+      "source_sha256": "93078e8438e7d9197dc8d2a1c10fa54867525bb180a1340f47af2ec55960db3e",
+      "cloud_sha256": "93078e8438e7d9197dc8d2a1c10fa54867525bb180a1340f47af2ec55960db3e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_diag2.err.log",
+      "bytes": 1066,
+      "source_sha256": "b301f24f63d14feac84c46f8605f41f74974b7f1951b5a0e6d530f294fad912e",
+      "cloud_sha256": "b301f24f63d14feac84c46f8605f41f74974b7f1951b5a0e6d530f294fad912e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_fillet_facewalk.err.log",
+      "bytes": 1069,
+      "source_sha256": "902fe71253bf59ce71e147e0d2956ee4c985199178b03defe0f165faf161f124",
+      "cloud_sha256": "902fe71253bf59ce71e147e0d2956ee4c985199178b03defe0f165faf161f124",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zaxis_final.err.log",
+      "bytes": 987,
+      "source_sha256": "de3fe0b3fba140f138e0d0349d4ecee17e5b5a340bc510f5888906e412ca579f",
+      "cloud_sha256": "de3fe0b3fba140f138e0d0349d4ecee17e5b5a340bc510f5888906e412ca579f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_builder_zfillet.err.log",
+      "bytes": 1118,
+      "source_sha256": "ea84c16b51de7c43d618db00ae8bb2c8dab5070ed39e52724cc08936af0285fb",
+      "cloud_sha256": "ea84c16b51de7c43d618db00ae8bb2c8dab5070ed39e52724cc08936af0285fb",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation.log",
+      "bytes": 518,
+      "source_sha256": "75a39b60589105eb3821da9df08158273d0094e36abbd43c72df7c0a90a248a1",
+      "cloud_sha256": "75a39b60589105eb3821da9df08158273d0094e36abbd43c72df7c0a90a248a1",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_master_validation_final.log",
+      "bytes": 518,
+      "source_sha256": "75a39b60589105eb3821da9df08158273d0094e36abbd43c72df7c0a90a248a1",
+      "cloud_sha256": "75a39b60589105eb3821da9df08158273d0094e36abbd43c72df7c0a90a248a1",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export.log",
+      "bytes": 54,
+      "source_sha256": "00b82fc7bc883c97caf833efc677156dd75f660f23b15b50a587d048af8474f2",
+      "cloud_sha256": "00b82fc7bc883c97caf833efc677156dd75f660f23b15b50a587d048af8474f2",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_final.log",
+      "bytes": 54,
+      "source_sha256": "a8bc7e66c4e31977b6b94e8b2a827b6928f75fa85670f5bb983f4add10664a66",
+      "cloud_sha256": "a8bc7e66c4e31977b6b94e8b2a827b6928f75fa85670f5bb983f4add10664a66",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_preview_export_v2.log",
+      "bytes": 54,
+      "source_sha256": "a8bc7e66c4e31977b6b94e8b2a827b6928f75fa85670f5bb983f4add10664a66",
+      "cloud_sha256": "a8bc7e66c4e31977b6b94e8b2a827b6928f75fa85670f5bb983f4add10664a66",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export.log",
+      "bytes": 129,
+      "source_sha256": "846e38ab7c4012d63000f4c0b0e563704701b400f5a4561bb477ad8177aeddcd",
+      "cloud_sha256": "846e38ab7c4012d63000f4c0b0e563704701b400f5a4561bb477ad8177aeddcd",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_export_final.log",
+      "bytes": 129,
+      "source_sha256": "846e38ab7c4012d63000f4c0b0e563704701b400f5a4561bb477ad8177aeddcd",
+      "cloud_sha256": "846e38ab7c4012d63000f4c0b0e563704701b400f5a4561bb477ad8177aeddcd",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_step_import_20260904_1645.log",
+      "bytes": 7281,
+      "source_sha256": "c81691e5464785508f80bc76c66e2336f7ec87a91a52c84380feb844b166e9a2",
+      "cloud_sha256": "c81691e5464785508f80bc76c66e2336f7ec87a91a52c84380feb844b166e9a2",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/solidworks_test_ring_err.log",
+      "bytes": 583,
+      "source_sha256": "327f6156ce98c8d904f22d85d115dce3f151c802245578340b61f06e1d813d57",
+      "cloud_sha256": "327f6156ce98c8d904f22d85d115dce3f151c802245578340b61f06e1d813d57",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/transport_bridge_20260904_2320_stdout.log",
+      "bytes": 665368,
+      "source_sha256": "88b707817422bdf46197cbea8f7a0bdb588878fc0e516c4dfee305260f944efc",
+      "cloud_sha256": "88b707817422bdf46197cbea8f7a0bdb588878fc0e516c4dfee305260f944efc",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/diagnostics/legacy/stage1_3d_feasibility/logs/validate_stage1_comsol_20260905_1945.log",
+      "bytes": 1125,
+      "source_sha256": "376726ed1a35282eb88c96d0b3795de7491fe5fb7e1e0e81939bf943a8ef173b",
+      "cloud_sha256": "376726ed1a35282eb88c96d0b3795de7491fe5fb7e1e0e81939bf943a8ef173b",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.csv",
+      "bytes": 3720,
+      "source_sha256": "8442b1b996da840aeab5547caa8417f6c18c3cded57fc4ce9b87575e449888d0",
+      "cloud_sha256": "8442b1b996da840aeab5547caa8417f6c18c3cded57fc4ce9b87575e449888d0",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z48mm_nominal.json",
+      "bytes": 844,
+      "source_sha256": "68fe48fe824639bad05f721136ca0fcd8597555cc47a7ab48a484ea150e99689",
+      "cloud_sha256": "68fe48fe824639bad05f721136ca0fcd8597555cc47a7ab48a484ea150e99689",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.csv",
+      "bytes": 3720,
+      "source_sha256": "3154bed16991dbd5b84c8db0b65544d94bc1271ef4561044e135d5f218ca20c9",
+      "cloud_sha256": "3154bed16991dbd5b84c8db0b65544d94bc1271ef4561044e135d5f218ca20c9",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_10_seed20260907_z93mm_nominal.json",
+      "bytes": 844,
+      "source_sha256": "c7e5aedf6e2e1f079da1774f3afd25205f31e201770614eab75e5d5aa8f150fe",
+      "cloud_sha256": "c7e5aedf6e2e1f079da1774f3afd25205f31e201770614eab75e5d5aa8f150fe",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.csv",
+      "bytes": 926,
+      "source_sha256": "aa3d9333836eeda91f1d2d4e00f2a0818b29fa59c9597d76612f262da0ff93cf",
+      "cloud_sha256": "aa3d9333836eeda91f1d2d4e00f2a0818b29fa59c9597d76612f262da0ff93cf",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z48mm_nominal.json",
+      "bytes": 840,
+      "source_sha256": "9a04b4f7719912436a5ac147d4fa720cf5174aae52ac9925d9008d13b80af348",
+      "cloud_sha256": "9a04b4f7719912436a5ac147d4fa720cf5174aae52ac9925d9008d13b80af348",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.csv",
+      "bytes": 926,
+      "source_sha256": "dec3b994b70670410c1d00ccc2b95ea5e0e857d40cc2bdab6634f87589bdc2e5",
+      "cloud_sha256": "dec3b994b70670410c1d00ccc2b95ea5e0e857d40cc2bdab6634f87589bdc2e5",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_2_seed20260907_z93mm_nominal.json",
+      "bytes": 840,
+      "source_sha256": "9a6e5177847539b4d2a34432b879acaffe4554e07a1734453872e3e80f64831e",
+      "cloud_sha256": "9a6e5177847539b4d2a34432b879acaffe4554e07a1734453872e3e80f64831e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.csv",
+      "bytes": 174097,
+      "source_sha256": "90095a6fa68f7e2b04f2d65bb1c285387617646533340ce9f1bb3ac4e7d9c2a0",
+      "cloud_sha256": "90095a6fa68f7e2b04f2d65bb1c285387617646533340ce9f1bb3ac4e7d9c2a0",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_nominal.json",
+      "bytes": 798,
+      "source_sha256": "670f0fb219ae7e820d3c0ef183fe94e22f74bcba15c31a32cd58fc06b5c7b37c",
+      "cloud_sha256": "670f0fb219ae7e820d3c0ef183fe94e22f74bcba15c31a32cd58fc06b5c7b37c",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.csv",
+      "bytes": 174097,
+      "source_sha256": "506a82bc8200dfab415ecc2293796c36899ef9c711da76edc6a8ca72c3cad1a1",
+      "cloud_sha256": "506a82bc8200dfab415ecc2293796c36899ef9c711da76edc6a8ca72c3cad1a1",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z1500mm_nominal.json",
+      "bytes": 846,
+      "source_sha256": "0c556a4206a37d0081fd497cb442e54a84822548f69d5bf2e5e2ec497d3e8eee",
+      "cloud_sha256": "0c556a4206a37d0081fd497cb442e54a84822548f69d5bf2e5e2ec497d3e8eee",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.csv",
+      "bytes": 175097,
+      "source_sha256": "30885ead8d8a6b92b58b64be797f1928bbcff13e9c2fb2ec55f5f99ee0f5a028",
+      "cloud_sha256": "30885ead8d8a6b92b58b64be797f1928bbcff13e9c2fb2ec55f5f99ee0f5a028",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z48mm_nominal.json",
+      "bytes": 844,
+      "source_sha256": "974068447adcab061b7aef8aa9bf151cc97895c0b49a93dd899f353e1e8b69e0",
+      "cloud_sha256": "974068447adcab061b7aef8aa9bf151cc97895c0b49a93dd899f353e1e8b69e0",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.csv",
+      "bytes": 174097,
+      "source_sha256": "90095a6fa68f7e2b04f2d65bb1c285387617646533340ce9f1bb3ac4e7d9c2a0",
+      "cloud_sha256": "90095a6fa68f7e2b04f2d65bb1c285387617646533340ce9f1bb3ac4e7d9c2a0",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z600mm_nominal.json",
+      "bytes": 844,
+      "source_sha256": "2ed7ec4d8844cd470738fbce2ae91903f09e2098dcdd85b675a840beaaa8714e",
+      "cloud_sha256": "2ed7ec4d8844cd470738fbce2ae91903f09e2098dcdd85b675a840beaaa8714e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.csv",
+      "bytes": 175097,
+      "source_sha256": "90f235c5421827a86c0f425cb5e4b2bbed6ec8089793fce04cee8b20de073166",
+      "cloud_sha256": "90f235c5421827a86c0f425cb5e4b2bbed6ec8089793fce04cee8b20de073166",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/data/centered_source/centered_release_500_seed20260907_z93mm_nominal.json",
+      "bytes": 844,
+      "source_sha256": "0e14a86904987d1ead0c7bd2e5e36977301a0253961a42017e84a127db3576a6",
+      "cloud_sha256": "0e14a86904987d1ead0c7bd2e5e36977301a0253961a42017e84a127db3576a6",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/candidate_parameter_sets.csv",
+      "bytes": 785,
+      "source_sha256": "9200e53d2b668990b2296da0faa970dfaeda63c7dc8e4a03fb6aae581e335f0f",
+      "cloud_sha256": "9200e53d2b668990b2296da0faa970dfaeda63c7dc8e4a03fb6aae581e335f0f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/candidate_parameter_sets.csv",
+      "bytes": 1,
+      "source_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "cloud_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_loss_diagnostics.csv",
+      "bytes": 150586,
+      "source_sha256": "79ea57f9de12bf441a5faaa4613de39c201eb908df77be05c67fc88eeff4c803",
+      "cloud_sha256": "79ea57f9de12bf441a5faaa4613de39c201eb908df77be05c67fc88eeff4c803",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/centered_transport_scan_master.csv",
+      "bytes": 1917,
+      "source_sha256": "a89f5ba1d49fc1f22e0bcbe17e3bf56a5ea35d336a472e4248e5e8cf930995c2",
+      "cloud_sha256": "a89f5ba1d49fc1f22e0bcbe17e3bf56a5ea35d336a472e4248e5e8cf930995c2",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_scan.csv",
+      "bytes": 2013,
+      "source_sha256": "90deaa9418bda271172a9e58fd7837e5d3cde6ef1a51296e795b8b08034021c3",
+      "cloud_sha256": "90deaa9418bda271172a9e58fd7837e5d3cde6ef1a51296e795b8b08034021c3",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/cooling_density_summary.csv",
+      "bytes": 2013,
+      "source_sha256": "90deaa9418bda271172a9e58fd7837e5d3cde6ef1a51296e795b8b08034021c3",
+      "cloud_sha256": "90deaa9418bda271172a9e58fd7837e5d3cde6ef1a51296e795b8b08034021c3",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/field_aperture_zoom.csv",
+      "bytes": 26220,
+      "source_sha256": "1f4b9de0460b360c4fbac0e524ccd4315ab90c50b6dd764b162e107e192b57ff",
+      "cloud_sha256": "1f4b9de0460b360c4fbac0e524ccd4315ab90c50b6dd764b162e107e192b57ff",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/field_summary.csv",
+      "bytes": 344,
+      "source_sha256": "c16258903618fbcc57e27b65aaef3a6bc4b014595f59545de2cef6aa457b182f",
+      "cloud_sha256": "c16258903618fbcc57e27b65aaef3a6bc4b014595f59545de2cef6aa457b182f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/loss_diagnostics.csv",
+      "bytes": 150586,
+      "source_sha256": "79ea57f9de12bf441a5faaa4613de39c201eb908df77be05c67fc88eeff4c803",
+      "cloud_sha256": "79ea57f9de12bf441a5faaa4613de39c201eb908df77be05c67fc88eeff4c803",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/transport_scan_master.csv",
+      "bytes": 1917,
+      "source_sha256": "a89f5ba1d49fc1f22e0bcbe17e3bf56a5ea35d336a472e4248e5e8cf930995c2",
+      "cloud_sha256": "a89f5ba1d49fc1f22e0bcbe17e3bf56a5ea35d336a472e4248e5e8cf930995c2",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/input/legacy/stage1_3d_feasibility/tables/centered/variable_sensitivity.csv",
+      "bytes": 1179,
+      "source_sha256": "cc62b12397642f75c95eb0be4d94e839e547d1d6c1324c6a9c79d69c8a9ea96b",
+      "cloud_sha256": "cc62b12397642f75c95eb0be4d94e839e547d1d6c1324c6a9c79d69c8a9ea96b",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/model-snapshot/snapshot-manifest.json",
+      "bytes": 1597,
+      "source_sha256": "1d846ec91fd47012ec466b3b4b2ae14ff3e99ce0291027575ce27a8e5c9f0a04",
+      "cloud_sha256": "1d846ec91fd47012ec466b3b4b2ae14ff3e99ce0291027575ce27a8e5c9f0a04",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/behavior-analysis.json",
+      "bytes": 6498,
+      "source_sha256": "fa35d8f0e99c16e792f30e1e7b45de00de259549db5eb51130ab61d8670f5765",
+      "cloud_sha256": "fa35d8f0e99c16e792f30e1e7b45de00de259549db5eb51130ab61d8670f5765",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/detailed-report-zh.md",
+      "bytes": 2114,
+      "source_sha256": "9def982292a23a3fdfc48b5c1e2d9dd4e4173e906794f20b024c702d43423c8e",
+      "cloud_sha256": "9def982292a23a3fdfc48b5c1e2d9dd4e4173e906794f20b024c702d43423c8e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/report/figure-manifest.json",
+      "bytes": 11243,
+      "source_sha256": "d70442753f6f219cff7342a43ff4599b25585cf1d4854bbde7c522c52b093796",
+      "cloud_sha256": "d70442753f6f219cff7342a43ff4599b25585cf1d4854bbde7c522c52b093796",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/run-manifest.json",
+      "bytes": 130928,
+      "source_sha256": "9fa7244cd4664660126687197fbe7eb5c22d7e36bc2dbb6d7729f32eb71f49b4",
+      "cloud_sha256": "9fa7244cd4664660126687197fbe7eb5c22d7e36bc2dbb6d7729f32eb71f49b4",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/content-change/03_runs/formal/RUN-LEGACY-SMOKE-001-stage1-centered/smoke-test-result.json",
+      "bytes": 650,
+      "source_sha256": "d570af7257a1d50c0b572fac45a53e35877913cc11c95fa60180846466f9d297",
+      "cloud_sha256": "d570af7257a1d50c0b572fac45a53e35877913cc11c95fa60180846466f9d297",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/model-snapshot/snapshot_manifest.json",
+      "bytes": 1597,
+      "source_sha256": "de4c30ed3a070e53000721cef743b096eae04ccd1b67899eeee8f03f3ec35224",
+      "cloud_sha256": "de4c30ed3a070e53000721cef743b096eae04ccd1b67899eeee8f03f3ec35224",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/behavior_analysis.json",
+      "bytes": 6498,
+      "source_sha256": "8194ce7ae2cd87858a5b709f912b0fa38768ef3f8cd01494f1a8292819625aac",
+      "cloud_sha256": "8194ce7ae2cd87858a5b709f912b0fa38768ef3f8cd01494f1a8292819625aac",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/detailed-report-zh.md",
+      "bytes": 2114,
+      "source_sha256": "f29b4e168b98adf79755cc310d3508317f62f287275fad637af4b3acec71783b",
+      "cloud_sha256": "f29b4e168b98adf79755cc310d3508317f62f287275fad637af4b3acec71783b",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/figure_manifest.json",
+      "bytes": 11243,
+      "source_sha256": "6b732e0a3dfa8047858c7d9c9898e6250510d112035493792238a99e58fbed4b",
+      "cloud_sha256": "6b732e0a3dfa8047858c7d9c9898e6250510d112035493792238a99e58fbed4b",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/summary-report-zh.md",
+      "bytes": 992,
+      "source_sha256": "7064316304f878e3dfbb379bfb7f11c72d18133bc04c1e830c8950542283fb42",
+      "cloud_sha256": "7064316304f878e3dfbb379bfb7f11c72d18133bc04c1e830c8950542283fb42",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/run_manifest.json",
+      "bytes": 130928,
+      "source_sha256": "0767e02d8f39f38a30b5b63c826bceaaf6d27e1e3a6502e5f8cc345bfaadf900",
+      "cloud_sha256": "0767e02d8f39f38a30b5b63c826bceaaf6d27e1e3a6502e5f8cc345bfaadf900",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/smoke_test_result.json",
+      "bytes": 650,
+      "source_sha256": "b787c703523410b13be8f662709a2b023dda3986965972bc12b49f6ea943ed75",
+      "cloud_sha256": "b787c703523410b13be8f662709a2b023dda3986965972bc12b49f6ea943ed75",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_1600-run_lvl1_mu_ne_comsol_batch.log.status",
+      "bytes": 20,
+      "source_sha256": "813b7aaebb539729cadc54272d40695982514a0a67934c7964c125874e995b66",
+      "cloud_sha256": "813b7aaebb539729cadc54272d40695982514a0a67934c7964c125874e995b66",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_det-v01-en.md",
+      "bytes": 549,
+      "source_sha256": "9180be75e0b6485deb72b650cc3e54bc8aca608850341525603da3cd642caf87",
+      "cloud_sha256": "9180be75e0b6485deb72b650cc3e54bc8aca608850341525603da3cd642caf87",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_meta-v01-en.json",
+      "bytes": 436,
+      "source_sha256": "2f07a33174e8ffd20cd167f2ccc4c7b97a15d8d35583eab79dd912c4725c854c",
+      "cloud_sha256": "2f07a33174e8ffd20cd167f2ccc4c7b97a15d8d35583eab79dd912c4725c854c",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-ne_field-r_manifest-v01-en.json",
+      "bytes": 2069,
+      "source_sha256": "d69cb0867776d11339ffd6e5e135fda8f2f071d9ab5caa07f642f6e0b82a7856",
+      "cloud_sha256": "d69cb0867776d11339ffd6e5e135fda8f2f071d9ab5caa07f642f6e0b82a7856",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260913_0000-run_lvl1_mu_ne_001-ne_field-r_snapshot-v01-en.json",
+      "bytes": 518,
+      "source_sha256": "c875d5f73f596ac715586ed6878b74e12526e9c69ae81eb16e293526534807a2",
+      "cloud_sha256": "c875d5f73f596ac715586ed6878b74e12526e9c69ae81eb16e293526534807a2",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke.mph.status",
+      "bytes": 20,
+      "source_sha256": "12e4477bef5f89f5e88ba5a28b7f9658ae602f5a086da2bd9668d7dc2c99e068",
+      "cloud_sha256": "12e4477bef5f89f5e88ba5a28b7f9658ae602f5a086da2bd9668d7dc2c99e068",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_batch.log",
+      "bytes": 645,
+      "source_sha256": "7e747fd873b4ce05a77d6c6a91ed0e3b896b2a0398b34290c32e47f18c70cb07",
+      "cloud_sha256": "7e747fd873b4ce05a77d6c6a91ed0e3b896b2a0398b34290c32e47f18c70cb07",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_stdout.log",
+      "bytes": 44,
+      "source_sha256": "cae1ae1d5af8c7377d0a41ae2a460e653059b736b3654de0a801dafd38f37e31",
+      "cloud_sha256": "cae1ae1d5af8c7377d0a41ae2a460e653059b736b3654de0a801dafd38f37e31",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/batch.log.status",
+      "bytes": 20,
+      "source_sha256": "a4a221e468c798b2a1dc155baf953d1741815366d75f0743854aed89b107b7ff",
+      "cloud_sha256": "a4a221e468c798b2a1dc155baf953d1741815366d75f0743854aed89b107b7ff",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/directory.rm",
+      "bytes": 11,
+      "source_sha256": "9329e3ec60ca44c032e07dc03e5f5c1792118deae604305c2779b51f6971a6e9",
+      "cloud_sha256": "9329e3ec60ca44c032e07dc03e5f5c1792118deae604305c2779b51f6971a6e9",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributions.1",
+      "bytes": 5563,
+      "source_sha256": "cbd68ef95903fc61ca6ea033941ec1def3baca1a3911c7d1cd8b134a84b5ddc5",
+      "cloud_sha256": "cbd68ef95903fc61ca6ea033941ec1def3baca1a3911c7d1cd8b134a84b5ddc5",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributors.1",
+      "bytes": 8116,
+      "source_sha256": "c261c7ed0fe920b7c20cf28621b4cb9092bdadda9361c5a81b372f1959ee1d3a",
+      "cloud_sha256": "c261c7ed0fe920b7c20cf28621b4cb9092bdadda9361c5a81b372f1959ee1d3a",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.extraData.1",
+      "bytes": 4315525,
+      "source_sha256": "e2682dd3c2e4026225adf2aff8a072c8d48947e67cb8e3190b218b2142c91ec9",
+      "cloud_sha256": "e2682dd3c2e4026225adf2aff8a072c8d48947e67cb8e3190b218b2142c91ec9",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.mainData.1",
+      "bytes": 3004136,
+      "source_sha256": "90787564ca258338034642c0dfae95504b325b2b0e7f1680d3f211b35a620292",
+      "cloud_sha256": "90787564ca258338034642c0dfae95504b325b2b0e7f1680d3f211b35a620292",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.7",
+      "bytes": 159,
+      "source_sha256": "977ead8de5018ea0e997bce21ea911b75227d8cdff04a24c6765ba28cd7089b0",
+      "cloud_sha256": "977ead8de5018ea0e997bce21ea911b75227d8cdff04a24c6765ba28cd7089b0",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.8",
+      "bytes": 159,
+      "source_sha256": "c9a344ced670ae1c4d9ce1d2b9a5824d764b68511774318841fe092335d3a211",
+      "cloud_sha256": "c9a344ced670ae1c4d9ce1d2b9a5824d764b68511774318841fe092335d3a211",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.namespaces.1",
+      "bytes": 7459,
+      "source_sha256": "4e5fba79744b0ff7e6778e590af2c49e52142b2b1713e1142be62eeb1f7d6141",
+      "cloud_sha256": "4e5fba79744b0ff7e6778e590af2c49e52142b2b1713e1142be62eeb1f7d6141",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.orphans.1",
+      "bytes": 214,
+      "source_sha256": "47bd3ec7a02df5a5c10b6a0faf0e0bc96bccb3fe23c2cddba021d7f77f180fca",
+      "cloud_sha256": "47bd3ec7a02df5a5c10b6a0faf0e0bc96bccb3fe23c2cddba021d7f77f180fca",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.table.1",
+      "bytes": 181725,
+      "source_sha256": "6dc26fe80d8955d583e41179c072ebb4474c75c2fc2437c818c0172b89cefba5",
+      "cloud_sha256": "6dc26fe80d8955d583e41179c072ebb4474c75c2fc2437c818c0172b89cefba5",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.1",
+      "bytes": 78,
+      "source_sha256": "b7f7e1e4d8f7585cb5fa934b69007d1c51775e564554c65681d78621aaa0ac92",
+      "cloud_sha256": "b7f7e1e4d8f7585cb5fa934b69007d1c51775e564554c65681d78621aaa0ac92",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.2",
+      "bytes": 78,
+      "source_sha256": "38b9826b0c77260fb782e45a3c38cea54332b0227b81b3f6c1332e5158c3bc8e",
+      "cloud_sha256": "38b9826b0c77260fb782e45a3c38cea54332b0227b81b3f6c1332e5158c3bc8e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/framework.info.1",
+      "bytes": 880633,
+      "source_sha256": "1adb644ae3e0eda9a3f4c2b4ebce3bd6c16a4ead827d19b9cf88f7e60f952728",
+      "cloud_sha256": "1adb644ae3e0eda9a3f4c2b4ebce3bd6c16a4ead827d19b9cf88f7e60f952728",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/last.config.stamp",
+      "bytes": 16,
+      "source_sha256": "073ed8b39ef81b15fbe1e1ea06c7d76c2fba1bed1bc545f4e4b8f1a93a9411a7",
+      "cloud_sha256": "073ed8b39ef81b15fbe1e1ea06c7d76c2fba1bed1bc545f4e4b8f1a93a9411a7",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/platform.xml",
+      "bytes": 193,
+      "source_sha256": "51613809de38e5ace9f1d1538fe65fb5245dd27746c0da24b761a74c98becde0",
+      "cloud_sha256": "51613809de38e5ace9f1d1538fe65fb5245dd27746c0da24b761a74c98becde0",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/comsol.recoveries",
+      "bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cloud_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1.log",
+      "bytes": 17994,
+      "source_sha256": "a44bdd8a78dd8cc6779714ab4f34fcea5d0cdf6943b68d89e9d00a2a64efeee5",
+      "cloud_sha256": "a44bdd8a78dd8cc6779714ab4f34fcea5d0cdf6943b68d89e9d00a2a64efeee5",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1_render.log",
+      "bytes": 402,
+      "source_sha256": "e0c25d100f14e22067679ecd7d0aacfe872602498f2e03aa8345f5ba83dcad58",
+      "cloud_sha256": "e0c25d100f14e22067679ecd7d0aacfe872602498f2e03aa8345f5ba83dcad58",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/diagnostics/20260913_0100-run_lvl1_mu_ne_001-failure-diagnosis-r_det-v01-zh.md",
+      "bytes": 964,
+      "source_sha256": "bb9b2ea806091415ddac4e003d32afcf9308af0d75773d7a3317ac845cfc708c",
+      "cloud_sha256": "bb9b2ea806091415ddac4e003d32afcf9308af0d75773d7a3317ac845cfc708c",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_manifest-v01-en.json",
+      "bytes": 910,
+      "source_sha256": "aff7153f5abff5e2c69a76006048bc65064368eb2fb45e92ca8b2a2baaa92f99",
+      "cloud_sha256": "aff7153f5abff5e2c69a76006048bc65064368eb2fb45e92ca8b2a2baaa92f99",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_meta-v01-en.json",
+      "bytes": 3041,
+      "source_sha256": "69274fd097407a1628c1de0a9c9af586fd730beebb5983ff8e41b3862e303a2f",
+      "cloud_sha256": "69274fd097407a1628c1de0a9c9af586fd730beebb5983ff8e41b3862e303a2f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_tbl-v01-en.csv",
+      "bytes": 41554,
+      "source_sha256": "7b2976ce0d5d17af8cc77cbf0324daea5a4748f3c06ff67291c27414ae522f5f",
+      "cloud_sha256": "7b2976ce0d5d17af8cc77cbf0324daea5a4748f3c06ff67291c27414ae522f5f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/test.csv",
+      "bytes": 726,
+      "source_sha256": "7e1aa657775a7ff84ef665afde4c555240c7010492fa12a86c850e5831877f53",
+      "cloud_sha256": "7e1aa657775a7ff84ef665afde4c555240c7010492fa12a86c850e5831877f53",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/test.json",
+      "bytes": 3032,
+      "source_sha256": "2ed989facc050e27d1b423826303bca1ee1154b8664879ba058211d44486fa77",
+      "cloud_sha256": "2ed989facc050e27d1b423826303bca1ee1154b8664879ba058211d44486fa77",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_export_task_v01.json",
+      "bytes": 269,
+      "source_sha256": "de45d1c56fe15bb0d70578653c9bdc9a012af56d3546e3cd1857a34ee90c9978",
+      "cloud_sha256": "de45d1c56fe15bb0d70578653c9bdc9a012af56d3546e3cd1857a34ee90c9978",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_inspect_task_v01.json",
+      "bytes": 179,
+      "source_sha256": "8472b60ed8e2ca3dd01c6b2333070f4b24c5a82e524e06ec0c5899156c72d6ff",
+      "cloud_sha256": "8472b60ed8e2ca3dd01c6b2333070f4b24c5a82e524e06ec0c5899156c72d6ff",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_front.bmp",
+      "bytes": 4800054,
+      "source_sha256": "7e02fd6d9bb95510f8b126dad2aef6b24ed30420a9fa876a9eaf42900fde6681",
+      "cloud_sha256": "7e02fd6d9bb95510f8b126dad2aef6b24ed30420a9fa876a9eaf42900fde6681",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_isometric.bmp",
+      "bytes": 4800054,
+      "source_sha256": "20afcfccb5a6a1ff4ab092fd6cdb2513f4e3d8366348300ce2f669a446e6c207",
+      "cloud_sha256": "20afcfccb5a6a1ff4ab092fd6cdb2513f4e3d8366348300ce2f669a446e6c207",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_report.json",
+      "bytes": 18809,
+      "source_sha256": "30defbfd94e9dc28b06b050e2e67b72be541fba7745ae709c4d7539aaf9c9625",
+      "cloud_sha256": "30defbfd94e9dc28b06b050e2e67b72be541fba7745ae709c4d7539aaf9c9625",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_summary.md",
+      "bytes": 987,
+      "source_sha256": "f5e1444081dd22744ed2a655e7ee5bc1e4f315e2266fbf77600ecf03de145fc0",
+      "cloud_sha256": "f5e1444081dd22744ed2a655e7ee5bc1e4f315e2266fbf77600ecf03de145fc0",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_right.bmp",
+      "bytes": 4800054,
+      "source_sha256": "adcc32756e8b5397f680c45e32db339a004acdd7f5fbb4eeb80f66ecd3931154",
+      "cloud_sha256": "adcc32756e8b5397f680c45e32db339a004acdd7f5fbb4eeb80f66ecd3931154",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_top.bmp",
+      "bytes": 4800054,
+      "source_sha256": "daa04df628cf1a83471751515ea880315b7ce0960bdbcc5626475d10edaed42e",
+      "cloud_sha256": "daa04df628cf1a83471751515ea880315b7ce0960bdbcc5626475d10edaed42e",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_front.bmp",
+      "bytes": 4800054,
+      "source_sha256": "36a9b1870ea2f0e48c5ef9d39053c45fff38eec79fafae6a2ec4235faa10a325",
+      "cloud_sha256": "36a9b1870ea2f0e48c5ef9d39053c45fff38eec79fafae6a2ec4235faa10a325",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_isometric.bmp",
+      "bytes": 4800054,
+      "source_sha256": "3113ba6b656fbdffb2de3fe57aaa639716fc85b3e67a8788869dc14ad34a13fd",
+      "cloud_sha256": "3113ba6b656fbdffb2de3fe57aaa639716fc85b3e67a8788869dc14ad34a13fd",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_report.json",
+      "bytes": 19291,
+      "source_sha256": "ad4baec358d15e7d1a44f236145fbf84757a39266a1ce2306764ef68d2985ff6",
+      "cloud_sha256": "ad4baec358d15e7d1a44f236145fbf84757a39266a1ce2306764ef68d2985ff6",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_summary.md",
+      "bytes": 1051,
+      "source_sha256": "60ded03469b4637f435ebe652ab62de78d30c483536843866538f562a8ab318f",
+      "cloud_sha256": "60ded03469b4637f435ebe652ab62de78d30c483536843866538f562a8ab318f",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_right.bmp",
+      "bytes": 4800054,
+      "source_sha256": "53754985b04a5d31aec4f0ac1391f68ee46d4e4da2ed25d99f6adf8c841b6747",
+      "cloud_sha256": "53754985b04a5d31aec4f0ac1391f68ee46d4e4da2ed25d99f6adf8c841b6747",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_top.bmp",
+      "bytes": 4800054,
+      "source_sha256": "c44f104795af62e040f50acf9db0ce2ed347379ac4dd2cb8e59a641d5df284e4",
+      "cloud_sha256": "c44f104795af62e040f50acf9db0ce2ed347379ac4dd2cb8e59a641d5df284e4",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/lvl1_mu_ne_stopping_v01.csv",
+      "bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cloud_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/contract.yaml",
+      "bytes": 1490,
+      "source_sha256": "559230883be69ea4aebeccae92cac1172faaebcc565a2c7e1c157e5113e55c11",
+      "cloud_sha256": "559230883be69ea4aebeccae92cac1172faaebcc565a2c7e1c157e5113e55c11",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/geometry_manifest_lvl1_mu_ne_001.json",
+      "bytes": 1200,
+      "source_sha256": "44ccd33095c8094913ec9c3f6a3cde3d83b929a6ccbda358ac60f27abb07726c",
+      "cloud_sha256": "44ccd33095c8094913ec9c3f6a3cde3d83b929a6ccbda358ac60f27abb07726c",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.geometry.json",
+      "bytes": 928,
+      "source_sha256": "1f8f405f46d39ac14eef3e9d32124185fda42544d54fcbc0b889fee3d7f6d2f4",
+      "cloud_sha256": "1f8f405f46d39ac14eef3e9d32124185fda42544d54fcbc0b889fee3d7f6d2f4",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.model_manifest.json",
+      "bytes": 1936,
+      "source_sha256": "cca9a963cd942a0b02ed99de419caeb25b2e934c0a753275658d286767c379bf",
+      "cloud_sha256": "cca9a963cd942a0b02ed99de419caeb25b2e934c0a753275658d286767c379bf",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/task_lvl1_mu_ne_001.task_manifest.json",
+      "bytes": 3721,
+      "source_sha256": "91716331bf26fff80faaeea2809b68aa4ce5dd57654021615db294cac370b533",
+      "cloud_sha256": "91716331bf26fff80faaeea2809b68aa4ce5dd57654021615db294cac370b533",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/report/report_index.json",
+      "bytes": 346,
+      "source_sha256": "46a5e05a5f38e4ab6b25bb981e1fba6036a5aa44b784503e32ab54b027a95931",
+      "cloud_sha256": "46a5e05a5f38e4ab6b25bb981e1fba6036a5aa44b784503e32ab54b027a95931",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/run_manifest.json",
+      "bytes": 1477,
+      "source_sha256": "57bca21efb1381cf9e041c09f7d68b48c4a53ed8b340df1255fd4db7fd099eae",
+      "cloud_sha256": "57bca21efb1381cf9e041c09f7d68b48c4a53ed8b340df1255fd4db7fd099eae",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_damping-r_tbl-v01-en.txt",
+      "bytes": 9918,
+      "source_sha256": "26fc86462a0e3696dc47f56ccc143dff1e40ae7bed992ad66bbed7b88e8ac600",
+      "cloud_sha256": "26fc86462a0e3696dc47f56ccc143dff1e40ae7bed992ad66bbed7b88e8ac600",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_interface_si-v01-en.txt",
+      "bytes": 9918,
+      "source_sha256": "c3bdf2e9445ad0891b80ef97807caceb5c8e701b36e5a61ac10391af649ded9d",
+      "cloud_sha256": "c3bdf2e9445ad0891b80ef97807caceb5c8e701b36e5a61ac10391af649ded9d",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_meta-v01-en.json",
+      "bytes": 5544,
+      "source_sha256": "090f18f083d9871d212cb3d25ab2817b1c1d82a4be72f493610524911e71d1b0",
+      "cloud_sha256": "090f18f083d9871d212cb3d25ab2817b1c1d82a4be72f493610524911e71d1b0",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-ne_density_scaling-r_qa-v01-en.csv",
+      "bytes": 1507,
+      "source_sha256": "4583a5155a7ce2773e001b5515108f0ba9ccfc2556f35b3d056a10f729fe9979",
+      "cloud_sha256": "4583a5155a7ce2773e001b5515108f0ba9ccfc2556f35b3d056a10f729fe9979",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping_manifest.json",
+      "bytes": 1541,
+      "source_sha256": "170e22d9c58cadb0d1f220e92f4582a3ea2149c448c4926e98847f88f9652201",
+      "cloud_sha256": "170e22d9c58cadb0d1f220e92f4582a3ea2149c448c4926e98847f88f9652201",
+      "verified": true,
+      "manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json"
+    }
+  ]
+}

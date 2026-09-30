@@ -316,8 +316,10 @@ test('artifact counts use the newest active scan, exclude runtime and deduplicat
   ]));
   fs.writeFileSync(path.join(triage, 'session-a.promotion-plan.json'), 'not an artifact inventory');
   const progress = aggregateProgress(root, { includeCodex: false });
-  assert.equal(progress.artifact_counts.durable_unregistered, 2);
-  assert.equal(progress.counts.unregistered_artifacts, 2);
+  assert.equal(progress.artifact_counts.durable_unregistered, 1);
+  assert.equal(progress.artifact_counts.blocked, 1);
+  assert.equal(progress.artifact_counts.registered_quarantine, 0);
+  assert.equal(progress.counts.unregistered_artifacts, 1);
   assert.equal('artifact_triage' in progress, false);
   assert.equal(progress.warnings.some(item => item.includes('promotion-plan')), false);
   writeJson(path.join(triage, 'latest.json'), inventory('session-a', '2026-09-30T00:00:00Z', [
@@ -325,7 +327,25 @@ test('artifact counts use the newest active scan, exclude runtime and deduplicat
   ]));
   const future = new Date(Date.now() + 2000);
   fs.utimesSync(path.join(triage, 'latest.json'), future, future);
-  assert.equal(aggregateProgress(root, { includeCodex: false }).artifact_counts.durable_unregistered, 1);
+  const onlyQuarantine = aggregateProgress(root, { includeCodex: false }).artifact_counts;
+  assert.equal(onlyQuarantine.durable_unregistered, 0);
+  assert.equal(onlyQuarantine.blocked, 1);
+});
+
+test('only hash-matched quarantine copies are counted separately from unresolved project files', t => {
+  const root = makeRoot(t);
+  addSession(root, { session_id: 'session-a', task_id: 'task-a', status: 'active', mode: 'worktree', worktree_path: root, branch: 'codex/session/a' });
+  addPlan(root, { task_id: 'task-a', session_ids: ['session-a'] });
+  const bytes = 'archive copy\n'; const sha256 = createRequire(import.meta.url)('node:crypto').createHash('sha256').update(bytes).digest('hex');
+  const relative = '90_migration/quarantine/fixture/copy.txt'; const file = path.join(root, relative);
+  fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, bytes);
+  writeJson(path.join(root, '90_migration/quarantine/fixture/quarantine-manifest.json'), { record_type: 'durable-quarantine-manifest', items: [{ quarantine_path: relative, bytes: Buffer.byteLength(bytes), sha256 }] });
+  const triage = path.join(root, '_work/current/artifact-triage');
+  writeJson(path.join(triage, 'session-a.json'), { session_id: 'session-a', inspected_at: new Date().toISOString(), artifacts: [{ path: relative, status: 'registered-quarantine', quarantine_registered: true, bytes: Buffer.byteLength(bytes), sha256 }] });
+  const counts = aggregateProgress(root, { includeCodex: false }).artifact_counts;
+  assert.equal(counts.durable_unregistered, 0);
+  assert.equal(counts.blocked, 0);
+  assert.equal(counts.registered_quarantine, 1);
 });
 
 test('an active registry without run evidence is unknown, not running', t => {

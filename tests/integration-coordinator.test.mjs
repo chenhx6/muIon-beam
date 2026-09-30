@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { applyIntegration, beginSession, continueAfterIntegration, listSessions, planIntegration, resumeSession, submitSession } from '../.codex/skills/team/scripts/session-concurrency.mjs';
-import { finalizePlanNodeDelivery, integratePrepared } from '../11_tools/project-supervisor/integration-coordinator.mjs';
+import { buildCleanupDispositionReceipt, finalizePlanNodeDelivery, integratePrepared } from '../11_tools/project-supervisor/integration-coordinator.mjs';
 
 const project = path.resolve(import.meta.dirname, '..');
 const autoCommitScript = path.join(project, '.codex/skills/muion-project/scripts/auto-commit-push.mjs');
@@ -15,6 +15,21 @@ function fixture(t) {
   const git = (...args) => { const r = spawnSync('git', args, { cwd: root, encoding: 'utf8', windowsHide: true }); assert.equal(r.status, 0, r.stderr || r.stdout); };
   git('init', '-b', 'main'); git('config', 'user.name', 'test'); git('config', 'user.email', 'test@example.invalid'); fs.writeFileSync(path.join(root, '.gitignore'), '_work/\n'); fs.writeFileSync(path.join(root, 'a.txt'), 'base\n'); git('add', '.'); git('commit', '-m', 'base'); return { root, git };
 }
+test('N3 cleanup receipt requires every fixed historical worker and records its source/path/Drive/host disposition', () => {
+  const plan = { plan_id: 'plan-test', checkpoint: { required_historical_cleanup_sessions: [{ session_id:'old-1', branch:'codex/session/old-1', source_commit:'source-1' }] } };
+  const cloudReadback = { cleanup_disposition: { status:'verified', generated_at:'2026-09-30T00:00:00.000Z', sessions:[{
+    session_id:'old-1', branch:'codex/session/old-1', source_commit:'source-1', merge_base:'base-1', status:'verified',
+    path_mappings:[{source_path:'a.txt',source_sha256:'a'.repeat(64),delivery_path:'a.txt',delivery_sha256:'b'.repeat(64),drive_sha256:'b'.repeat(64),disposition:'equivalent',disposition_ref:'p0-audit.json'}],
+    gitee_readback:{status:'verified',remote_head:'delivery-1'},drive_readback:{status:'verified',manifest_sha256:'c'.repeat(64)},
+    host_completion:{status:'not-found',absence_checks:{active_lookup:'not-found',archived_lookup:'not-found',state_index:'not-found',turn_history:'not-found'}},process_check:{status:'clear'},
+    cleanup_receipt_sha256:'d'.repeat(64),preflight_receipt_sha256:'e'.repeat(64),cleanup_result:{status:'branch-removed',worktree_removed:true,branch_removed:true,ignored_file_count:1,preserved_file_count:1},
+  }] } };
+  const receipt = buildCleanupDispositionReceipt(plan, cloudReadback);
+  assert.equal(receipt.status, 'verified'); assert.equal(receipt.sessions[0].path_mappings[0].source_path, 'a.txt');
+  assert.equal(receipt.sessions[0].host_completion.status, 'not-found'); assert.equal(receipt.sessions[0].cleanup.local_receipt_sha256, 'd'.repeat(64));
+  assert.throws(() => buildCleanupDispositionReceipt(plan, { cleanup_disposition: { ...cloudReadback.cleanup_disposition, sessions: [] } }), /fixed historical session set/);
+  assert.throws(() => buildCleanupDispositionReceipt(plan, { cleanup_disposition: { ...cloudReadback.cleanup_disposition, sessions: [{ ...cloudReadback.cleanup_disposition.sessions[0], cleanup_result: { status:'worktree-removed', worktree_removed:true } }] } }), /historical cleanup result is incomplete/);
+});
 test('clean worker is submitted and integrated under the leader gate', t => {
   const f = fixture(t); const session = beginSession({ root: f.root, sessionId: 'worker', ownedPaths: ['a.txt'] });
   fs.writeFileSync(path.join(session.worktree_path, 'a.txt'), 'worker\n');

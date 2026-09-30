@@ -54,6 +54,19 @@ test('service failure does not suppress independent service health or erase evid
   assert.equal(status.broken.status, 'blocked'); assert.equal(status.healthy.status, 'healthy');
   assert.match(fs.readFileSync(store.file('events.jsonl'), 'utf8'), /health failed/);
 });
+test('managed service restart stops only a verified listener then ensures it again', async t => {
+  const store = storeFor(t); let state = { status: 'healthy', pid: 32101 }; let starts = 0; const killed = [];
+  const service = { name: 'dashboard', health: async () => state, start: async () => { starts++; state = { status: 'healthy', pid: 32102 }; } };
+  const originalKill = process.kill;
+  process.kill = pid => { killed.push(pid); state = { status: 'stopped' }; };
+  try {
+    const result = await new ProcessSupervisor(store, [service], { pollMs: 1 }).restart('dashboard');
+    assert.deepEqual(killed, [32101]); assert.equal(starts, 1); assert.equal(result.dashboard.pid, 32102);
+    state = { status: 'blocked', pid: 32103 };
+    await assert.rejects(new ProcessSupervisor(store, [service]).restart('dashboard'), /cannot safely restart dashboard/);
+    assert.deepEqual(killed, [32101]);
+  } finally { process.kill = originalKill; }
+});
 test('dashboard health verifies service identity and actual status on loopback', async t => {
   const store = storeFor(t); const server = await start({ port: 0 });
   t.after(() => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); }));

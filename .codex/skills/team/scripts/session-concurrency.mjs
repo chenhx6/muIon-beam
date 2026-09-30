@@ -433,6 +433,184 @@ function removeDeliveredWorktree(root, session) {
   if (session.branch && runGit(root, ['show-ref','--verify','--quiet','refs/heads/' + session.branch], { allowFailure: true }).status === 0) runGit(root, ['branch','-d',session.branch]);
 }
 
+function relativeFile(value, label) {
+  const file = String(value || '').replaceAll('\\', '/');
+  if (!file || file.startsWith('/') || /^[A-Za-z]:/.test(file) || file.split('/').some(part => !part || part === '.' || part === '..')) throw new Error(`invalid ${label}: ${value}`);
+  return file;
+}
+function gitBlobSha256(root, revision, file) {
+  const result = spawnSync('git', ['-C', root, 'show', `${revision}:${file}`], { encoding: null, windowsHide: true, maxBuffer: 64 * 1024 * 1024 });
+  if (result.status !== 0) return null;
+  return crypto.createHash('sha256').update(result.stdout).digest('hex');
+}
+function fileSha256IfRegular(file, root, hash = true) {
+  const stat = fs.lstatSync(file);
+  if (!stat.isFile() || stat.isSymbolicLink() || !fs.realpathSync(file).startsWith(fs.realpathSync(root) + path.sep)) throw new Error(`cleanup evidence is not a regular in-root file: ${file}`);
+  return { bytes: stat.size, sha256: hash ? sha256File(file) : null };
+}
+function resolveProjectFile(root, relative, label) {
+  const file = path.resolve(root, relativeFile(relative, label)); const rel = path.relative(root, file);
+  if (rel.startsWith('..') || path.isAbsolute(rel)) throw new Error(`${label} escaped project root`);
+  return file;
+}
+function sameDirectory(left, right) {
+  const a = fs.statSync(left); const b = fs.statSync(right);
+  return a.isDirectory() && b.isDirectory() && a.dev === b.dev && a.ino === b.ino;
+}
+
+// Supersession is a separate gate from normal ancestor-only cleanup. Its receipt
+// must prove every changed path, Drive hash, runtime disposition and finished host.
+export function cleanupSupersededSession({ root = process.cwd(), sessionId, receiptPath } = {}) {
+  const repoRoot = repoRootFrom(path.resolve(root)); const id = safeId(sessionId, 'session_id');
+  return withLock(repoRoot, 'session-registry', () => {
+    const receiptFilePath = path.resolve(receiptPath || '');
+    if (!receiptPath || !fs.existsSync(receiptFilePath) || fs.lstatSync(receiptFilePath).isSymbolicLink() || path.resolve(runGit(path.dirname(receiptFilePath), ['rev-parse','--show-toplevel']).stdout.trim()).toLowerCase() !== repoRoot.toLowerCase()) throw new Error('supersession receipt must be a regular file inside the project root');
+    const receipt = readJson(receiptFilePath);
+    if (receipt?.record_type !== 'superseded-worktree-cleanup' || receipt.status !== 'verified' || receipt.session_id !== id) throw new Error('verified supersession receipt is missing or does not match the session');
+    const session = readSession(repoRoot, id);
+    if (session.mode !== 'worktree' || !session.worktree_created || !String(session.branch || '').startsWith('codex/session/')) throw new Error('supersession cleanup requires a managed session worktree branch');
+    if (!['active', 'closed', 'integrated', 'submitted'].includes(session.status)) throw new Error('session lifecycle is not eligible for supersession cleanup');
+    if (receipt.branch !== session.branch || receipt.worktree_path && path.resolve(receipt.worktree_path).toLowerCase() !== path.resolve(session.worktree_path).toLowerCase()) throw new Error('receipt branch or worktree does not match the session registry');
+    const hostProof = receipt.host_completion;
+    const externalHostDone = hostProof?.host_session_id === session.host_session_id && ['complete','completed','failed','interrupted','aborted','cancelled','canceled','closed','expired'].includes(String(hostProof.status || '').toLowerCase()) && hostProof.verified_at && hostProof.source;
+    const externalHostAbsent = session.status === 'closed' && hostProof?.host_session_id === session.host_session_id && hostProof.status === 'not-found' && hostProof.verified_at && hostProof.absence_checks?.active_lookup === 'not-found' && hostProof.absence_checks?.archived_lookup === 'not-found' && hostProof.absence_checks?.state_index === 'not-found' && hostProof.absence_checks?.turn_history === 'not-found';
+    if (!hostFinished(repoRoot, session) && !externalHostDone && !externalHostAbsent) throw new Error('host completion is unknown; preserve the worktree');
+    if (hostProof?.host_session_id && hostProof.host_session_id !== session.host_session_id) throw new Error('host completion proof belongs to another host session');
+    if (receipt.process_check?.status !== 'clear' || !receipt.process_check.checked_at || !Array.isArray(receipt.process_check.process_ids) || receipt.process_check.process_ids.length) throw new Error('active process check is missing or not clear');
+    if (currentStatus(repoRoot).length) throw new Error('supersession cleanup requires a clean main checkout');
+    if (runGit(repoRoot, ['symbolic-ref','--short','HEAD']).stdout.trim() !== 'main') throw new Error('supersession cleanup requires the main checkout');
+    if (runGit(repoRoot, ['merge-base','--is-ancestor',receipt.main_commit,'HEAD'], { allowFailure: true }).status !== 0) throw new Error('receipt main commit is not an ancestor of current main');
+    const resultFile = path.join(repoRoot, '_work/current/publish-outbox/supersession-cleanup', `${id}.json`);
+    if (!fs.existsSync(session.worktree_path)) {
+      const interrupted = readJson(resultFile);
+      if (!interrupted || interrupted.source_commit !== receipt.source_commit || !['worktree-removed','branch-removed'].includes(interrupted.status)) throw new Error('worktree is missing without a matching cleanup journal; preserve Git refs');
+      const ref = 'refs/heads/' + session.branch;
+      if (runGit(repoRoot, ['show-ref','--verify','--quiet',ref], { allowFailure:true }).status === 0) {
+        if (runGit(repoRoot, ['rev-parse',ref]).stdout.trim() !== receipt.source_commit) throw new Error('branch moved after supersession cleanup began');
+        runGit(repoRoot, ['update-ref','-d',ref,receipt.source_commit]);
+        interrupted.status = 'branch-removed'; interrupted.branch_removed = true; atomicWrite(resultFile, interrupted);
+      }
+      removeClaim(repoRoot, id);
+      const current = readSession(repoRoot, id);
+      return updateSession(repoRoot, current, { status:'closed', cleanup:true, cleanup_pending:false, cleanup_completed:true, cleanup_completed_at:nowIso(), superseded_cleanup_receipt:path.relative(repoRoot,resultFile).replaceAll('\\','/') });
+    }
+    if (!fs.existsSync(session.worktree_path) || fs.lstatSync(session.worktree_path).isSymbolicLink()) throw new Error('registered worktree is missing or is a link');
+    const worktree = path.resolve(session.worktree_path);
+    const expectedWorktree = path.join(repoRoot, '_work/current/worktrees', id);
+    const gitRoot = runGit(worktree, ['rev-parse','--show-toplevel']).stdout.trim();
+    if (!sameDirectory(worktree, expectedWorktree) || !sameDirectory(worktree, gitRoot)) throw new Error('worktree identity or managed path check failed');
+    if (runGit(worktree, ['symbolic-ref','--short','HEAD']).stdout.trim() !== session.branch) throw new Error('worktree branch differs from the session registry');
+    if (currentStatus(worktree).length) throw new Error('worktree has uncommitted or untracked nonignored files');
+    const sourceCommit = runGit(worktree, ['rev-parse','HEAD']).stdout.trim();
+    if (receipt.source_commit !== sourceCommit) throw new Error('fixed source SHA changed after cleanup receipt preparation');
+    const mergeBase = runGit(repoRoot, ['merge-base','main',sourceCommit]).stdout.trim();
+    if (receipt.merge_base !== mergeBase) throw new Error('supersession receipt merge base does not match Git');
+    const changed = runGit(repoRoot, ['diff','--no-renames','--name-only','-z',mergeBase,sourceCommit]).stdout.split('\0').filter(Boolean).sort();
+    const mappings = Array.isArray(receipt.path_mappings) ? receipt.path_mappings : [];
+    const mapped = mappings.map(item => relativeFile(item.source_path, 'source path')).sort();
+    if (new Set(mapped).size !== mapped.length || JSON.stringify(mapped) !== JSON.stringify(changed)) throw new Error('path mappings do not cover the exact changed-path set');
+    const driveReadbackFile = resolveProjectFile(repoRoot, receipt.drive_readback?.file, 'Drive readback');
+    const driveFile = fileSha256IfRegular(driveReadbackFile, repoRoot);
+    if (receipt.drive_readback.status !== 'verified' || driveFile.sha256 !== receipt.drive_readback.sha256) throw new Error('cloud Drive readback receipt hash or status is invalid');
+    const driveReadback = readJson(driveReadbackFile);
+    if (driveReadback?.status !== 'verified' || !Array.isArray(driveReadback.files)) throw new Error('cloud Drive file readback is incomplete');
+    const driveFiles = new Map(driveReadback.files.map(item => [relativeFile(item.path, 'Drive file').toLowerCase(), item]));
+    const publication = readJson(path.join(repoRoot, '00_project/config/publish-policy.json'));
+    const gitee = receipt.gitee_readback;
+    if (!publication?.remote || !publication.branch || gitee?.status !== 'verified' || gitee.remote !== publication.remote || gitee.branch !== publication.branch) throw new Error('clean Gitee clone evidence does not match the publication policy');
+    const cloneRoot = resolveProjectFile(repoRoot, gitee.clone_path, 'Gitee clone');
+    const cloneHead = runGit(cloneRoot, ['rev-parse','HEAD']).stdout.trim();
+    if (runGit(cloneRoot, ['symbolic-ref','--short','HEAD']).stdout.trim() !== publication.branch || cloneHead !== gitee.commit || currentStatus(cloneRoot).length) throw new Error('Gitee recovery clone is not clean at its fixed main commit');
+    if (runGit(cloneRoot, ['remote','get-url','origin']).stdout.trim() !== publication.remote) throw new Error('Gitee recovery clone has the wrong origin');
+    const remoteHead = runGit(repoRoot, ['ls-remote',publication.remote,'refs/heads/' + publication.branch]).stdout.trim().split(/\s+/)[0];
+    if (!remoteHead || remoteHead !== gitee.remote_head || runGit(repoRoot, ['merge-base','--is-ancestor',receipt.main_commit,remoteHead], { allowFailure:true }).status !== 0) throw new Error('Gitee main does not contain the verified cleanup baseline');
+    const dispositionFile = resolveProjectFile(repoRoot, receipt.disposition_evidence?.file, 'disposition evidence');
+    const dispositionSig = fileSha256IfRegular(dispositionFile, repoRoot);
+    const dispositionDrive = driveFiles.get(relativeFile(receipt.disposition_evidence?.file, 'disposition evidence').toLowerCase());
+    if (!dispositionDrive || dispositionSig.sha256 !== receipt.disposition_evidence.sha256 || dispositionDrive.sha256 !== dispositionSig.sha256) throw new Error('path disposition evidence is not hash-verified in Drive');
+    for (const item of mappings) {
+      const sourcePath = relativeFile(item.source_path, 'source path'); const deliveryPath = relativeFile(item.delivery_path, 'delivery path');
+      const sourceHash = gitBlobSha256(repoRoot, sourceCommit, sourcePath) || gitBlobSha256(repoRoot, mergeBase, sourcePath);
+      if (!sourceHash || sourceHash !== item.source_sha256) throw new Error(`source path hash changed: ${sourcePath}`);
+      const delivered = path.join(repoRoot, ...deliveryPath.split('/'));
+      if (!fs.existsSync(delivered) || fileSha256IfRegular(delivered, repoRoot).sha256 !== item.delivery_sha256) throw new Error(`main replacement hash mismatch: ${deliveryPath}`);
+      const cloud = driveFiles.get(deliveryPath.toLowerCase());
+      if (!cloud || cloud.sha256 !== item.delivery_sha256 || item.drive_sha256 !== item.delivery_sha256) throw new Error(`Drive replacement hash is unverified: ${deliveryPath}`);
+      const cloneBlob = runGit(cloneRoot, ['rev-parse', `${cloneHead}:${deliveryPath}`], { allowFailure:true });
+      const mainBlob = runGit(repoRoot, ['rev-parse', `HEAD:${deliveryPath}`], { allowFailure:true });
+      if (cloneBlob.status !== 0 || mainBlob.status !== 0 || cloneBlob.stdout.trim() !== mainBlob.stdout.trim()) throw new Error(`Gitee clone replacement differs from main: ${deliveryPath}`);
+      if (!String(item.disposition || '').trim() || item.disposition_ref !== receipt.disposition_evidence.file) throw new Error(`path disposition is missing or lacks its audit reference: ${sourcePath}`);
+    }
+    const quarantineFile = resolveProjectFile(repoRoot, receipt.quarantine_readback_file, 'quarantine readback');
+    const quarantineReadback = readJson(quarantineFile);
+    if (quarantineReadback?.status !== 'verified' || !Array.isArray(quarantineReadback.files)) throw new Error('quarantine cloud readback is missing or failed');
+    const quarantineFiles = new Map(quarantineReadback.files.map(item => [relativeFile(item.path, 'quarantine path').toLowerCase(), item]));
+    for (const item of quarantineFiles.values()) {
+      const relative = relativeFile(item.path, 'quarantine path');
+      if (!relative.startsWith('90_migration/quarantine/') || item.verified !== true) throw new Error(`quarantine readback has an unverified path: ${relative}`);
+      const source = path.resolve(worktree, ...relative.split('/'));
+      const actual = fileSha256IfRegular(source, worktree);
+      if (actual.bytes !== item.bytes || actual.sha256 !== item.source_sha256 || actual.sha256 !== item.cloud_sha256) throw new Error(`quarantine source and cloud hashes differ: ${relative}`);
+    }
+    const rebuildable = Array.isArray(receipt.rebuildable_roots) ? receipt.rebuildable_roots : []; const rebuildableVerified = new Set();
+    const preservationRoot = path.join(repoRoot, '_work/current/supersession-preserved', id);
+    const preserved = []; const ignoredPaths = runGit(worktree, ['ls-files','--others','--ignored','--exclude-standard','-z']).stdout.split('\0').filter(Boolean);
+    let ignoredBytes = 0;
+    for (const relative of ignoredPaths) {
+      const categoryPath = relative.replaceAll('\\','/'); const source = path.resolve(worktree, categoryPath);
+      const disposition = [
+        ...(receipt.preserve_roots || []).map(item => ({ ...item, kind:'preserve' })),
+        ...rebuildable.map(item => ({ ...item, kind:'rebuildable' })),
+      ].filter(item => categoryPath.startsWith(item.prefix)).sort((a,b) => b.prefix.length-a.prefix.length)[0];
+      const sourceSig = fileSha256IfRegular(source, worktree, disposition?.kind === 'preserve' || categoryPath.startsWith('90_migration/quarantine/')); ignoredBytes += sourceSig.bytes;
+      if (categoryPath.startsWith('90_migration/quarantine/')) {
+        const cloud = quarantineFiles.get(categoryPath.toLowerCase());
+        if (!cloud || cloud.verified !== true || cloud.bytes !== sourceSig.bytes || cloud.cloud_sha256 !== sourceSig.sha256 || cloud.source_sha256 !== sourceSig.sha256) throw new Error(`quarantine copy lacks exact Drive SHA readback: ${categoryPath}`);
+      } else if (disposition?.kind === 'preserve') {
+        if (disposition.mode === 'differences') {
+          const current = path.join(repoRoot, ...categoryPath.split('/'));
+          if (fs.existsSync(current) && fileSha256IfRegular(current, repoRoot).sha256 === sourceSig.sha256) continue;
+        } else if (disposition.mode !== 'all') throw new Error(`unsupported preservation mode for ${categoryPath}`);
+        const relative = disposition.archive_prefix ? `${disposition.archive_prefix.replace(/\/$/,'')}/${categoryPath.slice(disposition.prefix.length)}` : categoryPath;
+        const target = path.resolve(preservationRoot, relative); const within = path.relative(preservationRoot, target);
+        if (within.startsWith('..') || path.isAbsolute(within)) throw new Error('preserved artifact escaped its archive root');
+        fs.mkdirSync(path.dirname(target), { recursive: true });
+        if (fs.existsSync(target)) { if (sha256File(target) !== sourceSig.sha256) throw new Error(`preserved artifact conflict: ${categoryPath}`); }
+        else { fs.copyFileSync(source, target, fs.constants.COPYFILE_EXCL); if (sha256File(target) !== sourceSig.sha256) throw new Error(`preserved artifact copy hash mismatch: ${categoryPath}`); }
+        preserved.push({ source_path: categoryPath, archive_path: path.relative(repoRoot, target).replaceAll('\\','/'), bytes: sourceSig.bytes, sha256: sourceSig.sha256 });
+      } else if (disposition?.kind === 'rebuildable') {
+        if (!rebuildableVerified.has(disposition.prefix)) {
+          const evidencePath = resolveProjectFile(repoRoot, disposition.evidence_file, 'runtime replacement evidence');
+          const evidenceSig = fileSha256IfRegular(evidencePath, repoRoot); const evidence = readJson(evidencePath);
+          const replacement = resolveProjectFile(repoRoot, disposition.replacement_path, 'runtime replacement');
+          const proofMatches = evidence?.rebuildable_roots?.some(item => item.source_prefix === disposition.prefix && item.replacement_path === disposition.replacement_path);
+          if (disposition.evidence_sha256 !== evidenceSig.sha256 || evidence?.status !== 'passed' || !proofMatches || !fs.existsSync(replacement)) throw new Error(`rebuildable runtime lacks verified replacement evidence: ${categoryPath}`);
+          rebuildableVerified.add(disposition.prefix);
+        }
+      } else {
+        throw new Error(`ignored worktree path has no safe disposition: ${categoryPath}`);
+      }
+    }
+    const quarantinePaths = ignoredPaths.filter(item => item.replaceAll('\\','/').startsWith('90_migration/quarantine/')).map(item => item.replaceAll('\\','/')).sort();
+    if (quarantinePaths.some(item => !quarantineFiles.has(item.toLowerCase()))) throw new Error('quarantine Drive receipt does not cover the exact ignored quarantine file set');
+    const registration = runGit(repoRoot, ['worktree','list','--porcelain']).stdout.split(/\r?\n\r?\n/).find(block => {
+      const entry = block.split(/\r?\n/).find(line => line.startsWith('worktree '));
+      return entry && sameDirectory(entry.slice('worktree '.length), worktree);
+    });
+    if (!registration || !registration.split(/\r?\n/).includes('branch refs/heads/' + session.branch)) throw new Error('Git worktree registration does not match the cleanup target');
+    const localReceipt = { schema_version:1, record_type:'superseded-worktree-cleanup-result', session_id:id, source_commit:sourceCommit, main_commit:runGit(repoRoot,['rev-parse','HEAD']).stdout.trim(), ignored_file_count:ignoredPaths.length, ignored_bytes:ignoredBytes, quarantine_file_count:quarantinePaths.length, preserved_file_count:preserved.length, local_archive_root:path.relative(repoRoot,preservationRoot).replaceAll('\\','/'), preserved, status:'verified', prepared_at:nowIso() };
+    atomicWrite(resultFile, localReceipt);
+    if (fs.existsSync(worktree)) runGit(repoRoot, ['worktree','remove','--force',worktree]);
+    localReceipt.status = 'worktree-removed'; localReceipt.worktree_removed = true; atomicWrite(resultFile, localReceipt);
+    const ref = 'refs/heads/' + session.branch;
+    if (runGit(repoRoot, ['show-ref','--verify','--quiet',ref], { allowFailure:true }).status === 0) runGit(repoRoot, ['update-ref','-d',ref,sourceCommit]);
+    localReceipt.status = 'branch-removed'; localReceipt.branch_removed = true; localReceipt.completed_at = nowIso(); atomicWrite(resultFile, localReceipt);
+    removeClaim(repoRoot, id);
+    const current = readSession(repoRoot, id);
+    return updateSession(repoRoot, current, { status:'closed', cleanup:true, cleanup_pending:false, cleanup_completed:true, cleanup_completed_at:nowIso(), superseded_cleanup_receipt:path.relative(repoRoot,resultFile).replaceAll('\\','/') });
+  });
+}
+
 export function cleanupClosedSession({ root = process.cwd(), sessionId } = {}) {
   const repoRoot = repoRootFrom(path.resolve(root));
   return withLock(repoRoot, 'session-registry', () => {
@@ -497,7 +675,7 @@ function parseArgs(argv) {
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv); const command = args._[0] || 'status'; const root = path.resolve(args.project_root || process.cwd());
   if (args.help || command === 'help') {
-    return 'Usage: node session-concurrency.mjs begin|resume|continue|check|heartbeat|submit|integrate|close|reap|status --project-root PATH [options]\n' +
+    return 'Usage: node session-concurrency.mjs begin|resume|continue|check|heartbeat|submit|integrate|close|reap|cleanup-superseded|status --project-root PATH [options]\n' +
       'begin options: --session-id ID --task-id ID --mode worktree|shared-read|shared-write --owned-path PATH';
   }
   if (command === 'begin') return beginSession({ root, sessionId: args.session_id, taskId: args.task_id, name: args.name, mode: args.mode || 'worktree', ownedPaths: args.owned_path || [], reads: args.read || [], allowDirtyShared: Boolean(args.allow_dirty_shared) });
@@ -509,6 +687,7 @@ function main(argv = process.argv.slice(2)) {
   if (command === 'integrate') return args.apply ? applyIntegration({ root, sessionId: args.session_id }) : planIntegration({ root, sessionId: args.session_id });
   if (command === 'close') return closeSession({ root, sessionId: args.session_id, token: args.token, cleanup: Boolean(args.cleanup) });
   if (command === 'reap') return reapSession({ root, sessionId: args.session_id, cleanup: args.cleanup !== false });
+  if (command === 'cleanup-superseded') return cleanupSupersededSession({ root, sessionId: args.session_id, receiptPath: args.receipt });
   if (command === 'status') return { sessions: listSessions({ root }), claims: readClaims(repoRootFrom(root)).claims };
   throw new Error(`unknown session-concurrency command: ${command}`);
 }

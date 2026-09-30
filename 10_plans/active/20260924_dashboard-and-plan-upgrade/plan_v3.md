@@ -184,3 +184,15 @@ API只返回看板所需数据，避免每次轮询返回巨大的历史artifact
 - 恢复时先读checkpoint及pending操作，再重核当前Git/宿主/服务，继续最近未完成节点。每节点记录准备、验证、push、tag、Drive、关闭/回收的实际结果。
 - 本轮只提交计划文档的worker checkpoint；main发布状态必须据工具结果报告，不能把本地commit说成push完成。新session首个交付包含本计划材料。
 - 总体未完成时遇到同一真实阻塞遵守goal阻塞审计，不刷无变化回执、不靠宣布完成重开goal、不自行切换用户指定模型。
+
+## 当前执行 checkpoint（2026-09-30，revision 12）
+
+- N0、N1、N2 已由现有 delivery gate 集成 main、推送 Gitee、验证 Drive 与 `t-*` 标签；N3 仍 pending，计划与 goal 均保持 executing/active。
+- N3 已补充共享 local-runtime/quarantine 分类，以及含固定 source SHA、逐路径替代映射、Drive SHA、host/进程状态和 ignored 内容 disposition 的 supersession cleanup gate；相关测试通过。
+- N3 新增 supervisor 安全重启 managed service 的入口和测试；完整项目测试 `node --test tests/*.mjs` 通过 216/216，架构 smoke 验证 150 个必需文件和 12 个变量。
+- 当前 N3 source 已标记 `ready-for-delivery`，但节点/tag 仍未交付；最终 N3 receipt 会等四个历史 worker gate、云端 recovery-index 读回和 4317 浏览器验收通过后生成。
+- D80-1 的两份历史 quarantine manifest 未改写；153+67 项共 220 个隔离文件（57,622,293 bytes）已逐项核验 source、manifest、已下载 Drive ZIP 的 SHA256。两份 manifest 的条目与 main/Drive 一致，只存在 CRLF/LF 表示差异。回读记录位于本 worktree 的 `_work/current/quarantine-cloud-readback-20260930-verified.json`。
+- main 项目内 Crawl4AI 0.9.4 与 Browser Use 0.13.10 均通过 `pip check` 和对应项目 smoke；D80 私有浏览器配置差异及 governance baseline 仍须通过 supersession gate 保留到本地 ignored runtime。
+- 已登录 Google Drive UI 显示 canonical `drive-mirror-manifest.json` 与映射盘文件 SHA256 相同；云端 recovery-index 预览落后于映射盘版本，N3 必须刷新并再次云端读回。
+- `plan_v3.json` 固定了 N3 要处理的四个历史 session/source SHA：D80-1、D80-2、6b5、8f62；N3 完成的 integration finalizer 将把经门禁验证的逐路径、Gitee、Drive、host 和回收摘要追加为独立 cleanup-disposition receipt。
+- 下一步：用现有 node delivery gate 集成并推送 N3；读取云端 manifest 和变更文件，制作完整 Gitee/Drive readback；验证并安全回收四个历史 worker；刷新 recovery-index，重启 4317 并做浏览器验收；通过所有证据后才生成 N3 标签。当前 N3 worktree 仍须等 host-turn 结束后由 supervisor 回收，并在下一次独立核验后才可结束计划/goal。

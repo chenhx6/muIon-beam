@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { sha256File } from '../../.codex/skills/muion-project/scripts/project-utils.mjs';
+import { classifyLocalArtifactPath, matchesQuarantineManifest, readQuarantineManifestEntries } from './local-runtime-paths.mjs';
 
 const projectRoots = ['.codex/', '00_project/', '01_physics/', '02_models/', '04_results/', '05_reports/', '07_research_system/', '08_references/', '09_catalog/', '10_plans/', '11_tools/', '90_migration/'];
 const textExtensions = new Set(['.md','.txt','.json','.yaml','.yml','.csv','.tsv','.py','.mjs','.js','.ts','.c','.cc','.cpp','.cxx','.h','.hpp','.java','.cs','.cmake','.mac','.gdml','.toml','.xml','.ini','.cfg','.sh','.ps1','.bat']);
@@ -10,6 +11,9 @@ const pathInside = (file, root) => { const absolute = path.resolve(root, file); 
 
 export function classifyArtifact(artifact = {}) {
   const file = normalize(artifact.path); const lower = file.toLowerCase(); const ext = path.posix.extname(lower);
+  const category = classifyLocalArtifactPath(file);
+  if (category === 'local-runtime') return { status: 'retained-blocked', reason: 'local-runtime-output', next_action: 'keep private runtime data outside project promotion' };
+  if (category === 'quarantine') return { status: 'retained-blocked', reason: artifact.quarantine_registered ? 'registered-quarantine-copy' : 'unverified-quarantine-copy', next_action: 'retain under its quarantine manifest; never auto-promote or delete' };
   if (!file || file.startsWith('_work/') || file.split('/').includes('.git')) return { status: 'retained-blocked', reason: 'runtime-or-git-output', next_action: 'keep in triage until explicitly classified' };
   if (binaryExtensions.has(ext)) return { status: 'drive-required', target: file, reason: 'large-or-commercial-binary', next_action: 'register Manifest and archive to Drive before cleanup' };
   if (lower.startsWith('03_runs/')) return { status: 'formal-run', target: file, reason: 'already-canonical-run-root', next_action: 'attach artifact Manifest and run receipt' };
@@ -20,10 +24,15 @@ export function classifyArtifact(artifact = {}) {
 
 export function buildPromotionPlan(root, record = {}) {
   const sourceRoot = path.resolve(record.worktree_path || root); const artifacts = Array.isArray(record.artifacts) ? record.artifacts : [];
+  const quarantineEntries = readQuarantineManifestEntries(sourceRoot);
   return {
     schema_version: 1, record_type: 'artifact-promotion-plan', session_id: record.session_id || null, task_id: record.task_id || null,
     created_at: new Date().toISOString(), source_root: sourceRoot,
-    artifacts: artifacts.map(artifact => ({ path: normalize(artifact.path), bytes: artifact.bytes ?? null, sha256: artifact.sha256 ?? null, ...classifyArtifact(artifact), approved: false }))
+    artifacts: artifacts.map(artifact => {
+      const file = normalize(artifact.path); const category = classifyLocalArtifactPath(file);
+      const quarantineRegistered = category === 'quarantine' && matchesQuarantineManifest(quarantineEntries, file, artifact.bytes, artifact.sha256);
+      return { path: file, bytes: artifact.bytes ?? null, sha256: artifact.sha256 ?? null, ...classifyArtifact({ ...artifact, quarantine_registered: quarantineRegistered }), ...(category === 'quarantine' ? { quarantine_registered: quarantineRegistered } : {}), approved: false };
+    })
   };
 }
 

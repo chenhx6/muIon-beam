@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 12,
+  "revision": 13,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "Checkpoint and integrate N3 from the allocated worktree; verify Gitee clone, Drive content and gated historical cleanup before N3 finalization.",
+  "next_action": "Checkpoint and integrate N3 after the ignored-directory cleanup fix; then complete Gitee clone, Drive readback, dashboard and four gated historical cleanups.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -869,6 +869,11 @@
           "failed": 0,
           "architecture_required_files": 150,
           "architecture_variables": 12
+        },
+        "directory_cleanup_regression": {
+          "file": "tests/session-concurrency.test.mjs",
+          "passed": 12,
+          "failed": 0
         }
       }
     }
@@ -877,7 +882,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Checkpoint and integrate N3 from the allocated worktree; verify Gitee clone, Drive content and gated historical cleanup before N3 finalization.",
+    "next_action": "Checkpoint and integrate N3 after the ignored-directory cleanup fix; then complete Gitee clone, Drive readback, dashboard and four gated historical cleanups.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -902,7 +907,9 @@
       "Complete project suite passes: node --test tests/*.mjs (216/216); architecture smoke validates 150 required files and 12 variables.",
       "N3 supersession gate verifies source SHA/path mappings, Drive hash manifest, clean Gitee clone, fixed host/process evidence, quarantine hashes and ignored-file dispositions; retries journal worktree removal and ref deletion.",
       "Integration finalizer creates a separate historical cleanup disposition receipt only after all four required old session receipts validate; the current N3 host cleanup remains a separate final check.",
-      "ProjectSupervisor now exposes a managed dashboard restart that refuses foreign or identity-unknown listeners; restart policy test passes."
+      "ProjectSupervisor now exposes a managed dashboard restart that refuses foreign or identity-unknown listeners; restart policy test passes.",
+      "Supersession cleanup now expands ignored directory entries into in-root regular files before SHA/path disposition, rejects links, and preserves nested Git cache trees; session-concurrency focused tests passed 12/12.",
+      "After the cleanup traversal fix, node --test tests/*.mjs passed 216/216; tests/architecture-smoke.mjs passed with 150 required files and 12 variables."
     ],
     "open_findings": [
       "N3 still requires a clean Gitee clone, latest Drive manifest and recovery-index cloud readback, deployed 4317 verification, and safe historical/session cleanup.",
@@ -966,10 +973,10 @@
     "started_at": "2026-09-30",
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2",
-    "latest_main_commit": "849241c1311a434d998f92975bb5cfa881cf5f6c",
-    "latest_main_remote_verified": "849241c1311a434d998f92975bb5cfa881cf5f6c"
+    "latest_main_commit": "35f0880ebaeaa288886389b88d479fcc50d1444c",
+    "latest_main_remote_verified": "35f0880ebaeaa288886389b88d479fcc50d1444c"
   },
-  "updated_at": "2026-09-30T08:05:51.980Z",
+  "updated_at": "2026-09-30T18:00:12.786Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"

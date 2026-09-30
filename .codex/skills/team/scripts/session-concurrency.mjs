@@ -457,6 +457,24 @@ function sameDirectory(left, right) {
   const a = fs.statSync(left); const b = fs.statSync(right);
   return a.isDirectory() && b.isDirectory() && a.dev === b.dev && a.ino === b.ino;
 }
+function ignoredWorktreeFiles(worktree, entries) {
+  const root = path.resolve(worktree); const rootReal = fs.realpathSync(root); const files = new Set();
+  const visit = value => {
+    const relative = String(value).replaceAll('\\', '/').replace(/\/+$/, '');
+    if (!relative || relative.startsWith('/') || /^[A-Za-z]:/.test(relative) || relative.split('/').some(part => !part || part === '.' || part === '..')) throw new Error(`invalid ignored worktree path: ${value}`);
+    const absolute = path.resolve(root, ...relative.split('/')); const within = path.relative(root, absolute);
+    if (within.startsWith('..') || path.isAbsolute(within)) throw new Error(`ignored worktree path escaped its root: ${value}`);
+    const stat = fs.lstatSync(absolute);
+    if (stat.isSymbolicLink()) throw new Error(`ignored worktree path is a link: ${relative}`);
+    const real = fs.realpathSync(absolute); const realWithin = path.relative(rootReal, real);
+    if (realWithin.startsWith('..') || path.isAbsolute(realWithin)) throw new Error(`ignored worktree path resolved outside its root: ${relative}`);
+    if (stat.isDirectory()) { for (const name of fs.readdirSync(absolute).sort()) visit(`${relative}/${name}`); return; }
+    if (!stat.isFile()) throw new Error(`ignored worktree path is not a regular file: ${relative}`);
+    files.add(relative);
+  };
+  for (const entry of entries) visit(entry);
+  return [...files].sort();
+}
 
 // Supersession is a separate gate from normal ancestor-only cleanup. Its receipt
 // must prove every changed path, Drive hash, runtime disposition and finished host.
@@ -554,7 +572,7 @@ export function cleanupSupersededSession({ root = process.cwd(), sessionId, rece
     }
     const rebuildable = Array.isArray(receipt.rebuildable_roots) ? receipt.rebuildable_roots : []; const rebuildableVerified = new Set();
     const preservationRoot = path.join(repoRoot, '_work/current/supersession-preserved', id);
-    const preserved = []; const ignoredPaths = runGit(worktree, ['ls-files','--others','--ignored','--exclude-standard','-z']).stdout.split('\0').filter(Boolean);
+    const preserved = []; const ignoredEntries = runGit(worktree, ['ls-files','--others','--ignored','--exclude-standard','--directory','-z']).stdout.split('\0').filter(Boolean); const ignoredPaths = ignoredWorktreeFiles(worktree, ignoredEntries);
     let ignoredBytes = 0;
     for (const relative of ignoredPaths) {
       const categoryPath = relative.replaceAll('\\','/'); const source = path.resolve(worktree, categoryPath);

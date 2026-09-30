@@ -564,17 +564,25 @@ export function cleanupSupersededSession({ root = process.cwd(), sessionId, rece
     const quarantineFile = resolveProjectFile(repoRoot, receipt.quarantine_readback_file, 'quarantine readback');
     const quarantineReadback = readJson(quarantineFile);
     if (quarantineReadback?.status !== 'verified' || !Array.isArray(quarantineReadback.files)) throw new Error('quarantine cloud readback is missing or failed');
+    if (Number.isInteger(receipt.quarantine_file_count) && receipt.quarantine_file_count !== quarantineReadback.files.length) throw new Error('quarantine Drive readback does not cover the fixed receipt count');
     const quarantineFiles = new Map(quarantineReadback.files.map(item => [relativeFile(item.path, 'quarantine path').toLowerCase(), item]));
     for (const item of quarantineFiles.values()) {
       const relative = relativeFile(item.path, 'quarantine path');
       if (!relative.startsWith('90_migration/quarantine/') || item.verified !== true) throw new Error(`quarantine readback has an unverified path: ${relative}`);
+    }
+    const ignoredEntries = runGit(worktree, ['ls-files','--others','--ignored','--exclude-standard','--directory','-z']).stdout.split('\0').filter(Boolean);
+    const ignoredPaths = ignoredWorktreeFiles(worktree, ignoredEntries);
+    const quarantinePaths = ignoredPaths.filter(item => item.startsWith('90_migration/quarantine/')).sort();
+    for (const relative of quarantinePaths) {
+      const item = quarantineFiles.get(relative.toLowerCase());
+      if (!item || item.verified !== true) throw new Error(`quarantine source is missing from the cloud readback: ${relative}`);
       const source = path.resolve(worktree, ...relative.split('/'));
       const actual = fileSha256IfRegular(source, worktree);
       if (actual.bytes !== item.bytes || actual.sha256 !== item.source_sha256 || actual.sha256 !== item.cloud_sha256) throw new Error(`quarantine source and cloud hashes differ: ${relative}`);
     }
     const rebuildable = Array.isArray(receipt.rebuildable_roots) ? receipt.rebuildable_roots : []; const rebuildableVerified = new Set();
     const preservationRoot = path.join(repoRoot, '_work/current/supersession-preserved', id);
-    const preserved = []; const ignoredEntries = runGit(worktree, ['ls-files','--others','--ignored','--exclude-standard','--directory','-z']).stdout.split('\0').filter(Boolean); const ignoredPaths = ignoredWorktreeFiles(worktree, ignoredEntries);
+    const preserved = [];
     let ignoredBytes = 0;
     for (const relative of ignoredPaths) {
       const categoryPath = relative.replaceAll('\\','/'); const source = path.resolve(worktree, categoryPath);
@@ -611,7 +619,6 @@ export function cleanupSupersededSession({ root = process.cwd(), sessionId, rece
         throw new Error(`ignored worktree path has no safe disposition: ${categoryPath}`);
       }
     }
-    const quarantinePaths = ignoredPaths.filter(item => item.replaceAll('\\','/').startsWith('90_migration/quarantine/')).map(item => item.replaceAll('\\','/')).sort();
     if (quarantinePaths.some(item => !quarantineFiles.has(item.toLowerCase()))) throw new Error('quarantine Drive receipt does not cover the exact ignored quarantine file set');
     const registration = runGit(repoRoot, ['worktree','list','--porcelain']).stdout.split(/\r?\n\r?\n/).find(block => {
       const entry = block.split(/\r?\n/).find(line => line.startsWith('worktree '));

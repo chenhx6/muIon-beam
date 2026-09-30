@@ -126,9 +126,11 @@ export function deliverPlanNode({ root, sessionId, nodeIds, nodeId, planFile, so
   const recordFile = nodeRecordPath(repoRoot, plan.plan.plan_id, ids, fixedSource); let record = readRecord(recordFile);
   if (!record) supersedeUnmergedAttempts(repoRoot, plan.plan.plan_id, ids, sessionId, fixedSource);
   let fileManifest = sourceFiles || record?.source_files || [];
-  if (!record && !fileManifest.length && session.status === 'submitted' && session.receipt_path) {
-    const receipt = readRecord(path.resolve(repoRoot, session.receipt_path));
-    if (!receipt || receipt.source_head !== fixedSource || receipt.source_branch !== session.branch) throw new Error('submitted receipt does not match the fixed source SHA');
+  if (!record && !fileManifest.length && ['active','submitted'].includes(session.status)) {
+    if (session.status === 'submitted') {
+      const receipt = session.receipt_path ? readRecord(path.resolve(repoRoot, session.receipt_path)) : null;
+      if (!receipt || receipt.source_head !== fixedSource || receipt.source_branch !== session.branch) throw new Error('submitted receipt does not match the fixed source SHA');
+    }
     const changed = runGit(worktree, ['diff', '--name-only', session.base_ref + '..' + fixedSource]).stdout.split(/\r?\n/).filter(Boolean);
     fileManifest = changed.map(file => { const absolute = path.resolve(worktree, file); const blob = runGit(worktree, ['rev-parse', fixedSource + ':' + file], { allowFailure: true }); return { path: file, sha256: fs.existsSync(absolute) ? sha256File(absolute) : null, blob_sha: blob.status === 0 ? blob.stdout.trim() : null }; });
   }

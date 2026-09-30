@@ -76,7 +76,7 @@ function main() {
       }
       return { status: 'no-task-owned-files', session_id: sessionId, pushed: false, excluded: plan.excluded };
     }
-    if (session?.status === 'integrated') throw new Error('integrated session must continue from main before checkpointing another node');
+    if (session && session.status !== 'active' && candidatePaths.length) throw new Error('session must be active to create a checkpoint; resume or continue it first');
     const hashes = digestFiles(worktree, candidatePaths);
     verifyArchitecture(worktree);
     const rechecked = classifyPaths(worktree, delivery, baseline, owned).candidates.filter(file => candidatePaths.includes(file));

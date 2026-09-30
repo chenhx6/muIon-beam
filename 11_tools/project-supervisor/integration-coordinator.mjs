@@ -40,15 +40,26 @@ function nodePath(root, value) {
   if (!relative || relative === '..' || relative.startsWith('../') || path.isAbsolute(relative) || !relative.startsWith('10_plans/')) throw new Error('plan file must stay under 10_plans');
   return { absolute, relative };
 }
-function nodeRecordPath(root, planId, nodeIds) {
+function nodeRecordPath(root, planId, nodeIds, sourceCommit) {
   const slug = value => String(value).toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '') || 'node';
-  return path.join(root, '_work/current/publish-outbox/node-delivery', slug(planId) + '-' + nodeIds.map(slug).sort().join('-') + '.json');
+  return path.join(root, '_work/current/publish-outbox/node-delivery', slug(planId) + '-' + nodeIds.map(slug).sort().join('-') + '-' + String(sourceCommit || 'unknown').slice(0, 12) + '.json');
 }
 function readRecord(file) { try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch (error) { if (error.code === 'ENOENT') return null; throw error; } }
 function writeRecord(file, value) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const temp = file + '.' + crypto.randomUUID() + '.tmp';
   fs.writeFileSync(temp, JSON.stringify(value, null, 2) + '\n'); fs.renameSync(temp, file);
+}
+function supersedeUnmergedAttempts(root, planId, nodeIds, sessionId, sourceCommit) {
+  const sample = nodeRecordPath(root, planId, nodeIds, sourceCommit); const prefix = path.basename(sample).slice(0, -17);
+  const legacyName = prefix.replace(/-$/, '') + '.json';
+  const directory = path.dirname(sample); if (!fs.existsSync(directory)) return;
+  for (const name of fs.readdirSync(directory).filter(value => (value === legacyName || value.startsWith(prefix)) && value.endsWith('.json'))) {
+    const file = path.join(directory, name); const attempt = readRecord(file);
+    if (!attempt || attempt.session_id !== sessionId || attempt.source_commit === sourceCommit || attempt.status === 'delivered' || attempt.status === 'superseded-source') continue;
+    if (attempt.integration_head || !['pending-integration','blocked-submit','blocked-ownership'].includes(attempt.status)) throw new Error('previous node source is already integrated or published; finish that outbox before changing source SHA');
+    attempt.status = 'superseded-source'; attempt.superseded_by = sourceCommit; attempt.superseded_at = new Date().toISOString(); attempt.supersede_reason = 'fresh checkpoint after explicit same-worktree resume'; writeRecord(file, attempt);
+  }
 }
 function isAncestor(root, ancestor, descendant) { return runGit(root, ['merge-base', '--is-ancestor', ancestor, descendant], { allowFailure: true }).status === 0; }
 function mainCheckout(root, publication) {
@@ -109,19 +120,22 @@ export function deliverPlanNode({ root, sessionId, nodeIds, nodeId, planFile, so
   const repoRoot = canonicalRoot(path.resolve(root)); const ids = [...new Set((nodeIds || (nodeId ? [nodeId] : [])).map(String))].sort();
   if (!ids.length) throw new Error('node delivery requires at least one plan node');
   const session = readSession(repoRoot, sessionId); const worktree = session.worktree_path;
-  const plan = planAndNodes(worktree, planFile, ids); const fixedSource = sourceHead || runGit(worktree, ['rev-parse', 'HEAD']).stdout.trim();
-  const recordFile = nodeRecordPath(repoRoot, plan.plan.plan_id, ids); let record = readRecord(recordFile);
+  const plan = planAndNodes(worktree, planFile, ids);
+  if (plan.nodes.every(node => node.status === 'delivered')) return { status: 'node-delivered-idempotent', outbox: null };
+  const fixedSource = sourceHead || runGit(worktree, ['rev-parse', 'HEAD']).stdout.trim();
+  const recordFile = nodeRecordPath(repoRoot, plan.plan.plan_id, ids, fixedSource); let record = readRecord(recordFile);
+  if (!record) supersedeUnmergedAttempts(repoRoot, plan.plan.plan_id, ids, sessionId, fixedSource);
   let fileManifest = sourceFiles || record?.source_files || [];
   if (!record && !fileManifest.length && session.status === 'submitted' && session.receipt_path) {
     const receipt = readRecord(path.resolve(repoRoot, session.receipt_path));
     if (!receipt || receipt.source_head !== fixedSource || receipt.source_branch !== session.branch) throw new Error('submitted receipt does not match the fixed source SHA');
     const changed = runGit(worktree, ['diff', '--name-only', session.base_ref + '..' + fixedSource]).stdout.split(/\r?\n/).filter(Boolean);
-    fileManifest = changed.map(file => { const absolute = path.resolve(worktree, file); return { path: file, sha256: fs.existsSync(absolute) ? sha256File(absolute) : null }; });
+    fileManifest = changed.map(file => { const absolute = path.resolve(worktree, file); const blob = runGit(worktree, ['rev-parse', fixedSource + ':' + file], { allowFailure: true }); return { path: file, sha256: fs.existsSync(absolute) ? sha256File(absolute) : null, blob_sha: blob.status === 0 ? blob.stdout.trim() : null }; });
   }
   const canonicalFile = value => String(value || '').replaceAll('\\', '/').toLowerCase();
   if (record && (record.plan_id !== plan.plan.plan_id || JSON.stringify(record.node_ids) !== JSON.stringify(ids) || record.source_commit !== fixedSource || record.session_id !== sessionId || (sourceFiles && JSON.stringify(sourceFiles) !== JSON.stringify(record.source_files)))) throw new Error('delivery retry does not match its fixed plan, node, source SHA, file list and session');
   if (!record && !fileManifest.length) throw new Error('first node delivery requires the exact checkpoint path/hash list');
-  for (const item of fileManifest) { const rel = String(item.path || '').replaceAll('\\', '/'); const abs = path.resolve(worktree, rel); const within = path.relative(worktree, abs); if (!rel || rel.startsWith('/') || path.isAbsolute(within) || within === '..' || within.startsWith('..' + path.sep)) throw new Error('checkpoint manifest path escapes the worker: ' + rel); const actual = fs.existsSync(abs) ? sha256File(abs) : null; if (actual !== item.sha256) throw new Error('checkpoint file hash changed: ' + rel); }
+  for (const item of fileManifest) { const rel = String(item.path || '').replaceAll('\\', '/'); const abs = path.resolve(worktree, rel); const within = path.relative(worktree, abs); if (!rel || rel.startsWith('/') || path.isAbsolute(within) || within === '..' || within.startsWith('..' + path.sep)) throw new Error('checkpoint manifest path escapes the worker: ' + rel); const actual = fs.existsSync(abs) ? sha256File(abs) : null; const blob = runGit(worktree, ['rev-parse', fixedSource + ':' + item.path], { allowFailure: true }); const blobSha = blob.status === 0 ? blob.stdout.trim() : null; if (actual !== item.sha256 || blobSha !== item.blob_sha) throw new Error('checkpoint file hash or Git blob changed: ' + rel); }
   if (session.status === 'submitted' && session.receipt_path) {
     const receipt = readRecord(path.resolve(repoRoot, session.receipt_path));
     const expectedPaths = fileManifest.map(item => canonicalFile(item.path)).sort(); const submittedPaths = [...(receipt?.changed_paths || [])].map(canonicalFile).sort();
@@ -143,7 +157,7 @@ export function deliverPlanNode({ root, sessionId, nodeIds, nodeId, planFile, so
     if (currentSession.status === 'submitted') {
       const receipt = readRecord(path.resolve(repoRoot, currentSession.receipt_path));
       if (!receipt || receipt.source_head !== fixedSource) throw new Error('submitted receipt does not match the fixed worker source SHA');
-      const expectedPaths = record.source_files.map(item => item.path).sort(); const submittedPaths = [...(receipt.changed_paths || [])].sort();
+      const expectedPaths = record.source_files.map(item => canonicalFile(item.path)).sort(); const submittedPaths = [...(receipt.changed_paths || [])].map(canonicalFile).sort();
       if (JSON.stringify(expectedPaths) !== JSON.stringify(submittedPaths)) throw new Error('submitted receipt paths differ from the node delivery manifest');
       record.submission_receipt = { path: currentSession.receipt_path, source_head: receipt.source_head, changed_paths: submittedPaths };
       record.updated_at = new Date().toISOString(); writeRecord(recordFile, record);
@@ -158,7 +172,7 @@ export function deliverPlanNode({ root, sessionId, nodeIds, nodeId, planFile, so
     }
     const mainHead = runGit(repoRoot, ['rev-parse', 'HEAD']).stdout.trim();
     if (!isAncestor(repoRoot, fixedSource, mainHead)) throw new Error('worker source SHA is not an ancestor of integrated main');
-    for (const item of record.source_files) { const target = path.resolve(repoRoot, item.path); const actual = fs.existsSync(target) ? sha256File(target) : null; if (actual !== item.sha256) throw new Error('integrated main file differs from the checkpoint manifest: ' + item.path); }
+    for (const item of record.source_files) { const sourceBlob = runGit(worktree, ['rev-parse', fixedSource + ':' + item.path], { allowFailure: true }); const mainBlob = runGit(repoRoot, ['rev-parse', record.integration_head + ':' + item.path], { allowFailure: true }); const sourceSha = sourceBlob.status === 0 ? sourceBlob.stdout.trim() : null; const mainSha = mainBlob.status === 0 ? mainBlob.stdout.trim() : null; if (sourceSha !== item.blob_sha || mainSha !== item.blob_sha) throw new Error('integrated main Git blob differs from the checkpoint manifest: ' + item.path); }
     if (!record.tested_head || record.tested_head !== mainHead) {
       const validation = runNodeValidation(repoRoot, plan.nodes.find(node => node.id === ids.at(-1)));
       record.validation = validation; record.tested_head = mainHead; record.updated_at = new Date().toISOString();
@@ -203,7 +217,9 @@ export function finalizePlanNodeDelivery({ root, sessionId, nodeIds, nodeId, pla
   const repoRoot = canonicalRoot(path.resolve(root)); const ids = [...new Set((nodeIds || (nodeId ? [nodeId] : [])).map(String))].sort();
   if (!ids.length) throw new Error('node finalization requires at least one plan node');
   const session = readSession(repoRoot, sessionId); const plan = planAndNodes(session.worktree_path, planFile, ids);
-  const recordFile = nodeRecordPath(repoRoot, plan.plan.plan_id, ids); const record = readRecord(recordFile);
+  if (plan.nodes.every(node => node.status === 'delivered')) return { status: 'node-delivered-idempotent', outbox: null };
+  const sourceCommit = cloudReadback?.source_commit; if (!sourceCommit) throw new Error('cloud readback must carry the fixed source commit');
+  const recordFile = nodeRecordPath(repoRoot, plan.plan.plan_id, ids, sourceCommit); const record = readRecord(recordFile);
   if (!record || record.session_id !== sessionId) throw new Error('plan node delivery outbox is missing');
   if (record.status === 'delivered') return { status: 'node-delivered-idempotent', outbox: recordFile, delivery_commit: record.delivery_commit, receipt_commit: record.plan_receipt_commit, tags: record.tags_verified };
   if (!['awaiting-cloud-readback','pending-tag-receipt','pending-plan-receipt-push','pending-drive-receipt'].includes(record.status)) throw new Error('node is not ready for tag finalization: ' + record.status);

@@ -139,7 +139,7 @@ test('two isolated plan nodes integrate, test, push and mirror without creating 
   assert.equal(git('rev-parse', 'HEAD'), first.delivery_commit);
   const noRemoteTags = spawnSync('git', ['--git-dir', remote, 'for-each-ref', '--format=%(refname)', 'refs/tags'], { encoding: 'utf8', windowsHide: true });
   assert.equal(noRemoteTags.stdout.trim(), '');
-  const readback = record => ({ status: 'verified', delivery_commit: record.delivery_commit, manifest_sha256: record.drive_manifest_sha256, plan_sha256: record.drive_plan_sha256, remote_head: record.remote_head, drive_root: record.drive_root });
+  const readback = record => ({ status: 'verified', source_commit: record.source_commit, delivery_commit: record.delivery_commit, manifest_sha256: record.drive_manifest_sha256, plan_sha256: record.drive_plan_sha256, remote_head: record.remote_head, drive_root: record.drive_root });
   const tagCalls = []; let failTagOnce = true;
   const testTagPublisher = value => { if (failTagOnce) { failTagOnce = false; throw new Error('simulated tag push failure'); } tagCalls.push(value); return { status: 'test-only', tag: value.tag, commit: value.commit, remote_tag: null }; };
   const firstRecordPath = first.outbox; const firstRecord = JSON.parse(fs.readFileSync(firstRecordPath, 'utf8'));

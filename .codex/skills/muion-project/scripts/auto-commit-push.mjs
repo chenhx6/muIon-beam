@@ -88,7 +88,7 @@ function main() {
     if (session?.mode === 'worktree') {
       if (nodeRequest) {
         const sourcePaths = runGit(worktree, ['diff', '--name-only', `${session.base_ref}..HEAD`]).stdout.split(/\r?\n/).filter(Boolean);
-        const sourceFiles = digestFiles(worktree, sourcePaths);
+        const sourceFiles = digestFiles(worktree, sourcePaths).map(item => { const blob = runGit(worktree, ['rev-parse', commit + ':' + item.path], { allowFailure: true }); return { ...item, blob_sha: blob.status === 0 ? blob.stdout.trim() : null }; });
         return nodeDeliveryResult(deliverPlanNode({ ...nodeRequest, sourceHead: commit, sourceFiles }));
       }
       return { status: 'session-checkpoint-created', session_id: sessionId, branch: session.branch, worktree, commit, candidates: candidatePaths, pushed: false };

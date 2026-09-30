@@ -163,6 +163,12 @@ test('supersession cleanup verifies fixed source, Drive hashes and host completi
     git('-C', session.worktree_path, 'add', 'a.txt'); git('-C', session.worktree_path, 'commit', '-m', 'worker replacement');
     const sourceCommit = spawnSync('git', ['-C', session.worktree_path, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout.trim();
     const retainedPath = path.join(session.worktree_path, '_work/private.txt'); fs.mkdirSync(path.dirname(retainedPath), { recursive: true }); fs.writeFileSync(retainedPath, 'keep this runtime file');
+    const nestedRepo = path.join(session.worktree_path, '_work/cache/nested-repository'); fs.mkdirSync(nestedRepo, { recursive: true });
+    execFileSync('git', ['init', '--initial-branch=main', nestedRepo], { stdio: 'ignore' });
+    fs.writeFileSync(path.join(nestedRepo, 'payload.txt'), 'keep this nested repository');
+    execFileSync('git', ['-C', nestedRepo, 'add', 'payload.txt'], { stdio: 'ignore' });
+    execFileSync('git', ['-C', nestedRepo, '-c', 'user.name=test', '-c', 'user.email=test@example.invalid', 'commit', '-m', 'nested cache'], { stdio: 'ignore' });
+    const nestedHead = spawnSync('git', ['-C', nestedRepo, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout.trim();
     const commonDir = spawnSync('git', ['-C', root, 'rev-parse', '--git-common-dir'], { encoding: 'utf8' }).stdout.trim();
     const exclude = path.resolve(root, commonDir, 'info/exclude'); fs.mkdirSync(path.dirname(exclude), { recursive: true }); fs.appendFileSync(exclude, '\nignored/\n');
     const unknownPath = path.join(session.worktree_path, 'ignored/mystery.txt'); fs.mkdirSync(path.dirname(unknownPath), { recursive: true }); fs.writeFileSync(unknownPath, 'must block cleanup');
@@ -228,6 +234,9 @@ test('supersession cleanup verifies fixed source, Drive hashes and host completi
     assert.equal(result.cleanup_completed, true);
     assert.equal(fs.existsSync(session.worktree_path), false);
     assert.equal(fs.readFileSync(path.join(root, '_work/current/supersession-preserved/superseded/legacy-runtime/private.txt'), 'utf8'), 'keep this runtime file');
+    const preservedRepo = path.join(root, '_work/current/supersession-preserved/superseded/legacy-runtime/cache/nested-repository');
+    assert.equal(fs.readFileSync(path.join(preservedRepo, 'payload.txt'), 'utf8'), 'keep this nested repository');
+    assert.equal(spawnSync('git', ['-C', preservedRepo, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout.trim(), nestedHead);
     assert.notEqual(spawnSync('git', ['-C', root, 'show-ref', '--verify', '--quiet', 'refs/heads/' + session.branch], { encoding: 'utf8' }).status, 0);
     assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root, '_work/current/publish-outbox/supersession-cleanup/superseded.json'), 'utf8')).status, 'branch-removed');
   } finally { cleanup(root, [session]); }

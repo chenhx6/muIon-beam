@@ -54,11 +54,30 @@ function supersedeUnmergedAttempts(root, planId, nodeIds, sessionId, sourceCommi
   const sample = nodeRecordPath(root, planId, nodeIds, sourceCommit); const prefix = path.basename(sample).slice(0, -17);
   const legacyName = prefix.replace(/-$/, '') + '.json';
   const directory = path.dirname(sample); if (!fs.existsSync(directory)) return;
+  const publication = JSON.parse(fs.readFileSync(path.join(root, '00_project/config/publish-policy.json'), 'utf8'));
   for (const name of fs.readdirSync(directory).filter(value => (value === legacyName || value.startsWith(prefix)) && value.endsWith('.json'))) {
     const file = path.join(directory, name); const attempt = readRecord(file);
     if (!attempt || attempt.session_id !== sessionId || attempt.source_commit === sourceCommit || attempt.status === 'delivered' || attempt.status === 'superseded-source') continue;
-    if (attempt.integration_head || !['pending-integration','blocked-submit','blocked-ownership'].includes(attempt.status)) throw new Error('previous node source is already integrated or published; finish that outbox before changing source SHA');
-    attempt.status = 'superseded-source'; attempt.superseded_by = sourceCommit; attempt.superseded_at = new Date().toISOString(); attempt.supersede_reason = 'fresh checkpoint after explicit same-worktree resume'; writeRecord(file, attempt);
+    const tags = Object.values(attempt.tags || {}).filter(value => typeof value === 'string' && value);
+    const integratedPending = attempt.status === 'awaiting-cloud-readback' && attempt.integration_head && !attempt.plan_receipt_commit
+      && !Object.keys(attempt.tags_verified || {}).length && tags.length === nodeIds.length
+      && Array.isArray(attempt.node_ids) && JSON.stringify([...attempt.node_ids].sort()) === JSON.stringify([...nodeIds].sort())
+      && isAncestor(root, attempt.source_commit, sourceCommit) && isAncestor(root, attempt.integration_head, sourceCommit);
+    if (attempt.integration_head && !integratedPending) throw new Error('previous node source is already integrated or published; finish that outbox before changing source SHA');
+    if (!integratedPending && !['pending-integration','blocked-submit','blocked-ownership'].includes(attempt.status)) throw new Error('previous node source is already integrated or published; finish that outbox before changing source SHA');
+    if (integratedPending) {
+      const remoteHead = runGit(root, ['ls-remote', publication.remote, 'refs/heads/' + publication.branch], { allowFailure: true });
+      const remoteCommit = remoteHead.stdout.trim().split(/\s+/)[0];
+      if (remoteHead.status !== 0 || !remoteCommit || !isAncestor(root, attempt.integration_head, remoteCommit)) throw new Error('cannot supersede a node attempt until its integrated commit is verified on remote main');
+      const remoteTags = runGit(root, ['ls-remote', publication.remote, ...tags.map(tag => 'refs/tags/' + tag)], { allowFailure: true });
+      if (remoteTags.status !== 0) throw new Error('cannot verify the prior node tag before superseding its source');
+      if (remoteTags.stdout.trim()) throw new Error('a prior node tag already exists; finish its outbox before changing source SHA');
+    }
+    attempt.status = 'superseded-source'; attempt.superseded_by = sourceCommit; attempt.superseded_at = new Date().toISOString();
+    attempt.supersede_reason = integratedPending
+      ? 'same plan node source was revised after integration but before cloud readback, tag publication or plan receipt; replacement source descends from the integrated main commit'
+      : 'fresh checkpoint after explicit same-worktree resume';
+    writeRecord(file, attempt);
   }
 }
 function isAncestor(root, ancestor, descendant) { return runGit(root, ['merge-base', '--is-ancestor', ancestor, descendant], { allowFailure: true }).status === 0; }

@@ -2,52 +2,74 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseYaml } from '../../.codex/skills/muion-project/scripts/yaml-lite.mjs';
-import { readGoalCheckpoint } from './goal-adapter.mjs';
-import { buildContinuation } from './continuation-adapter.mjs';
-import { evaluateConvergence } from './convergence-guard.mjs';
-import { summarizeHealth } from './health-adapter.mjs';
 import { aggregateProgress } from '../project-supervisor/progress-aggregator.mjs';
 import { isDisabled, readControl } from '../../.codex/skills/farmer/farmer-control.mjs';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const stateDir = path.join(ROOT,'07_research_system/control/research-state');
-const read = (file, fallback) => { try { const t=fs.readFileSync(file,'utf8').replace(/^\uFEFF/,'').trim(); if(!t)return fallback; if(file.endsWith('.jsonl')) return t.split(/\r?\n/).filter(Boolean).map(x=>JSON.parse(x)); if(file.endsWith('.json') || t.startsWith('{') || t.startsWith('[')) return JSON.parse(t); return parseYaml(t); } catch(e){ throw new Error(`${path.relative(ROOT,file)}: ${e.message}`); } };
-function files(dir, suffix){ try{return fs.readdirSync(dir).filter(x=>x.endsWith(suffix)).map(x=>path.join(dir,x));}catch{return [];} }
-export function compareResearchStateToSession(state = {}, supervision = {}, now = Date.now()) {
- const current = supervision.current_session || { status: 'unregistered' }; const task = state.current_task || null; const updated = Date.parse(state.updated_at || ''); const researchStale = !Number.isFinite(updated) || now - updated > 5 * 60 * 1000;
- if (current.status === 'unregistered') return { status: 'unregistered', label: '当前 Codex session 未登记', session_task_id: null, research_task_id: task?.task_id || null, research_state_stale: researchStale, session_stale: true, next_action: state.next_action || null };
- if (current.source === 'codex-thread' && !current.registry_session_id) return { status: 'unregistered', label: '当前 Codex session 尚未登记项目 session', session_task_id: null, research_task_id: task?.task_id || null, research_state_stale: researchStale, session_stale: Boolean(current.stale), next_action: state.next_action || null };
- const taskMatch = Boolean(current.task_id && task?.task_id && current.task_id === task.task_id); const stale = Boolean(current.stale || researchStale);
- return { status: stale ? 'stale' : taskMatch ? 'matched' : task?.task_id && current.task_id ? 'mismatch' : 'unknown', label: stale ? '状态过期' : taskMatch ? 'session 与 research-state 已匹配' : 'session 与 research-state 任务不一致', session_task_id: current.task_id || null, research_task_id: task?.task_id || null, research_state_stale: researchStale, session_stale: Boolean(current.stale), next_action: state.next_action || null };
+const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(MODULE_DIR, '../..');
+const json = (file, fallback = null) => {
+  try { return JSON.parse(fs.readFileSync(file, 'utf8').replace(/^\uFEFF/, '')); }
+  catch (error) { if (error.code === 'ENOENT') return fallback; throw error; }
+};
+const html = fs.readFileSync(path.join(MODULE_DIR, 'index.html'), 'utf8');
+
+function serviceStatus() {
+  const saved = json(path.join(ROOT, '_work/current/project-supervisor/processes.json'), {});
+  const services = { ...(saved?.services || {}) };
+  if (isDisabled(ROOT)) services.farmer = { status: 'disabled', detail: readControl(ROOT).reason || 'farmer disabled by control switch' };
+  services.dashboard = {
+    status: 'healthy',
+    pid: process.pid,
+    url: 'http://127.0.0.1:' + (process.env.RESEARCH_DASHBOARD_PORT || 4317) + '/api/health',
+  };
+  return services;
 }
-function snapshot(){ const warnings=[]; let state={}; try{state=read(path.join(stateDir,'state.yaml'),{});}catch(e){warnings.push(e.message)}
- let problems=[]; try{problems=read(path.join(stateDir,'open-problems.yaml'),[]);}catch(e){warnings.push(e.message)}
- let events=[]; try{events=read(path.join(stateDir,'events.jsonl'),[]);}catch(e){warnings.push(e.message)}
- const workflows=[]; for(const base of [path.join(stateDir,'workflows'),path.join(ROOT,'_work/current/workflows')]) for(const f of files(base,'.json')) try{workflows.push({...read(f,{}),__file:f});}catch(e){warnings.push(e.message)}
- const canonical=workflows.filter(w=>w.__file.includes(`${path.sep}07_research_system${path.sep}`)); const wf=(canonical[0]||workflows[0]||null); const stages=wf?.stages||wf?.workflow?.stages||[]; const current=wf?.current||wf?.current_stage||wf?.workflow?.current||null; const status=wf?.status||wf?.workflow?.status||null;
- const completed=[...(state.completed_stages||[]),...stages.filter(s=>['completed','done','succeeded'].includes(String(s.status).toLowerCase())).map(s=>s.id||s.name)].filter(Boolean); const pending=stages.filter(s=>!completed.includes(s.id||s.name)).map(s=>s.id||s.name); const blocked=stages.filter(s=>String(s.status).toLowerCase()==='blocked').map(s=>s.id||s.name); if(state.blocked_reason) blocked.push(state.blocked_reason); const idx=stages.findIndex(s=>(s.id||s.name)===current); const progress=wf&&stages.length ? {value:Math.max(0,idx)/stages.length,basis:'active workflow stage index'} : {value:null,basis:'no active workflow checkpoint'};
- let agents=[]; try{agents=files(path.join(ROOT,'00_project/traceability/agent-runs'),'.json').map(f=>read(f,{}));}catch(e){warnings.push(e.message)}; let farmer=null; try{farmer=read(path.join(ROOT,'_work/current/farmer/state.json'),null);}catch(e){warnings.push(e.message)}; if(farmer&&typeof farmer==='object') for(const [id,a] of Object.entries(farmer)) agents.push({source:'farmer',session_id:id,...a}); const counts={total:agents.length,running:0,done:0,failed:0}; for(const a of agents){const s=String(a.status||a.lifecycle_state||a.lifecycle||'').toLowerCase(); if(['running','turn_started'].includes(s))counts.running++; else if(['done','succeeded','success','complete'].includes(s))counts.done++; else if(['failed','error','queue_stuck','manual-attention-required'].includes(s))counts.failed++;}
- const goal=state.current_goal||wf?.goal||wf?.workflow?.goal||null; const checkpoint=readGoalCheckpoint(ROOT,wf,state); warnings.push(...checkpoint.warnings); const continuation=buildContinuation(ROOT,state,wf); warnings.push(...continuation.warnings); const convergence=evaluateConvergence({criteriaMet:state.task_status==='SUCCESS'||state.task_status==='COMPLETED',blocked:state.task_status==='BLOCKED'||blocked.length>0}); const health=summarizeHealth(agents); const times=[state.updated_at,wf?.updated_at,wf?.updatedAt,...events.map(e=>e.occurred_at)].filter(Boolean).sort(); return {generated_at:new Date().toISOString(),research_state:state,workflow:wf?{...wf,__file:undefined}:null,display:{goal,checkpoint,continuation,convergence,health,current:current||{phase:state.current_phase,task:state.current_task,question:state.current_question},completed:[...new Set(completed)],pending,blocked,next_action:wf?.next_action||state.next_action||null,open_problems:problems,progress,last_update:times.at(-1)||null},agents:{available:agents.length>0,...counts,items:agents},warnings}; }
-const html=fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)),'index.html'),'utf8');
-export function handler(req,res){
- if(req.method!=='GET'){res.writeHead(405);return res.end('Method Not Allowed');}
- if(req.url==='/'){res.writeHead(200,{'content-type':'text/html; charset=utf-8'});return res.end(html);}
- if(req.url==='/supervision.js'){res.writeHead(200,{'content-type':'text/javascript; charset=utf-8'});return res.end(fs.readFileSync(path.join(ROOT,'11_tools/research-dashboard/supervision.js'),'utf8'));}
- if(req.url==='/api/health'){res.writeHead(200,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});return res.end(JSON.stringify({service:'muion-research-dashboard',project_root:ROOT,pid:process.pid}));}
- if(req.url==='/api/status'){
-  try {
-   const value=snapshot();
-   const file=path.join(ROOT,'_work/current/project-supervisor/processes.json');
-   value.system_services=fs.existsSync(file)?read(file,null):null;
-   value.system_services={...(value.system_services||{}),services:{...(value.system_services?.services||{}),dashboard:{status:'healthy',pid:process.pid,url:`http://127.0.0.1:${process.env.RESEARCH_DASHBOARD_PORT||4317}/api/health`}}};
-   if (isDisabled(ROOT)) value.system_services={...(value.system_services||{}),services:{...(value.system_services?.services||{}),farmer:{status:'disabled',detail:readControl(ROOT).reason||'farmer disabled by control switch'}}};
-   value.supervision=aggregateProgress(ROOT);
-   value.display.consistency=compareResearchStateToSession(value.research_state, value.supervision);
-   res.writeHead(200,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});return res.end(JSON.stringify(value));
-  } catch(error){res.writeHead(503,{'content-type':'application/json'});return res.end(JSON.stringify({error:error.message}));}
- }
- res.writeHead(404);res.end('Not Found');
+
+export function handler(req, res) {
+  if (req.method !== 'GET') { res.writeHead(405); return res.end('Method Not Allowed'); }
+  if (req.url === '/') {
+    res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' });
+    return res.end(html);
+  }
+  if (req.url === '/supervision.js') {
+    res.writeHead(200, { 'content-type': 'text/javascript; charset=utf-8', 'cache-control': 'no-store' });
+    return res.end(fs.readFileSync(path.join(MODULE_DIR, 'supervision.js'), 'utf8'));
+  }
+  if (req.url === '/api/health') {
+    res.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' });
+    return res.end(JSON.stringify({ service: 'muion-research-dashboard', project_root: ROOT, pid: process.pid }));
+  }
+  if (req.url === '/api/status') {
+    try {
+      const supervision = aggregateProgress(ROOT);
+      const value = {
+        generated_at: supervision.generated_at,
+        supervision,
+        system_services: { services: serviceStatus() },
+      };
+      res.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' });
+      return res.end(JSON.stringify(value));
+    } catch (error) {
+      res.writeHead(503, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' });
+      return res.end(JSON.stringify({ error: error.message }));
+    }
+  }
+  res.writeHead(404);
+  res.end('Not Found');
 }
-export function start({port=Number(process.env.RESEARCH_DASHBOARD_PORT||4317),host='127.0.0.1'}={}){const s=http.createServer(handler);return new Promise((resolve,reject)=>{s.once('error',reject);s.listen(port,host,()=>{console.log(`research-dashboard listening on http://${host}:${s.address().port}`);resolve(s);});});}
-if(process.argv[1]===fileURLToPath(import.meta.url)) start().catch(error=>{console.error(error.message);process.exitCode=1;});
+
+export function start({ port = Number(process.env.RESEARCH_DASHBOARD_PORT || 4317), host = '127.0.0.1' } = {}) {
+  const server = http.createServer(handler);
+  return new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(port, host, () => {
+      console.log('research-dashboard listening on http://' + host + ':' + server.address().port);
+      resolve(server);
+    });
+  });
+}
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) start().catch(error => {
+  console.error(error.message);
+  process.exitCode = 1;
+});

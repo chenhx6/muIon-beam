@@ -1,66 +1,161 @@
-import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import crypto from 'node:crypto'; import {createRequire} from 'node:module'; import {spawnSync} from 'node:child_process'; import {handler} from '../11_tools/research-dashboard/server.mjs';
-import {validateEvidenceNote} from '../11_tools/research-dashboard/evidence-notes.mjs';
-import {inspectPhysicsContract} from '../11_tools/research-dashboard/physics-gate.mjs';
-import {reviewClosure} from '../11_tools/research-dashboard/review-closure.mjs';
-import {compareCapability} from '../11_tools/research-dashboard/capability-matrix.mjs';
-import {normalizeLedger} from '../11_tools/research-dashboard/ledger-normalizer.mjs';
-import {isDashboardSession, readCodexSessions, withDisplayNames} from '../11_tools/project-supervisor/progress-aggregator.mjs';
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import { handler } from '../11_tools/research-dashboard/server.mjs';
+import { validateEvidenceNote } from '../11_tools/research-dashboard/evidence-notes.mjs';
+import { inspectPhysicsContract } from '../11_tools/research-dashboard/physics-gate.mjs';
+import { reviewClosure } from '../11_tools/research-dashboard/review-closure.mjs';
+import { compareCapability } from '../11_tools/research-dashboard/capability-matrix.mjs';
+import { normalizeLedger } from '../11_tools/research-dashboard/ledger-normalizer.mjs';
+import { withDisplayNames } from '../11_tools/project-supervisor/progress-aggregator.mjs';
+
 function removeTempTree(target) {
- try { fs.rmSync(target,{recursive:true,force:true,maxRetries:100,retryDelay:100}); }
- catch (error) {
-  const cleanup=spawnSync(process.execPath,['-e',"require('node:fs').rmSync(process.env.MUION_TEST_TEMP,{recursive:true,force:true})"],{env:{...process.env,MUION_TEST_TEMP:target},encoding:'utf8'});
-  if (cleanup.status!==0 || fs.existsSync(target)) throw error;
- }
+  try {
+    fs.rmSync(target, { recursive: true, force: true, maxRetries: 100, retryDelay: 100 });
+  } catch (error) {
+    const cleanup = spawnSync(process.execPath, ['-e', "require('node:fs').rmSync(process.env.MUION_TEST_TEMP,{recursive:true,force:true})"], {
+      env: { ...process.env, MUION_TEST_TEMP: target }, encoding: 'utf8',
+    });
+    if (cleanup.status !== 0 || fs.existsSync(target)) throw error;
+  }
 }
-function request(method,url){return new Promise((resolve,reject)=>{const req={method,url};const chunks=[];const res={writeHead:(s,h)=>{res.statusCode=s;res.headers=h},end:b=>resolve({status:res.statusCode,body:String(b||''),headers:res.headers})};try{handler(req,res)}catch(e){reject(e)}})}
-test('dashboard routes are read-only',async()=>{assert.equal((await request('GET','/')).status,200);const api=await request('GET','/api/status');assert.equal(api.status,200);const data=JSON.parse(api.body);assert.ok(data.display);assert.ok(Array.isArray(data.warnings));for(const m of ['POST','PUT','DELETE']) assert.equal((await request(m,'/api/status')).status,405);assert.equal((await request('GET','/bad')).status,404)});
-test('dashboard exposes the farmer emergency pause instead of stale healthy process state',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);const control=fs.existsSync(path.join(process.cwd(),'_work/current/farmer/control.json'))?JSON.parse(fs.readFileSync(path.join(process.cwd(),'_work/current/farmer/control.json'),'utf8')):null;if(control?.disabled) assert.equal(data.system_services?.services?.farmer?.status,'disabled');});
-test('dashboard status uses its live process identity instead of stale supervisor PID',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);assert.equal(data.system_services?.services?.dashboard?.pid,process.pid);assert.equal(data.system_services?.services?.dashboard?.status,'healthy');});
-test('no workflow gives null progress when applicable',async()=>{const d=JSON.parse((await request('GET','/api/status')).body);if(!d.workflow) assert.equal(d.display.progress.value,null)});
-test('goal checkpoint adapter is read-only and optional',async()=>{const d=JSON.parse((await request('GET','/api/status')).body);assert.ok(d.display.checkpoint);assert.ok(Array.isArray(d.display.checkpoint.goals));});
-test('continuation summary is read-only and evidence based',async()=>{const d=JSON.parse((await request('GET','/api/status')).body);assert.ok(d.display.continuation);assert.ok(Array.isArray(d.display.continuation.source));assert.ok('next_action' in d.display.continuation);});
-test('convergence guard remains advisory and does not complete state',async()=>{const d=JSON.parse((await request('GET','/api/status')).body);assert.ok(['continue','stop'].includes(d.display.convergence.decision));assert.equal(typeof d.display.convergence.complete,'boolean');});
-test('repeated polling leaves canonical state unchanged',async()=>{const files=['07_research_system/control/research-state/state.yaml','07_research_system/control/research-state/events.jsonl','07_research_system/control/research-state/open-problems.yaml'];const before=files.map(f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex'));await request('GET','/api/status');await request('GET','/api/status');const after=files.map(f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex'));assert.deepEqual(after,before);});
-test('evidence notes enforce conclusion levels without becoming state',()=>{assert.equal(validateEvidenceNote({facts:[],evidence:[],conclusion:[],conclusion_level:'confirmed',risks:[],next_steps:[]}).valid,true);assert.equal(validateEvidenceNote({facts:[],evidence:[],conclusion:[],conclusion_level:'made-up',risks:[],next_steps:[]}).valid,false);});
-test('health summary is advisory and records stale activity',async()=>{const d=JSON.parse((await request('GET','/api/status')).body);assert.ok(Array.isArray(d.display.health));});
-test('physics gate is advisory and contract-preserving',()=>{const r=inspectPhysicsContract({objective:'x',initial_conditions:{},boundary_conditions:{},validation_requirements:['v']});assert.equal(r.status,'ready-for-module-validation');assert.equal(r.preserves_contract,true);});
-test('review closure requires evidence and rerun validation',()=>{assert.equal(reviewClosure({status:'closed',severity:'P1',evidence:['x'],fix:'y',rerun_validation:true}).closed,true);assert.equal(reviewClosure({status:'closed',severity:'P1'}).closed,false);});
-test('capability comparison is manual and evidence gated',()=>{const r=compareCapability({capability_id:'team'},{capability_id:'team',revision:'r',license:'MIT',hash:'h',tests:'t'});assert.equal(r.recommended,'reference-only');assert.equal(r.manual_adoption_required,true);assert.equal(r.install_executed,false);});
-test('ledger normalization preserves runtime trace fields',()=>{const r=normalizeLedger({run_id:'r',session_id:'s',selected_model:'m',reasoning:'xhigh',provider:'p',status:'running',unresolved_items:['u']});assert.equal(r.run,'r');assert.equal(r.model,'m');assert.equal(r.backend,'p');assert.deepEqual(r.unresolved_items,['u']);});
-test('research workflow validation exposes advisory physics gate',async()=>{const mod=await import('../07_research_system/control/research-workflow/index.mjs');const r=mod.validateResearchContract({objective:'x',initial_conditions:{},boundary_conditions:{},validation_requirements:['v']});assert.ok(r.advisory_physics_gate);assert.equal(r.advisory_physics_gate.preserves_contract,true);});
-test('session read model uses readable unique names without exposing hash ids',()=>{
- const rows=withDisplayNames([{session_id:'a',task_id:'task_validation_001'},{session_id:'b',task_id:'session-1789285330916-29748-81f0a2',branch:'codex/session/session-1789285330916-29748-81f0a2'},{session_id:'c',display_name:'主研究'},{session_id:'d',display_name:'主研究'}]);
- assert.equal(rows[0].display_name,'validation'); assert.equal(rows[1].display_name,null); assert.equal(rows[1].display_name_source,'missing'); assert.equal(rows[2].display_name,'主研究 · 1'); assert.equal(rows[3].display_name,'主研究 · 2'); assert.ok(rows[2].display_name_conflict);
- assert.doesNotMatch(rows.map(row=>row.display_name).join('\n'),/1789285330916|81f0a2/);
+
+function request(method, url) {
+  return new Promise((resolve, reject) => {
+    const req = { method, url };
+    const chunks = [];
+    const res = {
+      writeHead: (status, headers) => { res.statusCode = status; res.headers = headers; },
+      end: body => resolve({ status: res.statusCode, body: String(body || ''), headers: res.headers }),
+    };
+    try { handler(req, res); } catch (error) { reject(error); }
+  });
+}
+
+test('dashboard is read-only and exposes only the status-board projection', async () => {
+  assert.equal((await request('GET', '/')).status, 200);
+  assert.equal((await request('GET', '/supervision.js')).status, 200);
+  const response = await request('GET', '/api/status');
+  assert.equal(response.status, 200);
+  const data = JSON.parse(response.body);
+  assert.ok(data.generated_at);
+  assert.ok(Array.isArray(data.supervision.sessions));
+  assert.ok(Array.isArray(data.supervision.warnings));
+  assert.ok(data.system_services.services.dashboard);
+  for (const key of ['research_state', 'workflow', 'display', 'agents', 'artifact_triage']) assert.equal(key in data, false);
+  for (const method of ['POST', 'PUT', 'DELETE']) assert.equal((await request(method, '/api/status')).status, 405);
+  assert.equal((await request('GET', '/bad')).status, 404);
 });
-test('dashboard omits expired sessions but keeps interrupted work visible',()=>{
- const now=Date.parse('2026-09-23T00:00:00Z');
- assert.equal(isDashboardSession({status:'active',lease_until:'2026-09-22T00:00:00Z'},now),false);
- assert.equal(isDashboardSession({status:'expired',lease_until:'2026-09-22T00:00:00Z'},now),false);
- assert.equal(isDashboardSession({status:'abandoned',lease_until:'2026-09-22T00:00:00Z'},now),true);
- assert.equal(isDashboardSession({status:'blocked',lease_until:'2026-09-22T00:00:00Z'},now),true);
+
+test('dashboard status stays compact when artifact history contains large scans', async () => {
+  const response = await request('GET', '/api/status');
+  assert.equal(response.status, 200);
+  assert.ok(Buffer.byteLength(response.body) < 65536);
+  const data = JSON.parse(response.body);
+  assert.equal('artifact_triage' in data.supervision, false);
+  assert.equal(typeof data.supervision.artifact_counts.durable_unregistered, 'number');
 });
-test('Codex index keeps named incomplete threads and filters completed or unnamed threads',t=>{
- const home=fs.mkdtempSync(path.join(os.tmpdir(),'muion-codex-index-')); t.after(()=>removeTempTree(home)); const statePath=path.join(home,'state_5.sqlite'); const historyPath=path.join(home,'thread_history_1.sqlite');
- try {
-  const {DatabaseSync}=createRequire(import.meta.url)('node:sqlite'); const state=new DatabaseSync(statePath); const history=new DatabaseSync(historyPath);
-  state.exec('CREATE TABLE threads (id TEXT, name TEXT, title TEXT, cwd TEXT, archived INTEGER, updated_at INTEGER, updated_at_ms INTEGER, recency_at INTEGER, recency_at_ms INTEGER, source TEXT, rollout_path TEXT)');
-  history.exec('CREATE TABLE thread_turns (thread_id TEXT, status TEXT, started_at INTEGER, completed_at INTEGER, rollout_ordinal INTEGER)');
-  const addThread=state.prepare('INSERT INTO threads VALUES (?,?,?,?,?,?,?,?,?,?,?)'); const addTurn=history.prepare('INSERT INTO thread_turns VALUES (?,?,?,?,?)'); const root=process.cwd();
-  const activePath=path.join(home,'active.jsonl'); const donePath=path.join(home,'done.jsonl'); const unnamedPath=path.join(home,'unnamed.jsonl'); for(const file of [activePath,donePath,unnamedPath]) fs.writeFileSync(file,'');
-  addThread.run('active-thread','进行中任务','',root,0,0,Date.now(),null,null,'vscode',activePath); addTurn.run('active-thread','inProgress',Math.floor(Date.now()/1000),null,1);
-  addThread.run('done-thread','已完成任务','',root,0,0,Date.now(),null,null,'vscode',donePath); addTurn.run('done-thread','completed',Math.floor(Date.now()/1000)-10,Math.floor(Date.now()/1000),1);
-  addThread.run('unnamed-thread',null,'',root,0,0,Date.now(),null,null,'vscode',unnamedPath); addTurn.run('unnamed-thread','interrupted',Math.floor(Date.now()/1000)-10,null,1);
-  state.close(); history.close();
-  const warnings=[]; const result=readCodexSessions(root,warnings,{codexHome:home});
-  assert.deepEqual(result.sessions.map(session=>session.display_name),['进行中任务']); assert.ok(result.terminal_ids.has('done-thread')); assert.deepEqual(warnings,[]);
- } finally { /* t.after runs after the SQLite handles leave this test scope. */ }
+
+test('dashboard exposes the farmer emergency pause instead of stale healthy process state', async () => {
+  const data = JSON.parse((await request('GET', '/api/status')).body);
+  const controlPath = path.join(process.cwd(), '_work/current/farmer/control.json');
+  const control = fs.existsSync(controlPath) ? JSON.parse(fs.readFileSync(controlPath, 'utf8')) : null;
+  if (control?.disabled) assert.equal(data.system_services.services.farmer.status, 'disabled');
 });
-test('existing session uses a readable task or Codex thread name',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);const row=data.supervision.sessions.find(session=>session.task_id==='task_project_supervisor_auto_recovery_001');if(row){assert.ok(row.display_name);assert.doesNotMatch(row.display_name,/^[a-f0-9-]{20,}$/i);assert.ok(['task_name','display_name','codex-thread-name'].includes(row.display_name_source));}});
-test('dashboard board excludes terminal sessions from the work list',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);assert.ok(data.supervision.sessions.every(session=>!['closed','complete','completed','done','succeeded','success'].includes(String(session.status||'').toLowerCase())));});
-test('dashboard page exposes active and pending session surfaces',async()=>{const page=(await request('GET','/')).body;for(const id of ['active-list','pending-list','active-count','pending-count']) assert.match(page,new RegExp(`id="${id}"`));assert.doesNotMatch(page,/JSON\.stringify\(d\.display/);});
-test('dashboard reads JSON-backed yaml state as structured data',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);assert.equal(typeof data.research_state.state_revision,'number');assert.equal(typeof data.research_state.current_task?.task_id,'string');assert.equal(data.display.current.task.task_id,data.research_state.current_task.task_id);assert.ok(Array.isArray(data.display.open_problems));});
-test('dashboard separates current session freshness from historical research-state time',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);assert.ok(data.generated_at);assert.ok(data.supervision.generated_at);assert.ok(data.supervision.observed_at);assert.ok(data.supervision.current_session);assert.ok(data.supervision.current_session.dashboard_observed_at);assert.ok(data.display.consistency);assert.ok(['matched','mismatch','unregistered','stale','unknown'].includes(data.display.consistency.status));assert.equal(typeof data.supervision.counts.stale,'number');assert.ok(['session-registry','runtime-session','codex-thread'].includes(data.supervision.current_session.source));for(const session of data.supervision.sessions) assert.equal(typeof session.stale,'boolean');});
-test('live Codex work uses its readable thread name and keeps incomplete turns visible',async()=>{const data=JSON.parse((await request('GET','/api/status')).body);const current=data.supervision.current_session;if(current.source==='codex-thread'){assert.ok(current.display_name);assert.equal(current.status,'active');assert.equal(current.mode,'codex');assert.doesNotMatch(current.display_name,/01a[0-9a-f-]{20,}/i);assert.equal(data.display.consistency.status,'unregistered');}});
-test('dashboard page exposes current status counts and freshness',async()=>{const page=(await request('GET','/')).body;for(const id of ['updated','active-count','pending-count','active-list','pending-list']) assert.match(page,new RegExp(`id="${id}"`));assert.match(page,/自动刷新/);});
-test('dashboard refresh policy stays below the ten-second freshness threshold',()=>{const script=fs.readFileSync(path.join(process.cwd(),'11_tools/research-dashboard/supervision.js'),'utf8');assert.match(script,/setInterval\(refresh,\s*3000\)/);assert.match(script,/refresh\(\);/);});
+
+test('dashboard status uses its live process identity instead of a stale supervisor PID', async () => {
+  const data = JSON.parse((await request('GET', '/api/status')).body);
+  assert.equal(data.system_services.services.dashboard.pid, process.pid);
+  assert.equal(data.system_services.services.dashboard.status, 'healthy');
+});
+
+test('repeated polling leaves research state, plan checkpoint and tracked files unchanged', async () => {
+  const files = [
+    '07_research_system/control/research-state/state.yaml',
+    '07_research_system/control/research-state/events.jsonl',
+    '07_research_system/control/research-state/open-problems.yaml',
+    '10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json',
+  ];
+  const hashes = () => files.map(file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'));
+  const status = () => spawnSync('git', ['status', '--porcelain'], { cwd: process.cwd(), encoding: 'utf8' }).stdout;
+  const head = () => spawnSync('git', ['rev-parse', 'HEAD'], { cwd: process.cwd(), encoding: 'utf8' }).stdout;
+  const tags = () => spawnSync('git', ['tag', '--list'], { cwd: process.cwd(), encoding: 'utf8' }).stdout;
+  const before = hashes();
+  const gitBefore = status();
+  const headBefore = head();
+  const tagsBefore = tags();
+  await request('GET', '/api/status');
+  await request('GET', '/api/status');
+  assert.deepEqual(hashes(), before);
+  assert.equal(status(), gitBefore);
+  assert.equal(head(), headBefore);
+  assert.equal(tags(), tagsBefore);
+});
+
+test('board rendering uses backend groups and keeps DOM values as text', async () => {
+  const page = (await request('GET', '/')).body;
+  const script = fs.readFileSync(path.join(process.cwd(), '11_tools/research-dashboard/supervision.js'), 'utf8');
+  for (const id of ['active-list', 'pending-list', 'active-count', 'pending-count', 'file-governance-grid']) assert.match(page, new RegExp('id=\"' + id + '\"'));
+  assert.match(page, /需要处理/);
+  assert.match(script, /board_group === 'running'/);
+  assert.match(script, /board_group === 'needs-attention'/);
+  assert.match(script, /textContent/);
+  assert.doesNotMatch(script, /JSON\.stringify/);
+  assert.match(script, /plan_progress/);
+  assert.match(script, /running_subagents/);
+  assert.match(script, /artifact_counts/);
+});
+
+test('unnamed task cards use a safe readable fallback', () => {
+  const rows = withDisplayNames([
+    { session_id: 'codex-01a0d764-48d5-7fb1-84a9-7324c1c83896', task_id: 'codex-01a0d764-48d5-7fb1-84a9-7324c1c83896' },
+    { session_id: 'a', host_name: '主研究' },
+    { session_id: 'b', host_name: '主研究' },
+  ]);
+  assert.equal(rows[0].display_name, '未命名任务');
+  assert.doesNotMatch(rows.map(row => row.display_name).join('\n'), /01a0d764/);
+  assert.equal(rows[1].display_name, '主研究 · 1');
+  assert.equal(rows[2].display_name, '主研究 · 2');
+});
+
+test('evidence notes enforce conclusion levels without becoming state', () => {
+  assert.equal(validateEvidenceNote({ facts: [], evidence: [], conclusion: [], conclusion_level: 'confirmed', risks: [], next_steps: [] }).valid, true);
+  assert.equal(validateEvidenceNote({ facts: [], evidence: [], conclusion: [], conclusion_level: 'made-up', risks: [], next_steps: [] }).valid, false);
+});
+
+test('physics gate is advisory and contract-preserving', () => {
+  const result = inspectPhysicsContract({ objective: 'x', initial_conditions: {}, boundary_conditions: {}, validation_requirements: ['v'] });
+  assert.equal(result.status, 'ready-for-module-validation');
+  assert.equal(result.preserves_contract, true);
+});
+
+test('review closure requires evidence and rerun validation', () => {
+  assert.equal(reviewClosure({ status: 'closed', severity: 'P1', evidence: ['x'], fix: 'y', rerun_validation: true }).closed, true);
+  assert.equal(reviewClosure({ status: 'closed', severity: 'P1' }).closed, false);
+});
+
+test('capability comparison is manual and evidence gated', () => {
+  const result = compareCapability({ capability_id: 'team' }, { capability_id: 'team', revision: 'r', license: 'MIT', hash: 'h', tests: 't' });
+  assert.equal(result.recommended, 'reference-only');
+  assert.equal(result.manual_adoption_required, true);
+  assert.equal(result.install_executed, false);
+});
+
+test('ledger normalization preserves runtime trace fields', () => {
+  const result = normalizeLedger({ run_id: 'r', session_id: 's', selected_model: 'm', reasoning: 'xhigh', provider: 'p', status: 'running', unresolved_items: ['u'] });
+  assert.equal(result.run, 'r');
+  assert.equal(result.model, 'm');
+  assert.equal(result.backend, 'p');
+  assert.deepEqual(result.unresolved_items, ['u']);
+});
+
+test('research workflow validation exposes the advisory physics gate', async () => {
+  const module = await import('../07_research_system/control/research-workflow/index.mjs');
+  const result = module.validateResearchContract({ objective: 'x', initial_conditions: {}, boundary_conditions: {}, validation_requirements: ['v'] });
+  assert.ok(result.advisory_physics_gate);
+  assert.equal(result.advisory_physics_gate.preserves_contract, true);
+});

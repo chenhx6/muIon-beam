@@ -58,7 +58,8 @@ export class DashboardService {
       }
       // A healthy listener must also serve the actual status view.
       const status = await fetch(`http://127.0.0.1:${this.port}/api/status`, { signal: AbortSignal.timeout(2000) });
-      if (!status.ok || !(await status.json()).display) return { status: 'degraded', pid: data.pid, url, detail: 'dashboard status unavailable' };
+      const projection = await status.json();
+      if (!status.ok || !Array.isArray(projection.supervision?.sessions)) return { status: 'degraded', pid: data.pid, url, detail: 'dashboard status unavailable' };
       return { status: 'healthy', pid: data.pid, url };
     } catch (error) {
       if (error.cause?.code === 'ECONNREFUSED') return { status: 'stopped', url };

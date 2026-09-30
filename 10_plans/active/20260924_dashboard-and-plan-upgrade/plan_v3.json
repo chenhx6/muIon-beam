@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 3,
+  "revision": 7,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P1",
-  "next_action": "Prepare N2 from the integrated main baseline.",
+  "next_action": "Publish N2 through the serialized leader gate; then verify the main browser and Drive cloud readback before tagging.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -702,12 +702,23 @@
     },
     {
       "id": "N2",
-      "status": "pending",
+      "status": "ready-for-delivery",
       "source_commit": null,
       "delivery_commit": null,
       "tag": null,
       "remote_verified": false,
-      "drive_verified": false
+      "drive_verified": false,
+      "summary": "真实看板状态、步骤进度、实时数据隔离及旧 worker 等价成果",
+      "validation": {
+        "test_files": [
+          "tests/research-dashboard.test.mjs",
+          "tests/supervisor-progress.test.mjs",
+          "tests/project-supervisor.test.mjs"
+        ],
+        "architecture_check": true,
+        "browser_required": true,
+        "read_only_runtime_check": true
+      }
     },
     {
       "id": "N3",
@@ -723,7 +734,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Prepare N2 from the integrated main baseline.",
+    "next_action": "Publish N2 through the serialized leader gate; then verify the main browser and Drive cloud readback before tagging.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -737,12 +748,14 @@
       "Validated JSON structure; handoff copy is byte-identical, while human/machine plan copies differ only by the active execution checkpoint updates recorded here.",
       "P0 is complete: legal worktree/baseline verified, NUL corruption recovery tested, all 92 d80 paths have a disposition, and v02 correction is additive.",
       "Delivered N0 after main, Gitee, Drive and annotated t-tag verification.",
-      "Delivered N1 after main, Gitee, Drive and annotated t-tag verification."
+      "Delivered N1 after main, Gitee, Drive and annotated t-tag verification.",
+      "N0/N1 的 Google Drive 浏览器读回覆盖 40 个源文件，SHA256 与云端 manifest 及 main 内容（统一 CRLF/LF 后）匹配；recovery-index 已读回但生成于 2026-09-25，待 N3 刷新。"
     ],
     "open_findings": [
-      "N0/N1 are only ready-for-delivery in this worker; no main/Gitee/Drive/tag publication has happened yet.",
-      "P1/P2 dashboard and runtime changes remain; P5 real browser, clean clone, cloud readback, recovery-index and automatic historical cleanup remain.",
-      "N3 close cleanup is deferred while this host turn is live; supervisor must later remove the clean merged worktree and branch."
+      "N2 browser and Drive cloud readback remain required before the N2 tag can be finalized.",
+      "N3 still requires a clean Gitee clone, latest Drive manifest and recovery-index readback, deployed 4317 verification, and safe historical/session cleanup.",
+      "Two old Codex threads have missing source rollouts; keep them visible as unknown with diagnostics.",
+      "Execution worktree removal must wait for the host turn to end."
     ],
     "source_document_hashes": [
       {
@@ -777,13 +790,51 @@
     "planning_commit": "a066ab5ac523a1bc6c50fd17af1fe8142346d848",
     "started_at": "2026-09-30",
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
-    "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2"
+    "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2",
+    "latest_main_commit": "849241c1311a434d998f92975bb5cfa881cf5f6c",
+    "latest_main_remote_verified": "849241c1311a434d998f92975bb5cfa881cf5f6c"
   },
-  "updated_at": "2026-09-30T04:07:58.649Z",
+  "updated_at": "2026-09-30T07:01:49.296Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"
   ],
   "machine_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
-  "p0_audit": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+  "p0_audit": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+  "source_worktrees": [
+    {
+      "path": "D:\\muIon-beam\\_work\\current\\worktrees\\codex-d80b7f12073a98b4eb63-2",
+      "branch": "codex/session/codex-d80b7f12073a98b4eb63-2",
+      "label": "已采用的 N0 规划来源",
+      "resolution_node": "N0",
+      "source_commit": "a066ab5ac523a1bc6c50fd17af1fe8142346d848",
+      "disposition": "copied-to-N0"
+    },
+    {
+      "path": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
+      "branch": "codex/session/codex-d80b7f12073a98b4eb63-1",
+      "label": "D80 历史 worker 的剩余 quarantine 文件与回收",
+      "resolution_node": "N3",
+      "source_commit": "d5fedc0e9fe28393e560320a187191943cc9d476",
+      "unique_commits": 38,
+      "reviewed_paths": 92,
+      "private_runtime_candidates_excluded": 64729,
+      "quarantine_candidates_pending_review": 160
+    },
+    {
+      "path": "D:/muIon-beam/_work/current/worktrees/codex-6b5c47c601e991adc80c-1",
+      "branch": "codex/session/codex-6b5c47c601e991adc80c-1",
+      "label": "6b5 旧看板实现等价核验",
+      "resolution_node": "N2",
+      "source_commit": "1ec684d3636549f3363de4a1f68461e9515e43a0",
+      "unique_commits": 1,
+      "changed_paths": [
+        "11_tools/project-supervisor/progress-aggregator.mjs",
+        "11_tools/research-dashboard/index.html",
+        "11_tools/research-dashboard/supervision.js"
+      ],
+      "identical_to_main_before_n2": true,
+      "disposition": "N2 feature and browser verification required before reclaim"
+    }
+  ]
 }

@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import { ArtifactCatalog } from '../11_tools/project-supervisor/artifact-catalog.mjs';
 import { applyApprovedPromotion, buildPromotionPlan, classifyArtifact } from '../11_tools/project-supervisor/artifact-promoter.mjs';
 
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
@@ -12,7 +14,37 @@ test('classifies canonical result paths, source assets, binaries and unknown out
   assert.equal(classifyArtifact({ path: '05_reports/review/report.md' }).status, 'report');
   assert.equal(classifyArtifact({ path: '02_models/model.py' }).status, 'project-asset');
   assert.equal(classifyArtifact({ path: '02_models/model.mph' }).status, 'drive-required');
+  assert.equal(classifyArtifact({ path: '00_project/web-research/venvs/py311/site-packages/example.py' }).reason, 'local-runtime-output');
+  assert.equal(classifyArtifact({ path: '90_migration/quarantine/run/output.json' }).reason, 'unverified-quarantine-copy');
   assert.equal(classifyArtifact({ path: 'scratch/result.dat' }).status, 'retained-blocked');
+});
+test('catalog separates manifest-matched quarantine from private runtime and unregistered copies', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-catalog-')); const worktree = path.join(root, 'worker');
+  fs.mkdirSync(path.join(worktree, '90_migration/quarantine/fixture'), { recursive: true });
+  fs.mkdirSync(path.join(worktree, '00_project/web-research/private'), { recursive: true });
+  fs.mkdirSync(path.join(worktree, '00_project/web-research/venvs/env'), { recursive: true });
+  t.after(() => { assert.equal(path.dirname(root), path.resolve(os.tmpdir())); fs.rmSync(root, { recursive: true, force: true }); });
+  execFileSync('git', ['init', worktree], { stdio: 'ignore' });
+  execFileSync('git', ['-C', worktree, 'config', 'user.email', 'test@example.invalid']);
+  execFileSync('git', ['-C', worktree, 'config', 'user.name', 'Artifact test']);
+  fs.writeFileSync(path.join(worktree, '.gitignore'), '00_project/web-research/private/\n00_project/web-research/venvs/\n');
+  const registeredContent = 'preserve me\n'; const unregisteredContent = 'review me\n';
+  const registeredPath = '90_migration/quarantine/fixture/registered.txt';
+  const unregisteredPath = '90_migration/quarantine/fixture/unregistered.txt';
+  fs.writeFileSync(path.join(worktree, registeredPath), registeredContent);
+  fs.writeFileSync(path.join(worktree, unregisteredPath), unregisteredContent);
+  fs.writeFileSync(path.join(worktree, '00_project/web-research/private/profile.json'), '{"local":true}');
+  fs.writeFileSync(path.join(worktree, '00_project/web-research/venvs/env/python.exe'), 'runtime');
+  fs.writeFileSync(path.join(worktree, '90_migration/quarantine/fixture/manifest.json'), JSON.stringify({ record_type: 'quarantine', items: [{ quarantine_path: registeredPath, bytes: Buffer.byteLength(registeredContent), sha256: hash(registeredContent) }] }));
+  execFileSync('git', ['-C', worktree, 'add', '.gitignore', '90_migration/quarantine/fixture/manifest.json']);
+  execFileSync('git', ['-C', worktree, 'commit', '-m', 'fixture']);
+  const result = new ArtifactCatalog(root).inspect({ session_id: 'fixture', task_id: 'fixture', branch: 'fixture', mode: 'worktree', worktree_path: worktree });
+  const registered = result.artifacts.find(item => item.path === registeredPath);
+  const unregistered = result.artifacts.find(item => item.path === unregisteredPath);
+  assert.equal(registered.status, 'registered-quarantine');
+  assert.equal(registered.quarantine_registered, true);
+  assert.equal(unregistered.status, 'retained-blocked');
+  assert.equal(result.artifacts.some(item => item.path.includes('/private/') || item.path.includes('/venvs/')), false);
 });
 test('approved project asset promotion is copy-only, hash checked and idempotent', t => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-promoter-')); const worktree = path.join(root, 'worker'); fs.mkdirSync(path.join(worktree, '02_models'), { recursive: true });

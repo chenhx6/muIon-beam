@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "record_type": "drive-recovery-index-readback",
+  "status": "stale-cloud-copy-detected",
+  "observed_at": "2026-09-30T12:17:01Z",
+  "drive_path": "project/recovery-index/recovery-index.json",
+  "drive_file_id": "1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt",
+  "readback_method": "Authenticated Google Drive browser preview",
+  "cloud_preview": {
+    "last_modified_date": "2026-09-24",
+    "generated_at": "2026-09-23T16:55:02.348Z",
+    "gitee_remote_commit": "06a595d8a48e8395c734a1976cff2b9ba6bd8e7c",
+    "canonical_mirror_file_count": 1157,
+    "canonical_mirror_bytes": 69092768,
+    "sha256": null,
+    "sha256_status": "not captured from this preview; refresh and download after N3 mirror"
+  },
+  "mapped_drive_copy": {
+    "path": "H:/我的云端硬盘/muIon_archive/project/recovery-index/recovery-index.json",
+    "sha256": "342eb1a6792adf907482cd34a0e77d1b4b9be37e08e009ff329de9b643acd827",
+    "generated_at": "2026-09-25T09:00:52.902Z",
+    "canonical_mirror_file_count": 1219,
+    "canonical_mirror_bytes": 449537017
+  },
+  "conclusion": "The cloud preview is older than the mapped-drive copy and does not describe the current 1256-file canonical mirror. N3 must regenerate the recovery index after final main/Drive receipt updates and verify the uploaded content from Drive again."
+}

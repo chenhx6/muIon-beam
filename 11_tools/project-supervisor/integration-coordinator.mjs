@@ -109,6 +109,35 @@ function syncNodeDrive(root, driveRoot) {
   const manifest = JSON.parse(fs.readFileSync(result.manifest_path, 'utf8'));
   return { status: 'mapped-drive-verified', root: manifest.drive_root, manifest_path: result.manifest_path, manifest_sha256: sha256File(result.manifest_path), file_count: manifest.file_count, total_bytes: manifest.total_bytes, source_commit: runGit(root, ['rev-parse', 'HEAD']).stdout.trim(), files: manifest.files };
 }
+
+export function buildCleanupDispositionReceipt(plan, cloudReadback) {
+  const expected = Array.isArray(plan.checkpoint?.required_historical_cleanup_sessions) ? plan.checkpoint.required_historical_cleanup_sessions : [];
+  if (!expected.length) return null;
+  const batch = cloudReadback?.cleanup_disposition;
+  if (batch?.status !== 'verified' || !batch.generated_at || !Array.isArray(batch.sessions)) throw new Error('N3 requires a verified historical cleanup disposition batch');
+  const actual = new Map(batch.sessions.map(item => [item.session_id, item]));
+  if (actual.size !== expected.length || expected.some(item => !actual.has(item.session_id))) throw new Error('cleanup disposition does not cover the fixed historical session set');
+  const sha256 = value => /^[a-f0-9]{64}$/i.test(String(value || ''));
+  const sessions = expected.map(item => {
+    const result = actual.get(item.session_id);
+    if (result.branch !== item.branch || result.source_commit !== item.source_commit || result.status !== 'verified' || result.cleanup_result?.status !== 'branch-removed' || result.cleanup_result?.worktree_removed !== true || result.cleanup_result?.branch_removed !== true || !result.cleanup_receipt_sha256 || !result.preflight_receipt_sha256) throw new Error('historical cleanup result is incomplete: ' + item.session_id);
+    if (!['verified','not-found'].includes(result.host_completion?.status) || !result.process_check || result.process_check.status !== 'clear') throw new Error('historical host/process evidence is incomplete: ' + item.session_id);
+    if (result.gitee_readback?.status !== 'verified' || result.drive_readback?.status !== 'verified' || !Array.isArray(result.path_mappings)) throw new Error('historical Gitee, Drive or path mapping evidence is incomplete: ' + item.session_id);
+    if (!sha256(result.cleanup_receipt_sha256) || !sha256(result.preflight_receipt_sha256) || !sha256(result.drive_readback.manifest_sha256) || result.path_mappings.some(mapping => !sha256(mapping.source_sha256) || !sha256(mapping.delivery_sha256) || mapping.delivery_sha256 !== mapping.drive_sha256 || !String(mapping.disposition_ref || '').trim())) throw new Error('historical cleanup receipt contains incomplete hashes or path mappings: ' + item.session_id);
+    if (result.host_completion.status === 'not-found' && !['active_lookup','archived_lookup','state_index','turn_history'].every(key => result.host_completion.absence_checks?.[key] === 'not-found')) throw new Error('host absence evidence is incomplete: ' + item.session_id);
+    return {
+      session_id: item.session_id, branch: item.branch, source_commit: item.source_commit, merge_base: result.merge_base,
+      path_mappings: result.path_mappings,
+      gitee_readback: { status:result.gitee_readback.status, remote:result.gitee_readback.remote, branch:result.gitee_readback.branch, commit:result.gitee_readback.commit, remote_head:result.gitee_readback.remote_head, verified_path_count:result.gitee_readback.verified_path_count },
+      drive_readback: { status:result.drive_readback.status, manifest_sha256:result.drive_readback.manifest_sha256, file_count:result.drive_readback.file_count, total_bytes:result.drive_readback.total_bytes, verified_path_count:result.drive_readback.verified_path_count },
+      host_completion: { status:result.host_completion.status, host_session_id:result.host_completion.host_session_id, source:result.host_completion.source, verified_at:result.host_completion.verified_at, ...(result.host_completion.absence_checks ? { absence_checks:result.host_completion.absence_checks } : {}) },
+      process_check: { status:result.process_check.status, checked_at:result.process_check.checked_at, process_count:result.process_check.process_ids?.length ?? null },
+      cleanup: { status:result.cleanup_result.status, worktree_removed:result.cleanup_result.worktree_removed, branch_removed:result.cleanup_result.branch_removed, ignored_file_count:result.cleanup_result.ignored_file_count, ignored_bytes:result.cleanup_result.ignored_bytes, quarantine_file_count:result.cleanup_result.quarantine_file_count, preserved_file_count:result.cleanup_result.preserved_file_count, local_archive_root:result.cleanup_result.local_archive_root, completed_at:result.cleanup_result.completed_at, local_receipt_sha256:result.cleanup_receipt_sha256, preflight_receipt_sha256:result.preflight_receipt_sha256 },
+    };
+  });
+  return { schema_version:1, record_type:'historical-worktree-cleanup-disposition', status:'verified', plan_id:plan.plan_id, node_id:'N3', created_at:batch.generated_at, sessions };
+}
+
 function planAndNodes(root, planFile, nodeIds) {
   const planRef = nodePath(root, planFile); const plan = JSON.parse(fs.readFileSync(planRef.absolute, 'utf8'));
   if (plan.schema_version !== 1 || !plan.plan_id || !Array.isArray(plan.nodes)) throw new Error('invalid plan node document');
@@ -226,6 +255,7 @@ export function finalizePlanNodeDelivery({ root, sessionId, nodeIds, nodeId, pla
   if (record.status === 'delivered') return { status: 'node-delivered-idempotent', outbox: recordFile, delivery_commit: record.delivery_commit, receipt_commit: record.plan_receipt_commit, tags: record.tags_verified };
   if (!['awaiting-cloud-readback','pending-tag-receipt','pending-plan-receipt-push','pending-drive-receipt'].includes(record.status)) throw new Error('node is not ready for tag finalization: ' + record.status);
   if (!cloudReadback || cloudReadback.status !== 'verified' || cloudReadback.delivery_commit !== record.delivery_commit || cloudReadback.manifest_sha256 !== record.drive_manifest_sha256 || cloudReadback.plan_sha256 !== record.drive_plan_sha256 || cloudReadback.remote_head !== record.remote_head || cloudReadback.drive_root !== record.drive_root) throw new Error('Drive cloud readback does not match the fixed node commit, remote main and manifest hashes');
+  const cleanupDisposition = ids.includes('N3') ? buildCleanupDispositionReceipt(plan.plan, cloudReadback) : null;
   const manifest = JSON.parse(fs.readFileSync(record.drive_manifest_path, 'utf8'));
   if (sha256File(record.drive_manifest_path) !== record.drive_manifest_sha256 || manifest.drive_root !== record.drive_root) throw new Error('local Drive manifest changed after readback');
   const lock = acquireProjectLock(repoRoot, 'leader-delivery');
@@ -246,24 +276,49 @@ export function finalizePlanNodeDelivery({ root, sessionId, nodeIds, nodeId, pla
         record.tags_verified = tagResults; record.status = 'pending-tag-receipt'; record.updated_at = new Date().toISOString(); writeRecord(recordFile, record);
       }
       const planLocation = nodePath(repoRoot, record.plan_file); const mainPlan = JSON.parse(fs.readFileSync(planLocation.absolute, 'utf8'));
+      const mainCleanupDisposition = ids.includes('N3') ? buildCleanupDispositionReceipt(mainPlan, cloudReadback) : null;
+      if (JSON.stringify(cleanupDisposition) !== JSON.stringify(mainCleanupDisposition)) throw new Error('main and source plan disagree on historical cleanup receipts');
+      let cleanupReceiptRelative = null; let cleanupReceiptSha256 = null;
       for (const id of ids) {
         const node = mainPlan.nodes.find(item => item.id === id);
         if (!node) throw new Error('plan node disappeared from main: ' + id);
         node.status = 'delivered'; node.source_commit ||= record.source_commit; node.delivery_commit = record.delivery_commit; node.tag = record.tags[id];
         node.remote_verified = true; node.remote_head = record.remote_head; node.drive_verified = true;
         node.drive_manifest_sha256 = record.drive_manifest_sha256; node.drive_plan_sha256 = record.drive_plan_sha256; node.delivered_at = new Date().toISOString();
-        node.evidence = { outbox: path.relative(repoRoot, recordFile).replaceAll('\\', '/'), validation: record.validation, cloud_readback: cloudReadback };
+        const { cleanup_disposition: _cleanup, ...cloudEvidence } = cloudReadback;
+        node.evidence = { outbox: path.relative(repoRoot, recordFile).replaceAll('\\', '/'), validation: record.validation, cloud_readback: cloudEvidence, ...(cleanupDisposition ? { cleanup_disposition_receipt: { status:'verified', path:cleanupReceiptRelative, sha256:cleanupReceiptSha256 } } : {}) };
       }
       const phaseMap = { N1: ['P0','P3','P4'], N2: ['P1','P2'], N3: ['P5'] };
       for (const id of ids) for (const phaseId of phaseMap[id] || []) { const phase = mainPlan.phases.find(item => item.id === phaseId); if (phase) phase.status = 'completed'; }
       const nextNode = mainPlan.nodes.find(item => item.status !== 'delivered');
       mainPlan.current_phase = nextNode ? phaseMap[nextNode.id]?.[0] || mainPlan.current_phase : 'P5';
-      mainPlan.next_action = nextNode ? 'Prepare ' + nextNode.id + ' from the integrated main baseline.' : 'Complete final P5 evidence and safe cleanup.';
+      const resolvedFindings = new Set(Array.isArray(cloudReadback.resolved_findings) ? cloudReadback.resolved_findings : []);
+      if (resolvedFindings.size) mainPlan.open_findings = (mainPlan.open_findings || []).filter(item => !resolvedFindings.has(item));
+      if (Array.isArray(cloudReadback.remaining_findings)) mainPlan.open_findings = [...new Set([...(mainPlan.open_findings || []), ...cloudReadback.remaining_findings])];
+      mainPlan.next_action = cloudReadback.next_action || (nextNode ? 'Prepare ' + nextNode.id + ' from the integrated main baseline.' : 'Complete final P5 evidence and safe cleanup.');
       mainPlan.checkpoint.completed_requirements = [...new Set([...(mainPlan.checkpoint.completed_requirements || []), ...ids.map(id => 'Delivered ' + id + ' after main, Gitee, Drive and annotated t-tag verification.')])];
       mainPlan.checkpoint.next_action = mainPlan.next_action; mainPlan.updated_at = new Date().toISOString();
+      const receiptFiles = [planLocation.relative];
+      if (cleanupDisposition) {
+        const slug = plan.plan.plan_id.toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '');
+        cleanupReceiptRelative = `00_project/traceability/supersession-cleanup-disposition-${slug}.json`;
+        const cleanupFile = path.join(repoRoot, ...cleanupReceiptRelative.split('/'));
+        const cleanupText = JSON.stringify(cleanupDisposition, null, 2) + '\n';
+        if (fs.existsSync(cleanupFile)) {
+          if (fs.readFileSync(cleanupFile, 'utf8') !== cleanupText) throw new Error('cleanup disposition receipt path already contains different content');
+        } else {
+          const temp = `${cleanupFile}.${crypto.randomUUID()}.tmp`; fs.writeFileSync(temp, cleanupText); fs.renameSync(temp, cleanupFile);
+        }
+        cleanupReceiptSha256 = sha256File(cleanupFile);
+        const n3 = mainPlan.nodes.find(item => item.id === 'N3');
+        n3.evidence.cleanup_disposition_receipt = { status:'verified', path:cleanupReceiptRelative, sha256:cleanupReceiptSha256 };
+        receiptFiles.push(cleanupReceiptRelative);
+        mainPlan.checkpoint.completed_requirements = [...new Set([...mainPlan.checkpoint.completed_requirements, 'Historical worker branches and worktrees were removed through the fixed-SHA, Gitee/Drive-verified supersession gate; disposition receipt ' + cleanupReceiptRelative + '.'])];
+      }
+      mainPlan.checkpoint.next_action = mainPlan.next_action; mainPlan.updated_at = new Date().toISOString();
       fs.writeFileSync(planLocation.absolute, JSON.stringify(mainPlan, null, 2) + '\n');
-      runGit(repoRoot, ['add','--',planLocation.relative]);
-      runGit(repoRoot, ['-c','user.name=' + publication.author.name,'-c','user.email=' + publication.author.email,'commit','--only','-m','chore: record delivered plan node ' + ids.join('+'),'--',planLocation.relative]);
+      runGit(repoRoot, ['add','--',...receiptFiles]);
+      runGit(repoRoot, ['-c','user.name=' + publication.author.name,'-c','user.email=' + publication.author.email,'commit','--only','-m','chore: record delivered plan node ' + ids.join('+'),'--',...receiptFiles]);
       record.plan_receipt_commit = runGit(repoRoot, ['rev-parse','HEAD']).stdout.trim(); record.status = 'pending-plan-receipt-push'; record.updated_at = new Date().toISOString(); writeRecord(recordFile, record);
     }
     const receiptHead = runGit(repoRoot, ['rev-parse','HEAD']).stdout.trim();

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "record_type": "runtime-replacement-verification",
+  "status": "passed",
+  "verified_at": "2026-09-30T11:38:57.305Z",
+  "basis_commit": "0ecee3c9e6854ac5a48898ed1a89899c1e527174",
+  "environment_manifest": "00_project/config/web-research-environment.json",
+  "environment_manifest_sha256": "cb81053545dfeae9c22628c5ebe29725135388fe59267b4dd29c0d7134d5fe84",
+  "python": "3.12.14",
+  "packages": {
+    "browser_use": "0.13.10",
+    "crawl4ai": "0.9.4",
+    "playwright": "1.63.0",
+    "chromium_revision": "1243"
+  },
+  "checks": [
+    {
+      "name": "pip-check-browser-use",
+      "status": "passed",
+      "command": "00_project/web-research/run.ps1 -Tool browser-use -m pip check",
+      "summary": "No broken requirements found."
+    },
+    {
+      "name": "pip-check-crawl4ai",
+      "status": "passed",
+      "command": "00_project/web-research/run.ps1 -Tool crawl4ai -m pip check",
+      "summary": "No broken requirements found."
+    },
+    {
+      "name": "browser-use-smoke",
+      "status": "passed",
+      "command": "00_project/web-research/run.ps1 -Tool browser-use 00_project/web-research/smoke.py browser-use",
+      "summary": "Project-local Chromium launched, navigated to example.com and returned its title."
+    },
+    {
+      "name": "crawl4ai-smoke",
+      "status": "passed",
+      "command": "00_project/web-research/run.ps1 -Tool crawl4ai 00_project/web-research/smoke.py crawl4ai",
+      "summary": "HTTPS fetch returned status 200 and extracted HTML."
+    }
+  ],
+  "rebuildable_roots": [
+    {
+      "source_prefix": "00_project/web-research/venvs/",
+      "replacement_path": "00_project/web-research/venvs"
+    },
+    {
+      "source_prefix": "00_project/web-research/private/playwright/",
+      "replacement_path": "00_project/web-research/private/browsers"
+    }
+  ]
+}

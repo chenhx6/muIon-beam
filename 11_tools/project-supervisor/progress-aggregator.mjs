@@ -3,6 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
+import { classifyLocalArtifactPath, matchesQuarantineManifest, readQuarantineManifestEntries } from './local-runtime-paths.mjs';
 
 const read = (file, fallback = null) => {
   try { return JSON.parse(fs.readFileSync(file, 'utf8').replace(/^\uFEFF/, '')); }
@@ -15,7 +16,6 @@ const terminalSessions = new Set(['closed', 'complete', 'completed', 'done', 'su
 const terminalPlans = new Set(['closed', 'complete', 'completed', 'done', 'succeeded', 'success']);
 const completedNodes = new Set(['delivered', 'complete', 'completed', 'done', 'succeeded', 'success']);
 const interruptedStatuses = new Set(['failed', 'interrupted', 'aborted', 'cancelled', 'canceled', 'stopped']);
-const runtimePathSegments = new Set(['.git', '_work', 'node_modules', '__pycache__', '.pytest_cache', '.cache']);
 const projectRoots = new Map();
 const artifactCache = new Map();
 
@@ -403,17 +403,8 @@ function classifySession(session) {
 
 function isLocalRuntimeArtifact(value) {
   const relative = String(value || '').replaceAll('\\', '/').replace(/^\.\/+/, '').toLowerCase();
-  if (relative.split('/').some(part => runtimePathSegments.has(part))) return true;
-  return [
-    '00_project/web-research/venvs/',
-    '00_project/web-research/private/',
-    '00_project/web-research/downloads/',
-    '00_project/web-research/evidence-outbox/',
-    '00_project/state/3d-smoke/',
-    '00_project/traceability/sync-outbox/',
-  ].some(prefix => relative.startsWith(prefix)) ||
-    relative === '00_project/state/task-baseline.json' ||
-    relative.startsWith('00_project/state/task-close-');
+  const category = classifyLocalArtifactPath(relative);
+  return category === 'local-runtime' || category === 'quarantine-manifest';
 }
 
 function readArtifactInventory(file, warnings) {
@@ -429,8 +420,8 @@ function readArtifactInventory(file, warnings) {
       session_id: record.session_id,
       artifacts: record.artifacts
         .filter(item => item.path && !isLocalRuntimeArtifact(item.path) &&
-          (item.status === 'unregistered' || ['blocked-unregistered-output', 'retained-blocked', 'drive-required'].includes(item.status)))
-        .map(item => ({ path: String(item.path), status: String(item.status).toLowerCase() })),
+          (item.status === 'unregistered' || ['blocked-unregistered-output', 'retained-blocked', 'drive-required'].includes(item.status) || item.status === 'registered-quarantine' && item.quarantine_registered === true))
+        .map(item => ({ path: String(item.path), status: String(item.status).toLowerCase(), quarantine_registered: item.quarantine_registered === true, bytes: item.bytes ?? null, sha256: item.sha256 ?? null })),
     };
     artifactCache.set(file, summary);
     return summary;
@@ -473,8 +464,8 @@ function artifactCounts(root, registry, visible, warnings) {
   const currentFiles = new Set([...latest.values()].map(item => item.file));
   for (const file of artifactCache.keys()) if (!currentFiles.has(file)) artifactCache.delete(file);
 
-  const trackedByWorktree = new Map(); const seen = new Set();
-  const counts = { durable_unregistered: 0, blocked: 0 };
+  const trackedByWorktree = new Map(); const quarantineByWorktree = new Map(); const seen = new Set();
+  const counts = { durable_unregistered: 0, blocked: 0, registered_quarantine: 0 };
   for (const [sessionId, candidate] of latest) {
     const session = registryById.get(sessionId);
     const worktree = session?.worktree_path;
@@ -485,11 +476,14 @@ function artifactCounts(root, registry, visible, warnings) {
       const git = spawnSync('git', ['-C', worktree, 'ls-files', '-z'], { encoding: 'utf8', windowsHide: true, maxBuffer: 20 * 1024 * 1024 });
       if (git.status !== 0) { warnings.push('artifact source Git index unavailable'); continue; }
       trackedByWorktree.set(worktree, new Set(git.stdout.split('\0').filter(Boolean).map(item => item.replaceAll('\\', '/').toLowerCase())));
+      try { quarantineByWorktree.set(worktree, readQuarantineManifestEntries(worktree)); }
+      catch (error) { warnings.push('quarantine manifest unavailable: ' + error.message); quarantineByWorktree.set(worktree, new Map()); }
     }
     for (const item of record.artifacts) {
       const status = String(item.status || '').toLowerCase();
       if (!item.path || isLocalRuntimeArtifact(item.path)) continue;
-      if (status !== 'unregistered' && !['blocked-unregistered-output', 'retained-blocked', 'drive-required'].includes(status)) continue;
+      if (status !== 'unregistered' && !['blocked-unregistered-output', 'retained-blocked', 'drive-required'].includes(status) && !(status === 'registered-quarantine' && item.quarantine_registered)) continue;
+      const category = classifyLocalArtifactPath(item.path);
       const absolute = path.resolve(worktree, item.path);
       const relative = path.relative(worktree, absolute);
       if (relative.startsWith('..') || path.isAbsolute(relative)) { warnings.push('artifact path outside worktree'); continue; }
@@ -506,7 +500,11 @@ function artifactCounts(root, registry, visible, warnings) {
         if (!fs.realpathSync(absolute).startsWith(fs.realpathSync(worktree) + path.sep)) continue;
       } catch { continue; }
       seen.add(key);
-      if (status === 'unregistered') counts.durable_unregistered++;
+      if (category === 'quarantine') {
+        if (status === 'registered-quarantine' && item.quarantine_registered && matchesQuarantineManifest(quarantineByWorktree.get(worktree) || new Map(), item.path, item.bytes, item.sha256)) counts.registered_quarantine++;
+        else counts.blocked++;
+      }
+      else if (status === 'unregistered') counts.durable_unregistered++;
       else counts.blocked++;
     }
   }

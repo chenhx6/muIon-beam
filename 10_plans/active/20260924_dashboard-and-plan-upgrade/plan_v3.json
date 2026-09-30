@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 7,
+  "revision": 12,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "Prepare N3 from the integrated main baseline.",
+  "next_action": "Checkpoint and integrate N3 from the allocated worktree; verify Gitee clone, Drive content and gated historical cleanup before N3 finalization.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -844,19 +844,40 @@
     },
     {
       "id": "N3",
-      "status": "pending",
+      "status": "ready-for-delivery",
       "source_commit": null,
       "delivery_commit": null,
       "tag": null,
       "remote_verified": false,
-      "drive_verified": false
+      "drive_verified": false,
+      "summary": "N3 source is validated; final delivery still requires P5 clean-clone, cloud recovery-index and dashboard evidence plus four historical cleanup receipts.",
+      "validation": {
+        "full_test_suite": true,
+        "architecture_check": true,
+        "focused_test_files": [
+          "tests/session-concurrency.test.mjs",
+          "tests/integration-coordinator.test.mjs",
+          "tests/artifact-promoter.test.mjs",
+          "tests/supervisor-progress.test.mjs",
+          "tests/project-supervisor.test.mjs",
+          "tests/research-dashboard.test.mjs",
+          "tests/task-tag.test.mjs",
+          "tests/task-close.test.mjs"
+        ],
+        "full_suite": {
+          "passed": 216,
+          "failed": 0,
+          "architecture_required_files": 150,
+          "architecture_variables": 12
+        }
+      }
     }
   ],
   "planning_worktree": "D:\\muIon-beam\\_work\\current\\worktrees\\codex-d80b7f12073a98b4eb63-2",
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Prepare N3 from the integrated main baseline.",
+    "next_action": "Checkpoint and integrate N3 from the allocated worktree; verify Gitee clone, Drive content and gated historical cleanup before N3 finalization.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -872,11 +893,20 @@
       "Delivered N0 after main, Gitee, Drive and annotated t-tag verification.",
       "Delivered N1 after main, Gitee, Drive and annotated t-tag verification.",
       "N0/N1 的 Google Drive 浏览器读回覆盖 40 个源文件，SHA256 与云端 manifest 及 main 内容（统一 CRLF/LF 后）匹配；recovery-index 已读回但生成于 2026-09-25，待 N3 刷新。",
-      "Delivered N2 after main, Gitee, Drive and annotated t-tag verification."
+      "Delivered N2 after main, Gitee, Drive and annotated t-tag verification.",
+      "N3 implemented shared local-runtime/quarantine classification in catalog, promoter and progress projection; 29 relevant tests pass, including 220-file evidence classification and cleanup-gate guards.",
+      "Actual D80-1 ArtifactCatalog scan now omits private runtime and classifies 199 scanned quarantine payloads as manifest-registered; 2 remaining items are explicit unregistered project files; 0 private runtime items surfaced.",
+      "All 220 D80 quarantine manifest items (57,622,293 bytes) match D80 source and downloaded Google Drive ZIP by declared size and SHA256. The two historical manifests have identical entries in D80/main/Drive and differ only in CRLF/LF representation; no historical manifest was changed. Verified receipt: _work/current/quarantine-cloud-readback-20260930-verified.json.",
+      "Main project-local Crawl4AI 0.9.4 and Browser Use 0.13.10 environments both pass pip check and project-local smoke; Chromium 1243 launch/navigation/title smoke passes.",
+      "Authenticated Drive UI shows the recovery-index cloud object is stale: preview generated_at 2026-09-23T16:55:02.348Z, while the mapped local copy is SHA256 342eb1a6792adf907482cd34a0e77d1b4b9be37e08e009ff329de9b643acd827 and generated 2026-09-25; refresh and verify again after N3 mirror.",
+      "Complete project suite passes: node --test tests/*.mjs (216/216); architecture smoke validates 150 required files and 12 variables.",
+      "N3 supersession gate verifies source SHA/path mappings, Drive hash manifest, clean Gitee clone, fixed host/process evidence, quarantine hashes and ignored-file dispositions; retries journal worktree removal and ref deletion.",
+      "Integration finalizer creates a separate historical cleanup disposition receipt only after all four required old session receipts validate; the current N3 host cleanup remains a separate final check.",
+      "ProjectSupervisor now exposes a managed dashboard restart that refuses foreign or identity-unknown listeners; restart policy test passes."
     ],
     "open_findings": [
-      "N2 browser and Drive cloud readback remain required before the N2 tag can be finalized.",
-      "N3 still requires a clean Gitee clone, latest Drive manifest and recovery-index readback, deployed 4317 verification, and safe historical/session cleanup.",
+      "N3 still requires a clean Gitee clone, latest Drive manifest and recovery-index cloud readback, deployed 4317 verification, and safe historical/session cleanup.",
+      "D80 quarantine cleanup must verify every manifest-listed copy and preserve the historical manifests unchanged.",
       "Two old Codex threads have missing source rollouts; keep them visible as unknown with diagnostics.",
       "Execution worktree removal must wait for the host turn to end."
     ],
@@ -901,6 +931,28 @@
         "execution_sha256": "dbf6ea0023565d09e40952c7d53b93e33d44699976481ab090c90afa07422a51",
         "exact_copy": false,
         "current_execution_sha256": "a4cf257b1fe7aad42f279e79e0f5b1fd68e6f94201501180dab228c0afb4fd62"
+      }
+    ],
+    "required_historical_cleanup_sessions": [
+      {
+        "session_id": "codex-d80b7f12073a98b4eb63-1",
+        "branch": "codex/session/codex-d80b7f12073a98b4eb63-1",
+        "source_commit": "d5fedc0e9fe28393e560320a187191943cc9d476"
+      },
+      {
+        "session_id": "codex-d80b7f12073a98b4eb63-2",
+        "branch": "codex/session/codex-d80b7f12073a98b4eb63-2",
+        "source_commit": "a066ab5ac523a1bc6c50fd17af1fe8142346d848"
+      },
+      {
+        "session_id": "codex-6b5c47c601e991adc80c-1",
+        "branch": "codex/session/codex-6b5c47c601e991adc80c-1",
+        "source_commit": "1ec684d3636549f3363de4a1f68461e9515e43a0"
+      },
+      {
+        "session_id": "codex-8f62a0ce8890af6b3331-1",
+        "branch": "codex/session/codex-8f62a0ce8890af6b3331-1",
+        "source_commit": "06a595d8a48e8395c734a1976cff2b9ba6bd8e7c"
       }
     ]
   },
@@ -959,5 +1011,13 @@
       "identical_to_main_before_n2": true,
       "disposition": "N2 feature and browser verification required before reclaim"
     }
+  ],
+  "open_findings": [
+    "N3 still requires clean Gitee clone, final Drive manifest and recovery-index cloud readback, deployed 4317 browser verification, safe historical cleanup and task-session reaping.",
+    "Cloud recovery-index preview is older than the mapped copy; regenerate after final main/Drive receipt updates and verify the uploaded content.",
+    "D80 quarantine cleanup must use the complete 220-item Drive readback and preserve both historical manifest contents unchanged.",
+    "6b5 host is absent from the current Codex and local thread indexes; require the closed session record, absent-thread evidence and clear process check before cleanup.",
+    "Two old Codex threads have missing rollout sources; keep their unknown status visible with diagnostics where records remain.",
+    "Execution worktree removal must wait for this host turn to end and be checked independently."
   ]
 }

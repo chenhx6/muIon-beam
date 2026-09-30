@@ -123,6 +123,7 @@ function render(data) {
   governanceGrid.replaceChildren();
   for (const [label, count] of [
     ['待登记项目文件', governance.durable_unregistered],
+    ['已登记隔离副本', governance.registered_quarantine],
     ['阻塞输出', governance.blocked],
   ]) {
     const item = document.createElement('span');

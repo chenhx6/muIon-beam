@@ -14,6 +14,7 @@ export class ProjectSupervisor {
     this.workers = new WorkerRuntime(root, store);
   }
   async ensure() { return this.processes.ensure(); }
+  async restartService(name) { return this.processes.restart(name); }
   async enter({ sessionId, sessionName = null, source = 'agent-entry', intent = 'write', ownedPaths = [] } = {}) {
     const context = loadProjectContext(this.root); const services = await this.ensure();
     const session = sessionId ? await this.sessions.enter({ sessionId, sessionName, intent, ownedPaths }) : null;

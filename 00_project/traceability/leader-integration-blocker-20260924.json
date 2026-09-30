@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "record_type": "leader-integration-blocker",
+  "recorded_at": "2026-09-24T10:10:45.786Z",
+  "session_id": "codex-d80b7f12073a98b4eb63-1",
+  "status": "blocked-dirty-leader",
+  "leader_checkout": "D:/muIon-beam",
+  "counts": {
+    " M": 39,
+    " D": 235,
+    "??": 504
+  },
+  "total": 778,
+  "source_worker_head": "8b3328e060e2a6d14d1807d9d1439bd2cb4d9423",
+  "integration_attempt": "integration-coordinator.integratePrepared",
+  "reason": "leader checkout has protected governance/user modifications; worker cannot write main and leader gate correctly refuses apply",
+  "next_action": "run explicit leader-delivery cleanup plan on main, then apply worker merge under leader-integration lock",
+  "safety": "no reset/stash/clean/overwrite performed"
+}

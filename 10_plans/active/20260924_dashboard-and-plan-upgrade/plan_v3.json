@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "plan_id": "plan_dashboard_delivery_repair_20260930",
+  "version": "v3",
+  "revision": 3,
+  "status": "executing",
+  "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
+  "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
+  "current_phase": "P3",
+  "next_action": "Publish N0+N1 through the serialized leader node gate, then verify real Gitee main, Drive cloud readback and both t-tags.",
+  "preferred_executor": {
+    "model": "gpt-6-luna",
+    "reasoning_effort": "max",
+    "user_creates_session": true
+  },
+  "scope": {
+    "formal_research": false,
+    "historical_tag_backfill": false,
+    "node_auto_publish": true,
+    "automatic_worktree_cleanup": true
+  },
+  "tag_policy": {
+    "task_node": "t-",
+    "standalone_infrastructure_release": "b-",
+    "formal_result": "r-",
+    "legacy_tags": "preserve immutable",
+    "this_plan": "t- for delivered plan_v3 nodes only"
+  },
+  "execution_order": [
+    "P0",
+    "P3",
+    "P4",
+    "P1",
+    "P2",
+    "P5"
+  ],
+  "phases": [
+    {
+      "id": "P0",
+      "status": "completed",
+      "evidence": []
+    },
+    {
+      "id": "P1",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "P2",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "P3",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "P4",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "P5",
+      "status": "pending",
+      "evidence": []
+    }
+  ],
+  "nodes": [
+    {
+      "id": "N0",
+      "status": "ready-for-delivery",
+      "source_commit": "a066ab5ac523a1bc6c50fd17af1fe8142346d848",
+      "delivery_commit": null,
+      "tag": null,
+      "remote_verified": false,
+      "drive_verified": false,
+      "summary": "Adopt the approved plan_v3 and handoff plus the additive correction and evidence checkpoint.",
+      "validation": {
+        "test_files": [
+          "tests/project-supervisor.test.mjs",
+          "tests/session-concurrency.test.mjs",
+          "tests/integration-coordinator.test.mjs",
+          "tests/auto-commit-push-policy.test.mjs",
+          "tests/task-tag.test.mjs",
+          "tests/task-close.test.mjs"
+        ],
+        "architecture_check": true,
+        "document_check": true
+      }
+    },
+    {
+      "id": "N1",
+      "status": "ready-for-delivery",
+      "source_commit": null,
+      "delivery_commit": null,
+      "tag": null,
+      "remote_verified": false,
+      "drive_verified": false,
+      "summary": "Deliver P0 recovery and the serialized node publish/tag/Drive gate, with plan and historical incident receipts.",
+      "validation": {
+        "test_files": [
+          "tests/project-supervisor.test.mjs",
+          "tests/session-concurrency.test.mjs",
+          "tests/integration-coordinator.test.mjs",
+          "tests/auto-commit-push-policy.test.mjs",
+          "tests/task-tag.test.mjs",
+          "tests/task-close.test.mjs"
+        ],
+        "architecture_check": true
+      }
+    },
+    {
+      "id": "N2",
+      "status": "pending",
+      "source_commit": null,
+      "delivery_commit": null,
+      "tag": null,
+      "remote_verified": false,
+      "drive_verified": false
+    },
+    {
+      "id": "N3",
+      "status": "pending",
+      "source_commit": null,
+      "delivery_commit": null,
+      "tag": null,
+      "remote_verified": false,
+      "drive_verified": false
+    }
+  ],
+  "planning_worktree": "D:\\muIon-beam\\_work\\current\\worktrees\\codex-d80b7f12073a98b4eb63-2",
+  "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
+  "checkpoint": {
+    "implementation_started": true,
+    "next_action": "Publish N0+N1 through the serialized leader node gate, then verify real Gitee main, Drive cloud readback and both t-tags.",
+    "blockers": [],
+    "completed_requirements": [
+      "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
+      "Ran the project entry contract; session is active in the assigned private worktree and farmer/dashboard report healthy.",
+      "Verified the task baseline and main/origin/main commit at 2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226.",
+      "Copied the approved plan and handoff into this execution worktree.",
+      "Compared all 92 d80 merge-base file paths against current main by Git blob identity; 34 are identical, 58 remain explicitly assigned for adoption, replacement or preservation review.",
+      "Read the preserved hook incident and NUL-only bytes; exact error-to-hook mapping and write trigger remain unproven.",
+      "Added a narrow NUL quarantine/rebuild path and fsync-before-rename; project-supervisor tests pass 9/9.",
+      "Added an additive correction receipt for plan_v02; original v02 files remain unchanged.",
+      "Validated JSON structure; handoff copy is byte-identical, while human/machine plan copies differ only by the active execution checkpoint updates recorded here.",
+      "P0 is complete: legal worktree/baseline verified, NUL corruption recovery tested, all 92 d80 paths have a disposition, and v02 correction is additive."
+    ],
+    "open_findings": [
+      "N0/N1 are only ready-for-delivery in this worker; no main/Gitee/Drive/tag publication has happened yet.",
+      "P1/P2 dashboard and runtime changes remain; P5 real browser, clean clone, cloud readback, recovery-index and automatic historical cleanup remain.",
+      "N3 close cleanup is deferred while this host turn is live; supervisor must later remove the clean merged worktree and branch."
+    ],
+    "source_document_hashes": [
+      {
+        "name": "handoff_v3.md",
+        "source_sha256": "31bdc0d35dc1aec61a6b30ade03647afee74c969ef1d0af0c747291e494dd7e5",
+        "execution_sha256": "31bdc0d35dc1aec61a6b30ade03647afee74c969ef1d0af0c747291e494dd7e5",
+        "exact_copy": true,
+        "current_execution_sha256": "31bdc0d35dc1aec61a6b30ade03647afee74c969ef1d0af0c747291e494dd7e5"
+      },
+      {
+        "name": "plan_v3.md",
+        "source_sha256": "12e0044692aa6bed7e2619752d5ec381acf730a478dcc22a90fcb181469262f1",
+        "execution_sha256": "ab5660842d5ea91fb9552da488c949a863869839d06a800c789681d408777cf4",
+        "exact_copy": false,
+        "current_execution_sha256": "ab5660842d5ea91fb9552da488c949a863869839d06a800c789681d408777cf4"
+      },
+      {
+        "name": "plan_v3.json",
+        "source_sha256": "c32d6551a4c7cfddff6e675cb465ceec54d0b804c1efc1f619cc061c45cffedc",
+        "execution_sha256": "dbf6ea0023565d09e40952c7d53b93e33d44699976481ab090c90afa07422a51",
+        "exact_copy": false,
+        "current_execution_sha256": "a4cf257b1fe7aad42f279e79e0f5b1fd68e6f94201501180dab228c0afb4fd62"
+      }
+    ]
+  },
+  "execution": {
+    "session_id": "codex-835da5ec0682f0e05a65-1",
+    "branch": "codex/session/codex-835da5ec0682f0e05a65-1",
+    "worktree": "D:/muIon-beam/_work/current/worktrees/codex-835da5ec0682f0e05a65-1",
+    "base_commit": "2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226",
+    "origin_main_verified": "2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226",
+    "planning_commit": "a066ab5ac523a1bc6c50fd17af1fe8142346d848",
+    "started_at": "2026-09-30",
+    "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
+    "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2"
+  },
+  "updated_at": "2026-09-30T00:26:15.164Z",
+  "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
+  "session_ids": [
+    "codex-835da5ec0682f0e05a65-1"
+  ],
+  "machine_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+  "p0_audit": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+}

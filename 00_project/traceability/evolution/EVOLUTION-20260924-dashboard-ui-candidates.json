@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "evolution_id": "EVOLUTION-20260924-dashboard-ui-candidates",
+  "recorded_at": "2026-09-24",
+  "trigger": "user-explicit-github-dashboard-request",
+  "status": "candidate-review",
+  "study_boundary": {
+    "mode": "read-only-study",
+    "external_code_executed": false,
+    "external_installers_executed": false,
+    "npm_install_executed": false,
+    "muion_files_copied": false,
+    "dashboard_restarted": false,
+    "implementation_started": false
+  },
+  "candidates": [
+    {
+      "name": "tabler",
+      "url": "https://github.com/tabler/tabler",
+      "revision": "f4d5c3d2bc6b9c567eda0c8a8df758306219c7d0",
+      "license": "MIT",
+      "cache": "_work/cache/evolution/tabler-head",
+      "selected_hashes": [
+        { "path": "LICENSE", "sha256": "8AE01434D2466E421A196F97308A0876C4B9089C0DC5352BB4CC7BA68B12DBCD", "bytes": 1111 },
+        { "path": "core/package.json", "sha256": "837F65B93D0F4D6F7B70C0BBFBC08859E6CADD4E38EC037E10C9A8116A75BF6B", "bytes": 9162 },
+        { "path": "README.md", "sha256": "C0721F5C1413CDCC09896339CE9C033575CA028453A255AAB4FA4F5B59E0FD66", "bytes": 12710 }
+      ],
+      "classification": "reference-or-small-vendor",
+      "value": "ready-made responsive dashboard shell, cards, status badges and dark mode",
+      "risks": ["full repository is a pnpm/turbo monorepo", "copying the whole build system would add unnecessary runtime and dependency surface"],
+      "recommendation": "copy only the small shell/token/card subset or compiled assets after scope approval"
+    },
+    {
+      "name": "jkanban",
+      "url": "https://github.com/riktar/jkanban",
+      "revision": "963cf2031d0f2cf07e5edbe368978f59bb2e30fd",
+      "license": "Apache-2.0",
+      "cache": "_work/cache/evolution/jkanban-head",
+      "selected_hashes": [
+        { "path": "LICENSE", "sha256": "E03BA41D7FAB20700769FE4118BAB50D800CB74F990353A05D2F5FFF1C228363", "bytes": 11558 },
+        { "path": "package.json", "sha256": "9CED3AAE7CBACA8C7DA2479C306074EA022C235994CF75320799E2C96514658F", "bytes": 1195 },
+        { "path": "jkanban.js", "sha256": "8C0E6291F87637A6247E932367A20475736E6CA4F869BAFD8687EB18DE1D732F", "bytes": 21218 },
+        { "path": "jkanban.css", "sha256": "2FE09AC194CBD606DBBCADA0230790654968DDAE334D684DCF13CBC797F75DBC", "bytes": 2681 }
+      ],
+      "classification": "reference-or-small-vendor",
+      "value": "vanilla JavaScript Kanban columns with drag/drop callbacks and no framework runtime",
+      "risks": ["drag/drop callbacks must remain read-only in the first dashboard version", "Apache notice must follow any copied files"],
+      "recommendation": "defer vendoring until the read model is correct; prefer own read-only card renderer first"
+    }
+  ],
+  "local_root_cause_evidence": {
+    "dashboard_health_project_root": "D:\\muIon-beam\\_work\\current\\worktrees\\codex-8f62a0ce8890af6b3331-1",
+    "current_session_worktree": "D:\\muIon-beam\\_work\\current\\worktrees\\codex-d80b7f12073a98b4eb63-1",
+    "recorded_service_status": "dashboard-port-owned-by-another-service",
+    "canonical_files": [
+      "11_tools/research-dashboard/server.mjs",
+      "11_tools/research-dashboard/supervision.js",
+      "11_tools/project-supervisor/progress-aggregator.mjs",
+      "11_tools/project-supervisor/services.mjs"
+    ]
+  },
+  "decision": {
+    "adopt_now": false,
+    "recommended_scope": "freeze the discussion plan first; then use Tabler shell and only add jKanban if interactive columns are explicitly needed",
+    "rationale": "The current failure is first a canonical-root/read-model problem. A UI library can improve layout but cannot fix cross-worktree service drift, historical filtering or missing names.",
+    "next_adoption_gate": "User confirms the plan decisions in 10_plans/active/20260924_dashboard-and-plan-upgrade/plan_index.json"
+  }
+}

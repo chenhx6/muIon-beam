@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "record_type": "formal-output-quarantine-manifest",
+  "quarantine_id": "QUARANTINE-DASHBOARD-GOVERNANCE-20260924-FORMAL-OUTPUT",
+  "created_at": "2026-09-24T08:29:02.971Z",
+  "source_receipt": "OUTPUT-ARCHIVE-RECEIPT-20260924",
+  "purpose": "preserve output files that are unregistered, hash-drifted or blocked before active checkout cleanup",
+  "summary": {
+    "files": 67,
+    "bytes": 47111575
+  },
+  "items": [
+    {
+      "original_path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/model-snapshot/snapshot_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/model-snapshot/snapshot_manifest.json",
+      "bytes": 1597,
+      "sha256": "de4c30ed3a070e53000721cef743b096eae04ccd1b67899eeee8f03f3ec35224",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "de4c30ed3a070e53000721cef743b096eae04ccd1b67899eeee8f03f3ec35224"
+    },
+    {
+      "original_path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/report/behavior_analysis.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/behavior_analysis.json",
+      "bytes": 6498,
+      "sha256": "8194ce7ae2cd87858a5b709f912b0fa38768ef3f8cd01494f1a8292819625aac",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "8194ce7ae2cd87858a5b709f912b0fa38768ef3f8cd01494f1a8292819625aac"
+    },
+    {
+      "original_path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/report/detailed-report-zh.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/detailed-report-zh.md",
+      "bytes": 2114,
+      "sha256": "f29b4e168b98adf79755cc310d3508317f62f287275fad637af4b3acec71783b",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "f29b4e168b98adf79755cc310d3508317f62f287275fad637af4b3acec71783b"
+    },
+    {
+      "original_path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/report/figure_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/figure_manifest.json",
+      "bytes": 11243,
+      "sha256": "6b732e0a3dfa8047858c7d9c9898e6250510d112035493792238a99e58fbed4b",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "6b732e0a3dfa8047858c7d9c9898e6250510d112035493792238a99e58fbed4b"
+    },
+    {
+      "original_path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/report/summary-report-zh.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/report/summary-report-zh.md",
+      "bytes": 992,
+      "sha256": "7064316304f878e3dfbb379bfb7f11c72d18133bc04c1e830c8950542283fb42",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "7064316304f878e3dfbb379bfb7f11c72d18133bc04c1e830c8950542283fb42"
+    },
+    {
+      "original_path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/run_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/run_manifest.json",
+      "bytes": 130928,
+      "sha256": "0767e02d8f39f38a30b5b63c826bceaaf6d27e1e3a6502e5f8cc345bfaadf900",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "0767e02d8f39f38a30b5b63c826bceaaf6d27e1e3a6502e5f8cc345bfaadf900"
+    },
+    {
+      "original_path": "03_runs/formal/run_legacy_smoke_001_stage1_centered/smoke_test_result.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_legacy_smoke_001_stage1_centered/smoke_test_result.json",
+      "bytes": 650,
+      "sha256": "b787c703523410b13be8f662709a2b023dda3986965972bc12b49f6ea943ed75",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "b787c703523410b13be8f662709a2b023dda3986965972bc12b49f6ea943ed75"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_1600-run_lvl1_mu_ne_comsol_batch.log.status",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_1600-run_lvl1_mu_ne_comsol_batch.log.status",
+      "bytes": 20,
+      "sha256": "813b7aaebb539729cadc54272d40695982514a0a67934c7964c125874e995b66",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "813b7aaebb539729cadc54272d40695982514a0a67934c7964c125874e995b66"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_det-v01-en.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_det-v01-en.md",
+      "bytes": 549,
+      "sha256": "9180be75e0b6485deb72b650cc3e54bc8aca608850341525603da3cd642caf87",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "9180be75e0b6485deb72b650cc3e54bc8aca608850341525603da3cd642caf87"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_meta-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2045-run_lvl1_mu_ne_001-comsol_gate-r_meta-v01-en.json",
+      "bytes": 436,
+      "sha256": "2f07a33174e8ffd20cd167f2ccc4c7b97a15d8d35583eab79dd912c4725c854c",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "2f07a33174e8ffd20cd167f2ccc4c7b97a15d8d35583eab79dd912c4725c854c"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-ne_field-r_manifest-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260912_2245-run_lvl1_mu_ne_001-ne_field-r_manifest-v01-en.json",
+      "bytes": 2069,
+      "sha256": "d69cb0867776d11339ffd6e5e135fda8f2f071d9ab5caa07f642f6e0b82a7856",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "d69cb0867776d11339ffd6e5e135fda8f2f071d9ab5caa07f642f6e0b82a7856"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/20260913_0000-run_lvl1_mu_ne_001-ne_field-r_snapshot-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/20260913_0000-run_lvl1_mu_ne_001-ne_field-r_snapshot-v01-en.json",
+      "bytes": 518,
+      "sha256": "c875d5f73f596ac715586ed6878b74e12526e9c69ae81eb16e293526534807a2",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "c875d5f73f596ac715586ed6878b74e12526e9c69ae81eb16e293526534807a2"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke.mph.status",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke.mph.status",
+      "bytes": 20,
+      "sha256": "12e4477bef5f89f5e88ba5a28b7f9658ae602f5a086da2bd9668d7dc2c99e068",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "12e4477bef5f89f5e88ba5a28b7f9658ae602f5a086da2bd9668d7dc2c99e068"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_batch.log",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_batch.log",
+      "bytes": 645,
+      "sha256": "7e747fd873b4ce05a77d6c6a91ed0e3b896b2a0398b34290c32e47f18c70cb07",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "7e747fd873b4ce05a77d6c6a91ed0e3b896b2a0398b34290c32e47f18c70cb07"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_stdout.log",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/adapter_smoke_stdout.log",
+      "bytes": 44,
+      "sha256": "cae1ae1d5af8c7377d0a41ae2a460e653059b736b3654de0a801dafd38f37e31",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "cae1ae1d5af8c7377d0a41ae2a460e653059b736b3654de0a801dafd38f37e31"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/batch.log.status",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/batch.log.status",
+      "bytes": 20,
+      "sha256": "a4a221e468c798b2a1dc155baf953d1741815366d75f0743854aed89b107b7ff",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "a4a221e468c798b2a1dc155baf953d1741815366d75f0743854aed89b107b7ff"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/directory.rm",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/directory.rm",
+      "bytes": 11,
+      "sha256": "9329e3ec60ca44c032e07dc03e5f5c1792118deae604305c2779b51f6971a6e9",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "9329e3ec60ca44c032e07dc03e5f5c1792118deae604305c2779b51f6971a6e9"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributions.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributions.1",
+      "bytes": 5563,
+      "sha256": "cbd68ef95903fc61ca6ea033941ec1def3baca1a3911c7d1cd8b134a84b5ddc5",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "cbd68ef95903fc61ca6ea033941ec1def3baca1a3911c7d1cd8b134a84b5ddc5"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributors.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.contributors.1",
+      "bytes": 8116,
+      "sha256": "c261c7ed0fe920b7c20cf28621b4cb9092bdadda9361c5a81b372f1959ee1d3a",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "c261c7ed0fe920b7c20cf28621b4cb9092bdadda9361c5a81b372f1959ee1d3a"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.extraData.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.extraData.1",
+      "bytes": 4315525,
+      "sha256": "e2682dd3c2e4026225adf2aff8a072c8d48947e67cb8e3190b218b2142c91ec9",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "e2682dd3c2e4026225adf2aff8a072c8d48947e67cb8e3190b218b2142c91ec9"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.mainData.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.mainData.1",
+      "bytes": 3004136,
+      "sha256": "90787564ca258338034642c0dfae95504b325b2b0e7f1680d3f211b35a620292",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "90787564ca258338034642c0dfae95504b325b2b0e7f1680d3f211b35a620292"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.7",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.7",
+      "bytes": 159,
+      "sha256": "977ead8de5018ea0e997bce21ea911b75227d8cdff04a24c6765ba28cd7089b0",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "977ead8de5018ea0e997bce21ea911b75227d8cdff04a24c6765ba28cd7089b0"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.8",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.manager/.fileTable.8",
+      "bytes": 159,
+      "sha256": "c9a344ced670ae1c4d9ce1d2b9a5824d764b68511774318841fe092335d3a211",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "c9a344ced670ae1c4d9ce1d2b9a5824d764b68511774318841fe092335d3a211"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.namespaces.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.namespaces.1",
+      "bytes": 7459,
+      "sha256": "4e5fba79744b0ff7e6778e590af2c49e52142b2b1713e1142be62eeb1f7d6141",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "4e5fba79744b0ff7e6778e590af2c49e52142b2b1713e1142be62eeb1f7d6141"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.orphans.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.orphans.1",
+      "bytes": 214,
+      "sha256": "47bd3ec7a02df5a5c10b6a0faf0e0bc96bccb3fe23c2cddba021d7f77f180fca",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "47bd3ec7a02df5a5c10b6a0faf0e0bc96bccb3fe23c2cddba021d7f77f180fca"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.table.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.core.runtime/.table.1",
+      "bytes": 181725,
+      "sha256": "6dc26fe80d8955d583e41179c072ebb4474c75c2fc2437c818c0172b89cefba5",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "6dc26fe80d8955d583e41179c072ebb4474c75c2fc2437c818c0172b89cefba5"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.1",
+      "bytes": 78,
+      "sha256": "b7f7e1e4d8f7585cb5fa934b69007d1c51775e564554c65681d78621aaa0ac92",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "b7f7e1e4d8f7585cb5fa934b69007d1c51775e564554c65681d78621aaa0ac92"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.2",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/.manager/.fileTable.2",
+      "bytes": 78,
+      "sha256": "38b9826b0c77260fb782e45a3c38cea54332b0227b81b3f6c1332e5158c3bc8e",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "38b9826b0c77260fb782e45a3c38cea54332b0227b81b3f6c1332e5158c3bc8e"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/framework.info.1",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.osgi/framework.info.1",
+      "bytes": 880633,
+      "sha256": "1adb644ae3e0eda9a3f4c2b4ebce3bd6c16a4ead827d19b9cf88f7e60f952728",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "1adb644ae3e0eda9a3f4c2b4ebce3bd6c16a4ead827d19b9cf88f7e60f952728"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/last.config.stamp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/last.config.stamp",
+      "bytes": 16,
+      "sha256": "073ed8b39ef81b15fbe1e1ea06c7d76c2fba1bed1bc545f4e4b8f1a93a9411a7",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "073ed8b39ef81b15fbe1e1ea06c7d76c2fba1bed1bc545f4e4b8f1a93a9411a7"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/platform.xml",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/configuration/org.eclipse.update/platform.xml",
+      "bytes": 193,
+      "sha256": "51613809de38e5ace9f1d1538fe65fb5245dd27746c0da24b761a74c98becde0",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "51613809de38e5ace9f1d1538fe65fb5245dd27746c0da24b761a74c98becde0"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/comsol.recoveries",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/comsol.recoveries",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1.log",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1.log",
+      "bytes": 17994,
+      "sha256": "a44bdd8a78dd8cc6779714ab4f34fcea5d0cdf6943b68d89e9d00a2a64efeee5",
+      "drive_status": "blocked-unregistered-output",
+      "recorded_sha256": "a44bdd8a78dd8cc6779714ab4f34fcea5d0cdf6943b68d89e9d00a2a64efeee5"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1_render.log",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/comsol/runtime/prefs/logs/batch1_render.log",
+      "bytes": 402,
+      "sha256": "e0c25d100f14e22067679ecd7d0aacfe872602498f2e03aa8345f5ba83dcad58",
+      "drive_status": "blocked-unregistered-output",
+      "recorded_sha256": "e0c25d100f14e22067679ecd7d0aacfe872602498f2e03aa8345f5ba83dcad58"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/diagnostics/20260913_0100-run_lvl1_mu_ne_001-failure-diagnosis-r_det-v01-zh.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/diagnostics/20260913_0100-run_lvl1_mu_ne_001-failure-diagnosis-r_det-v01-zh.md",
+      "bytes": 964,
+      "sha256": "bb9b2ea806091415ddac4e003d32afcf9308af0d75773d7a3317ac845cfc708c",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "bb9b2ea806091415ddac4e003d32afcf9308af0d75773d7a3317ac845cfc708c"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_manifest-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_manifest-v01-en.json",
+      "bytes": 910,
+      "sha256": "aff7153f5abff5e2c69a76006048bc65064368eb2fb45e92ca8b2a2baaa92f99",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "aff7153f5abff5e2c69a76006048bc65064368eb2fb45e92ca8b2a2baaa92f99"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_meta-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_meta-v01-en.json",
+      "bytes": 3041,
+      "sha256": "69274fd097407a1628c1de0a9c9af586fd730beebb5983ff8e41b3862e303a2f",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "69274fd097407a1628c1de0a9c9af586fd730beebb5983ff8e41b3862e303a2f"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_tbl-v01-en.csv",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/20260913_0005-run_lvl1_mu_ne_001-mu_ne_transport-r_tbl-v01-en.csv",
+      "bytes": 41554,
+      "sha256": "7b2976ce0d5d17af8cc77cbf0324daea5a4748f3c06ff67291c27414ae522f5f",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "7b2976ce0d5d17af8cc77cbf0324daea5a4748f3c06ff67291c27414ae522f5f"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/test.csv",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/test.csv",
+      "bytes": 726,
+      "sha256": "7e1aa657775a7ff84ef665afde4c555240c7010492fa12a86c850e5831877f53",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "7e1aa657775a7ff84ef665afde4c555240c7010492fa12a86c850e5831877f53"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geant4/test.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geant4/test.json",
+      "bytes": 3032,
+      "sha256": "2ed989facc050e27d1b423826303bca1ee1154b8664879ba058211d44486fa77",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "2ed989facc050e27d1b423826303bca1ee1154b8664879ba058211d44486fa77"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_export_task_v01.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_export_task_v01.json",
+      "bytes": 269,
+      "sha256": "de45d1c56fe15bb0d70578653c9bdc9a012af56d3546e3cd1857a34ee90c9978",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "de45d1c56fe15bb0d70578653c9bdc9a012af56d3546e3cd1857a34ee90c9978"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_inspect_task_v01.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/3d_inspect_task_v01.json",
+      "bytes": 179,
+      "sha256": "8472b60ed8e2ca3dd01c6b2333070f4b24c5a82e524e06ec0c5899156c72d6ff",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "8472b60ed8e2ca3dd01c6b2333070f4b24c5a82e524e06ec0c5899156c72d6ff"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_front.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_front.bmp",
+      "bytes": 4800054,
+      "sha256": "7e02fd6d9bb95510f8b126dad2aef6b24ed30420a9fa876a9eaf42900fde6681",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "7e02fd6d9bb95510f8b126dad2aef6b24ed30420a9fa876a9eaf42900fde6681"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_isometric.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_isometric.bmp",
+      "bytes": 4800054,
+      "sha256": "20afcfccb5a6a1ff4ab092fd6cdb2513f4e3d8366348300ce2f669a446e6c207",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "20afcfccb5a6a1ff4ab092fd6cdb2513f4e3d8366348300ce2f669a446e6c207"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_report.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_report.json",
+      "bytes": 18809,
+      "sha256": "30defbfd94e9dc28b06b050e2e67b72be541fba7745ae709c4d7539aaf9c9625",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "30defbfd94e9dc28b06b050e2e67b72be541fba7745ae709c4d7539aaf9c9625"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_summary.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_review_summary.md",
+      "bytes": 987,
+      "sha256": "f5e1444081dd22744ed2a655e7ee5bc1e4f315e2266fbf77600ecf03de145fc0",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "f5e1444081dd22744ed2a655e7ee5bc1e4f315e2266fbf77600ecf03de145fc0"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_right.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_right.bmp",
+      "bytes": 4800054,
+      "sha256": "adcc32756e8b5397f680c45e32db339a004acdd7f5fbb4eeb80f66ecd3931154",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "adcc32756e8b5397f680c45e32db339a004acdd7f5fbb4eeb80f66ecd3931154"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_top.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/inspect_v01/lvl1_mu_ne_001_top.bmp",
+      "bytes": 4800054,
+      "sha256": "daa04df628cf1a83471751515ea880315b7ce0960bdbcc5626475d10edaed42e",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "daa04df628cf1a83471751515ea880315b7ce0960bdbcc5626475d10edaed42e"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_front.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_front.bmp",
+      "bytes": 4800054,
+      "sha256": "36a9b1870ea2f0e48c5ef9d39053c45fff38eec79fafae6a2ec4235faa10a325",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "36a9b1870ea2f0e48c5ef9d39053c45fff38eec79fafae6a2ec4235faa10a325"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_isometric.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_isometric.bmp",
+      "bytes": 4800054,
+      "sha256": "3113ba6b656fbdffb2de3fe57aaa639716fc85b3e67a8788869dc14ad34a13fd",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "3113ba6b656fbdffb2de3fe57aaa639716fc85b3e67a8788869dc14ad34a13fd"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_report.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_report.json",
+      "bytes": 19291,
+      "sha256": "ad4baec358d15e7d1a44f236145fbf84757a39266a1ce2306764ef68d2985ff6",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "ad4baec358d15e7d1a44f236145fbf84757a39266a1ce2306764ef68d2985ff6"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_summary.md",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_review_summary.md",
+      "bytes": 1051,
+      "sha256": "60ded03469b4637f435ebe652ab62de78d30c483536843866538f562a8ab318f",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "60ded03469b4637f435ebe652ab62de78d30c483536843866538f562a8ab318f"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_right.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_right.bmp",
+      "bytes": 4800054,
+      "sha256": "53754985b04a5d31aec4f0ac1391f68ee46d4e4da2ed25d99f6adf8c841b6747",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "53754985b04a5d31aec4f0ac1391f68ee46d4e4da2ed25d99f6adf8c841b6747"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_top.bmp",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/geometry/step_import_v01/lvl1_mu_ne_001_step_import_top.bmp",
+      "bytes": 4800054,
+      "sha256": "c44f104795af62e040f50acf9db0ce2ed347379ac4dd2cb8e59a641d5df284e4",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "c44f104795af62e040f50acf9db0ce2ed347379ac4dd2cb8e59a641d5df284e4"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/lvl1_mu_ne_stopping_v01.csv",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/lvl1_mu_ne_stopping_v01.csv",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/contract.yaml",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/contract.yaml",
+      "bytes": 1490,
+      "sha256": "559230883be69ea4aebeccae92cac1172faaebcc565a2c7e1c157e5113e55c11",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "559230883be69ea4aebeccae92cac1172faaebcc565a2c7e1c157e5113e55c11"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/geometry_manifest_lvl1_mu_ne_001.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/geometry_manifest_lvl1_mu_ne_001.json",
+      "bytes": 1200,
+      "sha256": "44ccd33095c8094913ec9c3f6a3cde3d83b929a6ccbda358ac60f27abb07726c",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "44ccd33095c8094913ec9c3f6a3cde3d83b929a6ccbda358ac60f27abb07726c"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.geometry.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.geometry.json",
+      "bytes": 928,
+      "sha256": "1f8f405f46d39ac14eef3e9d32124185fda42544d54fcbc0b889fee3d7f6d2f4",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "1f8f405f46d39ac14eef3e9d32124185fda42544d54fcbc0b889fee3d7f6d2f4"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.model_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/model_lvl1_mu_ne_001.model_manifest.json",
+      "bytes": 1936,
+      "sha256": "cca9a963cd942a0b02ed99de419caeb25b2e934c0a753275658d286767c379bf",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "cca9a963cd942a0b02ed99de419caeb25b2e934c0a753275658d286767c379bf"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/task_lvl1_mu_ne_001.task_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/model-snapshot/task_lvl1_mu_ne_001.task_manifest.json",
+      "bytes": 3721,
+      "sha256": "91716331bf26fff80faaeea2809b68aa4ce5dd57654021615db294cac370b533",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "91716331bf26fff80faaeea2809b68aa4ce5dd57654021615db294cac370b533"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/report/report_index.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/report/report_index.json",
+      "bytes": 346,
+      "sha256": "46a5e05a5f38e4ab6b25bb981e1fba6036a5aa44b784503e32ab54b027a95931",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "46a5e05a5f38e4ab6b25bb981e1fba6036a5aa44b784503e32ab54b027a95931"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/run_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/run_manifest.json",
+      "bytes": 1477,
+      "sha256": "57bca21efb1381cf9e041c09f7d68b48c4a53ed8b340df1255fd4db7fd099eae",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "57bca21efb1381cf9e041c09f7d68b48c4a53ed8b340df1255fd4db7fd099eae"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_damping-r_tbl-v01-en.txt",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_damping-r_tbl-v01-en.txt",
+      "bytes": 9918,
+      "sha256": "26fc86462a0e3696dc47f56ccc143dff1e40ae7bed992ad66bbed7b88e8ac600",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "26fc86462a0e3696dc47f56ccc143dff1e40ae7bed992ad66bbed7b88e8ac600"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_interface_si-v01-en.txt",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_interface_si-v01-en.txt",
+      "bytes": 9918,
+      "sha256": "c3bdf2e9445ad0891b80ef97807caceb5c8e701b36e5a61ac10391af649ded9d",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "c3bdf2e9445ad0891b80ef97807caceb5c8e701b36e5a61ac10391af649ded9d"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_meta-v01-en.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-mu_ne_stopping-r_meta-v01-en.json",
+      "bytes": 5544,
+      "sha256": "090f18f083d9871d212cb3d25ab2817b1c1d82a4be72f493610524911e71d1b0",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "090f18f083d9871d212cb3d25ab2817b1c1d82a4be72f493610524911e71d1b0"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-ne_density_scaling-r_qa-v01-en.csv",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping-output/20260912_1000-run_lvl1_mu_ne_001-ne_density_scaling-r_qa-v01-en.csv",
+      "bytes": 1507,
+      "sha256": "4583a5155a7ce2773e001b5515108f0ba9ccfc2556f35b3d056a10f729fe9979",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "4583a5155a7ce2773e001b5515108f0ba9ccfc2556f35b3d056a10f729fe9979"
+    },
+    {
+      "original_path": "03_runs/formal/run_lvl1_mu_ne_001/stopping_manifest.json",
+      "quarantine_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-unregistered/03_runs/formal/run_lvl1_mu_ne_001/stopping_manifest.json",
+      "bytes": 1541,
+      "sha256": "170e22d9c58cadb0d1f220e92f4582a3ea2149c448c4926e98847f88f9652201",
+      "drive_status": "already-present-but-manifest-unregistered-or-drifted",
+      "recorded_sha256": "170e22d9c58cadb0d1f220e92f4582a3ea2149c448c4926e98847f88f9652201"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "record_type": "dashboard-cleanup-receipt",
+  "recorded_at": "2026-09-24T04:45:05.613Z",
+  "scope": "project-root read-only todo board",
+  "outcome": "legacy-ui-surfaces-removed-and-current-runtime-audited",
+  "removed_paths": [],
+  "removed_logical_surfaces": [
+    {
+      "surface": "session-list/current-session-* dashboard selectors",
+      "evidence": "current index.html exposes only active-list, pending-list, active-count and pending-count"
+    },
+    {
+      "surface": "todo-list/raw JSON dashboard rendering",
+      "evidence": "current page has no raw state panel and supervision.js renders DOM text nodes without JSON.stringify"
+    }
+  ],
+  "retained_paths": [
+    {
+      "path": "11_tools/research-dashboard/index.html",
+      "reason": "read-only active/pending board shell",
+      "sha256": "aaecf67d8a1fbe242b22fcf8b90aa6eb7d348b9f1bf7556e5377396ffc7c4d58",
+      "bytes": 5427
+    },
+    {
+      "path": "11_tools/research-dashboard/supervision.js",
+      "reason": "read-only rendering, freshness and abnormal-session attention",
+      "sha256": "35205b212f08ebd053bb58b9b4fc7d1d0ba50b417e7d3658e152a3c0b24e0110",
+      "bytes": 6858
+    },
+    {
+      "path": "11_tools/research-dashboard/server.mjs",
+      "reason": "project-root health/status API and read-only adapters",
+      "sha256": "973a74397e84e5983e9b7131501ec620a29e90c12db7aa82d58caf458811b89f",
+      "bytes": 8824
+    },
+    {
+      "path": "11_tools/project-supervisor/progress-aggregator.mjs",
+      "reason": "canonical project-root session/plan/Codex/agent projection",
+      "sha256": "698efe636d24fb8883f0768c6eb672cf7af84cc94a3ee7efb59a864cb52ee432",
+      "bytes": 17213
+    },
+    {
+      "path": "11_tools/project-supervisor/services.mjs",
+      "reason": "dashboard service lease and exact-root health check",
+      "sha256": "70e047d9e228ad13bb854ae38cd53971d119bd5463d10fbf6fae25c4aa231809",
+      "bytes": 3818
+    },
+    {
+      "path": "tests/research-dashboard.test.mjs",
+      "reason": "dashboard regression and read-model fixtures",
+      "sha256": "ac006f92161c3915ace864edc75a7937f2a64020ea6cdba686fb4ef58fddc95c",
+      "bytes": 12910
+    },
+    {
+      "path": "tests/supervisor-progress.test.mjs",
+      "reason": "plan/subagent projection fixtures",
+      "sha256": "623ba604cf4a1564bdef8ad98ebfdd6501f243eaf4e7cb66f718d5773fb29850",
+      "bytes": 3682
+    }
+  ],
+  "dependency_audit": {
+    "dashboard_entrypoints": [
+      "11_tools/project-supervisor/services.mjs",
+      "11_tools/research-dashboard/server.mjs"
+    ],
+    "retained_adapters": [
+      "goal-adapter.mjs",
+      "continuation-adapter.mjs",
+      "convergence-guard.mjs",
+      "health-adapter.mjs"
+    ],
+    "reason": "server imports these adapters; physics/evidence/capability/ledger/review helpers remain referenced by workflow or regression tests",
+    "orphan_dashboard_files": []
+  },
+  "policy": {
+    "canonical_root": "D:\\muIon-beam",
+    "drag_and_drop": false,
+    "completed_sessions": "hidden from board; receipts retained in project archives",
+    "writes_from_dashboard": false
+  },
+  "validation": [
+    "node --test tests/research-dashboard.test.mjs",
+    "node --test tests/supervisor-progress.test.mjs",
+    "node --test tests/autopilot.test.mjs tests/orchestration-gates.test.mjs tests/project-supervisor.test.mjs",
+    "GET /api/health project_root equals canonical project root"
+  ],
+  "rollback_boundary": "revert the worker checkpoint containing this receipt and the associated dashboard changes; no history or session receipts were deleted"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "record_type": "governance-incremental-receipt",
+  "recorded_at": "2026-09-24T08:36:10.541Z",
+  "plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.json",
+  "source_receipts": [
+    "D:/muIon-beam/_work/current/worktrees/codex-8f62a0ce8890af6b3331-1/10_plans/active/20260923_drive_oauth_and_governance/receipts/MAIN-CHECKOUT-GOVERNANCE-RECEIPT-20260924.json",
+    "D:/muIon-beam/_work/current/worktrees/codex-8f62a0ce8890af6b3331-1/10_plans/active/20260923_drive_oauth_and_governance/receipts/OUTPUT-ARCHIVE-RECEIPT-20260924.json"
+  ],
+  "baseline": {
+    "modified": 39,
+    "deleted": 235,
+    "untracked": 504,
+    "total": 778
+  },
+  "worker_checkpoint": "415ad63",
+  "disposition": {
+    "modified": {
+      "merged_preserving_both": 39,
+      "conflicts": 0
+    },
+    "untracked": {
+      "durable_assets_present_in_worker": 205,
+      "durable_assets_missing_origin_or_unresolved": 4,
+      "formal_outputs_preserved_for_manifest_drive_review": 293,
+      "ignored_build_outputs": 2
+    },
+    "deleted": {
+      "same_sha256_rename_candidates": 82,
+      "content_change_or_unresolved": 153
+    }
+  },
+  "outputs": {
+    "manifest_backed_p2_logs": 166,
+    "copied": 166,
+    "reused": 60,
+    "blocked_unregistered": 2,
+    "blocked_manifest_path_or_hash": 65,
+    "already_present_unregistered": 64,
+    "already_present_manifest_hash_drift": 1
+  },
+  "status": "quarantine-verified-leader-cleanup-pending",
+  "next_actions": [
+    "execute leader-only cleanup plan for main checkout active outputs",
+    "perform clean leader integration from current worker checkpoint",
+    "recompute git status and delivery policy",
+    "verify persistent dashboard after supervisor recreation",
+    "complete Gitee/Drive delivery and close plan"
+  ],
+  "quarantine": {
+    "manifest": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+    "formal_output_manifest": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+    "verification_receipt": "00_project/traceability/quarantine-drive-verification-20260924.json",
+    "files": 220,
+    "bytes": 57622293,
+    "drive_sha256_verified": true
+  }
+}

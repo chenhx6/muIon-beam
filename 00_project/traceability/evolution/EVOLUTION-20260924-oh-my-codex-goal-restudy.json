@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "evolution_id": "EVOLUTION-20260924-oh-my-codex-goal-restudy",
+  "recorded_at": "2026-09-24",
+  "trigger": "user-explicit-evolution-github-reference",
+  "status": "candidate-review",
+  "source": {
+    "url": "https://github.com/Yeachan-Heo/oh-my-codex",
+    "revision": "cdc24a71408ebd6bd0362f52170f0d7998f77007",
+    "revision_kind": "main-head-fixed-by-git-ls-remote",
+    "package_version": "0.21.6",
+    "license": "MIT",
+    "repository_signals": {
+      "updated_at": "2026-09-23T08:12:52Z",
+      "pushed_at": "2026-09-23T01:26:17Z",
+      "stars": 33329,
+      "forks": 2544,
+      "open_issues": 1,
+      "archived": false,
+      "language": "TypeScript"
+    },
+    "commit_url": "https://github.com/Yeachan-Heo/oh-my-codex/commit/cdc24a71408ebd6bd0362f52170f0d7998f77007"
+  },
+  "study_boundary": {
+    "mode": "read-only-study",
+    "external_code_executed": false,
+    "external_installers_executed": false,
+    "external_hooks_executed": false,
+    "npm_install_executed": false,
+    "muion_files_copied": false,
+    "canonical_layout_changed": false,
+    "research_contract_changed": false,
+    "cache_checkout": "_work/cache/evolution/oh-my-codex-main@cdc24a71408ebd6bd0362f52170f0d7998f77007"
+  },
+  "source_hashes": [
+    { "path": "LICENSE", "sha256": "493B03C611B93C0C081E298E511086E6FC84D6056B56B7B2DC99B3EA9C928E8F" },
+    { "path": "package.json", "sha256": "F00B56C67E8BCB3F92F98C575A6ADFE22C9B1B023E6C0BE90CFE2BDBBC4756A1" },
+    { "path": "skills/ultragoal/SKILL.md", "sha256": "7815EDE874BF447E1605D354C1ABE4A52412BF6369AFFE08ECEB125D8D3CBED3" },
+    { "path": "skills/autopilot/SKILL.md", "sha256": "EE8B0426AE802647301512ECA09C382F4BFE8D794929D3E80F5C9CA9CD631123" },
+    { "path": "docs/ultragoal.md", "sha256": "171B891E945BAC852C3AE591B4C35D6F3E3B5B6702DADF9A3DCA4D6425096926" },
+    { "path": "src/ultragoal/artifacts.ts", "sha256": "BDC0FBB7768670EA882E02980E00379F43DDA9740E5A6B37B6D3581D054534B0" },
+    { "path": "src/goal-workflows/codex-goal-snapshot.ts", "sha256": "FADDC5D5A06FB77AEA5372E302FE4BBDD09EDE3B9B3AF95F0398B699397BAEFC" },
+    { "path": "src/scripts/postinstall.ts", "sha256": "E6158A2B7CD99D76D610725E0A9EB235E6C74F93554DDD3EE50010B71711A925" }
+  ],
+  "local_comparison": {
+    "capability_map": "00_project/traceability/capability-map.yaml",
+    "existing_capabilities": ["plan", "deep-interview", "consensus-plan", "ultragoal", "autopilot", "team", "research-state"],
+    "observed_local_entrypoints": [
+      ".codex/skills/muion-project/scripts/autopilot.mjs",
+      ".codex/skills/muion-project/scripts/ultragoal.mjs",
+      ".codex/skills/muion-project/scripts/workflow-store.mjs",
+      "10_plans/active/20260916_project_supervisor_auto_recovery/plan_v01.md"
+    ],
+    "observed_local_hashes": [
+      { "path": ".codex/skills/muion-project/scripts/autopilot.mjs", "sha256": "FFBF229D30F562695B546081A5DD22DC6905579756441E8C0DFC05BF467E3AD0" },
+      { "path": ".codex/skills/muion-project/scripts/ultragoal.mjs", "sha256": "A33535305B2003382A08D0365DFD4295F243C1486B5D7859B1BAE6893EE184A7" },
+      { "path": ".codex/skills/muion-project/scripts/workflow-store.mjs", "sha256": "0D73A6F51A9A5507BC4168461E291CABD435CFB4A0F0485A1B3FE89BEE93312C" }
+    ],
+    "behavior_probe": {
+      "command": "node .codex/skills/muion-project/scripts/autopilot.mjs --project-root <temp> plan --task-id TASK-PROBE",
+      "result": "workflow.json, owned_paths.json and research-state files were created; no 10_plans offline plan file was created"
+    },
+    "regression": {
+      "command": "node --test tests/orchestration-gates.test.mjs tests/autopilot.test.mjs tests/research-dashboard.test.mjs tests/evolution.test.mjs",
+      "passed": 40,
+      "failed": 1,
+      "failure": "tests/research-dashboard.test.mjs: dashboard reads JSON-backed yaml state as structured data; actual field was undefined"
+    }
+  },
+  "findings": [
+    {
+      "area": "durable-offline-plan",
+      "upstream": "Ultragoal writes a repo-native brief.md, goals.json and append-only ledger.jsonl, then prints an explicit handoff for the active Codex goal.",
+      "local_gap": "The local workflow checkpoint is durable, but a new autopilot plan does not create a compact human-readable offline plan under 10_plans, and the local ultragoal ledger is a mutable per-workflow JSON file.",
+      "classification": "extend",
+      "recommendation": "Adopt a project-native plan bundle generated at task start: 10_plans/active/<task-id>/plan.md plus a small machine-readable plan manifest; retain research-state/state.yaml as the only scientific state source.",
+      "priority": "P1"
+    },
+    {
+      "area": "autopilot-goal-chain",
+      "upstream": "Autopilot makes deep-interview -> ralplan -> ultragoal a supervised, ordered, resumable chain and loops back to planning when review or QA disproves the plan.",
+      "local_gap": "Local autopilot persists deep-interview and consensus-plan handoffs, but its execution FSM runs the research workflow directly and does not require an ultragoal checkpoint before execution/validation.",
+      "classification": "extend",
+      "recommendation": "Add the offline-plan/goal checkpoint as a thin gate around the existing FSM; do not replace research-state, contracts, model snapshots, ultraqa, or three-end delivery gates.",
+      "priority": "P1"
+    },
+    {
+      "area": "aggregate-goal-reconciliation",
+      "upstream": "One stable aggregate Codex objective covers the whole run while repo-native stories are checkpointed; shell code does not pretend to mutate hidden /goal state.",
+      "local_gap": "Local project goals are workflow-local and do not record a stable native-goal handoff or an explicit boundary between project evidence and the active Codex goal.",
+      "classification": "extend-with-boundary",
+      "recommendation": "If native goal mode is enabled later, use one aggregate objective per task and store fresh get_goal evidence with each checkpoint. Keep native get_goal/create_goal/update_goal operations in the agent/tool layer; do not invoke hidden goal-clear routes from Node.",
+      "priority": "P1"
+    },
+    {
+      "area": "structured-steering-and-finite-recovery",
+      "upstream": "Goal decomposition changes require structured, evidence-backed directives with idempotency; repeated external blockers become a user-decision state instead of an infinite retry loop.",
+      "local_gap": "The local workflow has idempotent stage events and retryable/blocked states, but no goal-level structured steering ledger.",
+      "classification": "reference-only-then-extend",
+      "recommendation": "Reuse the idea for future plan revisions only after the P1 plan bundle works; preserve immutable task scope and require evidence for any added/split/reordered step.",
+      "priority": "P2"
+    },
+    {
+      "area": "final-evidence-gate",
+      "upstream": "Final goal completion requires fresh verification and, in strict mode, cleaner/review/architecture-invariant evidence; completion is not inferred from the ledger alone.",
+      "local_gap": "Local ultraqa, report hashes, archive verification and close request already provide stronger project-specific gates, but ultragoal completion is not yet bound to them.",
+      "classification": "merge",
+      "recommendation": "Bind any future goal completion to existing ultraqa/report/archive evidence; do not copy the upstream cleaner or review stack as a second QA system.",
+      "priority": "P2"
+    },
+    {
+      "area": "launcher-tmux-hud-and-global-install",
+      "upstream": "The repository ships a global CLI, hooks, tmux/HUD and native runtime components.",
+      "local_gap": "muIon-beam already has a Windows project supervisor, farmer, dashboard, worktree isolation and delivery policy.",
+      "classification": "reject",
+      "recommendation": "Do not clone/install the upstream runtime. The upstream README says native Windows and Codex App are not the default supported path; package.json also has a global postinstall hook that may hydrate a native runtime and write an install stamp.",
+      "priority": "P0"
+    }
+  ],
+  "adoption_boundary": {
+    "recommended_now": [
+      "Keep the pinned checkout and this study record.",
+      "Adopt only the plan/goal design as a minimal local Node adapter after explicit scope approval.",
+      "Generate the first offline plan before any task-owned write and link it from workflow.json.",
+      "Use append-only checkpoint evidence and finite retry/blocked states.",
+      "Keep research-state/state.yaml, contracts, manifests, ultraqa and three-end sync authoritative for their existing domains."
+    ],
+    "not_recommended_now": [
+      "Global npm installation of oh-my-codex",
+      "Copying the TypeScript CLI or hidden Codex goal implementation",
+      "Replacing ProjectSupervisor/farmer/dashboard with OMX launcher/tmux/HUD",
+      "Automatic native goal creation without an explicit host/tool authorization boundary",
+      "A second writable scientific state source under .omx or a new root-level state file"
+    ],
+    "proposed_files_if_adopted": [
+      ".codex/skills/muion-project/scripts/workflow-store.mjs",
+      ".codex/skills/muion-project/scripts/autopilot.mjs",
+      ".codex/skills/muion-project/scripts/ultragoal.mjs",
+      "tests/orchestration-gates.test.mjs",
+      "tests/autopilot.test.mjs",
+      "10_plans/active/<generated-task-plan>/plan.md",
+      "10_plans/active/<generated-task-plan>/plan.json"
+    ],
+    "copied_external_code": false,
+    "user_decision_required": true
+  },
+  "tests": [
+    { "name": "source-pin", "result": "pass", "detail": "git ls-remote fixed main at cdc24a71408ebd6bd0362f52170f0d7998f77007" },
+    { "name": "license", "result": "pass", "detail": "upstream LICENSE and package.json identify MIT" },
+    { "name": "source-safety", "result": "pass", "detail": "clone/read/hash only; no external code, installer, hook or npm lifecycle was executed" },
+    { "name": "local-regression", "result": "partial", "detail": "40 pass, 1 pre-existing dashboard YAML-state failure; orchestration/evolution tests passed" },
+    { "name": "external-behavior-tests", "result": "not-run", "detail": "upstream build/test/install was intentionally not run during evolution study" }
+  ],
+  "decision": {
+    "adopt_now": false,
+    "recommended_scope": "minimal-local-adapter: offline plan bundle + aggregate-goal handoff + append-only checkpoint evidence",
+    "rationale": "The design is useful and maps to an observed local gap, but evolution requires the user to choose the durable file scope; the upstream runtime is unnecessary and less supported on this Windows Codex Desktop host.",
+    "next_adoption_gate": "User selects the proposed P1 scope or asks for a narrower plan-file-only change."
+  }
+}

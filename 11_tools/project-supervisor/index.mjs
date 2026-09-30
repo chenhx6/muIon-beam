@@ -13,6 +13,8 @@ export async function ensureDaemon(root) {
   return store.exclusive('startup', async () => {
     const old = store.read('daemon.json');
     if (old && alive(old.pid)) return old;
+    const lockOwner = store.read('daemon.lock');
+    if (lockOwner && alive(lockOwner.pid)) return { pid: lockOwner.pid, root, started_at: lockOwner.created_at, recovered_from_lock: true };
     const child = await launchNode(script, ['watch', '--project-root', root], { cwd: root, log: store.file('daemon.log') });
     const deadline = Date.now() + 8000;
     while (Date.now() < deadline) {

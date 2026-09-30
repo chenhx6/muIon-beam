@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "record_type": "dashboard-deployment-receipt",
+  "recorded_at": "2026-09-24T07:17:26.368Z",
+  "status": "live-worker-deployed-main-integration-pending",
+  "source_worktree": "D:\\muIon-beam\\_work\\current\\worktrees\\codex-d80b7f12073a98b4eb63-1",
+  "source_head": "abbf5821e05cb1c2377cc7cb0d506474a2f7bb74",
+  "source_dirty_paths": [
+    " M 10_plans/active/20260924_dashboard-and-plan-upgrade/plan_index.json",
+    " M 11_tools/project-supervisor/progress-aggregator.mjs",
+    " M 11_tools/research-dashboard/index.html",
+    " M 11_tools/research-dashboard/server.mjs",
+    " M 11_tools/research-dashboard/supervision.js",
+    " M tests/research-dashboard.test.mjs",
+    " M tests/supervisor-progress.test.mjs"
+  ],
+  "endpoint": "http://127.0.0.1:4317",
+  "health": {
+    "service": "muion-research-dashboard",
+    "project_root": "D:\\muIon-beam",
+    "pid": 5684
+  },
+  "projection": {
+    "sessions": [
+      {
+        "session_id": "codex-d80b7f12073a98b4eb63-1",
+        "display_name": "$evolution 请你学习下“https://github.com/Yeachan Heo/oh my codex…",
+        "status": "active",
+        "plan_phase": "P3-live-deployed-integration-pending",
+        "next_action": "保留 live worker dashboard，完成主 checkout leader integration 与治理增量回执后关闭计划"
+      }
+    ],
+    "counts": {
+      "sessions": 1,
+      "active": 1,
+      "blocked": 0,
+      "stale": 0,
+      "unregistered_artifacts": 0
+    },
+    "artifact_counts": {
+      "durable_unregistered": 0,
+      "ignored_runtime": 64729,
+      "blocked": 5465
+    },
+    "warning_count": 0
+  },
+  "served_page": {
+    "new_board": true,
+    "old_research_panel": false,
+    "file_governance": true,
+    "supervision_js_has_governance": true
+  },
+  "tests": [
+    "node --test tests/session-concurrency.test.mjs tests/research-dashboard.test.mjs tests/supervisor-progress.test.mjs",
+    "node --test tests/architecture-smoke.mjs tests/project-supervisor.test.mjs tests/autopilot.test.mjs tests/orchestration-gates.test.mjs"
+  ],
+  "notes": [
+    "Only user-confirmed current unfinished session is projected",
+    "Historical receipts remain archived",
+    "Worker process is supervised after daemon restart",
+    "Main checkout integration remains a separate leader gate",
+    "After commit ded8c98, stale tracked triage entries no longer count as durable unregistered; current durable count is zero."
+  ]
+}

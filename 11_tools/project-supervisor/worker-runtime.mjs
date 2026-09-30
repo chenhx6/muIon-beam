@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { listSessions, heartbeatSession, checkSession } from '../../.codex/skills/team/scripts/session-concurrency.mjs';
+import { listSessions, heartbeatSession, checkSession, cleanupClosedSession } from '../../.codex/skills/team/scripts/session-concurrency.mjs';
 import { ArtifactCatalog } from './artifact-catalog.mjs';
 import { buildPromotionPlan } from './artifact-promoter.mjs';
 
@@ -11,6 +11,17 @@ export class WorkerRuntime {
     const hosts = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
     const workers = []; const previous = this.store.read('workers.json', { workers: [] });
     for (const session of listSessions({ root: this.root })) {
+      if (session.status === 'closed' && session.cleanup_pending) {
+        const host = session.host_session_id ? hosts[session.host_session_id] : null;
+        try {
+          const result = cleanupClosedSession({ root: this.root, sessionId: session.session_id });
+          workers.push({ session_id: session.session_id, host_status: host?.status || 'unobserved', cleanup_status: result.cleanup_pending ? 'waiting-for-host-exit' : 'completed' });
+        } catch (error) {
+          this.store.event('worker-cleanup-blocked', { session_id: session.session_id, error: error.message });
+          workers.push({ session_id: session.session_id, host_status: host?.status || 'unobserved', cleanup_status: 'blocked', reason: error.message });
+        }
+        continue;
+      }
       if (session.status !== 'active' || !session.host_session_id) continue;
       const host = hosts[session.host_session_id];
       const checked = checkSession({ root: this.root, sessionId: session.session_id });

@@ -1,0 +1,1484 @@
+{
+  "schema_version": 1,
+  "record_type": "plan-v3-p0-audit-checkpoint",
+  "task_id": "plan_dashboard_delivery_repair_20260930",
+  "status": "completed",
+  "recorded_at": "2026-09-30T00:17:07.294Z",
+  "execution": {
+    "session_id": "codex-835da5ec0682f0e05a65-1",
+    "worktree": "D:/muIon-beam/_work/current/worktrees/codex-835da5ec0682f0e05a65-1",
+    "branch": "codex/session/codex-835da5ec0682f0e05a65-1",
+    "baseline_commit": "2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226",
+    "origin_main": "2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226"
+  },
+  "startup": {
+    "entry_command": "node 11_tools/project-supervisor/index.mjs enter --project-root D:\\muIon-beam",
+    "status": "ready",
+    "session_status": "active",
+    "mode": "worktree",
+    "branch": "codex/session/codex-835da5ec0682f0e05a65-1",
+    "worktree": "D:/muIon-beam/_work/current/worktrees/codex-835da5ec0682f0e05a65-1",
+    "services": {
+      "farmer": "healthy",
+      "dashboard": "healthy"
+    },
+    "baseline_path": "_work/current/concurrency/sessions/codex-835da5ec0682f0e05a65-1.baseline.json",
+    "baseline_commit": "2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226"
+  },
+  "repositories": {
+    "main_commit": "2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226",
+    "origin_main_commit": "2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226",
+    "main_tracked_status": "clean",
+    "ignored_runtime": "present and preserved; no recursive cleanup or main-checkout edit",
+    "local_tags_before": [
+      "b-configure-deep-study-20260911153836-04d6d67",
+      "b-farmer-and-tag-policy-20260909181601-dfc85aa",
+      "b-skill-20260909205816-6871dfc",
+      "b-tag-conventions-20260909180647-d3b593d",
+      "b-tag-note-labels-20260909183414-8ca6f01",
+      "b-team-dispatch-p1-20260909203147-33b62b6",
+      "r0-framework",
+      "r0-framework-archive-consistent",
+      "r0-framework-archive-synced",
+      "r0-framework-archive-verified",
+      "r0-framework-complete",
+      "r0-framework-final",
+      "r1-framework-acceptance",
+      "r1-index-and-sync-hardening",
+      "r1-legacy-migration-smoke",
+      "r1-legacy-migration-smoke-verified",
+      "r1-project-snapshot-verified"
+    ]
+  },
+  "branches": [
+    {
+      "branch": "codex/session/codex-8f62a0ce8890af6b3331-1",
+      "head": "06a595d8a48e8395c734a1976cff2b9ba6bd8e7c",
+      "ahead_of_main": 0,
+      "behind_main": 24,
+      "disposition": "ancestral to current main; integrated"
+    },
+    {
+      "branch": "codex/session/codex-6b5c47c601e991adc80c-1",
+      "head": "1ec684d3636549f3363de4a1f68461e9515e43a0",
+      "ahead_of_main": 1,
+      "behind_main": 39,
+      "disposition": "one unique three-file dashboard commit; N2 must verify equivalent behavior before cleanup"
+    },
+    {
+      "branch": "codex/session/codex-d80b7f12073a98b4eb63-1",
+      "head": "d5fedc0e9fe28393e560320a187191943cc9d476",
+      "ahead_of_main": 38,
+      "behind_main": 24,
+      "merge_base_changed_files": 92,
+      "identical_to_main": 34,
+      "review_or_preserve": 58,
+      "files": [
+        {
+          "status": "M",
+          "path": ".codex/skills/muion-project/scripts/autopilot.mjs",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "a38aed76faaba63865f3655556f7894e9f00c237",
+          "source_blob": "81c620f780902abcab03b816c4baf64837d5bd67",
+          "disposition": {
+            "status": "not-adopted-for-this-plan",
+            "target": "plan_v3.json offline checkpoint",
+            "reason": "This execution has a durable plan_v3 JSON checkpoint and native goal; a generic second planner/goal ledger is outside the approved scope."
+          }
+        },
+        {
+          "status": "M",
+          "path": ".codex/skills/muion-project/scripts/build-index-views.mjs",
+          "source_commit": "923585d4ebc2d51f63d2bf5af965b445de9c66ee",
+          "main_blob": "e017b92470abdcda7667778558edbe52c3cb014a",
+          "source_blob": "fbdde66a265cf338631808ba60abfb6b52f5874e",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": ".codex/skills/muion-project/scripts/build-index-views.mjs",
+            "reason": "Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress."
+          }
+        },
+        {
+          "status": "M",
+          "path": ".codex/skills/muion-project/scripts/create-run-snapshot.mjs",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "bbeb7f8b975c97f3ab7f5d26414474965c14d4d4",
+          "source_blob": "bbeb7f8b975c97f3ab7f5d26414474965c14d4d4",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": ".codex/skills/muion-project/scripts/deep-interview.mjs",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "3ffd1a6143f0846f0f27c953a1ba501496f935fb",
+          "source_blob": "3ffd1a6143f0846f0f27c953a1ba501496f935fb",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": ".codex/skills/muion-project/scripts/legacy-smoke-test.mjs",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "4dcf30c3d4ace4d1ddac09e9cc8a0a4a57b07582",
+          "source_blob": "4dcf30c3d4ace4d1ddac09e9cc8a0a4a57b07582",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "A",
+          "path": ".codex/skills/muion-project/scripts/local-runtime-paths.mjs",
+          "source_commit": "923585d4ebc2d51f63d2bf5af965b445de9c66ee",
+          "main_blob": null,
+          "source_blob": "b5d8e951dcf3aa8514d6673f94cc6d0f7fd2a557",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": ".codex/skills/muion-project/scripts/local-runtime-paths.mjs",
+            "reason": "Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress."
+          }
+        },
+        {
+          "status": "A",
+          "path": ".codex/skills/muion-project/scripts/offline-plan.mjs",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "7f599cc04190db1a47a3023dd5cf77bfd9b420b7",
+          "disposition": {
+            "status": "not-adopted-for-this-plan",
+            "target": "plan_v3.json offline checkpoint",
+            "reason": "This execution has a durable plan_v3 JSON checkpoint and native goal; a generic second planner/goal ledger is outside the approved scope."
+          }
+        },
+        {
+          "status": "M",
+          "path": ".codex/skills/muion-project/scripts/preflight.mjs",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "74698175063fb95be4df3bf8e22d3295093d103f",
+          "source_blob": "74698175063fb95be4df3bf8e22d3295093d103f",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": ".codex/skills/muion-project/scripts/ultragoal.mjs",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": "ab09ce9d03dbd9f2135939cfce7c60b19846f7f9",
+          "source_blob": "99f57acb00073c9c37b8834ee229b25a037e0e17",
+          "disposition": {
+            "status": "not-adopted-for-this-plan",
+            "target": "plan_v3.json offline checkpoint",
+            "reason": "This execution has a durable plan_v3 JSON checkpoint and native goal; a generic second planner/goal ledger is outside the approved scope."
+          }
+        },
+        {
+          "status": "M",
+          "path": ".codex/skills/team/SKILL.md",
+          "source_commit": "e67bc181eee968a4efa0e71ccccfffb1344ebace",
+          "main_blob": "6b27d3d519538059623aed7ab8831016b58b1ed3",
+          "source_blob": "b551e33b7d1b6bf0ae0633413e9f34747f2e6be1",
+          "disposition": {
+            "status": "adopted-in-N1",
+            "target": ".codex/skills/team/SKILL.md",
+            "reason": "Current team contract receives the new resume, fixed-SHA integration and node-delivery rules."
+          }
+        },
+        {
+          "status": "M",
+          "path": ".codex/skills/team/scripts/session-concurrency.mjs",
+          "source_commit": "e67bc181eee968a4efa0e71ccccfffb1344ebace",
+          "main_blob": "e4ed6037dd41f1c472fe9d660de12c0f99d90055",
+          "source_blob": "c703c85876c61fe06c8f815b256da59c09a25191",
+          "disposition": {
+            "status": "adopted-in-N1",
+            "target": ".codex/skills/team/scripts/session-concurrency.mjs",
+            "reason": "Resume, receipt locking, fixed source SHA and same-worktree continuation are adopted and tested."
+          }
+        },
+        {
+          "status": "M",
+          "path": ".gitignore",
+          "source_commit": "dbd5f70241c08ec12eef3c6fc46bbfb02af5015d",
+          "main_blob": "d4aab350e275c1fb0fb1870dd37e79060379991e",
+          "source_blob": "02768958e19d4da19b093c9893c464bce1a5645a",
+          "disposition": {
+            "status": "selective-adoption-in-N2",
+            "target": ".gitignore",
+            "reason": "Keep main outbox/private rules; add only verified local-runtime/quarantine exclusions after P2 review."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/config/dashboard-history.json",
+          "source_commit": "923585d4ebc2d51f63d2bf5af965b445de9c66ee",
+          "main_blob": null,
+          "source_blob": "3344338b4af3b69e28caaae4b232bd3c4c465017",
+          "disposition": {
+            "status": "rejected",
+            "target": "none",
+            "reason": "A permanent historical session whitelist conflicts with the v3 visibility matrix; status-based filtering replaces this file."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/config/delivery-policy.json",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": "73e15a8dbf13fee7fbe97d97a45b16cdb57239bb",
+          "source_blob": "12dd0832ab30d4cbe1b72d0cad6c75517494cf75",
+          "disposition": {
+            "status": "equivalent-by-normalized-json",
+            "target": "current main",
+            "reason": "Parsed JSON is semantically equal after array ordering normalization; no config change required."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/config/drive-mirror-policy.json",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": "ebf92c45eed053d439c7e52774eba109a6622762",
+          "source_blob": "d8287d8e772dbc14288553a9e8a0ce9d6d696ae6",
+          "disposition": {
+            "status": "equivalent-by-normalized-json",
+            "target": "current main",
+            "reason": "Parsed JSON is semantically equal after array ordering normalization; no config change required."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/config/web-research-environment.json",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": "63cbee4f4d42e2c01e01ed9e9b387dbefa418147",
+          "source_blob": "6ddaecb6be7f8f4a35a86636c18bb4db3bd7bc9f",
+          "disposition": {
+            "status": "superseded-by-newer-main-environment",
+            "target": "current main",
+            "reason": "Current main carries a 2026-09-29 environment record with newer Browser Use pin and project-local launcher; P5 will verify the existing private paths."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/decisions/legacy-source-change-decision.json",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "b92279f61466fd221320f4e58e7839d057ceae6b",
+          "source_blob": "b92279f61466fd221320f4e58e7839d057ceae6b",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/templates/behavior-analysis.yaml",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "1c1c58094896b9a7c1344e7a0bc023997c12a295",
+          "source_blob": "1c1c58094896b9a7c1344e7a0bc023997c12a295",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/templates/figure-manifest.yaml",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "4bad44ab3dd5a98ef7504b9e6f71d8f2268cb052",
+          "source_blob": "4bad44ab3dd5a98ef7504b9e6f71d8f2268cb052",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/templates/run-manifest.yaml",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "1c0a92d35518053080c7488d9304c4e8e1e0aae6",
+          "source_blob": "1c0a92d35518053080c7488d9304c4e8e1e0aae6",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/templates/task-card.yaml",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "e1e16dc383bcce02d2e782e080a0af0d4522fb8c",
+          "source_blob": "e1e16dc383bcce02d2e782e080a0af0d4522fb8c",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/traceability/MODEL_INDEX.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "e4b560a25035e4daa8fc063979f8f3a41348db96",
+          "source_blob": "404b72c5a7b07ec7983350a5a4ec43ae7567853b",
+          "disposition": {
+            "status": "regenerate-after-N1",
+            "target": "00_project/traceability/MODEL_INDEX.md",
+            "reason": "Generated index views will be rebuilt with the current generator after durable receipts are adopted; source worker text is not copied."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/traceability/PROJECT_INDEX.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "3fe4dde2b6d45e77658a921cc3816e0a25dccdb2",
+          "source_blob": "4d956f26ef32888687d4693d2fe9fb4ba7a8c228",
+          "disposition": {
+            "status": "regenerate-after-N1",
+            "target": "00_project/traceability/PROJECT_INDEX.md",
+            "reason": "Generated index views will be rebuilt with the current generator after durable receipts are adopted; source worker text is not copied."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/traceability/RESULTS_INDEX.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "09299599e4cfebbdda3281d1bdd3a0bf1c753ca5",
+          "source_blob": "347036e4514b5938304835c23777739a307cf54a",
+          "disposition": {
+            "status": "regenerate-after-N1",
+            "target": "00_project/traceability/RESULTS_INDEX.md",
+            "reason": "Generated index views will be rebuilt with the current generator after durable receipts are adopted; source worker text is not copied."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/traceability/TASK_INDEX.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "7a18b296a9dd0038ba775582767fd43d31ac4bd3",
+          "source_blob": "a041eb96da8b3f3b41ef0f8fdd92509bb5405fdb",
+          "disposition": {
+            "status": "regenerate-after-N1",
+            "target": "00_project/traceability/TASK_INDEX.md",
+            "reason": "Generated index views will be rebuilt with the current generator after durable receipts are adopted; source worker text is not copied."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/traceability/VARIABLE_CATALOG.csv",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "e54155645b3ae550024fa5b3f9ed4f632364a0f9",
+          "source_blob": "e54155645b3ae550024fa5b3f9ed4f632364a0f9",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/traceability/VARIABLE_CATALOG.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "02752f821fd5947048aa8726e9a2d842036501b2",
+          "source_blob": "02752f821fd5947048aa8726e9a2d842036501b2",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/active-checkout-output-cleanup-plan-20260924.json",
+          "source_commit": "7a626dded23a1a1e131187e47b441bc43fa392b2",
+          "main_blob": null,
+          "source_blob": "22c18637ef6ced8f3c86559c2f95aaa42e33995a",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/active-checkout-output-cleanup-plan-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/agent-runs/AGENT-web-toolchain-audit-20260924.json",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "492bfac70f6d89a3346f95b4fa4799c6bddc789f",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/agent-runs/AGENT-web-toolchain-audit-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/dashboard-cleanup-20260924.json",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "ff8cd43baeb1d2e7d2290686882e467d21f0fdda",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/dashboard-cleanup-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/dashboard-deployment-20260924.json",
+          "source_commit": "ff2f768f9dffcf5ff64ecc45682550a016af75de",
+          "main_blob": null,
+          "source_blob": "6a8f4c6308fd6a83c7b1a5f9bf28afdba5fe1703",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/dashboard-deployment-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/dashboard-live-drift-20260924.json",
+          "source_commit": "e2b1aebfe7a08ea28b40268c034f63616ce9a297",
+          "main_blob": null,
+          "source_blob": "17770d38b2c877f68f8b94c51de6ba13a35c1b6b",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/dashboard-live-drift-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/deleted-content-drive-audit-20260924.json",
+          "source_commit": "93c1805c53415d2b67d82434743d47c7d2741d7c",
+          "main_blob": null,
+          "source_blob": "e43752c057e3c6b554f8819a3a141b5c16f66b50",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/deleted-content-drive-audit-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/evolution/EVOLUTION-20260924-dashboard-ui-candidates.json",
+          "source_commit": "37454308c1b15fdba613fa1db6936deb9f1cd5de",
+          "main_blob": null,
+          "source_blob": "c1c0602f7a590a92503608f90dbcec87b958ef30",
+          "disposition": {
+            "status": "historical-only-preserved",
+            "target": "00_project/traceability/evolution/EVOLUTION-20260924-dashboard-ui-candidates.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/evolution/EVOLUTION-20260924-oh-my-codex-goal-restudy.json",
+          "source_commit": "d0e82f3d07561b14c6c41c1034d39cfb76a2af8a",
+          "main_blob": null,
+          "source_blob": "3ac4d39ef367ec0f67a79f124340af103c56226a",
+          "disposition": {
+            "status": "historical-only-preserved",
+            "target": "00_project/traceability/evolution/EVOLUTION-20260924-oh-my-codex-goal-restudy.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/evolution/EVOLUTION-20260924-web-research-toolchain-candidates.json",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "d97da6eb443f04abb63bba02b5ff6f2508bbdad4",
+          "disposition": {
+            "status": "historical-only-preserved",
+            "target": "00_project/traceability/evolution/EVOLUTION-20260924-web-research-toolchain-candidates.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/experiences/EXP-20260924-submitted-session-resume-lifecycle.json",
+          "source_commit": "abbf5821e05cb1c2377cc7cb0d506474a2f7bb74",
+          "main_blob": null,
+          "source_blob": "91fb597c3f81544fad828c046f51aa7049d754ab",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/experiences/EXP-20260924-submitted-session-resume-lifecycle.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/governance-incremental-receipt-20260924.json",
+          "source_commit": "38be947e8b3f499f78ea0cfb27fb350d79263ec1",
+          "main_blob": null,
+          "source_blob": "5966106091618d80bb8e72a420e12c8f2aab972f",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/governance-incremental-receipt-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/governance-rename-review-20260924.json",
+          "source_commit": "4fa0331b6b1e3e8e50a3d91d4aab77e4241bc3de",
+          "main_blob": null,
+          "source_blob": "e7f0ea19ee290746ac6ae1134e4cdedadaa2be66",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/governance-rename-review-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/governance-untracked-asset-receipt-20260924.json",
+          "source_commit": "28984d25787b6165c0bae3b8b74dd2f0f540ec6a",
+          "main_blob": null,
+          "source_blob": "5f25cf58d570aa5460199238c12b1539fedd19a0",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/governance-untracked-asset-receipt-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md",
+          "source_commit": "60f6fc1632258262b01632d823fe070e15c4c2bb",
+          "main_blob": null,
+          "source_blob": "3196b8360670c8cffd09bd2b8486c55ec243d9bf",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-SUBMITTED-RESUME.json",
+          "source_commit": "abbf5821e05cb1c2377cc7cb0d506474a2f7bb74",
+          "main_blob": null,
+          "source_blob": "f746f259935b71bd7863762fb88281b7398ba535",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-SUBMITTED-RESUME.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/leader-delivery-bundle-20260924.json",
+          "source_commit": "f59d846d710a21615beeac4e32dede0ca55cb4cf",
+          "main_blob": null,
+          "source_blob": "23b18d0ea175f0098d2f589e1572c6d9d8e4b69f",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/leader-delivery-bundle-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/leader-integration-blocker-20260924.json",
+          "source_commit": "f59d846d710a21615beeac4e32dede0ca55cb4cf",
+          "main_blob": null,
+          "source_blob": "2704f101b575b88f2f9587078134c974ccbf1ab6",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/leader-integration-blocker-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/traceability/quarantine-drive-verification-20260924.json",
+          "source_commit": "dbd5f70241c08ec12eef3c6fc46bbfb02af5015d",
+          "main_blob": null,
+          "source_blob": "f02978489b2185262872638277adf91d905285f8",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "00_project/traceability/quarantine-drive-verification-20260924.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "M",
+          "path": "00_project/traceability/variable-catalog.yaml",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "efe1e26105c0ac98e0a1fcc3a36d0359e7475d5a",
+          "source_blob": "efe1e26105c0ac98e0a1fcc3a36d0359e7475d5a",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/web-research/README.md",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "d8d73cdb2183d6a11dc7e0fd2b934fa38deea2ed",
+          "disposition": {
+            "status": "replaced-by-current-main-toolchain",
+            "target": "00_project/web-research/run.ps1 and web-research-environment.json",
+            "reason": "The d80 adapter pins an older Browser Use version; P5 will verify the newer project-local venv/private paths without installing or publishing private data."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/web-research/browser-use-0.13.2.requirements.txt",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "e2f31e18650d4c0fde854e03819ed06684fe8cb7",
+          "disposition": {
+            "status": "replaced-by-current-main-toolchain",
+            "target": "00_project/web-research/run.ps1 and web-research-environment.json",
+            "reason": "The d80 adapter pins an older Browser Use version; P5 will verify the newer project-local venv/private paths without installing or publishing private data."
+          }
+        },
+        {
+          "status": "A",
+          "path": "00_project/web-research/crawl4ai-0.9.4.requirements.txt",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "5d43e9c4d3939a061d6e9dfc6a550cfbf30c26d5",
+          "disposition": {
+            "status": "replaced-by-current-main-toolchain",
+            "target": "00_project/web-research/run.ps1 and web-research-environment.json",
+            "reason": "The d80 adapter pins an older Browser Use version; P5 will verify the newer project-local venv/private paths without installing or publishing private data."
+          }
+        },
+        {
+          "status": "M",
+          "path": "02_models/model-fingerprints.json",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "36308bc3162049a380ac2cf6e4761ee1b91a51e9",
+          "source_blob": "36308bc3162049a380ac2cf6e4761ee1b91a51e9",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "03_runs/formal/README.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "eb89f919dddd1251081ceceba25c35533a86d158",
+          "source_blob": "eb89f919dddd1251081ceceba25c35533a86d158",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "04_results/figures/legacy-smoke/generate_cooling_density_figure.py",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "41de53ffef41658d62400632bc71a8698234a72a",
+          "source_blob": "41de53ffef41658d62400632bc71a8698234a72a",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "05_reports/release/r1-framework-acceptance-result-note-zh.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "c4c1828c45141388e8330b7e75b5dda21f7af3ce",
+          "source_blob": "c4c1828c45141388e8330b7e75b5dda21f7af3ce",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "05_reports/release/r1-index-and-sync-hardening-result-note-zh.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "28eedc9aad0a272b85f375af97053212c32ca2eb",
+          "source_blob": "28eedc9aad0a272b85f375af97053212c32ca2eb",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "05_reports/release/r1-legacy-migration-smoke-result-note-zh.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "dc7f743097ee24eb1ecb88a9ef692ffbf61b672d",
+          "source_blob": "dc7f743097ee24eb1ecb88a9ef692ffbf61b672d",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "05_reports/release/r1-legacy-migration-smoke-verified-result-note-zh.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "8e8bcad91373f3d4910c494b9b19d2231d933c60",
+          "source_blob": "8e8bcad91373f3d4910c494b9b19d2231d933c60",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "05_reports/release/r1-project-snapshot-verified-result-note-zh.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "2bce3b153618999a409ceee9afc8c6c6e122449c",
+          "source_blob": "2bce3b153618999a409ceee9afc8c6c6e122449c",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "05_reports/review/legacy-smoke-acceptance-final-zh.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "d950c6a876568b20ef2c8f10b9e088184d08c880",
+          "source_blob": "d950c6a876568b20ef2c8f10b9e088184d08c880",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "05_reports/review/legacy-smoke-acceptance-zh.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "3a6b44606fca71d51aef86598013ff0aeb6588b3",
+          "source_blob": "3a6b44606fca71d51aef86598013ff0aeb6588b3",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "05_reports/review/second-stage-final-acceptance-zh.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "9a7b035a2dc18a3cc99e86ec16c5dce2a005b0a8",
+          "source_blob": "9a7b035a2dc18a3cc99e86ec16c5dce2a005b0a8",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "07_research_system/blocks/comsol/contracts/result.yaml",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "6cb0d8955a34392c4928831b020b67016c0cb9b0",
+          "source_blob": "6cb0d8955a34392c4928831b020b67016c0cb9b0",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "07_research_system/blocks/comsol/contracts/task.yaml",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "c9ffd6e706b1474008902fde8b19470eead8c7df",
+          "source_blob": "c9ffd6e706b1474008902fde8b19470eead8c7df",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "07_research_system/blocks/geant4/scripts/preflight.mjs",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "871ffc8c443e0be295da52dccd61b654b58eef21",
+          "source_blob": "871ffc8c443e0be295da52dccd61b654b58eef21",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "07_research_system/control/research-state/NOW.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "e734612b35b393b3a8f6336d3ff6e75a77b41916",
+          "source_blob": "e734612b35b393b3a8f6336d3ff6e75a77b41916",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "07_research_system/control/research-state/decision-log.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "ede214e9dc17711e8c75cfee701f3f288b90234b",
+          "source_blob": "ede214e9dc17711e8c75cfee701f3f288b90234b",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "07_research_system/control/research-state/events.jsonl",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "ceefe478e9a03ff78f2cd54c49ea0704e8efae6b",
+          "source_blob": "ceefe478e9a03ff78f2cd54c49ea0704e8efae6b",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "07_research_system/control/research-state/state.yaml",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "bed20f2f749cc94270b73f6a66a5b80e7b50225b",
+          "source_blob": "bed20f2f749cc94270b73f6a66a5b80e7b50225b",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "A",
+          "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_index.json",
+          "source_commit": "d5fedc0e9fe28393e560320a187191943cc9d476",
+          "main_blob": "bb0e35f2e0209567a7feadcbcf4d0bd9a85805c6",
+          "source_blob": "d3850976d832478214f471f84e4887995eac41e8",
+          "disposition": {
+            "status": "superseded-by-v3-correction",
+            "target": "plan_v02-correction-20260930.json and plan_v3.json",
+            "reason": "Preserve current historical plan_v02; regenerate index and do not import stale completed fields."
+          }
+        },
+        {
+          "status": "A",
+          "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v01.md",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "cd2aaed5fea18d3fffb52aec1043598ccfce234c",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v01.md",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.json",
+          "source_commit": "d5fedc0e9fe28393e560320a187191943cc9d476",
+          "main_blob": "d0dd4bb7c99a150d813e91c4c74b9cf1a56f3396",
+          "source_blob": "c468be9fa7143e6d6dc3866312d652d7f7c4ac0d",
+          "disposition": {
+            "status": "superseded-by-v3-correction",
+            "target": "plan_v02-correction-20260930.json and plan_v3.json",
+            "reason": "Preserve current historical plan_v02; regenerate index and do not import stale completed fields."
+          }
+        },
+        {
+          "status": "A",
+          "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.md",
+          "source_commit": "279617633d4ef22a47024021b593c827279f3093",
+          "main_blob": "9ab233a4060a77bd51f7395a19d7a421977c1db9",
+          "source_blob": "9ab233a4060a77bd51f7395a19d7a421977c1db9",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "11_tools/project-supervisor/artifact-catalog.mjs",
+          "source_commit": "923585d4ebc2d51f63d2bf5af965b445de9c66ee",
+          "main_blob": "5937603e206c95b8a1be000f11482fc17bab18af",
+          "source_blob": "90a5a9a4b4e8fa587522d0c34bc6360b32f212a1",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": "11_tools/project-supervisor/artifact-catalog.mjs",
+            "reason": "Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress."
+          }
+        },
+        {
+          "status": "M",
+          "path": "11_tools/project-supervisor/artifact-promoter.mjs",
+          "source_commit": "923585d4ebc2d51f63d2bf5af965b445de9c66ee",
+          "main_blob": "bfcd0e6702f301c62a4c37912d23e1b79ecd457d",
+          "source_blob": "5e513f49ec06eec1622064ddebcb286a054a374d",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": "11_tools/project-supervisor/artifact-promoter.mjs",
+            "reason": "Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress."
+          }
+        },
+        {
+          "status": "M",
+          "path": "11_tools/project-supervisor/integration-coordinator.mjs",
+          "source_commit": "e67bc181eee968a4efa0e71ccccfffb1344ebace",
+          "main_blob": "6c3978c10d508ba493ddb910c4122664a4104724",
+          "source_blob": "df3bfb6fcb8beb5ab08733147253d2520319c9f8",
+          "disposition": {
+            "status": "adopted-in-N1",
+            "target": "11_tools/project-supervisor/integration-coordinator.mjs",
+            "reason": "Serialized node delivery, test, push, Drive mirror, tag and continuation are adopted and tested."
+          }
+        },
+        {
+          "status": "M",
+          "path": "11_tools/project-supervisor/progress-aggregator.mjs",
+          "source_commit": "923585d4ebc2d51f63d2bf5af965b445de9c66ee",
+          "main_blob": "3684db396931265199c721db508c847d5683b68c",
+          "source_blob": "977a34234862a38da457cf7a48b891626cdfd166",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": "11_tools/project-supervisor/progress-aggregator.mjs",
+            "reason": "Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress."
+          }
+        },
+        {
+          "status": "M",
+          "path": "11_tools/project-supervisor/services.mjs",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": "11e26bcc95e001e9f3da4e7eb1ef8ca98e6ef61e",
+          "source_blob": "8ffb3e0e13b52d33ea032b27ea112c1123656fb9",
+          "disposition": {
+            "status": "adopt-in-N2-P5",
+            "target": "11_tools/project-supervisor/services.mjs",
+            "reason": "Require exact served project root and module-relative assets before live deployment acceptance."
+          }
+        },
+        {
+          "status": "M",
+          "path": "11_tools/research-dashboard/index.html",
+          "source_commit": "19b09befbe40de0a5b3ea83daef35b13b408034e",
+          "main_blob": "4c1e512b7652587db5b1c073ec9878588851bacb",
+          "source_blob": "7436635f2db38bb6e8ee501e5a42f569c4ee24b8",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": "11_tools/research-dashboard/index.html",
+            "reason": "Dashboard state projection and page behavior will be replaced to meet the v3 state matrix."
+          }
+        },
+        {
+          "status": "M",
+          "path": "11_tools/research-dashboard/server.mjs",
+          "source_commit": "19b09befbe40de0a5b3ea83daef35b13b408034e",
+          "main_blob": "8b75ee6258a604b1b18270846fe401c15cc642a5",
+          "source_blob": "365a71e4d8ed7d4046f9cbe7ec90b12077408d76",
+          "disposition": {
+            "status": "adopt-in-N2-P5",
+            "target": "11_tools/research-dashboard/server.mjs",
+            "reason": "Require exact served project root and module-relative assets before live deployment acceptance."
+          }
+        },
+        {
+          "status": "M",
+          "path": "11_tools/research-dashboard/supervision.js",
+          "source_commit": "923585d4ebc2d51f63d2bf5af965b445de9c66ee",
+          "main_blob": "f0c3a0e147e1d681ffb7b4c02ab834b2be4d1c7f",
+          "source_blob": "934aa759bede3e3af45f8b41f8cb7007ab16d271",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": "11_tools/research-dashboard/supervision.js",
+            "reason": "Dashboard state projection and page behavior will be replaced to meet the v3 state matrix."
+          }
+        },
+        {
+          "status": "A",
+          "path": "11_tools/web-research/index.mjs",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "a2da4e89829c1d18b95d9df54eb49adae0e476b3",
+          "disposition": {
+            "status": "replaced-by-current-main-toolchain",
+            "target": "00_project/web-research/run.ps1 and web-research-environment.json",
+            "reason": "The d80 adapter pins an older Browser Use version; P5 will verify the newer project-local venv/private paths without installing or publishing private data."
+          }
+        },
+        {
+          "status": "A",
+          "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+          "source_commit": "dbd5f70241c08ec12eef3c6fc46bbfb02af5015d",
+          "main_blob": null,
+          "source_blob": "e1473f4dd559422201f3b9c3d670ab6ed449e65f",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "A",
+          "path": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+          "source_commit": "dbd5f70241c08ec12eef3c6fc46bbfb02af5015d",
+          "main_blob": null,
+          "source_blob": "ae5b40caeaeb3d8b317d51cb0fe76457332c70e8",
+          "disposition": {
+            "status": "adopted-historical-record",
+            "target": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+            "reason": "Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction."
+          }
+        },
+        {
+          "status": "M",
+          "path": "AGENTS.md",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "b4ac5d73213d921c0fe01cfedf96ce0fe2289574",
+          "source_blob": "b4ac5d73213d921c0fe01cfedf96ce0fe2289574",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "package.json",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "4c7e25c50904ff1fe6a690fc52eef3dc31824612",
+          "source_blob": "4c7e25c50904ff1fe6a690fc52eef3dc31824612",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "tests/architecture-smoke.mjs",
+          "source_commit": "415ad635edb3468fa9bafcb1b004d1ad7e37dc37",
+          "main_blob": "20b8cd0251752333e757cf987afda106672d2ffd",
+          "source_blob": "20b8cd0251752333e757cf987afda106672d2ffd",
+          "disposition": {
+            "status": "equivalent-by-identical-blob",
+            "target": "main",
+            "reason": "Git blob id on source branch equals current main."
+          }
+        },
+        {
+          "status": "M",
+          "path": "tests/artifact-promoter.test.mjs",
+          "source_commit": "923585d4ebc2d51f63d2bf5af965b445de9c66ee",
+          "main_blob": "f6737ad46cc0752e7a04236d26eba447e7622ee3",
+          "source_blob": "62f2416dc36c4850e90ac5acd828d97aae44b2ce",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": "tests/artifact-promoter.test.mjs",
+            "reason": "Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress."
+          }
+        },
+        {
+          "status": "M",
+          "path": "tests/autopilot.test.mjs",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": "0ef3e4d15fcd8a6937649f86ca0a5ca37578ae53",
+          "source_blob": "79dc7731f154ee26955101b1ca915f59272c54c0",
+          "disposition": {
+            "status": "not-adopted-for-this-plan",
+            "target": "current tests",
+            "reason": "The generic offline-plan/autopilot extension is outside the v3 node delivery and dashboard scope."
+          }
+        },
+        {
+          "status": "M",
+          "path": "tests/integration-coordinator.test.mjs",
+          "source_commit": "e67bc181eee968a4efa0e71ccccfffb1344ebace",
+          "main_blob": "e89e32a3666f938fc29a1048069b62c73c5037dd",
+          "source_blob": "8fbaab24633806b16be25d618b7d352bcad8d52c",
+          "disposition": {
+            "status": "adopted-in-N1",
+            "target": "tests/integration-coordinator.test.mjs",
+            "reason": "Covers stale receipt rejection, same-worktree continuation and two node delivery events."
+          }
+        },
+        {
+          "status": "M",
+          "path": "tests/research-dashboard.test.mjs",
+          "source_commit": "19b09befbe40de0a5b3ea83daef35b13b408034e",
+          "main_blob": "4ab1b5e0292aa3f5ea9fa29b3bb1a9576396f185",
+          "source_blob": "1c5e34567b93c15cd2d50121b6f11f2cbf409453",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": "tests/research-dashboard.test.mjs",
+            "reason": "Dashboard state projection and page behavior will be replaced to meet the v3 state matrix."
+          }
+        },
+        {
+          "status": "M",
+          "path": "tests/session-concurrency.test.mjs",
+          "source_commit": "abbf5821e05cb1c2377cc7cb0d506474a2f7bb74",
+          "main_blob": "b40d4712e5d64b441f4072609481885cc5451ae3",
+          "source_blob": "45b505471fa2eb81d72779c776c086a69bcbe81d",
+          "disposition": {
+            "status": "adopted-in-N1",
+            "target": "tests/session-concurrency.test.mjs",
+            "reason": "Covers explicit resume and lifecycle protection."
+          }
+        },
+        {
+          "status": "M",
+          "path": "tests/supervisor-progress.test.mjs",
+          "source_commit": "923585d4ebc2d51f63d2bf5af965b445de9c66ee",
+          "main_blob": "176d7d779e03440c2189704db9b9449554bfc03f",
+          "source_blob": "cf95283c21fdb3d4230d923f5c0071aab392d087",
+          "disposition": {
+            "status": "adopt-or-reimplement-in-N2",
+            "target": "tests/supervisor-progress.test.mjs",
+            "reason": "Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress."
+          }
+        },
+        {
+          "status": "A",
+          "path": "tests/web-research.test.mjs",
+          "source_commit": "774c50a4b0ded348a184ecdbd06a3a46bfc27afe",
+          "main_blob": null,
+          "source_blob": "d0e53b83b0f61582aa24ec3dd1f98cff4132e196",
+          "disposition": {
+            "status": "not-adopted-superseded",
+            "target": "tests/smoke for existing project-local launcher in P5",
+            "reason": "The worker test is coupled to the stale 0.13.2 runner; current main pins Browser Use 0.13.10 and keeps its own project-local launcher."
+          }
+        }
+      ],
+      "untracked_files": [
+        {
+          "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
+          "source_sha256": "9291a3016d819e220477c0b0981a9b2020cc330f3714d967d752add5bf78ee50",
+          "disposition": "rejected-stale-duplicate",
+          "reason": "Incomplete copy and weaker approval wording; historical-tag paragraph conflicts with authoritative -2 plan_v3; do not adopt."
+        },
+        {
+          "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+          "source_sha256": "cf668dd634ff260e7fac6f7ed4dc6c3ad7b614ebd7dbe674bc4ffdd7dade442f",
+          "disposition": "rejected-stale-duplicate",
+          "reason": "Missing approved scope, node graph, tag policy and final acceptance requirements; authoritative checkpoint is -2 commit a066ab5."
+        }
+      ],
+      "untracked_disposition_evidence": {
+        "authoritative_planning_commit": "a066ab5ac523a1bc6c50fd17af1fe8142346d848",
+        "copied_current_files": [
+          "handoff_v3.md",
+          "plan_v3.md",
+          "plan_v3.json"
+        ],
+        "cleanup": "only after current approved copies are delivered and SHA-verified; remove only these exact duplicate files, never use git clean"
+      }
+    },
+    {
+      "branch": "codex/session/codex-d80b7f12073a98b4eb63-2",
+      "head": "a066ab5ac523a1bc6c50fd17af1fe8142346d848",
+      "ahead_of_main": 1,
+      "behind_main": 2,
+      "disposition": "read-only planning source; N0 documents copied into current execution worktree",
+      "files": [
+        {
+          "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
+          "source_sha256": "31bdc0d35dc1aec61a6b30ade03647afee74c969ef1d0af0c747291e494dd7e5",
+          "disposition": "adopted-byte-identical"
+        },
+        {
+          "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
+          "source_sha256": "12e0044692aa6bed7e2619752d5ec381acf730a478dcc22a90fcb181469262f1",
+          "disposition": "adopted-with-execution-status-update"
+        },
+        {
+          "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+          "source_sha256": "c32d6551a4c7cfddff6e675cb465ceec54d0b804c1efc1f619cc061c45cffedc",
+          "disposition": "adopted-with-offline-checkpoint-updates"
+        }
+      ]
+    },
+    {
+      "branch": "codex/session/codex-a72905816d98b6c2c75e-1",
+      "head": "ee640ea00cbb324e1f967e3b47f9cc004919918b",
+      "ahead_of_main": 0,
+      "behind_main": 3,
+      "disposition": "ancestral to current main; integrated"
+    }
+  ],
+  "dashboard_baseline": {
+    "observed_at": "2026-09-29T20:10:44.99Z",
+    "api_health": "HTTP 200; project_root D:\\muIon-beam; pid 25496",
+    "sessions": 16,
+    "active": 4,
+    "stale": 3,
+    "unregistered_artifacts": 64889,
+    "warnings": 0,
+    "observation": "dashboard was healthy but returned abandoned and anonymous historical rows plus stale projection counts; health alone is not version acceptance"
+  },
+  "nul_incident": {
+    "incident": "00_project/traceability/incidents/HOOK-INCIDENT-20260930.json",
+    "causal_assessment": "NUL data likely caused the two Project hook failures, but exact hook-to-error mapping remains unproven because expanded per-hook stderr was not captured.",
+    "writers": [
+      {
+        "file": "_work/current/project-supervisor/daemon.json",
+        "writer": "11_tools/project-supervisor/index.mjs ensureDaemon/watch through RuntimeStore.write"
+      },
+      {
+        "file": "_work/current/project-supervisor/processes.json",
+        "writer": "11_tools/project-supervisor/process-supervisor.mjs through RuntimeStore.write"
+      },
+      {
+        "file": "_work/current/project-supervisor/workers.json",
+        "writer": "11_tools/project-supervisor/worker-runtime.mjs through RuntimeStore.write"
+      }
+    ],
+    "shared_writer": "11_tools/project-supervisor/runtime-store.mjs RuntimeStore.write uses unique temporary file then rename; the trigger that replaced destinations with all-NUL bytes is unknown.",
+    "preserved_evidence": [
+      {
+        "path": "_work/current/project-supervisor/daemon.json.corrupt-20260930-015544",
+        "bytes": 133,
+        "nul_bytes": 133,
+        "sha256": "57ffc9ca3beb6ee6226c28248ab9c77b2076ef6acffba839cec21fac28a8fd1f"
+      },
+      {
+        "path": "_work/current/project-supervisor/processes.json.corrupt-20260930-015544",
+        "bytes": 302,
+        "nul_bytes": 302,
+        "sha256": "9552cf2fc804becaa59379ee29e4be6800d0aac515738799dbd442919841d23d"
+      },
+      {
+        "path": "_work/current/project-supervisor/workers.json.corrupt-20260930-015544",
+        "bytes": 64,
+        "nul_bytes": 64,
+        "sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b"
+      }
+    ],
+    "code_change": "RuntimeStore.read now quarantines NUL-containing JSON with SHA256 audit metadata and returns the caller fallback; ensureDaemon reuses an alive daemon.lock PID to avoid starting a duplicate after daemon.json corruption; RuntimeStore.write fsyncs the unique temp before rename.",
+    "tests": [
+      {
+        "command": "node --test tests/project-supervisor.test.mjs",
+        "status": "passed",
+        "tests": 10,
+        "failed_attempt": "The first test implementation omitted runtime directory creation; fixed and rerun. The atomic-flush failure case also passes."
+      }
+    ]
+  },
+  "plan_v02_correction": {
+    "current_main_plan_status": "completed",
+    "correction": "append an additive receipt; do not rewrite the historical plan_v02 JSON/MD",
+    "reason": "current main/origin is 2aec4b96 and d80 source head d5fedc0 has 38 unique commits; live API still shows 16 sessions and 64889 unresolved artifacts, so old acceptance is not current deployment proof",
+    "receipt": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02-correction-20260930.json"
+  },
+  "next": "N1 package is ready for worker checkpoint after architecture and related test gates; N2 and P5 evidence remain open.",
+  "plan_copy": {
+    "planning_commit": "a066ab5ac523a1bc6c50fd17af1fe8142346d848",
+    "source_branch": "codex/session/codex-d80b7f12073a98b4eb63-2",
+    "execution_worktree": "D:/muIon-beam/_work/current/worktrees/codex-835da5ec0682f0e05a65-1",
+    "copied_files": [
+      "handoff_v3.md",
+      "plan_v3.md",
+      "plan_v3.json"
+    ],
+    "status": "copied; execution checkpoint updated locally; not yet delivered to main",
+    "hashes": [
+      {
+        "name": "handoff_v3.md",
+        "source_sha256": "31bdc0d35dc1aec61a6b30ade03647afee74c969ef1d0af0c747291e494dd7e5",
+        "execution_sha256": "31bdc0d35dc1aec61a6b30ade03647afee74c969ef1d0af0c747291e494dd7e5",
+        "exact_copy": true
+      },
+      {
+        "name": "plan_v3.md",
+        "source_sha256": "12e0044692aa6bed7e2619752d5ec381acf730a478dcc22a90fcb181469262f1",
+        "execution_sha256": "ab5660842d5ea91fb9552da488c949a863869839d06a800c789681d408777cf4",
+        "exact_copy": false
+      },
+      {
+        "name": "plan_v3.json",
+        "source_sha256": "c32d6551a4c7cfddff6e675cb465ceec54d0b804c1efc1f619cc061c45cffedc",
+        "execution_sha256": "dbf6ea0023565d09e40952c7d53b93e33d44699976481ab090c90afa07422a51",
+        "exact_copy": false
+      }
+    ],
+    "current_machine_plan_sha256": "ca4ad1da2c4a89de5ea494c346e7c35f037c01645764db9506e538444e668281",
+    "current_human_plan_sha256": "ab5660842d5ea91fb9552da488c949a863869839d06a800c789681d408777cf4"
+  },
+  "completed_at": "2026-09-29T23:23:56.502Z",
+  "historical_receipts_copied": [
+    {
+      "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v01.md",
+      "sha256": "036fe8b8051be19ec25322f7a4abc9892a93cf51aa0ba0ea70a3ef62f0382b14",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/active-checkout-output-cleanup-plan-20260924.json",
+      "sha256": "0068e2dfb74141843f510f410d7892b68081dcfe0ba74b82671472940ed9e13b",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/agent-runs/AGENT-web-toolchain-audit-20260924.json",
+      "sha256": "7b67c4d3ff03ffda7b531ab883fdec3289b0b8fccb1f5542a48be78809c09262",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/dashboard-cleanup-20260924.json",
+      "sha256": "1357a67d01ffd561d8d549581e2edb6adc4a3c63241276e8f9aefd3501ec4358",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/dashboard-deployment-20260924.json",
+      "sha256": "749555bd64da3654d2d00ceae857603bf940fd593348e2322f4e3ec214088ab1",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/dashboard-live-drift-20260924.json",
+      "sha256": "4aec8bd675ef3a8198369b2221bcfc811cfe785f82a0e37a4193257b13d787c9",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/deleted-content-drive-audit-20260924.json",
+      "sha256": "44ee48575013c24a0dce4329ce3793f595244a6589ffd7fe86ab3f742a903533",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/evolution/EVOLUTION-20260924-dashboard-ui-candidates.json",
+      "sha256": "f582c6a9946789b0e358a1a248443ee7199e1cd04f68f9edf982e94a6e504ba2",
+      "status": "historical-only; not executed or adopted"
+    },
+    {
+      "path": "00_project/traceability/evolution/EVOLUTION-20260924-oh-my-codex-goal-restudy.json",
+      "sha256": "9e21ee678def72b941b3a03b5baab3c09171bfda2027f2f12ce5caac844c80a3",
+      "status": "historical-only; not executed or adopted"
+    },
+    {
+      "path": "00_project/traceability/evolution/EVOLUTION-20260924-web-research-toolchain-candidates.json",
+      "sha256": "7e65f42429fc7a41ed7be9ba44b3afd7e615c2490badcb2e697969b232110a95",
+      "status": "historical-only; not executed or adopted"
+    },
+    {
+      "path": "00_project/traceability/governance-incremental-receipt-20260924.json",
+      "sha256": "3a09269392221a884719d8fa00412f68d006df4e676789eef8f0ffbc6aa095e7",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/governance-rename-review-20260924.json",
+      "sha256": "b10521918ca0d38e5e17b236a505863cba2e76acf0015995682c182d020ad22b",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/governance-untracked-asset-receipt-20260924.json",
+      "sha256": "3fe62108996963e2deec61142a8ce5a51d515c446af06e128ecebd984fcb945b",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/leader-delivery-bundle-20260924.json",
+      "sha256": "8187826172d38edad2ef696cc8620a48354f744c9cf46f88a987c61be450d4a1",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/leader-integration-blocker-20260924.json",
+      "sha256": "be2b13c40e7f8a9f3714c5576eb38ee6d84ef42dfbe91bcea2d0dd0525b320fd",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/quarantine-drive-verification-20260924.json",
+      "sha256": "2269d722b987b399d84fe0112bf279a2ed3defbd6ed81929d09a9c033b0d3412",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+      "sha256": "2d2b109a5cc5afc7e45e384e1d48627dc653d7c512d15bda318871a85ea9c4b6",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+      "sha256": "d15b1d82fe73ad51145e75641f5b5068b764fa10f35399f43abb426a0fdcec2f",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/experiences/EXP-20260924-submitted-session-resume-lifecycle.json",
+      "sha256": "d7dd03c48456362c0c530f84c7844081d61974f94731fc0c6081e3d30ac16978",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md",
+      "sha256": "318f0da9096b8c570f0751ca492f4ad3ce6b2ea042ea2586a80bc9d7521f4613",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    },
+    {
+      "path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-SUBMITTED-RESUME.json",
+      "sha256": "f297fc6bf7028ed3bae816b70e1e4a3c29d852184a0189951f6b9b5a1bacb9c7",
+      "status": "copied-to-execution-worktree for N1 delivery"
+    }
+  ],
+  "disposition_summary": {
+    "identical_blob": 34,
+    "historical_receipts_copied": 21,
+    "plan_infrastructure_N1": "session resume and stale receipt gate adopted; worker baseline now resolves canonical session state root; node delivery/tag path added and tested in a local main repo",
+    "dashboard_and_runtime_N2": "named path-level implementation/reimplementation tasks",
+    "rejected": [
+      "00_project/config/dashboard-history.json"
+    ],
+    "not_adopted": [
+      "generic autopilot/offline-plan/ultragoal changes; v3 JSON is the offline checkpoint",
+      "stale d80 web-research runner and older requirements; newer main project-local environment is retained"
+    ],
+    "indexes": "rebuild from current Manifest sources after selected durable receipts land",
+    "adopted_in_N1_paths": [
+      ".codex/skills/team/SKILL.md",
+      ".codex/skills/team/scripts/session-concurrency.mjs",
+      "11_tools/project-supervisor/integration-coordinator.mjs",
+      "tests/integration-coordinator.test.mjs",
+      "tests/session-concurrency.test.mjs"
+    ],
+    "historical_records_copied_exactly": 21,
+    "worker_only_paths_with_an_explicit_outcome": 92
+  },
+  "test_deviation": {
+    "status": "corrected",
+    "fact": "An early task-tag test attempt pushed tags to a temporary local bare repository, contrary to the v3 test boundary. That test fixture deleted its temporary repository on cleanup and did not touch origin/Gitee. The final retry test now uses an in-memory remote adapter; the plan-node integration test pushes only main to a disposable bare repository and asserts refs/tags is empty."
+  },
+  "p0_acceptance": {
+    "status": "passed-in-worker-before-N1-publication",
+    "evidence": [
+      "project entry ready in assigned worktree",
+      "session baseline at 2aec4b96",
+      "NUL recovery writer/reader tests pass",
+      "session/integration resume and stale receipt tests pass",
+      "auto-commit baseline root fixed and tested",
+      "all 92 d80 paths plus two untracked d80-1 copies have explicit status",
+      "plan_v02 additive correction is written",
+      "architecture smoke passes"
+    ]
+  }
+}

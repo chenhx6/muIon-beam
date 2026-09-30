@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "record_type": "dashboard-live-delivery-drift",
+  "recorded_at": "2026-09-24T10:13:34.161Z",
+  "endpoint": "http://127.0.0.1:4317",
+  "health": {
+    "service": "muion-research-dashboard",
+    "project_root": "D:\\muIon-beam",
+    "pid": 28560
+  },
+  "main_head": "5b5e8d1cb985e8fa27b3a141e408507b00f84693",
+  "worker_head": "8b3328e060e2a6d14d1807d9d1439bd2cb4d9423",
+  "served_html_sha256": "aad1b3b7e61e87c4fb775a8142f3e4c3208a6de2585b7c340133b4e90e8656d8",
+  "worker_html_sha256": "a53f691df6f25c92ff26f6c3465c3049bdac60cab8b0b0beb8e7ad3cdbc39f4852",
+  "served_matches_worker": false,
+  "served_old_panel": true,
+  "served_new_board": false,
+  "status": "main-checkout-not-integrated",
+  "next_action": "leader must apply worker delivery to clean main checkout and restart supervisor-managed dashboard",
+  "evidence": {
+    "main_dashboard_process": "D:/muIon-beam/11_tools/research-dashboard/server.mjs",
+    "worker_dashboard_process": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1/11_tools/research-dashboard/server.mjs",
+    "hashes": {
+      "main_server": "d63e8fbef3a5a15f92e982f4b0a612c4af6b4813ad1d249699b6f8292181e8b4",
+      "worker_server": "8b1f3f7b190d01f9a286636caa0f57fbb7650b0f792202c4f3478f728e8e0578",
+      "main_supervision": "9e9f18d2989d454569bff6071bf31df662f07bbb6cabb168cee80019210b1a8c",
+      "worker_supervision": "4acf393d7225be7365a01f3b9dfecbd864586a66145409ae2896eb4e0d2d55e7"
+    }
+  }
+}

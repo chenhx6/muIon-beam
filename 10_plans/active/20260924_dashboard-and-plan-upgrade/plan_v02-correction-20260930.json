@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "record_type": "plan-correction",
+  "correction_id": "PLAN-CORRECTION-20260930-DASHBOARD-PLAN-UPGRADE",
+  "plan_id": "plan_dashboard_and_plan_upgrade_20260924",
+  "plan_version": "v02",
+  "recorded_at": "2026-09-29T20:32:34.636Z",
+  "status": "corrected-additively; original history preserved",
+  "original_claim": "plan_v02.json recorded completed and cited main/Gitee/Drive/dashboard evidence.",
+  "evidence": {
+    "original_plan_sha256": "bab017c2d9c77acd20b0ddca3d7e90de2d4601978242ae98399fe00f9b0e46e0",
+    "current_main": "2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226",
+    "origin_main": "2aec4b96b5aaf30a8b9a3cb987ad3ad7c96b0226",
+    "d80_worker_head": "d5fedc0e9fe28393e560320a187191943cc9d476",
+    "d80_unique_commits": 38,
+    "d80_merge_base_changed_files": 92,
+    "d80_files_blob_identical_to_current_main": 34,
+    "live_dashboard_api": {
+      "observed_at": "2026-09-29T20:10:44.99Z",
+      "sessions": 16,
+      "active": 4,
+      "stale": 3,
+      "unregistered_artifacts": 64889,
+      "warnings": 0
+    },
+    "dashboard_health_only": "HTTP 200 at 127.0.0.1:4317 is process/API health; it does not establish served code commit or state-transition acceptance."
+  },
+  "correction": {
+    "interpretation": "The historical v02 completed fields are not accepted as current-main, current-remote, Drive-readback or current-dashboard evidence. This receipt does not rewrite what the old worker observed on 2026-09-25.",
+    "current_status": "incomplete; v3 execution owns all remaining gates",
+    "no_science_result_tag": true,
+    "no_historical_tag_backfill": true,
+    "preserve_original_plan_files": true
+  },
+  "next_action": "Complete plan_v3 N1-N3 and retain the actual commit/remote/Drive/browser/recovery evidence."
+}

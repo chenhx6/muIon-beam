@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20260924-submitted-session-resume-lifecycle",
+  "recorded_at": "2026-09-24T06:54:16.354Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "session-lifecycle",
+  "title": "submitted worker 无法在用户批准后复用原 worktree继续工作",
+  "observation": "本次 dashboard plan 未完成且 worker 已提交后，用户批准继续执行，但项目入口将 session 保持为 submitted、ready=false；现有 session-concurrency 只有 begin/submit/integrate/close/reap，没有显式 resume，导致同一 session 无法继续写原 worktree。",
+  "evidence": [
+    ".codex/skills/team/scripts/session-concurrency.mjs",
+    "tests/session-concurrency.test.mjs",
+    "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.md",
+    "_work/current/concurrency/sessions/codex-d80b7f12073a98b4eb63-1.integration.json",
+    "用户批准 plan_v02 后 resumeSession 实际输出"
+  ],
+  "impact": [
+    "未完成 plan 无法在原 session 中继续",
+    "用户被迫面对新 task/worktree 或手动恢复状态",
+    "dashboard plan 可能已经部署失败但 worker 被错误视为只可集成",
+    "上下文压缩或中断后的可恢复性被 session 状态门阻断"
+  ],
+  "reusable_value": "submitted、blocked、interrupted 和 paused 是可继续的生命周期状态，不应等同于不可写终态；用户明确批准后必须复用原 worktree、branch、claim 和 receipt，不能创建第二份现场。",
+  "actions": [
+    "增加 resumeSession 显式入口",
+    "resume 时复用原 worktree/branch/claim，续租并追加 lifecycle_events",
+    "保留 integration receipt，不自动 merge、不丢弃现场",
+    "增加 submitted worker resume 回归测试",
+    "在 team skill 和 plan 中记录 resume 使用边界"
+  ],
+  "tags": [
+    "session-lifecycle",
+    "submitted",
+    "resume",
+    "worktree",
+    "integration-gate",
+    "context-recovery"
+  ],
+  "related_paths": [
+    ".codex/skills/team/scripts/session-concurrency.mjs",
+    "tests/session-concurrency.test.mjs",
+    ".codex/skills/team/SKILL.md",
+    "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.md"
+  ],
+  "related_commits": []
+}

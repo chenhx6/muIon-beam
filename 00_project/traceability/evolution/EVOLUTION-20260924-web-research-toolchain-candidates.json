@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "evolution_id": "EVOLUTION-20260924-web-research-toolchain-candidates",
+  "recorded_at": "2026-09-24",
+  "trigger": "user-explicit-evolution-web-research-toolchain-plan",
+  "status": "adopted-project-local-install-smoke-verified",
+  "study_boundary": {
+    "mode": "study-plus-approved-project-local-install",
+    "external_code_executed": true,
+    "external_installers_executed": true,
+    "npm_install_executed": false,
+    "pip_or_uv_install_executed": true,
+    "browser_binaries_installed": true,
+    "credentials_created_or_read": false,
+    "muion_files_copied": false
+  },
+  "name_resolution": {
+    "user_term": "claw4ai",
+    "exact_repository_found": false,
+    "assumed_candidate": "Crawl4AI / unclecode/crawl4ai",
+    "confirmation_required_before_install": false,
+    "confirmed_by_user": true
+  },
+  "candidates": [
+    {
+      "name": "Crawl4AI",
+      "url": "https://github.com/unclecode/crawl4ai",
+      "revision": "86e6464f6db215e0d608f6aa1da41e8505636ede",
+      "license": "Apache-2.0",
+      "cache": "_work/cache/evolution/crawl4ai-head",
+      "selected_hashes": [
+        {
+          "path": "LICENSE",
+          "sha256": "86EB36C83071135C32C3287D2FC7DD24436874182D798A6E1926A8655D73101F",
+          "bytes": 10066
+        },
+        {
+          "path": "pyproject.toml",
+          "sha256": "C34DE9F137DA1EB59462B1BD6BA7507D1A5B91BE8BE073F1B34426BCF0EB80CE",
+          "bytes": 2610
+        },
+        {
+          "path": "README.md",
+          "sha256": "4A57E14793615B048A33B60687B6A0163A591272774F2452ED2B27FD42B86D77",
+          "bytes": 60455
+        }
+      ],
+      "planned_install": "project-local Python 3.12.14 venv with Crawl4AI[all]==0.9.4, crawl4ai-setup, crawl4ai-doctor and bounded Markdown/browser smoke",
+      "planned_role": "batch crawler, Markdown/structured extraction, deep crawl, cache and optional Docker/MCP service",
+      "risks": [
+        "large browser/Python dependency closure",
+        "SSRF and downloaded-content boundary",
+        "rate/terms/robots compliance",
+        "browser and model resources"
+      ],
+      "decision": "approved-project-local-full-extra-install",
+      "installation": {
+        "version": "0.9.4",
+        "environment": "00_project/web-research/venvs/crawl4ai",
+        "requirements": "00_project/web-research/crawl4ai-0.9.4.requirements.txt",
+        "smoke": "doctor and example.com Markdown passed"
+      }
+    },
+    {
+      "name": "Browser Use",
+      "url": "https://github.com/browser-use/browser-use",
+      "revision": "d8110c5ff87ccba887aaa726cdb780f2f84bef8d",
+      "license": "MIT",
+      "cache": "_work/cache/evolution/browser-use-head",
+      "selected_hashes": [
+        {
+          "path": "LICENSE",
+          "sha256": "220696EE49F5174638DCE85F658B5766623E636211CFF77171D3DD458FECE34F",
+          "bytes": 1090
+        },
+        {
+          "path": "pyproject.toml",
+          "sha256": "1EC07AA02CAAC500F9A4856288D00FBC00E94700210325A4CD6C1224E9484FC4",
+          "bytes": 7895
+        },
+        {
+          "path": "README.md",
+          "sha256": "795A1FF40BBB6D95FF2F6DCA73E68A9F855E3749307948197E6C6A93965798B3",
+          "bytes": 15286
+        }
+      ],
+      "planned_install": "project-local Python 3.12.14 venv with Browser Use 0.13.2[all,core,video] and read-only CLI open/state smoke",
+      "planned_role": "dynamic browser interaction, CDP, login-aware research and agent-driven workflows",
+      "risks": [
+        "API keys and authenticated browser profiles",
+        "external side effects from browser actions",
+        "large optional dependency closure",
+        "telemetry/cloud-provider choices"
+      ],
+      "decision": "approved-project-local-install",
+      "installation": {
+        "version": "0.13.2",
+        "tag_commit": "1e75d1f1f3ae970ad673e479a2ac9b3b613f82be",
+        "environment": "00_project/web-research/venvs/browser-use",
+        "requirements": "00_project/web-research/browser-use-0.13.2.requirements.txt",
+        "browser_harness_distribution": false,
+        "smoke": "CLI open/state passed; optional cloudflared/profile-use intentionally absent"
+      }
+    }
+  ],
+  "project_local_isolation": {
+    "runtime_root": "00_project/web-research",
+    "venvs": [
+      "00_project/web-research/venvs/crawl4ai",
+      "00_project/web-research/venvs/browser-use"
+    ],
+    "private_root": "00_project/web-research/private",
+    "allowed_private_material": [
+      "API keys",
+      "cookies",
+      "local storage",
+      "browser profiles",
+      "recordings"
+    ],
+    "git_controls": [
+      ".gitignore or git exclude",
+      "git check-ignore",
+      "secret scan",
+      "delivery-plan rejection",
+      "no Gitee/Drive mirror"
+    ],
+    "global_install_forbidden": true,
+    "work_boundary": "_work remains non-durable runtime/cache/scratch/worktree storage; 00_project/web-research is the project-local durable tool area with ignored private runtime subpaths"
+  },
+  "browser_use_compatibility": {
+    "latest_inspected_version": "0.13.10",
+    "latest_inspected_commit": "d8110c5ff87ccba887aaa726cdb780f2f84bef8d",
+    "latest_conflict": "pyproject.toml directly depends on browser-harness==0.1.13",
+    "selected_version": "0.13.2",
+    "selected_commit": "1e75d1f1f3ae970ad673e479a2ac9b3b613f82be",
+    "selected_pyproject_sha256": "7ab3f53b7be1bc5281b8a4fd1f48c8f54774d5d1f8e376ceffd0bae52b1b83bf",
+    "selected_reason": "pyproject.toml has browser-use[all] CLI extras and no browser-harness dependency; compatible with the user's no-Desktop/no-Harness scope",
+    "install_shape": "browser-use 0.13.2[all,core,video] from pinned tag in project-local Python venv"
+  },
+  "decision": {
+    "adopt_now": true,
+    "recommended_scope": "project-local Crawl4AI 0.9.4 full-extra installation plus Browser Use 0.13.2[all,core,video] without Desktop/Browser Harness",
+    "rationale": "The user confirmed Crawl4AI, rejected jKanban for this repair, approved project-local full installs, and excluded Browser Use Desktop/Browser Harness. Credentials may live in ignored project-local private paths but never enter Git or Drive.",
+    "next_adoption_gate": "future task contract for evidence promotion, SSRF/domain policy and deeper browser workflows"
+  }
+}

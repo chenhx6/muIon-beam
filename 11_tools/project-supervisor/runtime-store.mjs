@@ -17,13 +17,29 @@ export class RuntimeStore {
     return path.join(this.directory, name);
   }
   read(name, fallback = null) {
-    try { return JSON.parse(fs.readFileSync(this.file(name), 'utf8')); }
+    const file = this.file(name); let bytes;
+    try { bytes = fs.readFileSync(file); }
     catch (error) { if (error.code === 'ENOENT') return fallback; throw error; }
+    try { return JSON.parse(bytes.toString('utf8')); }
+    catch (error) {
+      if (!bytes.includes(0)) throw error;
+      const archived = file + '.corrupt-' + Date.now() + '-' + crypto.randomUUID();
+      fs.renameSync(file, archived);
+      this.event('runtime-json-quarantined', {
+        name, archived: path.relative(this.root, archived).replaceAll('\\', '/'),
+        bytes: bytes.length, nul_bytes: [...bytes].filter(byte => byte === 0).length,
+        sha256: crypto.createHash('sha256').update(bytes).digest('hex'),
+      });
+      return fallback;
+    }
   }
   write(name, value) {
     fs.mkdirSync(this.directory, { recursive: true });
-    const file = this.file(name); const temp = `${file}.${crypto.randomUUID()}.tmp`;
-    fs.writeFileSync(temp, JSON.stringify(value, null, 2) + '\n'); fs.renameSync(temp, file);
+    const file = this.file(name); const temp = file + '.' + crypto.randomUUID() + '.tmp';
+    const fd = fs.openSync(temp, 'wx');
+    try { fs.writeFileSync(fd, JSON.stringify(value, null, 2) + '\n'); fs.fsyncSync(fd); }
+    finally { fs.closeSync(fd); }
+    fs.renameSync(temp, file);
   }
   event(type, detail) {
     fs.mkdirSync(this.directory, { recursive: true });

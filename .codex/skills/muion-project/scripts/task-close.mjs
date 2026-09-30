@@ -34,6 +34,17 @@ const request = requestedSession
   : read(path.join(localState, 'task-close-request.json'));
 if (!request?.close_requested) throw new Error('task close requires close_requested=true');
 if (request.qa_passed !== true) throw new Error('task close requires qa_passed=true');
+if (args._[0] === 'execute' && requestedSession?.mode === 'worktree') {
+  if (!args.node || !args.plan_file) throw new Error('private worktree close must identify a ready plan node; direct worker-to-main pushes are disabled');
+  const command = [path.join(import.meta.dirname, 'auto-commit-push.mjs'), '--project-root', requestedSession.worktree_path, '--session-id', requestedSession.session_id];
+  for (const node of Array.isArray(args.node) ? args.node : [args.node]) command.push('--node', node);
+  command.push('--plan-file', args.plan_file);
+  if (args.drive_root) command.push('--drive-root', args.drive_root);
+  if (args.cloud_readback) command.push('--cloud-readback', args.cloud_readback);
+  const result = spawnSync(process.execPath, command, { cwd: requestedSession.worktree_path, encoding: 'utf8', windowsHide: true, maxBuffer: 50 * 1024 * 1024 });
+  if (result.status !== 0) throw new Error(result.stderr || result.stdout || 'plan node delivery failed');
+  console.log(result.stdout); process.exit(0);
+}
 const deliveryLock = args._[0] === 'execute' ? acquireProjectLock(root, 'leader-delivery') : null;
 if (deliveryLock) process.on('exit', () => releaseProjectLock(deliveryLock));
 const externalLibrarySync = requestedSession ? { status: 'session-scoped', skipped: true } : syncExternalLibraries({ projectRoot: root, event: 'task-close' });

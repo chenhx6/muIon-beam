@@ -20,10 +20,17 @@ returns `final_verdict: null`; `research-workflow` remains responsible for
 scientific interpretation and state updates.
 
 `scripts/session-concurrency.mjs` provides the project-local session boundary:
-`begin` creates a private Git worktree and branch for a writer, `check` validates
-actual changed paths against its claim, `heartbeat` renews the lease, `submit`
+`begin` creates a private Git worktree and branch for a writer, `resume`
+reactivates an explicitly user-approved submitted/blocked worker in that same
+worktree, `check` validates actual changed paths against its claim, `heartbeat`
+renews the lease, `submit`
 creates an integration receipt, `integrate` is a leader-only serialized gate,
 and `reap` recovers only an expired clean session.
+After `resume`, explicitly `submit` the new clean checkpoint before integration.
+The old receipt remains as evidence but cannot authorize an active session or
+a different commit. Integration validates ownership and merges the submitted
+SHA; planning does not silently replace a stale receipt.
+`continue` reuses an integrated worktree for the next approved plan node, fast-forwards it to main, and resets its private baseline. `close --cleanup` removes a worker branch only after its exact head is in main and the worktree has no tracked, untracked or ignored files; if the host turn is still live, cleanup is deferred to the supervisor until it ends.
 Use `shared-read` for read-only work and `shared-write` only for legacy single-
 writer tasks. A session with no declared ownership receives a whole-workspace
 claim and cannot run beside another writer.
@@ -45,4 +52,4 @@ enforcement.
 
 One writer owns each file. Reviewers are read-only by default. A child agent cannot spawn another child by default; the manifest validator rejects that permission unless the root leader explicitly grants it.
 
-Workers never publish directly. The leader owns the delivery plan, Gitee commit/push, Drive archive, result tags and three-end audit. Each worker returns changed paths, tests, SHA256 evidence where relevant, source/result/report references and unresolved items; durable summaries enter the project Manifest or milestone record. Worker checkpoint commits stay on `codex/session/<session_id>` until the leader integration gate accepts them.
+Workers checkpoint only. When a plan node is explicitly ready, `auto-commit-push.mjs --node <node_id> --plan-file <path>` hands its fixed source SHA to the serialized leader delivery gate, which integrates, tests, pushes main, verifies Drive, then creates the immutable `t-*` node tags. A retry resumes from the node outbox and never repeats a successful merge or moves a tag. The leader still owns Drive archive, result tags and three-end audit. Each worker returns changed paths, tests, SHA256 evidence where relevant, source/result/report references and unresolved items; durable summaries enter the project Manifest or milestone record.

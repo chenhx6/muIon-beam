@@ -33,14 +33,14 @@ function fixture(t) {
   put(root, 'README.md', 'base\n');
   git(root, 'add', '.'); git(root, 'commit', '-m', 'base'); git(root, 'remote', 'add', 'origin', remote); git(root, 'push', 'origin', 'main');
   const initial = git(root, 'rev-parse', 'HEAD');
-  const run = (...args) => spawnSync(process.execPath, [cli, '--project-root', root, ...args], { cwd: root, encoding: 'utf8', windowsHide: true, timeout: 30000 });
+  const run = (cwd, ...args) => spawnSync(process.execPath, [cli, '--project-root', cwd, ...args], { cwd, encoding: 'utf8', windowsHide: true, timeout: 30000 });
   return { root, remote, initial, run };
 }
 
 test('worker checkpoints model sources without pushing main', t => {
   const f = fixture(t); const s = beginSession({ root: f.root, sessionId: 'writer', ownedPaths: ['02_models/'] });
   put(s.worktree_path, '02_models/model.py', 'print(1)\n');
-  const r = f.run('--session-id', s.session_id);
+  const r = f.run(s.worktree_path, '--session-id', s.session_id);
   assert.equal(r.status, 0, r.stderr); assert.equal(JSON.parse(r.stdout).status, 'session-checkpoint-created');
   assert.equal(git(f.remote, 'rev-parse', 'main'), f.initial);
   assert.equal(git(f.root, 'rev-parse', 'HEAD'), f.initial);
@@ -50,7 +50,7 @@ test('worker checkpoints model sources without pushing main', t => {
 test('worker refuses a mixed source and binary checkpoint before committing', t => {
   const f = fixture(t); const s = beginSession({ root: f.root, sessionId: 'writer', ownedPaths: ['02_models/'] });
   put(s.worktree_path, '02_models/model.py', 'print(1)\n'); put(s.worktree_path, '02_models/model.mph', 'binary');
-  const r = f.run('--session-id', s.session_id);
+  const r = f.run(s.worktree_path, '--session-id', s.session_id);
   assert.notEqual(r.status, 0); assert.match(r.stderr, /checkpoint rejected by delivery policy/);
   assert.equal(git(s.worktree_path, 'rev-parse', 'HEAD'), f.initial);
   assert.equal(fs.readFileSync(path.join(s.worktree_path, '02_models/model.mph'), 'utf8'), 'binary');
@@ -61,7 +61,7 @@ test('leader publishes eligible sources and preserves unrelated staged baseline 
   put(f.root, 'README.md', 'user change\n'); git(f.root, 'add', 'README.md');
   put(f.root, '_work/baseline.json', JSON.stringify({ paths: ['README.md'] }));
   put(f.root, '02_models/model.java', 'class Model {}\n'); put(f.root, '02_models/model.root', 'payload');
-  const r = f.run('--baseline', '_work/baseline.json');
+  const r = f.run(f.root, '--baseline', '_work/baseline.json');
   assert.equal(r.status, 0, r.stderr); const result = JSON.parse(r.stdout);
   assert.equal(result.status, 'committed-and-pushed'); assert.deepEqual(result.candidates, ['02_models/model.java']);
   assert.equal(git(f.root, 'show', 'HEAD:README.md'), 'base');

@@ -4,7 +4,11 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import http from 'node:http';
+import { spawnSync } from 'node:child_process';
 import { RuntimeStore } from '../11_tools/project-supervisor/runtime-store.mjs';
+import { WorkerRuntime } from '../11_tools/project-supervisor/worker-runtime.mjs';
+import { applyIntegration, beginSession, closeSession, submitSession } from '../.codex/skills/team/scripts/session-concurrency.mjs';
+import { ensureDaemon } from '../11_tools/project-supervisor/index.mjs';
 import { ProcessSupervisor } from '../11_tools/project-supervisor/process-supervisor.mjs';
 import { DashboardService } from '../11_tools/project-supervisor/services.mjs';
 import { handleHook } from '../11_tools/project-supervisor/hooks.mjs';
@@ -87,4 +91,49 @@ test('session hook forwards a readable session name when provided', async t => {
   const supervisor = { enter: async args => { entered = args; return { ready: true, services: { farmer: { status: 'healthy' } }, context: [] }; } };
   await handleHook(event, { root: hookRoot, supervisor, ensure: async () => {} });
   assert.deepEqual(entered, { sessionId: 's1', source: 'SessionStart', sessionName: '研究 dashboard 修复' });
+});
+
+test('NUL-corrupt runtime JSON is preserved and a live daemon lock prevents a duplicate start', async t => {
+  const store = storeFor(t); const damaged = Buffer.alloc(133);
+  fs.mkdirSync(store.directory, { recursive: true });
+  fs.writeFileSync(store.file('daemon.json'), damaged);
+  fs.writeFileSync(store.file('daemon.lock'), JSON.stringify({ pid: process.pid, token: 'live-test-lock', created_at: new Date().toISOString() }));
+  const owner = await ensureDaemon(store.root);
+  assert.equal(owner.pid, process.pid); assert.equal(owner.recovered_from_lock, true);
+  const archivedName = fs.readdirSync(store.directory).find(name => name.startsWith('daemon.json.corrupt-'));
+  assert.ok(archivedName); assert.deepEqual(fs.readFileSync(path.join(store.directory, archivedName)), damaged);
+  const event = fs.readFileSync(store.file('events.jsonl'), 'utf8');
+  assert.match(event, /runtime-json-quarantined/); assert.match(event, /57ffc9ca3beb6ee6226c28248ab9c77b2076ef6acffba839cec21fac28a8fd1f/);
+  fs.writeFileSync(store.file('workers.json'), Buffer.from([0, 0]));
+  assert.deepEqual(store.read('workers.json', { workers: [] }), { workers: [] });
+  assert.ok(fs.readdirSync(store.directory).some(name => name.startsWith('workers.json.corrupt-')));
+});
+
+test('failed runtime flush keeps the previous complete JSON', t => {
+  const store = storeFor(t); store.write('processes.json', { generation: 1 });
+  const originalSync = fs.fsyncSync;
+  fs.fsyncSync = () => { throw new Error('simulated interrupted flush'); };
+  try { assert.throws(() => store.write('processes.json', { generation: 2 }), /interrupted flush/); }
+  finally { fs.fsyncSync = originalSync; }
+  assert.deepEqual(store.read('processes.json'), { generation: 1 });
+});
+
+test('supervisor reaps a closed delivered worktree only after its host turn ends', t => {
+  const store = storeFor(t); const root = store.root;
+  const git = (...args) => { const result = spawnSync('git', ['-C', root, ...args], { encoding: 'utf8', windowsHide: true }); assert.equal(result.status, 0, result.stderr || result.stdout); return result.stdout.trim(); };
+  git('init', '-b', 'main'); git('config', 'user.name', 'test'); git('config', 'user.email', 'test@example.invalid');
+  fs.writeFileSync(path.join(root, '.gitignore'), '_work/\n'); fs.writeFileSync(path.join(root, 'task.txt'), 'base\n'); git('add', '.'); git('commit', '-m', 'base');
+  const session = beginSession({ root, sessionId: 'cleanup', hostSessionId: 'host-cleanup', ownedPaths: ['task.txt'] });
+  fs.writeFileSync(path.join(session.worktree_path, 'task.txt'), 'delivered\n');
+  git('-C', session.worktree_path, 'add', 'task.txt'); git('-C', session.worktree_path, 'commit', '-m', 'delivered');
+  submitSession({ root, sessionId: session.session_id }); applyIntegration({ root, sessionId: session.session_id });
+  const stateFile = path.join(root, '_work/current/farmer/state.json'); fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, JSON.stringify({ 'host-cleanup': { status: 'running' } }));
+  closeSession({ root, sessionId: session.session_id, token: session.owner_token, cleanup: true });
+  assert.equal(fs.existsSync(session.worktree_path), true);
+  fs.writeFileSync(stateFile, JSON.stringify({ 'host-cleanup': { status: 'complete' } }));
+  const workers = new WorkerRuntime(root, store).tick();
+  assert.equal(workers.find(item => item.session_id === session.session_id).cleanup_status, 'completed');
+  assert.equal(fs.existsSync(session.worktree_path), false);
+  assert.notEqual(spawnSync('git', ['-C', root, 'show-ref', '--verify', '--quiet', 'refs/heads/' + session.branch], { encoding: 'utf8' }).status, 0);
 });

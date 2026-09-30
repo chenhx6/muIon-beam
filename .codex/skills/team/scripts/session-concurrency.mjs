@@ -280,6 +280,23 @@ export function heartbeatSession({ root = process.cwd(), sessionId, token, lease
   });
 }
 
+// Explicit user-approved continuation. Reuses the submitted worker worktree;
+// it never allocates a second branch or discards the integration receipt.
+export function resumeSession({ root = process.cwd(), sessionId, reason = 'explicit user-approved continuation', leaseMs = DEFAULT_LEASE_MS } = {}) {
+  const repoRoot = repoRootFrom(path.resolve(root));
+  return withLock(repoRoot, 'session-registry', () => {
+    const session = readSession(repoRoot, safeId(sessionId, 'session_id'));
+    if (session.status === 'active') return { ...session, resumed: false };
+    if (!['submitted', 'blocked', 'interrupted', 'paused'].includes(session.status)) throw new Error(`session cannot resume from ${session.status}: ${session.session_id}`);
+    if (!fs.existsSync(session.worktree_path)) throw new Error(`session worktree is missing: ${session.worktree_path}`);
+    assertNoClaimCollision(repoRoot, session.session_id, session.claims, session.mode, session.isolated_overlap);
+    registerClaim(repoRoot, session);
+    const at = nowIso();
+    const lifecycleEvents = [...(session.lifecycle_events || []), { at, from: session.status, to: 'active', reason }];
+    return updateSession(repoRoot, session, { status: 'active', lease_until: new Date(Date.now() + leaseMs).toISOString(), resumed_at: at, resume_reason: reason, resume_count: (session.resume_count || 0) + 1, lifecycle_events: lifecycleEvents });
+  });
+}
+
 export function checkSession({ root = process.cwd(), sessionId } = {}) {
   const repoRoot = repoRootFrom(path.resolve(root)); const session = readSession(repoRoot, safeId(sessionId, 'session_id'));
   const cwd = session.worktree_path; const dirty = statusPaths(cwd).map((value) => normalizeClaimPath(repoRoot, value));
@@ -291,32 +308,48 @@ export function checkSession({ root = process.cwd(), sessionId } = {}) {
 }
 
 export function submitSession({ root = process.cwd(), sessionId } = {}) {
-  const repoRoot = repoRootFrom(path.resolve(root)); const session = readSession(repoRoot, safeId(sessionId, 'session_id')); const checked = checkSession({ root: repoRoot, sessionId });
-  if (checked.status !== 'ready') throw new Error(`session ownership check failed: ${checked.outside_claim_paths.join(', ')}`);
-  if (session.mode === 'worktree' && currentStatus(session.worktree_path).length) throw new Error('submit requires a clean worktree; commit the owned changes first');
-  const head = runGit(session.worktree_path, ['rev-parse', 'HEAD']).stdout.trim();
-  const changed = runGit(session.worktree_path, ['diff', '--name-only', `${session.base_ref}..HEAD`]).stdout.split(/\r?\n/).filter(Boolean).map((value) => normalizeClaimPath(repoRoot, value));
-  const receipt = { schema_version: SCHEMA_VERSION, session_id: session.session_id, task_id: session.task_id, source_branch: session.branch, source_head: head, base_ref: session.base_ref, changed_paths: changed, created_at: nowIso(), status: 'pending-integration' };
-  atomicWrite(receiptFile(repoRoot, session.session_id), receipt); updateSession(repoRoot, session, { status: 'submitted', receipt_path: path.relative(repoRoot, receiptFile(repoRoot, session.session_id)).replaceAll('\\', '/') });
+  const repoRoot = repoRootFrom(path.resolve(root));
+  return withLock(repoRoot, 'session-registry', () => {
+    const session = readSession(repoRoot, safeId(sessionId, 'session_id')); const checked = checkSession({ root: repoRoot, sessionId });
+    if (checked.status !== 'ready') throw new Error(`session ownership check failed: ${checked.outside_claim_paths.join(', ')}`);
+    if (session.mode === 'worktree' && currentStatus(session.worktree_path).length) throw new Error('submit requires a clean worktree; commit the owned changes first');
+    const head = runGit(session.worktree_path, ['rev-parse', 'HEAD']).stdout.trim();
+    const changed = runGit(session.worktree_path, ['diff', '--name-only', `${session.base_ref}..HEAD`]).stdout.split(/\r?\n/).filter(Boolean).map((value) => normalizeClaimPath(repoRoot, value));
+    const receipt = { schema_version: SCHEMA_VERSION, session_id: session.session_id, task_id: session.task_id, source_branch: session.branch, source_head: head, base_ref: session.base_ref, changed_paths: changed, created_at: nowIso(), status: 'pending-integration' };
+    atomicWrite(receiptFile(repoRoot, session.session_id), receipt); updateSession(repoRoot, session, { status: 'submitted', receipt_path: path.relative(repoRoot, receiptFile(repoRoot, session.session_id)).replaceAll('\\', '/') });
+    return receipt;
+  });
+}
+
+function submittedReceipt(repoRoot, session) {
+  if (session.mode !== 'worktree' || !session.branch) throw new Error('only worktree sessions can be integrated');
+  if (session.status !== 'submitted') throw new Error('integration requires a submitted session; submit again after continuation');
+  const checked = checkSession({ root: repoRoot, sessionId: session.session_id });
+  if (checked.status !== 'ready') throw new Error(`integration ownership check failed: ${checked.outside_claim_paths.join(', ')}`);
+  if (checked.dirty_paths.length) throw new Error('integration requires a clean worktree');
+  const receipt = readJson(receiptFile(repoRoot, session.session_id));
+  const branch = runGit(session.worktree_path, ['symbolic-ref', '--short', 'HEAD']).stdout.trim();
+  if (receipt?.status !== 'pending-integration' || receipt.session_id !== session.session_id || receipt.source_branch !== session.branch || branch !== session.branch || receipt.source_head !== checked.head) {
+    throw new Error('integration receipt is missing or stale; submit the current checkpoint again');
+  }
   return receipt;
 }
 
 export function planIntegration({ root = process.cwd(), sessionId } = {}) {
-  const repoRoot = repoRootFrom(path.resolve(root)); const session = readSession(repoRoot, safeId(sessionId, 'session_id'));
-  if (session.mode !== 'worktree' || !session.branch) throw new Error('only worktree sessions can be integrated');
-  const checked = checkSession({ root: repoRoot, sessionId }); if (checked.status !== 'ready') throw new Error(`integration ownership check failed: ${checked.outside_claim_paths.join(', ')}`);
-  const head = runGit(session.worktree_path, ['rev-parse', 'HEAD']).stdout.trim();
-  const receipt = { schema_version: SCHEMA_VERSION, session_id: session.session_id, task_id: session.task_id, source_branch: session.branch, source_head: head, base_ref: session.base_ref, changed_paths: runGit(session.worktree_path, ['diff', '--name-only', `${session.base_ref}..HEAD`]).stdout.split(/\r?\n/).filter(Boolean).map((value) => normalizeClaimPath(repoRoot, value)), target_branch: runGit(repoRoot, ['symbolic-ref', '--short', 'HEAD']).stdout.trim() || 'main', status: 'pending-integration', created_at: nowIso() };
-  atomicWrite(receiptFile(repoRoot, session.session_id), receipt); return receipt;
+  const repoRoot = repoRootFrom(path.resolve(root));
+  return withLock(repoRoot, 'session-registry', () => {
+    const receipt = submittedReceipt(repoRoot, readSession(repoRoot, safeId(sessionId, 'session_id')));
+    return { ...receipt, target_branch: runGit(repoRoot, ['symbolic-ref', '--short', 'HEAD']).stdout.trim() };
+  });
 }
 
 export function applyIntegration({ root = process.cwd(), sessionId } = {}) {
   const repoRoot = repoRootFrom(path.resolve(root)); const id = safeId(sessionId, 'session_id');
-  return withLock(repoRoot, 'leader-integration', () => {
+  return withLock(repoRoot, 'leader-integration', () => withLock(repoRoot, 'session-registry', () => {
     const session = readSession(repoRoot, id); if (session.mode !== 'worktree' || !session.branch) throw new Error('only worktree sessions can be integrated');
     if (currentStatus(repoRoot).length) throw new Error('leader checkout is dirty; integration is blocked');
-    const sourceHead = runGit(session.worktree_path, ['rev-parse', 'HEAD']).stdout.trim();
-    const merge = runGit(repoRoot, ['merge', '--no-ff', '--no-edit', session.branch], { allowFailure: true });
+    const sourceHead = submittedReceipt(repoRoot, session).source_head;
+    const merge = runGit(repoRoot, ['merge', '--no-ff', '--no-edit', sourceHead], { allowFailure: true });
     if (merge.status !== 0) {
       const conflicts = runGit(repoRoot, ['diff', '--name-only', '--diff-filter=U'], { allowFailure: true }).stdout.split(/\r?\n/).filter(Boolean);
       runGit(repoRoot, ['merge', '--abort'], { allowFailure: true });
@@ -326,18 +359,110 @@ export function applyIntegration({ root = process.cwd(), sessionId } = {}) {
     const targetHead = runGit(repoRoot, ['rev-parse', 'HEAD']).stdout.trim();
     const done = { schema_version: SCHEMA_VERSION, session_id: id, source_branch: session.branch, source_head: sourceHead, target_head: targetHead, status: 'integrated', created_at: nowIso() };
     atomicWrite(receiptFile(repoRoot, id), done); updateSession(repoRoot, session, { status: 'integrated', integration_status: 'integrated', integrated_head: targetHead }); removeClaim(repoRoot, id); return done;
+  }));
+}
+
+export function continueAfterIntegration({ root = process.cwd(), sessionId, reason = 'continue the same plan after node delivery', leaseMs = DEFAULT_LEASE_MS } = {}) {
+  const repoRoot = repoRootFrom(path.resolve(root)); const id = safeId(sessionId, 'session_id');
+  return withLock(repoRoot, 'leader-integration', () => withLock(repoRoot, 'session-registry', () => {
+    const session = readSession(repoRoot, id);
+    if (session.status !== 'integrated' || session.integration_status !== 'integrated') throw new Error('only an integrated session can continue after delivery');
+    if (session.mode !== 'worktree' || !session.branch || !fs.existsSync(session.worktree_path)) throw new Error('integrated worktree is unavailable');
+    if (currentStatus(repoRoot).length || currentStatus(session.worktree_path).length) throw new Error('continuation requires clean main and worker worktrees');
+    assertNoClaimCollision(repoRoot, id, session.claims, session.mode, session.isolated_overlap);
+    const mainBranch = runGit(repoRoot, ['symbolic-ref', '--short', 'HEAD']).stdout.trim();
+    if (mainBranch !== 'main') throw new Error('continuation requires the main checkout');
+    const mainHead = runGit(repoRoot, ['rev-parse', 'HEAD']).stdout.trim();
+    const oldHead = runGit(session.worktree_path, ['rev-parse', 'HEAD']).stdout.trim();
+    if (runGit(repoRoot, ['merge-base', '--is-ancestor', oldHead, mainHead], { allowFailure: true }).status !== 0) throw new Error('worker head is not an ancestor of delivered main; preserve the branch for review');
+    const merged = runGit(session.worktree_path, ['merge', '--ff-only', mainHead], { allowFailure: true });
+    if (merged.status !== 0) throw new Error('cannot advance worker worktree to delivered main: ' + (merged.stderr || merged.stdout).trim());
+    const at = nowIso(); const lifecycleEvents = [...(session.lifecycle_events || []), { at, from: 'integrated', to: 'active', reason }];
+    const baseline = { schema_version: SCHEMA_VERSION, session_id: id, base_ref: mainHead, worktree_path: session.worktree_path, paths: statusPaths(session.worktree_path), hashes: hashesForPaths(session.worktree_path, session.claims), created_at: at };
+    atomicWrite(baselineFile(repoRoot, id), baseline);
+    registerClaim(repoRoot, { ...session, status: 'active' });
+    return updateSession(repoRoot, session, { status: 'active', base_ref: mainHead, integrated_head: mainHead, lease_until: new Date(Date.now() + leaseMs).toISOString(), continued_at: at, continue_reason: reason, lifecycle_events: lifecycleEvents });
+  }));
+}
+
+const terminalHostStatuses = new Set(['complete','completed','failed','interrupted','aborted','cancelled','canceled','manual-attention-required','closed','expired']);
+function observedHostStatus(root, session) {
+  if (!session.host_session_id) return null;
+  const state = readJson(path.join(root, '_work/current/farmer/state.json'), {});
+  return state?.[session.host_session_id]?.status || null;
+}
+function hostFinished(root, session) {
+  return !session.host_session_id || terminalHostStatuses.has(String(observedHostStatus(root, session) || '').toLowerCase());
+}
+function assertSafeWorktreeCleanup(root, session) {
+  const worktree = path.resolve(session.worktree_path || '');
+  const worktreesRoot = path.resolve(root, '_work/current/worktrees');
+  const relative = path.relative(worktreesRoot, worktree);
+  if (!relative || relative === '..' || relative.startsWith('..' + path.sep) || path.isAbsolute(relative)) throw new Error('worktree cleanup target is outside the managed worktree root');
+  if (!fs.existsSync(worktree)) {
+    const listed = runGit(root, ['worktree','list','--porcelain']).stdout;
+    if (listed.toLowerCase().includes('worktree ' + worktree.toLowerCase())) throw new Error('missing worktree still has a Git registration; preserve for recovery');
+  } else {
+    if (fs.lstatSync(worktree).isSymbolicLink()) throw new Error('worktree cleanup target is a link');
+    const actualRoot = runGit(worktree, ['rev-parse','--show-toplevel']).stdout.trim();
+    if (path.resolve(actualRoot).toLowerCase() !== worktree.toLowerCase()) throw new Error('worktree Git root does not match its recorded path');
+    const actualBranch = runGit(worktree, ['symbolic-ref','--short','HEAD']).stdout.trim();
+    if (actualBranch !== session.branch) throw new Error('worktree branch differs from its recorded branch');
+    const status = runGit(worktree, ['status','--porcelain','--ignored=matching','--untracked-files=all']).stdout.trim();
+    if (status) throw new Error('cannot clean a worktree with tracked, untracked or ignored content');
+    const blocks = runGit(root, ['worktree','list','--porcelain']).stdout.split(/\r?\n\r?\n/);
+    const canonical = value => { try { return fs.realpathSync(value).toLowerCase(); } catch { return path.resolve(value).toLowerCase(); } };
+    const match = blocks.find(block => {
+      const line = block.split(/\r?\n/).find(item => item.startsWith('worktree '));
+      return line && canonical(line.slice('worktree '.length)) === canonical(worktree);
+    });
+    if (!match || !match.split(/\r?\n/).includes('branch refs/heads/' + session.branch)) throw new Error('Git worktree registration does not match the recorded path and branch');
+    const head = runGit(worktree, ['rev-parse','HEAD']).stdout.trim();
+    const rootBranch = runGit(root, ['symbolic-ref','--short','HEAD']).stdout.trim();
+    if (rootBranch !== 'main') throw new Error('worktree cleanup requires the main checkout');
+    const mainHead = runGit(root, ['rev-parse','HEAD']).stdout.trim();
+    if (runGit(root, ['merge-base','--is-ancestor',head,mainHead], { allowFailure: true }).status !== 0) throw new Error('worker branch has commits absent from main; preserve it');
+  }
+  if (session.branch) {
+    const exists = runGit(root, ['show-ref','--verify','--quiet','refs/heads/' + session.branch], { allowFailure: true }).status === 0;
+    if (exists && runGit(root, ['merge-base','--is-ancestor',session.branch,'main'], { allowFailure: true }).status !== 0) throw new Error('worker branch is not merged into main; preserve it');
+  }
+}
+function removeDeliveredWorktree(root, session) {
+  if (session.worktree_created && fs.existsSync(session.worktree_path)) runGit(root, ['worktree','remove',session.worktree_path]);
+  if (session.branch && runGit(root, ['show-ref','--verify','--quiet','refs/heads/' + session.branch], { allowFailure: true }).status === 0) runGit(root, ['branch','-d',session.branch]);
+}
+
+export function cleanupClosedSession({ root = process.cwd(), sessionId } = {}) {
+  const repoRoot = repoRootFrom(path.resolve(root));
+  return withLock(repoRoot, 'session-registry', () => {
+    const session = readSession(repoRoot, safeId(sessionId, 'session_id'));
+    if (session.status !== 'closed' || !session.cleanup_pending) return { ...session, cleanup_completed: false };
+    if (!hostFinished(repoRoot, session)) return { ...session, cleanup_deferred: true, host_status: observedHostStatus(repoRoot, session) || 'unknown' };
+    if (session.mode === 'worktree' && session.worktree_created) {
+      assertSafeWorktreeCleanup(repoRoot, session);
+      removeDeliveredWorktree(repoRoot, session);
+    }
+    removeClaim(repoRoot, session.session_id);
+    return updateSession(repoRoot, session, { cleanup_pending: false, cleanup_completed: true, cleanup_completed_at: nowIso(), cleanup_deferred: false });
   });
 }
 
 export function closeSession({ root = process.cwd(), sessionId, token, cleanup = false } = {}) {
   const repoRoot = repoRootFrom(path.resolve(root));
-  return withLock(repoRoot, 'session-registry', () => {
-    const session = readSession(repoRoot, safeId(sessionId, 'session_id')); if (token !== session.owner_token) throw new Error('session owner token mismatch');
+  const result = withLock(repoRoot, 'session-registry', () => {
+    const session = readSession(repoRoot, safeId(sessionId, 'session_id'));
+    if (token !== session.owner_token) throw new Error('session owner token mismatch');
     if (session.mode === 'worktree' && currentStatus(session.worktree_path).length) throw new Error('cannot close a dirty worktree; submit or preserve it first');
-    if (cleanup && session.mode === 'worktree' && session.worktree_created) runGit(repoRoot, ['worktree', 'remove', session.worktree_path]);
+    if (cleanup && session.mode === 'worktree' && session.worktree_created) {
+      if (session.status !== 'integrated' || session.integration_status !== 'integrated') throw new Error('cannot clean a worker branch before its fixed source SHA is integrated');
+      assertSafeWorktreeCleanup(repoRoot, session);
+    }
     removeClaim(repoRoot, session.session_id);
-    return updateSession(repoRoot, session, { status: 'closed', closed_at: nowIso(), cleanup });
+    const defer = Boolean(cleanup && session.mode === 'worktree' && session.worktree_created && !hostFinished(repoRoot, session));
+    return updateSession(repoRoot, session, { status: 'closed', closed_at: nowIso(), cleanup, cleanup_pending: Boolean(cleanup && session.mode === 'worktree' && session.worktree_created), cleanup_deferred: defer, cleanup_deferred_reason: defer ? 'host-session-still-active' : null });
   });
+  return cleanup && result.cleanup_pending ? cleanupClosedSession({ root: repoRoot, sessionId }) : result;
 }
 
 export function reapSession({ root = process.cwd(), sessionId, cleanup = true } = {}) {
@@ -345,11 +470,16 @@ export function reapSession({ root = process.cwd(), sessionId, cleanup = true } 
   return withLock(repoRoot, 'session-registry', () => {
     const session = readSession(repoRoot, safeId(sessionId, 'session_id'));
     if (session.status !== 'active') return { ...session, reaped: false };
-    if (Date.parse(session.lease_until || '') > Date.now()) throw new Error(`session lease is still active: ${session.session_id}`);
+    if (Date.parse(session.lease_until || '') > Date.now()) throw new Error('session lease is still active: ' + session.session_id);
+    if (!hostFinished(repoRoot, session)) throw new Error('host session is still active or unknown; preserve its worktree');
     if (session.mode === 'worktree' && fs.existsSync(session.worktree_path) && currentStatus(session.worktree_path).length) throw new Error('stale session worktree is dirty; preserve it before reaping');
-    if (cleanup && session.mode === 'worktree' && session.worktree_created && fs.existsSync(session.worktree_path)) runGit(repoRoot, ['worktree', 'remove', session.worktree_path]);
+    if (cleanup && session.mode === 'worktree' && session.worktree_created) {
+      if (session.status !== 'integrated' && runGit(repoRoot, ['merge-base','--is-ancestor',session.branch,'main'], { allowFailure: true }).status !== 0) throw new Error('stale worker branch is not integrated; preserve it before reaping');
+      assertSafeWorktreeCleanup(repoRoot, session);
+      removeDeliveredWorktree(repoRoot, session);
+    }
     removeClaim(repoRoot, session.session_id);
-    return updateSession(repoRoot, session, { status: 'abandoned', reaped: true, reaped_at: nowIso(), cleanup });
+    return updateSession(repoRoot, session, { status: 'abandoned', reaped: true, reaped_at: nowIso(), cleanup, cleanup_pending: false, cleanup_completed: Boolean(cleanup) });
   });
 }
 
@@ -367,10 +497,12 @@ function parseArgs(argv) {
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv); const command = args._[0] || 'status'; const root = path.resolve(args.project_root || process.cwd());
   if (args.help || command === 'help') {
-    return 'Usage: node session-concurrency.mjs begin|check|heartbeat|submit|integrate|close|reap|status --project-root PATH [options]\n' +
+    return 'Usage: node session-concurrency.mjs begin|resume|continue|check|heartbeat|submit|integrate|close|reap|status --project-root PATH [options]\n' +
       'begin options: --session-id ID --task-id ID --mode worktree|shared-read|shared-write --owned-path PATH';
   }
   if (command === 'begin') return beginSession({ root, sessionId: args.session_id, taskId: args.task_id, name: args.name, mode: args.mode || 'worktree', ownedPaths: args.owned_path || [], reads: args.read || [], allowDirtyShared: Boolean(args.allow_dirty_shared) });
+  if (command === 'resume') return resumeSession({ root, sessionId: args.session_id, reason: args.reason || 'explicit user-approved continuation', leaseMs: args.lease_ms ? Number(args.lease_ms) : DEFAULT_LEASE_MS });
+  if (command === 'continue') return continueAfterIntegration({ root, sessionId: args.session_id, reason: args.reason || 'continue the same plan after node delivery' });
   if (command === 'heartbeat') return heartbeatSession({ root, sessionId: args.session_id, token: args.token });
   if (command === 'check') return checkSession({ root, sessionId: args.session_id });
   if (command === 'submit') return submitSession({ root, sessionId: args.session_id });

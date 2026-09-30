@@ -1,0 +1,1047 @@
+{
+  "schema_version": 1,
+  "record_type": "governance-untracked-asset-receipt",
+  "recorded_at": "2026-09-24T07:54:42.474Z",
+  "source_receipt": "MAIN-CHECKOUT-GOVERNANCE-RECEIPT-20260924",
+  "selected_count": 205,
+  "actions": {
+    "already-present-identical": 205
+  },
+  "items": [
+    {
+      "path": ".codex/skills/muion-project/scripts/build-naming-glossary.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": ".codex/skills/muion-project/scripts/catalog-build.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": ".codex/skills/muion-project/scripts/catalog-check.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": ".codex/skills/muion-project/scripts/check-file-names.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": ".codex/skills/muion-project/scripts/normalize-project-ids.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": ".codex/skills/muion-project/scripts/reference-index.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": ".codex/skills/muion-project/scripts/reference-index.py",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": ".codex/skills/muion-project/scripts/validate-geometry-transfer.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": ".codex/skills/muion-project/scripts/validate-plan-system.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/config/comsol-runtime.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/config/geant4-runtime.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/config/naming_policy.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/config/wsl-runtime.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/task-cards/task_comsol_mvp_001.task_manifest.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/task-cards/task_legacy_smoke_001.task_manifest.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/task-cards/task_lvl1_mu_ne_001.task_manifest.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/task-cards/task_research_control_001.task_manifest.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/task-cards/task_research_orchestrator_001.task_manifest.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/task-cards/task_research_readiness_audit_001.task_manifest.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/task-cards/task_research_system_layout_001.task_manifest.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/task-cards/task_sync_toolchain_experience_001.task_manifest.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/FILE_NAMING_GLOSSARY.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/agent-runs/AGENT-lvl1_comsol_gate-20260912053439-b66d86.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/agent-runs/AGENT-lvl1_comsol_gate-20260912055512-c031e8.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/agent-runs/AGENT-lvl1_geant4_gate-20260912053439-9d595e.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/agent-runs/AGENT-lvl1_geant4_gate-20260912055512-001e5e.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/agent-runs/AGENT-lvl1_geometry_gate-20260912053439-ddeda9.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/agent-runs/AGENT-lvl1_geometry_gate-20260912055512-f6fc55.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/agent-runs/AGENT-lvl1_reviewer_gate-20260912053439-8a0659.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/agent-runs/AGENT-lvl1_reviewer_gate-20260912055512-06a113.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/evolution/EVOLUTION-20260911-configure-review.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/evolution/EVOLUTION-20260911-reference-retrieval-candidates.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/project-snapshots/SNAPSHOT-9abcb4ddcb1a.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/stage1_cleanup_candidates.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/toolchain-recoveries/REC-20260911111056.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "00_project/traceability/wsl-runtime-evidence.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "05_reports/review/20260913_0015-run_lvl1_mu_ne_001-lvl1_mu_ne_acceptance-r_det-v01-zh.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/blocks/comsol/adapter_level1/AdapterSmoke.java",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/blocks/comsol/adapter_level1/BuildLevel1ComsolAdapter.java",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/blocks/reference_retrieval/README.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/blocks/reference_retrieval/index.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_fields/attempts/ATT-20260911122733-697-054a233e/dispatch.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_fields/attempts/ATT-20260911122733-697-054a233e/result-issue-report.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_fields/contract.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_geometry/attempts/ATT-20260911122733-515-2d06deb1/dispatch.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_geometry/attempts/ATT-20260911122733-515-2d06deb1/result-issue-report.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_geometry/contract.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_geometry_v2/attempts/ATT-20260911123115-561-ba5a4dc2/dispatch.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_geometry_v2/attempts/ATT-20260911123115-561-ba5a4dc2/result-issue-report.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_geometry_v2/contract.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_transport/attempts/ATT-20260911122733-896-7a100947/dispatch.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_transport/attempts/ATT-20260911122733-896-7a100947/result-issue-report.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/contracts/instances/contract_lvl1_mu_ne_transport/contract.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/research-workflow/references/module-dataflow.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "07_research_system/control/research-workflow/references/module-dataflow.yaml",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/catalog/reference_index.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/catalog/reference_index.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/library/text/ref_230fbca37ca5_2000multielectron_effects_in_capture_of_antiprotons_and_muons_by_helium_and_neon.txt",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/library/text/ref_7983820fe6c5_ne.txt",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/library/text/ref_8c48953dd5d5_hirfl_csr.txt",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/library/text/ref_9d3e4959ff87_mucool_a_next_step_towards_efficient_muon_beam_compression.txt",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/library/text/ref_cdc253a7bd4f_reference.txt",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/library/text/ref_ddee6a2a4ac4_reference.txt",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/paper/2000Multielectron effects in capture of antiprotons and muons by helium and neon.pdf",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "08_references/paper/muCool a next step towards efficient muon beam compression.pdf",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/CATALOG_HOME.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/catalog_index.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_artifact/figures.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_artifact/logs.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_artifact/manifests.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_artifact/reports.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_artifact/source.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_artifact/tables.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/00_project.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/00_project/figures_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/00_project/logs_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/00_project/manifests_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/00_project/reports_capture_loss.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/00_project/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/00_project/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/01_physics.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/01_physics/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/01_physics/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/02_models.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/02_models/manifests_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/02_models/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/02_models/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/figures_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/figures_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/figures_mu_transport.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/logs_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/logs_mu_transport.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/manifests_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/source_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/tables_capture_loss.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/tables_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/tables_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/03_runs/tables_mu_transport.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/04_results.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/04_results/figures_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/04_results/figures_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/04_results/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/04_results/reports_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/04_results/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/05_reports.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/05_reports/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/05_reports/reports_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/06_external_lib.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/06_external_lib/manifests_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/06_external_lib/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/06_external_lib/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/07_research_system.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/07_research_system/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/07_research_system/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/3d.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/3d/logs_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/3d/manifests_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/3d/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/3d/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/comsol.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/comsol/figures_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/comsol/logs_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/comsol/manifests_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/comsol/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/comsol/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/comsol/source_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/comsol/source_mu_transport.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/geant4.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/geant4/logs_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/geant4/manifests_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/geant4/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/geant4/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/geant4/tables_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/geant4/tables_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/plans.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/plans/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/plans/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/references.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/references/logs_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/references/reports_capture_loss.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/references/reports_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/references/reports_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/references/source_capture_loss.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/references/source_general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_module/references/source_mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_plan/plan_from_brief.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_plan/plan_lvl1_mu_ne_rebuild.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_plan/unassigned.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_run/run_centered_transport_scan.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_run/run_legacy_smoke_001_stage1_centered.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_run/run_lvl1_mu_ne_001.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_run/run_option3.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_run/run_option4.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_run/unassigned.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_1.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_2.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_comsol_mvp_001.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_legacy_smoke_001.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_lvl1_mu_ne_001.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_research_control_001.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_research_orchestrator_001.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_research_readiness_audit_001.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_research_system_layout_001.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_sync_toolchain_experience_001.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/task_v01.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_task/unassigned.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_topic/capture_loss.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_topic/general.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_topic/mu_ne_cooling.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "09_catalog/views/by_topic/mu_transport.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/README.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/.gitkeep",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/contracts/level1_comsol.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/contracts/level1_geant4.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/contracts/level1_geometry.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/decision_log.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/dispatch_manifest_v01.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/handoffs/README.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/handoffs/runtime_blockers_v01.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/instance_execution_plan_v01.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/instance_execution_plan_v01.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/plan_index.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/plan_v01.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/plan_v01.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/plan_v02.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/plan_v02.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/plan_v03.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/plan_v03.md",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/active/20260911_1630-plan_lvl1_mu_ne_rebuild/pre_science_gate.json",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/archive/.gitkeep",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "10_plans/inbox/.gitkeep",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "tests/wsl-execution-policy.test.mjs",
+      "classification": "project-asset",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/geant4/lvl1_mu_ne_001/CMakeLists.txt",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/geant4/lvl1_mu_ne_001/README.md",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/geant4/lvl1_mu_ne_001/mu_ne_stopping.cc",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/geant4/lvl1_mu_ne_001/mu_ne_transport.cc",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/geant4/lvl1_mu_ne_001/stopping_generator.cc",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/model-manifests/geometry_manifest_lvl1_mu_ne_001.json",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/model-manifests/geometry_transfer_lvl1_mu_ne_001.json",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/model-manifests/model_legacy_smoke_001.model_manifest.json",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/model-manifests/model_lvl1_mu_ne_001.geometry.json",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    },
+    {
+      "path": "02_models/model-manifests/model_lvl1_mu_ne_001.model_manifest.json",
+      "classification": "model-rebuild-source",
+      "action": "already-present-identical"
+    }
+  ],
+  "reference_assets": {
+    "count": 4,
+    "paths": [
+      "08_references/paper/HIRFL-CSR 实验环电子冷却装置参数优化.pdf",
+      "08_references/paper/磁铁边缘场对注入束流的影响.pdf",
+      "08_references/ppt/μNe俘获截面.pdf",
+      "08_references/ppt/μ原子束思路.pdf"
+    ],
+    "action": "copied-from-baseline-for-durable-project-reference"
+  }
+}

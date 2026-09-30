@@ -7,11 +7,14 @@ import { spawnSync } from 'node:child_process';
 import {
   beginSession,
   checkSession,
+  cleanupClosedSession,
   closeSession,
+  applyIntegration,
   claimsOverlap,
   listSessions,
   normalizeClaimPath,
   reapSession,
+  resumeSession,
   submitSession,
 } from '../.codex/skills/team/scripts/session-concurrency.mjs';
 
@@ -19,6 +22,7 @@ function fixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-session-concurrency-'));
   const git = (...args) => { const result = spawnSync('git', args, { cwd: root, encoding: 'utf8' }); if (result.status !== 0) throw new Error(result.stderr); };
   git('init', '-b', 'main'); git('config', 'user.name', 'test'); git('config', 'user.email', 'test@example.invalid');
+  fs.writeFileSync(path.join(root, '.gitignore'), '_work/\n');
   fs.writeFileSync(path.join(root, 'a.txt'), 'a\n'); fs.writeFileSync(path.join(root, 'b.txt'), 'b\n');
   git('add', '.'); git('commit', '-m', 'base');
   return { root, git };
@@ -101,6 +105,21 @@ test('submit requires a clean worker worktree after scoped checkpoint', () => {
   } finally { cleanup(root, sessions); }
 });
 
+test('resumes a submitted worker in the same worktree after explicit approval', () => {
+  const { root, git } = fixture(); const sessions = [];
+  try {
+    const session = beginSession({ root, sessionId: 'resume', ownedPaths: ['a.txt'] }); sessions.push(session);
+    fs.writeFileSync(path.join(session.worktree_path, 'a.txt'), 'worker\n');
+    const checkpoint = (args) => { const result = spawnSync('git', args, { cwd: session.worktree_path, encoding: 'utf8' }); if (result.status !== 0) throw new Error(result.stderr); };
+    checkpoint(['add', 'a.txt']); checkpoint(['commit', '-m', 'worker checkpoint']);
+    submitSession({ root, sessionId: session.session_id });
+    const resumed = resumeSession({ root, sessionId: session.session_id, reason: 'approved plan continuation' });
+    assert.equal(resumed.status, 'active'); assert.equal(resumed.resumed_at !== undefined, true); assert.equal(resumed.resume_reason, 'approved plan continuation');
+    assert.equal(resumed.worktree_path, session.worktree_path); assert.equal(resumed.branch, session.branch);
+    assert.equal(fs.existsSync(path.join(root, '_work/current/concurrency/sessions/resume.integration.json')), true);
+  } finally { cleanup(root, sessions); }
+});
+
 test('reaps only an expired clean session and releases its claim', async () => {
   const { root } = fixture();
   try {
@@ -111,4 +130,35 @@ test('reaps only an expired clean session and releases its claim', async () => {
     const replacement = beginSession({ root, sessionId: 'replacement', ownedPaths: ['a.txt'] });
     assert.equal(replacement.status, 'active'); cleanup(root, [replacement]);
   } finally { cleanup(root, []); }
+});
+
+test('closed delivery waits for the host to finish, then removes only the merged clean branch', () => {
+  const { root, git } = fixture(); const session = beginSession({ root, sessionId: 'cleanup', hostSessionId: 'host-cleanup', ownedPaths: ['a.txt'] });
+  const worktree = session.worktree_path;
+  fs.writeFileSync(path.join(worktree, 'a.txt'), 'delivered\n');
+  git('-C', worktree, 'add', 'a.txt'); git('-C', worktree, 'commit', '-m', 'delivered');
+  submitSession({ root, sessionId: session.session_id });
+  const leaderStatus = spawnSync('git', ['-C', root, 'status', '--porcelain', '--untracked-files=all'], { encoding: 'utf8' }).stdout;
+  assert.equal(leaderStatus, '', 'leader unexpectedly dirty before integration: ' + leaderStatus);
+  const integrated = applyIntegration({ root, sessionId: session.session_id });
+  assert.equal(integrated.status, 'integrated');
+  const farmerState = path.join(root, '_work/current/farmer/state.json'); fs.mkdirSync(path.dirname(farmerState), { recursive: true });
+  fs.writeFileSync(farmerState, JSON.stringify({ 'host-cleanup': { status: 'running' } }));
+  const closed = closeSession({ root, sessionId: session.session_id, token: session.owner_token, cleanup: true });
+  assert.equal(closed.status, 'closed'); assert.equal(closed.cleanup_pending, true); assert.equal(fs.existsSync(worktree), true);
+  fs.writeFileSync(farmerState, JSON.stringify({ 'host-cleanup': { status: 'complete' } }));
+  const cleaned = cleanupClosedSession({ root, sessionId: session.session_id });
+  assert.equal(cleaned.cleanup_completed, true); assert.equal(cleaned.cleanup_pending, false); assert.equal(fs.existsSync(worktree), false);
+  assert.notEqual(spawnSync('git', ['-C', root, 'show-ref', '--verify', '--quiet', 'refs/heads/' + session.branch], { encoding: 'utf8' }).status, 0);
+});
+
+test('cleanup rejects unique ignored worktree files', () => {
+  const { root, git } = fixture(); const session = beginSession({ root, sessionId: 'ignored-cleanup', ownedPaths: ['a.txt'] });
+  fs.writeFileSync(path.join(session.worktree_path, 'a.txt'), 'delivered\n');
+  git('-C', session.worktree_path, 'add', 'a.txt'); git('-C', session.worktree_path, 'commit', '-m', 'delivered');
+  submitSession({ root, sessionId: session.session_id }); applyIntegration({ root, sessionId: session.session_id });
+  const ignored = path.join(session.worktree_path, '_work/private.txt'); fs.mkdirSync(path.dirname(ignored), { recursive: true }); fs.writeFileSync(ignored, 'retain me');
+  assert.throws(() => closeSession({ root, sessionId: session.session_id, token: session.owner_token, cleanup: true }), /ignored content/);
+  assert.equal(fs.existsSync(session.worktree_path), true);
+  assert.equal(spawnSync('git', ['-C', root, 'show-ref', '--verify', '--quiet', 'refs/heads/' + session.branch], { encoding: 'utf8' }).status, 0);
 });

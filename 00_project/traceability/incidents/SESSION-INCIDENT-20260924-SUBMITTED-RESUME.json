@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "record_type": "session-lifecycle-incident",
+  "incident_id": "SESSION-INCIDENT-20260924-SUBMITTED-RESUME",
+  "recorded_at": "2026-09-24T06:54:16.354Z",
+  "status": "contained",
+  "severity": "P1",
+  "symptom": "用户批准继续执行未完成 plan 后，submitted worker 无法在同一 session/worktree继续写入。",
+  "root_cause": [
+    "session-concurrency 缺少 submitted/blocked worker 的显式 resume transition",
+    "project entry 将 submitted session 返回 ready=false，但没有恢复动作",
+    "integration pending 与任务继续执行被错误地绑定为互斥状态"
+  ],
+  "control": {
+    "user_approved_resume": true,
+    "original_worktree_preserved": true,
+    "main_checkout_not_reset": true
+  },
+  "fixes": [
+    "新增 resumeSession CLI/API",
+    "允许 submitted、blocked、interrupted、paused 恢复为 active",
+    "复用原 branch/worktree/claim并续租",
+    "追加 lifecycle_events/resume_reason/resume_count",
+    "保留 integration receipt"
+  ],
+  "acceptance": {
+    "command": "node .codex/skills/team/scripts/session-concurrency.mjs resume --project-root D:\\muIon-beam --session-id codex-d80b7f12073a98b4eb63-1 --reason \"user approved plan_v02 and lifecycle bug fix\"",
+    "result": "active",
+    "same_worktree": true,
+    "same_branch": true,
+    "receipt_preserved": true,
+    "regression_test": "tests/session-concurrency.test.mjs"
+  },
+  "unresolved": [
+    "leader integration 仍需在主 checkout 治理完成后单独执行；resume 不等于自动 merge"
+  ]
+}

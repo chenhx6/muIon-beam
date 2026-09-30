@@ -6,8 +6,8 @@
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
-  "current_phase": "P3",
-  "next_action": "Publish N0+N1 through the serialized leader node gate, then verify real Gitee main, Drive cloud readback and both t-tags.",
+  "current_phase": "P1",
+  "next_action": "Prepare N2 from the integrated main baseline.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -52,12 +52,12 @@
     },
     {
       "id": "P3",
-      "status": "pending",
+      "status": "completed",
       "evidence": []
     },
     {
       "id": "P4",
-      "status": "pending",
+      "status": "completed",
       "evidence": []
     },
     {
@@ -69,12 +69,12 @@
   "nodes": [
     {
       "id": "N0",
-      "status": "ready-for-delivery",
+      "status": "delivered",
       "source_commit": "a066ab5ac523a1bc6c50fd17af1fe8142346d848",
-      "delivery_commit": null,
-      "tag": null,
-      "remote_verified": false,
-      "drive_verified": false,
+      "delivery_commit": "1b0c42a2f047f05b5135a4c737cb911409d78d20",
+      "tag": "t-task-dashboard-plan-upgrade-20260930-n0-20260930012403-1b0c42a",
+      "remote_verified": true,
+      "drive_verified": true,
       "summary": "Adopt the approved plan_v3 and handoff plus the additive correction and evidence checkpoint.",
       "validation": {
         "test_files": [
@@ -87,16 +87,311 @@
         ],
         "architecture_check": true,
         "document_check": true
+      },
+      "remote_head": "1b0c42a2f047f05b5135a4c737cb911409d78d20",
+      "drive_manifest_sha256": "425702d1ca7289324baf2727feee9964a89fa577fd48ae5d2defbeb70e2dde37",
+      "drive_plan_sha256": "c00d32a4823b653d423eda0e1e7d8bdd7c5bc0d7997975037ac04151ea254bc7",
+      "delivered_at": "2026-09-30T04:07:58.649Z",
+      "evidence": {
+        "outbox": "_work/current/publish-outbox/node-delivery/plan-dashboard-delivery-repair-20260930-n0-n1-4d59af3133d9.json",
+        "validation": {
+          "passed": true,
+          "steps": [
+            {
+              "command": "node --test tests/project-supervisor.test.mjs tests/session-concurrency.test.mjs tests/integration-coordinator.test.mjs tests/auto-commit-push-policy.test.mjs tests/task-tag.test.mjs tests/task-close.test.mjs",
+              "status": "passed",
+              "output": " mixed source and binary checkpoint before committing (1633.0511ms)\n✔ leader publishes eligible sources and preserves unrelated staged baseline content (1775.2784ms)\n✔ clean worker is submitted and integrated under the leader gate (2589.6936ms)\n✔ leader conflict preserves the worker branch and records a blocked receipt (2316.0952ms)\n✔ dirty leader is blocked before integration and worker remains untouched (790.9711ms)\n✔ resuming invalidates integration eligibility until a fresh clean submission (4890.1738ms)\n✔ integrated worker can continue the next plan node in the same worktree (4047.5561ms)\n✔ two isolated plan nodes integrate, test, push and mirror without creating a test remote tag (18638.1579ms)\n✔ concurrent ensure starts one service and recovers after process exit (243.6324ms)\n✔ foreign listeners and degraded services are reported without duplicate starts (17.9379ms)\nresearch-dashboard listening on http://127.0.0.1:59007\n✔ entry waits for a starting service first heartbeat without launching a duplicate (44.2212ms)\n✔ service failure does not suppress independent service health or erase evidence (15.2404ms)\n✔ dashboard health verifies service identity and actual status on loopback (809.9758ms)\n✔ foreign HTTP service cannot be adopted as dashboard (16.8887ms)\n✔ session hook carries context without persisting user prompt or changing the model (4.1538ms)\n✔ session hook forwards a readable session name when provided (1.2944ms)\n✔ NUL-corrupt runtime JSON is preserved and a live daemon lock prevents a duplicate start (19.2454ms)\n✔ failed runtime flush keeps the previous complete JSON (13.9827ms)\n✔ supervisor reaps a closed delivered worktree only after its host turn ends (3023.1829ms)\n✔ normalizes Windows path aliases and detects wildcard overlap (1.12ms)\n✔ help is read-only and does not create a session (366.9985ms)\n✔ creates an isolated worktree and private baseline per session (831.1609ms)\n✔ rejects two active sessions claiming the same file but allows disjoint files (1562.232ms)\n✔ legacy shared writer claims the whole checkout and rejects a second writer (583.5037ms)\n✔ checkSession blocks writes outside the declared ownership (885.9096ms)\n✔ submit requires a clean worker worktree after scoped checkpoint (961.9296ms)\n✔ resumes a submitted worker in the same worktree after explicit approval (1205.7006ms)\n✔ reaps only an expired clean session and releases its claim (1914.094ms)\n✔ closed delivery waits for the host to finish, then removes only the merged clean branch (2925.0209ms)\n✔ cleanup rejects unique ignored worktree files (1822.2992ms)\n✔ task-close status is read-only and reports no request when none exists (79.4724ms)\n✔ task-close rejects missing explicit close request (74.3224ms)\n✔ plan task tag retry is idempotent without creating a test remote tag (1788.0186ms)\n✔ an existing task tag pointing at another commit is never moved (1711.6368ms)\nℹ tests 35\nℹ suites 0\nℹ pass 35\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 33377.5112\n",
+              "error": ""
+            },
+            {
+              "command": "node tests/architecture-smoke.mjs",
+              "status": "passed",
+              "output": "{\n  \"valid\": true,\n  \"requiredFiles\": 150,\n  \"variables\": 12,\n  \"legacyWorkspaceUntouched\": true\n}\n",
+              "error": ""
+            }
+          ]
+        },
+        "cloud_readback": {
+          "schema_version": 1,
+          "status": "verified",
+          "plan_id": "plan_dashboard_delivery_repair_20260930",
+          "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
+          "node_ids": [
+            "N0",
+            "N1"
+          ],
+          "source_commit": "4d59af3133d96ebdb4602859f4de398db3e2d981",
+          "delivery_commit": "1b0c42a2f047f05b5135a4c737cb911409d78d20",
+          "remote_head": "1b0c42a2f047f05b5135a4c737cb911409d78d20",
+          "drive_root": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",
+          "manifest_sha256": "425702d1ca7289324baf2727feee9964a89fa577fd48ae5d2defbeb70e2dde37",
+          "plan_sha256": "c00d32a4823b653d423eda0e1e7d8bdd7c5bc0d7997975037ac04151ea254bc7",
+          "file_count": 1256,
+          "total_bytes": 450401264,
+          "verified_source_file_count": 40,
+          "verified_source_files": [
+            {
+              "path": ".codex/skills/muion-project/scripts/auto-commit-push.mjs",
+              "downloaded_sha256": "d541be786d61b91f4f4aff4b43b290a2a855b15a246d7ce1eb663a1762794678",
+              "manifest_sha256": "d541be786d61b91f4f4aff4b43b290a2a855b15a246d7ce1eb663a1762794678",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": ".codex/skills/muion-project/scripts/create-task-tag.mjs",
+              "downloaded_sha256": "80c555cf851a3d61514078d390b4456e7883afe4f31f8338205a689c6c5e9055",
+              "manifest_sha256": "80c555cf851a3d61514078d390b4456e7883afe4f31f8338205a689c6c5e9055",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": ".codex/skills/muion-project/scripts/task-close.mjs",
+              "downloaded_sha256": "14a525c47b853d79ca38330b6ac92e76a2ab89cdb4ec8dd7c836221005cd608c",
+              "manifest_sha256": "14a525c47b853d79ca38330b6ac92e76a2ab89cdb4ec8dd7c836221005cd608c",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": ".codex/skills/team/SKILL.md",
+              "downloaded_sha256": "08dfd3abe1a93ad918b193ec84056844d101da44fbdfc35c3fd015e433dd6ff2",
+              "manifest_sha256": "08dfd3abe1a93ad918b193ec84056844d101da44fbdfc35c3fd015e433dd6ff2",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": ".codex/skills/team/scripts/session-concurrency.mjs",
+              "downloaded_sha256": "bec51b3d079c1ca221989abe32ea987599b3fc41a2e9ab4ab9ee6946420716e8",
+              "manifest_sha256": "bec51b3d079c1ca221989abe32ea987599b3fc41a2e9ab4ab9ee6946420716e8",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/active-checkout-output-cleanup-plan-20260924.json",
+              "downloaded_sha256": "4f7985c44b7fc2c8524b7e73f84c96c1ead08da74dc078dc80eed1e17615ae03",
+              "manifest_sha256": "4f7985c44b7fc2c8524b7e73f84c96c1ead08da74dc078dc80eed1e17615ae03",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/agent-runs/AGENT-web-toolchain-audit-20260924.json",
+              "downloaded_sha256": "68c86d2ad10a30e6366896408a0e37a6a5f73a624542896110bd3b81d08f7bbb",
+              "manifest_sha256": "68c86d2ad10a30e6366896408a0e37a6a5f73a624542896110bd3b81d08f7bbb",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/dashboard-cleanup-20260924.json",
+              "downloaded_sha256": "36d50c70273b1a3b3915a3d009833e83a3c99d369f2679524de3248f81ae4060",
+              "manifest_sha256": "36d50c70273b1a3b3915a3d009833e83a3c99d369f2679524de3248f81ae4060",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/dashboard-deployment-20260924.json",
+              "downloaded_sha256": "31fb66d6fe5e7bd3a7a8abd5110bb4f5695d8d22fdece470c8eae76e1553cef7",
+              "manifest_sha256": "31fb66d6fe5e7bd3a7a8abd5110bb4f5695d8d22fdece470c8eae76e1553cef7",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/dashboard-live-drift-20260924.json",
+              "downloaded_sha256": "b5d1eb68a42fb06095c486fa0fceafc4d0dd952547b7cca7ed59723ea31744e0",
+              "manifest_sha256": "b5d1eb68a42fb06095c486fa0fceafc4d0dd952547b7cca7ed59723ea31744e0",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/deleted-content-drive-audit-20260924.json",
+              "downloaded_sha256": "1dd9286db5ce183ccb42b6ed6d77852b9905177d04e3ff9448f6096264446e6f",
+              "manifest_sha256": "1dd9286db5ce183ccb42b6ed6d77852b9905177d04e3ff9448f6096264446e6f",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/evolution/EVOLUTION-20260924-dashboard-ui-candidates.json",
+              "downloaded_sha256": "f1b31c9cc1ada5c2f3032823d7bffaeeb31507bb9547d571934fb21c294b3263",
+              "manifest_sha256": "f1b31c9cc1ada5c2f3032823d7bffaeeb31507bb9547d571934fb21c294b3263",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/evolution/EVOLUTION-20260924-oh-my-codex-goal-restudy.json",
+              "downloaded_sha256": "5ce65846075064a09c5beb3a29446198ae5e4b349434cd2e1ef3ed345107a730",
+              "manifest_sha256": "5ce65846075064a09c5beb3a29446198ae5e4b349434cd2e1ef3ed345107a730",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/evolution/EVOLUTION-20260924-web-research-toolchain-candidates.json",
+              "downloaded_sha256": "e0be24ac3d8d0476623e060316461e109673343b5f9e0910842abbbf65c23c52",
+              "manifest_sha256": "e0be24ac3d8d0476623e060316461e109673343b5f9e0910842abbbf65c23c52",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/experiences/EXP-20260924-submitted-session-resume-lifecycle.json",
+              "downloaded_sha256": "1c0a0c038b974a48cd4e4fdd9a5b6e0cc4046d311d6a84dc9290058b59b4e047",
+              "manifest_sha256": "1c0a0c038b974a48cd4e4fdd9a5b6e0cc4046d311d6a84dc9290058b59b4e047",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/governance-incremental-receipt-20260924.json",
+              "downloaded_sha256": "e7caa48165cd1529d3b4211716deb238f448099679a9c01a2e4ef24bc0bdc262",
+              "manifest_sha256": "e7caa48165cd1529d3b4211716deb238f448099679a9c01a2e4ef24bc0bdc262",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/governance-rename-review-20260924.json",
+              "downloaded_sha256": "feee05350c91b3aa535f83cb413d61ce947e707c25dc1aa603954631be170fe1",
+              "manifest_sha256": "feee05350c91b3aa535f83cb413d61ce947e707c25dc1aa603954631be170fe1",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/governance-untracked-asset-receipt-20260924.json",
+              "downloaded_sha256": "3a029a4c5b8fc81101517bd9ab6ff7779f81024fbd9dc7729d099ec296285929",
+              "manifest_sha256": "3a029a4c5b8fc81101517bd9ab6ff7779f81024fbd9dc7729d099ec296285929",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md",
+              "downloaded_sha256": "96cb3a03ec76b3f7b205a688998b4fe6a653f75aa6e6474e4209541752f8dee7",
+              "manifest_sha256": "96cb3a03ec76b3f7b205a688998b4fe6a653f75aa6e6474e4209541752f8dee7",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-SUBMITTED-RESUME.json",
+              "downloaded_sha256": "89f3349ba3b55b1c95bad965c60a6b5e376b66136fe2b482cc87723f414becc9",
+              "manifest_sha256": "89f3349ba3b55b1c95bad965c60a6b5e376b66136fe2b482cc87723f414becc9",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/leader-delivery-bundle-20260924.json",
+              "downloaded_sha256": "9cd0b67d2c91c4e700d6000b09d1b07b4020999cff5b2fd5d243d0812c6fbbf8",
+              "manifest_sha256": "9cd0b67d2c91c4e700d6000b09d1b07b4020999cff5b2fd5d243d0812c6fbbf8",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/leader-integration-blocker-20260924.json",
+              "downloaded_sha256": "9354d2919721dc06923bd630bddf8d2c9c91421d9312c5b549a9fce579236466",
+              "manifest_sha256": "9354d2919721dc06923bd630bddf8d2c9c91421d9312c5b549a9fce579236466",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/quarantine-drive-verification-20260924.json",
+              "downloaded_sha256": "e480303248934b1cfa36ad811e131c9dbe397585a5df4162b2c9f6568a549840",
+              "manifest_sha256": "e480303248934b1cfa36ad811e131c9dbe397585a5df4162b2c9f6568a549840",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
+              "downloaded_sha256": "f1aac4e80ac921257fb103ebd44ce256fcd0fd8f3b5170bade43ef312955e107",
+              "manifest_sha256": "f1aac4e80ac921257fb103ebd44ce256fcd0fd8f3b5170bade43ef312955e107",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+              "downloaded_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+              "manifest_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v01.md",
+              "downloaded_sha256": "5f6a0fa53161e6f593a98607cebe4cedb492b8bf3580577fb46ff127fd975a78",
+              "manifest_sha256": "5f6a0fa53161e6f593a98607cebe4cedb492b8bf3580577fb46ff127fd975a78",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02-correction-20260930.json",
+              "downloaded_sha256": "5d532e1f529a80a09320319193031bf627d8e7ad5d0cf41addfe9d10dcd79b7e",
+              "manifest_sha256": "5d532e1f529a80a09320319193031bf627d8e7ad5d0cf41addfe9d10dcd79b7e",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+              "downloaded_sha256": "c00d32a4823b653d423eda0e1e7d8bdd7c5bc0d7997975037ac04151ea254bc7",
+              "manifest_sha256": "c00d32a4823b653d423eda0e1e7d8bdd7c5bc0d7997975037ac04151ea254bc7",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
+              "downloaded_sha256": "12d077905db32913c0ddb992dbc8bee7c3a8dbdcc3a4cab179d9cdd784af98fd",
+              "manifest_sha256": "12d077905db32913c0ddb992dbc8bee7c3a8dbdcc3a4cab179d9cdd784af98fd",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/index.mjs",
+              "downloaded_sha256": "4fac287ddb9189f719246851958cf233a003dbe0e4e30c0642b7a30e98c8ac50",
+              "manifest_sha256": "4fac287ddb9189f719246851958cf233a003dbe0e4e30c0642b7a30e98c8ac50",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/integration-coordinator.mjs",
+              "downloaded_sha256": "4f1802e477e8c9048c28af342d82be8a7d90b1fbc179b3be8ee8453497604abe",
+              "manifest_sha256": "4f1802e477e8c9048c28af342d82be8a7d90b1fbc179b3be8ee8453497604abe",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/runtime-store.mjs",
+              "downloaded_sha256": "a68ba18b3d9919f21ce41d0d53b2d82029b5298038709a5b94c58b88e3bdfb36",
+              "manifest_sha256": "a68ba18b3d9919f21ce41d0d53b2d82029b5298038709a5b94c58b88e3bdfb36",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/worker-runtime.mjs",
+              "downloaded_sha256": "bece3c66d45eb123c3fee364f2d2beebf03fbf9410baee305618430e8cd71f0c",
+              "manifest_sha256": "bece3c66d45eb123c3fee364f2d2beebf03fbf9410baee305618430e8cd71f0c",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+              "downloaded_sha256": "af169c5157b41f95b848f9324ed6279d8efab0bbe828fb4bde2a58e076730978",
+              "manifest_sha256": "af169c5157b41f95b848f9324ed6279d8efab0bbe828fb4bde2a58e076730978",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+              "downloaded_sha256": "66925e422610f6a67b68393a657e3243d23be64458564682b8f47a3540354a33",
+              "manifest_sha256": "66925e422610f6a67b68393a657e3243d23be64458564682b8f47a3540354a33",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/auto-commit-push-policy.test.mjs",
+              "downloaded_sha256": "3d47d3e404fec9e366d3574469d490bdeb4d17cbcf67b45f5dcbae286a676255",
+              "manifest_sha256": "3d47d3e404fec9e366d3574469d490bdeb4d17cbcf67b45f5dcbae286a676255",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/integration-coordinator.test.mjs",
+              "downloaded_sha256": "9616d3eebfb246468a97da0aef9206f104d873a429ec8abc2ac7d942ecff4e03",
+              "manifest_sha256": "9616d3eebfb246468a97da0aef9206f104d873a429ec8abc2ac7d942ecff4e03",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/project-supervisor.test.mjs",
+              "downloaded_sha256": "83ae68af80b9ea3aaf0b8dd493952a9186c1f1bce2bf10a2cf999069ff375677",
+              "manifest_sha256": "83ae68af80b9ea3aaf0b8dd493952a9186c1f1bce2bf10a2cf999069ff375677",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/session-concurrency.test.mjs",
+              "downloaded_sha256": "efab28283d2ec0a569c19b537aa2b9cdc47db123e1640cd8301d2eb32745b298",
+              "manifest_sha256": "efab28283d2ec0a569c19b537aa2b9cdc47db123e1640cd8301d2eb32745b298",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/task-tag.test.mjs",
+              "downloaded_sha256": "d82ccc79495d3231c03fe71ac14678319b7d1219de7a1cc4efee8c8fda69a565",
+              "manifest_sha256": "d82ccc79495d3231c03fe71ac14678319b7d1219de7a1cc4efee8c8fda69a565",
+              "main_content_after_line_ending_normalization": "match"
+            }
+          ],
+          "readback_method": "Authenticated Google Drive browser downloads; raw SHA256 matched the cloud mirror manifest and current main content after CRLF/LF normalization.",
+          "readback_at": "2026-09-30T04:06:23.6910854Z",
+          "recovery_index": {
+            "path": "project/recovery-index/recovery-index.json",
+            "cloud_sha256": "342eb1a6792adf907482cd34a0e77d1b4b9be37e08e009ff329de9b643acd827",
+            "generated_at": "2026-09-25T09:00:52.902Z",
+            "downloaded_and_hash_verified": true,
+            "current_for_delivery_commit": false,
+            "next_action": "Refresh and verify at N3 after final plan receipt."
+          }
+        }
       }
     },
     {
       "id": "N1",
-      "status": "ready-for-delivery",
-      "source_commit": null,
-      "delivery_commit": null,
-      "tag": null,
-      "remote_verified": false,
-      "drive_verified": false,
+      "status": "delivered",
+      "source_commit": "4d59af3133d96ebdb4602859f4de398db3e2d981",
+      "delivery_commit": "1b0c42a2f047f05b5135a4c737cb911409d78d20",
+      "tag": "t-task-dashboard-plan-upgrade-20260930-n1-20260930012403-1b0c42a",
+      "remote_verified": true,
+      "drive_verified": true,
       "summary": "Deliver P0 recovery and the serialized node publish/tag/Drive gate, with plan and historical incident receipts.",
       "validation": {
         "test_files": [
@@ -108,6 +403,301 @@
           "tests/task-close.test.mjs"
         ],
         "architecture_check": true
+      },
+      "remote_head": "1b0c42a2f047f05b5135a4c737cb911409d78d20",
+      "drive_manifest_sha256": "425702d1ca7289324baf2727feee9964a89fa577fd48ae5d2defbeb70e2dde37",
+      "drive_plan_sha256": "c00d32a4823b653d423eda0e1e7d8bdd7c5bc0d7997975037ac04151ea254bc7",
+      "delivered_at": "2026-09-30T04:07:58.649Z",
+      "evidence": {
+        "outbox": "_work/current/publish-outbox/node-delivery/plan-dashboard-delivery-repair-20260930-n0-n1-4d59af3133d9.json",
+        "validation": {
+          "passed": true,
+          "steps": [
+            {
+              "command": "node --test tests/project-supervisor.test.mjs tests/session-concurrency.test.mjs tests/integration-coordinator.test.mjs tests/auto-commit-push-policy.test.mjs tests/task-tag.test.mjs tests/task-close.test.mjs",
+              "status": "passed",
+              "output": " mixed source and binary checkpoint before committing (1633.0511ms)\n✔ leader publishes eligible sources and preserves unrelated staged baseline content (1775.2784ms)\n✔ clean worker is submitted and integrated under the leader gate (2589.6936ms)\n✔ leader conflict preserves the worker branch and records a blocked receipt (2316.0952ms)\n✔ dirty leader is blocked before integration and worker remains untouched (790.9711ms)\n✔ resuming invalidates integration eligibility until a fresh clean submission (4890.1738ms)\n✔ integrated worker can continue the next plan node in the same worktree (4047.5561ms)\n✔ two isolated plan nodes integrate, test, push and mirror without creating a test remote tag (18638.1579ms)\n✔ concurrent ensure starts one service and recovers after process exit (243.6324ms)\n✔ foreign listeners and degraded services are reported without duplicate starts (17.9379ms)\nresearch-dashboard listening on http://127.0.0.1:59007\n✔ entry waits for a starting service first heartbeat without launching a duplicate (44.2212ms)\n✔ service failure does not suppress independent service health or erase evidence (15.2404ms)\n✔ dashboard health verifies service identity and actual status on loopback (809.9758ms)\n✔ foreign HTTP service cannot be adopted as dashboard (16.8887ms)\n✔ session hook carries context without persisting user prompt or changing the model (4.1538ms)\n✔ session hook forwards a readable session name when provided (1.2944ms)\n✔ NUL-corrupt runtime JSON is preserved and a live daemon lock prevents a duplicate start (19.2454ms)\n✔ failed runtime flush keeps the previous complete JSON (13.9827ms)\n✔ supervisor reaps a closed delivered worktree only after its host turn ends (3023.1829ms)\n✔ normalizes Windows path aliases and detects wildcard overlap (1.12ms)\n✔ help is read-only and does not create a session (366.9985ms)\n✔ creates an isolated worktree and private baseline per session (831.1609ms)\n✔ rejects two active sessions claiming the same file but allows disjoint files (1562.232ms)\n✔ legacy shared writer claims the whole checkout and rejects a second writer (583.5037ms)\n✔ checkSession blocks writes outside the declared ownership (885.9096ms)\n✔ submit requires a clean worker worktree after scoped checkpoint (961.9296ms)\n✔ resumes a submitted worker in the same worktree after explicit approval (1205.7006ms)\n✔ reaps only an expired clean session and releases its claim (1914.094ms)\n✔ closed delivery waits for the host to finish, then removes only the merged clean branch (2925.0209ms)\n✔ cleanup rejects unique ignored worktree files (1822.2992ms)\n✔ task-close status is read-only and reports no request when none exists (79.4724ms)\n✔ task-close rejects missing explicit close request (74.3224ms)\n✔ plan task tag retry is idempotent without creating a test remote tag (1788.0186ms)\n✔ an existing task tag pointing at another commit is never moved (1711.6368ms)\nℹ tests 35\nℹ suites 0\nℹ pass 35\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 33377.5112\n",
+              "error": ""
+            },
+            {
+              "command": "node tests/architecture-smoke.mjs",
+              "status": "passed",
+              "output": "{\n  \"valid\": true,\n  \"requiredFiles\": 150,\n  \"variables\": 12,\n  \"legacyWorkspaceUntouched\": true\n}\n",
+              "error": ""
+            }
+          ]
+        },
+        "cloud_readback": {
+          "schema_version": 1,
+          "status": "verified",
+          "plan_id": "plan_dashboard_delivery_repair_20260930",
+          "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
+          "node_ids": [
+            "N0",
+            "N1"
+          ],
+          "source_commit": "4d59af3133d96ebdb4602859f4de398db3e2d981",
+          "delivery_commit": "1b0c42a2f047f05b5135a4c737cb911409d78d20",
+          "remote_head": "1b0c42a2f047f05b5135a4c737cb911409d78d20",
+          "drive_root": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",
+          "manifest_sha256": "425702d1ca7289324baf2727feee9964a89fa577fd48ae5d2defbeb70e2dde37",
+          "plan_sha256": "c00d32a4823b653d423eda0e1e7d8bdd7c5bc0d7997975037ac04151ea254bc7",
+          "file_count": 1256,
+          "total_bytes": 450401264,
+          "verified_source_file_count": 40,
+          "verified_source_files": [
+            {
+              "path": ".codex/skills/muion-project/scripts/auto-commit-push.mjs",
+              "downloaded_sha256": "d541be786d61b91f4f4aff4b43b290a2a855b15a246d7ce1eb663a1762794678",
+              "manifest_sha256": "d541be786d61b91f4f4aff4b43b290a2a855b15a246d7ce1eb663a1762794678",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": ".codex/skills/muion-project/scripts/create-task-tag.mjs",
+              "downloaded_sha256": "80c555cf851a3d61514078d390b4456e7883afe4f31f8338205a689c6c5e9055",
+              "manifest_sha256": "80c555cf851a3d61514078d390b4456e7883afe4f31f8338205a689c6c5e9055",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": ".codex/skills/muion-project/scripts/task-close.mjs",
+              "downloaded_sha256": "14a525c47b853d79ca38330b6ac92e76a2ab89cdb4ec8dd7c836221005cd608c",
+              "manifest_sha256": "14a525c47b853d79ca38330b6ac92e76a2ab89cdb4ec8dd7c836221005cd608c",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": ".codex/skills/team/SKILL.md",
+              "downloaded_sha256": "08dfd3abe1a93ad918b193ec84056844d101da44fbdfc35c3fd015e433dd6ff2",
+              "manifest_sha256": "08dfd3abe1a93ad918b193ec84056844d101da44fbdfc35c3fd015e433dd6ff2",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": ".codex/skills/team/scripts/session-concurrency.mjs",
+              "downloaded_sha256": "bec51b3d079c1ca221989abe32ea987599b3fc41a2e9ab4ab9ee6946420716e8",
+              "manifest_sha256": "bec51b3d079c1ca221989abe32ea987599b3fc41a2e9ab4ab9ee6946420716e8",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/active-checkout-output-cleanup-plan-20260924.json",
+              "downloaded_sha256": "4f7985c44b7fc2c8524b7e73f84c96c1ead08da74dc078dc80eed1e17615ae03",
+              "manifest_sha256": "4f7985c44b7fc2c8524b7e73f84c96c1ead08da74dc078dc80eed1e17615ae03",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/agent-runs/AGENT-web-toolchain-audit-20260924.json",
+              "downloaded_sha256": "68c86d2ad10a30e6366896408a0e37a6a5f73a624542896110bd3b81d08f7bbb",
+              "manifest_sha256": "68c86d2ad10a30e6366896408a0e37a6a5f73a624542896110bd3b81d08f7bbb",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/dashboard-cleanup-20260924.json",
+              "downloaded_sha256": "36d50c70273b1a3b3915a3d009833e83a3c99d369f2679524de3248f81ae4060",
+              "manifest_sha256": "36d50c70273b1a3b3915a3d009833e83a3c99d369f2679524de3248f81ae4060",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/dashboard-deployment-20260924.json",
+              "downloaded_sha256": "31fb66d6fe5e7bd3a7a8abd5110bb4f5695d8d22fdece470c8eae76e1553cef7",
+              "manifest_sha256": "31fb66d6fe5e7bd3a7a8abd5110bb4f5695d8d22fdece470c8eae76e1553cef7",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/dashboard-live-drift-20260924.json",
+              "downloaded_sha256": "b5d1eb68a42fb06095c486fa0fceafc4d0dd952547b7cca7ed59723ea31744e0",
+              "manifest_sha256": "b5d1eb68a42fb06095c486fa0fceafc4d0dd952547b7cca7ed59723ea31744e0",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/deleted-content-drive-audit-20260924.json",
+              "downloaded_sha256": "1dd9286db5ce183ccb42b6ed6d77852b9905177d04e3ff9448f6096264446e6f",
+              "manifest_sha256": "1dd9286db5ce183ccb42b6ed6d77852b9905177d04e3ff9448f6096264446e6f",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/evolution/EVOLUTION-20260924-dashboard-ui-candidates.json",
+              "downloaded_sha256": "f1b31c9cc1ada5c2f3032823d7bffaeeb31507bb9547d571934fb21c294b3263",
+              "manifest_sha256": "f1b31c9cc1ada5c2f3032823d7bffaeeb31507bb9547d571934fb21c294b3263",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/evolution/EVOLUTION-20260924-oh-my-codex-goal-restudy.json",
+              "downloaded_sha256": "5ce65846075064a09c5beb3a29446198ae5e4b349434cd2e1ef3ed345107a730",
+              "manifest_sha256": "5ce65846075064a09c5beb3a29446198ae5e4b349434cd2e1ef3ed345107a730",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/evolution/EVOLUTION-20260924-web-research-toolchain-candidates.json",
+              "downloaded_sha256": "e0be24ac3d8d0476623e060316461e109673343b5f9e0910842abbbf65c23c52",
+              "manifest_sha256": "e0be24ac3d8d0476623e060316461e109673343b5f9e0910842abbbf65c23c52",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/experiences/EXP-20260924-submitted-session-resume-lifecycle.json",
+              "downloaded_sha256": "1c0a0c038b974a48cd4e4fdd9a5b6e0cc4046d311d6a84dc9290058b59b4e047",
+              "manifest_sha256": "1c0a0c038b974a48cd4e4fdd9a5b6e0cc4046d311d6a84dc9290058b59b4e047",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/governance-incremental-receipt-20260924.json",
+              "downloaded_sha256": "e7caa48165cd1529d3b4211716deb238f448099679a9c01a2e4ef24bc0bdc262",
+              "manifest_sha256": "e7caa48165cd1529d3b4211716deb238f448099679a9c01a2e4ef24bc0bdc262",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/governance-rename-review-20260924.json",
+              "downloaded_sha256": "feee05350c91b3aa535f83cb413d61ce947e707c25dc1aa603954631be170fe1",
+              "manifest_sha256": "feee05350c91b3aa535f83cb413d61ce947e707c25dc1aa603954631be170fe1",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/governance-untracked-asset-receipt-20260924.json",
+              "downloaded_sha256": "3a029a4c5b8fc81101517bd9ab6ff7779f81024fbd9dc7729d099ec296285929",
+              "manifest_sha256": "3a029a4c5b8fc81101517bd9ab6ff7779f81024fbd9dc7729d099ec296285929",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md",
+              "downloaded_sha256": "96cb3a03ec76b3f7b205a688998b4fe6a653f75aa6e6474e4209541752f8dee7",
+              "manifest_sha256": "96cb3a03ec76b3f7b205a688998b4fe6a653f75aa6e6474e4209541752f8dee7",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-SUBMITTED-RESUME.json",
+              "downloaded_sha256": "89f3349ba3b55b1c95bad965c60a6b5e376b66136fe2b482cc87723f414becc9",
+              "manifest_sha256": "89f3349ba3b55b1c95bad965c60a6b5e376b66136fe2b482cc87723f414becc9",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/leader-delivery-bundle-20260924.json",
+              "downloaded_sha256": "9cd0b67d2c91c4e700d6000b09d1b07b4020999cff5b2fd5d243d0812c6fbbf8",
+              "manifest_sha256": "9cd0b67d2c91c4e700d6000b09d1b07b4020999cff5b2fd5d243d0812c6fbbf8",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/leader-integration-blocker-20260924.json",
+              "downloaded_sha256": "9354d2919721dc06923bd630bddf8d2c9c91421d9312c5b549a9fce579236466",
+              "manifest_sha256": "9354d2919721dc06923bd630bddf8d2c9c91421d9312c5b549a9fce579236466",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "00_project/traceability/quarantine-drive-verification-20260924.json",
+              "downloaded_sha256": "e480303248934b1cfa36ad811e131c9dbe397585a5df4162b2c9f6568a549840",
+              "manifest_sha256": "e480303248934b1cfa36ad811e131c9dbe397585a5df4162b2c9f6568a549840",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
+              "downloaded_sha256": "f1aac4e80ac921257fb103ebd44ce256fcd0fd8f3b5170bade43ef312955e107",
+              "manifest_sha256": "f1aac4e80ac921257fb103ebd44ce256fcd0fd8f3b5170bade43ef312955e107",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+              "downloaded_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+              "manifest_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v01.md",
+              "downloaded_sha256": "5f6a0fa53161e6f593a98607cebe4cedb492b8bf3580577fb46ff127fd975a78",
+              "manifest_sha256": "5f6a0fa53161e6f593a98607cebe4cedb492b8bf3580577fb46ff127fd975a78",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02-correction-20260930.json",
+              "downloaded_sha256": "5d532e1f529a80a09320319193031bf627d8e7ad5d0cf41addfe9d10dcd79b7e",
+              "manifest_sha256": "5d532e1f529a80a09320319193031bf627d8e7ad5d0cf41addfe9d10dcd79b7e",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+              "downloaded_sha256": "c00d32a4823b653d423eda0e1e7d8bdd7c5bc0d7997975037ac04151ea254bc7",
+              "manifest_sha256": "c00d32a4823b653d423eda0e1e7d8bdd7c5bc0d7997975037ac04151ea254bc7",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
+              "downloaded_sha256": "12d077905db32913c0ddb992dbc8bee7c3a8dbdcc3a4cab179d9cdd784af98fd",
+              "manifest_sha256": "12d077905db32913c0ddb992dbc8bee7c3a8dbdcc3a4cab179d9cdd784af98fd",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/index.mjs",
+              "downloaded_sha256": "4fac287ddb9189f719246851958cf233a003dbe0e4e30c0642b7a30e98c8ac50",
+              "manifest_sha256": "4fac287ddb9189f719246851958cf233a003dbe0e4e30c0642b7a30e98c8ac50",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/integration-coordinator.mjs",
+              "downloaded_sha256": "4f1802e477e8c9048c28af342d82be8a7d90b1fbc179b3be8ee8453497604abe",
+              "manifest_sha256": "4f1802e477e8c9048c28af342d82be8a7d90b1fbc179b3be8ee8453497604abe",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/runtime-store.mjs",
+              "downloaded_sha256": "a68ba18b3d9919f21ce41d0d53b2d82029b5298038709a5b94c58b88e3bdfb36",
+              "manifest_sha256": "a68ba18b3d9919f21ce41d0d53b2d82029b5298038709a5b94c58b88e3bdfb36",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/worker-runtime.mjs",
+              "downloaded_sha256": "bece3c66d45eb123c3fee364f2d2beebf03fbf9410baee305618430e8cd71f0c",
+              "manifest_sha256": "bece3c66d45eb123c3fee364f2d2beebf03fbf9410baee305618430e8cd71f0c",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+              "downloaded_sha256": "af169c5157b41f95b848f9324ed6279d8efab0bbe828fb4bde2a58e076730978",
+              "manifest_sha256": "af169c5157b41f95b848f9324ed6279d8efab0bbe828fb4bde2a58e076730978",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+              "downloaded_sha256": "66925e422610f6a67b68393a657e3243d23be64458564682b8f47a3540354a33",
+              "manifest_sha256": "66925e422610f6a67b68393a657e3243d23be64458564682b8f47a3540354a33",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/auto-commit-push-policy.test.mjs",
+              "downloaded_sha256": "3d47d3e404fec9e366d3574469d490bdeb4d17cbcf67b45f5dcbae286a676255",
+              "manifest_sha256": "3d47d3e404fec9e366d3574469d490bdeb4d17cbcf67b45f5dcbae286a676255",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/integration-coordinator.test.mjs",
+              "downloaded_sha256": "9616d3eebfb246468a97da0aef9206f104d873a429ec8abc2ac7d942ecff4e03",
+              "manifest_sha256": "9616d3eebfb246468a97da0aef9206f104d873a429ec8abc2ac7d942ecff4e03",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/project-supervisor.test.mjs",
+              "downloaded_sha256": "83ae68af80b9ea3aaf0b8dd493952a9186c1f1bce2bf10a2cf999069ff375677",
+              "manifest_sha256": "83ae68af80b9ea3aaf0b8dd493952a9186c1f1bce2bf10a2cf999069ff375677",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/session-concurrency.test.mjs",
+              "downloaded_sha256": "efab28283d2ec0a569c19b537aa2b9cdc47db123e1640cd8301d2eb32745b298",
+              "manifest_sha256": "efab28283d2ec0a569c19b537aa2b9cdc47db123e1640cd8301d2eb32745b298",
+              "main_content_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/task-tag.test.mjs",
+              "downloaded_sha256": "d82ccc79495d3231c03fe71ac14678319b7d1219de7a1cc4efee8c8fda69a565",
+              "manifest_sha256": "d82ccc79495d3231c03fe71ac14678319b7d1219de7a1cc4efee8c8fda69a565",
+              "main_content_after_line_ending_normalization": "match"
+            }
+          ],
+          "readback_method": "Authenticated Google Drive browser downloads; raw SHA256 matched the cloud mirror manifest and current main content after CRLF/LF normalization.",
+          "readback_at": "2026-09-30T04:06:23.6910854Z",
+          "recovery_index": {
+            "path": "project/recovery-index/recovery-index.json",
+            "cloud_sha256": "342eb1a6792adf907482cd34a0e77d1b4b9be37e08e009ff329de9b643acd827",
+            "generated_at": "2026-09-25T09:00:52.902Z",
+            "downloaded_and_hash_verified": true,
+            "current_for_delivery_commit": false,
+            "next_action": "Refresh and verify at N3 after final plan receipt."
+          }
+        }
       }
     },
     {
@@ -133,7 +723,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Publish N0+N1 through the serialized leader node gate, then verify real Gitee main, Drive cloud readback and both t-tags.",
+    "next_action": "Prepare N2 from the integrated main baseline.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -145,7 +735,9 @@
       "Added a narrow NUL quarantine/rebuild path and fsync-before-rename; project-supervisor tests pass 9/9.",
       "Added an additive correction receipt for plan_v02; original v02 files remain unchanged.",
       "Validated JSON structure; handoff copy is byte-identical, while human/machine plan copies differ only by the active execution checkpoint updates recorded here.",
-      "P0 is complete: legal worktree/baseline verified, NUL corruption recovery tested, all 92 d80 paths have a disposition, and v02 correction is additive."
+      "P0 is complete: legal worktree/baseline verified, NUL corruption recovery tested, all 92 d80 paths have a disposition, and v02 correction is additive.",
+      "Delivered N0 after main, Gitee, Drive and annotated t-tag verification.",
+      "Delivered N1 after main, Gitee, Drive and annotated t-tag verification."
     ],
     "open_findings": [
       "N0/N1 are only ready-for-delivery in this worker; no main/Gitee/Drive/tag publication has happened yet.",
@@ -187,7 +779,7 @@
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2"
   },
-  "updated_at": "2026-09-30T00:26:15.164Z",
+  "updated_at": "2026-09-30T04:07:58.649Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"

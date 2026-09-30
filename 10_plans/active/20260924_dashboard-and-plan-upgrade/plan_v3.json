@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 16,
+  "revision": 17,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "Checkpoint and integrate the final cleanup remote-identity fix; then reread its Drive mirror and finish the gated historical cleanup and final dashboard/recovery-index verification.",
+  "next_action": "Checkpoint and integrate the quarantine receipt-scope correction; then verify the refreshed Drive mirror and finish D80-2, 6b5 and 8f62 cleanup.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -887,7 +887,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Checkpoint and integrate the final cleanup remote-identity fix; then reread its Drive mirror and finish the gated historical cleanup and final dashboard/recovery-index verification.",
+    "next_action": "Checkpoint and integrate the quarantine receipt-scope correction; then verify the refreshed Drive mirror and finish D80-2, 6b5 and 8f62 cleanup.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -917,7 +917,8 @@
       "After the cleanup traversal fix, node --test tests/*.mjs passed 216/216; tests/architecture-smoke.mjs passed with 150 required files and 12 variables.",
       "N3 follow-up delivery now supersedes an integrated-but-untagged attempt only when its cloud-readback/tag/plan-receipt gates are pending, prior delivery is remote main ancestor of the fixed new source, and remote tag refs are absent; integration-coordinator test passes 7/7. The first unsafe follow-up was refused before main/tag mutation and is preserved in the old N3 outbox.",
       "Guarded N3 follow-up source replacement and regression test passed integration-coordinator 7/7. Reran node --test tests/*.mjs after both cleanup traversal and outbox-supersession fixes: 216/216 passed; tests/architecture-smoke.mjs passed (150 files, 12 variables).",
-      "Cleanup preflight exposed publication.remote as alias origin while the clean clone stores the configured Gitee URL; cleanup now resolves and compares the actual remote URL, with a mismatch rejection test. Full project suite passed 216/216 after the fix; architecture smoke passed (150 required files, 12 variables)."
+      "Cleanup preflight exposed publication.remote as alias origin while the clean clone stores the configured Gitee URL; cleanup now resolves and compares the actual remote URL, with a mismatch rejection test. Full project suite passed 216/216 after the fix; architecture smoke passed (150 required files, 12 variables).",
+      "A D80-2 cleanup attempt preserved its worktree when the shared 220-item quarantine readback was incorrectly required to exist in every historical worker. Cleanup now validates the fixed global receipt count and hashes only quarantine payloads actually present in each worker; the empty-source case and incomplete receipt are covered by tests/session-concurrency.test.mjs."
     ],
     "open_findings": [
       "N3 still requires a clean Gitee clone, latest Drive manifest and recovery-index cloud readback, deployed 4317 verification, and safe historical/session cleanup.",
@@ -981,10 +982,10 @@
     "started_at": "2026-09-30",
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2",
-    "latest_main_commit": "b0cc4fbe86eb4b126006c73d6670aebb8687924d",
-    "latest_main_remote_verified": "b0cc4fbe86eb4b126006c73d6670aebb8687924d"
+    "latest_main_commit": "69302f16570347666868a3022adf6a71b48db85d",
+    "latest_main_remote_verified": "69302f16570347666868a3022adf6a71b48db85d"
   },
-  "updated_at": "2026-09-30T20:20:42.570Z",
+  "updated_at": "2026-09-30T21:30:07.482Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"

@@ -181,7 +181,7 @@ test('supersession cleanup verifies fixed source, Drive hashes and host completi
       { path: '00_project/traceability/disposition.json', bytes: fs.statSync(dispositionPath).size, sha256: digest(fs.readFileSync(dispositionPath)) },
     ] };
     const drivePath = path.join(traceability, 'drive-readback.json'); fs.writeFileSync(drivePath, JSON.stringify(driveReadback) + '\n');
-    const quarantinePath = path.join(traceability, 'quarantine-readback.json'); fs.writeFileSync(quarantinePath, JSON.stringify({ status: 'verified', files: [] }) + '\n');
+    const quarantinePath = path.join(traceability, 'quarantine-readback.json'); fs.writeFileSync(quarantinePath, JSON.stringify({ status: 'verified', files: [{ path: '90_migration/quarantine/other-session.txt', verified: true, bytes: 1, source_sha256: 'a'.repeat(64), cloud_sha256: 'a'.repeat(64) }] }) + '\n');
     const bare = path.join(root, '_work/current/test-remote.git'); fs.mkdirSync(path.dirname(bare), { recursive: true });
     execFileSync('git', ['init', '--bare', '--initial-branch=main', bare], { stdio: 'ignore' });
     const publicationPath = path.join(root, '00_project/config/publish-policy.json'); fs.mkdirSync(path.dirname(publicationPath), { recursive: true });
@@ -213,6 +213,9 @@ test('supersession cleanup verifies fixed source, Drive hashes and host completi
     fs.writeFileSync(farmerState, JSON.stringify({}));
     closeSession({ root, sessionId: session.session_id, token: session.owner_token, cleanup: false });
     receipt.host_completion = { host_session_id: 'host-superseded', status: 'not-found', source: 'Codex app and read-only local index audit', verified_at: new Date().toISOString(), absence_checks: { active_lookup: 'not-found', archived_lookup: 'not-found', state_index: 'not-found', turn_history: 'not-found' } };
+    receipt.quarantine_file_count = 2; writeReceipt();
+    assert.throws(() => cleanupSupersededSession({ root, sessionId: session.session_id, receiptPath }), /quarantine Drive readback does not cover the fixed receipt count/);
+    receipt.quarantine_file_count = 1;
     writeReceipt();
     execFileSync('git', ['-C', clonePath, 'remote', 'set-url', 'origin', bare + '-wrong']);
     assert.throws(() => cleanupSupersededSession({ root, sessionId: session.session_id, receiptPath }), /Gitee recovery clone has the wrong origin/);

@@ -185,7 +185,7 @@ test('supersession cleanup verifies fixed source, Drive hashes and host completi
     const bare = path.join(root, '_work/current/test-remote.git'); fs.mkdirSync(path.dirname(bare), { recursive: true });
     execFileSync('git', ['init', '--bare', '--initial-branch=main', bare], { stdio: 'ignore' });
     const publicationPath = path.join(root, '00_project/config/publish-policy.json'); fs.mkdirSync(path.dirname(publicationPath), { recursive: true });
-    fs.writeFileSync(publicationPath, JSON.stringify({ remote: bare, branch: 'main' }) + '\n');
+    fs.writeFileSync(publicationPath, JSON.stringify({ remote: 'origin', branch: 'main' }) + '\n');
     git('add', '00_project/traceability', '00_project/config/publish-policy.json'); git('commit', '-m', 'record cleanup readback fixture');
     git('remote', 'add', 'origin', bare); git('push', '-u', 'origin', 'main');
     const clonePath = path.join(root, '_work/current/publish-outbox/gitee-clean-clone'); fs.mkdirSync(path.dirname(clonePath), { recursive: true });
@@ -199,7 +199,7 @@ test('supersession cleanup verifies fixed source, Drive hashes and host completi
       branch: session.branch, worktree_path: session.worktree_path, source_commit: sourceCommit, main_commit: mainCommit, merge_base: mergeBase,
       path_mappings: [mapping], drive_readback: { status: 'verified', file: '00_project/traceability/drive-readback.json', sha256: digest(fs.readFileSync(drivePath)) },
       disposition_evidence: { file: '00_project/traceability/disposition.json', sha256: digest(fs.readFileSync(dispositionPath)) },
-      gitee_readback: { status: 'verified', clone_path: '_work/current/publish-outbox/gitee-clean-clone', remote: bare, branch: 'main', commit: mainCommit, remote_head: mainCommit },
+      gitee_readback: { status: 'verified', clone_path: '_work/current/publish-outbox/gitee-clean-clone', remote: 'origin', branch: 'main', commit: mainCommit, remote_head: mainCommit },
       quarantine_readback_file: '00_project/traceability/quarantine-readback.json', preserve_roots: [{ prefix: '_work/', mode: 'all', archive_prefix: 'legacy-runtime' }], rebuildable_roots: [],
       process_check: { status: 'clear', checked_at: new Date().toISOString(), process_ids: [] },
     };
@@ -214,6 +214,9 @@ test('supersession cleanup verifies fixed source, Drive hashes and host completi
     closeSession({ root, sessionId: session.session_id, token: session.owner_token, cleanup: false });
     receipt.host_completion = { host_session_id: 'host-superseded', status: 'not-found', source: 'Codex app and read-only local index audit', verified_at: new Date().toISOString(), absence_checks: { active_lookup: 'not-found', archived_lookup: 'not-found', state_index: 'not-found', turn_history: 'not-found' } };
     writeReceipt();
+    execFileSync('git', ['-C', clonePath, 'remote', 'set-url', 'origin', bare + '-wrong']);
+    assert.throws(() => cleanupSupersededSession({ root, sessionId: session.session_id, receiptPath }), /Gitee recovery clone has the wrong origin/);
+    execFileSync('git', ['-C', clonePath, 'remote', 'set-url', 'origin', bare]);
     assert.throws(() => cleanupSupersededSession({ root, sessionId: session.session_id, receiptPath }), /ignored worktree path has no safe disposition/);
     assert.equal(fs.existsSync(session.worktree_path), true);
     fs.unlinkSync(unknownPath);

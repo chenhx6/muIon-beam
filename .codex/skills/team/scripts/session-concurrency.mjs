@@ -539,7 +539,9 @@ export function cleanupSupersededSession({ root = process.cwd(), sessionId, rece
     const cloneRoot = resolveProjectFile(repoRoot, gitee.clone_path, 'Gitee clone');
     const cloneHead = runGit(cloneRoot, ['rev-parse','HEAD']).stdout.trim();
     if (runGit(cloneRoot, ['symbolic-ref','--short','HEAD']).stdout.trim() !== publication.branch || cloneHead !== gitee.commit || currentStatus(cloneRoot).length) throw new Error('Gitee recovery clone is not clean at its fixed main commit');
-    if (runGit(cloneRoot, ['remote','get-url','origin']).stdout.trim() !== publication.remote) throw new Error('Gitee recovery clone has the wrong origin');
+    const configuredRemote = runGit(repoRoot, ['remote','get-url',publication.remote], { allowFailure:true });
+    const expectedRemoteUrl = configuredRemote.status === 0 ? configuredRemote.stdout.trim() : publication.remote;
+    if (!expectedRemoteUrl || runGit(cloneRoot, ['remote','get-url','origin']).stdout.trim() !== expectedRemoteUrl) throw new Error('Gitee recovery clone has the wrong origin');
     const remoteHead = runGit(repoRoot, ['ls-remote',publication.remote,'refs/heads/' + publication.branch]).stdout.trim().split(/\s+/)[0];
     if (!remoteHead || remoteHead !== gitee.remote_head || runGit(repoRoot, ['merge-base','--is-ancestor',receipt.main_commit,remoteHead], { allowFailure:true }).status !== 0) throw new Error('Gitee main does not contain the verified cleanup baseline');
     const dispositionFile = resolveProjectFile(repoRoot, receipt.disposition_evidence?.file, 'disposition evidence');

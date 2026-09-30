@@ -6,8 +6,8 @@
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
-  "current_phase": "P1",
-  "next_action": "Publish N2 through the serialized leader gate; then verify the main browser and Drive cloud readback before tagging.",
+  "current_phase": "P5",
+  "next_action": "Prepare N3 from the integrated main baseline.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -42,12 +42,12 @@
     },
     {
       "id": "P1",
-      "status": "pending",
+      "status": "completed",
       "evidence": []
     },
     {
       "id": "P2",
-      "status": "pending",
+      "status": "completed",
       "evidence": []
     },
     {
@@ -702,12 +702,12 @@
     },
     {
       "id": "N2",
-      "status": "ready-for-delivery",
-      "source_commit": null,
-      "delivery_commit": null,
-      "tag": null,
-      "remote_verified": false,
-      "drive_verified": false,
+      "status": "delivered",
+      "source_commit": "49d89f7546855b32ae8ba1635327ebe95d294248",
+      "delivery_commit": "5e9ad204455a42a8d1c88b3d6328296f9f9d067a",
+      "tag": "t-task-dashboard-plan-upgrade-20260930-n2-20260930071032-5e9ad20",
+      "remote_verified": true,
+      "drive_verified": true,
       "summary": "真实看板状态、步骤进度、实时数据隔离及旧 worker 等价成果",
       "validation": {
         "test_files": [
@@ -718,6 +718,128 @@
         "architecture_check": true,
         "browser_required": true,
         "read_only_runtime_check": true
+      },
+      "remote_head": "5e9ad204455a42a8d1c88b3d6328296f9f9d067a",
+      "drive_manifest_sha256": "c91256741b0350f61670ab2849a814957dd1f9a05ff3a58393d9af4aabe6ca6d",
+      "drive_plan_sha256": "c4a6062178cd0ad3dd0a0feecbbdf860e3804d87051c864b964b42cd9bd3b7fb",
+      "delivered_at": "2026-09-30T08:05:51.980Z",
+      "evidence": {
+        "outbox": "_work/current/publish-outbox/node-delivery/plan-dashboard-delivery-repair-20260930-n2-49d89f754685.json",
+        "validation": {
+          "passed": true,
+          "steps": [
+            {
+              "command": "node --test tests/research-dashboard.test.mjs tests/supervisor-progress.test.mjs tests/project-supervisor.test.mjs",
+              "status": "passed",
+              "output": " (246.1922ms)\n✔ foreign listeners and degraded services are reported without duplicate starts (13.3937ms)\nresearch-dashboard listening on http://127.0.0.1:59817\n✔ entry waits for a starting service first heartbeat without launching a duplicate (32.4577ms)\n✔ service failure does not suppress independent service health or erase evidence (13.0555ms)\n✔ dashboard health verifies service identity and actual status on loopback (987.7679ms)\n✔ foreign HTTP service cannot be adopted as dashboard (6.2546ms)\n✔ session hook carries context without persisting user prompt or changing the model (2.0309ms)\n✔ session hook forwards a readable session name when provided (1.028ms)\n✔ NUL-corrupt runtime JSON is preserved and a live daemon lock prevents a duplicate start (16.4147ms)\n✔ failed runtime flush keeps the previous complete JSON (12.2369ms)\n✔ supervisor reaps a closed delivered worktree only after its host turn ends (3172.6084ms)\n✔ dashboard is read-only and exposes only the status-board projection (778.6172ms)\n✔ dashboard status stays compact when artifact history contains large scans (111.9686ms)\n✔ dashboard exposes the farmer emergency pause instead of stale healthy process state (118.983ms)\n✔ dashboard status uses its live process identity instead of a stale supervisor PID (115.5025ms)\n✔ repeated polling leaves research state, plan checkpoint and tracked files unchanged (511.3681ms)\n✔ board rendering uses backend groups and keeps DOM values as text (0.4928ms)\n✔ unnamed task cards use a safe readable fallback (0.1692ms)\n✔ evidence notes enforce conclusion levels without becoming state (0.1166ms)\n✔ physics gate is advisory and contract-preserving (0.1276ms)\n✔ review closure requires evidence and rerun validation (0.1538ms)\n✔ capability comparison is manual and evidence gated (0.1034ms)\n✔ ledger normalization preserves runtime trace fields (0.1061ms)\n✔ research workflow validation exposes the advisory physics gate (10.4435ms)\n✔ ignored runtime outputs stay discoverable only for a current session (261.2898ms)\n✔ a live host is running evidence even when its lease and last update are old (71.4976ms)\n✔ a completed Codex turn remains pending while its project plan is incomplete (145.675ms)\n✔ a waiting card shows only explicit checkpoint input requirements (69.2876ms)\n✔ unnamed interrupted Codex work stays visible with a safe fallback name (211.4818ms)\n✔ older Codex indexes without rollout_path retain live turns with a diagnostic (139.2451ms)\n✔ duplicate registry rows from one host thread become one current card (71.0566ms)\n✔ plan source branches stop appearing only after their resolving node is delivered (75.9892ms)\n✔ abandoned history is hidden once its branch and worktree are gone (61.764ms)\n✔ artifact counts use the newest active scan, exclude runtime and deduplicate paths (181.8886ms)\n✔ an active registry without run evidence is unknown, not running (64.2611ms)\nℹ tests 35\nℹ suites 0\nℹ pass 35\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 4598.5268\n",
+              "error": ""
+            },
+            {
+              "command": "node tests/architecture-smoke.mjs",
+              "status": "passed",
+              "output": "{\n  \"valid\": true,\n  \"requiredFiles\": 150,\n  \"variables\": 12,\n  \"legacyWorkspaceUntouched\": true\n}\n",
+              "error": ""
+            }
+          ]
+        },
+        "cloud_readback": {
+          "schema_version": 1,
+          "status": "verified",
+          "plan_id": "plan_dashboard_delivery_repair_20260930",
+          "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
+          "node_ids": [
+            "N2"
+          ],
+          "source_commit": "49d89f7546855b32ae8ba1635327ebe95d294248",
+          "delivery_commit": "5e9ad204455a42a8d1c88b3d6328296f9f9d067a",
+          "remote_head": "5e9ad204455a42a8d1c88b3d6328296f9f9d067a",
+          "drive_root": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",
+          "manifest_sha256": "c91256741b0350f61670ab2849a814957dd1f9a05ff3a58393d9af4aabe6ca6d",
+          "plan_sha256": "c4a6062178cd0ad3dd0a0feecbbdf860e3804d87051c864b964b42cd9bd3b7fb",
+          "file_count": 1256,
+          "total_bytes": 450477533,
+          "verified_source_file_count": 8,
+          "verified_source_files": [
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+              "sha256": "c4a6062178cd0ad3dd0a0feecbbdf860e3804d87051c864b964b42cd9bd3b7fb",
+              "manifest_match": true,
+              "main_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/progress-aggregator.mjs",
+              "sha256": "d7cc56739a9f01a82df892176f514d6d0f65c3f4df031f224c45467cd2d96d72",
+              "manifest_match": true,
+              "main_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/project-supervisor/services.mjs",
+              "sha256": "55e19865d2e780faed11f1b12a8137c05c296a0d5530e4cb55252a6bf4a5b2c6",
+              "manifest_match": true,
+              "main_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/research-dashboard/index.html",
+              "sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+              "manifest_match": true,
+              "main_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/research-dashboard/server.mjs",
+              "sha256": "f5b4449513cd946b5d21da3070099c104aa7d2b73eb3a2df5148991a8889b7da",
+              "manifest_match": true,
+              "main_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "11_tools/research-dashboard/supervision.js",
+              "sha256": "b1c7521665c62b26f2ffc72fa8dc4767f0edb7f57e8457cad5912a5c792a3563",
+              "manifest_match": true,
+              "main_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/research-dashboard.test.mjs",
+              "sha256": "b1578e9cda13e4cb435efd4523f894ba70d346bfe0999a06ca4bfac27b2eaab6",
+              "manifest_match": true,
+              "main_after_line_ending_normalization": "match"
+            },
+            {
+              "path": "tests/supervisor-progress.test.mjs",
+              "sha256": "41e659c827d0c183fceb184036bc278183a99d3adeb4ba981553ed3e91ecf62d",
+              "manifest_match": true,
+              "main_after_line_ending_normalization": "match"
+            }
+          ],
+          "readback_method": "Authenticated Google Drive UI downloads: manifest plus ZIP readback of every N2 source directory; per-file SHA256 matched the cloud manifest and main content after CRLF/LF normalization.",
+          "readback_at": "2026-09-30T08:04:31.5454657Z",
+          "browser": {
+            "url": "http://127.0.0.1:50416/",
+            "health_root": "D:\\muIon-beam",
+            "health_pid": 18224,
+            "served_html_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+            "main_html_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+            "html_match": true,
+            "served_js_sha256": "b1c7521665c62b26f2ffc72fa8dc4767f0edb7f57e8457cad5912a5c792a3563",
+            "main_js_sha256": "b1c7521665c62b26f2ffc72fa8dc4767f0edb7f57e8457cad5912a5c792a3563",
+            "js_match": true,
+            "api_status": 200,
+            "api_bytes": 7323,
+            "running_sessions": 1,
+            "needs_attention_sessions": 4,
+            "durable_unregistered_artifacts": 160,
+            "current_plan_phase": "P1",
+            "current_plan_step": "N2",
+            "current_plan_progress": "2/4 (50%)",
+            "file_governance_panel_visible": true
+          },
+          "recovery_index": {
+            "path": "project/recovery-index/recovery-index.json",
+            "cloud_sha256": "342eb1a6792adf907482cd34a0e77d1b4b9be37e08e009ff329de9b643acd827",
+            "generated_at": "2026-09-25T09:00:52.902Z",
+            "downloaded_and_hash_verified": true,
+            "current_for_delivery_commit": false,
+            "next_action": "Refresh and verify at N3."
+          }
+        }
       }
     },
     {
@@ -734,7 +856,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Publish N2 through the serialized leader gate; then verify the main browser and Drive cloud readback before tagging.",
+    "next_action": "Prepare N3 from the integrated main baseline.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -749,7 +871,8 @@
       "P0 is complete: legal worktree/baseline verified, NUL corruption recovery tested, all 92 d80 paths have a disposition, and v02 correction is additive.",
       "Delivered N0 after main, Gitee, Drive and annotated t-tag verification.",
       "Delivered N1 after main, Gitee, Drive and annotated t-tag verification.",
-      "N0/N1 的 Google Drive 浏览器读回覆盖 40 个源文件，SHA256 与云端 manifest 及 main 内容（统一 CRLF/LF 后）匹配；recovery-index 已读回但生成于 2026-09-25，待 N3 刷新。"
+      "N0/N1 的 Google Drive 浏览器读回覆盖 40 个源文件，SHA256 与云端 manifest 及 main 内容（统一 CRLF/LF 后）匹配；recovery-index 已读回但生成于 2026-09-25，待 N3 刷新。",
+      "Delivered N2 after main, Gitee, Drive and annotated t-tag verification."
     ],
     "open_findings": [
       "N2 browser and Drive cloud readback remain required before the N2 tag can be finalized.",
@@ -794,7 +917,7 @@
     "latest_main_commit": "849241c1311a434d998f92975bb5cfa881cf5f6c",
     "latest_main_remote_verified": "849241c1311a434d998f92975bb5cfa881cf5f6c"
   },
-  "updated_at": "2026-09-30T07:01:49.296Z",
+  "updated_at": "2026-09-30T08:05:51.980Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"

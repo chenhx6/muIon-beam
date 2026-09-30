@@ -86,7 +86,11 @@ function main() {
     const message = args.message || (session?.mode === 'worktree' ? `session checkpoint ${sessionId}` : '自动更新项目工作流 ' + new Date().toISOString().slice(0, 10));
     const commit = commitFiles(worktree, candidatePaths, message, publication.author);
     if (session?.mode === 'worktree') {
-      if (nodeRequest) return nodeDeliveryResult(deliverPlanNode({ ...nodeRequest, sourceHead: commit, sourceFiles: hashes }));
+      if (nodeRequest) {
+        const sourcePaths = runGit(worktree, ['diff', '--name-only', `${session.base_ref}..HEAD`]).stdout.split(/\r?\n/).filter(Boolean);
+        const sourceFiles = digestFiles(worktree, sourcePaths);
+        return nodeDeliveryResult(deliverPlanNode({ ...nodeRequest, sourceHead: commit, sourceFiles }));
+      }
       return { status: 'session-checkpoint-created', session_id: sessionId, branch: session.branch, worktree, commit, candidates: candidatePaths, pushed: false };
     }
     const pushed = runGit(stateRoot, ['push', publication.remote, `HEAD:${publication.branch}`], { timeout: 120000, allowFailure: true });

@@ -7,7 +7,7 @@
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P3",
-  "next_action": "Validate the final N1 package, set N0/N1 ready-for-delivery, and publish through the new leader node gate.",
+  "next_action": "Publish N0+N1 through the serialized leader node gate, then verify real Gitee main, Drive cloud readback and both t-tags.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -133,7 +133,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Complete the P0 corruption recovery and worker disposition audit, then establish the N1 delivery and tag chain.",
+    "next_action": "Publish N0+N1 through the serialized leader node gate, then verify real Gitee main, Drive cloud readback and both t-tags.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -187,7 +187,7 @@
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2"
   },
-  "updated_at": "2026-09-30T00:17:07.291Z",
+  "updated_at": "2026-09-30T00:26:15.164Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"

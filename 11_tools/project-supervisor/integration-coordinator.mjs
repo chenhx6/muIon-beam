@@ -111,11 +111,22 @@ export function deliverPlanNode({ root, sessionId, nodeIds, nodeId, planFile, so
   const session = readSession(repoRoot, sessionId); const worktree = session.worktree_path;
   const plan = planAndNodes(worktree, planFile, ids); const fixedSource = sourceHead || runGit(worktree, ['rev-parse', 'HEAD']).stdout.trim();
   const recordFile = nodeRecordPath(repoRoot, plan.plan.plan_id, ids); let record = readRecord(recordFile);
-  const fileManifest = sourceFiles || record?.source_files || [];
+  let fileManifest = sourceFiles || record?.source_files || [];
+  if (!record && !fileManifest.length && session.status === 'submitted' && session.receipt_path) {
+    const receipt = readRecord(path.resolve(repoRoot, session.receipt_path));
+    if (!receipt || receipt.source_head !== fixedSource || receipt.source_branch !== session.branch) throw new Error('submitted receipt does not match the fixed source SHA');
+    const changed = runGit(worktree, ['diff', '--name-only', session.base_ref + '..' + fixedSource]).stdout.split(/\r?\n/).filter(Boolean);
+    fileManifest = changed.map(file => { const absolute = path.resolve(worktree, file); return { path: file, sha256: fs.existsSync(absolute) ? sha256File(absolute) : null }; });
+  }
+  const canonicalFile = value => String(value || '').replaceAll('\\', '/').toLowerCase();
   if (record && (record.plan_id !== plan.plan.plan_id || JSON.stringify(record.node_ids) !== JSON.stringify(ids) || record.source_commit !== fixedSource || record.session_id !== sessionId || (sourceFiles && JSON.stringify(sourceFiles) !== JSON.stringify(record.source_files)))) throw new Error('delivery retry does not match its fixed plan, node, source SHA, file list and session');
   if (!record && !fileManifest.length) throw new Error('first node delivery requires the exact checkpoint path/hash list');
   for (const item of fileManifest) { const rel = String(item.path || '').replaceAll('\\', '/'); const abs = path.resolve(worktree, rel); const within = path.relative(worktree, abs); if (!rel || rel.startsWith('/') || path.isAbsolute(within) || within === '..' || within.startsWith('..' + path.sep)) throw new Error('checkpoint manifest path escapes the worker: ' + rel); const actual = fs.existsSync(abs) ? sha256File(abs) : null; if (actual !== item.sha256) throw new Error('checkpoint file hash changed: ' + rel); }
-  if (record?.status === 'delivered' || plan.nodes.every(node => node.status === 'delivered')) return { status: 'node-delivered-idempotent', record, outbox: recordFile };
+  if (session.status === 'submitted' && session.receipt_path) {
+    const receipt = readRecord(path.resolve(repoRoot, session.receipt_path));
+    const expectedPaths = fileManifest.map(item => canonicalFile(item.path)).sort(); const submittedPaths = [...(receipt?.changed_paths || [])].map(canonicalFile).sort();
+    if (receipt?.source_head !== fixedSource || JSON.stringify(expectedPaths) !== JSON.stringify(submittedPaths)) throw new Error('submitted receipt paths differ from the node delivery manifest');
+  }
   if (plan.nodes.some(node => node.status !== 'ready-for-delivery')) throw new Error('all plan nodes must be ready-for-delivery before checkpoint publication');
   if (runGit(worktree, ['rev-parse', 'HEAD']).stdout.trim() !== fixedSource) throw new Error('worker source SHA changed after node checkpoint');
   if (statusPaths(worktree).length) throw new Error('worker checkpoint must be clean before leader integration');
@@ -123,6 +134,7 @@ export function deliverPlanNode({ root, sessionId, nodeIds, nodeId, planFile, so
   const lock = acquireProjectLock(repoRoot, 'leader-delivery');
   try {
     record ||= { schema_version: 1, record_type: 'plan-node-delivery', plan_id: plan.plan.plan_id, task_id: plan.plan.task_id || plan.plan.plan_id, node_ids: ids, session_id: sessionId, source_branch: session.branch, source_commit: fixedSource, source_files: fileManifest, plan_file: plan.relative, prepared_at: new Date().toISOString(), status: 'pending-integration', attempts: [] };
+    writeRecord(recordFile, record);
     const leader = mainCheckout(repoRoot, publication);
     if (leader.status !== 'ready') { record.status = leader.status; record.last_error = leader; record.updated_at = new Date().toISOString(); writeRecord(recordFile, record); return { ...leader, outbox: recordFile }; }
     let currentSession = readSession(repoRoot, sessionId);

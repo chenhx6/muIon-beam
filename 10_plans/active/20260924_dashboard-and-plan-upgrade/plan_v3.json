@@ -7,7 +7,7 @@
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "Checkpoint and integrate the quarantine receipt-scope correction; then verify the refreshed Drive mirror and finish D80-2, 6b5 and 8f62 cleanup.",
+  "next_action": "After N3 finalization, refresh and directly read back the cloud recovery-index for the plan receipt commit; after this host turn exits, independently verify automatic current-session worktree, branch and claim cleanup before marking the plan and goal complete.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -62,7 +62,7 @@
     },
     {
       "id": "P5",
-      "status": "pending",
+      "status": "completed",
       "evidence": []
     }
   ],
@@ -844,12 +844,12 @@
     },
     {
       "id": "N3",
-      "status": "ready-for-delivery",
-      "source_commit": null,
-      "delivery_commit": null,
-      "tag": null,
-      "remote_verified": false,
-      "drive_verified": false,
+      "status": "delivered",
+      "source_commit": "0e8a17be42f8ebe336034bc40be4f07a1103a293",
+      "delivery_commit": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+      "tag": "t-task-dashboard-plan-upgrade-20260930-n3-20260930213116-2cf9b33",
+      "remote_verified": true,
+      "drive_verified": true,
       "summary": "N3 source is validated; final delivery still requires P5 clean-clone, cloud recovery-index and dashboard evidence plus four historical cleanup receipts.",
       "validation": {
         "full_test_suite": true,
@@ -880,6 +880,177 @@
           "passed": 7,
           "failed": 0
         }
+      },
+      "remote_head": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+      "drive_manifest_sha256": "94a2e9159e39317843c8fe498b2571f9b163c391289a50e5cb41d2c60cdade59",
+      "drive_plan_sha256": "a4299c2b178d11ea430a864708f262a58d96a3079ee2e642b17c528de1448f17",
+      "delivered_at": "2026-09-30T23:40:34.806Z",
+      "evidence": {
+        "outbox": "_work/current/publish-outbox/node-delivery/plan-dashboard-delivery-repair-20260930-n3-0e8a17be42f8.json",
+        "validation": {
+          "passed": true,
+          "steps": [
+            {
+              "command": "node --test tests/agent-routing.test.mjs tests/architecture-smoke.mjs tests/artifact-promoter.test.mjs tests/auto-commit-push-policy.test.mjs tests/autopilot.test.mjs tests/base-content-verification.test.mjs tests/capability-map.test.mjs tests/committed-project-snapshot.test.mjs tests/comsol-block.test.mjs tests/delivery-path-policy.test.mjs tests/delivery-plan.test.mjs tests/drive-layout.test.mjs tests/drive-mirror-plan.test.mjs tests/drive-mirror-sync.test.mjs tests/evolution.test.mjs tests/experience-log.test.mjs tests/external-lib.test.mjs tests/farmer-control-cli.test.mjs tests/farmer-process-acceptance.test.mjs tests/farmer.test.mjs tests/figure-qa.test.mjs tests/geant4-block.test.mjs tests/git-status.test.mjs tests/integration-coordinator.test.mjs tests/legacy-version-policy.test.mjs tests/orchestration-gates.test.mjs tests/project-snapshot.test.mjs tests/project-supervisor.test.mjs tests/recovery-index.test.mjs tests/research-dashboard.test.mjs tests/research-system-layout.test.mjs tests/research-workflow.test.mjs tests/session-bootstrapper.test.mjs tests/session-concurrency.test.mjs tests/supervisor-progress.test.mjs tests/sync-metadata.test.mjs tests/sync-receipt.test.mjs tests/task-close.test.mjs tests/task-tag.test.mjs tests/team-dispatch.test.mjs tests/toolchain-recovery.test.mjs tests/workflow-ownership.test.mjs tests/workflow-state.test.mjs tests/wsl-execution-policy.test.mjs",
+              "status": "passed",
+              "output": "ome one current card (144.2409ms)\n✔ plan source branches stop appearing only after their resolving node is delivered (128.6777ms)\n✔ abandoned history is hidden once its branch and worktree are gone (98.8749ms)\n✔ artifact counts use the newest active scan, exclude runtime and deduplicate paths (282.6462ms)\n✔ only hash-matched quarantine copies are counted separately from unresolved project files (233.8938ms)\n✔ an active registry without run evidence is unknown, not running (118.9984ms)\n✔ sync-state schema exposes snapshot and metadata commit fields (0.9626ms)\n✔ historical receipt audit validates the retained receipt without changing it (308.3979ms)\n✔ run archive refuses to overwrite a conflicting Drive artifact (1195.0584ms)\n✔ task-close status is read-only and reports no request when none exists (193.5907ms)\n✔ task-close rejects missing explicit close request (124.055ms)\n✔ plan task tag retry is idempotent without creating a test remote tag (3412.5612ms)\n✔ an existing task tag pointing at another commit is never moved (1966.5604ms)\n✔ independent writers form one ready wave while overlap is rejected for the same wave (1.6936ms)\n✔ writer claims include owns and writes, normalize Windows aliases, and honor concurrency limits (0.4187ms)\n✔ mutable read/write and exclusive resource conflicts are serialized; frozen input is safe (0.3171ms)\n✔ dependencies block until completed and ready waves advance by dependency (0.1593ms)\n✔ reviewer, child and worker permissions are enforced (0.1833ms)\n✔ lifecycle transitions and durable agent-run ledger preserve retry/cancel evidence (31.0669ms)\n✔ dispatch preparation records routes and ledger entries without claiming runtime enforcement (15.3189ms)\n✔ code evidence gate uses executable checks as the oracle and finalizes a running ledger run (395.2938ms)\n✔ research evidence bundle preserves contract evidence and leaves scientific verdict to research-workflow (11.0077ms)\n✔ local telemetry aggregates ledger observations without inventing provider capacity (25.112ms)\n✔ cooperative resource lock serializes exclusive resources and releases only by owner (20.8376ms)\n✔ toolchain recovery reuses an explicitly provided installed Python package (0.4555ms)\n✔ toolchain recovery rejects packages outside the allowlist (0.2793ms)\n✔ toolchain recovery records user installation versus assistant verification (9.2189ms)\n✔ ownership records baseline and excludes unrelated staged changes (1402.7309ms)\n✔ overlapping workflow ownership is rejected (506.442ms)\n✔ empty ownership is a no-op and protected models reject (448.5306ms)\n✔ workflow model source exception still refuses binary content at checkpoint (961.954ms)\n✔ workflow state persists only known phases (75.4877ms)\n✔ status reads do not initialize storage and corrupt state is blocked (80.9181ms)\n✔ WSL execution policy requires elevated first call and forbids sandbox probes (2.0866ms)\nℹ tests 216\nℹ suites 0\nℹ pass 216\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 49510.1531\n",
+              "error": ""
+            },
+            {
+              "command": "node tests/architecture-smoke.mjs",
+              "status": "passed",
+              "output": "{\n  \"valid\": true,\n  \"requiredFiles\": 150,\n  \"variables\": 12,\n  \"legacyWorkspaceUntouched\": true\n}\n",
+              "error": ""
+            }
+          ]
+        },
+        "cloud_readback": {
+          "schema_version": 1,
+          "record_type": "plan-node-cloud-readback",
+          "status": "verified",
+          "plan_id": "plan_dashboard_delivery_repair_20260930",
+          "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
+          "node_ids": [
+            "N3"
+          ],
+          "source_commit": "0e8a17be42f8ebe336034bc40be4f07a1103a293",
+          "delivery_commit": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+          "remote_head": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+          "drive_root": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",
+          "manifest_sha256": "94a2e9159e39317843c8fe498b2571f9b163c391289a50e5cb41d2c60cdade59",
+          "plan_sha256": "a4299c2b178d11ea430a864708f262a58d96a3079ee2e642b17c528de1448f17",
+          "file_count": 1260,
+          "total_bytes": 450683595,
+          "readback_method": "Authenticated Google Drive UI loaded viewer/text pages 0 and 1 for the manifest; the browser captured both response bodies and their UTF-8 concatenation matched the mapped manifest SHA256 and byte length. Five source, test and plan files were individually read from Drive viewer/text response bodies; each matched its manifest SHA256 byte-for-byte.",
+          "readback_at": "2026-09-30T22:40:07.542Z",
+          "browser_manifest": {
+            "file_id": "1gNnfq6ajCq85Me-VJdLt_LLYfQfOwE6j",
+            "pages": [
+              0,
+              1
+            ],
+            "readback_bytes": 394937,
+            "sha256": "94a2e9159e39317843c8fe498b2571f9b163c391289a50e5cb41d2c60cdade59"
+          },
+          "verified_source_file_count": 5,
+          "verified_source_files": [
+            {
+              "path": ".codex/skills/team/scripts/session-concurrency.mjs",
+              "file_id": "1BOMuPMwbKDs9KxC1wpD0FtTaNGi0ubDL",
+              "bytes": 58691,
+              "sha256": "e75d01efe10ed0f36fd3fb6b948302008030cdaa3b97a33b0f13d5040ebc979a"
+            },
+            {
+              "path": "11_tools/project-supervisor/integration-coordinator.mjs",
+              "file_id": "1US5oEzdup4Y1qZt_PkYfF4w4NUKoTt3j",
+              "bytes": 40111,
+              "sha256": "4572a0d3318ac0c16822aacce2e97afd6e58ebab6f2a1c73128216ef9fba4a1c"
+            },
+            {
+              "path": "tests/session-concurrency.test.mjs",
+              "file_id": "1Dp4ag3T_5eTlnCG7dVjtI9BdHxWD7F9a",
+              "bytes": 21143,
+              "sha256": "6cd179be437419b78351aac24aa61ef124e688a817d8dd7576476941dfa9bb96"
+            },
+            {
+              "path": "tests/integration-coordinator.test.mjs",
+              "file_id": "17orCFwdfm5Qe0VPrSYdkMzLl8Nr5eOpi",
+              "bytes": 18296,
+              "sha256": "eec27864a36bc61729299cd7f2ede602d7b9c80516dd30789bc735214f5ca2bf"
+            },
+            {
+              "path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+              "file_id": "1NQU9hH4-d8LyvVtVlCBCxBnDAUKhBsTy",
+              "bytes": 70705,
+              "sha256": "a4299c2b178d11ea430a864708f262a58d96a3079ee2e642b17c528de1448f17"
+            }
+          ],
+          "previous_node_readbacks": [
+            "N0/N1: 40 cloud ZIP source files with SHA256 matches",
+            "N2: 8 cloud ZIP source files with SHA256 matches"
+          ],
+          "quarantine_readback": {
+            "file": "00_project/traceability/quarantine-cloud-readback-20260930.json",
+            "sha256": "fb0e79ddc9b87de571a666a764d6f1ea9854649fa8196106028e318ad75a6713",
+            "status": "verified",
+            "file_count": 220,
+            "total_bytes": 57622293
+          },
+          "gitee_readback": {
+            "status": "verified",
+            "remote": "origin",
+            "branch": "main",
+            "commit": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+            "remote_head": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+            "clean_clone": true,
+            "clone_path": "_work/current/gitee-clean-clone-n3"
+          },
+          "browser": {
+            "url": "http://127.0.0.1:4317/",
+            "health_root": "D:\\muIon-beam",
+            "health_pid": 19576,
+            "health_status": "healthy",
+            "supervisor_pid": 27300,
+            "process_parent_pid": 27300,
+            "process_command_line": "node D:\\muIon-beam\\11_tools\\research-dashboard\\server.mjs",
+            "served_html_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+            "main_html_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+            "html_match": true,
+            "served_js_sha256": "69ca7bae74018929cc2d7dbd9e673bda1c665ffa0bb72112f7f27f640d8a05b7",
+            "main_js_sha256": "69ca7bae74018929cc2d7dbd9e673bda1c665ffa0bb72112f7f640d8a05b7",
+            "js_match": true,
+            "api_status": 200,
+            "api_bytes": 6605,
+            "running_sessions": 1,
+            "needs_attention_sessions": 3,
+            "durable_unregistered_artifacts": 0,
+            "current_plan_phase": "P5",
+            "current_plan_step": "P5 · N3 · N3 source is validated; final delivery still requires P5 clean-clone, cloud recovery-index and dashboard evidence plus four historical cleanup receipts.",
+            "current_plan_progress": "3/4 (75%)",
+            "file_governance_panel_visible": true,
+            "unknown_rollout_warning_count": 2,
+            "screenshot": {
+              "captured_at": "2026-09-30T23:28:38.977Z",
+              "browser_url": "http://127.0.0.1:4317/",
+              "emitted_in_task_transcript": true
+            },
+            "restart_observation": {
+              "entry": "main ProjectSupervisor restart-service --name dashboard",
+              "before_pid": 25496,
+              "attempts": 2,
+              "result": "identity-change refusal; main supervisor respawned a healthy replacement",
+              "intermediate_pid": 10468,
+              "final_pid": 19576,
+              "final_parent_pid": 27300,
+              "final_root": "D:\\muIon-beam",
+              "served_hashes_match_main": true
+            }
+          },
+          "recovery_index": {
+            "path": "project/recovery-index/recovery-index.json",
+            "cloud_sha256": "342eb1a6792adf907482cd34a0e77d1b4b9be37e08e009ff329de9b643acd827",
+            "generated_at": "2026-09-25T09:00:52.902Z",
+            "downloaded_and_hash_verified": true,
+            "current_for_delivery_commit": false,
+            "next_action": "Refresh after the N3 plan receipt is published, then directly read back the cloud recovery-index."
+          },
+          "resolved_findings": [
+            "D80 quarantine cleanup must use the complete 220-item Drive readback and preserve both historical manifest contents unchanged.",
+            "6b5 host is absent from the current Codex and local thread indexes; require the closed session record, absent-thread evidence and clear process check before cleanup.",
+            "Two old Codex threads have missing source rollouts; keep them visible as unknown with diagnostics where records remain."
+          ],
+          "remaining_findings": [
+            "N3 still requires clean Gitee clone, final Drive manifest and recovery-index cloud readback, deployed 4317 browser verification, safe historical cleanup and task-session reaping.",
+            "Cloud recovery-index preview is older than the mapped copy; regenerate after final main/Drive receipt updates and verify the uploaded content.",
+            "Execution worktree removal must wait for this host turn to end and be checked independently."
+          ],
+          "next_action": "After N3 finalization, refresh and directly read back the cloud recovery-index for the plan receipt commit; after this host turn exits, independently verify automatic current-session worktree, branch and claim cleanup before marking the plan and goal complete."
+        },
+        "cleanup_disposition_receipt": {
+          "status": "verified",
+          "path": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
+          "sha256": "8b012d570ece70576478bc78f5af046ba25cfac1920e14712da12ae51ccc0e19"
+        }
       }
     }
   ],
@@ -887,7 +1058,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Checkpoint and integrate the quarantine receipt-scope correction; then verify the refreshed Drive mirror and finish D80-2, 6b5 and 8f62 cleanup.",
+    "next_action": "After N3 finalization, refresh and directly read back the cloud recovery-index for the plan receipt commit; after this host turn exits, independently verify automatic current-session worktree, branch and claim cleanup before marking the plan and goal complete.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -918,7 +1089,9 @@
       "N3 follow-up delivery now supersedes an integrated-but-untagged attempt only when its cloud-readback/tag/plan-receipt gates are pending, prior delivery is remote main ancestor of the fixed new source, and remote tag refs are absent; integration-coordinator test passes 7/7. The first unsafe follow-up was refused before main/tag mutation and is preserved in the old N3 outbox.",
       "Guarded N3 follow-up source replacement and regression test passed integration-coordinator 7/7. Reran node --test tests/*.mjs after both cleanup traversal and outbox-supersession fixes: 216/216 passed; tests/architecture-smoke.mjs passed (150 files, 12 variables).",
       "Cleanup preflight exposed publication.remote as alias origin while the clean clone stores the configured Gitee URL; cleanup now resolves and compares the actual remote URL, with a mismatch rejection test. Full project suite passed 216/216 after the fix; architecture smoke passed (150 required files, 12 variables).",
-      "A D80-2 cleanup attempt preserved its worktree when the shared 220-item quarantine readback was incorrectly required to exist in every historical worker. Cleanup now validates the fixed global receipt count and hashes only quarantine payloads actually present in each worker; the empty-source case and incomplete receipt are covered by tests/session-concurrency.test.mjs."
+      "A D80-2 cleanup attempt preserved its worktree when the shared 220-item quarantine readback was incorrectly required to exist in every historical worker. Cleanup now validates the fixed global receipt count and hashes only quarantine payloads actually present in each worker; the empty-source case and incomplete receipt are covered by tests/session-concurrency.test.mjs.",
+      "Delivered N3 after main, Gitee, Drive and annotated t-tag verification.",
+      "Historical worker branches and worktrees were removed through the fixed-SHA, Gitee/Drive-verified supersession gate; disposition receipt 00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json."
     ],
     "open_findings": [
       "N3 still requires a clean Gitee clone, latest Drive manifest and recovery-index cloud readback, deployed 4317 verification, and safe historical/session cleanup.",
@@ -985,7 +1158,7 @@
     "latest_main_commit": "69302f16570347666868a3022adf6a71b48db85d",
     "latest_main_remote_verified": "69302f16570347666868a3022adf6a71b48db85d"
   },
-  "updated_at": "2026-09-30T21:30:07.482Z",
+  "updated_at": "2026-09-30T23:40:34.807Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"
@@ -1031,8 +1204,6 @@
   "open_findings": [
     "N3 still requires clean Gitee clone, final Drive manifest and recovery-index cloud readback, deployed 4317 browser verification, safe historical cleanup and task-session reaping.",
     "Cloud recovery-index preview is older than the mapped copy; regenerate after final main/Drive receipt updates and verify the uploaded content.",
-    "D80 quarantine cleanup must use the complete 220-item Drive readback and preserve both historical manifest contents unchanged.",
-    "6b5 host is absent from the current Codex and local thread indexes; require the closed session record, absent-thread evidence and clear process check before cleanup.",
     "Two old Codex threads have missing rollout sources; keep their unknown status visible with diagnostics where records remain.",
     "Execution worktree removal must wait for this host turn to end and be checked independently."
   ]

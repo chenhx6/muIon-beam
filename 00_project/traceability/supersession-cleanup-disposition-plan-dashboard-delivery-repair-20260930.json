@@ -1,0 +1,1085 @@
+{
+  "schema_version": 1,
+  "record_type": "historical-worktree-cleanup-disposition",
+  "status": "verified",
+  "plan_id": "plan_dashboard_delivery_repair_20260930",
+  "node_id": "N3",
+  "created_at": "2026-09-30T23:39:44.566Z",
+  "sessions": [
+    {
+      "session_id": "codex-d80b7f12073a98b4eb63-1",
+      "branch": "codex/session/codex-d80b7f12073a98b4eb63-1",
+      "source_commit": "d5fedc0e9fe28393e560320a187191943cc9d476",
+      "merge_base": "06a595d8a48e8395c734a1976cff2b9ba6bd8e7c",
+      "path_mappings": [
+        {
+          "source_path": ".codex/skills/muion-project/scripts/autopilot.mjs",
+          "source_sha256": "211a8e061b352f0950bea5398c37efa63b3778659b99ac5d9bbd5f1a4611b1d6",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "not-adopted-for-this-plan; target=plan_v3.json offline checkpoint; This execution has a durable plan_v3 JSON checkpoint and native goal; a generic second planner/goal ledger is outside the approved scope.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/muion-project/scripts/build-index-views.mjs",
+          "source_sha256": "6b18ae3761543f7a82b71160c871afcae19505073f621eec936adbeaab688a65",
+          "delivery_path": ".codex/skills/muion-project/scripts/build-index-views.mjs",
+          "delivery_sha256": "36cfa241483b2834bd21ac7580f7c1fc59d5315ca581151b65d7a63a10ed40df",
+          "drive_sha256": "36cfa241483b2834bd21ac7580f7c1fc59d5315ca581151b65d7a63a10ed40df",
+          "disposition": "adopt-or-reimplement-in-N2; target=.codex/skills/muion-project/scripts/build-index-views.mjs; Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/muion-project/scripts/create-run-snapshot.mjs",
+          "source_sha256": "558acc986e399a7408f3bebf49e175ae90a568a7a8333458f38b62998f047cb9",
+          "delivery_path": ".codex/skills/muion-project/scripts/create-run-snapshot.mjs",
+          "delivery_sha256": "727066aadded61c1cb584a572dc029c52cd4d61e82f8478e8ed0ebbd1e708dd6",
+          "drive_sha256": "727066aadded61c1cb584a572dc029c52cd4d61e82f8478e8ed0ebbd1e708dd6",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/muion-project/scripts/deep-interview.mjs",
+          "source_sha256": "5dae5a27cfe9ceb07966d19e28bbdaa620edf7ce2390ba8aa793830d3a24cade",
+          "delivery_path": ".codex/skills/muion-project/scripts/deep-interview.mjs",
+          "delivery_sha256": "a838afe83a7f4c4047858dee3a38269f016e3b203f74d0839c119b5cf5a40aa9",
+          "drive_sha256": "a838afe83a7f4c4047858dee3a38269f016e3b203f74d0839c119b5cf5a40aa9",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/muion-project/scripts/legacy-smoke-test.mjs",
+          "source_sha256": "f18ad18f38e57e5ddf7286e93e96e790781cdc475003ce741daff9d4284ff974",
+          "delivery_path": ".codex/skills/muion-project/scripts/legacy-smoke-test.mjs",
+          "delivery_sha256": "cbf85482c9fe42cd02390fec53d2de2a97de58d191ed56085507ccce2d3f94ad",
+          "drive_sha256": "cbf85482c9fe42cd02390fec53d2de2a97de58d191ed56085507ccce2d3f94ad",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/muion-project/scripts/local-runtime-paths.mjs",
+          "source_sha256": "28c16f1e247888e1a96cbe4b5eb85fc0791c61a8794b4583e5c493a8400180c4",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "adopt-or-reimplement-in-N2; target=.codex/skills/muion-project/scripts/local-runtime-paths.mjs; Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/muion-project/scripts/offline-plan.mjs",
+          "source_sha256": "b5bb0aeb3cc0d23e2c9f34aeeec9562239811d02c24d5fe0fd1e3d4e611a70cc",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "not-adopted-for-this-plan; target=plan_v3.json offline checkpoint; This execution has a durable plan_v3 JSON checkpoint and native goal; a generic second planner/goal ledger is outside the approved scope.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/muion-project/scripts/preflight.mjs",
+          "source_sha256": "0b50b6fa719c2799cdc44e5bfe7680a4d608015eb7f874c379fc4b3c95cd9e8c",
+          "delivery_path": ".codex/skills/muion-project/scripts/preflight.mjs",
+          "delivery_sha256": "6a3cf5ec6af1ab8421d8180813c56bfbbd2329b8cff81e3b17db3f0ffa04ae30",
+          "drive_sha256": "6a3cf5ec6af1ab8421d8180813c56bfbbd2329b8cff81e3b17db3f0ffa04ae30",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/muion-project/scripts/ultragoal.mjs",
+          "source_sha256": "9826ef3bdde5869487d8c0aa4057f3be040218ebc9877643ec3e87696f1c453f",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "not-adopted-for-this-plan; target=plan_v3.json offline checkpoint; This execution has a durable plan_v3 JSON checkpoint and native goal; a generic second planner/goal ledger is outside the approved scope.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/team/SKILL.md",
+          "source_sha256": "bdf2185cb894114fa287ea3b3fdb4d343d0211876992f64c7d2f8cf82e9f0402",
+          "delivery_path": ".codex/skills/team/SKILL.md",
+          "delivery_sha256": "08dfd3abe1a93ad918b193ec84056844d101da44fbdfc35c3fd015e433dd6ff2",
+          "drive_sha256": "08dfd3abe1a93ad918b193ec84056844d101da44fbdfc35c3fd015e433dd6ff2",
+          "disposition": "adopted-in-N1; target=.codex/skills/team/SKILL.md; Current team contract receives the new resume, fixed-SHA integration and node-delivery rules.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".codex/skills/team/scripts/session-concurrency.mjs",
+          "source_sha256": "5cf0fdfd50f3530cb3d40d2db708fb3c1ebcb3ff53718d63043e60faa7a9ddb7",
+          "delivery_path": ".codex/skills/team/scripts/session-concurrency.mjs",
+          "delivery_sha256": "6ccb92e65c150ae90aa9b479ebf8ec3a4b6857ffc631003aee19a74354b435a8",
+          "drive_sha256": "6ccb92e65c150ae90aa9b479ebf8ec3a4b6857ffc631003aee19a74354b435a8",
+          "disposition": "adopted-in-N1; target=.codex/skills/team/scripts/session-concurrency.mjs; Resume, receipt locking, fixed source SHA and same-worktree continuation are adopted and tested.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": ".gitignore",
+          "source_sha256": "cfb54aa62b88afa072f37b08a800432a169a4a8d462feff35288254cbcdc624c",
+          "delivery_path": ".gitignore",
+          "delivery_sha256": "cce6478da598db1cb82016a5d6d3126f9c9df29a6d96839615e113a121de7528",
+          "drive_sha256": "cce6478da598db1cb82016a5d6d3126f9c9df29a6d96839615e113a121de7528",
+          "disposition": "selective-adoption-in-N2; target=.gitignore; Keep main outbox/private rules; add only verified local-runtime/quarantine exclusions after P2 review.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/config/dashboard-history.json",
+          "source_sha256": "92a58c61885a1a93e8244b774e9f603add682a0246aedc7979310c8b70c95858",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "rejected; target=none; A permanent historical session whitelist conflicts with the v3 visibility matrix; status-based filtering replaces this file.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/config/delivery-policy.json",
+          "source_sha256": "f9f59e01136db6e158c61250c3ac1552de4380c354d1ca83e22e2dd354be069a",
+          "delivery_path": "00_project/config/delivery-policy.json",
+          "delivery_sha256": "4e8b1c550ffc47196a64704f5f55c8d5d4a44994c7eefe58de87f2277cd90035",
+          "drive_sha256": "4e8b1c550ffc47196a64704f5f55c8d5d4a44994c7eefe58de87f2277cd90035",
+          "disposition": "equivalent-by-normalized-json; target=current main; Parsed JSON is semantically equal after array ordering normalization; no config change required.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/config/drive-mirror-policy.json",
+          "source_sha256": "4da05608b19d14f061b2edc36ddac2b2e9ff8e5140fd5e1a525d3e4b14b8ebdc",
+          "delivery_path": "00_project/config/drive-mirror-policy.json",
+          "delivery_sha256": "c1b31befc5fbe2284aa446bad7fe4aec4992cf52a9c457ffffc02d3ffdf7e781",
+          "drive_sha256": "c1b31befc5fbe2284aa446bad7fe4aec4992cf52a9c457ffffc02d3ffdf7e781",
+          "disposition": "equivalent-by-normalized-json; target=current main; Parsed JSON is semantically equal after array ordering normalization; no config change required.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/config/web-research-environment.json",
+          "source_sha256": "886793d93ddb7fb5dba457e197d984dc20f6ce00156510335884a1a29c357f62",
+          "delivery_path": "00_project/config/web-research-environment.json",
+          "delivery_sha256": "cb81053545dfeae9c22628c5ebe29725135388fe59267b4dd29c0d7134d5fe84",
+          "drive_sha256": "cb81053545dfeae9c22628c5ebe29725135388fe59267b4dd29c0d7134d5fe84",
+          "disposition": "superseded-by-newer-main-environment; target=current main; Current main carries a 2026-09-29 environment record with newer Browser Use pin and project-local launcher; P5 will verify the existing private paths.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/decisions/legacy-source-change-decision.json",
+          "source_sha256": "df8afe3e04ad418da1401aed22202458d4421690998e16817eb3a374c9b187c9",
+          "delivery_path": "00_project/decisions/legacy-source-change-decision.json",
+          "delivery_sha256": "1fc42b11d1dd17dc8358ed9b1fa6c476fd63292886d16fb5397539aa6e7d869b",
+          "drive_sha256": "1fc42b11d1dd17dc8358ed9b1fa6c476fd63292886d16fb5397539aa6e7d869b",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/templates/behavior-analysis.yaml",
+          "source_sha256": "f244c2a2f1f461ec1c8a7d364a189261f2fcfd33a21f5f35bb3497186e945288",
+          "delivery_path": "00_project/templates/behavior-analysis.yaml",
+          "delivery_sha256": "3a489353439d4c4019b8fac69843c5173447b22ad321aa8357bddc8430bba1d6",
+          "drive_sha256": "3a489353439d4c4019b8fac69843c5173447b22ad321aa8357bddc8430bba1d6",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/templates/figure-manifest.yaml",
+          "source_sha256": "98a36556cac461b39901e766013ad0451108125774c0109ee2a99cd57063d463",
+          "delivery_path": "00_project/templates/figure-manifest.yaml",
+          "delivery_sha256": "4296f044d3b83c07fe35da697075e839ee9e0d1396b064a4bd7fb99a46fe5949",
+          "drive_sha256": "4296f044d3b83c07fe35da697075e839ee9e0d1396b064a4bd7fb99a46fe5949",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/templates/run-manifest.yaml",
+          "source_sha256": "7d90b7931e8938d9a70a6aee49021a627c7d7eac8f12121913a13567c5f0cdbd",
+          "delivery_path": "00_project/templates/run-manifest.yaml",
+          "delivery_sha256": "4e45e9c22c13414b59d769de16eb53352e3cc0acda03548b43467869d1df4c1e",
+          "drive_sha256": "4e45e9c22c13414b59d769de16eb53352e3cc0acda03548b43467869d1df4c1e",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/templates/task-card.yaml",
+          "source_sha256": "b0cab13ee60a412fd20273a5ed44a739dfb70a89a6249e7c9cca97fe04472bd7",
+          "delivery_path": "00_project/templates/task-card.yaml",
+          "delivery_sha256": "8591d6b38897991d176f128c0ee140cf0396fe47d5fec1da2fd78d7e82d5b893",
+          "drive_sha256": "8591d6b38897991d176f128c0ee140cf0396fe47d5fec1da2fd78d7e82d5b893",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/MODEL_INDEX.md",
+          "source_sha256": "322e83474e948a76ed0b4f02931daffb43b2c3d79ae46fb3ea8a3357bd02782c",
+          "delivery_path": "00_project/traceability/MODEL_INDEX.md",
+          "delivery_sha256": "3694803f7936646130f1e1662f16f327cbba1dc06c85e67167fc286b5cb714fb",
+          "drive_sha256": "3694803f7936646130f1e1662f16f327cbba1dc06c85e67167fc286b5cb714fb",
+          "disposition": "regenerate-after-N1; target=00_project/traceability/MODEL_INDEX.md; Generated index views will be rebuilt with the current generator after durable receipts are adopted; source worker text is not copied.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/PROJECT_INDEX.md",
+          "source_sha256": "10df2774bfdfecfca94a6fa588a1112f43697bce45265f82e88a2e39dcc93b68",
+          "delivery_path": "00_project/traceability/PROJECT_INDEX.md",
+          "delivery_sha256": "bc8f2c2880c6ffb16aa6ab01674f94abd44319ffc6e255e85fcb20921c063109",
+          "drive_sha256": "bc8f2c2880c6ffb16aa6ab01674f94abd44319ffc6e255e85fcb20921c063109",
+          "disposition": "regenerate-after-N1; target=00_project/traceability/PROJECT_INDEX.md; Generated index views will be rebuilt with the current generator after durable receipts are adopted; source worker text is not copied.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/RESULTS_INDEX.md",
+          "source_sha256": "c6b77b5540ced953d024af3362a086dacc18c9277bdf9d30106f3db8d0f94938",
+          "delivery_path": "00_project/traceability/RESULTS_INDEX.md",
+          "delivery_sha256": "81589bca7d03194f3991a35de67c86ad643260e71cca36d7f4db000f9b172772",
+          "drive_sha256": "81589bca7d03194f3991a35de67c86ad643260e71cca36d7f4db000f9b172772",
+          "disposition": "regenerate-after-N1; target=00_project/traceability/RESULTS_INDEX.md; Generated index views will be rebuilt with the current generator after durable receipts are adopted; source worker text is not copied.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/TASK_INDEX.md",
+          "source_sha256": "415af275dff970cc5730c306a2f68c189af2c499c84d4d1838c42d4893054865",
+          "delivery_path": "00_project/traceability/TASK_INDEX.md",
+          "delivery_sha256": "0f20384e1305507da34258b5757181bf35c5a7dc82693d23ad5cb2f3c989e87e",
+          "drive_sha256": "0f20384e1305507da34258b5757181bf35c5a7dc82693d23ad5cb2f3c989e87e",
+          "disposition": "regenerate-after-N1; target=00_project/traceability/TASK_INDEX.md; Generated index views will be rebuilt with the current generator after durable receipts are adopted; source worker text is not copied.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/VARIABLE_CATALOG.csv",
+          "source_sha256": "aacfbe5a7b00c64bde4bb0ab1dcf52b95c7d49453a254ac28f30d084568b74d8",
+          "delivery_path": "00_project/traceability/VARIABLE_CATALOG.csv",
+          "delivery_sha256": "eef31a78f215e3d903d3e066853149bf7f490c8f91615bb9ef829308c3c7a7bc",
+          "drive_sha256": "eef31a78f215e3d903d3e066853149bf7f490c8f91615bb9ef829308c3c7a7bc",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/VARIABLE_CATALOG.md",
+          "source_sha256": "349dbd5fd081ad903cca0f69201fe5c4dc30db89e6054bfcbdc13c07c18a7b0d",
+          "delivery_path": "00_project/traceability/VARIABLE_CATALOG.md",
+          "delivery_sha256": "e825be4aaada0fc1f9ebf648e2ec5d64f3f1ed850f5292960b9ffee71c78a3bc",
+          "drive_sha256": "e825be4aaada0fc1f9ebf648e2ec5d64f3f1ed850f5292960b9ffee71c78a3bc",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/active-checkout-output-cleanup-plan-20260924.json",
+          "source_sha256": "0068e2dfb74141843f510f410d7892b68081dcfe0ba74b82671472940ed9e13b",
+          "delivery_path": "00_project/traceability/active-checkout-output-cleanup-plan-20260924.json",
+          "delivery_sha256": "4f7985c44b7fc2c8524b7e73f84c96c1ead08da74dc078dc80eed1e17615ae03",
+          "drive_sha256": "4f7985c44b7fc2c8524b7e73f84c96c1ead08da74dc078dc80eed1e17615ae03",
+          "disposition": "adopted-historical-record; target=00_project/traceability/active-checkout-output-cleanup-plan-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/agent-runs/AGENT-web-toolchain-audit-20260924.json",
+          "source_sha256": "7b67c4d3ff03ffda7b531ab883fdec3289b0b8fccb1f5542a48be78809c09262",
+          "delivery_path": "00_project/traceability/agent-runs/AGENT-web-toolchain-audit-20260924.json",
+          "delivery_sha256": "68c86d2ad10a30e6366896408a0e37a6a5f73a624542896110bd3b81d08f7bbb",
+          "drive_sha256": "68c86d2ad10a30e6366896408a0e37a6a5f73a624542896110bd3b81d08f7bbb",
+          "disposition": "adopted-historical-record; target=00_project/traceability/agent-runs/AGENT-web-toolchain-audit-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/dashboard-cleanup-20260924.json",
+          "source_sha256": "1357a67d01ffd561d8d549581e2edb6adc4a3c63241276e8f9aefd3501ec4358",
+          "delivery_path": "00_project/traceability/dashboard-cleanup-20260924.json",
+          "delivery_sha256": "36d50c70273b1a3b3915a3d009833e83a3c99d369f2679524de3248f81ae4060",
+          "drive_sha256": "36d50c70273b1a3b3915a3d009833e83a3c99d369f2679524de3248f81ae4060",
+          "disposition": "adopted-historical-record; target=00_project/traceability/dashboard-cleanup-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/dashboard-deployment-20260924.json",
+          "source_sha256": "749555bd64da3654d2d00ceae857603bf940fd593348e2322f4e3ec214088ab1",
+          "delivery_path": "00_project/traceability/dashboard-deployment-20260924.json",
+          "delivery_sha256": "31fb66d6fe5e7bd3a7a8abd5110bb4f5695d8d22fdece470c8eae76e1553cef7",
+          "drive_sha256": "31fb66d6fe5e7bd3a7a8abd5110bb4f5695d8d22fdece470c8eae76e1553cef7",
+          "disposition": "adopted-historical-record; target=00_project/traceability/dashboard-deployment-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/dashboard-live-drift-20260924.json",
+          "source_sha256": "4aec8bd675ef3a8198369b2221bcfc811cfe785f82a0e37a4193257b13d787c9",
+          "delivery_path": "00_project/traceability/dashboard-live-drift-20260924.json",
+          "delivery_sha256": "b5d1eb68a42fb06095c486fa0fceafc4d0dd952547b7cca7ed59723ea31744e0",
+          "drive_sha256": "b5d1eb68a42fb06095c486fa0fceafc4d0dd952547b7cca7ed59723ea31744e0",
+          "disposition": "adopted-historical-record; target=00_project/traceability/dashboard-live-drift-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/deleted-content-drive-audit-20260924.json",
+          "source_sha256": "44ee48575013c24a0dce4329ce3793f595244a6589ffd7fe86ab3f742a903533",
+          "delivery_path": "00_project/traceability/deleted-content-drive-audit-20260924.json",
+          "delivery_sha256": "1dd9286db5ce183ccb42b6ed6d77852b9905177d04e3ff9448f6096264446e6f",
+          "drive_sha256": "1dd9286db5ce183ccb42b6ed6d77852b9905177d04e3ff9448f6096264446e6f",
+          "disposition": "adopted-historical-record; target=00_project/traceability/deleted-content-drive-audit-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/evolution/EVOLUTION-20260924-dashboard-ui-candidates.json",
+          "source_sha256": "f582c6a9946789b0e358a1a248443ee7199e1cd04f68f9edf982e94a6e504ba2",
+          "delivery_path": "00_project/traceability/evolution/EVOLUTION-20260924-dashboard-ui-candidates.json",
+          "delivery_sha256": "f1b31c9cc1ada5c2f3032823d7bffaeeb31507bb9547d571934fb21c294b3263",
+          "drive_sha256": "f1b31c9cc1ada5c2f3032823d7bffaeeb31507bb9547d571934fb21c294b3263",
+          "disposition": "historical-only-preserved; target=00_project/traceability/evolution/EVOLUTION-20260924-dashboard-ui-candidates.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/evolution/EVOLUTION-20260924-oh-my-codex-goal-restudy.json",
+          "source_sha256": "9e21ee678def72b941b3a03b5baab3c09171bfda2027f2f12ce5caac844c80a3",
+          "delivery_path": "00_project/traceability/evolution/EVOLUTION-20260924-oh-my-codex-goal-restudy.json",
+          "delivery_sha256": "5ce65846075064a09c5beb3a29446198ae5e4b349434cd2e1ef3ed345107a730",
+          "drive_sha256": "5ce65846075064a09c5beb3a29446198ae5e4b349434cd2e1ef3ed345107a730",
+          "disposition": "historical-only-preserved; target=00_project/traceability/evolution/EVOLUTION-20260924-oh-my-codex-goal-restudy.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/evolution/EVOLUTION-20260924-web-research-toolchain-candidates.json",
+          "source_sha256": "7e65f42429fc7a41ed7be9ba44b3afd7e615c2490badcb2e697969b232110a95",
+          "delivery_path": "00_project/traceability/evolution/EVOLUTION-20260924-web-research-toolchain-candidates.json",
+          "delivery_sha256": "e0be24ac3d8d0476623e060316461e109673343b5f9e0910842abbbf65c23c52",
+          "drive_sha256": "e0be24ac3d8d0476623e060316461e109673343b5f9e0910842abbbf65c23c52",
+          "disposition": "historical-only-preserved; target=00_project/traceability/evolution/EVOLUTION-20260924-web-research-toolchain-candidates.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/experiences/EXP-20260924-submitted-session-resume-lifecycle.json",
+          "source_sha256": "d7dd03c48456362c0c530f84c7844081d61974f94731fc0c6081e3d30ac16978",
+          "delivery_path": "00_project/traceability/experiences/EXP-20260924-submitted-session-resume-lifecycle.json",
+          "delivery_sha256": "1c0a0c038b974a48cd4e4fdd9a5b6e0cc4046d311d6a84dc9290058b59b4e047",
+          "drive_sha256": "1c0a0c038b974a48cd4e4fdd9a5b6e0cc4046d311d6a84dc9290058b59b4e047",
+          "disposition": "adopted-historical-record; target=00_project/traceability/experiences/EXP-20260924-submitted-session-resume-lifecycle.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/governance-incremental-receipt-20260924.json",
+          "source_sha256": "3a09269392221a884719d8fa00412f68d006df4e676789eef8f0ffbc6aa095e7",
+          "delivery_path": "00_project/traceability/governance-incremental-receipt-20260924.json",
+          "delivery_sha256": "e7caa48165cd1529d3b4211716deb238f448099679a9c01a2e4ef24bc0bdc262",
+          "drive_sha256": "e7caa48165cd1529d3b4211716deb238f448099679a9c01a2e4ef24bc0bdc262",
+          "disposition": "adopted-historical-record; target=00_project/traceability/governance-incremental-receipt-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/governance-rename-review-20260924.json",
+          "source_sha256": "b10521918ca0d38e5e17b236a505863cba2e76acf0015995682c182d020ad22b",
+          "delivery_path": "00_project/traceability/governance-rename-review-20260924.json",
+          "delivery_sha256": "feee05350c91b3aa535f83cb413d61ce947e707c25dc1aa603954631be170fe1",
+          "drive_sha256": "feee05350c91b3aa535f83cb413d61ce947e707c25dc1aa603954631be170fe1",
+          "disposition": "adopted-historical-record; target=00_project/traceability/governance-rename-review-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/governance-untracked-asset-receipt-20260924.json",
+          "source_sha256": "3fe62108996963e2deec61142a8ce5a51d515c446af06e128ecebd984fcb945b",
+          "delivery_path": "00_project/traceability/governance-untracked-asset-receipt-20260924.json",
+          "delivery_sha256": "3a029a4c5b8fc81101517bd9ab6ff7779f81024fbd9dc7729d099ec296285929",
+          "drive_sha256": "3a029a4c5b8fc81101517bd9ab6ff7779f81024fbd9dc7729d099ec296285929",
+          "disposition": "adopted-historical-record; target=00_project/traceability/governance-untracked-asset-receipt-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md",
+          "source_sha256": "318f0da9096b8c570f0751ca492f4ad3ce6b2ea042ea2586a80bc9d7521f4613",
+          "delivery_path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md",
+          "delivery_sha256": "96cb3a03ec76b3f7b205a688998b4fe6a653f75aa6e6474e4209541752f8dee7",
+          "drive_sha256": "96cb3a03ec76b3f7b205a688998b4fe6a653f75aa6e6474e4209541752f8dee7",
+          "disposition": "adopted-historical-record; target=00_project/traceability/incidents/SESSION-INCIDENT-20260924-DELIVERY-DEADLOCK.md; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-SUBMITTED-RESUME.json",
+          "source_sha256": "f297fc6bf7028ed3bae816b70e1e4a3c29d852184a0189951f6b9b5a1bacb9c7",
+          "delivery_path": "00_project/traceability/incidents/SESSION-INCIDENT-20260924-SUBMITTED-RESUME.json",
+          "delivery_sha256": "89f3349ba3b55b1c95bad965c60a6b5e376b66136fe2b482cc87723f414becc9",
+          "drive_sha256": "89f3349ba3b55b1c95bad965c60a6b5e376b66136fe2b482cc87723f414becc9",
+          "disposition": "adopted-historical-record; target=00_project/traceability/incidents/SESSION-INCIDENT-20260924-SUBMITTED-RESUME.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/leader-delivery-bundle-20260924.json",
+          "source_sha256": "8187826172d38edad2ef696cc8620a48354f744c9cf46f88a987c61be450d4a1",
+          "delivery_path": "00_project/traceability/leader-delivery-bundle-20260924.json",
+          "delivery_sha256": "9cd0b67d2c91c4e700d6000b09d1b07b4020999cff5b2fd5d243d0812c6fbbf8",
+          "drive_sha256": "9cd0b67d2c91c4e700d6000b09d1b07b4020999cff5b2fd5d243d0812c6fbbf8",
+          "disposition": "adopted-historical-record; target=00_project/traceability/leader-delivery-bundle-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/leader-integration-blocker-20260924.json",
+          "source_sha256": "be2b13c40e7f8a9f3714c5576eb38ee6d84ef42dfbe91bcea2d0dd0525b320fd",
+          "delivery_path": "00_project/traceability/leader-integration-blocker-20260924.json",
+          "delivery_sha256": "9354d2919721dc06923bd630bddf8d2c9c91421d9312c5b549a9fce579236466",
+          "drive_sha256": "9354d2919721dc06923bd630bddf8d2c9c91421d9312c5b549a9fce579236466",
+          "disposition": "adopted-historical-record; target=00_project/traceability/leader-integration-blocker-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/quarantine-drive-verification-20260924.json",
+          "source_sha256": "2269d722b987b399d84fe0112bf279a2ed3defbd6ed81929d09a9c033b0d3412",
+          "delivery_path": "00_project/traceability/quarantine-drive-verification-20260924.json",
+          "delivery_sha256": "e480303248934b1cfa36ad811e131c9dbe397585a5df4162b2c9f6568a549840",
+          "drive_sha256": "e480303248934b1cfa36ad811e131c9dbe397585a5df4162b2c9f6568a549840",
+          "disposition": "adopted-historical-record; target=00_project/traceability/quarantine-drive-verification-20260924.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/traceability/variable-catalog.yaml",
+          "source_sha256": "8300c4916cd797f8ed6081ad76c0a86a09d5e40372aa6b6666fb706c4de8b3be",
+          "delivery_path": "00_project/traceability/variable-catalog.yaml",
+          "delivery_sha256": "f1cfe6831954632b0626f67ae625653b1a145adb7c0dacd113ae1a5cb0aea40f",
+          "drive_sha256": "f1cfe6831954632b0626f67ae625653b1a145adb7c0dacd113ae1a5cb0aea40f",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/web-research/README.md",
+          "source_sha256": "f2a6d9b02f7b045f4653f6a5bf4e2bf22a4cecf6f4266ad8223dcc65e3b83a90",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "replaced-by-current-main-toolchain; target=00_project/web-research/run.ps1 and web-research-environment.json; The d80 adapter pins an older Browser Use version; P5 will verify the newer project-local venv/private paths without installing or publishing private data.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/web-research/browser-use-0.13.2.requirements.txt",
+          "source_sha256": "d7382438fe7bdebd6d77e2050b5728210022e5d92d643417ce8dced4bd2fe0b1",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "replaced-by-current-main-toolchain; target=00_project/web-research/run.ps1 and web-research-environment.json; The d80 adapter pins an older Browser Use version; P5 will verify the newer project-local venv/private paths without installing or publishing private data.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "00_project/web-research/crawl4ai-0.9.4.requirements.txt",
+          "source_sha256": "4c11c8d2493c5f53d6bb0466b3e8cd66f883016df732990c4171187b707519a7",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "replaced-by-current-main-toolchain; target=00_project/web-research/run.ps1 and web-research-environment.json; The d80 adapter pins an older Browser Use version; P5 will verify the newer project-local venv/private paths without installing or publishing private data.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "02_models/model-fingerprints.json",
+          "source_sha256": "77c5211221ece37b164d4f61913bfa7ceb1665288d240d28fae9ead67d16bb79",
+          "delivery_path": "02_models/model-fingerprints.json",
+          "delivery_sha256": "636015b43878f3ee31d55be4dc287c6ee6e02ca01c210ec21f2a3a8684d5dc67",
+          "drive_sha256": "636015b43878f3ee31d55be4dc287c6ee6e02ca01c210ec21f2a3a8684d5dc67",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "03_runs/formal/README.md",
+          "source_sha256": "b197a6baa8989e65bf45563bfa6711d0245e23c6a1444276276313ea55dd33ee",
+          "delivery_path": "03_runs/formal/README.md",
+          "delivery_sha256": "955a2f3c45dc6c188ab33f6f8b9614e44496fec4fd66d544f78be4a6ca0a3aa2",
+          "drive_sha256": "955a2f3c45dc6c188ab33f6f8b9614e44496fec4fd66d544f78be4a6ca0a3aa2",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "04_results/figures/legacy-smoke/generate_cooling_density_figure.py",
+          "source_sha256": "05e7b119d9670d3af0e662363653602768a511090e73044a94d3423b94b9c9a1",
+          "delivery_path": "04_results/figures/legacy-smoke/generate_cooling_density_figure.py",
+          "delivery_sha256": "a1f49f396c992a97e1c62102a4d513dfe4271c2e8df47100b7e911591cf14949",
+          "drive_sha256": "a1f49f396c992a97e1c62102a4d513dfe4271c2e8df47100b7e911591cf14949",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "05_reports/release/r1-framework-acceptance-result-note-zh.md",
+          "source_sha256": "8116238f8415d34e1b830fc289cde550defdd12bb7f33f8f45dbbd1cc41acca5",
+          "delivery_path": "05_reports/release/r1-framework-acceptance-result-note-zh.md",
+          "delivery_sha256": "b3ef0854adc83bfe31ee7ccbf865d18af29090c783d75cb76484ac7932b0824a",
+          "drive_sha256": "b3ef0854adc83bfe31ee7ccbf865d18af29090c783d75cb76484ac7932b0824a",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "05_reports/release/r1-index-and-sync-hardening-result-note-zh.md",
+          "source_sha256": "e9e28719e5952e7f8353ce9d74ca7a2be370a0019b384a3ab293adf4e1d25d21",
+          "delivery_path": "05_reports/release/r1-index-and-sync-hardening-result-note-zh.md",
+          "delivery_sha256": "624b694031c0a4187cb317af29da4110ec2f7eac1cbb3535fb89f7225b53be9b",
+          "drive_sha256": "624b694031c0a4187cb317af29da4110ec2f7eac1cbb3535fb89f7225b53be9b",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "05_reports/release/r1-legacy-migration-smoke-result-note-zh.md",
+          "source_sha256": "5fef58e3d5a97607378b22f946c0ff87a351c73e3b192366665516bf9aaa2372",
+          "delivery_path": "05_reports/release/r1-legacy-migration-smoke-result-note-zh.md",
+          "delivery_sha256": "457a0f243bd338bc686b5ac68699c50af719e6d76a2c4060b19f58cf6ceea323",
+          "drive_sha256": "457a0f243bd338bc686b5ac68699c50af719e6d76a2c4060b19f58cf6ceea323",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "05_reports/release/r1-legacy-migration-smoke-verified-result-note-zh.md",
+          "source_sha256": "a42f376eca6df2f969a83106384465441a6340aaa53d625219a094ffe38ae4a1",
+          "delivery_path": "05_reports/release/r1-legacy-migration-smoke-verified-result-note-zh.md",
+          "delivery_sha256": "b808300f380801a390d31f39e5833e6c9629a3a1b18e76f43bfc34559b3c1a91",
+          "drive_sha256": "b808300f380801a390d31f39e5833e6c9629a3a1b18e76f43bfc34559b3c1a91",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "05_reports/release/r1-project-snapshot-verified-result-note-zh.md",
+          "source_sha256": "f4f0531f631957db84cf6ca161f6757377c3cc1d5a15ec8e5256ef06ed491200",
+          "delivery_path": "05_reports/release/r1-project-snapshot-verified-result-note-zh.md",
+          "delivery_sha256": "18db4ddcb008407c05b4db25c4d653dd31d2282bde9b917e55e2093bde944475",
+          "drive_sha256": "18db4ddcb008407c05b4db25c4d653dd31d2282bde9b917e55e2093bde944475",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "05_reports/review/legacy-smoke-acceptance-final-zh.md",
+          "source_sha256": "169cb06f11dbe022bc288c6cab1c12ce6a4173bbd582d9f3164b65daae4bc7c4",
+          "delivery_path": "05_reports/review/legacy-smoke-acceptance-final-zh.md",
+          "delivery_sha256": "ec99ca5ac8d024689b1d4eab42f42a4e0cfca791162ce2b2f7b3f236d75d48e0",
+          "drive_sha256": "ec99ca5ac8d024689b1d4eab42f42a4e0cfca791162ce2b2f7b3f236d75d48e0",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "05_reports/review/legacy-smoke-acceptance-zh.md",
+          "source_sha256": "c4b5c2048121c355c238fe4e21b5af0f22fac1588661aec575a7682aed224266",
+          "delivery_path": "05_reports/review/legacy-smoke-acceptance-zh.md",
+          "delivery_sha256": "60722e5e0ac4b16d3c1f30bd602d49877f8f2d823e7f514325d2c924fd4d4a90",
+          "drive_sha256": "60722e5e0ac4b16d3c1f30bd602d49877f8f2d823e7f514325d2c924fd4d4a90",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "05_reports/review/second-stage-final-acceptance-zh.md",
+          "source_sha256": "23939a9a1690a50429a1bef8b68e0f9691567304b780cb55c8d6726d6b5063f8",
+          "delivery_path": "05_reports/review/second-stage-final-acceptance-zh.md",
+          "delivery_sha256": "91e321ce7a096ebab88bce0f88d126fd93ee8dbb1b57ebf1030ec46a44d6b171",
+          "drive_sha256": "91e321ce7a096ebab88bce0f88d126fd93ee8dbb1b57ebf1030ec46a44d6b171",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "07_research_system/blocks/comsol/contracts/result.yaml",
+          "source_sha256": "ae7428f2ffa8e894ac1355f1786829e3254b93c374018916cb168da2a532c5a1",
+          "delivery_path": "07_research_system/blocks/comsol/contracts/result.yaml",
+          "delivery_sha256": "1c72ae2f33983fe64189b0414e4994b06d48b0c84bce2e90183e4e1af96fab5e",
+          "drive_sha256": "1c72ae2f33983fe64189b0414e4994b06d48b0c84bce2e90183e4e1af96fab5e",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "07_research_system/blocks/comsol/contracts/task.yaml",
+          "source_sha256": "8e7c1b62c92180d4439eb22c316200d978d796953fa771e53b5377a924d75009",
+          "delivery_path": "07_research_system/blocks/comsol/contracts/task.yaml",
+          "delivery_sha256": "05325d060f837fff91fc846df8d9347b7ec484984ff83264c71a91581471608c",
+          "drive_sha256": "05325d060f837fff91fc846df8d9347b7ec484984ff83264c71a91581471608c",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "07_research_system/blocks/geant4/scripts/preflight.mjs",
+          "source_sha256": "c9eb5e9a3faba3efbeb7ceb8586a97f3e4e3f17f4bbb93e13d4574e6097c6bc8",
+          "delivery_path": "07_research_system/blocks/geant4/scripts/preflight.mjs",
+          "delivery_sha256": "0d1fdabcba35286e9480f936595ae07cc186295e79b13aff671d00cb69ae7df4",
+          "drive_sha256": "0d1fdabcba35286e9480f936595ae07cc186295e79b13aff671d00cb69ae7df4",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "07_research_system/control/research-state/NOW.md",
+          "source_sha256": "5d645ffa15305cf262d90fbab8df826da56934260cb4ecf6c6a4ade8631a2d26",
+          "delivery_path": "07_research_system/control/research-state/NOW.md",
+          "delivery_sha256": "bb2b8cdf1a705f482b08fac5bd8e6b235f818c940bcf823cef7b5a88ad984b22",
+          "drive_sha256": "bb2b8cdf1a705f482b08fac5bd8e6b235f818c940bcf823cef7b5a88ad984b22",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "07_research_system/control/research-state/decision-log.md",
+          "source_sha256": "f61165ecf6d723df773731f9736c6d6521a55690a71d1363b89cfc09b3fb4d1a",
+          "delivery_path": "07_research_system/control/research-state/decision-log.md",
+          "delivery_sha256": "faab86bc3e110757a5dfe131e6558864e16094bc3a1c20123902981ddebb0b6f",
+          "drive_sha256": "faab86bc3e110757a5dfe131e6558864e16094bc3a1c20123902981ddebb0b6f",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "07_research_system/control/research-state/events.jsonl",
+          "source_sha256": "5b9d06e721eda7fe55a9855e535adee062b8156da726fa0de4db55e8c63b922c",
+          "delivery_path": "07_research_system/control/research-state/events.jsonl",
+          "delivery_sha256": "4e15748f58748226d3072fc7ed9a0585103f7a4e56574ead89b2d3bec93b041a",
+          "drive_sha256": "4e15748f58748226d3072fc7ed9a0585103f7a4e56574ead89b2d3bec93b041a",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "07_research_system/control/research-state/state.yaml",
+          "source_sha256": "5a3986a754b77dd8d972a5aeeeab6983bd831d119c1262f98f2bdf5273979f6c",
+          "delivery_path": "07_research_system/control/research-state/state.yaml",
+          "delivery_sha256": "dbc5048116c81407a18efb1496618555fbcf47aabad89d0fa036074b61355280",
+          "drive_sha256": "dbc5048116c81407a18efb1496618555fbcf47aabad89d0fa036074b61355280",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_index.json",
+          "source_sha256": "bf50c8ae4e5f43e96925f93c33099edaad9b24fe06501fe240d874e76ef12aac",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_index.json",
+          "delivery_sha256": "fc20377f8a0768d22f10e3638bc8be6cea93a237675d91e54e446a55d37921bd",
+          "drive_sha256": "fc20377f8a0768d22f10e3638bc8be6cea93a237675d91e54e446a55d37921bd",
+          "disposition": "superseded-by-v3-correction; target=plan_v02-correction-20260930.json and plan_v3.json; Preserve current historical plan_v02; regenerate index and do not import stale completed fields.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v01.md",
+          "source_sha256": "036fe8b8051be19ec25322f7a4abc9892a93cf51aa0ba0ea70a3ef62f0382b14",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v01.md",
+          "delivery_sha256": "5f6a0fa53161e6f593a98607cebe4cedb492b8bf3580577fb46ff127fd975a78",
+          "drive_sha256": "5f6a0fa53161e6f593a98607cebe4cedb492b8bf3580577fb46ff127fd975a78",
+          "disposition": "adopted-historical-record; target=10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v01.md; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.json",
+          "source_sha256": "adad5ca0f6fdaa009d9f15f4530829d51dbc8a7adb0fcfe1ffda62784278bdb9",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.json",
+          "delivery_sha256": "edbc418160ea8a4480caf1de9ef32e4ee21b8bec9af1734da58b80e005f00d9f",
+          "drive_sha256": "edbc418160ea8a4480caf1de9ef32e4ee21b8bec9af1734da58b80e005f00d9f",
+          "disposition": "superseded-by-v3-correction; target=plan_v02-correction-20260930.json and plan_v3.json; Preserve current historical plan_v02; regenerate index and do not import stale completed fields.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.md",
+          "source_sha256": "75378e4418abedbf89e813f2b953086e0ee17ec2ba9e9c597489eb86b9fc8208",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v02.md",
+          "delivery_sha256": "75378e4418abedbf89e813f2b953086e0ee17ec2ba9e9c597489eb86b9fc8208",
+          "drive_sha256": "75378e4418abedbf89e813f2b953086e0ee17ec2ba9e9c597489eb86b9fc8208",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "11_tools/project-supervisor/artifact-catalog.mjs",
+          "source_sha256": "22153c6027df8af9fddfceeaea26c40603aff2602818a5c83d1b99cd1be3e852",
+          "delivery_path": "11_tools/project-supervisor/artifact-catalog.mjs",
+          "delivery_sha256": "1d7a39a708f9af6fbcef76668a0a6ec94bdc118111c66186c40fea3e27790421",
+          "drive_sha256": "1d7a39a708f9af6fbcef76668a0a6ec94bdc118111c66186c40fea3e27790421",
+          "disposition": "adopt-or-reimplement-in-N2; target=11_tools/project-supervisor/artifact-catalog.mjs; Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "11_tools/project-supervisor/artifact-promoter.mjs",
+          "source_sha256": "8cbce555a93d31bf9330b3b704135a48c2a68a91c591a1149e87356f552b33f9",
+          "delivery_path": "11_tools/project-supervisor/artifact-promoter.mjs",
+          "delivery_sha256": "4f53e111377e4ca4ce8cc4301e39f2d72428735584b40bfae4c9f6a8a25de35a",
+          "drive_sha256": "4f53e111377e4ca4ce8cc4301e39f2d72428735584b40bfae4c9f6a8a25de35a",
+          "disposition": "adopt-or-reimplement-in-N2; target=11_tools/project-supervisor/artifact-promoter.mjs; Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "11_tools/project-supervisor/integration-coordinator.mjs",
+          "source_sha256": "918db811ba8389d0210b92de48e9ed68265329597003bfc3c4f9f1c4766303d4",
+          "delivery_path": "11_tools/project-supervisor/integration-coordinator.mjs",
+          "delivery_sha256": "4572a0d3318ac0c16822aacce2e97afd6e58ebab6f2a1c73128216ef9fba4a1c",
+          "drive_sha256": "4572a0d3318ac0c16822aacce2e97afd6e58ebab6f2a1c73128216ef9fba4a1c",
+          "disposition": "adopted-in-N1; target=11_tools/project-supervisor/integration-coordinator.mjs; Serialized node delivery, test, push, Drive mirror, tag and continuation are adopted and tested.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "11_tools/project-supervisor/progress-aggregator.mjs",
+          "source_sha256": "9a27397f131239620dcb483bb7e7cdb006abc2f94af9cb94c8a22f08eaf3efe4",
+          "delivery_path": "11_tools/project-supervisor/progress-aggregator.mjs",
+          "delivery_sha256": "7036e7c09276052f15d94e9209b1cab504609b921700556c3e9a65011a2bf47b",
+          "drive_sha256": "7036e7c09276052f15d94e9209b1cab504609b921700556c3e9a65011a2bf47b",
+          "disposition": "adopt-or-reimplement-in-N2; target=11_tools/project-supervisor/progress-aggregator.mjs; Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "11_tools/project-supervisor/services.mjs",
+          "source_sha256": "8a8a3e374f1def43f54199ae49dc678ec947f2c8959e186996f9e0485567ac7b",
+          "delivery_path": "11_tools/project-supervisor/services.mjs",
+          "delivery_sha256": "55e19865d2e780faed11f1b12a8137c05c296a0d5530e4cb55252a6bf4a5b2c6",
+          "drive_sha256": "55e19865d2e780faed11f1b12a8137c05c296a0d5530e4cb55252a6bf4a5b2c6",
+          "disposition": "adopt-in-N2-P5; target=11_tools/project-supervisor/services.mjs; Require exact served project root and module-relative assets before live deployment acceptance.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "11_tools/research-dashboard/index.html",
+          "source_sha256": "e842914bda7151b4422dfe88fcd82772851a31f228cfc54f7bff91db09511e77",
+          "delivery_path": "11_tools/research-dashboard/index.html",
+          "delivery_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+          "drive_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+          "disposition": "adopt-or-reimplement-in-N2; target=11_tools/research-dashboard/index.html; Dashboard state projection and page behavior will be replaced to meet the v3 state matrix.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "11_tools/research-dashboard/server.mjs",
+          "source_sha256": "bc6616c95a4f0eec5fec48fab319c1d849b18f95d917c96bd9665595203e9ff3",
+          "delivery_path": "11_tools/research-dashboard/server.mjs",
+          "delivery_sha256": "f5b4449513cd946b5d21da3070099c104aa7d2b73eb3a2df5148991a8889b7da",
+          "drive_sha256": "f5b4449513cd946b5d21da3070099c104aa7d2b73eb3a2df5148991a8889b7da",
+          "disposition": "adopt-in-N2-P5; target=11_tools/research-dashboard/server.mjs; Require exact served project root and module-relative assets before live deployment acceptance.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "11_tools/research-dashboard/supervision.js",
+          "source_sha256": "f5869d82f6500d0133e51d36a24de4ec7648af900e023f93bd46c9740785ce4d",
+          "delivery_path": "11_tools/research-dashboard/supervision.js",
+          "delivery_sha256": "69ca7bae74018929cc2d7dbd9e673bda1c665ffa0bb72112f7f27f640d8a05b7",
+          "drive_sha256": "69ca7bae74018929cc2d7dbd9e673bda1c665ffa0bb72112f7f27f640d8a05b7",
+          "disposition": "adopt-or-reimplement-in-N2; target=11_tools/research-dashboard/supervision.js; Dashboard state projection and page behavior will be replaced to meet the v3 state matrix.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "11_tools/web-research/index.mjs",
+          "source_sha256": "012dc5826aea4e157dff8f456b33a4909e5384ab4d062a50f6e14f3e762f76f9",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "replaced-by-current-main-toolchain; target=00_project/web-research/run.ps1 and web-research-environment.json; The d80 adapter pins an older Browser Use version; P5 will verify the newer project-local venv/private paths without installing or publishing private data.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+          "source_sha256": "2d2b109a5cc5afc7e45e384e1d48627dc653d7c512d15bda318871a85ea9c4b6",
+          "delivery_path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+          "delivery_sha256": "af169c5157b41f95b848f9324ed6279d8efab0bbe828fb4bde2a58e076730978",
+          "drive_sha256": "af169c5157b41f95b848f9324ed6279d8efab0bbe828fb4bde2a58e076730978",
+          "disposition": "adopted-historical-record; target=90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+          "source_sha256": "d15b1d82fe73ad51145e75641f5b5068b764fa10f35399f43abb426a0fdcec2f",
+          "delivery_path": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+          "delivery_sha256": "66925e422610f6a67b68393a657e3243d23be64458564682b8f47a3540354a33",
+          "drive_sha256": "66925e422610f6a67b68393a657e3243d23be64458564682b8f47a3540354a33",
+          "disposition": "adopted-historical-record; target=90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json; Copied byte-for-byte from the closed d80 worker; hash is recorded in p0-audit. Historical claims remain subordinate to the v3 correction.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "AGENTS.md",
+          "source_sha256": "0f844202a0fd3cb3c99fa314d8fe2d293912607135c7b284234a06f5aaca9e23",
+          "delivery_path": "AGENTS.md",
+          "delivery_sha256": "5d407e0ce3667fdfdfe6dfa90e8a2fb5468a2e550339f5befedae36639e22267",
+          "drive_sha256": "5d407e0ce3667fdfdfe6dfa90e8a2fb5468a2e550339f5befedae36639e22267",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "package.json",
+          "source_sha256": "f799567cd350d514e69f4a9990c348b394409d4ef42370cc0db96061372fa45e",
+          "delivery_path": "package.json",
+          "delivery_sha256": "21a1e6ef2909c111b4ca7092972830b9c2ef5d5e7ca9ce5df30b1d26ccd0d95b",
+          "drive_sha256": "21a1e6ef2909c111b4ca7092972830b9c2ef5d5e7ca9ce5df30b1d26ccd0d95b",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "tests/architecture-smoke.mjs",
+          "source_sha256": "c8850b2b391d5b3c63de29b40fa8cbfa2444dc87d26e711f19d938d187661c91",
+          "delivery_path": "tests/architecture-smoke.mjs",
+          "delivery_sha256": "966dc02ad9c6cfc0874ca677b4c795852d773fd5bc455505e91c7be9e63c36a5",
+          "drive_sha256": "966dc02ad9c6cfc0874ca677b4c795852d773fd5bc455505e91c7be9e63c36a5",
+          "disposition": "equivalent-by-identical-blob; target=main; Git blob id on source branch equals current main.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "tests/artifact-promoter.test.mjs",
+          "source_sha256": "ab78422a96610fa81f5d593408eb4103b4f4ffc85ec0303b86299fc1c36505a9",
+          "delivery_path": "tests/artifact-promoter.test.mjs",
+          "delivery_sha256": "f8e270ba242336042516c707cf553aafd0ccff8fcd305a6e93003d48f4ed2806",
+          "drive_sha256": "f8e270ba242336042516c707cf553aafd0ccff8fcd305a6e93003d48f4ed2806",
+          "disposition": "adopt-or-reimplement-in-N2; target=tests/artifact-promoter.test.mjs; Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "tests/autopilot.test.mjs",
+          "source_sha256": "acedbf04d6961bece6e906e842dcef921454599b082d44c8b237f2cce46e06a4",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "not-adopted-for-this-plan; target=current tests; The generic offline-plan/autopilot extension is outside the v3 node delivery and dashboard scope.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "tests/integration-coordinator.test.mjs",
+          "source_sha256": "91fa47cbc6dcdeb1f2edd6dac5b25414586f3b233b950e579c7e09d038d6e370",
+          "delivery_path": "tests/integration-coordinator.test.mjs",
+          "delivery_sha256": "eec27864a36bc61729299cd7f2ede602d7b9c80516dd30789bc735214f5ca2bf",
+          "drive_sha256": "eec27864a36bc61729299cd7f2ede602d7b9c80516dd30789bc735214f5ca2bf",
+          "disposition": "adopted-in-N1; target=tests/integration-coordinator.test.mjs; Covers stale receipt rejection, same-worktree continuation and two node delivery events.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "tests/research-dashboard.test.mjs",
+          "source_sha256": "45b187a2650537e9078751ff5459552b625c3c139c83ebcf1cf12f7e8324d87c",
+          "delivery_path": "tests/research-dashboard.test.mjs",
+          "delivery_sha256": "b1578e9cda13e4cb435efd4523f894ba70d346bfe0999a06ca4bfac27b2eaab6",
+          "drive_sha256": "b1578e9cda13e4cb435efd4523f894ba70d346bfe0999a06ca4bfac27b2eaab6",
+          "disposition": "adopt-or-reimplement-in-N2; target=tests/research-dashboard.test.mjs; Dashboard state projection and page behavior will be replaced to meet the v3 state matrix.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "tests/session-concurrency.test.mjs",
+          "source_sha256": "c2bc38d2537e351992aa99cd487696f6f4e2ec37c8e0e51fa4d44424dccaff1b",
+          "delivery_path": "tests/session-concurrency.test.mjs",
+          "delivery_sha256": "da65d92b498e607a535abae81cb11b2cb72cb50042f52b0cc0553dcd187bdefc",
+          "drive_sha256": "da65d92b498e607a535abae81cb11b2cb72cb50042f52b0cc0553dcd187bdefc",
+          "disposition": "adopted-in-N1; target=tests/session-concurrency.test.mjs; Covers explicit resume and lifecycle protection.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "tests/supervisor-progress.test.mjs",
+          "source_sha256": "e8038c4f7ee67261b11b2d77c4eea9628fcfb5499027cd7b4e3bdac1055dd928",
+          "delivery_path": "tests/supervisor-progress.test.mjs",
+          "delivery_sha256": "215df82c35f41b77c21aa3d0c1884a68ddae6292b21a87a09ad8fd118a4bb48d",
+          "drive_sha256": "215df82c35f41b77c21aa3d0c1884a68ddae6292b21a87a09ad8fd118a4bb48d",
+          "disposition": "adopt-or-reimplement-in-N2; target=tests/supervisor-progress.test.mjs; Required to exclude private runtime from dashboard artifact counts and to render plan-backed current progress.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "tests/web-research.test.mjs",
+          "source_sha256": "4844e24cf4a5ad76757734d34106d196726d38cd50bb445b1f4bfa83572783b8",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
+          "delivery_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "drive_sha256": "51fdeecdf795173ea61b836edc69536615bfb8c958559aad33e29058f64b3123",
+          "disposition": "not-adopted-superseded; target=tests/smoke for existing project-local launcher in P5; The worker test is coupled to the stale 0.13.2 runner; current main pins Browser Use 0.13.10 and keeps its own project-local launcher.",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        }
+      ],
+      "gitee_readback": {
+        "status": "verified",
+        "remote": "origin",
+        "branch": "main",
+        "commit": "69302f16570347666868a3022adf6a71b48db85d",
+        "remote_head": "69302f16570347666868a3022adf6a71b48db85d",
+        "verified_path_count": 82
+      },
+      "drive_readback": {
+        "status": "verified",
+        "manifest_sha256": "91a5059163a6ef8a2e7278bf516598411a0c7f10a25a09be7aabce375f23f6a9",
+        "file_count": 1260,
+        "total_bytes": 450682466,
+        "verified_path_count": 82
+      },
+      "host_completion": {
+        "status": "verified",
+        "host_session_id": "01a0cf1c-83fa-70c1-b0a7-da249759b400",
+        "source": "Codex app read_thread: latest host turn completed; no active process used this worktree.",
+        "verified_at": "2026-09-30T21:00:40.369Z"
+      },
+      "process_check": {
+        "status": "clear",
+        "checked_at": "2026-09-30T21:00:40.369Z",
+        "process_count": 0
+      },
+      "cleanup": {
+        "status": "branch-removed",
+        "worktree_removed": true,
+        "branch_removed": true,
+        "ignored_file_count": 115597,
+        "ignored_bytes": 3705037128,
+        "quarantine_file_count": 220,
+        "preserved_file_count": 7801,
+        "local_archive_root": "_work/current/supersession-preserved/codex-d80b7f12073a98b4eb63-1",
+        "completed_at": "2026-09-30T21:06:52.675Z",
+        "local_receipt_sha256": "df2dcfec527c39281c3ac545ee9d2a8de0c46c92d951f8c89ef3ec2cc4f4e589",
+        "preflight_receipt_sha256": "8ca7f6438a3fa7f7e4da9ded9fc74fec9b73fd28671bfa800f236030b8c15807"
+      }
+    },
+    {
+      "session_id": "codex-d80b7f12073a98b4eb63-2",
+      "branch": "codex/session/codex-d80b7f12073a98b4eb63-2",
+      "source_commit": "a066ab5ac523a1bc6c50fd17af1fe8142346d848",
+      "merge_base": "febbe4105da12d4c0c5cd4628153b8ce32b65218",
+      "path_mappings": [
+        {
+          "source_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
+          "source_sha256": "31bdc0d35dc1aec61a6b30ade03647afee74c969ef1d0af0c747291e494dd7e5",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
+          "delivery_sha256": "f1aac4e80ac921257fb103ebd44ce256fcd0fd8f3b5170bade43ef312955e107",
+          "drive_sha256": "f1aac4e80ac921257fb103ebd44ce256fcd0fd8f3b5170bade43ef312955e107",
+          "disposition": "adopted-byte-identical",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+          "source_sha256": "c32d6551a4c7cfddff6e675cb465ceec54d0b804c1efc1f619cc061c45cffedc",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+          "delivery_sha256": "a4299c2b178d11ea430a864708f262a58d96a3079ee2e642b17c528de1448f17",
+          "drive_sha256": "a4299c2b178d11ea430a864708f262a58d96a3079ee2e642b17c528de1448f17",
+          "disposition": "adopted-with-offline-checkpoint-updates",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        },
+        {
+          "source_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
+          "source_sha256": "12e0044692aa6bed7e2619752d5ec381acf730a478dcc22a90fcb181469262f1",
+          "delivery_path": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
+          "delivery_sha256": "9a74c699361f9c7cc25e1e65ae7118bc37ccdd8bc800f32a227aec538af3fd6d",
+          "drive_sha256": "9a74c699361f9c7cc25e1e65ae7118bc37ccdd8bc800f32a227aec538af3fd6d",
+          "disposition": "adopted-with-execution-status-update",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json"
+        }
+      ],
+      "gitee_readback": {
+        "status": "verified",
+        "remote": "origin",
+        "branch": "main",
+        "commit": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+        "remote_head": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+        "verified_path_count": 3
+      },
+      "drive_readback": {
+        "status": "verified",
+        "manifest_sha256": "94a2e9159e39317843c8fe498b2571f9b163c391289a50e5cb41d2c60cdade59",
+        "file_count": 1260,
+        "total_bytes": 450683595,
+        "verified_path_count": 3
+      },
+      "host_completion": {
+        "status": "verified",
+        "host_session_id": "01a0cf1c-83fa-70c1-b0a7-da249759b400",
+        "source": "Codex app read_thread: latest planning-worker host turn completed; no active process used this worktree.",
+        "verified_at": "2026-09-30T22:40:08.610Z"
+      },
+      "process_check": {
+        "status": "clear",
+        "checked_at": "2026-09-30T22:40:08.610Z",
+        "process_count": 0
+      },
+      "cleanup": {
+        "status": "branch-removed",
+        "worktree_removed": true,
+        "branch_removed": true,
+        "ignored_file_count": 0,
+        "ignored_bytes": 0,
+        "quarantine_file_count": 0,
+        "preserved_file_count": 0,
+        "local_archive_root": "_work/current/supersession-preserved/codex-d80b7f12073a98b4eb63-2",
+        "completed_at": "2026-09-30T22:46:06.730Z",
+        "local_receipt_sha256": "b699939bd809ae180a93e5a250176f417ba6c562d6a5018d8685f48b90e89673",
+        "preflight_receipt_sha256": "9dfe09fdc9c967c0ee6a2074838ffacddbf9999a9ea13fa2b290a229fa7fee97"
+      }
+    },
+    {
+      "session_id": "codex-6b5c47c601e991adc80c-1",
+      "branch": "codex/session/codex-6b5c47c601e991adc80c-1",
+      "source_commit": "1ec684d3636549f3363de4a1f68461e9515e43a0",
+      "merge_base": "5b5e8d1cb985e8fa27b3a141e408507b00f84693",
+      "path_mappings": [
+        {
+          "source_path": "11_tools/project-supervisor/progress-aggregator.mjs",
+          "source_sha256": "35e217bcb6f8edd329a13eca40bab3649ea7497d85b7d6862fcfef1258a92a64",
+          "delivery_path": "11_tools/project-supervisor/progress-aggregator.mjs",
+          "delivery_sha256": "7036e7c09276052f15d94e9209b1cab504609b921700556c3e9a65011a2bf47b",
+          "drive_sha256": "7036e7c09276052f15d94e9209b1cab504609b921700556c3e9a65011a2bf47b",
+          "disposition": "N2-equivalent dashboard implementation; current main behavior and browser state verified by the N2 plan evidence",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json"
+        },
+        {
+          "source_path": "11_tools/research-dashboard/index.html",
+          "source_sha256": "7520ebb1e4c6af4cae98a4709ab8322c3bb637ff1064d9c5850bb88114ac8dde",
+          "delivery_path": "11_tools/research-dashboard/index.html",
+          "delivery_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+          "drive_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+          "disposition": "N2-equivalent dashboard implementation; current main behavior and browser state verified by the N2 plan evidence",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json"
+        },
+        {
+          "source_path": "11_tools/research-dashboard/supervision.js",
+          "source_sha256": "b227f4acde0d6f7ba875ec41c28819c03118d51d6eda8f14b7db9698510faa23",
+          "delivery_path": "11_tools/research-dashboard/supervision.js",
+          "delivery_sha256": "69ca7bae74018929cc2d7dbd9e673bda1c665ffa0bb72112f7f27f640d8a05b7",
+          "drive_sha256": "69ca7bae74018929cc2d7dbd9e673bda1c665ffa0bb72112f7f27f640d8a05b7",
+          "disposition": "N2-equivalent dashboard implementation; current main behavior and browser state verified by the N2 plan evidence",
+          "disposition_ref": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json"
+        }
+      ],
+      "gitee_readback": {
+        "status": "verified",
+        "remote": "origin",
+        "branch": "main",
+        "commit": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+        "remote_head": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+        "verified_path_count": 3
+      },
+      "drive_readback": {
+        "status": "verified",
+        "manifest_sha256": "94a2e9159e39317843c8fe498b2571f9b163c391289a50e5cb41d2c60cdade59",
+        "file_count": 1260,
+        "total_bytes": 450683595,
+        "verified_path_count": 3
+      },
+      "host_completion": {
+        "status": "not-found",
+        "host_session_id": "01a0c2b5-5c91-7d33-9d15-ba73a6cc5a8a",
+        "source": "Codex app active listing and full archived listing omitted the host; direct read_thread returned no thread or readable turn history; session registry is closed; exact worktree process scan was clear.",
+        "verified_at": "2026-09-30T22:40:09.660Z",
+        "absence_checks": {
+          "active_lookup": "not-found",
+          "archived_lookup": "not-found",
+          "state_index": "not-found",
+          "turn_history": "not-found"
+        }
+      },
+      "process_check": {
+        "status": "clear",
+        "checked_at": "2026-09-30T22:40:09.660Z",
+        "process_count": 0
+      },
+      "cleanup": {
+        "status": "branch-removed",
+        "worktree_removed": true,
+        "branch_removed": true,
+        "ignored_file_count": 1,
+        "ignored_bytes": 347940,
+        "quarantine_file_count": 0,
+        "preserved_file_count": 1,
+        "local_archive_root": "_work/current/supersession-preserved/codex-6b5c47c601e991adc80c-1",
+        "completed_at": "2026-09-30T22:48:55.345Z",
+        "local_receipt_sha256": "fde221fd2c0d154b7dd8acb379c656de99330b70352b65a808be1d2842ed70f0",
+        "preflight_receipt_sha256": "3b43e6f1d6da2745b2ce4241b7b00827bd4a982e240b5e35d32e48595db837f8"
+      }
+    },
+    {
+      "session_id": "codex-8f62a0ce8890af6b3331-1",
+      "branch": "codex/session/codex-8f62a0ce8890af6b3331-1",
+      "source_commit": "06a595d8a48e8395c734a1976cff2b9ba6bd8e7c",
+      "merge_base": "06a595d8a48e8395c734a1976cff2b9ba6bd8e7c",
+      "path_mappings": [],
+      "gitee_readback": {
+        "status": "verified",
+        "remote": "origin",
+        "branch": "main",
+        "commit": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+        "remote_head": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
+        "verified_path_count": 0
+      },
+      "drive_readback": {
+        "status": "verified",
+        "manifest_sha256": "94a2e9159e39317843c8fe498b2571f9b163c391289a50e5cb41d2c60cdade59",
+        "file_count": 1260,
+        "total_bytes": 450683595,
+        "verified_path_count": 0
+      },
+      "host_completion": {
+        "status": "verified",
+        "host_session_id": "01a0cdeb-f9ef-7530-b827-53c1c3177d77",
+        "source": "Codex app read_thread: latest host turn completed; no active process used this worktree.",
+        "verified_at": "2026-09-30T22:40:10.055Z"
+      },
+      "process_check": {
+        "status": "clear",
+        "checked_at": "2026-09-30T22:40:10.055Z",
+        "process_count": 0
+      },
+      "cleanup": {
+        "status": "branch-removed",
+        "worktree_removed": true,
+        "branch_removed": true,
+        "ignored_file_count": 1431,
+        "ignored_bytes": 118892547,
+        "quarantine_file_count": 0,
+        "preserved_file_count": 1431,
+        "local_archive_root": "_work/current/supersession-preserved/codex-8f62a0ce8890af6b3331-1",
+        "completed_at": "2026-09-30T22:50:21.386Z",
+        "local_receipt_sha256": "50d6006301453e290ee34f057eea95ec0ca063e764b5416720be8c47fb90f02e",
+        "preflight_receipt_sha256": "2e0b7a7c04f83bf815b3c283964a2926d30ef45050c761a9ece56695e8938c59"
+      }
+    }
+  ]
+}

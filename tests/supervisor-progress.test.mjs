@@ -137,6 +137,24 @@ test('a completed Codex turn remains pending while its project plan is incomplet
   assert.equal(progress.sessions[0].plan_progress.percent, 50);
 });
 
+test('completed plan hides a closed same-host row even while its old thread is live', t => {
+  const root = makeRoot(t);
+  addSession(root, {
+    session_id: 'old-session', host_session_id: 'thread-a', task_id: 'task-test',
+    status: 'closed', mode: 'worktree', worktree_path: root,
+    created_at: '2026-09-29T19:51:26.312Z', updated_at: '2026-10-03T16:35:00.000Z',
+  });
+  addPlan(root, {
+    status: 'completed', task_id: 'task-test', session_ids: ['old-session'],
+    nodes: [{ id: 'N0', status: 'delivered' }],
+  });
+  writeJson(path.join(root, '_work/current/project-supervisor/workers.json'), {
+    workers: [{ session_id: 'old-session', host_status: 'running' }],
+  });
+  const progress = aggregateProgress(root, { includeCodex: false });
+  assert.equal(progress.sessions.length, 0);
+});
+
 test('a waiting card shows only explicit checkpoint input requirements', t => {
   const root = makeRoot(t);
   addSession(root, {

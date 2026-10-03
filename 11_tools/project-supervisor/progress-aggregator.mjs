@@ -383,6 +383,7 @@ function classifySession(session) {
   if (submitted) return { board_group: 'needs-attention', board_label: '待集成', board_reason: '已提交，尚未完成集成' };
   if (blocked) return { board_group: 'needs-attention', board_label: '已阻塞', board_reason: session.blockers?.[0] || '需要处理阻塞' };
   if (waiting) return { board_group: 'needs-attention', board_label: '等待输入', board_reason: session.waiting_for };
+  if (session.plan_complete === true) return null;
   if (terminal && !planIncomplete) {
     if (runningEvidence) return { board_group: 'needs-attention', board_label: '状态冲突', board_reason: '生命周期已关闭，但宿主仍报告运行' };
     return null;

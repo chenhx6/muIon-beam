@@ -2,7 +2,7 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 39,
+  "revision": 40,
   "status": "completed",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
@@ -731,9 +731,9 @@
           "closed_same_host_conflict": false
         }
       },
-      "remote_head": "9a446ed97db58bf38fcac67bafcdc0006789a9",
-      "drive_manifest_sha256": "3b03183efae92d3229b86a1da0bac478a71e9af0e75560b787e1d3fc438c8c02",
-      "drive_plan_sha256": "a606a8a46252b4dbd4b3c15fbaadef0b21267a79f0978fedb5fd530520cd7144",
+      "remote_head": "306251189ce6a2abfbc8cde7598e934fd68b9fd7",
+      "drive_manifest_sha256": "f23ca19a09f2c06dada325e453a013420fda262ce4c5937f5509a3c7e2f4d83d",
+      "drive_plan_sha256": "393102458a4fcbf801a7373bc0e87726423081ce12f81ffa34fcf6cbb94bbf62",
       "delivered_at": "2026-10-03T18:48:46.679Z",
       "evidence": {
         "outbox": "_work/current/publish-outbox/node-delivery/plan-dashboard-delivery-repair-20260930-n2-49d89f754685.json",
@@ -878,9 +878,11 @@
           },
           "drive_readback_pending": true,
           "drive_readback": {
-            "status": "pending-final-browser-readback",
-            "manifest_sha256": "3b03183efae92d3229b86a1da0bac478a71e9af0e75560b787e1d3fc438c8c02",
-            "plan_sha256": "a606a8a46252b4dbd4b3c15fbaadef0b21267a79f0978fedb5fd530520cd7144"
+            "status": "verified",
+            "manifest_sha256": "f23ca19a09f2c06dada325e453a013420fda262ce4c5937f5509a3c7e2f4d83d",
+            "plan_sha256": "393102458a4fcbf801a7373bc0e87726423081ce12f81ffa34fcf6cbb94bbf62",
+            "audit_id": "CLOUD-AUDIT-20261003-3062511-final",
+            "browser_readback": true
           }
         }
       },
@@ -1206,7 +1208,9 @@
       "The last completion-state Drive mirror was browser-read at generated_at 2026-10-03T16:43:11.080Z with cloud-upload-verified, 1,266 files, 451,361,585 bytes, SHA256 f82e5cd28e8255d3f85fe4950cad4cd0f8b7b4fe35b972187b7e5aa2907e81df.",
       "The last completion-state recovery-index was browser-read at 2026-10-03T16:44:54.167Z, SHA256 3b37d701b5091a0e5f01c6b4b1e571b20511dbd156317afe2e190aab185ad37e, with local and remote main equal 5661dc5d55fb43df1da200f28ad72de45af47f99.",
       "Corrected N2 delivery is Drive-readback verified with manifest SHA256 3b03183efae92d3229b86a1da0bac478a71e9af0e75560b787e1d3fc438c8c02 and plan SHA256 a606a8a46252b4dbd4b3c15fbaadef0b21267a79f0978fedb5fd530520cd7144.",
-      "Final pre-close plan checkpoint has all phases completed, N0-N3 delivered, N2 corrected tag and no open findings."
+      "Final pre-close plan checkpoint has all phases completed, N0-N3 delivered, N2 corrected tag and no open findings.",
+      "Corrected N2 Drive/browser readback verified manifest f23ca19a09f2c06dada325e453a013420fda262ce4c5937f5509a3c7e2f4d83d and plan 393102458a4fcbf801a7373bc0e87726423081ce12f81ffa34fcf6cbb94bbf62.",
+      "Final plan v3 state is completed with all phases completed, N0-N3 delivered, corrected N2 tag verified, and no open findings."
     ],
     "open_findings": [],
     "source_document_hashes": [
@@ -1418,10 +1422,10 @@
     "started_at": "2026-09-30",
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2",
-    "latest_main_commit": "9a446ed97db58bf38fcac67bafcdc000678a9f59",
-    "latest_main_remote_verified": "9a446ed97db58bf38fcac67bafcdc000678a9f59"
+    "latest_main_commit": "306251189ce6a2abfbc8cde7598e934fd68b9fd7",
+    "latest_main_remote_verified": "306251189ce6a2abfbc8cde7598e934fd68b9fd7"
   },
-  "updated_at": "2026-10-03T18:48:46.678Z",
+  "updated_at": "2026-10-03T18:57:06.166Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1",
@@ -1501,7 +1505,7 @@
       "unknown_rollout_diagnostics_visible": 2
     },
     "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
-    "remaining_gate": "Final plan closeout is recorded; session5 will be closed and auto-reaped, then registry/Git absence is independently verified.",
+    "remaining_gate": "Close session5 and independently verify supervisor cleanup; all content, tags, tests, Gitee and Drive/browser evidence are complete.",
     "tests": {
       "command": "node --test tests/*.mjs",
       "status": "passed",
@@ -1550,7 +1554,7 @@
       "n1_before_manifest": "copied to traceability with matching SHA256",
       "clean_clone": "verified against Gitee then removed as reproducible"
     },
-    "main_commit": "9a446ed97db58bf38fcac67bafcdc000678a9f59",
+    "main_commit": "306251189ce6a2abfbc8cde7598e934fd68b9fd7",
     "latest_drive_mirror": {
       "manifest_sha256": "66c5d450df3a268f4895d59f7b273ab486224c0874e798321504452d3c98ba38",
       "generated_at": "2026-10-03T07:14:22.389Z",
@@ -1580,29 +1584,30 @@
       "line_endings_normalized": true,
       "manifest_download": "byte-identical"
     },
-    "main_content_commit": "9a446ed97db58bf38fcac67bafcdc000678a9f59",
+    "main_content_commit": "306251189ce6a2abfbc8cde7598e934fd68b9fd7",
     "final_drive_manifest": {
-      "generated_at": "2026-10-03T18:38:27.890Z",
+      "generated_at": "2026-10-03T18:50:23.419Z",
       "bytes": 396470,
-      "sha256": "3b03183efae92d3229b86a1da0bac478a71e9af0e75560b787e1d3fc438c8c02",
+      "sha256": "f23ca19a09f2c06dada325e453a013420fda262ce4c5937f5509a3c7e2f4d83d",
       "file_count": 1267,
-      "total_bytes": 451366012,
+      "total_bytes": 451366321,
       "cloud_status": "cloud-upload-verified"
     },
     "final_cloud_audit": {
-      "audit_id": "CLOUD-AUDIT-20261003-9a446ed-n2-final",
-      "manifest_sha256": "3b03183efae92d3229b86a1da0bac478a71e9af0e75560b787e1d3fc438c8c02",
-      "gitee_commit": "9a446ed97db58bf38fcac67bafcdc000678a9f59",
+      "audit_id": "CLOUD-AUDIT-20261003-3062511-final",
+      "manifest_sha256": "f23ca19a09f2c06dada325e453a013420fda262ce4c5937f5509a3c7e2f4d83d",
+      "gitee_commit": "306251189ce6a2abfbc8cde7598e934fd68b9fd7",
       "browser_readback": true,
+      "recovery_index_browser_readback": true,
       "cleanup_allowed": false,
       "pending_browser_readback": false
     },
     "final_recovery_index": {
       "file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
-      "generated_at": "2026-10-03T16:44:54.167Z",
+      "generated_at": "2026-10-03T18:52:40.785Z",
       "bytes": 142887,
       "sha256": "3b37d701b5091a0e5f01c6b4b1e571b20511dbd156317afe2e190aab185ad37e",
-      "remote_main": "5661dc5d55fb43df1da200f28ad72de45af47f99",
+      "remote_main": "306251189ce6a2abfbc8cde7598e934fd68b9fd7",
       "browser_readback": true,
       "pending_browser_readback": false
     },

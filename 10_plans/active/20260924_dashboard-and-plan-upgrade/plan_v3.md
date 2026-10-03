@@ -185,13 +185,13 @@ API只返回看板所需数据，避免每次轮询返回巨大的历史artifact
 - 本轮只提交计划文档的worker checkpoint；main发布状态必须据工具结果报告，不能把本地commit说成push完成。新session首个交付包含本计划材料。
 - 总体未完成时遇到同一真实阻塞遵守goal阻塞审计，不刷无变化回执、不靠宣布完成重开goal、不自行切换用户指定模型。
 
-## 当前执行 checkpoint（2026-10-04，revision 35）
+## 当前执行 checkpoint（2026-10-04，revision 36）
 
-- N0、N1、N3 保持 delivered；N2 重新打开做一次验收修正，旧 tag t-task-dashboard-plan-upgrade-20260930-n2-20260930071032-5e9ad20 保留不动。
+- N0、N1、N3 保持 delivered；N2 修正已集成到 eff40c47dfe6dd009c402299a14d1024b4457563，并打独立修正 tag t-task-dashboard-plan-upgrade-20261003-n2-fix-eff40c4；旧 N2 tag 保留不动。
 - 最终实际 dashboard/API 发现同一 host 的旧 closed session1 被新 integrated session5 压过：Codex thread 的新 updated_at 覆盖两条 registry 时间后，原去重逻辑按文件枚举顺序选了旧行，页面显示状态冲突。
 - 修正方向：保留 registry created_at，当 live host 更新时间打平时选择较新 lifecycle；同一创建时刻以 integrated 优先于 closed。新增测试覆盖旧完成计划与新 live 同 host session 并存；经验记录为 EXP-20261004-dashboard-same-host-dedupe。
 - focused supervisor-progress 测试 13/13；完整套件（合入前）219/219；architecture smoke 150 required files、12 variables。合入后仍需再跑完整套件和架构检查。
-- 当前 N2 状态 pending，P1 执行中；下一步合入 main、测试后重启 4317，从浏览器确认只显示最新 session 的 N2 进度，再创建独立 t-* 修正标签并验证 Gitee/Drive。
+- N2 已 delivered，P1 已完成；focused 14/14、完整 220/220、architecture 150/12，4317 API/browser 已确认最新 same-host session 的 N2 3/4 且无 closed conflict。下一步同步 Drive/browser 并收口 session5。
 - 任务不运行正式科研；标签不移动/删除旧 N2 标签，不创建 b-* 或 r-*。
 
 ## 当前执行 checkpoint（2026-09-30，revision 12）

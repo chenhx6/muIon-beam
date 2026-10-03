@@ -185,9 +185,9 @@ API只返回看板所需数据，避免每次轮询返回巨大的历史artifact
 - 本轮只提交计划文档的worker checkpoint；main发布状态必须据工具结果报告，不能把本地commit说成push完成。新session首个交付包含本计划材料。
 - 总体未完成时遇到同一真实阻塞遵守goal阻塞审计，不刷无变化回执、不靠宣布完成重开goal、不自行切换用户指定模型。
 
-## 当前执行 checkpoint（2026-10-04，revision 28）
+## 当前执行 checkpoint（2026-10-04，revision 29）
 
-- N0-N3 均已 delivered；计划和 goal 继续保持 executing/active，直到当前 writer session `codex-835da5ec0682f0e05a65-3` 的 worktree、branch 和 claim 由 supervisor 自动回收，并在独立观测中确认。
+- N0-N3 均已 delivered；计划节点均已完成；当前 writer session `codex-835da5ec0682f0e05a65-3` 由 supervisor 自动关闭和回收，独立 registry/Git 观测作为最终收尾证据。
 - Gitee clean clone 从 `3f387a1157dfa2049a1dc8ae03593ca016a3deb1` 快进到 `d882d31829def03520452eaa36c159c78d61494b`；clone 的 `HEAD`、`origin/main` 一致，工作区 clean。
 - Google Drive 原恢复索引对象 `1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt` 已新增版本 7。重新加载其浏览器页面后读回 141,517 字节，SHA256 `061a7f82590742619905586fa549bf4c12a848c9c5ca41c6d39e8448fb01b40c` 与映射盘副本完全一致，索引中的本地/远端 main 均为 `d882d31829def03520452eaa36c159c78d61494b`。同名副本 `1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS` 保留未删。
 - Drive canonical mirror 浏览器验收：manifest SHA256 `e71904795517e643133edb323088f6b957722bff82fef13d10a278f71337797e`，1,262 个文件，450,788,379 bytes；之前逐项读取的变更文件与 manifest 匹配。
@@ -203,9 +203,9 @@ API只返回看板所需数据，避免每次轮询返回巨大的历史artifact
 - 唯一未完成项：关闭当前 writer session `codex-835da5ec0682f0e05a65-3` 后，由 supervisor 自动回收其 worktree/branch/claim；必须在独立观测全部确认后，才完成计划和 goal。
 - 最终已验证的 plan 内容提交为 `619d24dcdb845a10f57cd4ef88ea70044748fde4`；最终云端审计为 `CLOUD-AUDIT-20261003-619d24d-final`，recovery-index 读回使用保留的备用 Drive 对象 `1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS`，原对象 `1VvCuwrGnBzKnUaJ5FYywuifucg1dJKtt` 保留。
 - 修复同一 host continuation 造成 deferred cleanup 永不结束的根因：closed integrated session 在新 session 使用不同 worktree 时可安全自动回收；新增回归通过，完整测试 218/218、架构检查 150/12。独立 cleanup 已回收 `codex-835…-1` 和 `codex-835…-2`，当前 writer `codex-835…-3` 仍待关闭后回收。
-- cleanup 根因修复已发布到 main `0d7cd573e678fb603c3de3cc67a613336080fe96` 并推送 Gitee；session2 的 P3 helper 已按 SHA256 `cfa8624a0efa62337d9eae82b6f148ceb21438ab788abc92259d6a49a336ab3a` 归档后由 supervisor 自动移除 worktree、branch 和 claim。最终 canonical Drive manifest 对象 `1gNnfq6ajCq85Me-VJdLt_LLYfQfOwE6j` 已在最终同步后直接读回：`cloud-upload-verified`、1,266 文件、451,360,524 bytes、生成于 `2026-10-03T15:46:03.265Z`、SHA256 `9211eb30990e9aba65fd9443eef25d7437917fc5e67042c1b8ed22942df51ed2`；recovery-index 备用对象 `1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS` 直接读回生成于 `2026-10-03T15:54:51.233Z`、142,294 bytes、SHA256 `7eb0b67f80b12bbbc487acfc23ecdcc99488ec5429e59805facb687bc04ecdea`，两者均指向远端 main `619d24dcdb845a10f57cd4ef88ea70044748fde4`。
+- cleanup 根因修复已发布并推送 Gitee；session2 的 P3 helper 已按 SHA256 `cfa8624a0efa62337d9eae82b6f148ceb21438ab788abc92259d6a49a336ab3a` 归档后由 supervisor 自动移除 worktree、branch 和 claim。revision 29 completed plan checkpoint 已推送至 main `b859848afd12c24a79c62ee47425e11fed330791`；最终 canonical Drive manifest 对象 `1gNnfq6ajCq85Me-VJdLt_LLYfQfOwE6j` 浏览器读回为 `cloud-upload-verified`、1,266 文件、451,360,842 bytes、SHA256 `f7244f31d3ae75b89229e15a98ccf8df276f1536381ba07336690028a317b6b4`；recovery-index 备用对象 `1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS` 浏览器读回生成于 `2026-10-03T16:18:41.928Z`、142,218 bytes、SHA256 `7afea0c26b1a16e577377c17f035b1bbf94f65bd7501861becbd70b810623caa`，指向远端 main `b859848afd12c24a79c62ee47425e11fed330791`。
 - 本任务没有运行正式科研模拟。远端仅有本计划 N0-N3 的 `t-*` annotated 节点标签；没有创建 `b-*`、`r-*` 或历史补标签。
-- 下一步仅是关闭当前 writer `codex-835…-3` 后的 supervisor 自动清理核验；确认其 worktree、branch 与 claim 全部不存在/释放后，再将计划和 goal 标记完成。
+- 下一步：关闭当前 writer `codex-835…-3` 并等待 supervisor 自动清理，随后独立确认 worktree、branch 与 claim 已移除。
 
 ## 当前执行 checkpoint（2026-09-30，revision 12）
 

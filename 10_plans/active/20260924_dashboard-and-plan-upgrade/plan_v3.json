@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 28,
+  "revision": 29,
   "status": "completed",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "No further action; final cleanup evidence is independently recorded by supervisor.",
+  "next_action": "No further plan work; close session codex-835da5ec0682f0e05a65-3 and let supervisor clean its worktree, branch and claim.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -1089,7 +1089,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "No further action; final cleanup evidence is independently recorded by supervisor.",
+    "next_action": "No further plan work; close session codex-835da5ec0682f0e05a65-3 and let supervisor clean its worktree, branch and claim.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -1147,9 +1147,14 @@
       "Direct browser readback of drive-mirror-manifest object 1gNnfq6ajCq85Me-VJdLt_LLYfQfOwE6j verified generated_at 2026-10-03T14:13:31.619Z, cloud-upload-verified, 1,266 files, 451,357,952 bytes, and SHA256 8379d94074a44a6a52bb4a590ff8be31c038107632d2dcfe0162504862f58220; required plan, cleanup disposition, session-concurrency and regression-test paths match the mapped Drive mirror byte-for-byte.",
       "Supervisor automatically archived the sole ignored session2 P3 helper recovery-final.mjs to _work/current/supersession-preserved/codex-835da5ec0682f0e05a65-2/session2-runtime/_work/current/recovery-final.mjs with SHA256 cfa8624a0efa62337d9eae82b6f148ceb21438ab788abc92259d6a49a336ab3a, then removed session codex-835da5ec0682f0e05a65-2 worktree, branch and claim; independent registry and Git checks confirmed cleanup_completed=true, path absent and branch absent.",
       "Canonical Drive manifest was directly read back after final sync with generated_at 2026-10-03T15:46:03.265Z, cloud-upload-verified, 1,266 files, 451,360,524 bytes, SHA256 9211eb30990e9aba65fd9443eef25d7437917fc5e67042c1b8ed22942df51ed2, and Gitee content commit 619d24dcdb845a10f57cd4ef88ea70044748fde4.",
-      "Final recovery-index object 1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS was directly read back at generated_at 2026-10-03T15:54:51.233Z, SHA256 7eb0b67f80b12bbbc487acfc23ecdcc99488ec5429e59805facb687bc04ecdea, 142,294 bytes, and matching local/remote main 619d24dcdb845a10f57cd4ef88ea70044748fde4."
+      "Final recovery-index object 1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS was directly read back at generated_at 2026-10-03T15:54:51.233Z, SHA256 7eb0b67f80b12bbbc487acfc23ecdcc99488ec5429e59805facb687bc04ecdea, 142,294 bytes, and matching local/remote main 619d24dcdb845a10f57cd4ef88ea70044748fde4.",
+      "Final completed plan checkpoint was pushed to Gitee main b859848afd12c24a79c62ee47425e11fed330791.",
+      "Canonical Drive manifest directly read back in browser: generated_at 2026-10-03T16:17:03.509Z, cloud-upload-verified, 1,266 files, 451,360,842 bytes, SHA256 f7244f31d3ae75b89229e15a98ccf8df276f1536381ba07336690028a317b6b4.",
+      "Final Drive recovery-index directly read back in browser at 2026-10-03T16:18:41.928Z, 142,218 bytes, SHA256 7afea0c26b1a16e577377c17f035b1bbf94f65bd7501861becbd70b810623caa; its local and remote main both equal b859848afd12c24a79c62ee47425e11fed330791."
     ],
-    "open_findings": [],
+    "open_findings": [
+      "No further plan work; close session codex-835da5ec0682f0e05a65-3 and let supervisor clean its worktree, branch and claim."
+    ],
     "source_document_hashes": [
       {
         "name": "handoff_v3.md",
@@ -1359,10 +1364,10 @@
     "started_at": "2026-09-30",
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2",
-    "latest_main_commit": "619d24dcdb845a10f57cd4ef88ea70044748fde4",
-    "latest_main_remote_verified": "619d24dcdb845a10f57cd4ef88ea70044748fde4"
+    "latest_main_commit": "b859848afd12c24a79c62ee47425e11fed330791",
+    "latest_main_remote_verified": "b859848afd12c24a79c62ee47425e11fed330791"
   },
-  "updated_at": "2026-10-03T16:00:00.932Z",
+  "updated_at": "2026-10-03T16:21:29.908Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"
@@ -1405,7 +1410,9 @@
       "disposition": "N2 feature and browser verification required before reclaim"
     }
   ],
-  "open_findings": [],
+  "open_findings": [
+    "No further plan work; close session codex-835da5ec0682f0e05a65-3 and let supervisor clean its worktree, branch and claim."
+  ],
   "finalization_checkpoint": {
     "verified_at": "2026-10-03T06:16:53.808Z",
     "gitee_clean_clone": {
@@ -1441,7 +1448,7 @@
       "unknown_rollout_diagnostics_visible": 2
     },
     "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
-    "remaining_gate": "Automatic supervisor cleanup of the current writer is the final lifecycle action; independent registry/Git evidence is recorded after close.",
+    "remaining_gate": "Only automatic supervisor cleanup of current writer session codex-835da5ec0682f0e05a65-3 remains; close, then independently verify the worktree, branch and claim are absent.",
     "tests": {
       "command": "node --test tests/*.mjs",
       "status": "passed",
@@ -1490,7 +1497,7 @@
       "n1_before_manifest": "copied to traceability with matching SHA256",
       "clean_clone": "verified against Gitee then removed as reproducible"
     },
-    "main_commit": "619d24dcdb845a10f57cd4ef88ea70044748fde4",
+    "main_commit": "b859848afd12c24a79c62ee47425e11fed330791",
     "latest_drive_mirror": {
       "manifest_sha256": "66c5d450df3a268f4895d59f7b273ab486224c0874e798321504452d3c98ba38",
       "generated_at": "2026-10-03T07:14:22.389Z",
@@ -1520,40 +1527,38 @@
       "line_endings_normalized": true,
       "manifest_download": "byte-identical"
     },
-    "main_content_commit": "619d24dcdb845a10f57cd4ef88ea70044748fde4",
+    "main_content_commit": "b859848afd12c24a79c62ee47425e11fed330791",
     "final_drive_manifest": {
-      "generated_at": "2026-10-03T15:46:03.265Z",
+      "generated_at": "2026-10-03T16:17:03.509Z",
       "bytes": 396255,
-      "sha256": "9211eb30990e9aba65fd9443eef25d7437917fc5e67042c1b8ed22942df51ed2",
+      "sha256": "f7244f31d3ae75b89229e15a98ccf8df276f1536381ba07336690028a317b6b4",
       "file_count": 1266,
-      "total_bytes": 451360524,
+      "total_bytes": 451360842,
       "cloud_status": "cloud-upload-verified"
     },
     "final_cloud_audit": {
-      "audit_id": "CLOUD-AUDIT-20261003-619d24d-final",
-      "manifest_sha256": "9211eb30990e9aba65fd9443eef25d7437917fc5e67042c1b8ed22942df51ed2",
-      "gitee_commit": "619d24dcdb845a10f57cd4ef88ea70044748fde4",
-      "cleanup_allowed": false,
-      "pending_browser_readback": false,
-      "manifest_generated_at": "2026-10-03T15:46:03.265Z",
+      "audit_id": "CLOUD-AUDIT-20261003-b859848-final",
+      "manifest_sha256": "f7244f31d3ae75b89229e15a98ccf8df276f1536381ba07336690028a317b6b4",
+      "manifest_generated_at": "2026-10-03T16:17:03.509Z",
       "manifest_file_count": 1266,
-      "manifest_total_bytes": 451360524,
+      "manifest_total_bytes": 451360842,
+      "gitee_commit": "b859848afd12c24a79c62ee47425e11fed330791",
       "browser_readback": true,
       "recovery_index_browser_readback": true,
-      "recovery_index_sha256": "7eb0b67f80b12bbbc487acfc23ecdcc99488ec5429e59805facb687bc04ecdea",
-      "recovery_index_generated_at": "2026-10-03T15:54:51.233Z",
-      "recovery_index_bytes": 142294
+      "recovery_index_sha256": "7afea0c26b1a16e577377c17f035b1bbf94f65bd7501861becbd70b810623caa",
+      "recovery_index_bytes": 142218,
+      "recovery_index_generated_at": "2026-10-03T16:18:41.928Z",
+      "pending_browser_readback": false,
+      "cleanup_allowed": false
     },
     "final_recovery_index": {
       "file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
-      "original_file_id": "1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt",
-      "generated_at": "2026-10-03T15:54:51.233Z",
-      "bytes": 142294,
-      "sha256": "7eb0b67f80b12bbbc487acfc23ecdcc99488ec5429e59805facb687bc04ecdea",
-      "mapped": true,
-      "remote_main": "619d24dcdb845a10f57cd4ef88ea70044748fde4",
-      "pending_browser_readback": false,
-      "browser_readback": true
+      "generated_at": "2026-10-03T16:18:41.928Z",
+      "bytes": 142218,
+      "sha256": "7afea0c26b1a16e577377c17f035b1bbf94f65bd7501861becbd70b810623caa",
+      "remote_main": "b859848afd12c24a79c62ee47425e11fed330791",
+      "browser_readback": true,
+      "pending_browser_readback": false
     },
     "cleanup_root_cause_fix": {
       "status": "verified",

@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 25,
+  "revision": 26,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "After this host turn exits, verify supervisor removed codex-835da5ec0682f0e05a65-2 worktree and branch and released its claim; then mark plan_v3 and the goal complete.",
+  "next_action": "After host turn exit, independently verify cleanup of codex-835da5ec0682f0e05a65-2; then complete plan_v3 and the goal.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -1089,7 +1089,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "After this host turn exits, verify supervisor removed codex-835da5ec0682f0e05a65-2 worktree and branch and released its claim; then mark plan_v3 and the goal complete.",
+    "next_action": "After host turn exit, independently verify cleanup of codex-835da5ec0682f0e05a65-2; then complete plan_v3 and the goal.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -1141,10 +1141,11 @@
       "The final N1 archive receipt, original manifest backup, first failed quarantine receipt, experience record, plan_v3.json/plan_v3.md and both changed test files are all represented in the Drive canonical manifest and direct browser preview readbacks.",
       "Final Drive evidence is directly readable: cloud manifest metrics are current, CLOUD-AUDIT-20261003-7021a9a-final is read back, and retained duplicate recovery-index object 1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS version 44 reads back with SHA256 d3d986e393fab987273e7ea50eb7d13c87b9a999f697ce17c27a4ba229d84432 and final main 7021a9adac5a6197d29fc9a2deabfadfb6ba1624.",
       "Fixed the same-host continuation cleanup root cause: a closed integrated session is eligible for automatic cleanup when a newer same-host session owns a different worktree. Regression coverage passes, and the complete project suite passes 218/218 with architecture smoke 150/12.",
-      "Independent cleanup call after the fix removed codex-835da5ec0682f0e05a65-1 worktree and branch while codex-835da5ec0682f0e05a65-2 remained deferred as the current host worktree."
+      "Independent cleanup call after the fix removed codex-835da5ec0682f0e05a65-1 worktree and branch while codex-835da5ec0682f0e05a65-2 remained deferred as the current host worktree.",
+      "Automatic cleanup root cause is fixed and deployed to Gitee main 0d7cd573e678fb603c3de3cc67a613336080fe96. Same-host newer-worktree regression passes, complete suite passes 218/218, and supervisor cleanupClosedSession independently removed old session codex-835da5ec0682f0e05a65-1 worktree/branch and released its claim."
     ],
     "open_findings": [
-      "Final remaining gate: after this host turn, independently verify cleanup of codex-835da5ec0682f0e05a65-2; the older codex-835da5ec0682f0e05a65-1 cleanup is now complete."
+      "Final remaining gate: current codex-835da5ec0682f0e05a65-2 host turn must exit, then independently verify its closed worktree and branch are removed and its claim released."
     ],
     "source_document_hashes": [
       {
@@ -1226,7 +1227,7 @@
         "unknown_rollout_diagnostics_visible": 2
       },
       "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
-      "remaining_gate": "automatic cleanup of current codex-835da5ec0682f0e05a65-2 worktree, branch and claim must be independently observed after host exit",
+      "remaining_gate": "automatic cleanup of current host session codex-835da5ec0682f0e05a65-2 must be independently observed after host exit",
       "tests": {
         "command": "node --test tests/*.mjs",
         "status": "passed",
@@ -1305,41 +1306,43 @@
         "line_endings_normalized": true,
         "manifest_download": "byte-identical"
       },
-      "main_content_commit": "1377a41eb9b3f283b59d38a85ca8d2f0c249b6b6",
+      "main_content_commit": "0d7cd573e678fb603c3de3cc67a613336080fe96",
       "final_drive_manifest": {
-        "generated_at": "2026-10-03T09:59:50.274Z",
-        "bytes": 396254,
-        "sha256": "d28731595fe64fc5a39d3578b8239eb854609c3bc95f293573d19bfe4c25f051",
+        "generated_at": "2026-10-03T13:59:48.548Z",
+        "bytes": 396255,
+        "sha256": "691f096213b34c015fdf0fc63cc41a8819ace0cb7da5a0b804722bd71d204e43",
         "file_count": 1266,
-        "total_bytes": 451350608,
+        "total_bytes": 451357290,
         "cloud_status": "cloud-upload-verified"
       },
       "final_cloud_audit": {
-        "audit_id": "CLOUD-AUDIT-20261003-7021a9a-final",
-        "browser_readback": true,
-        "manifest_sha256": "d28731595fe64fc5a39d3578b8239eb854609c3bc95f293573d19bfe4c25f051",
-        "gitee_commit": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624",
-        "cleanup_allowed": false
+        "audit_id": "CLOUD-AUDIT-20261003-0d7cd57-cleanup-fix",
+        "manifest_sha256": "691f096213b34c015fdf0fc63cc41a8819ace0cb7da5a0b804722bd71d204e43",
+        "gitee_commit": "0d7cd573e678fb603c3de3cc67a613336080fe96",
+        "cleanup_allowed": false,
+        "pending_browser_readback": true
       },
       "final_recovery_index": {
         "file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
-        "original_file_id": "1VvCuwrGnBzKnUaJ5FYywuifucg1dJKtt",
-        "version": 44,
-        "generated_at": "2026-10-03T11:48:05.385Z",
-        "bytes": 141802,
-        "sha256": "d3d986e393fab987273e7ea50eb7d13c87b9a999f697ce17c27a4ba229d84432",
-        "matched_mapped_file": true,
-        "final_main": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624"
+        "original_file_id": "1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt",
+        "generated_at": "2026-10-03T14:07:25.155Z",
+        "bytes": 141977,
+        "sha256": "dc3b16cdeab3384452c9d0282e1f1707ccd2ea97ad3396c9897f46724ce6cfca",
+        "mapped": true,
+        "remote_main": "0d7cd573e678fb603c3de3cc67a613336080fe96",
+        "pending_browser_readback": true
       },
       "cleanup_root_cause_fix": {
-        "status": "verified",
-        "rule": "closed session + newer same-host session + different worktree permits cleanup",
-        "focused_tests": 13,
-        "full_tests": 218,
-        "architecture_required_files": 150,
-        "variables": 12,
+        "status": "deployed-and-partially-verified",
+        "gitee_main": "0d7cd573e678fb603c3de3cc67a613336080fe96",
+        "focused_test": "tests/session-concurrency.test.mjs 13/13",
+        "full_suite": "node --test tests/*.mjs 218/218",
+        "architecture": {
+          "required_files": 150,
+          "variables": 12
+        },
         "cleaned_session": "codex-835da5ec0682f0e05a65-1",
-        "remaining_session": "codex-835da5ec0682f0e05a65-2"
+        "pending_session": "codex-835da5ec0682f0e05a65-2"
       }
     }
   },
@@ -1356,7 +1359,7 @@
     "latest_main_commit": "69302f16570347666868a3022adf6a71b48db85d",
     "latest_main_remote_verified": "69302f16570347666868a3022adf6a71b48db85d"
   },
-  "updated_at": "2026-10-03T13:53:31.799Z",
+  "updated_at": "2026-10-03T14:08:27.742Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"
@@ -1400,7 +1403,7 @@
     }
   ],
   "open_findings": [
-    "Final remaining gate: after this host turn, independently verify cleanup of codex-835da5ec0682f0e05a65-2; the older codex-835da5ec0682f0e05a65-1 cleanup is now complete."
+    "Final remaining gate: current codex-835da5ec0682f0e05a65-2 host turn must exit, then independently verify its closed worktree and branch are removed and its claim released."
   ],
   "finalization_checkpoint": {
     "verified_at": "2026-10-03T06:16:53.808Z",
@@ -1437,7 +1440,7 @@
       "unknown_rollout_diagnostics_visible": 2
     },
     "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
-    "remaining_gate": "automatic cleanup of current codex-835da5ec0682f0e05a65-2 worktree, branch and claim must be independently observed after host exit",
+    "remaining_gate": "automatic cleanup of current host session codex-835da5ec0682f0e05a65-2 must be independently observed after host exit",
     "tests": {
       "command": "node --test tests/*.mjs",
       "status": "passed",
@@ -1516,41 +1519,43 @@
       "line_endings_normalized": true,
       "manifest_download": "byte-identical"
     },
-    "main_content_commit": "1377a41eb9b3f283b59d38a85ca8d2f0c249b6b6",
+    "main_content_commit": "0d7cd573e678fb603c3de3cc67a613336080fe96",
     "final_drive_manifest": {
-      "generated_at": "2026-10-03T09:59:50.274Z",
-      "bytes": 396254,
-      "sha256": "d28731595fe64fc5a39d3578b8239eb854609c3bc95f293573d19bfe4c25f051",
+      "generated_at": "2026-10-03T13:59:48.548Z",
+      "bytes": 396255,
+      "sha256": "691f096213b34c015fdf0fc63cc41a8819ace0cb7da5a0b804722bd71d204e43",
       "file_count": 1266,
-      "total_bytes": 451350608,
+      "total_bytes": 451357290,
       "cloud_status": "cloud-upload-verified"
     },
     "final_cloud_audit": {
-      "audit_id": "CLOUD-AUDIT-20261003-7021a9a-final",
-      "browser_readback": true,
-      "manifest_sha256": "d28731595fe64fc5a39d3578b8239eb854609c3bc95f293573d19bfe4c25f051",
-      "gitee_commit": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624",
-      "cleanup_allowed": false
+      "audit_id": "CLOUD-AUDIT-20261003-0d7cd57-cleanup-fix",
+      "manifest_sha256": "691f096213b34c015fdf0fc63cc41a8819ace0cb7da5a0b804722bd71d204e43",
+      "gitee_commit": "0d7cd573e678fb603c3de3cc67a613336080fe96",
+      "cleanup_allowed": false,
+      "pending_browser_readback": true
     },
     "final_recovery_index": {
       "file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
-      "original_file_id": "1VvCuwrGnBzKnUaJ5FYywuifucg1dJKtt",
-      "version": 44,
-      "generated_at": "2026-10-03T11:48:05.385Z",
-      "bytes": 141802,
-      "sha256": "d3d986e393fab987273e7ea50eb7d13c87b9a999f697ce17c27a4ba229d84432",
-      "matched_mapped_file": true,
-      "final_main": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624"
+      "original_file_id": "1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt",
+      "generated_at": "2026-10-03T14:07:25.155Z",
+      "bytes": 141977,
+      "sha256": "dc3b16cdeab3384452c9d0282e1f1707ccd2ea97ad3396c9897f46724ce6cfca",
+      "mapped": true,
+      "remote_main": "0d7cd573e678fb603c3de3cc67a613336080fe96",
+      "pending_browser_readback": true
     },
     "cleanup_root_cause_fix": {
-      "status": "verified",
-      "rule": "closed session + newer same-host session + different worktree permits cleanup",
-      "focused_tests": 13,
-      "full_tests": 218,
-      "architecture_required_files": 150,
-      "variables": 12,
+      "status": "deployed-and-partially-verified",
+      "gitee_main": "0d7cd573e678fb603c3de3cc67a613336080fe96",
+      "focused_test": "tests/session-concurrency.test.mjs 13/13",
+      "full_suite": "node --test tests/*.mjs 218/218",
+      "architecture": {
+        "required_files": 150,
+        "variables": 12
+      },
       "cleaned_session": "codex-835da5ec0682f0e05a65-1",
-      "remaining_session": "codex-835da5ec0682f0e05a65-2"
+      "pending_session": "codex-835da5ec0682f0e05a65-2"
     }
   }
 }

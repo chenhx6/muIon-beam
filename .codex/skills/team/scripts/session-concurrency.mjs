@@ -394,6 +394,18 @@ function observedHostStatus(root, session) {
 function hostFinished(root, session) {
   return !session.host_session_id || terminalHostStatuses.has(String(observedHostStatus(root, session) || '').toLowerCase());
 }
+function hostWorktreeReplaced(root, session) {
+  if (!session.host_session_id) return false;
+  const createdAt = Date.parse(session.created_at || '') || 0;
+  return listSessions({ root }).some((other) => other.session_id !== session.session_id
+    && other.host_session_id === session.host_session_id
+    && path.resolve(other.worktree_path || '') !== path.resolve(session.worktree_path || '')
+    && (Date.parse(other.created_at) || 0) > createdAt
+    && ['active', 'submitted', 'integrated', 'closed'].includes(other.status));
+}
+function cleanupHostFinished(root, session) {
+  return hostFinished(root, session) || hostWorktreeReplaced(root, session);
+}
 function assertSafeWorktreeCleanup(root, session) {
   const worktree = path.resolve(session.worktree_path || '');
   const worktreesRoot = path.resolve(root, '_work/current/worktrees');
@@ -643,7 +655,7 @@ export function cleanupClosedSession({ root = process.cwd(), sessionId } = {}) {
   return withLock(repoRoot, 'session-registry', () => {
     const session = readSession(repoRoot, safeId(sessionId, 'session_id'));
     if (session.status !== 'closed' || !session.cleanup_pending) return { ...session, cleanup_completed: false };
-    if (!hostFinished(repoRoot, session)) return { ...session, cleanup_deferred: true, host_status: observedHostStatus(repoRoot, session) || 'unknown' };
+    if (!cleanupHostFinished(repoRoot, session)) return { ...session, cleanup_deferred: true, host_status: observedHostStatus(repoRoot, session) || 'unknown' };
     if (session.mode === 'worktree' && session.worktree_created) {
       assertSafeWorktreeCleanup(repoRoot, session);
       removeDeliveredWorktree(repoRoot, session);
@@ -664,7 +676,7 @@ export function closeSession({ root = process.cwd(), sessionId, token, cleanup =
       assertSafeWorktreeCleanup(repoRoot, session);
     }
     removeClaim(repoRoot, session.session_id);
-    const defer = Boolean(cleanup && session.mode === 'worktree' && session.worktree_created && !hostFinished(repoRoot, session));
+    const defer = Boolean(cleanup && session.mode === 'worktree' && session.worktree_created && !cleanupHostFinished(repoRoot, session));
     return updateSession(repoRoot, session, { status: 'closed', closed_at: nowIso(), cleanup, cleanup_pending: Boolean(cleanup && session.mode === 'worktree' && session.worktree_created), cleanup_deferred: defer, cleanup_deferred_reason: defer ? 'host-session-still-active' : null });
   });
   return cleanup && result.cleanup_pending ? cleanupClosedSession({ root: repoRoot, sessionId }) : result;

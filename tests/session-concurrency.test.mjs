@@ -154,6 +154,22 @@ test('closed delivery waits for the host to finish, then removes only the merged
   assert.notEqual(spawnSync('git', ['-C', root, 'show-ref', '--verify', '--quiet', 'refs/heads/' + session.branch], { encoding: 'utf8' }).status, 0);
 });
 
+test('closed delivery cleans when a newer same-host session owns another worktree', () => {
+  const { root, git } = fixture(); const sessions = [];
+  try {
+    const old = beginSession({ root, sessionId: 'old-host-session', hostSessionId: 'host-reused', ownedPaths: ['a.txt'] }); sessions.push(old);
+    fs.writeFileSync(path.join(old.worktree_path, 'a.txt'), 'delivered\n');
+    git('-C', old.worktree_path, 'add', 'a.txt'); git('-C', old.worktree_path, 'commit', '-m', 'delivered');
+    submitSession({ root, sessionId: old.session_id }); applyIntegration({ root, sessionId: old.session_id });
+    const newer = beginSession({ root, sessionId: 'new-host-session', hostSessionId: 'host-reused', ownedPaths: ['b.txt'] }); sessions.push(newer);
+    const farmerState = path.join(root, '_work/current/farmer/state.json'); fs.mkdirSync(path.dirname(farmerState), { recursive: true });
+    fs.writeFileSync(farmerState, JSON.stringify({ 'host-reused': { status: 'running' } }));
+    const closed = closeSession({ root, sessionId: old.session_id, token: old.owner_token, cleanup: true });
+    assert.equal(closed.cleanup_completed, true); assert.equal(closed.cleanup_pending, false); assert.equal(fs.existsSync(old.worktree_path), false);
+    assert.equal(listSessions({ root }).find(item => item.session_id === newer.session_id)?.status, 'active');
+  } finally { cleanup(root, sessions.filter(item => fs.existsSync(item.worktree_path))); }
+});
+
 test('supersession cleanup verifies fixed source, Drive hashes and host completion before preserving then removing', () => {
   const { root, git } = fixture(); const session = beginSession({ root, sessionId: 'superseded', hostSessionId: 'host-superseded', ownedPaths: ['a.txt'] });
   const digest = value => crypto.createHash('sha256').update(value).digest('hex');

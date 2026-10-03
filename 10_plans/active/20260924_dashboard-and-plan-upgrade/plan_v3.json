@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 26,
+  "revision": 27,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "After host turn exit, independently verify cleanup of codex-835da5ec0682f0e05a65-2; then complete plan_v3 and the goal.",
+  "next_action": "Finalize plan checkpoint, close current writer session, and independently verify supervisor cleanup of codex-835da5ec0682f0e05a65-3.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -1089,7 +1089,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "After host turn exit, independently verify cleanup of codex-835da5ec0682f0e05a65-2; then complete plan_v3 and the goal.",
+    "next_action": "Finalize plan checkpoint, close current writer session, and independently verify supervisor cleanup of codex-835da5ec0682f0e05a65-3.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -1142,10 +1142,13 @@
       "Final Drive evidence is directly readable: cloud manifest metrics are current, CLOUD-AUDIT-20261003-7021a9a-final is read back, and retained duplicate recovery-index object 1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS version 44 reads back with SHA256 d3d986e393fab987273e7ea50eb7d13c87b9a999f697ce17c27a4ba229d84432 and final main 7021a9adac5a6197d29fc9a2deabfadfb6ba1624.",
       "Fixed the same-host continuation cleanup root cause: a closed integrated session is eligible for automatic cleanup when a newer same-host session owns a different worktree. Regression coverage passes, and the complete project suite passes 218/218 with architecture smoke 150/12.",
       "Independent cleanup call after the fix removed codex-835da5ec0682f0e05a65-1 worktree and branch while codex-835da5ec0682f0e05a65-2 remained deferred as the current host worktree.",
-      "Automatic cleanup root cause is fixed and deployed to Gitee main 0d7cd573e678fb603c3de3cc67a613336080fe96. Same-host newer-worktree regression passes, complete suite passes 218/218, and supervisor cleanupClosedSession independently removed old session codex-835da5ec0682f0e05a65-1 worktree/branch and released its claim."
+      "Automatic cleanup root cause is fixed and deployed to Gitee main 0d7cd573e678fb603c3de3cc67a613336080fe96. Same-host newer-worktree regression passes, complete suite passes 218/218, and supervisor cleanupClosedSession independently removed old session codex-835da5ec0682f0e05a65-1 worktree/branch and released its claim.",
+      "Direct browser readback of recovery-index object 1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS verified generated_at 2026-10-03T14:07:25.155Z, SHA256 dc3b16cdeab3384452c9d0282e1f1707ccd2ea97ad3396c9897f46724ce6cfca, and local/remote main 0d7cd573e678fb603c3de3cc67a613336080fe96.",
+      "Direct browser readback of drive-mirror-manifest object 1gNnfq6ajCq85Me-VJdLt_LLYfQfOwE6j verified generated_at 2026-10-03T14:13:31.619Z, cloud-upload-verified, 1,266 files, 451,357,952 bytes, and SHA256 8379d94074a44a6a52bb4a590ff8be31c038107632d2dcfe0162504862f58220; required plan, cleanup disposition, session-concurrency and regression-test paths match the mapped Drive mirror byte-for-byte.",
+      "Supervisor automatically archived the sole ignored session2 P3 helper recovery-final.mjs to _work/current/supersession-preserved/codex-835da5ec0682f0e05a65-2/session2-runtime/_work/current/recovery-final.mjs with SHA256 cfa8624a0efa62337d9eae82b6f148ceb21438ab788abc92259d6a49a336ab3a, then removed session codex-835da5ec0682f0e05a65-2 worktree, branch and claim; independent registry and Git checks confirmed cleanup_completed=true, path absent and branch absent."
     ],
     "open_findings": [
-      "Final remaining gate: current codex-835da5ec0682f0e05a65-2 host turn must exit, then independently verify its closed worktree and branch are removed and its claim released."
+      "Finalize plan checkpoint, close current writer session, and independently verify supervisor cleanup of codex-835da5ec0682f0e05a65-3."
     ],
     "source_document_hashes": [
       {
@@ -1356,10 +1359,10 @@
     "started_at": "2026-09-30",
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2",
-    "latest_main_commit": "69302f16570347666868a3022adf6a71b48db85d",
-    "latest_main_remote_verified": "69302f16570347666868a3022adf6a71b48db85d"
+    "latest_main_commit": "29127a9a44ba67626d0f67d4a407666e816471c4",
+    "latest_main_remote_verified": "29127a9a44ba67626d0f67d4a407666e816471c4"
   },
-  "updated_at": "2026-10-03T14:08:27.742Z",
+  "updated_at": "2026-10-03T15:29:58.221Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"
@@ -1403,7 +1406,7 @@
     }
   ],
   "open_findings": [
-    "Final remaining gate: current codex-835da5ec0682f0e05a65-2 host turn must exit, then independently verify its closed worktree and branch are removed and its claim released."
+    "Finalize plan checkpoint, close current writer session, and independently verify supervisor cleanup of codex-835da5ec0682f0e05a65-3."
   ],
   "finalization_checkpoint": {
     "verified_at": "2026-10-03T06:16:53.808Z",
@@ -1440,7 +1443,7 @@
       "unknown_rollout_diagnostics_visible": 2
     },
     "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
-    "remaining_gate": "automatic cleanup of current host session codex-835da5ec0682f0e05a65-2 must be independently observed after host exit",
+    "remaining_gate": "Close current writer session codex-835da5ec0682f0e05a65-3; supervisor must remove its worktree, branch and claim, then independent registry/Git observation completes the plan.",
     "tests": {
       "command": "node --test tests/*.mjs",
       "status": "passed",
@@ -1489,7 +1492,7 @@
       "n1_before_manifest": "copied to traceability with matching SHA256",
       "clean_clone": "verified against Gitee then removed as reproducible"
     },
-    "main_commit": "d015300733351baeaee959edbb94b397bc0f991b",
+    "main_commit": "29127a9a44ba67626d0f67d4a407666e816471c4",
     "latest_drive_mirror": {
       "manifest_sha256": "66c5d450df3a268f4895d59f7b273ab486224c0874e798321504452d3c98ba38",
       "generated_at": "2026-10-03T07:14:22.389Z",
@@ -1519,21 +1522,28 @@
       "line_endings_normalized": true,
       "manifest_download": "byte-identical"
     },
-    "main_content_commit": "0d7cd573e678fb603c3de3cc67a613336080fe96",
+    "main_content_commit": "29127a9a44ba67626d0f67d4a407666e816471c4",
     "final_drive_manifest": {
-      "generated_at": "2026-10-03T13:59:48.548Z",
+      "generated_at": "2026-10-03T14:13:31.619Z",
       "bytes": 396255,
-      "sha256": "691f096213b34c015fdf0fc63cc41a8819ace0cb7da5a0b804722bd71d204e43",
+      "sha256": "8379d94074a44a6a52bb4a590ff8be31c038107632d2dcfe0162504862f58220",
       "file_count": 1266,
-      "total_bytes": 451357290,
+      "total_bytes": 451357952,
       "cloud_status": "cloud-upload-verified"
     },
     "final_cloud_audit": {
-      "audit_id": "CLOUD-AUDIT-20261003-0d7cd57-cleanup-fix",
-      "manifest_sha256": "691f096213b34c015fdf0fc63cc41a8819ace0cb7da5a0b804722bd71d204e43",
+      "audit_id": "CLOUD-AUDIT-20261003-0d7cd57-browser-readback",
+      "manifest_sha256": "8379d94074a44a6a52bb4a590ff8be31c038107632d2dcfe0162504862f58220",
       "gitee_commit": "0d7cd573e678fb603c3de3cc67a613336080fe96",
       "cleanup_allowed": false,
-      "pending_browser_readback": true
+      "pending_browser_readback": false,
+      "manifest_generated_at": "2026-10-03T14:13:31.619Z",
+      "manifest_file_count": 1266,
+      "manifest_total_bytes": 451357952,
+      "browser_readback": true,
+      "recovery_index_browser_readback": true,
+      "recovery_index_sha256": "dc3b16cdeab3384452c9d0282e1f1707ccd2ea97ad3396c9897f46724ce6cfca",
+      "recovery_index_generated_at": "2026-10-03T14:07:25.155Z"
     },
     "final_recovery_index": {
       "file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
@@ -1543,10 +1553,11 @@
       "sha256": "dc3b16cdeab3384452c9d0282e1f1707ccd2ea97ad3396c9897f46724ce6cfca",
       "mapped": true,
       "remote_main": "0d7cd573e678fb603c3de3cc67a613336080fe96",
-      "pending_browser_readback": true
+      "pending_browser_readback": false,
+      "browser_readback": true
     },
     "cleanup_root_cause_fix": {
-      "status": "deployed-and-partially-verified",
+      "status": "verified",
       "gitee_main": "0d7cd573e678fb603c3de3cc67a613336080fe96",
       "focused_test": "tests/session-concurrency.test.mjs 13/13",
       "full_suite": "node --test tests/*.mjs 218/218",
@@ -1555,7 +1566,19 @@
         "variables": 12
       },
       "cleaned_session": "codex-835da5ec0682f0e05a65-1",
-      "pending_session": "codex-835da5ec0682f0e05a65-2"
+      "pending_session": "codex-835da5ec0682f0e05a65-3",
+      "cleaned_sessions": [
+        "codex-835da5ec0682f0e05a65-1",
+        "codex-835da5ec0682f0e05a65-2"
+      ],
+      "session2_cleanup": {
+        "status": "verified",
+        "worktree_removed": true,
+        "branch_removed": true,
+        "claim_released": true,
+        "archive": "_work/current/supersession-preserved/codex-835da5ec0682f0e05a65-2/session2-runtime/_work/current/recovery-final.mjs",
+        "archive_sha256": "cfa8624a0efa62337d9eae82b6f148ceb21438ab788abc92259d6a49a336ab3a"
+      }
     }
   }
 }

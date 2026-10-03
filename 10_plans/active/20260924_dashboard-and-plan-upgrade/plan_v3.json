@@ -2,7 +2,7 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 31,
+  "revision": 32,
   "status": "completed",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
@@ -1154,7 +1154,10 @@
       "Independent registry/Git verification confirmed codex-835da5ec0682f0e05a65-3 cleanup_completed=true, its worktree path absent, its branch absent and its claim released.",
       "The final consistency correction was integrated and pushed to Gitee main 24489e4e09756bb44eb20c9c360793d1b293afa9; plan status is completed with no open findings.",
       "Final completed-state Drive manifest was read back in browser at 2026-10-03T16:37:58.770Z, cloud-upload-verified, 1,266 files, 451,361,319 bytes, SHA256 3f2dbc5ee41af6bee39a088a67370227ee346165910f196b57e868ec4c677f4d.",
-      "Final completed-state recovery-index was read back in browser at 2026-10-03T16:39:41.250Z, SHA256 a6fd7a0fab311f49b6864eaff16ef60e4f40b84b95f57d29a46d227f69d9ec1f, with local and remote main both equal 24489e4e09756bb44eb20c9c360793d1b293afa9."
+      "Final completed-state recovery-index was read back in browser at 2026-10-03T16:39:41.250Z, SHA256 a6fd7a0fab311f49b6864eaff16ef60e4f40b84b95f57d29a46d227f69d9ec1f, with local and remote main both equal 24489e4e09756bb44eb20c9c360793d1b293afa9.",
+      "Final consistency-corrected plan_v3 completed state is on Gitee main 5661dc5d55fb43df1da200f28ad72de45af47f99 and has no open findings.",
+      "The last completion-state Drive mirror was browser-read at generated_at 2026-10-03T16:43:11.080Z with cloud-upload-verified, 1,266 files, 451,361,585 bytes, SHA256 f82e5cd28e8255d3f85fe4950cad4cd0f8b7b4fe35b972187b7e5aa2907e81df.",
+      "The last completion-state recovery-index was browser-read at 2026-10-03T16:44:54.167Z, SHA256 3b37d701b5091a0e5f01c6b4b1e571b20511dbd156317afe2e190aab185ad37e, with local and remote main equal 5661dc5d55fb43df1da200f28ad72de45af47f99."
     ],
     "open_findings": [],
     "source_document_hashes": [
@@ -1366,10 +1369,10 @@
     "started_at": "2026-09-30",
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2",
-    "latest_main_commit": "24489e4e09756bb44eb20c9c360793d1b293afa9",
-    "latest_main_remote_verified": "24489e4e09756bb44eb20c9c360793d1b293afa9"
+    "latest_main_commit": "5661dc5d55fb43df1da200f28ad72de45af47f99",
+    "latest_main_remote_verified": "5661dc5d55fb43df1da200f28ad72de45af47f99"
   },
-  "updated_at": "2026-10-03T16:42:19.818Z",
+  "updated_at": "2026-10-03T16:47:42.093Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"
@@ -1448,7 +1451,7 @@
       "unknown_rollout_diagnostics_visible": 2
     },
     "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
-    "remaining_gate": "Completed; automatic cleanup evidence is independently recorded for the integrated writer sessions.",
+    "remaining_gate": "Completed; supervisor cleanup of delivered sessions was independently verified.",
     "tests": {
       "command": "node --test tests/*.mjs",
       "status": "passed",
@@ -1497,7 +1500,7 @@
       "n1_before_manifest": "copied to traceability with matching SHA256",
       "clean_clone": "verified against Gitee then removed as reproducible"
     },
-    "main_commit": "24489e4e09756bb44eb20c9c360793d1b293afa9",
+    "main_commit": "5661dc5d55fb43df1da200f28ad72de45af47f99",
     "latest_drive_mirror": {
       "manifest_sha256": "66c5d450df3a268f4895d59f7b273ab486224c0874e798321504452d3c98ba38",
       "generated_at": "2026-10-03T07:14:22.389Z",
@@ -1527,29 +1530,29 @@
       "line_endings_normalized": true,
       "manifest_download": "byte-identical"
     },
-    "main_content_commit": "24489e4e09756bb44eb20c9c360793d1b293afa9",
+    "main_content_commit": "5661dc5d55fb43df1da200f28ad72de45af47f99",
     "final_drive_manifest": {
-      "generated_at": "2026-10-03T16:37:58.770Z",
+      "generated_at": "2026-10-03T16:43:11.080Z",
       "bytes": 396255,
-      "sha256": "3f2dbc5ee41af6bee39a088a67370227ee346165910f196b57e868ec4c677f4d",
+      "sha256": "f82e5cd28e8255d3f85fe4950cad4cd0f8b7b4fe35b972187b7e5aa2907e81df",
       "file_count": 1266,
-      "total_bytes": 451361319,
+      "total_bytes": 451361585,
       "cloud_status": "cloud-upload-verified"
     },
     "final_cloud_audit": {
-      "audit_id": "CLOUD-AUDIT-20261003-24489e4-final",
-      "manifest_sha256": "3f2dbc5ee41af6bee39a088a67370227ee346165910f196b57e868ec4c677f4d",
-      "gitee_commit": "24489e4e09756bb44eb20c9c360793d1b293afa9",
+      "audit_id": "CLOUD-AUDIT-20261003-5661dc5-final",
+      "manifest_sha256": "f82e5cd28e8255d3f85fe4950cad4cd0f8b7b4fe35b972187b7e5aa2907e81df",
+      "gitee_commit": "5661dc5d55fb43df1da200f28ad72de45af47f99",
       "browser_readback": true,
       "cleanup_allowed": false,
       "pending_browser_readback": false
     },
     "final_recovery_index": {
       "file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
-      "generated_at": "2026-10-03T16:39:41.250Z",
-      "bytes": 142880,
-      "sha256": "a6fd7a0fab311f49b6864eaff16ef60e4f40b84b95f57d29a46d227f69d9ec1f",
-      "remote_main": "24489e4e09756bb44eb20c9c360793d1b293afa9",
+      "generated_at": "2026-10-03T16:44:54.167Z",
+      "bytes": 142887,
+      "sha256": "3b37d701b5091a0e5f01c6b4b1e571b20511dbd156317afe2e190aab185ad37e",
+      "remote_main": "5661dc5d55fb43df1da200f28ad72de45af47f99",
       "browser_readback": true,
       "pending_browser_readback": false
     },
@@ -1567,7 +1570,8 @@
       "cleaned_sessions": [
         "codex-835da5ec0682f0e05a65-1",
         "codex-835da5ec0682f0e05a65-2",
-        "codex-835da5ec0682f0e05a65-3"
+        "codex-835da5ec0682f0e05a65-3",
+        "codex-835da5ec0682f0e05a65-4"
       ],
       "session2_cleanup": {
         "status": "verified",

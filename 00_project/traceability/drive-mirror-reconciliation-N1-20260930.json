@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "record_type": "drive-mirror-reconciliation",
+  "created_at": "2026-09-30T01:46:22.002Z",
+  "source_commit": "1b0c42a2f047f05b5135a4c737cb911409d78d20",
+  "drive_manifest_path": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam\\drive-mirror-manifest.json",
+  "drive_manifest_sha256_before": "965b73da69e6be6d6d2bd6fd24ae36d417b3c75f4714e9d346118e7f24df9a8a",
+  "backup_path": "00_project/traceability/drive-mirror-manifest-before-N1-20260930.json",
+  "files": [
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/formal-output-quarantine-manifest.json",
+      "drive_bytes": 40609,
+      "drive_sha256_before": "2d2b109a5cc5afc7e45e384e1d48627dc653d7c512d15bda318871a85ea9c4b6",
+      "main_bytes": 41159,
+      "main_sha256": "af169c5157b41f95b848f9324ed6279d8efab0bbe828fb4bde2a58e076730978",
+      "git_blob_sha": "e1473f4dd559422201f3b9c3d670ab6ed449e65f",
+      "equivalence": "same Git blob; text differs only by CRLF/LF"
+    },
+    {
+      "path": "90_migration/quarantine/dashboard-governance-20260924/quarantine-manifest.json",
+      "drive_bytes": 101529,
+      "drive_sha256_before": "d15b1d82fe73ad51145e75641f5b5068b764fa10f35399f43abb426a0fdcec2f",
+      "main_bytes": 102773,
+      "main_sha256": "66925e422610f6a67b68393a657e3243d23be64458564682b8f47a3540354a33",
+      "git_blob_sha": "ae5b40caeaeb3d8b317d51cb0fe76457332c70e8",
+      "equivalence": "same Git blob; text differs only by CRLF/LF"
+    }
+  ],
+  "failed_attempts": [
+    {
+      "operation": "fsync temporary manifest on mapped Drive",
+      "status": "failed",
+      "error": "EPERM: operation not permitted",
+      "outcome": "the Drive manifest remained byte-identical to its recorded old SHA; verified temp manifest preserved for retry"
+    }
+  ],
+  "prepared_manifest": {
+    "path": "drive-mirror-manifest.json.52ef079d-e717-482e-977c-d5a74dfc9473.tmp",
+    "sha256": "2d026f3cfd7cb6029e73d379eb348197efa69f2a1089d61b737bde7cec8ae51b",
+    "file_count": 1231,
+    "total_bytes": 449863308
+  },
+  "archived_at": "2026-10-03T06:43:56.163Z",
+  "source_receipt_sha256": "b9d2079541c8a805a4cec2c031e0c0567ad8f7911519689f88f04c87dcb427f7",
+  "original_backup_path": "D:\\muIon-beam\\_work\\current\\worktrees\\codex-835da5ec0682f0e05a65-1\\_work\\current\\drive-reconciliation\\N1-line-ending-equivalence\\drive-mirror-manifest-before.json",
+  "backup_sha256": "965b73da69e6be6d6d2bd6fd24ae36d417b3c75f4714e9d346118e7f24df9a8a",
+  "backup_bytes": 388786
+}

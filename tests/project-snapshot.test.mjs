@@ -13,8 +13,9 @@ function git(root, ...args) {
   assert.equal(result.status, 0, result.stderr);
   return result.stdout.trim();
 }
-function fixture() {
+function fixture(t) {
   const base = fs.mkdtempSync(path.join(scratch, 'snapshot-test-'));
+  t.after(() => fs.rmSync(base, { recursive: true, force: true }));
   const root = path.join(base, 'project');
   const remote = path.join(base, 'remote.git');
   const drive = path.join(base, 'drive');
@@ -40,8 +41,8 @@ function sync(f, extra = []) {
 }
 function audit(f) { return command(f, 'audit-project-snapshot.mjs', ['--drive-path', f.drive]); }
 
-test('snapshot requires explicit tag and committed content before any Drive copy', () => {
-  const f = fixture();
+test('snapshot requires explicit tag and committed content before any Drive copy', (t) => {
+  const f = fixture(t);
   assert.notEqual(command(f, 'sync-project-snapshot.mjs', ['--drive-path', f.drive]).status, 0);
   assert.equal(fs.existsSync(f.drive), false);
   fs.appendFileSync(path.join(f.root, '中文说明.md'), 'dirty\n');
@@ -49,8 +50,8 @@ test('snapshot requires explicit tag and committed content before any Drive copy
   assert.equal(fs.existsSync(f.drive), false);
 });
 
-test('verified snapshot includes Unicode paths, SQLite hash, timestamp and remote tag', () => {
-  const f = fixture();
+test('verified snapshot includes Unicode paths, SQLite hash, timestamp and remote tag', (t) => {
+  const f = fixture(t);
   const result = sync(f);
   assert.equal(result.status, 0, result.stderr);
   const state = JSON.parse(fs.readFileSync(path.join(f.drive, 'sync-state.json')));
@@ -67,8 +68,8 @@ test('verified snapshot includes Unicode paths, SQLite hash, timestamp and remot
   assert.match(failure.stdout, /index.sqlite: Drive differs/);
 });
 
-test('Drive receipt failure stays pending, correct project retry preserves files and clears outbox', () => {
-  const f = fixture();
+test('Drive receipt failure stays pending, correct project retry preserves files and clears outbox', (t) => {
+  const f = fixture(t);
   fs.mkdirSync(path.join(f.drive, 'sync-state.json'), { recursive: true });
   const failure = sync(f);
   assert.equal(failure.status, 2, failure.stderr);
@@ -86,8 +87,8 @@ test('Drive receipt failure stays pending, correct project retry preserves files
   assert.equal(audit(f).status, 0);
 });
 
-test('retry refuses to put a new commit into an older snapshot', () => {
-  const f = fixture();
+test('retry refuses to put a new commit into an older snapshot', (t) => {
+  const f = fixture(t);
   fs.mkdirSync(path.join(f.drive, 'sync-state.json'), { recursive: true });
   assert.equal(sync(f).status, 2);
   fs.appendFileSync(path.join(f.root, '中文说明.md'), 'new revision');
@@ -98,8 +99,8 @@ test('retry refuses to put a new commit into an older snapshot', () => {
   assert.equal(fs.readFileSync(path.join(f.drive, '中文说明.md'), 'utf8'), 'fixture only\n');
 });
 
-test('read-only audit rejects forged receipt hashes and missing verification timestamps', () => {
-  const f = fixture();
+test('read-only audit rejects forged receipt hashes and missing verification timestamps', (t) => {
+  const f = fixture(t);
   assert.equal(sync(f).status, 0);
   const receipt = path.join(f.drive, 'sync-state.json');
   const state = JSON.parse(fs.readFileSync(receipt));

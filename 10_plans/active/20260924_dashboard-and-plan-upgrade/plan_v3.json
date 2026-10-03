@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 18,
+  "revision": 22,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "After N3 finalization, refresh and directly read back the cloud recovery-index for the plan receipt commit; after this host turn exits, independently verify automatic current-session worktree, branch and claim cleanup before marking the plan and goal complete.",
+  "next_action": "After this host turn exits, independently verify automatic cleanup removed the integrated current-session worktree and branch and released its claim; then close plan_v3 and the goal.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -697,6 +697,12 @@
             "current_for_delivery_commit": false,
             "next_action": "Refresh and verify at N3 after final plan receipt."
           }
+        },
+        "drive_reconciliation_receipt": {
+          "path": "00_project/traceability/drive-mirror-reconciliation-N1-20260930.json",
+          "sha256": "290d6f8a094b3eb3836193216728c4b72f8285a518d532f4372d8435c98b52b3",
+          "backup_manifest": "00_project/traceability/drive-mirror-manifest-before-N1-20260930.json",
+          "backup_sha256": "965b73da69e6be6d6d2bd6fd24ae36d417b3c75f4714e9d346118e7f24df9a8a"
         }
       }
     },
@@ -1083,7 +1089,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "After N3 finalization, refresh and directly read back the cloud recovery-index for the plan receipt commit; after this host turn exits, independently verify automatic current-session worktree, branch and claim cleanup before marking the plan and goal complete.",
+    "next_action": "After this host turn exits, independently verify automatic cleanup removed the integrated current-session worktree and branch and released its claim; then close plan_v3 and the goal.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -1117,13 +1123,20 @@
       "A D80-2 cleanup attempt preserved its worktree when the shared 220-item quarantine readback was incorrectly required to exist in every historical worker. Cleanup now validates the fixed global receipt count and hashes only quarantine payloads actually present in each worker; the empty-source case and incomplete receipt are covered by tests/session-concurrency.test.mjs.",
       "Delivered N3 after main, Gitee, Drive and annotated t-tag verification.",
       "Historical worker branches and worktrees were removed through the fixed-SHA, Gitee/Drive-verified supersession gate; disposition receipt 00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json.",
-      "Post-delivery supervision hardening fixed the partial farmer lock race and bounded dashboard status-projection timeout; focused farmer tests passed 32/32, full suite 217/217, architecture check 150/12."
+      "Post-delivery supervision hardening fixed the partial farmer lock race and bounded dashboard status-projection timeout; focused farmer tests passed 32/32, full suite 217/217, architecture check 150/12.",
+      "After the N3 receipt commit, fast-forwarded the configured Gitee clean clone from 3f387a1157dfa2049a1dc8ae03593ca016a3deb1 to d882d31829def03520452eaa36c159c78d61494b; origin/main matched and the clone was clean.",
+      "Authenticated Google Drive UI uploaded version 7 to the original recovery-index object 1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt. After reloading that object, its 141,517-byte preview hashed to 061a7f82590742619905586fa549bf4c12a848c9c5ca41c6d39e8448fb01b40c, matching the mapped file and indexing Gitee main d882d31829def03520452eaa36c159c78d61494b.",
+      "Drive search also showed duplicate object 1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS with the same current payload; it was retained without deletion.",
+      "All four historical worker sessions have verified branch-removed dispositions in 00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json; the 4317 dashboard served main HTML/JS hashes and retained the two unknown-rollout diagnostics.",
+      "Fixed two node:test fixtures that left 1,618 ignored scratch files; focused tests passed 8/8 and the new runs removed their own temporary roots.",
+      "No formal research run was executed. The plan has only N0-N3 t-* task-node tags; no b-* or r-* tag was created.",
+      "Complete project suite after the fixture cleanup fix passed node --test tests/*.mjs (217/217), and architecture smoke passed (150 required files, 12 variables). The _work/scratch directory count stayed at 88 across the full suite, so no new test scratch roots were left.",
+      "Archived the N1 Drive line-ending reconciliation receipt and its exact pre-reconciliation manifest under 00_project/traceability; the receipt retains the EPERM fsync failure, two same-Git-blob CRLF/LF mappings, and matching backup SHA256.",
+      "Preserved the failed first quarantine readback as 00_project/traceability/quarantine-cloud-readback-20260930-attempt-1-failed.json; the verified 220-file receipt remains separately preserved and unchanged.",
+      "Removed the 88 pre-existing base-verification/snapshot-test fixture directories after proving they were inside the assigned worktree, generated by the two node:test fixtures, symlink-free, lock-free, and unused by any active test process. Only _work/scratch/README.md remains."
     ],
     "open_findings": [
-      "N3 still requires a clean Gitee clone, latest Drive manifest and recovery-index cloud readback, deployed 4317 verification, and safe historical/session cleanup.",
-      "D80 quarantine cleanup must verify every manifest-listed copy and preserve the historical manifests unchanged.",
-      "Two old Codex threads have missing source rollouts; keep them visible as unknown with diagnostics.",
-      "Execution worktree removal must wait for the host turn to end."
+      "Current execution session codex-835da5ec0682f0e05a65-1 is active in its integrated private worktree. After this host turn exits, independently verify that supervisor cleanup removed its worktree and branch and released its claim before marking the plan and goal complete."
     ],
     "source_document_hashes": [
       {
@@ -1169,7 +1182,92 @@
         "branch": "codex/session/codex-8f62a0ce8890af6b3331-1",
         "source_commit": "06a595d8a48e8395c734a1976cff2b9ba6bd8e7c"
       }
-    ]
+    ],
+    "finalization_evidence": {
+      "verified_at": "2026-10-03T06:16:53.808Z",
+      "gitee_clean_clone": {
+        "path": "_work/current/gitee-clean-clone-n3",
+        "origin": "https://gitee.com/chx6/muIon-beam.git",
+        "fast_forward_from": "3f387a1157dfa2049a1dc8ae03593ca016a3deb1",
+        "head": "d882d31829def03520452eaa36c159c78d61494b",
+        "origin_main": "d882d31829def03520452eaa36c159c78d61494b",
+        "status": "clean"
+      },
+      "drive_recovery_index": {
+        "file_id": "1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt",
+        "version": 7,
+        "generated_at": "2026-10-03T05:16:45.601Z",
+        "bytes": 141517,
+        "sha256": "061a7f82590742619905586fa549bf4c12a848c9c5ca41c6d39e8448fb01b40c",
+        "matched_mapped_file": true,
+        "gitee_remote_commit": "d882d31829def03520452eaa36c159c78d61494b",
+        "browser_url": "https://drive.google.com/file/d/1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt/view",
+        "duplicate_retained": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS"
+      },
+      "drive_mirror": {
+        "manifest_sha256": "e71904795517e643133edb323088f6b957722bff82fef13d10a278f71337797e",
+        "file_count": 1262,
+        "total_bytes": 450788379,
+        "cloud_manifest_readback_verified": true
+      },
+      "dashboard": {
+        "root": "D:\\muIon-beam",
+        "url": "http://127.0.0.1:4317/",
+        "html_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+        "javascript_sha256": "69ca7bae74018929cc2d7dbd9e673bda1c665ffa0bb72112f7f27f640d8a05b7",
+        "unknown_rollout_diagnostics_visible": 2
+      },
+      "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
+      "remaining_gate": "automatic current-session worktree, branch, and claim cleanup must be independently observed after host exit",
+      "tests": {
+        "command": "node --test tests/*.mjs",
+        "status": "passed",
+        "tests": 217,
+        "architecture_required_files": 150,
+        "variables": 12,
+        "scratch_directories_before": 88,
+        "scratch_directories_after": 88
+      },
+      "archive_receipts": [
+        {
+          "path": "00_project/traceability/drive-mirror-manifest-before-N1-20260930.json",
+          "bytes": 388786,
+          "sha256": "965b73da69e6be6d6d2bd6fd24ae36d417b3c75f4714e9d346118e7f24df9a8a"
+        },
+        {
+          "path": "00_project/traceability/drive-mirror-reconciliation-N1-20260930.json",
+          "bytes": 2489,
+          "sha256": "290d6f8a094b3eb3836193216728c4b72f8285a518d532f4372d8435c98b52b3"
+        },
+        {
+          "path": "00_project/traceability/quarantine-cloud-readback-20260930-attempt-1-failed.json",
+          "bytes": 141839,
+          "sha256": "b6e4eabd70d17388deb5de7c67262abe944e4da67ec0b9354800e5de004741ba"
+        }
+      ],
+      "p3_scratch_cleanup": {
+        "status": "verified",
+        "removed_directories": 88,
+        "patterns": [
+          "base-verification-*",
+          "snapshot-test-*"
+        ],
+        "remaining": [
+          "_work/scratch/README.md"
+        ],
+        "active_test_processes": 0,
+        "lock_files": 0,
+        "symlinks": 0
+      },
+      "ignored_task_output_disposition": {
+        "status": "verified",
+        "n3_readback": "represented in tracked plan evidence",
+        "quarantine_readback": "220/220 entries matched tracked verified receipt",
+        "failed_quarantine_readback": "copied to traceability with matching SHA256",
+        "n1_before_manifest": "copied to traceability with matching SHA256",
+        "clean_clone": "verified against Gitee then removed as reproducible"
+      }
+    }
   },
   "execution": {
     "session_id": "codex-835da5ec0682f0e05a65-1",
@@ -1184,7 +1282,7 @@
     "latest_main_commit": "69302f16570347666868a3022adf6a71b48db85d",
     "latest_main_remote_verified": "69302f16570347666868a3022adf6a71b48db85d"
   },
-  "updated_at": "2026-10-03T04:23:22.330Z",
+  "updated_at": "2026-10-03T06:52:24.289Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"
@@ -1228,9 +1326,91 @@
     }
   ],
   "open_findings": [
-    "N3 still requires clean Gitee clone, final Drive manifest and recovery-index cloud readback, deployed 4317 browser verification, safe historical cleanup and task-session reaping.",
-    "Cloud recovery-index preview is older than the mapped copy; regenerate after final main/Drive receipt updates and verify the uploaded content.",
-    "Two old Codex threads have missing rollout sources; keep their unknown status visible with diagnostics where records remain.",
-    "Execution worktree removal must wait for this host turn to end and be checked independently."
-  ]
+    "Current execution session codex-835da5ec0682f0e05a65-1 is active in its integrated private worktree. After this host turn exits, independently verify that supervisor cleanup removed its worktree and branch and released its claim before marking the plan and goal complete."
+  ],
+  "finalization_checkpoint": {
+    "verified_at": "2026-10-03T06:16:53.808Z",
+    "gitee_clean_clone": {
+      "path": "_work/current/gitee-clean-clone-n3",
+      "origin": "https://gitee.com/chx6/muIon-beam.git",
+      "fast_forward_from": "3f387a1157dfa2049a1dc8ae03593ca016a3deb1",
+      "head": "d882d31829def03520452eaa36c159c78d61494b",
+      "origin_main": "d882d31829def03520452eaa36c159c78d61494b",
+      "status": "clean"
+    },
+    "drive_recovery_index": {
+      "file_id": "1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt",
+      "version": 7,
+      "generated_at": "2026-10-03T05:16:45.601Z",
+      "bytes": 141517,
+      "sha256": "061a7f82590742619905586fa549bf4c12a848c9c5ca41c6d39e8448fb01b40c",
+      "matched_mapped_file": true,
+      "gitee_remote_commit": "d882d31829def03520452eaa36c159c78d61494b",
+      "browser_url": "https://drive.google.com/file/d/1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt/view",
+      "duplicate_retained": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS"
+    },
+    "drive_mirror": {
+      "manifest_sha256": "e71904795517e643133edb323088f6b957722bff82fef13d10a278f71337797e",
+      "file_count": 1262,
+      "total_bytes": 450788379,
+      "cloud_manifest_readback_verified": true
+    },
+    "dashboard": {
+      "root": "D:\\muIon-beam",
+      "url": "http://127.0.0.1:4317/",
+      "html_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+      "javascript_sha256": "69ca7bae74018929cc2d7dbd9e673bda1c665ffa0bb72112f7f27f640d8a05b7",
+      "unknown_rollout_diagnostics_visible": 2
+    },
+    "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
+    "remaining_gate": "automatic current-session worktree, branch, and claim cleanup must be independently observed after host exit",
+    "tests": {
+      "command": "node --test tests/*.mjs",
+      "status": "passed",
+      "tests": 217,
+      "architecture_required_files": 150,
+      "variables": 12,
+      "scratch_directories_before": 88,
+      "scratch_directories_after": 88
+    },
+    "archive_receipts": [
+      {
+        "path": "00_project/traceability/drive-mirror-manifest-before-N1-20260930.json",
+        "bytes": 388786,
+        "sha256": "965b73da69e6be6d6d2bd6fd24ae36d417b3c75f4714e9d346118e7f24df9a8a"
+      },
+      {
+        "path": "00_project/traceability/drive-mirror-reconciliation-N1-20260930.json",
+        "bytes": 2489,
+        "sha256": "290d6f8a094b3eb3836193216728c4b72f8285a518d532f4372d8435c98b52b3"
+      },
+      {
+        "path": "00_project/traceability/quarantine-cloud-readback-20260930-attempt-1-failed.json",
+        "bytes": 141839,
+        "sha256": "b6e4eabd70d17388deb5de7c67262abe944e4da67ec0b9354800e5de004741ba"
+      }
+    ],
+    "p3_scratch_cleanup": {
+      "status": "verified",
+      "removed_directories": 88,
+      "patterns": [
+        "base-verification-*",
+        "snapshot-test-*"
+      ],
+      "remaining": [
+        "_work/scratch/README.md"
+      ],
+      "active_test_processes": 0,
+      "lock_files": 0,
+      "symlinks": 0
+    },
+    "ignored_task_output_disposition": {
+      "status": "verified",
+      "n3_readback": "represented in tracked plan evidence",
+      "quarantine_readback": "220/220 entries matched tracked verified receipt",
+      "failed_quarantine_readback": "copied to traceability with matching SHA256",
+      "n1_before_manifest": "copied to traceability with matching SHA256",
+      "clean_clone": "verified against Gitee then removed as reproducible"
+    }
+  }
 }

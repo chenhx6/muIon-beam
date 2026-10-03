@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20261004-dashboard-same-host-dedupe",
+  "recorded_at": "2026-10-03T17:22:56.426Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "dashboard-progress",
+  "title": "Live thread timestamps masked newer same-host session records",
+  "observation": "The same Codex host had a closed historical registry row and a newer integrated writer. The aggregator replaced each registry updated_at with the current thread updated_at before deduplication, so timestamps tied and the first filesystem row (the closed session) won, producing a false 状态冲突 card instead of the current session and its plan progress.",
+  "evidence": [
+    "tests/supervisor-progress.test.mjs",
+    "11_tools/project-supervisor/progress-aggregator.mjs",
+    "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
+    "http://127.0.0.1:4317/api/status",
+    "http://127.0.0.1:4317/"
+  ],
+  "impact": [
+    "A historical closed session could hide a newer session for the same live host and display false conflict status.",
+    "The dashboard could omit the latest session's plan step and progress during continuation.",
+    "A plan marked completed could still be paired with the wrong same-host registry row."
+  ],
+  "reusable_value": "When multiple registry rows inherit one host thread's latest activity timestamp, deduplicate by the registry lifecycle creation time before status priority. Preserve the original row creation timestamp when merging external host activity.",
+  "actions": [
+    "Added created_at to the registry projection and used it as the tie-break after updated_at; integrated remains newer than closed when creation timestamps tie.",
+    "Added a regression with an old closed session, a newer integrated session, a completed plan linked to the old session, and an active Codex thread.",
+    "Focused dashboard-progress tests passed 13/13; the complete suite passed 219/219 and architecture smoke passed with 150 required files and 12 variables.",
+    "Verified the live API and browser show the newer same-host session with P1/N2 progress at 3/4 and no 状态冲突 row."
+  ],
+  "tags": [
+    "dashboard",
+    "progress",
+    "same-host",
+    "lifecycle-dedupe"
+  ],
+  "related_paths": [
+    "11_tools/project-supervisor/progress-aggregator.mjs",
+    "tests/supervisor-progress.test.mjs",
+    "11_tools/research-dashboard/server.mjs",
+    "11_tools/research-dashboard/supervision.js"
+  ],
+  "related_commits": [
+    "5bdab327f7feacf178189c1048811f3146ff2c64",
+    "75f8afeeba8ab9183e49b4a5f8c113457015e001"
+  ]
+}

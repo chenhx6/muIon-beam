@@ -2,7 +2,7 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 17,
+  "revision": 18,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
@@ -879,6 +879,31 @@
           "file": "tests/integration-coordinator.test.mjs",
           "passed": 7,
           "failed": 0
+        },
+        "post_delivery_followup": {
+          "cause": "The full suite exposed a recovery-lock race: a contender could observe the lock after exclusive creation but before owner JSON was written and delete the incomplete file. Dashboard health also timed out on the bounded /api/status projection under parallel test load.",
+          "fixed_paths": [
+            ".codex/skills/farmer/farmer.mjs",
+            "11_tools/project-supervisor/services.mjs",
+            "tests/farmer.test.mjs",
+            "tests/project-supervisor.test.mjs"
+          ],
+          "focused_farmer_tests": {
+            "passed": 32,
+            "failed": 0
+          },
+          "full_suite": {
+            "command": "node --test tests/*.mjs",
+            "passed": 217,
+            "failed": 0
+          },
+          "architecture_check": {
+            "command": "node tests/architecture-smoke.mjs",
+            "valid": true,
+            "requiredFiles": 150,
+            "variables": 12
+          },
+          "publication": "Follow-up is an untagged post-delivery commit; the immutable N3 t-tag still points to 2cf9b33 and no legacy tag moved."
         }
       },
       "remote_head": "2cf9b33d831ffe91c4c0cecbdecc3eea4d05c191",
@@ -1091,7 +1116,8 @@
       "Cleanup preflight exposed publication.remote as alias origin while the clean clone stores the configured Gitee URL; cleanup now resolves and compares the actual remote URL, with a mismatch rejection test. Full project suite passed 216/216 after the fix; architecture smoke passed (150 required files, 12 variables).",
       "A D80-2 cleanup attempt preserved its worktree when the shared 220-item quarantine readback was incorrectly required to exist in every historical worker. Cleanup now validates the fixed global receipt count and hashes only quarantine payloads actually present in each worker; the empty-source case and incomplete receipt are covered by tests/session-concurrency.test.mjs.",
       "Delivered N3 after main, Gitee, Drive and annotated t-tag verification.",
-      "Historical worker branches and worktrees were removed through the fixed-SHA, Gitee/Drive-verified supersession gate; disposition receipt 00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json."
+      "Historical worker branches and worktrees were removed through the fixed-SHA, Gitee/Drive-verified supersession gate; disposition receipt 00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json.",
+      "Post-delivery supervision hardening fixed the partial farmer lock race and bounded dashboard status-projection timeout; focused farmer tests passed 32/32, full suite 217/217, architecture check 150/12."
     ],
     "open_findings": [
       "N3 still requires a clean Gitee clone, latest Drive manifest and recovery-index cloud readback, deployed 4317 verification, and safe historical/session cleanup.",
@@ -1158,7 +1184,7 @@
     "latest_main_commit": "69302f16570347666868a3022adf6a71b48db85d",
     "latest_main_remote_verified": "69302f16570347666868a3022adf6a71b48db85d"
   },
-  "updated_at": "2026-09-30T23:40:34.807Z",
+  "updated_at": "2026-10-03T04:23:22.330Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"

@@ -1,8 +1,8 @@
 # 经验汇总：runtime-supervision
 
-- 生成时间：2026-09-29T19:42:36.694Z
-- 经验条数：6
-- 正向：1；负向：5；中性：0
+- 生成时间：2026-10-03T04:21:55.830Z
+- 经验条数：7
+- 正向：1；负向：6；中性：0
 
 ## 可共享结论
 
@@ -12,6 +12,7 @@
 - **[negative] 恢复成功后仍持续投递 farmer resume**：恢复队列必须有跨进程原子锁、queue 前持久 reservation、成功后的 recovery-chain 关闭和旧事件时间戳保护；queue accepted 不等于 turn started，历史重复消息不能靠轮询撤回。
 - **[negative] 恢复 turn 启动后仍按旧失败链重复投递**：task_started 是一次恢复成功证据；同一 recovered turn 后续失败不能重新开启自动恢复链，新用户 turn 才能开始新的恢复资格。
 - **[negative] Project 启动 hook 两次失败与 NUL 运行态**：把宿主 hook 的失败事件与项目入口、运行态文件和成功 receipt 分层核对；对仅含 NUL 的派生状态先保留证据再重建，绝不把后续 claim/长路径阻塞误记为已证实的 hook 根因。
+- **[negative] Full-suite validation exposed a partial farmer lock and a tight dashboard health timeout**：For cross-process file locks, an unreadable owner record immediately after exclusive create is an in-progress write until the existing stale-lock TTL expires. Keep local health requests bounded while allowing realistic status-projection latency; full-suite parallel load is useful evidence for both boundaries.
 
 ## 记录明细
 
@@ -23,22 +24,26 @@
 | 2026-09-22T00:00:00Z | negative | recorded | 恢复成功后仍持续投递 farmer resume | 00_project/traceability/incidents/FARMER-INCIDENT-20260918.json；_work/current/farmer/state.json；.codex/skills/farmer/farmer.mjs；tests/farmer.test.mjs；git commit 3d05b34；增加 recovery.lock，串行化 farmer queue evaluator；在调用 codex queue 前写入 queue reservation，崩溃后由 watchdog 熔断；task_complete 成功时关闭 recovery_chain_active；忽略时间戳早于已处理事件的旧失败事件；增加并发锁、reservation、乱序事件和成功后不再恢复的回归测试；保持 emergency pause，待用户 review 后再做受控 live canary |
 | 2026-09-23T04:02:00Z | negative | recorded | 恢复 turn 启动后仍按旧失败链重复投递 | 当前 session rollout：01a0c2b5-5c91-7d33-9d15-ba73a6cc5a8a；2026-09-23 03:37:01、03:38:28、03:38:38 的三条 [farmer resume]；_work/current/farmer/state.json：attempts=3、recovery_chain_active=true；farmer live status：owner process 已停止，pause 已恢复；npm test：199 项通过；task_started 后写入 recovery_satisfied=true、recovered_turn_id，并关闭 recovery_chain_active；同一 recovered_turn_id 的后续 transient failure 记录 failure-after-recovery，不再 queue；记录 rollout mtime、rollout size 和 process_health，区分 running、writing、complete、not-observed；未再观察到的旧 active state 标记为 session-unavailable，避免伪装成正常运行；继续保持 emergency pause，待用户 review 修复后的 canary 结果后再恢复正常监督 |
 | 2026-09-29T19:42:36.633Z | negative | recorded | Project 启动 hook 两次失败与 NUL 运行态 | 00_project/traceability/incidents/HOOK-INCIDENT-20260930.json；00_project/traceability/incidents/HOOK-INCIDENT-20260930-screenshot.png；_work/current/project-supervisor/events.jsonl；11_tools/project-supervisor/runtime-store.mjs；已保留损坏运行态文件、恢复 farmer、回收过期且干净的 claim、启用仓库局部 Git 长路径并验证后续真实 UserPromptSubmit receipt；未来再现时先收集展开的 Hook Stats stderr/exit/time，再按 README 的受限恢复顺序处理；若 NUL 复发，再实现带测试的派生状态隔离恢复 |
+| 2026-10-03T04:19:27.413Z | negative | recorded | Full-suite validation exposed a partial farmer lock and a tight dashboard health timeout | tests/farmer-process-acceptance.test.mjs；tests/farmer.test.mjs；tests/project-supervisor.test.mjs；.codex/skills/farmer/farmer.mjs；11_tools/project-supervisor/services.mjs；10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json；acquireRecoveryLock now uses lock-file mtime when the owner JSON is incomplete and only reclaims that record after the existing TTL; a regression test preserves and then expires a partial lock.；DashboardService retains the health identity checks and raises the /api/status probe timeout from two to three seconds.；Retained every assertion; focused farmer tests pass 32/32 and the full suite passes 217/217 with architecture smoke 150 files and 12 variables. |
 
 ## 高频标签
 
-- farmer: 4
+- farmer: 5
 - circuit-breaker: 2
+- dashboard: 2
 - project-supervisor: 2
 - recovery-loop: 2
 - autostart: 1
 - bootstrap: 1
-- dashboard: 1
 - evidence-boundary: 1
+- full-suite: 1
+- health-timeout: 1
 - hooks: 1
 - incident-containment: 1
 - live-canary: 1
 - nul-json: 1
 - process-health: 1
+- process-lock: 1
 - queue-deduplication: 1
 - queue-race: 1
 - runtime-gap: 1

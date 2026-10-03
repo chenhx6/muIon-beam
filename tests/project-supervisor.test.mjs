@@ -72,7 +72,8 @@ test('dashboard health verifies service identity and actual status on loopback',
   t.after(() => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); }));
   const root = path.resolve(import.meta.dirname, '..');
   const service = new DashboardService(root, store, server.address().port);
-  assert.equal((await service.health()).status, 'healthy');
+  const health = await service.health();
+  assert.equal(health.status, 'healthy', JSON.stringify(health));
   const other = new DashboardService(store.root, store, server.address().port);
   assert.equal((await other.health()).status, 'blocked');
 });

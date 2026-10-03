@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20261003-supervisor-concurrency-health-checks",
+  "recorded_at": "2026-10-03T04:19:27.413Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "runtime-supervision",
+  "title": "Full-suite validation exposed a partial farmer lock and a tight dashboard health timeout",
+  "observation": "A post-delivery full-suite run first found that two concurrent farmer once processes could enqueue the same failed turn. The lock creator makes the file visible with O_EXCL before writing its owner JSON; a contender that observed the brief incomplete file treated it as stale and unlinked it. A later full-suite run exposed DashboardService.health returning blocked after a timeout during its bounded status-projection request; this was observed under parallel suite load, and the status endpoint was the expensive second request in that code path.",
+  "evidence": [
+    "tests/farmer-process-acceptance.test.mjs",
+    "tests/farmer.test.mjs",
+    "tests/project-supervisor.test.mjs",
+    ".codex/skills/farmer/farmer.mjs",
+    "11_tools/project-supervisor/services.mjs",
+    "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json"
+  ],
+  "impact": [
+    "A concurrent farmer evaluation could duplicate one recovery queue action.",
+    "A slow but valid local dashboard status projection could produce a false blocked health report during load."
+  ],
+  "reusable_value": "For cross-process file locks, an unreadable owner record immediately after exclusive create is an in-progress write until the existing stale-lock TTL expires. Keep local health requests bounded while allowing realistic status-projection latency; full-suite parallel load is useful evidence for both boundaries.",
+  "actions": [
+    "acquireRecoveryLock now uses lock-file mtime when the owner JSON is incomplete and only reclaims that record after the existing TTL; a regression test preserves and then expires a partial lock.",
+    "DashboardService retains the health identity checks and raises the /api/status probe timeout from two to three seconds.",
+    "Retained every assertion; focused farmer tests pass 32/32 and the full suite passes 217/217 with architecture smoke 150 files and 12 variables."
+  ],
+  "tags": [
+    "farmer",
+    "dashboard",
+    "process-lock",
+    "health-timeout",
+    "full-suite"
+  ],
+  "related_paths": [
+    ".codex/skills/farmer/farmer.mjs",
+    "11_tools/project-supervisor/services.mjs",
+    "tests/farmer.test.mjs",
+    "tests/farmer-process-acceptance.test.mjs",
+    "tests/project-supervisor.test.mjs"
+  ],
+  "related_commits": []
+}

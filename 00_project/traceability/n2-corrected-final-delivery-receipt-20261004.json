@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "record_type": "plan-node-delivery-receipt",
+  "receipt_id": "N2-CORRECTED-FINAL-20261004",
+  "recorded_at": "2026-10-03T20:00:00.000Z",
+  "plan_id": "plan_dashboard_delivery_repair_20260930",
+  "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
+  "node_id": "N2",
+  "status": "delivered",
+  "source_commit": "754cdd703d0ea90d249f831823dc3449a4661fe9",
+  "corrected_content_commit": "eff40c47dfe6dd009c402299a14d1024b4457563",
+  "delivery_main_commit": "9d5162c231ccabd26ad7b705310bba4b3fd19b71",
+  "gitee_remote_main": "9d5162c231ccabd26ad7b705310bba4b3fd19b71",
+  "corrected_tag": "t-task-dashboard-plan-upgrade-20261003-n2-fix-eff40c4",
+  "previous_n2_tag": "t-task-dashboard-plan-upgrade-20260930-n2-20260930071032-5e9ad20",
+  "previous_n2_tag_preserved": true,
+  "tags_created": ["t-task-dashboard-plan-upgrade-20261003-n2-fix-eff40c4"],
+  "formal_research": false,
+  "result_tags_created": [],
+  "validation": {
+    "focused_command": "node --test tests/supervisor-progress.test.mjs",
+    "focused_passed": "14/14",
+    "full_command": "node --test tests/*.mjs",
+    "full_passed": "220/220",
+    "architecture_command": "node tests/architecture-smoke.mjs",
+    "architecture_passed": {"required_files": 150, "variables": 12, "legacy_workspace_untouched": true}
+  },
+  "dashboard": {
+    "url": "http://127.0.0.1:4317/",
+    "api_status": 200,
+    "services": {"farmer": "healthy", "dashboard": "healthy"},
+    "historical_acceptance": {
+      "latest_session": "codex-835da5ec0682f0e05a65-5",
+      "current_step": "P1 · N2",
+      "progress": "3/4",
+      "closed_same_host_conflict": false
+    },
+    "final_readback": {
+      "plan_status": "completed",
+      "plan_progress": "4/4",
+      "closed_same_host_conflict": false,
+      "served_html_sha256": "d9068b2d7aaddec7fd3b4af08d9cd94291ab343c656ee10cffe147c6039bb6df",
+      "served_javascript_sha256": "69ca7bae74018929cc2d7dbd9e673bda1c665ffa0bb72112f7f27f640d8a05b7"
+    }
+  },
+  "drive": {
+    "root": "H:\\我的云端硬盘\\muIon_archive\\muIon-beam",
+    "manifest": {
+      "path": "muIon-beam/drive-mirror-manifest.json",
+      "sha256": "56fca0e84fdcca088ed5aadf364e79f4143651ea49e5d1d7e2095bbde971dd69",
+      "cloud_status": "cloud-upload-verified",
+      "file_count": 1267,
+      "total_bytes": 451367298,
+      "stale_count": 767
+    },
+    "recovery_index": {
+      "path": "project/recovery-index/recovery-index.json",
+      "sha256": "11507af5bb56fba19f1d0c0e5585ae4f81b42e90d9c75e0271199889980defca",
+      "gitee_local_and_remote": "9d5162c231ccabd26ad7b705310bba4b3fd19b71",
+      "browser_readback": true
+    },
+    "cloud_audit": {
+      "id": "CLOUD-AUDIT-20261003-9d5162c-final",
+      "sha256": "0ccef50fea5ea73f83a7a801b70548659478dd8a90493caacbb26878b59a768f",
+      "manifest_file_id": "1gNnfq6ajCq85Me-VJdLt_LLYfQfOwE6j",
+      "recovery_index_file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
+      "browser_readback": true,
+      "cleanup_allowed": false
+    }
+  },
+  "experience": {
+    "path": "00_project/traceability/experiences/EXP-20261004-dashboard-same-host-dedupe.json",
+    "sha256": "f647789f5ec48add2fa139211d60835df474dc6b0c9ee450c489139c7ce45505"
+  },
+  "cleanup": {
+    "session_id": "codex-835da5ec0682f0e05a65-7",
+    "status_at_receipt": "active",
+    "next_gate": "close session with cleanup=true after this receipt is integrated"
+  }
+}

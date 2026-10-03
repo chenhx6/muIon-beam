@@ -3,11 +3,11 @@
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
   "revision": 28,
-  "status": "executing",
+  "status": "completed",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "Finalize the final plan checkpoint, close current writer session codex-835da5ec0682f0e05a65-3, and independently verify supervisor cleanup.",
+  "next_action": "No further action; final cleanup evidence is independently recorded by supervisor.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -1089,7 +1089,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Finalize the final plan checkpoint, close current writer session codex-835da5ec0682f0e05a65-3, and independently verify supervisor cleanup.",
+    "next_action": "No further action; final cleanup evidence is independently recorded by supervisor.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -1149,9 +1149,7 @@
       "Canonical Drive manifest was directly read back after final sync with generated_at 2026-10-03T15:46:03.265Z, cloud-upload-verified, 1,266 files, 451,360,524 bytes, SHA256 9211eb30990e9aba65fd9443eef25d7437917fc5e67042c1b8ed22942df51ed2, and Gitee content commit 619d24dcdb845a10f57cd4ef88ea70044748fde4.",
       "Final recovery-index object 1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS was directly read back at generated_at 2026-10-03T15:54:51.233Z, SHA256 7eb0b67f80b12bbbc487acfc23ecdcc99488ec5429e59805facb687bc04ecdea, 142,294 bytes, and matching local/remote main 619d24dcdb845a10f57cd4ef88ea70044748fde4."
     ],
-    "open_findings": [
-      "Finalize the final plan checkpoint, close current writer session codex-835da5ec0682f0e05a65-3, and independently verify supervisor cleanup."
-    ],
+    "open_findings": [],
     "source_document_hashes": [
       {
         "name": "handoff_v3.md",
@@ -1407,9 +1405,7 @@
       "disposition": "N2 feature and browser verification required before reclaim"
     }
   ],
-  "open_findings": [
-    "Finalize the final plan checkpoint, close current writer session codex-835da5ec0682f0e05a65-3, and independently verify supervisor cleanup."
-  ],
+  "open_findings": [],
   "finalization_checkpoint": {
     "verified_at": "2026-10-03T06:16:53.808Z",
     "gitee_clean_clone": {
@@ -1445,7 +1441,7 @@
       "unknown_rollout_diagnostics_visible": 2
     },
     "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
-    "remaining_gate": "Close current writer session codex-835da5ec0682f0e05a65-3; supervisor must remove its worktree, branch and claim, then independent registry/Git observation completes the plan.",
+    "remaining_gate": "Automatic supervisor cleanup of the current writer is the final lifecycle action; independent registry/Git evidence is recorded after close.",
     "tests": {
       "command": "node --test tests/*.mjs",
       "status": "passed",

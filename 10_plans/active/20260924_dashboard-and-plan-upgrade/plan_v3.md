@@ -185,7 +185,7 @@ API只返回看板所需数据，避免每次轮询返回巨大的历史artifact
 - 本轮只提交计划文档的worker checkpoint；main发布状态必须据工具结果报告，不能把本地commit说成push完成。新session首个交付包含本计划材料。
 - 总体未完成时遇到同一真实阻塞遵守goal阻塞审计，不刷无变化回执、不靠宣布完成重开goal、不自行切换用户指定模型。
 
-## 当前执行 checkpoint（2026-10-04，revision 32）
+## 当前执行 checkpoint（2026-10-04，revision 34）
 
 - N0-N3 均已 delivered；计划节点均已完成；当前 writer session `codex-835da5ec0682f0e05a65-3` 由 supervisor 自动关闭和回收，独立 registry/Git 观测作为最终收尾证据。
 - Gitee clean clone 从 `3f387a1157dfa2049a1dc8ae03593ca016a3deb1` 快进到 `d882d31829def03520452eaa36c159c78d61494b`；clone 的 `HEAD`、`origin/main` 一致，工作区 clean。

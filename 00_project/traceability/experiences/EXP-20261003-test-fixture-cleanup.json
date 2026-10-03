@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "experience-record",
+  "experience_id": "EXP-20261003-test-fixture-cleanup",
+  "recorded_at": "2026-10-03T06:15:07.262Z",
+  "status": "recorded",
+  "polarity": "negative",
+  "category": "test-lifecycle",
+  "title": "Project test fixtures blocked automatic worktree reclamation",
+  "observation": "The previously passing full suite left 1,626 ignored files in the execution worktree. Inspection traced 1,618 files to repeated mkdtemp fixtures in tests/base-content-verification.test.mjs and tests/project-snapshot.test.mjs; neither fixture registered cleanup, so session-concurrency correctly refused to remove a worktree containing ignored data.",
+  "evidence": [
+    "tests/base-content-verification.test.mjs",
+    "tests/project-snapshot.test.mjs",
+    "git status --ignored --short --untracked-files=all",
+    "node --test tests/base-content-verification.test.mjs tests/project-snapshot.test.mjs"
+  ],
+  "impact": [
+    "The project could not complete automatic cleanup while generated test fixtures remained in the ignored scratch tree.",
+    "A task could appear clean under ordinary git status while cleanup was still unsafe."
+  ],
+  "reusable_value": "Every node:test fixture written under project _work/scratch must register t.after cleanup for its exact mkdtemp root. Then tests remain isolated without leaving ignored files that block supervised worktree cleanup.",
+  "actions": [
+    "Registered t.after(() => fs.rmSync(root, {recursive:true, force:true})) for the two mkdtemp fixtures.",
+    "The focused suites passed 8/8, and the new test runs removed their own scratch roots.",
+    "The complete project suite passed 217/217 after the cleanup fix; the _work/scratch directory count remained 88, so this suite left no new scratch roots.",
+    "After archiving the unique N1 before-manifest and failed-readback receipts, safely removed the 88 pre-existing test fixture directories; every target stayed inside this worktree and had no links, locks, or active test process."
+  ],
+  "tags": [
+    "test-lifecycle",
+    "worktree-cleanup",
+    "scratch",
+    "supervisor"
+  ],
+  "related_paths": [
+    "tests/base-content-verification.test.mjs",
+    "tests/project-snapshot.test.mjs",
+    ".codex/skills/team/scripts/session-concurrency.mjs"
+  ],
+  "related_commits": []
+}

@@ -11,8 +11,9 @@ import {
 
 const scratch = path.resolve(import.meta.dirname, '..', '_work/scratch');
 
-function receiptRoot() {
+function receiptRoot(t) {
   const root = fs.mkdtempSync(path.join(scratch, 'base-verification-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   fs.mkdirSync(path.join(root, '00_project/traceability/sync-states'), { recursive: true });
   return root;
 }
@@ -40,16 +41,16 @@ function writeReceipt(root, overrides = {}) {
   return state;
 }
 
-test('missing base snapshot uses the explicit historical-tag wording', () => {
-  const root = receiptRoot();
+test('missing base snapshot uses the explicit historical-tag wording', (t) => {
+  const root = receiptRoot(t);
   const result = resolveBaseContentVerification(root, 'base-tag', { audit: () => ({ status: 'three-way-verified' }) });
   assert.equal(result.verified, false);
   assert.equal(result.message, BASE_CONTENT_NOT_REVERIFIED);
   assert.equal(result.reason, 'base-snapshot-missing');
 });
 
-test('second-layer project audit is required before claiming base content verified', () => {
-  const root = receiptRoot();
+test('second-layer project audit is required before claiming base content verified', (t) => {
+  const root = receiptRoot(t);
   writeReceipt(root);
   const passed = resolveBaseContentVerification(root, 'base-tag', { audit: () => ({ status: 'three-way-verified' }) });
   assert.equal(passed.verified, true);
@@ -62,8 +63,8 @@ test('second-layer project audit is required before claiming base content verifi
   assert.equal(failed.second_layer, 'not-verified');
 });
 
-test('structurally incomplete receipts cannot claim base content verified', () => {
-  const root = receiptRoot();
+test('structurally incomplete receipts cannot claim base content verified', (t) => {
+  const root = receiptRoot(t);
   writeReceipt(root, { pending_actions: ['verify-project-snapshot'] });
   const result = resolveBaseContentVerification(root, 'base-tag', { audit: () => ({ status: 'three-way-verified' }) });
   assert.equal(result.verified, false);

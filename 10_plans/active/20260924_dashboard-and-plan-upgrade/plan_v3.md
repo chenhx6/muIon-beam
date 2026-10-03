@@ -185,6 +185,20 @@ API只返回看板所需数据，避免每次轮询返回巨大的历史artifact
 - 本轮只提交计划文档的worker checkpoint；main发布状态必须据工具结果报告，不能把本地commit说成push完成。新session首个交付包含本计划材料。
 - 总体未完成时遇到同一真实阻塞遵守goal阻塞审计，不刷无变化回执、不靠宣布完成重开goal、不自行切换用户指定模型。
 
+## 当前执行 checkpoint（2026-10-03，revision 22）
+
+- N0-N3 均已 delivered；计划和 goal 继续保持 executing/active，直到当前 session 的 worktree、branch 和 claim 在 host turn 结束后由 supervisor 自动回收，并在下一次独立观测中确认。
+- Gitee clean clone 从 `3f387a1157dfa2049a1dc8ae03593ca016a3deb1` 快进到 `d882d31829def03520452eaa36c159c78d61494b`；clone 的 `HEAD`、`origin/main` 一致，工作区 clean。
+- Google Drive 原恢复索引对象 `1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt` 已新增版本 7。重新加载其浏览器页面后读回 141,517 字节，SHA256 `061a7f82590742619905586fa549bf4c12a848c9c5ca41c6d39e8448fb01b40c` 与映射盘副本完全一致，索引中的本地/远端 main 均为 `d882d31829def03520452eaa36c159c78d61494b`。同名副本 `1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS` 保留未删。
+- Drive canonical mirror 浏览器验收：manifest SHA256 `e71904795517e643133edb323088f6b957722bff82fef13d10a278f71337797e`，1,262 个文件，450,788,379 bytes；之前逐项读取的变更文件与 manifest 匹配。
+- 4317 dashboard 实际 served HTML/JavaScript 哈希与 main 一致，显示两条旧 rollout 来源未知的诊断，不把它们伪装成已恢复。
+- 发现两个测试 fixture 未清理 `_work/scratch`，导致完整测试在本 worktree 留下 1,618 个 ignored fixture 文件；已为各自 mkdtemp 根注册 `t.after`，`node --test tests/base-content-verification.test.mjs tests/project-snapshot.test.mjs` 通过 8/8，新执行无泄漏。失败与修复经验记录为 `EXP-20261003-test-fixture-cleanup`。
+- 修复后完整项目测试 `node --test tests/*.mjs` 通过 217/217，架构 smoke 为 150 个必需文件、12 个变量有效；完整测试前后 `_work/scratch` 均为 88 个既有目录，没有新增测试残留。
+- 将 N1 line-ending reconciliation receipt、与记录 SHA256 匹配的历史 manifest 备份及第一次失败的 220 项 quarantine readback 作为独立 traceability 文件保存在 `00_project/traceability/`；原 verified quarantine receipt 未改写。
+- 在归档并逐项核对 N3/N1 唯一证据后，移除了 88 个既有测试 fixture 目录；目标均在当前 worktree `_work/scratch` 内，无符号链接、锁文件或活动测试进程，目录现在只保留 `README.md`。N3 clean clone 和临时 readback/helper 副本在主计划/traceability 对应哈希复核后清理。
+- 本任务没有运行正式科研模拟。远端仅有本计划 N0-N3 的 `t-*` annotated 节点标签；没有创建 `b-*`、`r-*` 或历史补标签。
+- 下一步仅是 host turn 结束后的 supervisor 自动清理核验。确认当前 session `codex-835da5ec0682f0e05a65-1` 的 worktree、branch 与 claim 全部不存在/释放后，再将计划和 goal 标记完成。
+
 ## 当前执行 checkpoint（2026-09-30，revision 12）
 
 - N0、N1、N2 已由现有 delivery gate 集成 main、推送 Gitee、验证 Drive 与 `t-*` 标签；N3 仍 pending，计划与 goal 均保持 executing/active。

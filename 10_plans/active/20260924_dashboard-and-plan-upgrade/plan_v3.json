@@ -850,7 +850,7 @@
       "tag": "t-task-dashboard-plan-upgrade-20260930-n3-20260930213116-2cf9b33",
       "remote_verified": true,
       "drive_verified": true,
-      "summary": "N3 source is validated; final delivery still requires P5 clean-clone, cloud recovery-index and dashboard evidence plus four historical cleanup receipts.",
+      "summary": "N3 delivered and tagged on Gitee; plan receipt is on main and Drive. Four historical worktrees are removed with verified preservation receipts. Post-receipt recovery-index readback and automatic cleanup of the active task worktree remain.",
       "validation": {
         "full_test_suite": true,
         "architecture_check": true,

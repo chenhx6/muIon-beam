@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { acquireRecoveryLock, batchDelay, classifyError, inside, inspect, manualRetryLease, parseSessionEvents, reconcileUnobservedStates, recoveryStep, releaseRecoveryLock, validateConfig, SAFE_MAX_ATTEMPTS } from '../.codex/skills/farmer/farmer.mjs';
+import { acquireRecoveryLock, batchDelay, classifyError, inside, inspect, manualRetryLease, parseSessionEvents, reconcileUnobservedStates, recoveryStep, releaseRecoveryLock, validateConfig, RECOVERY_LOCK_TTL_MS, SAFE_MAX_ATTEMPTS } from '../.codex/skills/farmer/farmer.mjs';
 
 const config = { max_attempts: 99, recoverable_codes: ['server_overloaded', 'rate_limit_exceeded', 'temporarily_unavailable'], recoverable_patterns: ['Selected model is at capacity', 'temporarily unavailable', 'service unavailable', 'rate limit', 'timed out', 'connection reset'], recovery_message: 'resume' };
 test('farmer classifies transient and terminal errors', () => {
@@ -221,6 +221,15 @@ test('recovery lock permits one queue evaluator at a time', () => {
     releaseRecoveryLock(first);
     const second = acquireRecoveryLock(root); assert.ok(second); releaseRecoveryLock(second);
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
+});
+test('fresh incomplete recovery lock is not reclaimed before its TTL', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'muion-farmer-lock-')); const file = path.join(root, '_work/current/farmer/recovery.lock');
+  try {
+    fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, '{"pid":');
+    assert.equal(acquireRecoveryLock(root), null); assert.equal(fs.existsSync(file), true);
+    const recovered = acquireRecoveryLock(root, Date.now() + RECOVERY_LOCK_TTL_MS + 1);
+    assert.ok(recovered); releaseRecoveryLock(recovered); assert.equal(fs.existsSync(file), false);
+  } finally { assert.equal(path.dirname(root), path.resolve(os.tmpdir())); fs.rmSync(root, { recursive: true, force: true }); }
 });
 test('successful recovery closes the chain and stale failures cannot queue again', () => {
   let calls = 0; const cfg = { ...config, max_attempts: 3 };

@@ -43,8 +43,13 @@ export function acquireRecoveryLock(root, now = Date.now()) {
     } catch (error) {
       if (error.code !== 'EEXIST') throw error;
       let owner = null; try { owner = JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
-      const age = owner?.acquired_at ? now - Date.parse(owner.acquired_at) : Infinity;
-      if (!owner || !alive(owner.pid) || age > RECOVERY_LOCK_TTL_MS) { try { fs.unlinkSync(file); } catch {} continue; }
+      let modifiedAt;
+      try { modifiedAt = fs.statSync(file).mtimeMs; } catch (statError) { if (statError.code === 'ENOENT') continue; throw statError; }
+      const acquiredAt = Date.parse(owner?.acquired_at || '');
+      const age = Number.isFinite(acquiredAt) ? now - acquiredAt : now - modifiedAt;
+      const deadOwner = Number.isInteger(owner?.pid) && owner.pid > 0 && !alive(owner.pid);
+      // A fresh unreadable lock can be between exclusive create and owner write; let the creator finish.
+      if (deadOwner || age > RECOVERY_LOCK_TTL_MS) { try { fs.unlinkSync(file); } catch {} continue; }
       return null;
     }
   }

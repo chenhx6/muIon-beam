@@ -57,7 +57,7 @@ export class DashboardService {
         return { status: 'blocked', reason: 'dashboard-port-owned-by-another-service', url };
       }
       // A healthy listener must also serve the actual status view.
-      const status = await fetch(`http://127.0.0.1:${this.port}/api/status`, { signal: AbortSignal.timeout(2000) });
+      const status = await fetch(`http://127.0.0.1:${this.port}/api/status`, { signal: AbortSignal.timeout(3000) });
       const projection = await status.json();
       if (!status.ok || !Array.isArray(projection.supervision?.sessions)) return { status: 'degraded', pid: data.pid, url, detail: 'dashboard status unavailable' };
       return { status: 'healthy', pid: data.pid, url };

@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 23,
+  "revision": 24,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P5",
-  "next_action": "Wait for this host turn to exit; in a later independent continuation, verify supervisor reclaimed codex-835da5ec0682f0e05a65-1 worktree, branch and claim before closing plan_v3 and the goal.",
+  "next_action": "After this host turn exits, independently verify supervisor removed codex-835da5ec0682f0e05a65-1 worktree and branch and released its claim; then set plan_v3 and the goal complete.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -1089,7 +1089,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Wait for this host turn to exit; in a later independent continuation, verify supervisor reclaimed codex-835da5ec0682f0e05a65-1 worktree, branch and claim before closing plan_v3 and the goal.",
+    "next_action": "After this host turn exits, independently verify supervisor removed codex-835da5ec0682f0e05a65-1 worktree and branch and released its claim; then set plan_v3 and the goal complete.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -1138,10 +1138,11 @@
       "After that main advancement, re-synced the Drive canonical mirror and verified the downloaded manifest object 1gNnfq6ajCq85Me-VJdLt_LLYfQfOwE6j byte-for-byte against the mapped manifest.",
       "Updated Drive visibility audit CLOUD-AUDIT-20261003-d015300; its cloud object 142Fk1vCh8Mqk9ZCaKJfj4_lJXTLdF05o directly read back with matching SHA256 and cleanup_allowed=false.",
       "Refreshed the original Drive recovery-index object 1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt to version 8 after main advanced to d015300733351baeaee959edbb94b397bc0f991b; browser readback SHA256 matches the mapped file exactly.",
-      "The final N1 archive receipt, original manifest backup, first failed quarantine receipt, experience record, plan_v3.json/plan_v3.md and both changed test files are all represented in the Drive canonical manifest and direct browser preview readbacks."
+      "The final N1 archive receipt, original manifest backup, first failed quarantine receipt, experience record, plan_v3.json/plan_v3.md and both changed test files are all represented in the Drive canonical manifest and direct browser preview readbacks.",
+      "Final Drive evidence is directly readable: cloud manifest metrics are current, CLOUD-AUDIT-20261003-7021a9a-final is read back, and retained duplicate recovery-index object 1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS version 44 reads back with SHA256 d3d986e393fab987273e7ea50eb7d13c87b9a999f697ce17c27a4ba229d84432 and final main 7021a9adac5a6197d29fc9a2deabfadfb6ba1624."
     ],
     "open_findings": [
-      "Final remaining gate: the host turn must end, then a new independent observation must verify automatic removal of the current integrated session worktree and branch and release of its claim before the plan and goal can be completed."
+      "Final remaining gate: host turn exit followed by an independent supervisor observation confirming removal of the current integrated session worktree and branch and release of its claim."
     ],
     "source_document_hashes": [
       {
@@ -1301,6 +1302,32 @@
         "browser_verified_paths": 8,
         "line_endings_normalized": true,
         "manifest_download": "byte-identical"
+      },
+      "main_content_commit": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624",
+      "final_drive_manifest": {
+        "generated_at": "2026-10-03T09:59:50.274Z",
+        "bytes": 396254,
+        "sha256": "d28731595fe64fc5a39d3578b8239eb854609c3bc95f293573d19bfe4c25f051",
+        "file_count": 1266,
+        "total_bytes": 451350608,
+        "cloud_status": "cloud-upload-verified"
+      },
+      "final_cloud_audit": {
+        "audit_id": "CLOUD-AUDIT-20261003-7021a9a-final",
+        "browser_readback": true,
+        "manifest_sha256": "d28731595fe64fc5a39d3578b8239eb854609c3bc95f293573d19bfe4c25f051",
+        "gitee_commit": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624",
+        "cleanup_allowed": false
+      },
+      "final_recovery_index": {
+        "file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
+        "original_file_id": "1VvCuwrGnBzKnUaJ5FYywuifucg1dJKtt",
+        "version": 44,
+        "generated_at": "2026-10-03T11:48:05.385Z",
+        "bytes": 141802,
+        "sha256": "d3d986e393fab987273e7ea50eb7d13c87b9a999f697ce17c27a4ba229d84432",
+        "matched_mapped_file": true,
+        "final_main": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624"
       }
     }
   },
@@ -1317,7 +1344,7 @@
     "latest_main_commit": "69302f16570347666868a3022adf6a71b48db85d",
     "latest_main_remote_verified": "69302f16570347666868a3022adf6a71b48db85d"
   },
-  "updated_at": "2026-10-03T09:43:32.478Z",
+  "updated_at": "2026-10-03T12:07:14.832Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"
@@ -1361,7 +1388,7 @@
     }
   ],
   "open_findings": [
-    "Final remaining gate: the host turn must end, then a new independent observation must verify automatic removal of the current integrated session worktree and branch and release of its claim before the plan and goal can be completed."
+    "Final remaining gate: host turn exit followed by an independent supervisor observation confirming removal of the current integrated session worktree and branch and release of its claim."
   ],
   "finalization_checkpoint": {
     "verified_at": "2026-10-03T06:16:53.808Z",
@@ -1476,6 +1503,32 @@
       "browser_verified_paths": 8,
       "line_endings_normalized": true,
       "manifest_download": "byte-identical"
+    },
+    "main_content_commit": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624",
+    "final_drive_manifest": {
+      "generated_at": "2026-10-03T09:59:50.274Z",
+      "bytes": 396254,
+      "sha256": "d28731595fe64fc5a39d3578b8239eb854609c3bc95f293573d19bfe4c25f051",
+      "file_count": 1266,
+      "total_bytes": 451350608,
+      "cloud_status": "cloud-upload-verified"
+    },
+    "final_cloud_audit": {
+      "audit_id": "CLOUD-AUDIT-20261003-7021a9a-final",
+      "browser_readback": true,
+      "manifest_sha256": "d28731595fe64fc5a39d3578b8239eb854609c3bc95f293573d19bfe4c25f051",
+      "gitee_commit": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624",
+      "cleanup_allowed": false
+    },
+    "final_recovery_index": {
+      "file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
+      "original_file_id": "1VvCuwrGnBzKnUaJ5FYywuifucg1dJKtt",
+      "version": 44,
+      "generated_at": "2026-10-03T11:48:05.385Z",
+      "bytes": 141802,
+      "sha256": "d3d986e393fab987273e7ea50eb7d13c87b9a999f697ce17c27a4ba229d84432",
+      "matched_mapped_file": true,
+      "final_main": "7021a9adac5a6197d29fc9a2deabfadfb6ba1624"
     }
   }
 }

@@ -185,7 +185,7 @@ API只返回看板所需数据，避免每次轮询返回巨大的历史artifact
 - 本轮只提交计划文档的worker checkpoint；main发布状态必须据工具结果报告，不能把本地commit说成push完成。新session首个交付包含本计划材料。
 - 总体未完成时遇到同一真实阻塞遵守goal阻塞审计，不刷无变化回执、不靠宣布完成重开goal、不自行切换用户指定模型。
 
-## 当前执行 checkpoint（2026-10-04，revision 40）
+## 当前执行 checkpoint（2026-10-04，revision 41）
 
 - N0、N1、N3 保持 delivered；N2 修正已集成到 eff40c47dfe6dd009c402299a14d1024b4457563，并打独立修正 tag t-task-dashboard-plan-upgrade-20261003-n2-fix-eff40c4；旧 N2 tag 保留不动。修正完整行为已通过 14 个 focused progress 测试、220 个全套测试、architecture 150/12，Gitee clean clone 在 eff40c47 验证源码和回归存在。修正之后 main 又合入 checkpoint 文档，当前远端 main 为 87b764e8335a8003f8b8d1df98007ae25dea92a6。
 - 最终实际 dashboard/API 发现同一 host 的旧 closed session1 被新 integrated session5 压过：Codex thread 的新 updated_at 覆盖两条 registry 时间后，原去重逻辑按文件枚举顺序选了旧行，页面显示状态冲突。

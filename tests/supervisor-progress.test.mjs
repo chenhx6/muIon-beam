@@ -225,6 +225,30 @@ test('duplicate registry rows from one host thread become one current card', t =
   assert.equal(progress.sessions[0].board_group, 'running');
 });
 
+test('latest same-host session wins when the live thread timestamp masks registry updates', t => {
+  const root = makeRoot(t);
+  addSession(root, {
+    session_id: 'thread-session-1', host_session_id: 'thread-a', task_id: 'old-task',
+    status: 'closed', mode: 'worktree', worktree_path: root,
+    created_at: '2026-09-29T19:51:26.312Z', updated_at: '2026-10-03T16:35:00.000Z',
+  });
+  addSession(root, {
+    session_id: 'thread-session-5', host_session_id: 'thread-a', task_id: 'current-task',
+    status: 'integrated', integration_status: 'integrated', mode: 'worktree', worktree_path: root,
+    created_at: '2026-10-03T16:35:31.921Z', updated_at: '2026-10-03T16:35:00.000Z',
+  });
+  addPlan(root, {
+    status: 'completed', task_id: 'old-task', session_ids: ['thread-session-1'],
+    nodes: [{ id: 'N0', status: 'delivered' }],
+  });
+  const home = addCodexIndex(root, [{ id: 'thread-a', status: 'inProgress' }], t);
+  const progress = aggregateProgress(root, { codexHome: home });
+  assert.equal(progress.sessions.length, 1);
+  assert.equal(progress.sessions[0].session_id, 'thread-session-5');
+  assert.equal(progress.sessions[0].board_group, 'running');
+  assert.equal(progress.sessions[0].board_label, '运行中');
+});
+
 test('plan source branches stop appearing only after their resolving node is delivered', t => {
   const root = makeRoot(t);
   const planning = path.join(root, 'planning-source');

@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 32,
-  "status": "completed",
+  "revision": 34,
+  "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
-  "current_phase": "P5",
-  "next_action": "Completed.",
+  "current_phase": "P1",
+  "next_action": "Fix ProgressAggregator same-host tie-break, add the browser-derived regression, republish corrected N2, then repeat final dashboard and cleanup evidence.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -42,7 +42,7 @@
     },
     {
       "id": "P1",
-      "status": "completed",
+      "status": "in-progress",
       "evidence": []
     },
     {
@@ -708,7 +708,7 @@
     },
     {
       "id": "N2",
-      "status": "delivered",
+      "status": "pending",
       "source_commit": "49d89f7546855b32ae8ba1635327ebe95d294248",
       "delivery_commit": "5e9ad204455a42a8d1c88b3d6328296f9f9d067a",
       "tag": "t-task-dashboard-plan-upgrade-20260930-n2-20260930071032-5e9ad20",
@@ -846,7 +846,16 @@
             "next_action": "Refresh and verify at N3."
           }
         }
-      }
+      },
+      "previous_delivery": {
+        "status": "delivered",
+        "source_commit": "49d89f7546855b32ae8ba1635327ebe95d294248",
+        "delivery_commit": "5e9ad204455a42a8d1c88b3d6328296f9f9d067a",
+        "tag": "t-task-dashboard-plan-upgrade-20260930-n2-20260930071032-5e9ad20",
+        "remote_verified": true,
+        "drive_verified": true
+      },
+      "current_issue": "Reopened after final live browser readback showed old closed same-host session1 wins dedupe and renders 状态冲突; preserve prior immutable tag."
     },
     {
       "id": "N3",
@@ -1089,7 +1098,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Completed.",
+    "next_action": "Fix ProgressAggregator same-host tie-break, add the browser-derived regression, republish corrected N2, then repeat final dashboard and cleanup evidence.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -1159,7 +1168,9 @@
       "The last completion-state Drive mirror was browser-read at generated_at 2026-10-03T16:43:11.080Z with cloud-upload-verified, 1,266 files, 451,361,585 bytes, SHA256 f82e5cd28e8255d3f85fe4950cad4cd0f8b7b4fe35b972187b7e5aa2907e81df.",
       "The last completion-state recovery-index was browser-read at 2026-10-03T16:44:54.167Z, SHA256 3b37d701b5091a0e5f01c6b4b1e571b20511dbd156317afe2e190aab185ad37e, with local and remote main equal 5661dc5d55fb43df1da200f28ad72de45af47f99."
     ],
-    "open_findings": [],
+    "open_findings": [
+      "Final live dashboard observation still shows closed session1 as 状态冲突 while a newer same-host integrated session5 exists; same-host dedupe needs a created_at/lifecycle tie-break. Reopen N2 acceptance, preserve its existing tag, fix and revalidate."
+    ],
     "source_document_hashes": [
       {
         "name": "handoff_v3.md",
@@ -1369,13 +1380,14 @@
     "started_at": "2026-09-30",
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2",
-    "latest_main_commit": "5661dc5d55fb43df1da200f28ad72de45af47f99",
-    "latest_main_remote_verified": "5661dc5d55fb43df1da200f28ad72de45af47f99"
+    "latest_main_commit": "923a0529c77a653d984ef35eb8bbaf10d49e5e66",
+    "latest_main_remote_verified": "923a0529c77a653d984ef35eb8bbaf10d49e5e66"
   },
-  "updated_at": "2026-10-03T16:47:42.093Z",
+  "updated_at": "2026-10-03T17:13:35.419Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
-    "codex-835da5ec0682f0e05a65-1"
+    "codex-835da5ec0682f0e05a65-1",
+    "codex-835da5ec0682f0e05a65-5"
   ],
   "machine_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.json",
   "p0_audit": "10_plans/active/20260924_dashboard-and-plan-upgrade/p0-audit-20260930.json",
@@ -1415,7 +1427,9 @@
       "disposition": "N2 feature and browser verification required before reclaim"
     }
   ],
-  "open_findings": [],
+  "open_findings": [
+    "Final live dashboard observation still shows closed session1 as 状态冲突 while a newer same-host integrated session5 exists; same-host dedupe needs a created_at/lifecycle tie-break. Reopen N2 acceptance, preserve its existing tag, fix and revalidate."
+  ],
   "finalization_checkpoint": {
     "verified_at": "2026-10-03T06:16:53.808Z",
     "gitee_clean_clone": {

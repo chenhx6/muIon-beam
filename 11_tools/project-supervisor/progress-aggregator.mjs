@@ -285,6 +285,7 @@ function registrySessions(root, warnings) {
         branch: record.branch || null,
         worktree_path: record.worktree_path || null,
         status: String(record.status || 'unknown').toLowerCase(),
+        created_at: timestamp(record.created_at),
         mode: record.mode || null,
         host_status: worker?.host_status || null,
         lease_until: record.lease_until || null,
@@ -309,7 +310,10 @@ function newerSession(candidate, current) {
   const candidateTime = Date.parse(candidate.updated_at || '') || 0;
   const currentTime = Date.parse(current.updated_at || '') || 0;
   if (candidateTime !== currentTime) return candidateTime > currentTime ? candidate : current;
-  const priority = value => ({ active: 4, submitted: 3, blocked: 3, interrupted: 2, abandoned: 1, closed: 0 })[value.status] || 0;
+  const candidateCreated = Date.parse(candidate.created_at || '') || 0;
+  const currentCreated = Date.parse(current.created_at || '') || 0;
+  if (candidateCreated !== currentCreated) return candidateCreated > currentCreated ? candidate : current;
+  const priority = value => ({ active: 4, submitted: 3, blocked: 3, integrated: 2, interrupted: 2, abandoned: 1, closed: 0 })[value.status] || 0;
   return priority(candidate) > priority(current) ? candidate : current;
 }
 

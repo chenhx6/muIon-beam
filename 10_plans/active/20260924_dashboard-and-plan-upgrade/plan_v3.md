@@ -185,27 +185,14 @@ API只返回看板所需数据，避免每次轮询返回巨大的历史artifact
 - 本轮只提交计划文档的worker checkpoint；main发布状态必须据工具结果报告，不能把本地commit说成push完成。新session首个交付包含本计划材料。
 - 总体未完成时遇到同一真实阻塞遵守goal阻塞审计，不刷无变化回执、不靠宣布完成重开goal、不自行切换用户指定模型。
 
-## 当前执行 checkpoint（2026-10-04，revision 34）
+## 当前执行 checkpoint（2026-10-04，revision 35）
 
-- N0-N3 均已 delivered；计划节点均已完成；当前 writer session `codex-835da5ec0682f0e05a65-3` 由 supervisor 自动关闭和回收，独立 registry/Git 观测作为最终收尾证据。
-- Gitee clean clone 从 `3f387a1157dfa2049a1dc8ae03593ca016a3deb1` 快进到 `d882d31829def03520452eaa36c159c78d61494b`；clone 的 `HEAD`、`origin/main` 一致，工作区 clean。
-- Google Drive 原恢复索引对象 `1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt` 已新增版本 7。重新加载其浏览器页面后读回 141,517 字节，SHA256 `061a7f82590742619905586fa549bf4c12a848c9c5ca41c6d39e8448fb01b40c` 与映射盘副本完全一致，索引中的本地/远端 main 均为 `d882d31829def03520452eaa36c159c78d61494b`。同名副本 `1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS` 保留未删。
-- Drive canonical mirror 浏览器验收：manifest SHA256 `e71904795517e643133edb323088f6b957722bff82fef13d10a278f71337797e`，1,262 个文件，450,788,379 bytes；之前逐项读取的变更文件与 manifest 匹配。
-- 4317 dashboard 实际 served HTML/JavaScript 哈希与 main 一致，显示两条旧 rollout 来源未知的诊断，不把它们伪装成已恢复。
-- 发现两个测试 fixture 未清理 `_work/scratch`，导致完整测试在本 worktree 留下 1,618 个 ignored fixture 文件；已为各自 mkdtemp 根注册 `t.after`，`node --test tests/base-content-verification.test.mjs tests/project-snapshot.test.mjs` 通过 8/8，新执行无泄漏。失败与修复经验记录为 `EXP-20261003-test-fixture-cleanup`。
-- 修复后完整项目测试 `node --test tests/*.mjs` 通过 217/217，架构 smoke 为 150 个必需文件、12 个变量有效；完整测试前后 `_work/scratch` 均为 88 个既有目录，没有新增测试残留。
-- 将 N1 line-ending reconciliation receipt、与记录 SHA256 匹配的历史 manifest 备份及第一次失败的 220 项 quarantine readback 作为独立 traceability 文件保存在 `00_project/traceability/`；原 verified quarantine receipt 未改写。
-- 在归档并逐项核对 N3/N1 唯一证据后，移除了 88 个既有测试 fixture 目录；目标均在当前 worktree `_work/scratch` 内，无符号链接、锁文件或活动测试进程，目录现在只保留 `README.md`。N3 clean clone 和临时 readback/helper 副本在主计划/traceability 对应哈希复核后清理。
-- Follow-up commit `2c524804ae4832967cfc3537f5f106d38b55366e` 已经 leader integration 合入 main，并 push Gitee 为 `d015300733351baeaee959edbb94b397bc0f991b`；core.longpaths 仅对临时 shallow clone 开启后，clone 与 origin/main 一致且 clean，验证结束后移除了 clone。
-- main 前进后重新同步 Drive canonical mirror：manifest 为 1,266 文件、451,345,571 bytes；Google Drive 下载的 manifest 与映射盘 byte-identical，SHA256 `66c5d450df3a268f4895d59f7b273ab486224c0874e798321504452d3c98ba38`。云端 `cloud-visibility-audit.json` 已更新并通过浏览器读回，明确 stale-path cleanup 仍关闭。
-- 原 Drive recovery-index `1VvCuwrGnBzKnUaJ5FYywuifucG1dJKtt` 更新至第 8 版；浏览器直接读回 141,665 字节，SHA256 `f855847f824d2fb7a5c14ab119ab931aa9b30749ba862485edaa5c9e20a74e90`，和映射盘文件相同并指向本地/远端 main `d015300733351baeaee959edbb94b397bc0f991b`。
-- N1 收据、manifest 备份、失败 readback、经验记录、两份计划文件及两份测试源码均出现在新 manifest；8 个变更文件均通过 Drive viewer 正文哈希核验（文本文档按 LF 统一后比较），manifest 下载则 byte-identical。
-- 唯一未完成项：关闭当前 writer session `codex-835da5ec0682f0e05a65-3` 后，由 supervisor 自动回收其 worktree/branch/claim；必须在独立观测全部确认后，才完成计划和 goal。
-- 最终已验证的 plan 内容提交为 `619d24dcdb845a10f57cd4ef88ea70044748fde4`；最终云端审计为 `CLOUD-AUDIT-20261003-619d24d-final`，recovery-index 读回使用保留的备用 Drive 对象 `1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS`，原对象 `1VvCuwrGnBzKnUaJ5FYywuifucg1dJKtt` 保留。
-- 修复同一 host continuation 造成 deferred cleanup 永不结束的根因：closed integrated session 在新 session 使用不同 worktree 时可安全自动回收；新增回归通过，完整测试 218/218、架构检查 150/12。独立 cleanup 已回收 `codex-835…-1` 和 `codex-835…-2`，当前 writer `codex-835…-3` 仍待关闭后回收。
-- cleanup 根因修复已发布并推送 Gitee；session2 的 P3 helper 已按 SHA256 `cfa8624a0efa62337d9eae82b6f148ceb21438ab788abc92259d6a49a336ab3a` 归档后由 supervisor 自动移除 worktree、branch 和 claim。revision 29 completed plan checkpoint 已推送至 main `b859848afd12c24a79c62ee47425e11fed330791`；最终 canonical Drive manifest 对象 `1gNnfq6ajCq85Me-VJdLt_LLYfQfOwE6j` 浏览器读回为 `cloud-upload-verified`、1,266 文件、451,360,842 bytes、SHA256 `f7244f31d3ae75b89229e15a98ccf8df276f1536381ba07336690028a317b6b4`；recovery-index 备用对象 `1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS` 浏览器读回生成于 `2026-10-03T16:18:41.928Z`、142,218 bytes、SHA256 `7afea0c26b1a16e577377c17f035b1bbf94f65bd7501861becbd70b810623caa`，指向远端 main `b859848afd12c24a79c62ee47425e11fed330791`。
-- 本任务没有运行正式科研模拟。远端仅有本计划 N0-N3 的 `t-*` annotated 节点标签；没有创建 `b-*`、`r-*` 或历史补标签。
-- 下一步：关闭当前 writer `codex-835…-3` 并等待 supervisor 自动清理，随后独立确认 worktree、branch 与 claim 已移除。
+- N0、N1、N3 保持 delivered；N2 重新打开做一次验收修正，旧 tag t-task-dashboard-plan-upgrade-20260930-n2-20260930071032-5e9ad20 保留不动。
+- 最终实际 dashboard/API 发现同一 host 的旧 closed session1 被新 integrated session5 压过：Codex thread 的新 updated_at 覆盖两条 registry 时间后，原去重逻辑按文件枚举顺序选了旧行，页面显示状态冲突。
+- 修正方向：保留 registry created_at，当 live host 更新时间打平时选择较新 lifecycle；同一创建时刻以 integrated 优先于 closed。新增测试覆盖旧完成计划与新 live 同 host session 并存；经验记录为 EXP-20261004-dashboard-same-host-dedupe。
+- focused supervisor-progress 测试 13/13；完整套件（合入前）219/219；architecture smoke 150 required files、12 variables。合入后仍需再跑完整套件和架构检查。
+- 当前 N2 状态 pending，P1 执行中；下一步合入 main、测试后重启 4317，从浏览器确认只显示最新 session 的 N2 进度，再创建独立 t-* 修正标签并验证 Gitee/Drive。
+- 任务不运行正式科研；标签不移动/删除旧 N2 标签，不创建 b-* 或 r-*。
 
 ## 当前执行 checkpoint（2026-09-30，revision 12）
 

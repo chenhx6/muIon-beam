@@ -2,12 +2,12 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 34,
+  "revision": 35,
   "status": "executing",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
   "current_phase": "P1",
-  "next_action": "Fix ProgressAggregator same-host tie-break, add the browser-derived regression, republish corrected N2, then repeat final dashboard and cleanup evidence.",
+  "next_action": "Run the full suite after integration, restart dashboard from main, deliver corrected N2 with an immutable t-* fix tag, verify Gitee clone and Drive browser readback, then close and auto-reap the writer.",
   "preferred_executor": {
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
@@ -1098,7 +1098,7 @@
   "historical_worker": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-1",
   "checkpoint": {
     "implementation_started": true,
-    "next_action": "Fix ProgressAggregator same-host tie-break, add the browser-derived regression, republish corrected N2, then repeat final dashboard and cleanup evidence.",
+    "next_action": "Run the full suite after integration, restart dashboard from main, deliver corrected N2 with an immutable t-* fix tag, verify Gitee clone and Drive browser readback, then close and auto-reap the writer.",
     "blockers": [],
     "completed_requirements": [
       "Read handoff_v3.md, plan_v3.md and plan_v3.json in full from the planning worktree.",
@@ -1383,7 +1383,7 @@
     "latest_main_commit": "923a0529c77a653d984ef35eb8bbaf10d49e5e66",
     "latest_main_remote_verified": "923a0529c77a653d984ef35eb8bbaf10d49e5e66"
   },
-  "updated_at": "2026-10-03T17:13:35.419Z",
+  "updated_at": "2026-10-03T17:25:54.662Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1",

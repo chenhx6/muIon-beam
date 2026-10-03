@@ -2,7 +2,7 @@
   "schema_version": 1,
   "plan_id": "plan_dashboard_delivery_repair_20260930",
   "version": "v3",
-  "revision": 30,
+  "revision": 31,
   "status": "completed",
   "human_plan": "10_plans/active/20260924_dashboard-and-plan-upgrade/plan_v3.md",
   "handoff": "10_plans/active/20260924_dashboard-and-plan-upgrade/handoff_v3.md",
@@ -1151,7 +1151,10 @@
       "Final completed plan checkpoint was pushed to Gitee main b859848afd12c24a79c62ee47425e11fed330791.",
       "Canonical Drive manifest directly read back in browser: generated_at 2026-10-03T16:17:03.509Z, cloud-upload-verified, 1,266 files, 451,360,842 bytes, SHA256 f7244f31d3ae75b89229e15a98ccf8df276f1536381ba07336690028a317b6b4.",
       "Final Drive recovery-index directly read back in browser at 2026-10-03T16:18:41.928Z, 142,218 bytes, SHA256 7afea0c26b1a16e577377c17f035b1bbf94f65bd7501861becbd70b810623caa; its local and remote main both equal b859848afd12c24a79c62ee47425e11fed330791.",
-      "Independent registry/Git verification confirmed codex-835da5ec0682f0e05a65-3 cleanup_completed=true, its worktree path absent, its branch absent and its claim released."
+      "Independent registry/Git verification confirmed codex-835da5ec0682f0e05a65-3 cleanup_completed=true, its worktree path absent, its branch absent and its claim released.",
+      "The final consistency correction was integrated and pushed to Gitee main 24489e4e09756bb44eb20c9c360793d1b293afa9; plan status is completed with no open findings.",
+      "Final completed-state Drive manifest was read back in browser at 2026-10-03T16:37:58.770Z, cloud-upload-verified, 1,266 files, 451,361,319 bytes, SHA256 3f2dbc5ee41af6bee39a088a67370227ee346165910f196b57e868ec4c677f4d.",
+      "Final completed-state recovery-index was read back in browser at 2026-10-03T16:39:41.250Z, SHA256 a6fd7a0fab311f49b6864eaff16ef60e4f40b84b95f57d29a46d227f69d9ec1f, with local and remote main both equal 24489e4e09756bb44eb20c9c360793d1b293afa9."
     ],
     "open_findings": [],
     "source_document_hashes": [
@@ -1363,10 +1366,10 @@
     "started_at": "2026-09-30",
     "goal_id": "01a0eeb8-a6f1-7e81-9133-5432f87793aa",
     "source_planning_worktree": "D:/muIon-beam/_work/current/worktrees/codex-d80b7f12073a98b4eb63-2",
-    "latest_main_commit": "60cadbb386e27748c0aa60f084d71b962874ea95",
-    "latest_main_remote_verified": "60cadbb386e27748c0aa60f084d71b962874ea95"
+    "latest_main_commit": "24489e4e09756bb44eb20c9c360793d1b293afa9",
+    "latest_main_remote_verified": "24489e4e09756bb44eb20c9c360793d1b293afa9"
   },
-  "updated_at": "2026-10-03T16:36:45.331Z",
+  "updated_at": "2026-10-03T16:42:19.818Z",
   "task_id": "TASK-DASHBOARD-PLAN-UPGRADE-20260930",
   "session_ids": [
     "codex-835da5ec0682f0e05a65-1"
@@ -1445,7 +1448,7 @@
       "unknown_rollout_diagnostics_visible": 2
     },
     "historical_cleanup_disposition": "00_project/traceability/supersession-cleanup-disposition-plan-dashboard-delivery-repair-20260930.json",
-    "remaining_gate": "Completed; automatic cleanup evidence is independently recorded for the delivered writer sessions.",
+    "remaining_gate": "Completed; automatic cleanup evidence is independently recorded for the integrated writer sessions.",
     "tests": {
       "command": "node --test tests/*.mjs",
       "status": "passed",
@@ -1494,7 +1497,7 @@
       "n1_before_manifest": "copied to traceability with matching SHA256",
       "clean_clone": "verified against Gitee then removed as reproducible"
     },
-    "main_commit": "b859848afd12c24a79c62ee47425e11fed330791",
+    "main_commit": "24489e4e09756bb44eb20c9c360793d1b293afa9",
     "latest_drive_mirror": {
       "manifest_sha256": "66c5d450df3a268f4895d59f7b273ab486224c0874e798321504452d3c98ba38",
       "generated_at": "2026-10-03T07:14:22.389Z",
@@ -1524,36 +1527,29 @@
       "line_endings_normalized": true,
       "manifest_download": "byte-identical"
     },
-    "main_content_commit": "b859848afd12c24a79c62ee47425e11fed330791",
+    "main_content_commit": "24489e4e09756bb44eb20c9c360793d1b293afa9",
     "final_drive_manifest": {
-      "generated_at": "2026-10-03T16:17:03.509Z",
+      "generated_at": "2026-10-03T16:37:58.770Z",
       "bytes": 396255,
-      "sha256": "f7244f31d3ae75b89229e15a98ccf8df276f1536381ba07336690028a317b6b4",
+      "sha256": "3f2dbc5ee41af6bee39a088a67370227ee346165910f196b57e868ec4c677f4d",
       "file_count": 1266,
-      "total_bytes": 451360842,
+      "total_bytes": 451361319,
       "cloud_status": "cloud-upload-verified"
     },
     "final_cloud_audit": {
-      "audit_id": "CLOUD-AUDIT-20261003-b859848-final",
-      "manifest_sha256": "f7244f31d3ae75b89229e15a98ccf8df276f1536381ba07336690028a317b6b4",
-      "manifest_generated_at": "2026-10-03T16:17:03.509Z",
-      "manifest_file_count": 1266,
-      "manifest_total_bytes": 451360842,
-      "gitee_commit": "b859848afd12c24a79c62ee47425e11fed330791",
+      "audit_id": "CLOUD-AUDIT-20261003-24489e4-final",
+      "manifest_sha256": "3f2dbc5ee41af6bee39a088a67370227ee346165910f196b57e868ec4c677f4d",
+      "gitee_commit": "24489e4e09756bb44eb20c9c360793d1b293afa9",
       "browser_readback": true,
-      "recovery_index_browser_readback": true,
-      "recovery_index_sha256": "7afea0c26b1a16e577377c17f035b1bbf94f65bd7501861becbd70b810623caa",
-      "recovery_index_bytes": 142218,
-      "recovery_index_generated_at": "2026-10-03T16:18:41.928Z",
-      "pending_browser_readback": false,
-      "cleanup_allowed": false
+      "cleanup_allowed": false,
+      "pending_browser_readback": false
     },
     "final_recovery_index": {
       "file_id": "1Q7CY4ntvzQTxGHue1qvaPIJ773-9OpCS",
-      "generated_at": "2026-10-03T16:18:41.928Z",
-      "bytes": 142218,
-      "sha256": "7afea0c26b1a16e577377c17f035b1bbf94f65bd7501861becbd70b810623caa",
-      "remote_main": "b859848afd12c24a79c62ee47425e11fed330791",
+      "generated_at": "2026-10-03T16:39:41.250Z",
+      "bytes": 142880,
+      "sha256": "a6fd7a0fab311f49b6864eaff16ef60e4f40b84b95f57d29a46d227f69d9ec1f",
+      "remote_main": "24489e4e09756bb44eb20c9c360793d1b293afa9",
       "browser_readback": true,
       "pending_browser_readback": false
     },
